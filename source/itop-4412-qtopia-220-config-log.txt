@@ -664,7 +664,7 @@ vi /etc/init.d/rcS
 
 按{{i}}键进入插入编辑模式，将{{/bin/qtopia &}}前的井号（“{{#}}”）删除，并在{{/bin/qt4 & }}前加入井号（“{{#}}”）将其设为注释状态。按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可自动启动到Qtopia图形界面，而不会启动到Qt/E 4.7.1提供的演示程序界面。
 
-如果需要重建Qtopia的{{system.img}}镜像，这个文件也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{Qtopia}}目录中编辑{{/etc/init.d/rcS}}文件：
+如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/etc/init.d/rcS}}文件：
 
 [[code]]
 sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/etc/init.d/rcS'
@@ -690,7 +690,7 @@ Language = en_US
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可将语言修改为英文，将该行设为{{Language = zh_CN}}即可将语言修改为简体中文。
 
-如果需要重建Qtopia的{{system.img}}镜像，这个文件也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{Qtopia}}目录中编辑{{/root/Settings/locale.conf}}文件：
+如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/root/Settings/locale.conf}}文件：
 
 [[code]]
 sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/root/Settings/locale.conf'
@@ -722,7 +722,7 @@ FontSize = 16
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可将语言修改为英文，将该行设为{{Language = zh_CN}}即可将语言修改为简体中文。
 
-如果需要重建Qtopia的{{system.img}}镜像，这个文件也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{Qtopia}}目录中编辑{{/root/Settings/qpe.conf}}文件：
+如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/root/Settings/qpe.conf}}文件：
 
 [[code]]
 sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/root/Settings/qpe.conf'
@@ -752,7 +752,7 @@ export QWS_KEYBOARD="USB:/dev/input/event1"
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可。
 
-如果需要重建Qtopia的{{system.img}}镜像，这个文件也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{Qtopia}}目录中编辑{{/bin/qtopia}}文件：
+如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/bin/qtopia}}文件：
 
 [[code]]
 sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qtopia'
@@ -1055,7 +1055,7 @@ export QWS_KEYBOARD="USB:/dev/input/event1"
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可。
 
-如果需要重建{{system.img}}镜像，这个文件也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{Qtopia}}目录中编辑{{/bin/qt4}}文件：
+如果需要重建{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/bin/qt4}}文件：
 
 [[code]]
 sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4'
@@ -1063,6 +1063,190 @@ sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4'
 
 完成后，重建{{system.img}}并执行刷写流程即可。
 
-+ 安装Qt Creator 5.3.2
++ 安装和配置Qt Creator 5.3.2
 
-从 *http://download.qt.io/new_archive/qt/5.3/5.3.2/ 下载[*http://download.qt.io/new_archive/qt/5.3/5.3.2/qt-opensource-linux-x64-android-5.3.2.run qt-opensource-linux-x64-android-5.3.2.run]。
+++ 安装Qt Creator 5.3.2
+
+从 *http://download.qt.io/new_archive/qt/5.3/5.3.2/ 下载[*http://download.qt.io/new_archive/qt/5.3/5.3.2/qt-opensource-linux-x64-android-5.3.2.run qt-opensource-linux-x64-android-5.3.2.run]。在终端中定位到该文件所在目录并执行：
+
+[[code]]
+./qt-opensource-linux-x64-android-5.3.2.run
+[[/code]]
+
+开始安装（是否用{{sudo}}指令以Root身份运行可随意）。
+
+++ 配置Qt/E 4.7.1编译套件
+
+从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
+
+首先，切换到 [编译器(Compilers)] 选项卡，点击 [添加(Add)] > [GCC]，[名称(Name)]可自由填写，[编译器路径(Compiler path)] 填写为：
+
+[[code]]
+/usr/local/arm/4.4.1/bin/arm-none-linux-gnueabi-gcc
+[[/code]]
+
+点击 [Apply] 按钮。
+
+随后，切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中Qt/E 4.7.1的{{qmake}}文件，由于笔者电脑已经编译过Qt/E 4.7.1，因此{{qmake}}文件位于：
+
+[[code]]
+/opt/qt-4.7.1/bin/qmake
+[[/code]]
+
+光盘的{{/08_源码_QtE以及qtopia2.2.0文件系统/root_@@********@@.tar.gz}}文件的{{/root/opt/qt-4.7.1/bin}}中也提供了{{qmake}}文件。
+
+点击 [Apply] 按钮。
+
+最后，切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 为之前添加的ARM编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.7.1。
+
+点击 [OK] 按钮，保存退出。
+
+++ 使用Qt/E 4.7.1编译套件
+
+对于新建的项目，在 [Kit Selection] 界面，勾选之前添加的Qt 4.7.1套件即可。
+
+对于已有的项目，打开项目后切换到左侧栏的 [项目(Projects)] 选项卡，点击 [添加构建套件(Add kit)]按钮，添加先前配置的Qt 4.7.1套件即可。
+
+++ 故障排除
+
+如果向Qt 4.7.1编译时出现“ui_MainWindow.h Error 1”等错误，可能由兼容性问题引发，建议右键点击错误窗格并切换到详细信息模式，检查出错原因。
+
++ 在开发板上运行Qt程序
+
+可以使用FAT32或FAT文件系统的USB磁盘或TF卡，将程序上传到开发板内。开始前，需将开发板上电开机并与宿主机的超级终端建立通讯连接。
+
+++ 设备挂载
+
++++ USB磁盘
+
+对于USB磁盘，将设备插入开发板的USB接口，超级终端回显{{[sda] Attached SCSI removable disk}}等提示，在超级终端按回车键进入命令行模式，执行：
+
+[[code]]
+mkdir /mnt/usb1
+mount /dev/udisk /mnt/usb1/
+[[/code]]
+
+即可挂载USB磁盘。
+
++++ TF卡
+
+对于TF卡，将设备插入开发板的TF卡槽，在超级终端按回车键进入命令行模式，执行：
+
+[[code]]
+mkdir /mnt/sdcard/
+mount /dev/mmcblk1p1 /mnt/sdcard/
+[[/code]]
+
+即可挂载TF卡。
+
+++ 执行程序
+
+在超级终端通过{{cp}}指令将自编程序复制到开发板本地，例如：
+
+[[code]]
+cd /mnt/usb1
+cp Demo /bin/
+[[/code]]
+
+进入{{/bin}}文件夹，建立{{qt4}}脚本的副本并编辑：
+
+[[code]]
+cd /bin
+cp qt4 qt-main
+vi qt-main
+[[/code]]
+
+通过在行首添加井号（“{{#}}”）的方式，注释掉{{qt-main}}文件中的以下行（通常位于文件末尾）：
+
+[[code]]
+cd /opt/qt-4.7.1/demos/embedded/fluidlauncher
+./fluidlauncher -qws 
+[[/code]]
+
+并在文件末尾添加下列行：
+
+[[code]]
+cd /bin
+./Demo -qws
+[[/code]]
+
+此处{{/bin/Demo}}是示例程序所在的位置，请根据实际情况改动。这样，{{qt-main}}文件的末尾看起来类似这样：
+
+[[code]]
+#cd /opt/qt-4.7.1/demos/textedit
+#./textedit -qws 
+
+cd /bin
+./Demo -qws
+[[/code]]
+
+按{{ESC}}键并输入{{:wq}}后按回车执行保存操作。
+
+退出当前正在执行的Qt程序，并在超级终端中执行：
+
+[[code]]
+/bin/qt-main &
+[[/code]]
+
+即可开始运行自编程序。
+
+++ 配置开机自启动
+
+初始化配置文件位于：
+
+[[code]]
+/etc/init.d/rcS
+[[/code]]
+
+在超级终端输入：
+
+[[code]]
+vi /etc/init.d/rcS
+[[/code]]
+
+编辑该文件，文件末尾有以下行：
+
+[[code]]
+#/bin/qtopia &
+/bin/qt4 & 
+[[/code]]
+
+通过在行首添加井号（“{{#}}”）的方式，将这两行全部设为注释状态，并在这两行后新建一行，输入：
+
+[[code]]
+/bin/qt-main &
+[[/code]]
+
+按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可。
+
+++ 隐藏程序中的鼠标指针
+
+Qt/E默认会提供一个鼠标指针，如果需要隐藏Qt/E提供的鼠标指针，可以在程序的启动脚本中编辑启动程序的命令所在的行，并启动参数末尾添加“{{ -nomouse}}”开关，使其看起来像这样：
+
+[[code]]
+./Demo -qws -nomouse
+[[/code]]
+
+按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可。
+
+++ 固化更改到设备固件
+
+如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑相关文件：
+
+[[code]]
+sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/etc/init.d/rcS'
+sudo cp '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4' '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt-main'
+sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt-main'
+[[/code]]
+
+随后，将自编程序复制到{{/home/picsell-dois/iTop4412/Qtopia/root/}}目录中的相应位置。
+
+完成后，重建{{system.img}}并执行刷写流程即可。
+
++ 安装绘图插件QCustomPlot
+
+QCumstomPlot是一个支持Qt 4.6到Qt 5.11的绘图插件，可用于绘制专业的图像。
+
+下载链接：*https://www.qcustomplot.com/index.php/download
+
+配置指南：*https://www.qcustomplot.com/index.php/tutorials/settingup

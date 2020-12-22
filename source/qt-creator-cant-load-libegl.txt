@@ -1,0 +1,27 @@
+**现象：**操作系统为Ubuntu 12.04.5 LTS，安装QtCreator 5.7.0或QtCreator 5.7.1后，均无法启动QtCreator。
+
+**故障排查：**定位到安装目录{{/opt/Qt5.7.1/Tools/QtCreator/bin}}，在终端中执行{{./qtcreator.sh}}启动脚本，出现报错：
+
+> This application failed to start because it could not find or load the Qt platform plugin "xcb"
+
+进一步排查发现如下提示：
+
+> libEGL.so.1: 无法打开共享对象文件: 没有那个文件或目录
+
+推测与缺失运行库有关。
+
+在[*https://packages.ubuntu.com/ Ubuntu套件查询站]上以{{libegl.so.1}}为关键字查询套件内容，发现{{ 	libegl1-mesa}}可以提供这个文件。
+
+回到终端，执行：
+
+[[code]]
+sudo apt-get install libegl1-mesa
+[[/code]]
+
+安装{{libegl1-mesa}}库，问题解决。
+
+**处理方案：**安装安装{{libegl1-mesa}}库，在终端中执行：
+
+[[code]]
+sudo apt-get install libegl1-mesa
+[[/code]]

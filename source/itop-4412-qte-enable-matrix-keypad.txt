@@ -295,7 +295,7 @@ export QWS_KEYBOARD="USB:/dev/input/event1"
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可。
 
-如果需要重建{{system.img}}镜像，这个文件也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{Qtopia}}目录中编辑{{/bin/qt4}}文件：
+如果需要重建{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/bin/qt4}}文件：
 
 [[code]]
 sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4'

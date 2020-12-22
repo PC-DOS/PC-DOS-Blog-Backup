@@ -14,7 +14,7 @@
 * 修改日期和时间格式（仅限第一代Microsoft Band）。
 * （未必可用）强制跳过OOBE激活过程、启用或停用演示模式。
 
-代码仓库地址：*https://gitee.com/pc-dos/ms-band-personalization
+代码仓库地址：*https://gitee.com/pc-dos/MSBandPersonalization
 
 -----
 
