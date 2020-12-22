@@ -20,6 +20,4 @@ GitHub从2021年08月13日开始将不允许通过用户名和密码直接验证
 
 请注意：您应当妥善保存您的个人访问令牌，您无法再次通过GitHub的页面查看这个令牌。
 
-完成后，您可以重新配置GitLab的推送功能，与先前不同的是，您需要在 [Git 仓库网址] 中的用户名之后、域名前的“{{@}}”符号之前加入一个半角冒号（“{{:}}”）并在其后输入您的GitHub个人访问令牌。使用个人访问令牌进行身份验证时，下方的 [密码] 文本框应留空。 
-
-例如，在GitHub上持有账户{{PC-DOS}}，配置得到的个人访问令牌为{{GITHUB_PERSONAL_ACCESS_TOKEN}}，并希望从GitLab向GitHub上推送名为{{Contoso}}的仓库，该仓库的Git克隆地址为{{@@https://github.com/PC-DOS/Contoso.git@@}}，则应将{{@@https://PC-DOS:GITHUB_PERSONAL_ACCESS_TOKEN@github.com/PC-DOS/Contoso.git@@}}填入 [Git 仓库网址] 中。[密码] 文本框留空。
+完成后，您可以重新配置GitLab的推送功能，与先前不同的是，您需要在 [密码] 文本框中填入您的个人访问令牌，而非您的GitHub账户密码。
