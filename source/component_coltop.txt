@@ -1,0 +1,10 @@
+[[module css]]
+@import url('/component:colstyle/code/1');
+[[/module]]
+
+[[include :scp-jp:component:coltop-deep
+ifprot={$ifprot}|ifprot=0
+|nohide={$nohide}|nohide=0
+|folded={$folded}|folded=1
+|hide={$hide}|hide=- Hide block
+|show={$show}|show=+ Show block]]

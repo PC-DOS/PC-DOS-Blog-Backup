@@ -1,0 +1,100 @@
+[[module CSS]]
+/* Changes the title to English */
+/* If you want to load third-part theme, please delete this module */
+#header {
+    height: 140px;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 22px; /* FOR MENU */
+}
+
+#header h1 {
+    margin: 0;
+    padding: 0;
+    float: left;
+    max-height: 105px;
+}
+ 
+#header h2 {
+    margin: 0;
+    padding: 0;
+    clear: left;
+    float: left;
+    font-size: 105%;
+    max-height: 38px;
+}
+
+#header h1 {
+    margin-left: 120px;
+    padding: 0;
+    float: left;
+    max-height: 95px;
+}
+#header h2 {
+    margin-left: 120px;
+    padding: 0;
+    clear: left;
+    float: left;
+    font-size: 105%;
+    max-height: 38px;
+}
+ 
+#header h1 a {
+    display: block;
+    content: "SCP基金會小馬國分部";
+    margin: 0;
+    padding: 80px 0 25px;
+    line-height: 0px;
+    max-height: 0px;
+    color: #eee;
+    background: transparent;
+    font-size: 125%;
+    text-decoration: none;
+}
+
+#header h1 a::before{
+    display: block;
+    content: "SCP Foundation Equestria Branch";
+}
+
+#header h1 a span{
+    display: block;
+    content: "SCP基金會小馬國分部";
+    visibility: hidden;
+}
+ 
+#header h2 span {
+    display: block;
+    margin: 0;
+    padding: 0px 0;
+    line-height: 0px;
+    max-height: 0px;
+    font-weight: bold;
+    color: transparent;
+    text-shadow: none;
+}
+
+#header h2 span::before {
+    content: "Secure • Contain • Protect";
+    display: block;
+    margin: 0;
+    padding: 19px 0;
+    line-height: 0px;
+    max-height: 0px;
+    font-weight: bold;
+    color: #f0f0c0;
+    text-shadow: 1px 1px 1px #000;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+}
+[[/module]]
+
+[!-- * Multilanguage Module * --]
+[[module ListPages name="="]]
+[[include component:multi-language pagename=%%name%% | align=left]]
+[[/module]]
+
+-----
+[!-- * Plase compose here * --]
+
+[!-- * Comments Module* --]
+[[footnoteblock title="Hoofnotes"]]

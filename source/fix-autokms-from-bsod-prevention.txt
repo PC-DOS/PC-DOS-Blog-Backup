@@ -1,0 +1,9 @@
+AutoKMS在启动时，会读取注册表的{{HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control}}下名为{{DirtyShutdownCount}}的{{DWORD}}值的数值，若该值不为0，则判定系统存在非正常关机的情况，并拒绝继续执行。
+
+此时，请在注册表编辑器中定位到
+
+[[code]]
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control
+[[/code]]
+
+将名为{{DirtyShutdownCount}}的{{DWORD}}值的数值修改为0。

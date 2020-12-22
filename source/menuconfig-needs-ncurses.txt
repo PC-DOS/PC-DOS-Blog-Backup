@@ -1,0 +1,9 @@
+**现象：**图形化配置Linux内核时，在终端输入{{make menuconfig}}回车后，报错：Install ncurses(ncurses-devel) and try again。试图直接从{{apt}}等软件源安装时提示包已废弃或找不到。
+
+**解决方案：**在终端中输入以下指令并安装libncurses5-dev即可：
+
+[[code]]
+sudo apt-get install libncurses5-dev
+[[/code]]
+
+**参考资料：***https://blog.csdn.net/lhf_tiger/article/details/7216021

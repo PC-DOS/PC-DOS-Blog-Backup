@@ -1,0 +1,320 @@
+[[module CSS]]
+#page-title {
+  display: none;
+}
+
+.meta-title {
+  border-bottom: solid 1px #bbbbbb;
+  color: #990011;
+  font-weight: normal;
+  margin: 0 0 0.6em;
+  padding: 0 0 0.25em;
+  font-size: 200%;
+}
+
+.meta-title p {
+  margin: 0;
+}
+[[/module]]
+
+[[>]]
+[[module rate]]
+[[/>]]
+
+[[div style="text-align: center;"]]
+[[div class="unmargined" style="font-size: 175%; font-weight: bold; margin: 2px 0 15px;"]]
+一种区分经典现实扭曲与超形上学型现实扭曲的方法
+[[/div]]
+[[div class="unmargined" style="font-size: 110%; margin: 2px 0 5px;""]]
+Picsell Dois[[footnote]]Picsell Dois，生于1969年10月8日。雄性天马。籍贯小马利亚云之都青空区(Cyansky District, Cloudsdale, Equestria)。现任SCP基金会小马国分部Site-EQ-25站点主管。[[/footnote]]
+[[/div]]
+[[div class="unmargined" style="font-size: 75%;"]]
+（SCP基金会小马国分部，Site-EQ-25）
+[[/div]]
+[[/div]]
+
+**{{摘@@  @@要}}：**本文主要论述了一种要基于PataTrace-II叙事压印追踪系统研发的具备初步实用特性的基于叙事压印痕迹追踪法区分经典型现实扭曲与超形上学型现实扭曲的方法及其实现流程。初步实现了对形上学型现实扭曲检测的轻量化、独立化、可追溯化和可移动化。
+
+**{{关键词}}：**超形上学 现实扭曲 休谟指数 叙事 演绎
+
+@@@@
+@@@@
+
+[[div class="unmargined" style="font-size: 125%; font-weight: bold; margin: 7.5px 0 7.5px;"]]
+引言
+[[/div]]
+
+在基金会的工作实践以及超形上学、修模理论和现实扭曲学的研究工作中，经常性地涉及对现实扭曲类型的判定。其中对超形上学型叙事扭曲的判定主要依靠Mash方法，即通过预先配置的现实稳定锚或现实稳定魔法发生仪，产生休谟指数平稳的区域，再将被试对象置入该区域中观察现实扭曲现象能否发生。该方法的主要问题在于：一则，调派现实稳定锚等装置需要花费大量的马力、物理、财力；二则，对于高风险个体、巨型个体等被试对象而言组成一个具备足够尺寸且安全的实验环境是极其困难乃至不可能实现的；此外，对于具备特定触发条件的被试个体而言，需要形成一个满足触发条件且安全的实验环境可能也是困难的；最后，超形上学型现实扭曲的叙事性可能严重干扰参与实验的设备设施的稳定性和可靠性。
+
+本文尝试研发一种基于超形上学型现实扭曲的叙事性进行的区分判别方法，主要依靠追踪超形上学型现实扭曲中叙事扭曲部分遗留的叙事压印印痕并分析其与现实扭曲现象的关联性。研发了一套基于PataTrace-II叙事压印追踪系统的分析系统。初步实现了对形上学型现实扭曲检测的轻量化、独立化和可移动化。并旨在探求超形上学与现实扭曲学共同发展的路径的开拓。
+
+[[div class="unmargined" style="font-size: 125%; font-weight: bold; margin: 5px 0 5px;"]]
+1@@     @@经典现实扭曲与超形上学型现实扭曲
+[[/div]]
+
+经典现实扭曲与超形上学型现实扭曲的结果在表观上具备相似性，且通过康德计数器无法辨析其差异[[footnote]] MoonTrace.使用康德计数器判定现实扭曲类型中的问题[J].基金会魔法学学报,Site-EQ-26:魔法学部出版司,2016.52(3):11-14.
+[[/footnote]]。但是学界对其的定义仍然是清晰且明确的。两者之间的主要区别在于“现实扭曲流程开始前是否存在对现实扭曲实体、被现实扭曲实体或环境的休谟指数的主动改变”。
+
+[[div class="unmargined" style="font-size: 110%; font-weight: bold; margin: 2.5px 0 2.5px;"]]
+1.1 经典现实扭曲
+[[/div]]
+
+经典现实扭曲的引发原理是现实扭曲实体通过利用其与被现实扭曲实体之间天然存在的休谟指数差异，对被现实扭曲实体进行现实扭曲的过程[[footnote]]Helanti Rosterl.现实扭曲理论概论[M]. 坎特拉:星光文化出版集团, 1998. 3-4.
+[[/footnote]]。这一过程不会造成环境休谟指数的局部或整体改变，但已知其可能对现实扭曲实体和/或被现实扭曲实体的内部休谟指数造成可逆影响。例如，当一匹独角兽对另一匹马使用已被证实属于现实经典扭曲类魔法的Lauren氏外貌改变魔法时，其自身休谟指数会有2至4的下降，而受影响对象的内部休谟指数会上升2至4。使用该魔法的逆魔法时，休谟指数变化反向并回到魔法起始前水平[[footnote]] Silver Moonfog.几种经典现实扭曲类魔法对引发体与作用体的影响[J].基金会魔法学学报,Site-EQ-26:魔法学部出版司,2010.46(5):21-23.
+[[/footnote]]。
+
+[[div class="unmargined" style="font-size: 110%; font-weight: bold; margin: 2.5px 0 2.5px;"]]
+1.2 超形上学型现实扭曲
+[[/div]]
+
+超行上学型的现实扭曲的主要特征是现实扭曲过程实际开始前，存在一步对现实扭曲实体、被现实扭曲实体或环境的休谟指数的主动改变。由于休谟指数自身在本层叙事内的非实体性，导致其不能作为一个被现实扭曲实体被扭曲。但是由于休谟指数的数值具备叙事对象性，使得其可以被上层叙事或叙事中间层（即“抽象叙事层”）改变[[footnote]] JustAJar.休谟指数的实体性与叙事对象性浅析[R]. Site-EQ-25:演绎部文献中心, 2018. 2-5.
+[[/footnote]]。
+
+因此，超形上学型现实扭曲可以分为两个执行部分：以休谟指数为对象的叙事扭曲，以及随后的经典现实扭曲。某些情况下还会同时伴随一步恢复被改变的休谟指数值的叙事扭曲。
+
+需要注意的是，尽管经典现实扭曲中同样包含休谟指数的改变，但是该改变仅会在经典现实扭曲过程结束后显现，且其具备可逆特性。此外，经典现实扭曲中伴生的休谟指数改变可用康德计数器观察到。而在超形上学型现实扭曲中，由于康德计数器的读数及其历史记录同样是叙事扭曲的扭曲对象，休谟指数的主动改变无法被观察到。
+
+[[div class="unmargined" style="font-size: 125%; font-weight: bold; margin: 5px 0 5px;"]]
+2@@     @@材料与方法
+[[/div]]
+
+本文探究的方法主要基于PataTrace-II叙事压印追踪设备组对叙事压印实现追踪。该系统系原PataTrace叙事压印追踪设备组的升级系统，添加了基于被用于具备叙事间特性的SCP-EQ-███-1的记录数据中可读内容的持续记录追踪和马工分析，以及AIC马工智能系统基于机器学习的对其中的不可读内容的自动化分析和推断解析开发的追踪系统，并可以实现更可信的对逆叙事压印及叙事压印历史的非完全追踪。同时，该系统可通过构建客户端-服务器模式系统，由客户机向分析系统宿主发送分析请求或获取分析结果，配套的客户端软件开发工具包可实现可裁剪和可定制化的分析[[footnote]]SCP基金会小马国分部演绎部PataTrace-II设备研发团队.PataTrace-II叙事压印追踪设备组研发及技术说明[R]. Site-EQ-25:演绎部文献中心, 2018. 3-9. [[/footnote]]。
+
+本文所构建的分析系统基于宿主于演绎部DED-PTII服务器集群上的PataTrace-II服务端系统，并通过基于PataTrace2-ClientSideSDK客户端开发工具包开发的客户端工具进行定制化的分析。
+
+[[div class="unmargined" style="font-size: 110%; font-weight: bold; margin: 2.5px 0 2.5px;"]]
+2.1 系统构成
+[[/div]]
+
+本系统的服务端系统已预先搭建在演绎部DED-PTII服务器集群上，并通过VirtServer虚拟服务器工具进行虚拟化并构建了一台专用于研发的测试用虚拟服务器。客户端程序通过PataTrace2-ClientSideSDK客户端开发工具包开发，可以运行于RainbowOS、RainbowOS Mobile、Mapple、Cloudoid等操作系统上。允许用户指定发生于特定时间段的现实扭曲事件及分析时间段，由远程服务器分析指定时间段内的叙事压印记录并返回相关分析结果。
+
+[[div class="unmargined" style="font-size: 110%; font-weight: bold; margin: 2.5px 0 2.5px;"]]
+2.2 理论依据
+[[/div]]
+
+本系统的运行主要依据为AIC系统对SCP-EQ-███-1的记录数据的自动分析，根据对分析结果的检验，一次超形上学型现实扭曲发生前，通常会在SCP-EQ-███-1中记录到以下特征性结构，其中，“{{...}}”用于表示未知语言或疑似具备随机性内容的区块。
+
+{{@@     @@...}}
+{{@@     @@... -> SEL_TARGET(...) => TMP_TARGET_REG_...}}
+{{@@     @@TMP_TARGET_REG_... -> DEF_STABILI(... , ... , ...)}}
+{{@@     @@AUTOFILL(...)}}
+{{@@     @@...}}
+
+在该结构下，通常会伴随有现实扭曲特征区块。
+
+{{@@     @@...}}
+{{@@     @@... -> SEL_EXEC(...) => TMP_EXEC_REG_...}}
+{{@@     @@TMP_EXEC_REG_... -> SEL_TARGET(...) => TMP_TARGET_REG_...}}
+{{@@     @@TMP_EXEC_REG_... -> EXEC(BEND , TMP_TARGET_REG_... , ... , ...) -> {}}
+{{@@          @@...}}
+{{@@     @@}}}
+{{@@     @@AUTOFILL(...)}}
+{{@@     @@...}}
+
+另有部分非可读内容被AIC系统分析为判据。
+
+[[div class="unmargined" style="font-size: 125%; font-weight: bold; margin: 5px 0 5px;"]]
+3@@     @@技术验证
+[[/div]]
+
+对该系统的技术验证实验的设计为：将分类已有定论的现实扭曲事件的发生时间输入到分析系统，并对系统发结果进行打分，打分依据如表1所示
+
+[[div style="text-align: center;"]]
+[[div class="unmargined" style="font-size: 100%; font-weight: bold; margin: 5px 0 4px;"]]
+表1 系统输出结果评分
+[[/div]]
+[[/div]]
+
+[[table align="center" style="width: 100%; border-style: solid; border-top: solid 2px #000; border-bottom: solid 2px #000; border-left: none; border-right: none; font-size: 90%;"]]
+[[row style="width: 100%; border-style: solid; border-bottom: solid 0.75px #000; border-left: none; border-right: none; border-top: none;"]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+分类结果
+[[/cell]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+输出结果
+[[/cell]]
+[[cell style="text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+给分
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 33.33%; text-align: center;" rowspan="3"]]
+经典现实扭曲
+[[/cell]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+经典现实扭曲
+[[/cell]]
+[[cell style="text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+超形上学型现实扭曲
+[[/cell]]
+[[cell style="text-align: center;"]]
+-1
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+无法判断
+[[/cell]]
+[[cell style="text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+0
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 33.33%; text-align: center;" rowspan="3"]]
+超形上学型现实扭曲
+[[/cell]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+经典现实扭曲
+[[/cell]]
+[[cell style="text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+-1
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+超形上学型现实扭曲
+[[/cell]]
+[[cell style="text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 33.33%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+无法判断
+[[/cell]]
+[[cell style="text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+0
+[[/cell]]
+[[/row]]
+[[/table]]
+
+测试样例共有2746个，其分布如表2所示。
+
+[[div style="text-align: center;"]]
+[[div class="unmargined" style="font-size: 100%; font-weight: bold; margin: 5px 0 4px;"]]
+表2 测试样例分布
+[[/div]]
+[[/div]]
+
+[[table align="center" style="width: 100%; border-style: solid; border-top: solid 2px #000; border-bottom: solid 2px #000; border-left: none; border-right: none; font-size: 90%;"]]
+[[row style="width: 100%; border-style: solid; border-bottom: solid 0.75px #000; border-left: none; border-right: none; border-top: none;"]]
+[[cell style="width: 50%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+经典现实扭曲样例
+[[/cell]]
+[[cell style="width: 50%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+超形上学型现实扭曲样例
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 50%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1624
+[[/cell]]
+[[cell style="width: 50%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1122
+[[/cell]]
+[[/row]]
+[[/table]]
+
+在用于测试的2746个样例中，系统共判定到1461个经典现实扭曲样例，1265个超形上学型现实扭曲样例，另有20个样例无法判断。将输出与输入交叉比对所得结论如表3所示。
+
+[[div style="text-align: center;"]]
+[[div class="unmargined" style="font-size: 100%; font-weight: bold; margin: 5px 0 4px;"]]
+表3 系统输入输出交叉比对
+[[/div]]
+[[/div]]
+
+[[table align="center" style="width: 100%; border-style: solid; border-top: solid 2px #000; border-bottom: solid 2px #000; border-left: none; border-right: none; font-size: 90%;"]]
+[[row style="width: 100%; border-style: solid; border-bottom: solid 0.75px #000; border-left: none; border-right: none; border-top: none;"]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+@@ @@
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+经典现实扭曲
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+超形上学型现实扭曲
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+无法判断
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+输入样例合计
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+经典现实扭曲
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1452
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+163
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+9
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1624
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+超形上学型现实扭曲
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+9
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1102
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+11
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1122
+[[/cell]]
+[[/row]]
+[[row style="width: 100%;"]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+被试系统输出总计
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1461
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+1265
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+20
+[[/cell]]
+[[cell style="width: 20%; text-align: center; padding-top: 7.5px; padding-bottom: 7.5px;"]]
+@@ @@
+[[/cell]]
+[[/row]]
+[[/table]]
+
+从表3中可知，该系统对经典现实扭曲判断正确率89.40%，超形上学现实扭曲判断正确率98.21%，将经典现实扭曲误判为超形上学现实扭曲的概率为12.88%，将超形上学型现实扭曲误判为经典现实扭曲的概率为0.62%。系统综合评估得分2382，得分率86.74%。
+
+[[div class="unmargined" style="font-size: 125%; font-weight: bold; margin: 5px 0 5px;"]]
+4@@     @@讨论与展望
+[[/div]]
+
+从分析评估结果可见，该模型对超形上学型现实扭曲的判断结果是相对优秀的，但是将经典现实扭曲误判为超形上学型现实扭曲的概率较大，误判率达到12.89%。可见该模型可能存在陷入局部最值陷阱的问题。对该问题的诱因的目前推断为马工智能模型将记录数据中的独立的纯叙事扭曲类数据误判为与经典现实扭曲存在关系的非独立叙事扭曲，从而将经典现实扭曲误判为超形上学型现实扭曲。
+
+该系统主要的设计特点在于其便携性、安全性以及相对较低的使用成本，并且实现了在不触发现实扭曲实体的现实扭曲特性时进行追溯性检查。
+
+但是，该系统的缺点是显而易见的，其误报率仍然高于经典方法的9.26%误报率。但是该系统和经典方法的差别在于，经典系统的误报率主要是由将超形上学型现实扭曲误判为经典现实扭曲[[footnote]] MoonTrace.使用康德计数器判定现实扭曲类型中的问题[J].基金会魔法学学报,Site-EQ-26:魔法学部出版司,2016.52(3):16-18.
+[[/footnote]]，而该系统的误报主要来自将经典现实扭曲误报为超形上学型现实扭曲。
+
+针对此问题，应在该系统将来的研发进程中，着重优化判断经典现实扭曲的算法和模型，以减小将经典现实扭曲误报为超形上学型现实扭曲的现象的产生。
+
+[[div style="border-bottom:2.5px solid #000; margin-bottom:0px; margin-top:50px;"]]
+[[/div]]
+
+[[footnoteblock title="作者信息、蹄注与参考文献"]]

@@ -1,0 +1,3 @@
+[[include :scp-jp:component:colend-deep
+|nohide={$nohide}|nohide=1
+|hide={$hide}|hide=- Hide block]]

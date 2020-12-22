@@ -1,0 +1,19 @@
+开始前，请先退出迅雷。
+
+首先，需要下载一个可以加载SQLite数据库的程序。笔者使用的是Navicat Premium 15。
+
+启动程序后，加载{{%ProgramFiles(x86)%\Thunder Network\Thunder\Profiles\TaskDb.dat}}文件（32位操作系统则为{{%ProgramFiles%\Thunder Network\Thunder\Profiles\TaskDb.dat}}），并使用任意用户名和空密码建立SQLite链接。
+
+随后，导览到{{TaskDb\Main}}，打开{{AccelerateTaskMapXXXX_superspeed_1_1}}表，其中{{XXXX}}为数字。
+
+使用替换功能（或手动操作），将{{UserData}}列中（该列的数据为字符串形式存储的JSON序列）的“{{"Result":508}}”替换为“{{"Result":0}}”。
+
+保存数据库，退出数据库管理程序，重新开启迅雷即可。
+
+-----
+
+本方法在迅雷极速版（版本1.0.34.360）上测试通过。
+
+参考：*https://zhinan.sogou.com/guide/detail/?id=1610017606
+
+Navicat破解：*https://defcon.cn/214.html

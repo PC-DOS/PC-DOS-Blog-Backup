@@ -1,0 +1,14 @@
+通过ListBox提供的ScrollIntoView(ListItem As Object)方法，可以强制将元素ListItem滚动到用户视野中。
+
+[[code]]
+'lstMessage为消息列表，MessageList为消息源
+lstMessage.ItemsSource = MessageList
+lstMessage.SelectedIndex = lstMessage.Items.Count - 1
+Try
+    lstMessage.ScrollIntoView(lstMessage.SelectedItem)
+Catch ex As Exception
+    'DoNothing()
+End Try
+[[/code]]
+
+该方法适用于lstMessage仅作为消息列表使用的情况。

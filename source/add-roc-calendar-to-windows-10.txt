@@ -1,0 +1,61 @@
+[[module css]]
+.win10-link-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #004b91;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
+
+.win10-link-button:hover {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #0073d7;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
+[[/module]]
+
+如果您需要向Microsoft Windows 10中添加國曆(中華民國曆)，且您無法在 [可選功能] 中找到該功能，您可能可以通過此方法向Microsoft Windows 10添加國曆(中華民國曆)。
+
+++ 手動作業
+
+請根據您的作業系統類型，從Microsoft網站下載相應的擴充功能包:
+
+64位元(amd64)作業系統:
+
+*http://download.windowsupdate.com/d/msdownload/update/software/updt/2016/07/microsoft-windows-internationalfeatures-taiwan-package_d4950ddb511f29836febfe99921cfb82a40469da.cab
+
+[[a href="*http://download.windowsupdate.com/d/msdownload/update/software/updt/2016/07/microsoft-windows-internationalfeatures-taiwan-package_d4950ddb511f29836febfe99921cfb82a40469da.cab" class="win10-link-button"]]下載適用於64位元(amd64)作業系統的國曆(中華民國曆)支援文件[[/a]]
+
+32位元(x86)作業系統:
+
+*http://download.windowsupdate.com/d/msdownload/update/software/updt/2016/07/microsoft-windows-internationalfeatures-taiwan-package_37c7b2a43d2baad4c8cb6476613b3cec3d8b111a.cab
+
+[[a href="*http://download.windowsupdate.com/d/msdownload/update/software/updt/2016/07/microsoft-windows-internationalfeatures-taiwan-package_37c7b2a43d2baad4c8cb6476613b3cec3d8b111a.cab" class="win10-link-button"]]下載適用於32位元(x86)作業系統的國曆(中華民國曆)支援文件[[/a]]
+
+下載完成後，請以系統管理員身分執行命令提示字元或者Power Shell(建議您在擴充功能包文件所在的位置以系統管理員身分執行一個命令提示字元或者Power Shell)，並輸入以下命令:
+
+[[code]]
+dism /online /add-package /packagepath:"請在此填寫擴充功能包文件的位置"
+[[/code]]
+
+++ 自動作業
+
+您也可以在此下載已經編寫好的批次檔案和相應的擴充功能包。請解壓縮全部文件後執行文件名中包含 [AddROCCalendar] 的批次檔案。
+
+64位元(amd64)作業系統:
+
+[*/local--files/add-roc-calendar-to-windows-10/AddROCCalendar_x64.zip 請在此處下載適用於64位元(amd64)作業系統的國曆(中華民國曆)支援和安裝文件]
+
+[[a href="*/local--files/add-roc-calendar-to-windows-10/AddROCCalendar_x64.zip" class="win10-link-button"]]下載適用於64位元(amd64)作業系統的國曆(中華民國曆)支援和安裝文件[[/a]]
+
+32位元(x86)作業系統:
+
+[*/local--files/add-roc-calendar-to-windows-10/AddROCCalendar_x86.zip 請在此處下載適用於32位元(x86)作業系統的國曆(中華民國曆)支援和安裝文件]
+
+[[a href="*/local--files/add-roc-calendar-to-windows-10/AddROCCalendar_x86.zip" class="win10-link-button"]]下載適用於32位元(x86)作業系統的國曆(中華民國曆)支援和安裝文件[[/a]]

@@ -1,0 +1,3 @@
+[[module ListPages pagetype="*" category="*" order="created_by" perPage="100" separate="no"]]
+%%title_linked%% [[size 80%]] 由 %%created_by%% 创建[[/size]]
+[[/module]]

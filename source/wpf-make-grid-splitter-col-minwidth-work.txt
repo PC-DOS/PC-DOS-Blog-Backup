@@ -1,0 +1,35 @@
+在WPF的XAML中定义Grid的行列结构时，若采用以下定义方法：
+
+[[code]]
+<Grid.RowDefinitions>
+    <RowDefinition Height="*" />
+</Grid.RowDefinitions>
+<Grid.ColumnDefinitions>
+    <ColumnDefinition Width="200" MinWidth="150" />
+    <ColumnDefinition Width="Auto" />
+    <ColumnDefinition MinWidth="800" />
+</Grid.ColumnDefinitions>
+[[/code]]
+
+并在第二个Column中放置一个GridSplitter：
+
+[[code]]
+<GridSplitter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="2.5" Margin="1.25,0" />
+[[/code]]
+
+此时会发现问题：第一个Column的MinWidth可以正常工作，而右侧（即第三个）Column的MinWidth失效。
+
+原因：右侧（即第三个）Column的Width属性被预设为*，导致与MinWidth属性比较时始终返回Double.Nan，比较无法完成，MinWidth属性失效。
+
+解决方案：使用相对宽度定义Column的Width，而不使用绝对宽度。
+
+[[code]]
+<Grid.RowDefinitions>
+    <RowDefinition Height="*" />
+</Grid.RowDefinitions>
+<Grid.ColumnDefinitions>
+    <ColumnDefinition Width="1*" MinWidth="150" />
+    <ColumnDefinition Width="Auto" />
+    <ColumnDefinition Width="5*" MinWidth="800" />
+</Grid.ColumnDefinitions>
+[[/code]]

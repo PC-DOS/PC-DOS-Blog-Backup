@@ -1,0 +1,7 @@
+注册表路径：
+
+[[code]]
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes
+[[/code]]
+
+新建或打开DWORD值{{SpecialColor}}后，以ABGR(透明度-蓝色-绿色-红色)模式将您喜欢的颜色的RGB值转换为十进制写入并保存。

@@ -1,0 +1,7 @@
+**现象：**面向Exynos 4412交叉编译时，尽管已经配置了ARM GCC编译环境，仍然报错“/usr/local/arm/arm-2009q3/bin/arm-none-linux-gnueabi-gcc: 没有那个文件或目录”。编译环境配置正确。
+
+**处理：**该问题由于64位系统运行32位的程序需要32位兼容环境导致的。因此安装兼容环境即可：
+
+[[code]]
+sudo apt-get install lsb-core
+[[/code]]

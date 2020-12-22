@@ -1,0 +1,110 @@
++ 导入命名空间
+
+Visual Basic.NET代码：
+
+[[code]]
+Imports Microsoft.Band
+Imports Microsoft.Band.Tiles
+Imports Microsoft.Band.Admin
+Imports Microsoft.Band.Personalization
+[[/code]]
+
++ 通用变量
+
+通过{{Microsoft.Band.IBandClient}}类型或{{Microsoft.Band.Admin.ICargoClient}}类型的变量{{BandClient}}，表示一个已经连接的Microsoft Band对象。
+
+该对象通过{{BandConnectionManager}}模块封装。
+
+[[code]]
+Imports Microsoft.Band
+Imports Microsoft.Band.Tiles
+Imports Microsoft.Band.Admin
+Imports Microsoft.Band.Personalization
+Module BandConnectionManager
+    Public BandClient As ICargoClient
+    Public BandClientLimited As IBandClient
+    Public CurrentBandClass As BandClass = BandClass.Unknown
+End Module
+[[/code]]
+
++ 枚举已连接的设备
+
+通过{{Microsoft.Band.IBandClientManager.GetBandsAsync()}}方法，枚举已经连接到本机的Microsoft Band设备，该方法返回一个{{Microsoft.Band.IBandInfo}}数组。每个{{Microsoft.Band.IBandInfo}}对象包含一个{{Name}}属性，描述了该设备的名称；另有一个{{ConnectionType}}属性，描述了该设备的连接方式（蓝牙或USB）。
+
+也可以通过{{Microsoft.Band.Admin.IBandAdminClientManager.GetBandsAsync()}}方法，枚举已经连接到本机的，可以以管理方式连接的Microsoft Band设备，该方法返回一个{{Microsoft.Band.IBandInfo}}数组。每个{{Microsoft.Band.IBandInfo}}对象包含一个{{Name}}属性，描述了该设备的名称；另有一个{{ConnectionType}}属性，描述了该设备的连接方式（蓝牙或USB）。
+
+Visual Basic.NET代码：
+
+[[code]]
+Private Async Sub btnRefreshDevice_Click(sender As Object, e As RoutedEventArgs) Handles btnRefreshDevice.Click
+	Dim IsDeviceFindError As Boolean = False
+	Dim ErrorMessage As String = "無法正確描述的例外情況。"
+	Try
+		BandList = Await BandAdminClientManager.Instance.GetBandsAsync()
+		Dim i As Integer
+		Dim DeviceNameList As New List(Of String)
+		lstDevices.ItemsSource = EmptyList
+		If BandList.Length >= 1 Then
+			For i = 0 To BandList.Length - 1
+				DeviceNameList.Add(BandList(i).Name & " [透過" & IIf(BandList(i).ConnectionType = BandConnectionType.Bluetooth, "藍牙", " USB ") & "連線]")
+			Next
+			lstDevices.ItemsSource = DeviceNameList
+			lstDevices.SelectedIndex = 0
+			btnConnect.IsEnabled = True
+		Else
+			btnConnect.IsEnabled = False
+		End If
+	Catch ex As Exception
+		IsDeviceFindError = True
+		ErrorMessage = ex.Message
+		lstDevices.ItemsSource = EmptyList
+		btnConnect.IsEnabled = False
+	End Try
+	If IsDeviceFindError Then
+		Await ShowMessageAsync("無法獲取已連線的裝置清單", "試圖獲取已連線的裝置清單時發生例外情況:" & vbCrLf & ErrorMessage)
+	End If
+End Sub
+[[/code]]
+
++ 连接到设备
+
+通过{{Microsoft.Band.IBandClientManager.Connect()}}方法，连接到一个已经连接到本机的Microsoft Band设备，该方法使用一个{{Microsoft.Band.IBandInfo}}对象作为参数，用于表示需要被连接到的Microsoft Band设备。该方法返回一个{{Microsoft.Band.IBandClient}}对象，描述已连接到的Microsoft Band设备。
+
+也可以通过{{Microsoft.Band.Admin.IBandAdminClientManager.Connect()}}方法，以管理方式连接到一个已经连接到本机的Microsoft Band设备，该方法使用一个{{Microsoft.Band.IBandInfo}}对象作为参数，用于表示需要被连接到的Microsoft Band设备。该方法返回一个{{Microsoft.Band..Admin.ICargoClient}}对象，描述已被以管理方式连接到的Microsoft Band设备。
+
+Visual Basic.NET代码：
+
+[[code]]
+Private Async Sub btnConnect_Click(sender As Object, e As RoutedEventArgs) Handles btnConnect.Click
+	ClearInfo()
+	Dim IsDeviceConnectionError As Boolean = False
+	Dim ErrorMessage As String = "無法正確描述的例外情況。"
+	Try
+		BandClient.CloseSession()
+	Catch ex As Exception
+
+	End Try
+	IsDeviceConnected = False
+	If lstDevices.SelectedIndex < 0 Then
+		Await ShowMessageAsync("無法連線到裝置", "無法連線到裝置，因為沒有任何可供連線的裝置。")
+	End If
+	Try
+		BandClient = BandAdminClientManager.Instance.Connect(BandList(lstDevices.SelectedIndex))
+	Catch ex As Exception
+		IsDeviceConnectionError = True
+		ErrorMessage = ex.Message
+	End Try
+	If IsDeviceConnectionError Then
+		IsDeviceConnected = False
+		Await ShowMessageAsync("無法連線到裝置", "無法連線到裝置，因為發生例外情況:" & vbCrLf & ErrorMessage)
+	Else
+		IsDeviceConnected = True
+	End If
+	If IsDeviceConnected Then
+		'省略了用來獲取資料的程式碼
+		UnockOperationWindow()
+	Else
+		LockOperationWindow()
+	End If
+End Sub
+[[/code]]

@@ -1,0 +1,58 @@
+这段时间知乎的“问题”页面似乎会强制要求登录，此处给出跳过方案。
+
++ 手动操作
+
+出现登录提示时，按{{F12}}打开浏览器的开发者工具，通过元素选取或搜索等工具找到标签为{{div}}，类名（{{class}}）为“{{Modal-wrapper undefined Modal-enter-done}}”的元素，将该元素及其所有子元素删除。
+
+随后，回到{{html}}根节点，将该节点的{{style}}属性清空。
+
++ 脚本操作
+
+这需要您的浏览器支持TemperMonkey等用户脚本扩展插件，请从以下链接安装用户脚本。请放心，该脚本不会对您的网络和个人资料的安全性造成威胁。
+
+*http://pc-dos.scp-eq.org/local--files/skip-zhihu-forced-login/SkipZhihuForcedLogin.user.js
+
+该脚本的代码如下：
+
+[[code]]
+// ==UserScript==
+// @name         Skip Zhihu Forced Login (跳过知乎强制登录)
+// @namespace    PCDOS
+// @version      0.01
+// @description  跳过知乎强制登录
+// @author       PC-DOS
+// @match        *://www.zhihu.com/question/*
+// @match        *://www.zhihu.com/question/*/answer/*
+// @match        *://www.zhihu.com/question/*/
+// @match        *://www.zhihu.com/question/*/answer/*/
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    //'use strict';
+
+    // Code by PC-DOS, some code adapted from https://greasyfork.org/zh-CN/scripts/399464-gray-filter-remove
+    console.log("SkipZhihuLogin(): Started.")
+
+    function addNewStyle(newStyle) {
+        var styleElement = document.getElementById('styles_skip_zhihu_login');
+
+        if (!styleElement) {
+            styleElement = document.createElement('style');
+            styleElement.type = 'text/css';
+            styleElement.id = 'styles_skip_zhihu_login';
+            document.getElementsByTagName('head')[0].appendChild(styleElement);
+        }
+
+        styleElement.appendChild(document.createTextNode(newStyle));
+    }
+
+    addNewStyle(".Modal-wrapper {visibility: collapse;}");
+
+	//document.getElementsByClassName("Modal-wrapper undefined Modal-enter-done")[0].remove();
+
+    document.getElementsByTagName("html")[0].style.cssText="";
+
+    console.log("SkipZhihuLogin(): Execution Finished.");
+})();
+[[/code]]

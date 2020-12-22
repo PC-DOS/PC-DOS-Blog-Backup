@@ -1,0 +1,12 @@
+仓库更新自动推送（Mirroring Push）功能允许GitLab自动将仓库的更新推送到远端，付费版本还支持自动从远端拉取更新（Mirroring Pull）。
+
++ 配置方法
+
+# 在GitLab中打开仓库页面，导航到 [设定] > [档案库]，展开右侧窗格中的 [Mirroring repositories] 项。
+# 在 [Git 仓库网址] 中，输入需要推送的目标仓库的Git地址，这个地址可以是远程仓库的Git克隆地址，但是通常来说需要在域名前（即“{{://}}”之后）追加远程Git服务器的用户名和“{{@}}”符号。例如，在GitHub上持有账户{{PC-DOS}}，并希望从GitLab向GitHub上名为{{Contoso}}的仓库，该仓库的Git克隆地址为{{@@https://github.com/PC-DOS/Contoso.git@@}}，则应将{{@@https://PC-DOS@github.com/PC-DOS/Contoso.git@@}}填入 [Git 仓库网址] 中。
+# [Mirror direction] 应使用Push。
+# [认证方法] 可以使用SSH或密码。
+
++ 备注
+
+Gitee等部分具有隐私保护功能的平台可能会阻止GitLab的推送并返回错误。以Gitee为例，可能需要在Gitee的 [设定] > [多邮箱管理] 页面上，取消 [禁止命令行推送暴露个人邮箱] 的选取并保存设置，方可正常推送。

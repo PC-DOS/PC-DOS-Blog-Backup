@@ -1,0 +1,40 @@
+[!-- * 说明：本模板适用于拥有多个迭代页且标题随迭代变更的条目，请确保您已将各个子页面归档为fragment类型（即页面名称以“fragment:”开始），且这些页面的父页面已被设置为本页面。 * --]
+
+[[module CSS]]
+#page-title {
+  display: none;
+}
+
+.meta-title {
+  border-bottom: solid 1px #bbbbbb;
+  color: #990011;
+  font-weight: normal;
+  margin: 0 0 0.6em;
+  padding: 0 0 0.25em;
+  font-size: 200%;
+}
+
+.meta-title p {
+  margin: 0;
+}
+[[/module]]
+
+[[module ListPages category="fragment" parent="." limit="1" order="name" offset="@URL|0"]]
+[[div class="meta-title"]]
+%%title%%
+[[/div]]
+[[/module]]
+
+[[>]]
+[[module Rate]]
+[[/>]]
+
+[[module ListPages category="fragment" parent="." limit="1" order="name" offset="@URL|0"]]
+%%content%%
+[[/module]]
+
+[[div style="display:none"]]
+[!-- * 您可以在此加入子页面的地址作为今后修改时的备忘。 * --]
+段落页面地址如下：
+
+[[/div]]

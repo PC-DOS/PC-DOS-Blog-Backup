@@ -1,0 +1,45 @@
+来自：UUP自动下载脚本
+
+[[code]]
+setlocal EnableExtensions
+setlocal EnableDelayedExpansion
+set "params=%*"
+cd /d "%~dp0" && ( if exist "%temp%\getadmin.vbs" del "%temp%\getadmin.vbs" ) && fsutil dirty query %systemdrive% 1>nul 2>nul || (  echo Set UAC = CreateObject^("Shell.Application"^) : UAC.ShellExecute "cmd.exe", "/k cd ""%~sdp0"" && %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs" && "%temp%\getadmin.vbs" && exit /B )
+[[/code]]
+
+-----
+
+来自：https://blog.csdn.net/abc45628/article/details/51758281
+
+[[code]]
+@echo off
+%1 %2
+mshta vbscript:createobject("shell.application").shellexecute("%~s0","goto :runas","","runas",1)(window.close)&goto :uacfalse
+:runas
+rem UAC提权成功的代码
+pause
+goto :eof
+
+:uacfalse
+rem UAC提权失败的代码
+pause
+[[/code]]
+
+-----
+
+来自：https://blog.csdn.net/lijialong1313/article/details/54171535?tdsourcetag=s_pctim_aiomsg
+
+[[code]]
+@echo off
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+if '%errorlevel%' NEQ '0' (
+goto UACPrompt
+) else ( goto gotAdmin )
+:UACPrompt
+echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+echo UAC.ShellExecute "%~s0", "", "", "runas", 1 >> "%temp%\getadmin.vbs"
+"%temp%\getadmin.vbs"
+exit /B
+:gotAdmin
+if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
+[[/code]]

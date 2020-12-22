@@ -1,0 +1,45 @@
+[[div class="top-bar" role="navigation"]]
+* [[[start|主页]]]
+* [# SCP基金会小马国分部]
+ * [*http://scp-equestria.wikidot.com SCP基金会小马国分部主页]
+ * [*http://draft.scp-eq.org 草稿存储服务]
+ * [*http://files1.scp-eq.org 文件存储服务器1]
+ * [*http://files2.scp-eq.org 文件存储服务器2]
+* [[[wp-related|Windows Phone相关]]]
+* [[[computer-related|计算机技术相关]]]
+* [[[scp-related|SCP相关]]]
+* [[[mlp-related|MLP相关]]]
+* [[[system:list-all-pages | 所有页面]]]
+* [[[create-new-page | 创建新页面]]]
+[[/div]]
+
+[[div class="mobile-top-bar" role="navigation"]]
+[[div class="open-menu"]]
+[#side-bar ≡]
+[[/div]]
+* [# 链接]
+ * [[[start|主页]]]
+ * [*http://scp-equestria.wikidot.com SCP基金会小马国分部主页]
+ * [*http://draft.scp-eq.org 草稿存储服务]
+ * [*http://files1.scp-eq.org 文件存储服务器1]
+ * [*http://files2.scp-eq.org 文件存储服务器2]
+ * [[[wp-related|Windows Phone相关]]]
+ * [[[computer-related|计算机技术相关]]]
+ * [[[scp-related|SCP相关]]]
+ * [[[mlp-related|MLP相关]]]
+* [[[system:list-all-pages | 所有页面]]]
+* [[[create-new-page | 创建新页面]]]
+[[/div]]
+[!--
+Please do not include anything other than links within the bullet list.
+Do not go deeper than 1 level with nesting.
+
+An alternative menu structure can be found below:
+
+* [# example menu] 
+ * [[[example item 1]]]
+ * [[[example item 2]]]
+* [[[contact]]]
+
+
+--]

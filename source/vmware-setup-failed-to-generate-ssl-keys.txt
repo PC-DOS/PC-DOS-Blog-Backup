@@ -1,0 +1,16 @@
+**现象：**一台安装有Windows 8 Enterprise x64系统的计算机，试图安装VMware Workstation 15.5时报错“Setup failed to generate the SSL keys necessary to run VMWare Server. Click Ok to cancel this installation.（大意为：安装程序无法生成VMware Server所需的SSL密钥，请单击‘确定’，终止安装程序。）”。
+
+**可能的原因：**查阅资料显示，这一问题可能与错误的系统时间、DirectX配置不正确、没有正确安装的Visual C++运行库、{{PATH}}环境变量中包含指向VMware不支持的OpenSSL程序版本的路径等问题有关。
+
+**解决方案：**经排查，VMware Workstation 15.5的安装程序会自动安装Microsoft Visual C++ 2015-2019 Redistributable，但似乎存在问题，可以先从 [控制面板] > [程序和功能] 页面删除Microsoft Visual C++ 2015-2019 Redistributable (x86)和Microsoft Visual C++ 2015-2019 Redistributable (x64)，然后从
+[*https://www.microsoft.com/zh-cn/download/details.aspx?id=53840 Microsoft下载中心]下载Microsoft Visual C++ 2015 Redistributable Update 3 (x86)和Microsoft Visual C++ 2015 Redistributable Update 3 (x64)并安装。随后，重新执行VMware Workstation安装程序，问题解决。
+
+**参考资料：**
+
+*https://kb.vmware.com/s/article/1008179
+
+*http://element-ui.cn/article/show-85929.aspx
+
+*https://www.cnblogs.com/d9394/p/13776623.html
+
+*https://blog.csdn.net/weixin_37949588/article/details/106306033

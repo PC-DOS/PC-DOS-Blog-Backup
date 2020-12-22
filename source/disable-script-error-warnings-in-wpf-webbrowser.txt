@@ -1,0 +1,10 @@
+WPF的WebBrowser控件没有其WinForm版本所拥有的Silent等属性，因此可能无法通过属性窗格或XAML代码的方式停用“脚本错误”对话框，解决方案是在窗体的Loaded事件中添加如下代码（假设WebBrowser控件的名称是wbbWeb）：
+
+[[code]]
+Dim ActiveX = wbbWeb.GetType().InvokeMember("ActiveXInstance", Reflection.BindingFlags.GetProperty Or Reflection.BindingFlags.Instance Or Reflection.BindingFlags.NonPublic, Nothing, wbbEhallContainer, Nothing)
+ActiveX.Silent = True
+[[/code]]
+
+**参考资料：**
+
+*https://www.itranslater.com/qa/details/2582316331236328448

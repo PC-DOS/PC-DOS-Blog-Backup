@@ -1,0 +1,41 @@
+[[=]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+----
+[[size larger]] **请尊重应用程序作者的知识产权，请勿反编译通过本文提供的方式得到的程序包。**[[/size]]
+[[size larger]] **请勿将通过本文提供的方式得到的程序包用于商业及盈利目的。**[[/size]]
+
+控制 · 收容 · 保护
+[[/div]]
+[[/=]]
+
+本计划旨在在微软官方已终止Windows Phone 8/8.1对Microsoft商店的访问权限的情况下，提供有限的扩展支持。
+
+用于重打包的应用程序文件来自Windows Phone系统固件及Windows 10 Mobile设备。
+
++ 发布页面
+
+本计划将已重新打包的应用程序托管于蓝奏云上。
+
+地址：*https://www.lanzoui.com/b00t7f09g
+密码：{{3717}}
+
++ 部署方式
+
+因蓝奏云的限制，所有应用包文件的文件名均加上了“{{.ZIP}}”扩展名，因此开始前请先移除这个扩展名。但是请不要移除文件名中的“{{.XAP}}”、“{{.APPX}}”、“{{.APPXBUNDLE}}”等内容。
+
+您需要先安装Windows Phone 8.1 SDK（尽管Windows Phone 8.0 SDK可用于处理XAP应用，但是更推荐WP 8.1 SDK），并通过Application Deployment工具，或第三方的Windows Phone Power Tools来部署应用。
+
++ 设备解锁
+
+由于Microsoft已停止通过Windows Phone SDK的Developer Registration小程序提供的开发者解锁服务，因此您可能需要通过WPInternals工具来解锁设备并开启高权限访问（Root Access）。请参考[*https://wpinternals.net WPInternals主页]。
+
++ 技术细节
+
+[[[convert-store-xaps-to-deployable-packages| ]]]
+
+[[[convert-rom-xaps-to-deployable-packages| ]]]
+
+[[[convert-store-appxs-to-deployable-packages| ]]]
+
+[[[extract-apps-from-wp-ffu| ]]]

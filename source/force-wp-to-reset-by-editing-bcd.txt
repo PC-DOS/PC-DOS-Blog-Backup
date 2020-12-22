@@ -1,0 +1,11 @@
+命令提示符启动路径：
+
+[[code]]
+%EFIESP%\EFI\Microsft\Boot
+[[/code]]
+
+命令语句：
+
+[[code]]
+bcdedit -store bcd -set {globalsettings} bootflow 0x802
+[[/code]]

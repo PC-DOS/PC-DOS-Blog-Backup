@@ -1,0 +1,17 @@
++ 启用SSH连接
+
+在VMWare ESXi Web管理界面，导航到 [主机] > [管理] > [服务] 页面，找到“TSM-SSH”服务，点击 [启动] 按钮，启动SSH服务。
+
+然后，您可以通过常用的SSH程序访问VMWare ESXi服务器。
+
++ SFTP文件管理
+
+通过WinSCP等工具可以通过SFTP管理VMWare ESXi服务器的VMFS文件。
+
+路径：
+
+[[code]]
+/vmfs/volumes/
+[[/code]]
+
+该目录下有指向已挂载的VMFS卷的符号链接。

@@ -1,0 +1,12 @@
+首先，在VMware Workstation中点击 [VM] > [(Re)Install VMWare Tools...] 菜单项，待Ubuntu系统识别到CD设备后，通过文件管理器将CD设备内的{{.tar.gz}}文件拷贝到当前用户的主目录备用，并重命名为{{vmware-tools.tar.gz}}。
+
+随后，打开终端，依次执行：
+
+[[code]]
+cd ~
+tar -vxf vmware-tools.tar.gz
+cd vmware-tools-ditrib
+sudo ./vmware-install.pl
+[[/code]]
+
+随后根据终端内回显的脚本提示操作即可。一般而言只需保留脚本提供的默认设置。

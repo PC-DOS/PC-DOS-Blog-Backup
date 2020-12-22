@@ -1,0 +1,27 @@
+在终端中执行
+
+[[code]]
+sudo gedit /etc/default/grub
+[[/code]]
+
+打开文件{{/etc/default/grub}}。
+
+找到{{GRUB_CMDLINE_LINUX_DEFAULT}}所在的行，在引号括起的内容的最后加上
+
+[[code]]
+video=hyperv_fb:WidthxHeight
+[[/code]]
+
+形如
+
+[[code]]
+video=hyperv_fb:1920x1080
+[[/code]]
+
+存档，回到终端中执行
+
+[[code]]
+sudo update-grub
+[[/code]]
+
+重启Ubuntu系统，即可。

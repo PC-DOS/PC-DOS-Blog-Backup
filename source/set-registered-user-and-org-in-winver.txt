@@ -1,0 +1,11 @@
+在新版本的Windows的安装过程中，用户可能无法手动指定这两个值，但是，可以通过注册表方式指定。
+
+打开注册表编辑器，导航到：
+
+[[code]]
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Current Version\
+[[/code]]
+
+在右侧窗格中，打开或创建字符串值{{RegisteredOrganization}}，并在“编辑字符串”窗口中将值设为希望的组织名称。
+
+在右侧窗格中，打开或创建字符串值{{RegisteredUser}}，并在“编辑字符串”窗口中将值设为希望的用户名称。

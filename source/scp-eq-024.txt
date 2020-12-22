@@ -1,0 +1,160 @@
+[!-- 英文用 --]
+[[module css]]
+.page-en {
+    display: block;
+    overflow: hidden;
+    font-family: "Monotype Corsiva", "Bradley Hand ITC", sans-serif;
+    font-style: normal;
+    font-size: 125%;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: linear-gradient(to top ,rgb(202, 219, 228) 0%, rgb(231, 233, 220) 8%);
+    background-origin: padding-box;
+    background-position: 0px 8px;
+    background-repeat: repeat;
+    background-size: 100% 20px;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2)
+}
+
+.page-en p {
+    line-height: 20px;
+    margin: 0;
+}
+[[/module]]
+
+[!-- 中文用 --]
+[[module css]]
+.page-cn {
+    display: block;
+    overflow: hidden;
+    font-family: DFKai-SB,Kaiti,SimSun,"Microsoft YaHei UI Light";
+    [!-- *font-family: "Monotype Corsiva", "Bradley Hand ITC", sans-serif;* --]
+    font-style: normal;
+    font-size: 115%;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: linear-gradient(to top ,rgb(202, 219, 228) 0%, rgb(231, 233, 220) 8%);
+    background-origin: padding-box;
+    background-position: 0px 8px;
+    background-repeat: repeat;
+    background-size: 100% 20px;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2)
+}
+
+.page-cn p {
+    line-height: 20px;
+    margin: 0;
+}
+[[/module]]
+
+[[>]]
+[[module Rate]]
+[[/>]]
+
+**项目编号：**SCP-EQ-024
+
+**项目等级：**Safe
+
+**特殊收容措施：**SCP-EQ-024目前由塑料封套塑封后存放在Site-EQ-11惰性异常收容区Sector 43的一个2.5 m x 2.5 m x 3 m储物柜中。截至目前，访问SCP-EQ-024不需要除Site-EQ-11惰性异常收容区Sector 43基本访问权（一级及以上的安保许可等级）之外的特殊权限和/或许可。考虑到SCP-EQ-024的精神影响特性，为避免造成不必要的不利影响和损失，不建议情绪极其低落的员工访问SCP-EQ-024。
+
+**描述：**SCP-EQ-024为一张长15 cm，宽8.5 cm的记事纸以及用黑色染料墨水写在其上的27行歌词的合称。当且仅当听力正常的马类对象进入SCP-EQ-024周围约1 m的范围（下称激活范围）内时将激活SCP-EQ-024的异常性质，对象将听到一女声循环演唱书写在SCP-EQ-024上的歌词。非马类对象靠近项目时均表示未发现异常现象。将录音设备靠近对象无法接收到异常音响。歌声在激活范围内各处音量无明显差异。已确认佩戴耳塞会对歌声起到阻断作用，以较高音量产生其它声音可以遮盖歌声。离开SCP-EQ-024的激活范围将导致歌声立即终止，重新进入激活范围会导致歌声重新开始，而非从离开激活区域时的中断处继续演唱。测试表明，当有多个对象进入SCP-EQ-024的激活范围时，所有对象均表示听到了歌声。激活范围内已有对象时，无论已有对象汇报该声音演唱至何处，后续进入的对象均表示该声音在其进入激活区域后从头开始演唱，已有对象均表示演唱进程未受到后续对象的干扰。该歌声会在循环演唱5至10次后终止演唱。
+
+[[collapsible show="+ 显示SCP-EQ-024歌词文本" hide="- 收起SCP-EQ-024歌词文本"]]
+[[div class="page-en"]]
+[[=]]
+When family cannot be here 
+Havin' journeyed far and wide 
+We sing a song to honor them 
+To remember days gone by 
+@@ @@
+So take your cup and raise it high 
+Just as surely I'll do mine 
+And laugh we will at stories told 
+As we smile at days gone by 
+As we smile at days gone by 
+@@ @@
+For family not here, my dears 
+Havin' journeyed far and wide 
+For loyalty and kindness both 
+We smile at days gone by 
+@@ @@
+Our paths will cross again one day 
+In time to reunite 
+For family is always near 
+Even when the seas are wide 
+@@ @@
+So take your cup and raise it high 
+Just as surely I'll do mine 
+And make a toast for family 
+And the tales of days gone by 
+@@ @@
+For family not here, my dears 
+Havin' journeyed far and wide 
+For loyalty and kindness both 
+Take joy at days gone by 
+@@ @@
+For loyalty and kindness both 
+We smile at days gone by
+[[/=]]
+[[/div]]
+[[/collapsible]]
+
+所有对象在聆听歌声后均表示感受到了对于家乡、亲戚和朋友的想念，且会出现情绪低落、沉默寡言等状况。这一精神状态通常会持续5分钟到20分钟，且与对象暴露于歌声中的时长正相关。该异常精神状态结束的标志通常表现为对象表示其产生“一种释怀的感觉”。该标志出现后，对象的精神状态通常会向相对积极的方向发展，通常10分钟到15分钟后对象的精神状态将恢复到接触SCP-EQ-024前的状态。
+
+对项目材质的分析未发现异常，书写的纸张为普通书写纸，所用墨水为标准黑色染料墨水。有对象在反复聆听歌声后汇报称演唱者的声音与前谐律元素持有者A████J███的声音相似，而其曲调似乎借用了著名的《友谊地久天长》的曲调。
+
+项目最初于在2010年██月██日对事故SCP-EQ-020-ACD-1进行调查时回收于位于██镇的██苹果园内谷仓废墟下的地窖内。2010年██月█日，A████J███和其兄B██ M██在此处遭到已转化为SCP-EQ-020-1个体的云███（R██████ D███）的攻击并因此死亡。云███在杀死A████J███和B██ M██后制造了一起火灾。2010年██月██日，基金会派遣2名特工伪装成警员前往该地调查该事件，调查过程中，特工在地窖内发现了SCP-EQ-024，在确认其异常性质后将其带至Site-EQ-11并建立收容。
+
+书写在项目上的文字经笔迹鉴定与A████J███的笔迹符合。值得注意的是，对案发当日参与调查的所有警员的采访均表明当时未在现场发现项目，且SCP-EQ-024表面未发现火焰灼烧和/或烟尘遮盖痕迹。对项目来源的调查尚在进行中。
+
+2014年█月█日，Dr.██████在对项目进行研究时，无意中发现项目背面有用隐形墨水写成的文字，经显影魔法显影后得到两则类似信函格式的文本，收信者分别写为“至亲们”和“██”。写给“至亲们”的信函透露出写信者对于“过早离开”的不舍，同时请求他们不要怨恨云███，该信还透露A████J███与同样死于事故SCP-EQ-020-ACD-1的B██ M██“同行”；而写给“██”的信函则流露出对其的原谅、安慰以及劝勉。两封信函的落款均为A████J███，未署时间。阅读这些文字的对象均表示阅读时感受到一种“带着些许温暖的绝望感与无力感”。笔迹鉴定表明笔迹与A████J███的笔迹符合。
+
+[[collapsible show="+ 显示书写于SCP-EQ-024背面的文本" hide="- 收起书写于SCP-EQ-024背面的文本"]]
+[[div class="page-cn"]]
+至亲们：
+@@ @@
+尽管很不舍，但是我……还是得走了。路会很漫长，也会很黑，也会很冷。可是有哥哥陪着我，更何况，终点应该还是有一束光在那里的吧？
+婆婆，对不起，儿没法尽孝了。天凉了，记得多添衣服。
+妹妹，不要太消沉，姐姐要走了，没法像以前那样关心你了，要学会照顾好自己，不要任性，不要让婆婆太累。将来一定要报答婆婆。
+还有大家，不要因为我的离乡而烦忧。往日不会再来，逝者不会复生，新一日的太阳升起时，莫忘了微笑。
+若是想念我，举起你的酒杯吧，我定会在异乡与你干杯。
+@@ @@
+不要恨云███，她也是[[[SCP-EQ-020|梦魇]]]的受害者，阳光、平和与欢笑被硬生生地夺去，只留下黑暗、落寞与恐惧。她只能独自蜷缩在墙角里，瑟瑟发抖……
+逼着我离乡的，不是██，是那闯进她的世界里的黑暗……
+@@ @@
+保重
+A████J███
+@@ @@
+@@ @@
+@@ @@
+亲爱的██：
+@@ @@
+你能看到这封信吗？但愿你能吧。但是，我还是得道个歉，可能在你读到这封信的时候，我已经抛下你，独自去了。
+我不怪你，真的，自那天在无尽之森看见满身是伤的你浸透着恐惧的眸子时，我便已知道，不会是你。我能感受到你受的苦，还有你的绝望和害怕……
+好怀念之前那些日子啊……大家聚在一起，无忧无虑……似乎一切都在波光粼粼的湖面上荡漾，微风轻拂……路还很长，洒满阳光……
+此刻的你，想必也在怀念着这曾经的日子吧？可是……往日，不会再来啊……
+那个摄取了你心灵的恶魔，还住在你的心里吗？你还在和它抗争吗？
+别忘了，你可是██元素啊……你的勇敢和忠诚，此刻又在哪里呢……把它们找回来吧。
+@@ @@
+愿你能复又展开羽翼，携飞虹翱翔在蓝天白云之间。
+@@ @@
+你永远的朋友
+A████J███
+[[/div]]
+[[/collapsible]]
+
+[[footnoteblock title="蹄注"]]
+
+[[=]]
+<< [[[SCP-EQ-023]]] | SCP-EQ-024 | [[[SCP-EQ-025]]] >>
+[[/=]]

@@ -1,0 +1,25 @@
+注册表路径：
+
+[[code]]
+HKLM\BCD00000001\Objects\{7ea2e1ac-2e61-4728-aaa3-896d9d0a9f0e}\Elements\26000512
+[[/code]]
+
+将二进制值{{Element}}的值改为{{01}}。
+
+**注意：**使用vcREG编辑时，请在填入注册表路径和值名称后，直接在Value文本框中填入{{01}}并点击“写入（Write）”按钮，否则可能导致系统无法启动。
+
+-----
+
+您也可以在大容量存储器模式下开启关机充电功能。
+
+命令提示符启动路径：
+
+[[code]]
+%EFIESP%\EFI\Microsft\Boot
+[[/code]]
+
+命令语句：
+
+[[code]]
+bcdedit -store bcd -set {globalsettings} offmodecharging on
+[[/code]]

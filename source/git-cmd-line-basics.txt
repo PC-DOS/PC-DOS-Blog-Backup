@@ -1,0 +1,117 @@
+参考自：
+
+*https://www.runoob.com/manual/git-guide/
+
+*https://www.cnblogs.com/shenxiaolin/p/7896489.html
+
+[[toc]]
+
++ 修改提交者信息
+
+++ 全局修改
+
+[[code]]
+git config --global user.name YourName
+git config --global user.email YouEmail@Address
+[[/code]]
+
+++ 仅修改当前仓库
+
+[[code]]
+git config user.name YourName
+git config user.email YouEmail@Address
+[[/code]]
+
++ 切换到工作目录并初始化
+
+执行：
+
+[[code]]
+cd /PATH/TO/YOUR/PROJECT
+git init
+[[/code]]
+
++ 克隆仓库
+
+执行如下命令以创建一个本地仓库的克隆版本：
+
+[[code]]
+git clone /PATH/TO/REPOSITORY
+[[/code]]
+
+如果是远端服务器上的仓库：
+
+[[code]]
+git clone username@host:/path/to/repository.git
+[[/code]]
+
++ 添加和提交
+
+使用如下命令提出更改（把它们添加到暂存区）：
+
+[[code]]
+git add *
+git add .
+[[/code]]
+
+使用如下命令以实际提交改动：
+
+[[code]]
+git commit -m "INFO"
+[[/code]]
+
++ 添加上游或远程服务器
+
+使用如下命令将仓库连接到某个远程服务器上的对应仓库：
+
+[[code]]
+git remote add origin host/path/to/repository.git
+[[/code]]
+
++ 推送改动
+
+执行如下命令以将这些改动提交到远端仓库：
+
+[[code]]
+git push origin master
+[[/code]]
+
++ 移除文件追踪
+
+++ 仅移除文件追踪
+
+[[code]]
+git rm --cache /PATH/TO/YOUR/FILE
+[[/code]]
+
+++ 移除文件追踪的同时删除文件
+
+[[code]]
+git rm /PATH/TO/YOUR/FILE
+[[/code]]
+
++ 其它
+
+内建的图形化 git：
+
+[[code]]
+gitk
+[[/code]]
+
+彩色的 git 输出：
+
+[[code]]
+git config color.ui true
+[[/code]]
+
+显示历史记录时，每个提交的信息只显示一行：
+
+[[code]]
+git config format.pretty oneline
+[[/code]]
+
+交互式添加文件到暂存区：
+
+[[code]]
+git add -i
+[[/code]]

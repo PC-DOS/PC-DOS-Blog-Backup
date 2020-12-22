@@ -1,0 +1,32 @@
+.NET优化服务通过任务计划程序触发，其任务计划项目位于：
+
+[[code]]
+\\Microsoft\Windows\.NET Framework\
+[[/code]]
+
+其中，“{{\\}}”表示“任务计划程序库”根节点。
+
+删除该虚拟目录下的任务计划项目，即可避免.NET优化服务自动触发。
+
+-----
+
+离线操作时，可以删除以下目录中的文件，以删除.NET优化服务的任务计划项目：
+
+[[code]]
+%SystemRoot%\System32\Tasks\Microsoft\Windows\.NET Framework\
+%SystemRoot%\SysWOW64\Tasks\Microsoft\Windows\.NET Framework\
+[[/code]]
+
+其中，“{{%SystemRoot%}}”为Windows系统的安装目录。
+
+同时，需要移除注册表中以下注册表键所包含的子键：
+
+[[code]]
+HKEY_LOCAL_MACHINE\PC_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\Microsoft\Windows\.NET Framework\
+[[/code]]
+
+其中，{{HKEY_LOCAL_MACHINE\PC_SOFTWARE}}为假定的离线操作时目标系统的{{SOFTWARE}}注册表储巢的挂载点。对于目标系统活动时的注册表操作，{{HKEY_LOCAL_MACHINE\PC_SOFTWARE}}应被替换为{{HKEY_LOCAL_MACHINE\SOFTWARE}}。
+
+-----
+
+参考资料：*https://superuser.com/questions/1213206/delete-all-scheduled-tasks-with-registry-file

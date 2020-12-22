@@ -1,0 +1,9 @@
+[[toc]]
+
++++ Sumatra PDF
+
+*https://www.sumatrapdfreader.org/download-prev.html
+
++++ Firefox
+
+*http://ftp.mozilla.org/pub/firefox/releases/

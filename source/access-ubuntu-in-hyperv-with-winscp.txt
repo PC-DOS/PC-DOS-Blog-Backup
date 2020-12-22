@@ -1,0 +1,13 @@
+首先安装SSH服务器端组件
+
+[[code]]
+sudo apt-get install openssh-server --fix-missing
+[[/code]]
+
+启动SSH
+
+[[code]]
+sudo /etc/init.d/ssh start
+[[/code]]
+
+通过WinSCP建立一个新的连接，IP地址为虚拟机的IP地址，端口使用默认的22，用户凭据可使用当前登录Ubuntu的用户名和密码。

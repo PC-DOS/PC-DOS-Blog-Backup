@@ -1,0 +1,86 @@
+**故障现象：**启动Windows Phone Power Tools (Version = 2.0.3.0)时，界面“Connect To”字样后的列表为空，无法连接设备。
+
+出现故障的设备操作系统为Windows 10 Enterprise LTSB 2016，默认语言为中文 (繁体，台湾)。安装了Microsoft Visual Studio 2013 Update 5和Windows Phone 8.0及Windows Phone 8.1的SDK，通过Windows Phone SDK的Application Deployment或Application Deployment (8.1)工具可正常部署应用程序。Microsoft Visual Studio 2013与Windows Phone SDK的语言版本均为中文 (繁体，台湾)。
+
+出现故障时，因需要运行简体中文版LabVIEW 2018，将系统地区格式改为中文 (简体，中国)。
+
+**故障分析：**检查Windows Phone Power Tools的[*https://archive.codeplex.com/?p=wptools 源代码]，在工程{{WindowsPhone.Tools}}中找到管理Windows Phone设备的{{WindowsPhoneDevice.cs}}代码。查询知其通过如下代码段枚举连接的Windows Phone设备：
+
+[[code]]
+public static List<ConnectableDevice> GetDevices(){
+    List<ConnectableDevice> list = new List<ConnectableDevice>();    
+    MultiTargetingConnectivity multiConnect = new MultiTargetingConnectivity(CultureInfo.CurrentCulture.LCID);
+    foreach (ConnectableDevice device in multiConnect.GetConnectableDevices(false)){
+        list.Add(device);
+    }
+    return list;
+}
+[[/code]]
+
+该段代码参考了Microsoft.NET程序集{{Microsoft.Smartdevice.MultiTargeting.Connectivity}}（该程序集位于{{%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.MultiTargeting.Connectivity\}}）。查看源文件的参考信息知，{{WindowsPhone.Tools}}工程参考的{{Microsoft.Smartdevice.MultiTargeting.Connectivity}}程序集版本为{{11.0.0.0}}（位于{{%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.MultiTargeting.Connectivity\v4.0_11.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.MultiTargeting.Connectivity.dll}}）。
+
+启动Microsoft Visual Studio 2013，新建一个桌面应用程序，将{{Microsoft.Smartdevice.MultiTargeting.Connectivity}}（版本{{11.0.0.0}}）加入参考，撰写如下代码：
+
+[[code]]
+Dim DeviceNames As String = ""
+Dim Connectivity As New Microsoft.SmartDevice.MultiTargeting.Connectivity.MultiTargetingConnectivity(System.Globalization.CultureInfo.CurrentCulture.LCID)
+For Each Device In Connectivity.GetConnectableDevices(False)
+    DeviceNames = DeviceNames & Device.Name & vbTab & Device.Id & vbCrLf
+Next
+Debug.Print(DeviceNames)
+[[/code]]
+
+按F5启动程序，即时窗格显示错误消息：
+
+[[code]]
+第一個可能發生的例外狀況類型 'Microsoft.SmartDevice.Connectivity.DatastoreException' 發生於 Microsoft.SmartDevice.Connectivity.dll
+[[/code]]
+
+IntelliTrace窗格显示：
+
+[[code]]
+例外狀況:擲回: "發生例外狀況於 HRESULT: 0x89721200" (Microsoft.SmartDevice.Connectivity.DatastoreException)
+擲回 Microsoft.SmartDevice.Connectivity.DatastoreException: "發生例外狀況於 HRESULT: 0x89721200"
+時間: 2019/12/24 17:17:12
+執行緒: <沒有名稱>[5412]
+[[/code]]
+
+检索HRESULT代码{{0x89721200}}，在[*https://stackoverflow.com/questions/19803658/exception-from-hresult-0x89721200-application-deployment-tool 该StackOverflow问题]中看到回答：
+
+> This error can occur when the SDK's language is different to your system's language format. Try changing your system's language or else reinstalling the SDK with the same language.
+> 
+> （当SDK的语言与操作系统的地区格式不匹配时会引发该错误。请尝试需要修改系统的地区格式或安装与您当前区域格式相同的语言版本的SDK。）
+
+将操作系统的地区格式改为中文(繁体，台湾)，重新运行上述测试程序，立即窗格正常显示调试信息：
+
+[[code]]
+Device	30F105C9-681E-420b-A277-7C086EAD8A4E
+Emulator WVGA 512MB(ZH-HANT)	5E7661DF-D928-40ff-B747-A4B1957194F9
+Emulator WVGA(ZH-HANT)	4E136B04-AB61-4D76-B040-894831FCA286
+Emulator WXGA(ZH-HANT)	30E884A8-265A-4089-B226-AD2326862248
+Emulator 720P(ZH-HANT)	1AAFB3E8-5202-4480-A5F0-8D44CD04FA32
+[[/code]]
+
+重新启动Windows Phone Power Tools，问题解决。
+
+**原因分析：**由于位于程序集{{Microsoft.SmartDevice.MultiTargeting.Connectivity}}的类{{Microsoft.SmartDevice.MultiTargeting.Connectivity.MultiTargetingConnectivity}}的构造函数原型为：
+
+[[code]]
+Public Sub New(localeId As Integer)
+[[/code]]
+
+该类需要以一个LocaleID作为构造函数的参数，Windows Phone Power Tools通过{{System.Globalization.CultureInfo.CurrentCulture.LCID}}属性获取操作系统当前的地区编号（位于注册表项{{HKEY_CURRENT_USER\Control Panel\International\Locale}}中）作为参数，由于操作系统当前的地区格式为中文(简体，中国)，导致获取的LocaleID为00000804，与Windows Phone SDK所使用的中文 (繁体，台湾)不匹配，导致Windows Phone Power Tools试图枚举可连接的设备时，发生{{HRESULT: 0x89721200 (Microsoft.SmartDevice.Connectivity.DatastoreException)}}错误，进而导致设备枚举失败。
+
+测试表明，版本为{{12.0.0.0}}的{{Microsoft.SmartDevice.MultiTargeting.Connectivity}}程序集已经修复了这一问题。不同的地区格式并不会诱发{{HRESULT: 0x89721200 (Microsoft.SmartDevice.Connectivity.DatastoreException)}}错误。
+
+运行Windows Phone Power Tools前导入以下注册表文件可强制变更地区格式为中文 (繁体，台湾)：
+
+[[code]]
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Control Panel\International]
+"Locale"="00000404"
+"LocaleName"="zh-TW"
+[[/code]]
+
+**补充：**在中文版Windows操作系统上安装Windows Phone 8.0 SDK精简版时同样可能在启动Application Deployment应用程序时遇到此阻碍性错误，原因同上。

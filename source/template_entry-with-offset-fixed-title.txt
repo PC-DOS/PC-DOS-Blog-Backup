@@ -1,0 +1,15 @@
+[!-- * 说明：本模板适用于拥有多个迭代页且标题不随迭代变更的条目，请确保您已将各个子页面归档为fragment类型（即页面名称以“fragment:”开始），且这些页面的父页面已被设置为本页面。 * --]
+
+[[>]]
+[[module Rate]]
+[[/>]]
+
+[[module ListPages category="fragment" parent="." limit="1" order="name" offset="@URL|0"]]
+%%content%%
+[[/module]]
+
+[[div style="display:none"]]
+[!-- * 您可以在此加入子页面的地址作为今后修改时的备忘。 * --]
+段落页面地址如下：
+
+[[/div]]

@@ -1,0 +1,25 @@
++ SelectedDate属性和DisplayDate属性
+
+{{SelectedDate}}属性可以即时反应用户选择的日期的变更，而{{DisplayDate}}属性的更新存在延迟。
+
+典型的例子是，在{{SelectedDateChanged}}事件中，{{SelectedDate}}属性已经发生改变，而{{DisplayDate}}属性则尚未发生改变。
+
+需要注意的是，{{SelectedDate}}是可空属性，因此使用前应先检查其是否为{{Null}}（或{{Nothing}}）。需要使用{{SelectedDate}}属性参与计算时，因在校验其合法性后引用{{SelectedDate.Value}}属性。
+
++ 两个DatePicker控件的联动
+
+联动DatePicker控件时，需注意{{DisplayDate}}、{{DisplayDateStart}}和{{DisplayDateEnd}}属性的更新均存在延迟，因此应使用{{SelectedDate}}属性以进行数据的同步。
+
+例如，下例展示了一个时间段选择器，结束时间选择器的起始日期根据开始时间选择器中选择的日期自动调整。
+
+[[code]]
+Private Sub dtpStartDate_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs) Handles dtpStartDate.SelectedDateChanged
+	If IsNothing(dtpEndDate.SelectedDate) Then
+		Exit Sub
+	End If
+	dtpEndDate.DisplayDateStart = dtpStartDate.SelectedDate.Value.AddDays(1)
+	If dtpEndDate.SelectedDate.Value.CompareTo(dtpStartDate.SelectedDate.Value) <= 0 Then
+		dtpEndDate.SelectedDate = dtpStartDate.SelectedDate.Value.AddDays(1)
+	End If
+End Sub
+[[/code]]

@@ -1,0 +1,7 @@
+[[=]]
+Made by Aelanna
+
+Original released at *http://aelanna.com/Tools/deletion-time.html
+[[/=]]
+
+[[iframe http://pc-dos.wdfiles.com/local--files/scp-wiki-deletion-time-tool/deletion-time.html style="width: 100%; height: 500px;"]]

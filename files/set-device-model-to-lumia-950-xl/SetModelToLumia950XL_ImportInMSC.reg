@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\0\Platform\DeviceTargetingInfo]
+"PhoneHardwareVariant"="RM-1116"
+"PhoneManufacturer"="MicrosoftMDG"
+"PhoneManufacturerModelName"="RM-1116_11258"
+"PhoneMobileOperatorName"="000-TW"
+"PhoneModelName"="RM-1116"

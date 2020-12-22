@@ -1,0 +1,12 @@
+命令提示符启动路径：
+
+[[code]]
+%EFIESP%\EFI\Microsft\Boot
+[[/code]]
+
+命令语句：
+
+[[code]]
+bcdedit -store BCD /set {default} numproc 4
+bcdedit -store BCD /set {bootloadersettings} numproc 4
+[[/code]]

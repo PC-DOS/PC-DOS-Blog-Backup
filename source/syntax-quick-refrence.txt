@@ -1,0 +1,73 @@
++ 格式语法速查表
+
+下表为格式语法的快速参考。点击链接可前往更详细的介绍。
+|| [*/wiki-syntax#headings + 1级标题] ||
+|| [*/wiki-syntax#headings ++ 2级标题] ||
+|| [*/wiki-syntax#headings +++ 3级标题] ||
+|| [*/wiki-syntax#lists * 无序列表] ||
+|| [*/wiki-syntax#lists # 有序列表] ||
+|| [*/wiki-syntax#block-quotes > 引用] ||
+|| [*/wiki-syntax#inline //斜体//] ||
+|| [*/wiki-syntax#inline **粗体**] ||
+|| [*/wiki-syntax#inline {{等宽字}}] ||
+|| @@[[span style="font-family:Microsoft YaHei"]]@@[*/wiki-syntax#inline 中文等宽字]@@[[/span]]@@ ||
+|| [*/wiki-syntax#inline ^^上标^^] ||
+|| [*/wiki-syntax#inline ,,下标,,] ||
+|| [*/wiki-syntax#inline ##red|标准## 或 ##229966|自定义色码## 颜色] ||
+|| @@[[span class="ruby"]]@@[*/wiki-syntax#inline 拼音或其他文字标示]@@[[span class="rt"]]@@Pīnyīn huò qítā wénzì biāoshì@@[[/span]][[/span]]@@ ||
+||@@[[span class="keycap"]]@@[*/wiki-syntax#inline 按鍵]@@[[/span]]@@ ||
+|| @@[[size smaller]]@@[*/wiki-syntax#text-size 更小的字]@@[[/size]]@@ ||
+|| @@[[size larger]]@@[*/wiki-syntax#text-size 更大的宇]@@[[/size]]@@ ||
+|| @@[[size 80%]]@@[*/wiki-syntax#text-size 原来大小的80%]@@[[/size]]@@ ||
+|| @@[[size 1.5em]]@@[*/wiki-syntax#text-size 原来大小的150%]@@[[/size]]@@ ||
+|| @@[[code]]@@ [*/wiki-syntax#code-blocks 代码方块] @@[[/code]]@@ ||
+|| [*/wiki-syntax#block-formatting =此行置中] ||
+|| @@[[<]]@@ _
+[*/wiki-syntax#block-formatting 靠左] _
+@@[[/<]]@@ ||
+|| @@[[>]]@@ _
+[*/wiki-syntax#block-formatting 靠右] _
+@@[[/>]]@@ ||
+|| @@[[=]]@@ _
+[*/wiki-syntax#block-formatting 置中] _
+@@[[/=]]@@ ||
+|| @@[[==]]@@ _
+[*/wiki-syntax#block-formatting 左右对齐] _
+@@[[/==]]@@ ||
+|| [*/wiki-syntax#urls http://scp-equestria.wikidot.com] ||
+|| @@[http://scp-equestria.wikidot.com@@ [*/wiki-syntax#urls 连到SCP基金会]@@]@@ ||
+|| @@[*/wiki-syntax#inline@@ [*/wiki-syntax#urls 连到锚点]@@]@@ ||
+|| @@[*http://scp-equestria.wikidot.com@@ [*/wiki-syntax#urls 开新窗口]@@]@@ ||
+|| @@[[[@@[*/wiki-syntax#page-links name-of-page]@@]]]@@ ||
+|| @@[[[name-of-page |@@ [*/wiki-syntax#page-links 点击前往该页]@@]]]@@ ||
+|| @@[[[name-of-page#anchor |@@ [*/wiki-syntax#anchors 锚点]@@]]]@@ ||
+|| @@``@@[*/wiki-syntax#typography 引号]@@''@@ ||
+|| @@`@@[*/wiki-syntax#typography 引号]@@' @@ ||
+|| @<&lt;&lt;>@ [*/wiki-syntax#typography 引号] @<&gt;&gt;>@ ||
+|| @@...@@[*/wiki-syntax#typography ...] ||
+|| @@em -- @@[*/wiki-syntax#typography 破折号] ||
+|| @@@@@@[*/wiki-syntax#literal 直接显示文字]@@@@@@ ||
+|| [*/wiki-syntax#rules ---- 水平线] ||
+|| @@[[image@@ [*/wiki-syntax#image URL 或 附件] @@]]@@ ||
+|| @@[[image@@ [*/wiki-syntax#images UR(ry] @@link="页面名称或URL" ]]@@ ||
+|| @@[[collapsible show="+ 点击显示" hide="- 点击隐藏"]]@@ [*/wiki-syntax#collapsible 隐藏的东西] @@[[/collapsible]]@@ ||
+|| @@||@@ [*/wiki-syntax#tables 表格]@@ ||~ 标题|| 内容||@@  ||
+|| @@[[div@@ [*/wiki-syntax#custom-divs 自定义DIV] @@]]@@ ||
+|| @@[[footnote]]@@[*/wiki-syntax#footnotes 脚注]@@[[/footnote]]@@ ||
+
++ 常用代码
+
++++ 评分器：
+> @@[[>]]@@
+> @@[[module Rate]]@@
+> @@[[/>]]@@
+
+
++++ 带注释插图：
+> @@[[include component:image-block name=图源 |caption=描述]]@@
+
++++ 音频文件：
+> @@[[include :snippets:html5player@@
+> @@    |type=audio@@
+> @@    |url=文件位置@@
+> @@]]@@

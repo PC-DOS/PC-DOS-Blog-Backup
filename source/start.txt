@@ -1,0 +1,110 @@
+[[module css]]
+.page-tags {
+     display: none;
+}
+[[/module]]
+
+[[module css]]
+.shadow{
+    border: 0;
+    box-shadow: 0 4.5px 10px rgba(0,0,0,.5);
+    background: transparent;
+    margin: 2.5px;
+}
+
+.shadow:hover{
+    border: 0;
+    box-shadow: 0 4.5px 10px rgba(0,0,0,.75);
+    background: transparent;
+}
+[[/module]]
+
+[[module ListUsers users="."]]
+[[module css]]
+.textchange div.sitemember:nth-child(2) {
+display:none;
+}
+[[/module]]
+
+[[=]]
+**[[size 245%]]##004b91|欢迎来到我的个人网站##[[/size]]**
+@@@@
+**[[size 125%]]##004b91|谨致以来自姑苏城的问候##[[/size]]**
+[[/=]]
+
+----
+
+[[table style="width: 100%;"]]
+[[row]]
+[[cell style="width: 25%; text-align: center;"]]
+[[div class="shadow"]]
+[[image wp-related.jpg link="wp-related" style="width: 100%"]]
+[[/div]]
+[[/cell]]
+[[cell style="width: 25%; text-align: center;"]]
+[[div class="shadow"]]
+[[image computer-related.jpg link="computer-related" style="width: 100%"]]
+[[/div]]
+[[/cell]]
+[[cell style="width: 50%; text-align: center;"]]
+[[div class="shadow"]]
+[[image SCP-EQ.png link="*http://scp-equestria.wikidot.com" style="width: 100%"]]
+[[/div]]
+[[/cell]]
+[[/row]]
+[[row]]
+[[cell style="width: 25%; text-align: center;"]]
+[[div class="shadow"]]
+[[image scp-related.jpg link="scp-related" style="width: 100%"]]
+[[/div]]
+[[/cell]]
+[[cell style="width: 25%; text-align: center;"]]
+[[div class="shadow"]]
+[[image mlp-related.jpg link="mlp-related" style="width: 100%"]]
+[[/div]]
+[[/cell]]
+[[cell style="width: 50%; text-align: center;"]]
+[[div class="shadow"]]
+[[image All.png link="system:list-all-pages" style="width: 100%"]]
+[[/div]]
+[[/cell]]
+[[/row]]
+[[/table]]
+
+[[div class="content-panel"]]
+[[div class="panel-heading"]]
+最近新增的25个页面
+[[/div]]
+[[div class="panel-body"]]
+[[module ListPages tags="-列表 -管理 -内部 -未公开" order="created_at desc" separate="no" limit="25" perPage="25"]]
+%%linked_title%% - //创建于 %%created_at%%//
+[[/module]] 
+[[/div]]
+[[div class="panel-footer" style="text-align: center; height: 16px;"]]
+[[/div]]
+[[/div]]
+
+[[div class="content-panel"]]
+[[div class="panel-heading"]]
+最近更新的25个页面
+[[/div]]
+[[div class="panel-body"]]
+[[module ListPages tags="-列表 -管理 -内部 -未公开" order="updated_at desc" separate="no" limit="25" perPage="25"]]
+%%linked_title%% - //更新于 %%updated_at%%//
+[[/module]] 
+[[/div]]
+[[div class="panel-footer" style="text-align: center; height: 16px;"]]
+[[/div]]
+[[/div]]
+
+[[div class="content-panel"]]
+[[div class="panel-heading"]]
+创建新页面
+[[/div]]
+[[div class="panel-body"]]
+您可以在此创建一个新页面，请在下方输入新页面的名字并点击 [创建新页面] 按钮。
+[[module NewPage size="50" button="​​创建新页面"]]
+[[/div]]
+[[div class="panel-footer" style="text-align: center; height: 16px;"]]
+[[/div]]
+[[/div]]

@@ -1,0 +1,73 @@
+[[=]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **数据无价，谨慎操作** [[/size]]##
+----
+[[size larger]] **开始操作前，请做好数据备份工作。**[[/size]]
+
+控制 · 收容 · 保护
+[[/div]]
+[[/=]]
+
++ 宿主机设备环境
+
+**制造商：**Supermicro
+**型号：**SYS-4028GR-TR
+**CPU：**20 CPUs x Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz
+**内存：**：256 GB
+**硬盘：**512 GB SSD + 2 TB + 2 TB
+**VMWare ESXi版本：**6.7.0
+**GPU：**3 x NVIDIA Tesla P100 [16GB]
+
++ 说明
+
+重新安装VMWare ESXi前，宿主机安装Microsoft Windows Server 2012 R2，所有硬盘数据分区均被格式化为NTFS格式，导致无法被自动识别和添加到VMFS存储池中。
+
++ 挂载硬盘
+
+++ 启用SSH连接
+
+在VMWare ESXi Web管理界面，导航到 [主机] > [管理] > [服务] 页面，找到“TSM-SSH”服务，点击 [启动] 按钮，启动SSH服务。
+
+然后，您可以通过常用的SSH程序访问VMWare ESXi服务器。
+
+++ 删除原分区
+
+SSH登陆后，在命令行执行以下命令：
+
+[[code]]
+fdisk -l
+[[/code]]
+
+此时枚举出所有已连接的硬盘驱动器，找出所有没有被挂载的磁盘，每找到一个磁盘驱动器，便复制其设备路径，设备路径看起来像：
+
+[[code]]
+/dev/disks/t10.ATA_____XXX_XX*****************_______________________XX**************
+[[/code]]
+
+继续执行
+
+[[code]]
+partedUtil get <DevicePath>
+[[/code]]
+
+其中，{{<DevicePath>}}为前述设备路径。
+
+该指令会列出该磁盘驱动器上已有的分区的编号（{{PartitionNumber}}），这是一个从{{1}}开始递增的正整数。
+
+随后，对每一个分区执行删除操作：
+
+[[code]]
+partedUtil delete <DevicePath> <PartitionNumber>
+[[/code]]
+
+其中，{{<DevicePath>}}为前述设备路径，{{<PartitionNumber>}}为前述分区编号。
+
+清除一个磁盘驱动器上所有的分区后，继续寻找下一个没有被挂载的磁盘，复制其设备路径并使用{{partedUtil}}工具删除所有分区。直到所有没有被挂载的磁盘上的分区被全部删除。
+
+++ 挂载硬盘
+
+在VMWare ESXi Web管理界面，导航到 [存储] > [数据存储] 页面，点击 [新建数据存储] 按钮，即可找到您的磁盘驱动器并开始配置。
+
++ 参考资料
+
+*https://kb.vmware.com/s/article/1036609

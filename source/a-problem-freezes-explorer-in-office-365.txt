@@ -1,0 +1,13 @@
+**现象描述：**将Office 365设置为用于打开/处理Office文档的默认程序后，在Windows资源管理器中点击任意Office文档，Windows资源管理器冻结并失去响应。
+
+**排查：**通过[*https://docs.microsoft.com/en-us/sysinternals/ SysInternals Suite]的[*https://docs.microsoft.com/en-us/sysinternals/downloads/procmon ProcMon.exe]进程行为监视工具检查，发现prevhost.exe进程循环出现{{PATH NOT FOUND}}错误和{{NAME NOT FOUND}}错误。由于prevhost.exe（位于{{%SystemRoot%\System32\prevhost.exe}}）为Windows资源管理器文件预览处理器托管主机（Preview Handler Surrogate Host），故推测本问题和Office文档预览功能相关。
+
+**临时处理措施：**停用Windows资源管理器的“预览窗格”功能，问题解决。
+
+**后记：**因系远程诊断，未进行进一步研究以判定导致prevhost.exe进程循环出现{{PATH NOT FOUND}}错误和{{NAME NOT FOUND}}错误的原因（推测为进程向WindowsApps目录中Office 365的安装目录读取/加载/写入文件时出现问题）。
+
+**参考文献：**
+
+*https://docs.microsoft.com/en-us/windows/win32/shell/how-to-register-a-preview-handler
+
+*https://docs.microsoft.com/en-us/windows/win32/shell/preview-handlers

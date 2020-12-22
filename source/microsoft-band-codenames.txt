@@ -1,0 +1,57 @@
+Microsoft Band - “{{Cargo}}”
+
+Microsoft Band 2 - “{{Envoy}}”
+
+-----
+
++ 导入命名空间
+
+Visual Basic.NET代码：
+
+[[code]]
+Imports Microsoft.Band
+Imports Microsoft.Band.Tiles
+Imports Microsoft.Band.Admin
+Imports Microsoft.Band.Personalization
+[[/code]]
+
++ 通用变量
+
+通过{{Microsoft.Band.Admin.ICargoClient}}类型的变量{{BandClient}}，表示一个已经连接的Microsoft Band对象。
+
+该对象通过{{BandConnectionManager}}模块封装。
+
+[[code]]
+Imports Microsoft.Band
+Imports Microsoft.Band.Tiles
+Imports Microsoft.Band.Admin
+Imports Microsoft.Band.Personalization
+Module BandConnectionManager
+    Public BandClient As ICargoClient
+    Public BandClientLimited As IBandClient
+    Public CurrentBandClass As BandClass = BandClass.Unknown
+End Module
+[[/code]]
+
++ 判断已连接的Microsoft Band设备的类型
+
+{{BandClient.ConnectedBandConstants.BandClass}}常量表示了当前连接的设备的类型，其具有三个可能的值：
+
+* **{{BandClass.Cargo}}：**表示第一代Microsoft Band。
+* **{{BandClass.Envoy}}：**表示第二代Microsoft Band。
+* **{{BandClass.Unknown}}：**表示当前设备类型未知。
+
+[[code]]
+Try
+	Select Case BandClient.ConnectedBandConstants.BandClass
+		Case BandClass.Cargo
+			txtBandClass.Text = "Microsoft Band (Cargo)"
+		Case BandClass.Envoy
+			txtBandClass.Text = "Microsoft Band 2 (Envoy)"
+		Case Else
+			txtBandClass.Text = "不明"
+	End Select
+Catch ex As Exception
+	txtBandClass.Text = "試圖獲取資料時發生例外情況: " & ex.Message
+End Try
+[[/code]]
