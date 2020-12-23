@@ -116,4 +116,12 @@ sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt-main'
 
 随后，将自编程序复制到{{/home/picsell-dois/iTop4412/Qtopia/root/}}目录中的相应位置。
 
-完成后，重建{{system.img}}并执行刷写流程即可。
+完成后，回到终端执行：
+
+[[code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+rm system.img
+make_ext4fs -s -l 314572800 -a root -L linux system.img root
+[[/code]]
+
+重建{{system.img}}并执行刷写流程即可。
