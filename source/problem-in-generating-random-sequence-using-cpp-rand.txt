@@ -49,3 +49,5 @@ void MainWindow::tmrDataGenerationTimer_Tick(){
 *https://www.cnblogs.com/Vince-Wu/p/10395370.html
 
 *https://www.cnblogs.com/pied/p/5164000.html
+
+*https://blog.csdn.net/qing666888/article/details/104015959

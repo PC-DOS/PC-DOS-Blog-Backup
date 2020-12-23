@@ -1,0 +1,10 @@
+Qt/E 4.7.1的触控校准文件被存放在{{/etc/pointercal}}位置下，系统启动时，如果该文件不存在或为空，则系统会调用tslib的触控校准程序{{/usr/local/tslib/bin/ts_calibrate}}。
+
+为了跳过校准流程，可以在Qt/E的启动脚本（{{/bin/qt4}}或用户自定义的启动脚本）中，通过在行首添加井号（“{{#}}”）的方式，将{{/usr/local/tslib/bin/ts_calibrate}}行设为注释状态，重建{{system.img}}镜像文件并重新刷写即可：
+
+[[code]]
+sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4'
+cd /home/picsell-dois/iTop4412/Qtopia/
+rm system.img
+make_ext4fs -s -l 314572800 -a root -L linux system.img root
+[[/code]]
