@@ -8,6 +8,16 @@
 
 开始安装（是否用{{sudo}}指令以Root身份运行可随意）。
 
++ 配置所需的ARM编译器
+
+使用arm-linux-4.4.1编译器，因此需要进行编译器配置：
+
+[[code]]
+cd /usr/local/arm/
+sudo cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/arm-linux-4.4.1.tar.gz' ./
+sudo tar -vxf arm-linux-4.4.1.tar.gz
+[[/code]]
+
 + 配置Qt/E 4.7.1编译套件
 
 从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。

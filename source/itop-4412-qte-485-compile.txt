@@ -28,12 +28,12 @@ su
 
 + 配置所需的ARM编译器及环境变量
 
-Qtopia 2.2.0源代码使用arm-linux-4.4.1编译器编译，因此需要进行编译器配置：
+Qt/E 4.8.5源代码使用arm-linux-gcc-4.3.2编译器编译，因此需要进行编译器配置：
 
 [[code]]
 cd /usr/local/arm/
-cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/arm-linux-4.4.1.tar.gz' ./
-tar -vxf arm-linux-4.4.1.tar.gz
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统arm-linux-gcc-4.3.2.tar.gz' ./
+tar -vxf arm-linux-gcc-4.3.2.tar.gz
 [[/code]]
 
 配置环境变量：
@@ -45,8 +45,8 @@ sudo gedit /root/.bashrc
 通过在行首添加井号（“{{#}}”）的方式注释掉先前添加的其他编译器环境变量行（即{{export PATH=$PATH:/usr/local/arm/...}}这样的行），并在文件末尾添加：
 
 [[code]]
-#Compiler path for Qtopia 2.2.0
-export PATH=$PATH:/usr/local/arm/4.4.1/bin
+#Compiler path for Qt/E 4.8.5
+export PATH=$PATH:/usr/local/arm/4.3.2/bin
 [[/code]]
 
 保存并退出，回到终端并更新环境变量：
@@ -55,15 +55,9 @@ export PATH=$PATH:/usr/local/arm/4.4.1/bin
 source /root/.bashrc
 [[/code]]
 
-随后安装X11 SDK：
+若需检查是否变更成功，可在终端输入{{arm}}并多次按键盘的{{TAB}}键触发系统的命令提示，如果提示列表中出现{{arm-none-linux-gnueabi-gcc-4.3.2}}命令，则可以认为操作成功。
 
-[[code]]
-apt-get install libx11-dev libxext-dev libxtst-dev
-[[/code]]
-
-可以通过在终端键入{{arm-none-linux-gnueabi-gcc -v}}指令并按回车键执行的方式，检查编译器版本。
-
-+ 配置Qtopia 2.2.0编译环境
++ 配置Qt/E 4.8.5编译环境
 
 ++ 先导工作
 
@@ -210,7 +204,7 @@ FA_DoExec apt-get install \
 
 ++ 补充库文件
 
-通过以下指令序列，配置Qtoptia 2.2.0所需的库文件：
+通过以下指令序列，配置Qt/E 4.8.5所需的库文件：
 
 [[code]]
 cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
@@ -252,4 +246,158 @@ cd /
 tar -vxf linux_tools.tgz
 [[/code]]
 
-至此，Qtopia 2.2.0编译和镜像构建环境搭建完毕。
+至此，Qt/E 8.5编译和镜像构建环境搭建完毕。
+
++ 获取Qt/E 4.8.5源代码
+
+Qt/E 4.8.5的源代码可以在[*https://download.qt.io/archive/qt/ Qt官方下载页面]找到。
+
+下载地址：*https://download.qt.io/archive/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.tar.gz
+
+下载的文件放置在虚拟机与宿主机共享的目录的根目录下，即文件在Ubuntu中的位置为：
+
+[[code]]
+/mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz
+[[/code]]
+
++ 复制Qt/E 4.8.5源代码
+
+继续使用Root身份操作，在{{/root/}}目录下建立{{yizhi}}目录，请注意，建议不要使用别的目录名称。
+
+随后，创建一个{{qt-everywhere-opensource-src-4.8.5}}目录，并复制Qt/E 4.8.5源码文件到该目录中：
+
+[[code]]
+cd /root/
+mkdir yizhi
+cd yizhi
+mkdir qt-everywhere-opensource-src-4.8.5
+cd qt-everywhere-opensource-src-4.8.5
+cp '/mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz' ./
+[[/code]]
+
++ 建立编译脚本
+
+这里的编译脚本基于迅为提供的Qt/E 4.7.1编译脚本修改而来。
+
+在{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录中创建一个{{build-all}}脚本并打开：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5
+sudo gedit build-all
+[[/code]]
+
+输入以下内容，保存并退出编辑器：
+
+[[code]]
+#/bin/bash
+
+export PATH=/usr/local/arm/4.3.2/bin:$PATH
+export PKG_CONFIG_PREFIX=$TOOLCHAIN/arm-none-linux-gnueabi
+export TB_CC_PREFIX=arm-linux-
+export TOOLCHAIN=/usr/local/arm/4.3.2
+
+
+rm -fr qt-everywhere-opensource-src-4.8.5
+rm -fr /opt/qt-4.8.5
+
+tar xfvz qt-everywhere-opensource-src-4.8.5.tar.gz
+
+cd qt-everywhere-opensource-src-4.8.5
+
+echo yes | ./configure -opensource -embedded arm -xplatform qws/linux-arm-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-
+
+tslib -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.5   -I /usr/local/tslib/include -L /usr/local/tslib/lib
+
+
+make 2>&1 | tee ../qte4.8.5Makelog && make install
+[[/code]]
+
++ 修改编译脚本的权限
+
+新创建的编译脚本没有执行权限，因此需要授权：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
+chmod 777 build-all
+[[/code]]
+
++ 编译Qt/E 4.8.5源代码
+
+建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录内，运行编译脚本：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
+chmod 777 build-all
+./build-all
+[[/code]]
+
+编译时间可能较长。编译得到的文件位于{{/opt}}目录中。
+
++ 生成系统映像文件
+
+为了生成系统镜像文件，同时为便于操作，不退出Root环境，但是在登录用户目录内进行处理：
+
+[[code]]
+cd /home/picsell-dois/iTop4412/
+mkdir Qtopia
+cd Qtopia
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/root_2020115.tar.gz' ./
+tar -vxf root_2020115.tar.gz
+[[/code]]
+
+请注意：不同的版本的“{{root_@@********@@.tar.gz}}”中的日期项的值可能不同。
+
+随后，导出编译得到的文件：
+
+[[code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+cp -r /opt/qt-4.8.5 /home/picsell-dois/iTop4412/Qtopia/root/opt
+[[/code]]
+
+创建一个是用于Qt/E 4.8.5的配置文件：
+
+[[code]]
+cd /home/picsell-dois/iTop4412/Qtopia/root/bin
+cp qt4 qt4.8.5
+sudo gedit qt4.8.5
+[[/code]]
+
+在打开的编辑器中，将{{export QTDIR=}}行的内容修改为：
+
+[[code]]
+export QTDIR=/opt/qt-4.8.5/
+[[/code]]
+
+并检查其它含有类似“{{qt-4.7.1}}”字样的内容替换为“{{qt-4.8.5}}，保存并退出编辑器。
+
+配置自动运行：
+
+[[code]]
+cd /home/picsell-dois/iTop4412/Qtopia/root/etc/init.d
+sudo gedit rcS
+[[/code]]
+
+编辑该文件，文件末尾有以下行：
+
+[[code]]
+#/bin/qtopia &
+/bin/qt4 &
+[[/code]]
+
+通过在行首添加井号（“{{#}}”）的方式，将这两行全部设为注释状态，并在这两行后新建一行，输入：
+
+[[code]]
+/bin/qt4.8.5 &
+[[/code]]
+
+保存并退出编辑器。
+
+一切确认无误后，在终端中执行：
+
+[[code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+rm system.img
+make_ext4fs -s -l 512M -a root -L linux system.img root
+[[/code]]
+
+执行完毕后，在{{/home/picsell-dois/iTop4412/Qtopia/}}目录下即可得到{{system.img}}镜像文件。

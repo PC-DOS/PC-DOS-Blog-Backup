@@ -202,6 +202,39 @@ FA_DoExec apt-get install \
 [[/code]]
 [[/collapsible]]
 
+++ 补充库文件
+
+通过以下指令序列，配置Qt/E 4.7.1所需的库文件：
+
+[[code]]
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./tslib.tar.gz /usr/local/
+cd /usr/local/
+tar -vxf tslib.tar.gz
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./libXext.so.6.4.0 /usr/lib32/
+cp ./libXmu.so.6.2.0 /usr/lib32/
+cp ./libSM.so.6.0.1 /usr/lib32/
+cp ./libICE.so.6.3.0 /usr/lib32/
+cp ./libXt.so.6.0.0 /usr/lib32/
+cd /usr/lib32/
+ln -s libXext.so.6.4.0 libXext.so.6
+ln -s libXext.so.6 libXext.so
+ln -s libXmu.so.6.2.0 libXmu.so.6
+ln -s libXmu.so.6 libXmu.so
+ln -s libSM.so.6.0.1 libSM.so.6
+ln -s libSM.so.6 libSM.so
+ln -s libICE.so.6.3.0 libICE.so.6
+ln -s libICE.so.6 libICE.so
+ln -s libXt.so.6.0.0 libXt.so.6
+ln -s libXt.so.6 libXt.so
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./libuuid.so.1.3.0 /lib32/
+cd /lib32/
+ln -s libuuid.so.1.3.0 libuuid.so.1
+ln -s libuuid.so.1 libuuid.so
+[[/code]]
+
 ++ 安装生成系统镜像文件所需的工具
 
 为了生成系统镜像{{system.img}}，需要安装mkimage工具：

@@ -214,8 +214,8 @@ FA_DoExec apt-get install \
 
 [[code]]
 cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
-cp ./tslib.tar.gz /usr/local/arm/
-cd /usr/local/arm/
+cp ./tslib.tar.gz /usr/local/
+cd /usr/local/
 tar -vxf tslib.tar.gz
 cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
 cp ./libXext.so.6.4.0 /usr/lib32/
