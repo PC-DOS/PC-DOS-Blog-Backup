@@ -1,0 +1,60 @@
+**现象：**arm-linux-gcc-4.3.2编译器编译Qt/E 4.8.7或Qt/E 4.8.6时，当编译进行到{{./src/script}}时出现“undefined reference to ‘__sync_sub_and_fetch_4’”错误导致编译失败。
+
+**分析：**该错误是由于arm-linux-gcc-4.3.2编译器版本过低所导致的。由于目标代码使用了一个不受该版本编译器支持的内部函数的重载版本，因此编译失败。
+
+**解决方案：**可以下载高版本的GCC编译器（笔者使用的是GCC 4.4.3）的源代码，并生成静态链接库供存在问题的代码使用。
+
+从[*https://github.com/gcc-mirror/gcc/releases?after=releases%2Fgcc-4.5.1 GCC版本发布页面]下载[*https://github.com/gcc-mirror/gcc/archive/releases/gcc-4.4.3.tar.gz GCC 4.4.3的源代码]。假设下载的文件放置于：
+
+[[code]]
+/mnt/hgfs/Shared/gcc-releases-gcc-4.4.3.tar.gz
+[[/code]]
+
+打开终端并进入Root操作环境，执行：
+
+[[code]]
+apt-get install libtool
+cd ~
+mkdir yizhi
+cd ~/yizhi
+mkdir gcc-4.4.3
+cd gcc-4.4.3
+cp '/mnt/hgfs/Shared/gcc-releases-gcc-4.4.3.tar.gz' ./
+tar -vxf gcc-releases-gcc-4.4.3.tar.gz
+cd gcc-releases-gcc-4.4.3/gcc/config/arm/
+libtool --tag=CC --mode=compile arm-linux-gcc -g -O2 -MT linux-atomic.lo -MD -MP -MF linux-atomic.Tpo -c -o linux-atomic.lo linux-atomic.c
+libtool --tag=CC --mode=link arm-linux-gcc -g -O2 -o liblinux-atomic.la linux-atomic.lo
+cp .libs/liblinux-atomic.a /opt
+[[/code]]
+
+建立静态链接库。
+
+完成后，重新编译Qt/E时，在{{./configure}}指令执行完毕后，先不执行{{make}}指令，而是先执行：
+
+[[code]]
+sed -i '/^LIBS/{s/$/-L\/opt -llinux-atomic/}' src/script/Makefile
+[[/code]]
+
+指令，向已经建立的{{Makefile}}内加入库文件的参考位置。此处假设您已在终端中定位到Qt/E源代码压缩包解包后所得到的目录。
+
+请注意，如果您希望编译高版本的Qt/E，则前述指令的目标文件路径可能不同。
+
+例如，笔者编译Qt/E 4.8.6和Qt/E 4.8.7时，在{{./configure}}指令执行完毕后执行的指令为：
+
+[[code]]
+sed -i '/^LIBS/{s/$/-L\/opt -llinux-atomic/}' src/script/Makefile
+[[/code]]
+
+对于Qt/E 5，可能需要在{{./configure}}指令执行完毕后使用：
+
+[[code]]
+sed -i '/^LIBS/{s/$/-L\/opt -llinux-atomic/}' qtscript/src/script/Makefile
+[[/code]]
+
+随后，照常执行{{make}}指令，开始编译Qt/E即可。
+
+**参考资料：**
+
+*https://www.cnblogs.com/lvdongjie/p/6101977.html
+
+*http://www.echojb.com/qt/2017/02/19/327048.html
