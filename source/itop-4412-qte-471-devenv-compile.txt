@@ -28,7 +28,7 @@ su
 
 + 配置所需的ARM编译器及环境变量
 
-Qt/E 4.8.5源代码使用arm-linux-gcc-4.3.2编译器编译，因此需要进行编译器配置：
+Qt/E 4.7.1源代码使用arm-linux-gcc-4.3.2编译器编译，因此需要进行编译器配置：
 
 [[code]]
 cd /usr/local/arm/
@@ -45,7 +45,7 @@ sudo gedit /root/.bashrc
 通过在行首添加井号（“{{#}}”）的方式注释掉先前添加的其他编译器环境变量行（即{{export PATH=$PATH:/usr/local/arm/...}}这样的行），并在文件末尾添加：
 
 [[code]]
-#Compiler path for Qt/E 4.8.5
+#Compiler path for Qt/E 4.7.1
 export PATH=$PATH:/usr/local/arm/4.3.2/bin
 [[/code]]
 
@@ -57,7 +57,7 @@ source /root/.bashrc
 
 若需检查是否变更成功，可在终端输入{{arm}}并多次按键盘的{{TAB}}键触发系统的命令提示，如果提示列表中出现{{arm-none-linux-gnueabi-gcc-4.3.2}}命令，则可以认为操作成功。
 
-+ 配置Qt/E 4.8.5编译环境
++ 配置Qt/E 4.7.1编译环境
 
 ++ 先导工作
 
@@ -204,7 +204,7 @@ FA_DoExec apt-get install \
 
 ++ 补充库文件
 
-通过以下指令序列，配置Qt/E 4.8.5所需的库文件：
+通过以下指令序列，配置Qt/E 4.7.1所需的库文件：
 
 [[code]]
 cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
@@ -246,92 +246,36 @@ cd /
 tar -vxf linux_tools.tgz
 [[/code]]
 
-至此，Qt/E 4.8.5编译和镜像构建环境搭建完毕。
+至此，Qt/E 4.7.1编译和镜像构建环境搭建完毕。
 
-+ 获取Qt/E 4.8.5源代码
-
-Qt/E 4.8.5的源代码可以在[*https://download.qt.io/archive/qt/ Qt官方下载页面]找到。
-
-下载地址：*https://download.qt.io/archive/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.tar.gz
-
-下载的文件放置在虚拟机与宿主机共享的目录的根目录下，即文件在Ubuntu中的位置为：
-
-[[code]]
-/mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz
-[[/code]]
-
-+ 复制Qt/E 4.8.5源代码
++ 复制和展开Qt/E 4.7.1源代码
 
 继续使用Root身份操作，在{{/root/}}目录下建立{{yizhi}}目录，请注意，建议不要使用别的目录名称。
 
-随后，创建一个{{qt-everywhere-opensource-src-4.8.5}}目录，并复制Qt/E 4.8.5源码文件到该目录中：
+随后，复制ARM版本的Qt/E 4.7.1源码文件并展开：
 
 [[code]]
 cd /root/
 mkdir yizhi
 cd yizhi
-mkdir qt-everywhere-opensource-src-4.8.5
-cd qt-everywhere-opensource-src-4.8.5
-cp '/mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz' ./
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/qt-everywhere-opensource-src-4.7.1_20141224.tar.gz' ./
+tar -vxf qt-everywhere-opensource-src-4.7.1_20141224.tar.gz
 [[/code]]
 
-+ 建立编译脚本
++ 向ARM开发板编译Qt/E 4.7.1源代码
 
-这里的编译脚本基于迅为提供的Qt/E 4.7.1编译脚本修改而来。
+++ 编译Qt/E 4.7.1源代码
 
-在{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录中创建一个{{build-all}}脚本并打开：
-
-[[code]]
-cd /root/yizhi/qt-everywhere-opensource-src-4.8.5
-sudo gedit build-all
-[[/code]]
-
-输入以下内容，保存并退出编辑器：
+建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.7.1}}目录内，运行编译脚本：
 
 [[code]]
-#/bin/bash
-
-export PATH=/usr/local/arm/4.3.2/bin:$PATH
-export PKG_CONFIG_PREFIX=$TOOLCHAIN/arm-none-linux-gnueabi
-export TB_CC_PREFIX=arm-linux-
-export TOOLCHAIN=/usr/local/arm/4.3.2
-
-
-rm -fr qt-everywhere-opensource-src-4.8.5
-rm -fr /opt/qt-4.8.5
-
-tar xfvz qt-everywhere-opensource-src-4.8.5.tar.gz
-
-cd qt-everywhere-opensource-src-4.8.5
-
-echo yes | ./configure -opensource -embedded arm -xplatform qws/linux-arm-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-tslib -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.5   -I /usr/local/tslib/include -L /usr/local/tslib/lib
-
-
-make 2>&1 | tee ../qte4.8.5Makelog && make install
-[[/code]]
-
-+ 修改编译脚本的权限
-
-新创建的编译脚本没有执行权限，因此需要授权：
-
-[[code]]
-cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
-chmod 777 build-all
-[[/code]]
-
-+ 编译Qt/E 4.8.5源代码
-
-建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录内，运行编译脚本：
-
-[[code]]
-cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
-chmod 777 build-all
+cd /root/yizhi/qt-everywhere-opensource-src-4.7.1/
 ./build-all
 [[/code]]
 
 编译时间可能较长。编译得到的文件位于{{/opt}}目录中。
 
-+ 生成系统映像文件
+++ 生成系统映像文件
 
 为了生成系统镜像文件，同时为便于操作，不退出Root环境，但是在登录用户目录内进行处理：
 
@@ -345,57 +289,129 @@ tar -vxf root_2020115.tar.gz
 
 请注意：不同的版本的“{{root_@@********@@.tar.gz}}”中的日期项的值可能不同。
 
-随后，导出编译得到的文件：
+随后，导出编译得到的文件，并生成镜像文件：
 
 [[code]]
 cd /home/picsell-dois/iTop4412/Qtopia/
-cp -r /opt/qt-4.8.5 /home/picsell-dois/iTop4412/Qtopia/root/opt
-[[/code]]
-
-创建一个是用于Qt/E 4.8.5的配置文件：
-
-[[code]]
-cd /home/picsell-dois/iTop4412/Qtopia/root/bin
-cp qt4 qt4.8.5
-sudo gedit qt4.8.5
-[[/code]]
-
-在打开的编辑器中，将{{export QTDIR=}}行的内容修改为：
-
-[[code]]
-export QTDIR=/opt/qt-4.8.5/
-[[/code]]
-
-并检查其它含有类似“{{qt-4.7.1}}”字样的内容替换为“{{qt-4.8.5}}，保存并退出编辑器。
-
-配置自动运行：
-
-[[code]]
-cd /home/picsell-dois/iTop4412/Qtopia/root/etc/init.d
-sudo gedit rcS
-[[/code]]
-
-编辑该文件，文件末尾有以下行：
-
-[[code]]
-#/bin/qtopia &
-/bin/qt4 &
-[[/code]]
-
-通过在行首添加井号（“{{#}}”）的方式，将这两行全部设为注释状态，并在这两行后新建一行，输入：
-
-[[code]]
-/bin/qt4.8.5 &
-[[/code]]
-
-保存并退出编辑器。
-
-一切确认无误后，在终端中执行：
-
-[[code]]
-cd /home/picsell-dois/iTop4412/Qtopia/
-rm system.img
-make_ext4fs -s -l 512M -a root -L linux system.img root
+cp -r /opt/qt-4.7.1 /home/picsell-dois/iTop4412/Qtopia/root/opt
+make_ext4fs -s -l 314572800 -a root -L linux system.img root
 [[/code]]
 
 执行完毕后，在{{/home/picsell-dois/iTop4412/Qtopia/}}目录下即可得到{{system.img}}镜像文件。
+
++ 向主机编译Qt/E 4.7.1源代码
+
+++ 建立主机端编译脚本
+
+这里的编译脚本基于迅为提供的Qt/E 4.7.1编译脚本修改而来。
+
+在{{/root/yizhi/qt-everywhere-opensource-src-4.7.1}}目录中创建一个{{build-intel}}脚本并打开：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.7.1
+sudo gedit build-intel
+[[/code]]
+
+输入以下内容，保存并退出编辑器：
+
+[[code]]
+#/bin/bash
+
+export PATH=/usr/bin:$PATH
+export PKG_CONFIG_PREFIX=$TOOLCHAIN
+export TOOLCHAIN=/usr/bin/
+
+rm -fr qt-everywhere-opensource-src-4.7.1
+rm -fr /opt/qt-4.7.1-intel
+
+tar xfvz qt-everywhere-opensource-src-4.7.1.tar.gz
+
+cd qt-everywhere-opensource-src-4.7.1
+
+echo yes | ./configure -opensource -xplatform linux-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.7.1-intel
+
+make 2>&1 | tee ../qte4.7.1Makelog && make install
+[[/code]]
+
+++ 修改主机端编译脚本的权限
+
+新创建的编译脚本没有执行权限，因此需要授权：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.7.1/
+chmod 777 build-intel
+[[/code]]
+
+++ 编译Qt/E 4.7.1源代码
+
+建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.7.1}}目录内，运行编译脚本：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.7.1/
+chmod 777 build-intel
+./build-intel
+[[/code]]
+
+编译时间可能较长。编译得到的文件位于{{/opt}}目录中。
+
++ 安装和配置QtCreator
+
+++ 安装Qt Creator 5.3.2
+
+从 *http://download.qt.io/new_archive/qt/5.3/5.3.2/ 下载[*http://download.qt.io/new_archive/qt/5.3/5.3.2/qt-opensource-linux-x64-android-5.3.2.run qt-opensource-linux-x64-android-5.3.2.run]。在终端中定位到该文件所在目录并执行：
+
+[[code]]
+./qt-opensource-linux-x64-android-5.3.2.run
+[[/code]]
+
+开始安装（是否用{{sudo}}指令以Root身份运行可随意）。
+
+++ 配置Qt/E 4.7.1主机端编译套件
+
+从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
+
+切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中用于主机的Qt/E 4.7.1的{{qmake}}文件，由于已经向主机编译过Qt/E 4.7.1，因此{{qmake}}文件位于：
+
+[[code]]
+/opt/qt-4.7.1-intel/bin/qmake
+[[/code]]
+
+点击 [Apply] 按钮。
+
+切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 根据主机的实际情况选择QtCreator自带的GCC编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.7.1。
+
+点击 [OK] 按钮，保存退出。
+
+++ 配置Qt/E 4.7.1开发板端编译套件
+
+从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
+
+首先，切换到 [编译器(Compilers)] 选项卡，点击 [添加(Add)] > [GCC]，[名称(Name)]可自由填写，[编译器路径(Compiler path)] 填写为：
+
+[[code]]
+/usr/local/arm/4.4.1/bin/arm-none-linux-gnueabi-gcc
+[[/code]]
+
+点击 [Apply] 按钮。
+
+随后，切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中Qt/E 4.7.1的{{qmake}}文件，由于已经向开发板编译过Qt/E 4.7.1，因此{{qmake}}文件位于：
+
+[[code]]
+/opt/qt-4.7.1/bin/qmake
+[[/code]]
+
+点击 [Apply] 按钮。
+
+最后，切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 为之前添加的ARM编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.7.1。
+
+点击 [OK] 按钮，保存退出。
+
+++ 使用Qt/E 4.7.1编译套件
+
+对于新建的项目，在 [Kit Selection] 界面，勾选之前添加的Qt 4.7.1套件即可。
+
+对于已有的项目，打开项目后切换到左侧栏的 [项目(Projects)] 选项卡，点击 [添加构建套件(Add kit)]按钮，添加先前配置的Qt 4.7.1套件即可。
+
+++ 故障排除
+
+如果向Qt 4.7.1编译时出现“ui_MainWindow.h Error 1”等错误，可能由兼容性问题引发，建议右键点击错误窗格并切换到详细信息模式，检查出错原因。

@@ -1,0 +1,83 @@
+一个嵌入式项目，项目需要使用QCustomPlot绘图。目前的工作逻辑是定时器周期性触发数据设置并调用{{replot()}}函数重绘。
+
+此处的QCustomPlot控件放置在{{MainWindow}}上，命名为{{chrtData}}。
+
++ 禁止抗锯齿
+
+通过以下调用，停用抗锯齿功能：
+
+[[code]]
+QFont fntAxisFont(ui->chrtData->xAxis->tickLabelFont());
+fntAxisFont.setStyleStrategy(QFont::NoAntialias);
+ui->chrtData->xAxis->setTickLabelFont(fntAxisFont);
+fntAxisFont=ui->chrtData->yAxis->tickLabelFont();
+fntAxisFont.setStyleStrategy(QFont::NoAntialias);
+ui->chrtData->yAxis->setTickLabelFont(fntAxisFont);
+ui->chrtData->graph(0)->setAntialiased(false);
+ui->chrtData->graph(0)->setAntialiasedFill(false);
+ui->chrtData->graph(0)->setAntialiasedScatters(false);
+ui->chrtData->setNotAntialiasedElements(QCP::aeAll);
+ui->chrtData->setNoAntialiasingOnDrag(true);
+[[/code]]
+
++ 不使用宽度大于1的线
+
+宽度大于1的线会带来明显的性能损耗：
+
+[[code]]
+ui->chrtData->graph(0)->setPen(QPen(QColor(0,150,245),1));
+ui->chrtData->graph(0)->setLineStyle(QCPGraph::lsLine);
+[[/code]]
+
++ 评估使用{{QApplication::processEvents()}}带来的性能折损
+
+起初尝试使用{{QApplication::processEvents()}}和{{qApp->processEvents()}}保证响应性，但是定时器调用的频率并不会造成严重的阻滞。
+
++ 评估单独重绘图层的意义
+
+QCustomPlot推荐在同时存在多个数据量和更新速率差异极大的曲线时使用图层，并分别在不同时机调用不同图层的{{replot()}}函数进行重绘。
+
+但是，如果只有单一数据，通过{{layer("main")->replot()}}单独重绘{{main}}图层会导致严重的性能折损。
+
++ 使用{{replot()}}时传入{{QCustomPlot::rpQueuedReplot}}作为参数
+
+这是一个QCustomPlot作者推荐的用于处理频繁{{replot()}}调用的做法，来减少冗余的重绘。
+
++ 使用Raster绘图系统
+
+由于目标机没有提供OpenGL库，因此根据QCustomPlot作者的推荐，使用Raster替代默认的Native绘图系统。
+
+在{{main.cpp}}中的{{int main(int argc, char *argv[])}}函数内，在{{QApplication a(argc, argv);}}代码行前加入：
+
+[[code]]
+#if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
+    QApplication::setGraphicsSystem("raster");
+#endif
+[[/code]]
+
+或在目标机中修改程序调用指令，在指令末尾追加：
+
+[[code]]
+ -graphicssystem raster
+[[/code]]
+
++ 使用有序的数据
+
+QCustomPlot的{{setData()}}函数默认会对传入的数据进行排序。如果数据已经有序，可以将该函数的{{alreadySorted}}参数设为{{true}}。
+
++ 尽可能减少QCustomPlot内部数据转移的次数
+
+QCustomPlot的{{setData()}}函数中涉及大量的数据转移，可以修改QCustomPlot的源代码实现对QCustomPlot数据存储区变量{{mData}}的直接访问。在qcustomplot.h中，找到{{QCPDataContainer}}类的定义，并在其{{public:}}成员中添加：
+
+[[code]]
+// access mData directly, see https://www.cnblogs.com/pied/p/5164000.html
+QVector<DataType>* coreData() {return &mData;}
+[[/code]]
+
++ 参考文献
+
+*https://www.qcustomplot.com/documentation/performanceimprovement.html
+
+*https://www.cnblogs.com/pied/p/5164000.html
+
+*https://blog.csdn.net/qing666888/article/details/104015959
