@@ -1,0 +1,28 @@
++ Qt中的tr()函数
+
+Qt的{{QObject::tr()}}函数用于提供翻译文本。推荐的行为是：
+
+使用英文作为{{QObject::tr()}}的参数，并在翻译文件中提供多语言翻译文本。
+
+{{QObject::tr()}}函数在使用可能时伴随较大的时间开销和/或性能损耗。
+
+使用{{QTextCodec::setCodecForTr()}}函数可以设置{{QObject::tr()}}函数使用的编码方式：
+
+[[code]]
+QTextCodec::setCodecForTr(QTextCodec::codecForName("GB2312")); QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+[[/code]]
+
++ Qt中中文等非拉丁语的处理
+
+Qt的{{QString}}类原生支持Unicode，并支持GB2312、UTF-8等多种编码方式，但是由于构造时常使用{{const char *}}类型的输入参数而没有提前设置C/C++风格字符串的编码方式，常导致乱码。
+
+这时，需要通过{{QTextCodec::setCodecForCStrings()}}函数，设置C/C++风格字符串的编码方式。
+
+[[code]]
+QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GB2312"));
+QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+[[/code]]
+
++ 参考资料
+
+*https://blog.csdn.net/tju355/article/details/7253133

@@ -1,0 +1,29 @@
+移除了无良代理商强行添加的无用功能并移除了“Adobe Flash Player终止支持”提示的Adobe Flash Player。
+
++ 清除原先安装的Flash Player
+
+下载Flash Player清除工具：
+
+*https://wwi.lanzous.com/i9rK8ktbpje
+
+以管理员身份运行该程序，完成后重新启动计算机。
+
++ 下载并安装Adobe Flash Player插件
+
+++ EXE格式安装版
+
+EXE格式的安装版本在安装时不需要断开网络连接。
+
+Adobe Flash Player 32.0.0.344：*https://wwi.lanzous.com/iLiM1ktbp2h
+
+Adobe Flash Player 34.0.0.92：*https://wwi.lanzous.com/iKACMktbphc
+
+++ 批处理安装版
+
+批处理版本在安装时需要断开网络连接。
+
+Adobe Flash Player 34.0.0.92：*https://wwi.lanzous.com/iyGEIktc6li
+
++ 参考资料
+
+*https://www.52pojie.cn/thread-1350285-1-1.html
