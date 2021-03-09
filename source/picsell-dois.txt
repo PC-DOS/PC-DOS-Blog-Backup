@@ -1,5 +1,5 @@
 [[module css]]
-@import url(http://scp-eq-draftsvc.wikidot.com/component:metro-design-theme/code/1);
+@import url(http://scp-equestria.wikidot.com/component:metro-design-theme/code/1);
 [[/module]]
 
 [[module css]]
@@ -748,11 +748,13 @@ SCP基金会小马利亚分部：叙事者权限
 @@@@
 [[collapsible show="▶ 项目记录" hide="▼ 项目记录"]]
 [[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
+[*http://scp-wiki-cn.wikidot.com/picsell-dois-s-proposal Picsell Dois的提案]
 [*http://scp-wiki-cn.wikidot.com/scp-cn-761 SCP-CN-761 - “学步”]
 [*http://scp-wiki-cn.wikidot.com/scp-cn-1965 SCP-CN-1965 - “受折磨灵魂之殿堂”]
 [*http://scp-wiki-cn.wikidot.com/scp-cn-1925 SCP-CN-1925 - “墓碣”]
 [*http://scp-wiki-cn.wikidot.com/scp-cn-1713 SCP-CN-1713 - “一种近期发现的具备传染性模因效应及元数据影响效应的异常项目”]
 [*http://scp-wiki-cn.wikidot.com/scp-cn-1648 SCP-CN-1648 - “《平安经》”]
+[*http://scp-wiki-cn.wikidot.com/scp-cn-2450 SCP-CN-2450 - “常态”]
 [[/div]]
 [[/collapsible]]
 @@@@
@@ -765,18 +767,21 @@ SCP基金会小马利亚分部：叙事者权限
 @@@@
 [[collapsible show="▶ 科学研究" hide="▼ 科学研究"]]
 [[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
-[*http://scp-wiki-cn.wikidot.com/picsell-dois-deduction-lecture-sandwich-autofill-stabilizer 助理研究员Picsell Dois的演绎部研讨发言：三明治，叙事的稳定和填充 ]
+[*http://scp-wiki-cn.wikidot.com/picsell-dois-deduction-lecture-sandwich-autofill-stabilizer 助理研究员Picsell Dois的演绎部研讨发言：三明治，叙事的稳定和填充]
 //[[size 75%]]@@     @@##grey|我可以请您吃三明治，放心，不是干草馅的。##[[/size]]//
 [[/div]]
 [[/collapsible]]
 @@@@
 [[collapsible show="▶ 技术指导" hide="▼ 技术指导"]]
 [[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
-[*http://scp-wiki-cn.wikidot.com/extra-community-scp-sites-guide （翻译）SCP基金会外围社区网站指南 ]
+[*http://scp-wiki-cn.wikidot.com/extra-community-scp-sites-guide （翻译）SCP基金会外围社区网站指南]
 //[[size 75%]]@@     @@##grey|想要创立一个基金会外围社区网站吗？##[[/size]]//
 
-[*http://scp-wiki-cn.wikidot.com/how-to-create-a-branch-of-the-scp-foundation （翻译）如何建立一个SCP基金会分部 ]
+[*http://scp-wiki-cn.wikidot.com/how-to-create-a-branch-of-the-scp-foundation （翻译）如何建立一个SCP基金会分部]
 //[[size 75%]]@@     @@##grey|所以……您可能想扩展基金会的地盘？##[[/size]]//
+
+[*http://scp-wiki-cn.wikidot.com/third-party-cookies （翻译）修复Chrome与Edge上的登录问题]
+//[[size 75%]]@@     @@##grey|登录时遇到问题了吗？##[[/size]]//
 [[/div]]
 [[/collapsible]]
 
@@ -916,24 +921,16 @@ SCP基金会小马利亚分部：叙事者权限
 [[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
 [*http://scp-equestria.wikidot.com/a-brief-introduction-to-rainbow-factory “彩虹工厂”简介]
 //[[size 75%]]@@     @@##grey|工厂的故事宛如黑夜般阴森，远离那哀嚎，不要去多想。##[[/size]]//
-[[/div]]
 
-[[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
 [*http://scp-equestria.wikidot.com/a-new-method-of-distinguishing-reality-bending 一种区分经典现实扭曲与超形上学型现实扭曲的方法]
 //[[size 75%]]@@     @@##grey|本文主要论述了一种要基于PataTrace-II叙事压印追踪系统研发的具备初步实用特性的基于叙事压印痕迹追踪法区分经典型现实扭曲与超形上学型现实扭曲的方法及其实现流程。##[[/size]]//
-[[/div]]
 
-[[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
 [*http://scp-equestria.wikidot.com/summary-of-recent-deduction-layer-models 近期超形上学研究中提出的叙事架构模型综述]
 //[[size 75%]]@@     @@##grey|本文在SCP基金会小马国分部当前的超形上学研究背景下，结合新近发表的数篇相关文献，对近期新提出的叙事架构模型——叙事立体层次整合模型，做出综述。##[[/size]]//
-[[/div]]
 
-[[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
 [*http://scp-equestria.wikidot.com/take-a-look-into-rainbow-factory-rumor “彩虹工厂”传言流传史小考]
 //[[size 75%]]@@     @@##grey|投向无的光过去的一瞥。##[[/size]]//
-[[/div]]
 
-[[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
 [*http://scp-equestria.wikidot.com/recent-observation-of-scp-eq-926 关于SCP-EQ-926的近期观测简报]
 //[[size 75%]]@@     @@##grey|走在中道上，不偏一隅。##[[/size]]//
 [[/div]]
@@ -946,6 +943,30 @@ SCP基金会小马利亚分部：叙事者权限
 
 [*http://scp-equestria.wikidot.com/scp-id-cards SCP基金会小马国分部职员身份识别卡说明]
 //[[size 75%]]@@     @@##grey|欢迎入职，请领取身份识别卡。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/theme:metro-design-theme Metro Design版式 ]
+//[[size 75%]]@@     @@##grey|扁平的蓝天与空旷的大地。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/theme:content-only 仅有内容区域的版式]
+//[[size 75%]]@@     @@##grey|色不异空，空不异色。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/component:fake-wikidot-user 虚拟用户框]
+//[[size 75%]]@@     @@##grey|来自下层叙事的幻想。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/component:animated-text 动态文本模块]
+//[[size 75%]]@@     @@##grey|名相无常，文字亦然，不可执取。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/component:change-header-title 页首大标题修改模块]
+//[[size 75%]]@@     @@##grey|另一个世界的名相。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/component:change-header-subtitle 页首小标题修改模块]
+//[[size 75%]]@@     @@##grey|未曾听闻的呼唤。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/component:change-header-logo 页首标志修改模块]
+//[[size 75%]]@@     @@##grey|没有见过的风景。##[[/size]]//
+
+[*http://scp-equestria.wikidot.com/component:change-header-responsive-config 页首响应性布局配置修改模块]
+//[[size 75%]]@@     @@##grey|对陌生环境的适应。##[[/size]]//
 [[/div]]
 [[/collapsible]]
 
