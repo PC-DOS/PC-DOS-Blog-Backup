@@ -1,9 +1,9 @@
 + K值
 
-K值（K-Value, [[$ K $]]）声波折射角（Angle, [[$ \alpha $]]）的正切值，即：
+K值（K-Value, [[$ K $]]）声波折射角（Angle, [[$ \beta $]]）的正切值，即：
 
 [[math]]
-K=\tan(\alpha )
+K=\tan(\beta)
 [[/math]]
 
 有

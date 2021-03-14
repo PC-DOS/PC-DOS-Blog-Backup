@@ -76,6 +76,14 @@ git remote add origin host/path/to/repository.git
 git push origin master
 [[/code]]
 
++ 与上游同步
+
+执行如下命令使本地仓库与上游同步：
+
+[[code]]
+git fetch origin
+[[/code]]
+
 + 移除文件追踪
 
 ++ 仅移除文件追踪
