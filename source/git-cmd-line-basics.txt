@@ -81,7 +81,8 @@ git push origin master
 执行如下命令使本地仓库与上游同步：
 
 [[code]]
-git fetch origin
+git fetch origin master
+git pull origin master
 [[/code]]
 
 + 移除文件追踪

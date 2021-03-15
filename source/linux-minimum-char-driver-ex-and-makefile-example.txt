@@ -1,0 +1,239 @@
++ 主程序
+
+文件名：{{minimum-char-driver.c}}
+
+[[code type="Cpp"]]
+/* Minimum Linux Character Driver Demo
+ *
+ * This is a character driver, which is used to demostrate Linux character driver's structure
+ */
+
+/* Main header files */
+#include <linux/init.h>
+#include <linux/module.h>
+/* Useful header files */
+#include <linux/kernel.h>
+#include <linux/fs.h>
+#include <mach/gpio.h>
+#include <plat/gpio-cfg.h>
+#include <linux/miscdevice.h>
+#include <linux/platform_device.h>
+#include <mach/regs-gpio.h>
+#include <asm/io.h>
+#include <linux/regulator/consumer.h>
+#include <linux/delay.h>
+#include <linux/cdev.h>
+#include <linux/device.h>
+
+#define DRIVER_NAME "minimum-char-driver"
+#define NODE_NAME "minimum-char-driver"
+#define CLASS_NAME "minimum-char-driver-class"
+struct class *minimum_char_driver_class; //Device node 
+static int iMajorDeviceNumber = 0; //Set to 0 to allocate device number automatically
+static struct cdev minimum_char_driver_cdev; //cdev structure
+
+int minimum_char_driver_open(struct inode * lpNode, struct file * lpFile){
+    printk(KERN_INFO "MinimumCharDriver: Device file opending...\n");
+    return 0;
+}
+
+static int minimum_char_driver_release (struct inode * lpNode, struct file * lpFile){
+    printk(KERN_INFO "MinimumCharDriver: Device file closing...\n");
+    return 0;
+}
+
+ssize_t minimum_char_driver_read(struct file * lpFile, char __user * lpszBuffer, size_t iSize, loff_t * lpOffset){
+    printk(KERN_INFO "MinimumCharDriver: Reading data from device file...\n");
+    return 0;
+}
+
+ssize_t minimum_char_driver_write(struct file * lpFile, const char __user * lpszBuffer, size_t iSize,loff_t * lpOffset){
+    printk(KERN_INFO "MinimumCharDriver: Wrtiting data to device file...\n");
+    return 0;
+}
+ 
+static long minimum_char_driver_unlocked_ioctl(struct file * lpFile, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
+    printk(KERN_INFO "MinimumCharDriver: Unlocked IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
+    return 0;
+}
+
+/* For kernels before 2.6.36
+static int minimum_char_driver_unlocked_ioctl(struct inode * lpNode, struct file *file, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
+    printk(KERN_INFO "MinimumCharDriver: IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
+    return 0;
+}
+*/
+ 
+static struct file_operations minimum_char_driver_driver_file_operations = {
+    .owner = THIS_MODULE,
+    .open  = minimum_char_driver_open,  //Open device, executed when calling open()
+    .release = minimum_char_driver_release, //Release device, executed when calling close()
+    .read  = minimum_char_driver_read, //Read operations, executed when calling read()
+    .write = minimum_char_driver_write, //Write operations, executed when calling write()
+    .unlocked_ioctl = minimum_char_driver_unlocked_ioctl, //Unlocked IOControl, executed when calling ioctl()
+    //.ioctl = minimum_char_driver_ioctl, //For kernels before 2.6.36, use .ioctl and comment .unlocked_ioctl
+};
+
+/* Platform Device related functions */
+static int minimum_char_driver_probe(struct platform_device * lpPlatformDevice){
+	printk(KERN_INFO "MinimumCharDriver: Initializing...\n");
+	return 0;
+}
+
+static int minimum_char_driver_remove(struct platform_device * lpPlatformDevice){
+	printk(KERN_INFO "MinimumCharDriver: Removing...\n");
+	return 0;
+}
+
+void minimum_char_driver_shutdown(struct platform_device * lpPlatformDevice){
+	printk(KERN_INFO "MinimumCharDriver: Shutting down...\n");
+	return;
+}
+
+static int minimum_char_driver_suspend(struct platform_device * lpPlatformDevice, pm_message_t iState){
+	printk(KERN_INFO "MinimumCharDriver: Suspending...\n");
+	return 0;
+}
+
+static int minimum_char_driver_resume(struct platform_device * lpPlatformDevice){
+	printk(KERN_INFO "MinimumCharDriver: Resuming...\n");
+	return 0;
+}
+
+/* Init & Exit functions */
+static void minimum_char_driver_setup_cdev(struct cdev * lpCharDevice, int iMinorDeviceNumber, struct file_operations * lpFileOperations){ //Device setup function, called by init()
+    int iError, iDeviceDeviceNumber = MKDEV(iMajorDeviceNumber, iMinorDeviceNumber);
+    cdev_init(lpCharDevice, lpFileOperations); //Initialize cdev
+    lpCharDevice->owner = THIS_MODULE;
+    lpCharDevice->ops = lpFileOperations;
+    iError = cdev_add(lpCharDevice, iDeviceDeviceNumber, 1);
+    if(iError){
+        printk(KERN_NOTICE "MinimumCharDriver: Error %d adding device  %d.\n", iError, iMinorDeviceNumber);
+    }
+    printk("MinimumCharDriver: Device setup process finished.\n");
+}
+
+static int __init minimum_char_driver_init(void){
+    printk(KERN_INFO "MinimumCharDriver: Initializing...\n");
+    int iResult;
+    dev_t dev = MKDEV(iMajorDeviceNumber, 0);
+    if(iMajorDeviceNumber){
+        //Static device number
+        iResult = register_chrdev_region(dev, 1, DRIVER_NAME);
+        printk(KERN_INFO "MinimumCharDriver: register_chrdev_region().\n");
+    }
+    else{
+        //Allocate device number
+        iResult = alloc_chrdev_region(&dev, 0, 1, DRIVER_NAME);
+        printk(KERN_INFO "MinimumCharDriver: alloc_chrdev_region().\n");
+        iMajorDeviceNumber = MAJOR(dev);
+    }
+    if(iResult < 0){ //Errors occurred
+        printk(KERN_WARNING "MinimumCharDriver: alloc_chrdev_region() failed.\n");
+        return iResult;
+    }
+    minimum_char_driver_setup_cdev(&minimum_char_driver_cdev, 0, &minimum_char_driver_driver_file_operations);
+    printk(KERN_INFO "MinimumCharDriver: The major device number of this device is %d.\n", iMajorDeviceNumber);
+    //Use request_irq() to register interrupts here
+	
+    //Create device node
+    minimum_char_driver_class = class_create(THIS_MODULE, CLASS_NAME);
+    if (IS_ERR(minimum_char_driver_class)){
+        printk(KERN_INFO "MinimumCharDriver: failed in creating device class.\n");
+        return 0;
+    }
+    device_create(minimum_char_driver_class, NULL, dev, NULL, NODE_NAME);
+	return 0;
+}
+
+static void __exit minimum_char_driver_exit(void){
+    printk(KERN_INFO "MinimumCharDriver: Exiting...\n");
+    device_destroy(minimum_char_driver_class,MKDEV(iMajorDeviceNumber, 0));
+    class_destroy(minimum_char_driver_class);
+    cdev_del(&minimum_char_driver_cdev);
+    unregister_chrdev_region(MKDEV(iMajorDeviceNumber, 0), 1);
+    //Use free_irq() to unregister interrupts here
+	
+    return;
+}
+
+/* Init function & Exit function */
+module_init(minimum_char_driver_init);
+module_exit(minimum_char_driver_exit);
+
+/* Platform Driver related functions */
+struct platform_driver minimum_char_driver_driver = {
+	.probe = minimum_char_driver_probe,
+	.remove = minimum_char_driver_remove,
+	.shutdown = minimum_char_driver_shutdown,
+	.suspend = minimum_char_driver_suspend,
+	.resume = minimum_char_driver_resume,
+	.driver = {
+		.name = DRIVER_NAME
+		//.owner = THIS_MODULE
+	}
+};
+
+/* Licenses, Authors & Descriptions */
+MODULE_LICENSE("Dual BSD/GPL");
+MODULE_AUTHOR("Picsell-Dois@SEU-BME");
+MODULE_DESCRIPTION("Minimum Linux character driver demo");
+[[/code]]
+
++ Makefile
+
+文件名：{{Makefile}}
+
+[[code]]
+#!/bin/bash
+
+# Specify source code
+# Define object file
+obj-m += minimum-char-driver.o
+
+# KRNLDIR specifies source code directory
+KRNLDIR := /home/picsell-dois/iTop4412/LinuxKernel/iTop4412_Kernel_3.0
+
+# PWD specifies current working directory
+PWD ?= $(shell pwd)
+
+# Operations when calling make
+all:
+    rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+    make -C $(KRNLDIR) M=$(PWD) modules
+
+# Operations when calling make clean
+clean:
+    rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+[[/code]]
+
++ .gitignore
+
+供{{git}}使用，文件名：{{.gitignore}}
+
+[[code]]
+*.ko
+*.o
+*.mod.*
+*.order
+*.symvers
+*.cmd
+*.*.cmd
+.*.cmd
+.*.*.cmd
+.tmp_versions
+*~
+*.*~
+[[/code]]
+
++ 参考文献
+
+《iTop-4412开发板实战教程》
+
+*https://blog.csdn.net/wdzxl198/article/details/8817147
+
+*https://www.cnblogs.com/skynext/p/3880682.html
+
+*https://blog.csdn.net/shujuliu818/article/details/50696303
+
+*https://blog.csdn.net/u012830148/article/details/78667420

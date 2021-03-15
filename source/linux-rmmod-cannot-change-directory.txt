@@ -1,0 +1,7 @@
+**现象：**在Linux下执行{{rmmod}}指令卸载模块时，可能产生“{{Cannot change directory to 'X.X.X': No such file or directory}}”错误。
+
+**解决方案：**在{{/lib/modules/}}目录下新建错误提示中指明的目录：
+
+[[code]]
+mkdir /lib/modules/X.X.X
+[[/code]]
