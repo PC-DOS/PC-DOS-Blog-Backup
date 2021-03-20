@@ -80,7 +80,7 @@
  * *http://www.scp-wiki.net/forum:recent-threads
  * *http://www.scp-wiki.net/forum:thread
  
-* 创建{{random:random-scp}}并填入下述代码：[[footnote]]这个页面会自动将用户重定向到一个有随机的“scp”标签的页面。如果您日后想要访问这个页面而不被自动重定向，请在URL尾部加入{{/noredirect/true}}，这样看起来就像{{scp-XX.wikidot.com/random:random-scp/noredirect/true}}。[[/footnote]]:
+* 创建{{random:random-scp}}并填入下述代码[[footnote]]这个页面会自动将用户重定向到一个有随机的“scp”标签的页面。如果您日后想要访问这个页面而不被自动重定向，请在URL尾部加入{{/noredirect/true}}，这样看起来就像{{scp-XX.wikidot.com/random:random-scp/noredirect/true}}。[[/footnote]]：
 > @@[[module ListPages category="*" order="random" limit="1" tag="scp"]]@@
 > @@[[include :snippets:redirect url=%%link%%]]@@
 > @@[[/module]]@@

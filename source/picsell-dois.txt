@@ -755,6 +755,7 @@ SCP基金会小马利亚分部：叙事者权限
 [*http://scp-wiki-cn.wikidot.com/scp-cn-1713 SCP-CN-1713 - “一种近期发现的具备传染性模因效应及元数据影响效应的异常项目”]
 [*http://scp-wiki-cn.wikidot.com/scp-cn-1648 SCP-CN-1648 - “《平安经》”]
 [*http://scp-wiki-cn.wikidot.com/scp-cn-2450 SCP-CN-2450 - “常态”]
+[*http://scp-wiki-cn.wikidot.com/scp-cn-2245 SCP-CN-2245 - “屋外的爬山虎又青了”]
 [[/div]]
 [[/collapsible]]
 @@@@

@@ -25,42 +25,57 @@
 #include <linux/cdev.h>
 #include <linux/device.h>
 
+/* Definitions, you can put them in a separated header(*.h) file and use #include "xxx.h" to include them */
+//DBGPRINT() is used to print debug messages, comment #define IS_IN_DEBUG to disable them
+#define IS_IN_DEBUG
+#ifdef IS_IN_DEBUG
+#define DBGPRINT(sInfo...) printk(KERN_INFO "MinimumDriver: " sInfo)
+#else
+#define DBGPRINT(sInfo...)
+#endif
+//printk() in different levels
+#define NFOPRINT(sInfo...) printk(KERN_INFO "MinimumDriver: " sInfo)
+#define WRNPRINT(sInfo...) printk(KERN_WARNING "MinimumDriver: " sInfo)
+#define ERRPRINT(sInfo...) printk(KERN_ERR "MinimumDriver: " sInfo)
+ 
+// Name strings
 #define DRIVER_NAME "minimum_driver"
+/* End of definitions */
 
 /* Platform Device functions */
 static int minimum_driver_probe(struct platform_device * lpPlatformDevice){
-	printk(KERN_INFO "MinimumDriver: Initializing...\n");
+	DBGPRINT("Initializing...\n");
 	return 0;
 }
 
 static int minimum_driver_remove(struct platform_device * lpPlatformDevice){
-	printk(KERN_INFO "MinimumDriver: Removing...\n");
+	DBGPRINT("Removing...\n");
 	return 0;
 }
 
 void minimum_driver_shutdown(struct platform_device * lpPlatformDevice){
-	printk(KERN_INFO "MinimumDriver: Shutting down...\n");
+	DBGPRINT("Shutting down...\n");
 	return 0;
 }
 
 static int minimum_driver_suspend(struct platform_device * lpPlatformDevice, pm_message_t iState){
-	printk(KERN_INFO "MinimumDriver: Suspending...\n");
+	DBGPRINT("Suspending...\n");
 	return 0;
 }
 
 static int minimum_driver_resume(struct platform_device * lpPlatformDevice){
-	printk(KERN_INFO "MinimumDriver: Resuming...\n");
+	DBGPRINT("Resuming...\n");
 	return 0;
 }
 
 /* Init & Exit functions */
 static int minimum_driver_init(void){
-	printk(KERN_INFO "MinimumDriver: Initializing...\n");
+	NFOPRINT("Initializing...\n");
 	return 0;
 }
 
 static void minimum_driver_exit(void){
-	printk(KERN_INFO "MinimumDriver: Exiting...\n");
+	NFOPRINT("Exiting...\n");
 	return;
 }
 
