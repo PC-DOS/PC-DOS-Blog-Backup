@@ -1,0 +1,1 @@
+本地化Windows Phone应用程序时，应在 [项目属性] 窗格（选中 [项目管理器] 中的项目，并按{{Alt+Enter}}组合键打开）中选择相应的语言，而非编辑{{WMAppManifest.xml}}文件。
