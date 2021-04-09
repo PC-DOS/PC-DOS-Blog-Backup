@@ -763,6 +763,9 @@ SCP基金会小马利亚分部：叙事者权限
 [[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
 [*http://scp-wiki-cn.wikidot.com/scp-eq-044 SCP-EQ-044]
 //[[size 75%]]@@     @@##grey|没干成什么大事，只犯了很多错误。##[[/size]]//
+
+[*http://scp-wiki-cn.wikidot.com/i-hub （合作翻译）我，中心页]
+//[[size 75%]]@@     @@##grey|上层叙事实体们的小玩笑。##[[/size]]//
 [[/div]]
 [[/collapsible]]
 @@@@
@@ -1012,7 +1015,6 @@ PC-DOS，有时愿意做一个伪展开写成Picsell Dois。伪程序员一枚�
 Wikidot私信：[[*user PC-DOS]]
 我的博客：*http://pc-dos.wikidot.com
 我的GitHub：*https://github.com/PC-DOS
-BiliBili: *https://space.bilibili.com/22859179
 SCP基金会小马国分部：*http://scp-equestria.wikidot.com
 [[/collapsible]]
 [[/=]]

@@ -1,0 +1,7 @@
+**现象：**在Qt程序二级对话框的后端代码中，使用了{{void keyReleaseEvent(QKeyEvent *KeyEventArgs)}}处理按键事件，编译时提示“Forward declaration of QKeyEvent”。
+
+**解决方案：**在代码的CPP文件头部包含{{<QKeyEvent>}}头文件：
+
+[[code]]
+#include <QKeyEvent>
+[[/code]]

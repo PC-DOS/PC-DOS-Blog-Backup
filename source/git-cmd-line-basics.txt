@@ -99,6 +99,20 @@ git rm --cache /PATH/TO/YOUR/FILE
 git rm /PATH/TO/YOUR/FILE
 [[/code]]
 
++ 分支管理
+
+++ 建立分支
+
+[[code]]
+git branch BRANCH-NAME
+[[/code]]
+
+++ 切换到分支
+
+[[code]]
+git checkout BRANCH-NAME
+[[/code]]
+
 + 其它
 
 内建的图形化 git：
