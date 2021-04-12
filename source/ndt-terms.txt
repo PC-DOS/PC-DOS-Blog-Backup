@@ -36,15 +36,14 @@ double dKValue=tan(dAngle);
 V=\frac{2L}{T} 
 [[/math]]
 
-对于输出的数据点个数[[$ N_{O} $]]为定值{{nDataPoint}}，采样率[[$ f_{s} $]]为{{dSamplingFrequency}}的测量仪器，声程[[$ L $]]为{{dDistance}}，缩放系数[[$ z $]]通过用户给定且为{{iScale}}并以此为依据进行原始数据的缩放（即对于原始数据，其数量[[$ N $]]为{{nData}}，并有{{nDataPoint=nData/iScale}}）。则对于声速{{dVelocity}}，有：
+对于采样率[[$ f_{s} $]]为{{dSamplingFrequency}}的测量仪器，声程[[$ L $]]为{{dDistance}}，原始采样点数[[$ N_{0} $]]为{{iScale}}。则对于声速{{dVelocity}}，有：
 
 [[math]]
-V = \frac{2L}{T} = \frac{2L}{N\frac{1}{f_{s} } } = \frac{2Lf_{s}}{N} \approx \frac{2Lf_{s}}{zN_{O} }
+V = \frac{2L}{T} = \frac{2L}{N_{0}\frac{1}{f_{s} } } = \frac{2Lf_{s}}{N_{0}}
 [[/math]]
 
 即
 
 [[code type="Cpp"]]
-dVelocity = 2*dDistance*dSamplingFrequency/nData;
-dVelocity = 2*dDistance*dSamplingFrequency/(nDataPoint*iScale);
+dVelocity = 2*dDistance*dSamplingFrequency/iScale;
 [[/code]]
