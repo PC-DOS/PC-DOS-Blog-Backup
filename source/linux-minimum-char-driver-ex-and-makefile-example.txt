@@ -76,7 +76,7 @@ static long minimum_char_driver_unlocked_ioctl(struct file * lpFile, unsigned in
 }
 
 /* For kernels before 2.6.36
-static int minimum_char_driver_unlocked_ioctl(struct inode * lpNode, struct file *file, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
+static int minimum_char_driver_ioctl(struct inode * lpNode, struct file *file, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
     DBGPRINT("IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
     return 0;
 }
