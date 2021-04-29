@@ -42,7 +42,7 @@
 #define DRIVER_NAME "minimum_driver"
 /* End of definitions */
 
-/* Platform Device functions */
+/* Platform Device Related Functions */
 static int minimum_driver_probe(struct platform_device * lpPlatformDevice){
 	DBGPRINT("Initializing...\n");
 	return 0;
@@ -68,7 +68,7 @@ static int minimum_driver_resume(struct platform_device * lpPlatformDevice){
 	return 0;
 }
 
-/* Init & Exit functions */
+/* Init & Exit Functions */
 static int minimum_driver_init(void){
 	NFOPRINT("Initializing...\n");
 	return 0;
@@ -79,11 +79,11 @@ static void minimum_driver_exit(void){
 	return;
 }
 
-/* Init function & Exit function */
+/* Pointers to Init function & Exit Functions */
 module_init(minimum_driver_init);
 module_exit(minimum_driver_exit);
 
-/* Platform Driver related functions */
+/* Pointers to Platform Driver Related Functions */
 struct platform_driver minimum_driver = {
 	.probe = minimum_driver_probe,
 	.remove = minimum_driver_remove,
@@ -98,7 +98,7 @@ struct platform_driver minimum_driver = {
 
 /* Licenses, Authors & Descriptions */
 MODULE_LICENSE("Dual BSD/GPL");
-MODULE_AUTHOR("Picsell-Dois@SEU-BME");
+MODULE_AUTHOR("Picsell-Dois@SCP-EQ");
 MODULE_DESCRIPTION("Minimum Linux driver demo");
 [[/code]]
 

@@ -12,6 +12,7 @@
 #include <linux/init.h>
 #include <linux/module.h>
 
+/* Init function & Exit Functions */
 static int minimum_driver_init(void){
 	printk(KERN_INFO "MinimumDriver: Initializing...\n");
 	return 0;
@@ -22,13 +23,13 @@ static void minimum_driver_exit(void){
 	return;
 }
 
-/* Init function & Exit function */
+/* Pointers to Init function & Exit Functions */
 module_init(minimum_driver_init);
 module_exit(minimum_driver_exit);
 
 /* Licenses, Authors & Descriptions */
 MODULE_LICENSE("Dual BSD/GPL");
-MODULE_AUTHOR("Picsell-Dois@SEU-BME");
+MODULE_AUTHOR("Picsell-Dois@SCP-EQ");
 MODULE_DESCRIPTION("Minimum Linux driver demo");
 [[/code]]
 

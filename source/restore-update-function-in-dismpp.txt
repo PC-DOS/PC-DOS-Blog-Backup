@@ -4,8 +4,12 @@
 
 发布页面：*https://github.com/Chuyu-Team/Dism-Multi-language/releases/
 
+FastGit反向代理服务提供的镜像：*https://hub.fastgit.org/Chuyu-Team/Dism-Multi-language/releases/
+
 请下载{{wsusscn3.cab}}文件，并将其放置到Dism++主程序所在目录的{{Config}}子目录内。
 
 您可能希望使用GitHub传递加速服务，例如：
 
 *https://g.ioiox.com/
+
+*https://hub.fastgit.org/
