@@ -1,0 +1,29 @@
+Steam商店地址：*https://store.steampowered.com/app/670160/DLIRIUM/
+
+Windows下存档与自定义角色存储位置：
+
+[[code]]
+%UserProfile%\AppData\Local\Delirium
+[[/code]]
+
++ 备份存档批处理
+
+[[code]]
+@echo off
+set iSlot=1
+echo Please input Save Slot ID
+set /p iSlot=
+xcopy /cheriky "%UserProfile%\AppData\Local\Delirium" "Saves%iSlot%\Delirium\"
+pause > nul
+[[/code]]
+
++ 应用存档批处理
+
+[[code]]
+@echo off
+set iSlot=1
+echo Please input Save Slot ID
+set /p iSlot=
+xcopy /cheriky "Saves%iSlot%\Delirium" "%UserProfile%\AppData\Local\Delirium\"
+pause > nul
+[[/code]]
