@@ -14,12 +14,12 @@
 
 [[code]]
 Private Sub dtpStartDate_SelectedDateChanged(sender As Object, e As SelectionChangedEventArgs) Handles dtpStartDate.SelectedDateChanged
-	If IsNothing(dtpEndDate.SelectedDate) Then
-		Exit Sub
-	End If
-	dtpEndDate.DisplayDateStart = dtpStartDate.SelectedDate.Value.AddDays(1)
-	If dtpEndDate.SelectedDate.Value.CompareTo(dtpStartDate.SelectedDate.Value) <= 0 Then
-		dtpEndDate.SelectedDate = dtpStartDate.SelectedDate.Value.AddDays(1)
-	End If
+    If IsNothing(dtpEndDate.SelectedDate) Then
+     Exit Sub
+    End If
+    dtpEndDate.DisplayDateStart = dtpStartDate.SelectedDate.Value.AddDays(1)
+    If dtpEndDate.SelectedDate.Value.CompareTo(dtpStartDate.SelectedDate.Value) <= 0 Then
+     dtpEndDate.SelectedDate = dtpStartDate.SelectedDate.Value.AddDays(1)
+    End If
 End Sub
-[[/code]]
+[[/code]] 

@@ -1,0 +1,9 @@
+在QtCreator中创建新文件时，文件名可能被自动改为小写，此时可在QtCreator的设定页中关闭此功能。
+
+启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [C++]。
+
+切换到 [文件命名(Filename)] 选项卡，取消勾选 [小写文件名(Lower case file names)] 复选框。
+
+点击 [OK] 按钮，保存退出。
+
+参考资料：*https://blog.csdn.net/lvmengzou/article/details/103289332 

@@ -12,4 +12,4 @@
 [!-- * 请从这里开始撰写正文。 * --]
 
 [!-- * 蹄注（脚注）模块。 * --]
-[[footnoteblock title="蹄注"]]
+[[footnoteblock title="蹄注"]] 

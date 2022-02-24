@@ -49,10 +49,10 @@
 
     addNewStyle(".Modal-wrapper {visibility: collapse;}");
 
-	//document.getElementsByClassName("Modal-wrapper undefined Modal-enter-done")[0].remove();
+    //document.getElementsByClassName("Modal-wrapper undefined Modal-enter-done")[0].remove();
 
     document.getElementsByTagName("html")[0].style.cssText="";
 
     console.log("SkipZhihuLogin(): Execution Finished.");
 })();
-[[/code]]
+[[/code]] 

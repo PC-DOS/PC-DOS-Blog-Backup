@@ -49,4 +49,4 @@ left=(Screen.Width-640)/2
 top=(Screen.Height-480)/2
 [[/code]]
 
-其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。
+其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。 

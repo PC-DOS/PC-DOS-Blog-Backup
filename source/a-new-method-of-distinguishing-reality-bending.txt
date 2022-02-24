@@ -317,4 +317,4 @@ Picsell Dois[[footnote]]Picsell Dois，生于1969年10月8日。雄性天马。�
 [[div style="border-bottom:2.5px solid #000; margin-bottom:0px; margin-top:50px;"]]
 [[/div]]
 
-[[footnoteblock title="作者信息、蹄注与参考文献"]]
+[[footnoteblock title="作者信息、蹄注与参考文献"]] 

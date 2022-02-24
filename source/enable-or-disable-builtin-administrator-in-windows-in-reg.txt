@@ -10,4 +10,4 @@ HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\000001F4
 
 {{11}}表示禁用该账户。
 
-本方法在Windows Vista、Windows 7、Windows 8.x、Windows 10上测试通过。
+本方法在Windows Vista、Windows 7、Windows 8.x、Windows 10上测试通过。 

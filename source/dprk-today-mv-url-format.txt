@@ -28,4 +28,4 @@ https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/{{YEAR}}/{{DATE}
 
 [[code]]
 https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/2019/20190501-uri-q%20.mp4
-[[/code]]
+[[/code]] 

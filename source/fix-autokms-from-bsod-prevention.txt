@@ -1,9 +1,5 @@
-AutoKMS在启动时，会读取注册表的{{HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control}}下名为{{DirtyShutdownCount}}的{{DWORD}}值的数值，若该值不为0，则判定系统存在非正常关机的情况，并拒绝继续执行。
+AutoKMS在启动时，会检测系统事件日志中是否存在对非正常关机事件的记录。若存在相关记录，则可能会拒绝执行。
 
-此时，请在注册表编辑器中定位到
+此时，可以打开“计算机管理”控制台（{{compmgmt.msc}}）展开左侧窗格 [事件查看器] > [Windows记录] > [系统]，点击右侧 [动作] 窗格的 [清除] 按钮，并在弹出的对话框中点击 [清除]，此时即可清空系统事件日志。
 
-[[code]]
-HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control
-[[/code]]
-
-将名为{{DirtyShutdownCount}}的{{DWORD}}值的数值修改为0。
+再次重新执行AutoKMS，应该已经可以正常激活产品。 

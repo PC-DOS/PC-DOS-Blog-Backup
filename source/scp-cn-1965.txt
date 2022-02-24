@@ -85,4 +85,4 @@ SCP-CN-1965-A运行时，对其宿主程序和操作系统的监视没有发现�
 [[div class="footer-wikiwalk-nav"]]
 << [[[SCP-CN-1964]]] | SCP-CN-1965 | [[[SCP-CN-1966]]] >>
 [[/div]]
-[[/=]]
+[[/=]] 

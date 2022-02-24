@@ -398,4 +398,4 @@ rm system.img
 make_ext4fs -s -l 512M -a root -L linux system.img root
 [[/code]]
 
-执行完毕后，在{{/home/picsell-dois/iTop4412/Qtopia/}}目录下即可得到{{system.img}}镜像文件。
+执行完毕后，在{{/home/picsell-dois/iTop4412/Qtopia/}}目录下即可得到{{system.img}}镜像文件。 

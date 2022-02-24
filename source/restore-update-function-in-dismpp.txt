@@ -12,4 +12,4 @@ FastGit反向代理服务提供的镜像：*https://hub.fastgit.org/Chuyu-Team/D
 
 *https://g.ioiox.com/
 
-*https://hub.fastgit.org/
+*https://hub.fastgit.org/ 

@@ -55,4 +55,4 @@ git rm --cache .vmlinux.o.cmd
 git rm --cache vmlinux
 [[/code]]
 
-请注意，如果您需要向GitHub提交您的代码，仍然建议先建立{{.gitignore}}，再建立仓库和推送。
+请注意，如果您需要向GitHub提交您的代码，仍然建议先建立{{.gitignore}}，再建立仓库和推送。 

@@ -1,0 +1,241 @@
+[[toc]]
+
++ 设备和软件基本信息
+
+开发板为迅为iTop-4412精英版（Elite），核心板采用SCP封装，1 GB内存。
+
+开发计算机操作系统为Windows 8 Enterprise x64，在VMware Workstation Pro 15.5中运行64位Ubuntu 12.04.5 LTS系统。Ubuntu登录用户名为{{picsell-dois}}。
+
+为便于操作，已将iTop-4412随附光盘内的文件挂载共享目录到Ubuntu的{{/mnt/hgfs/Shared/}}目录内的“iTOP-4412精英版光盘资料”文件夹。
+
++ 进入Root操作环境
+
+为便于操作，进入Root操作环境。首先在Ubuntu终端中输入指令：
+
+[[code]]
+sudo passwd
+[[/code]]
+
+指定Root密码，随后输入指令：
+
+[[code]]
+su
+[[/code]]
+
+进入Root操作环境。
+
+若无特殊说明，以下操作均在Root操作环境下进行。
+
++ 配置所需的ARM编译器及环境变量
+
+此处使用随附的{{arm-2009q3}}作为交叉编译工具。该编译工具用于编译uBoot、Linux Kernel和Android的源代码。
+
+从iTop-4412随附光盘内复制{{arm-2009q3.tar.bz2}}文件到{{/usr/local/arm/}}内并解包：
+
+[[code]]
+cd /usr/local/
+mkdir arm
+cd arm
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器及烧写工具/arm交叉编译器/arm-2009q3.tar.bz2' ./
+tar -vxf arm-2009q3.tar.bz2
+[[/code]]
+
+配置环境变量：
+
+[[code]]
+sudo gedit /root/.bashrc
+[[/code]]
+
+通过在行首添加井号（“{{#}}”）的方式注释掉先前添加的其他编译器环境变量行（即{{export PATH=$PATH:/usr/local/arm/...}}这样的行），并在文件末尾添加：
+
+[[code]]
+#Compiler path for uBoot, Kernel and Android
+export PATH=$PATH:/usr/local/arm/arm-2009q3/bin
+[[/code]]
+
+保存并退出，回到终端并更新环境变量：
+
+[[code]]
+source /root/.bashrc
+[[/code]]
+
+若需检查是否变更成功，可在终端输入{{arm}}并多次按键盘的{{TAB}}键触发系统的命令提示，如果提示列表中出现{{arm-none-linux-gnueabi-@@****@@}}命令，则可以认为操作成功。
+
+如果是64位Ubuntu系统，强烈推荐为arm-2009q3安装32位兼容环境：
+
+[[code]]
+sudo apt-get install lsb-core
+[[/code]]
+
++ 先导工作
+
+前期工作需要借用Android 4.0.3的配置编译环境中的安装脚本，安装大量的程序包，但是，可以不执行安装Java的脚本：
+
+[[code]]
+cd /home/picsell-dois/
+mkdir iTop4412
+cd iTop4412
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器及烧写工具/tools/Android_JDK.tar.bz2' ./
+tar -vxf Android_JDK.tar.bz2
+cd Android_JDK
+./install-devel-packages.sh
+[[/code]]
+
+可以再次执行{{./install-devel-packages.sh}}来确保程序包安装完整。
+
+对于笔者使用的Ubuntu 12.04.5 LTS系统，须重新安装xorg以及libgl1-mesa库，否则重启虚拟机后可能无法进入图形界面：
+
+[[code]]
+apt-get install xorg
+apt-get install libgl1-mesa-glx:i386
+apt-get install libgl1-mesa-dev
+[[/code]]
+
+请注意，以上代码块中提供的三行{{apt-get install}}指令是针对笔者使用的Ubuntu 12.04.5 LTS系统的，目的是修复执行{{./install-devel-packages.sh}}（这个脚本是针对Ubuntu 12.04.2 LTS编写的）时由于程序包冲突而被破坏的图形环境，并安装编译所需的正确的库。
+
+如果您使用的是Ubuntu 12.04.2 LTS系统，那么只需要执行{{./install-devel-packages.sh}}安装随iTop-4412光盘提供的脚本即可，千万不要执行上代码块中提供的三行{{apt-get install}}指令，否则您的操作系统将无法启动到图形界面。
+
+最后，依次执行：
+
+[[code]]
+apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
+update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
+update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.6 50
+[[/code]]
+
+降低Ubuntu系统自带的GCC版本到4.4.7，在终端输入{{gcc -v}}指令并按回车键执行，即可检查GCC版本。
+
+[[collapsible show="▶ 关于install-devel-packages.sh" hide="▼ 关于install-devel-packages.sh"]]
+随iTop-4412光盘提供的{{install-devel-packages.sh}}的文件内容如下：
+
+[[code]]
+#!/bin/bash
+
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
+
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+####################################################################
+
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
+
+# Ubuntu 12.04.2 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
+fi
+
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
+
+由此可知，由于Ubuntu 12.04.2 LTS修改了用于图形界面的X程序堆栈，因此{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库需要使用等价的{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}进行替换。
+
+但是，实验显示，在Ubuntu 12.04.5 LTS中，试图安装{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}两个库会导致图形环境遭到破坏，反而需要使用{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库。
+
+因此，在Ubuntu 12.04.5 LTS上执行时，可以用以下内容替换{{install-devel-packages.sh}}文件的原始内容，以安装正确的程序包：
+
+[[code]]
+#!/bin/bash
+
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
+
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+#
+# In Ubuntu 12.04.5 LTS, please use libgl1-mesa-glx:i386 and libgl1-
+# mesa-dev.
+####################################################################
+
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
+
+# Ubuntu 12.04.5 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx:i386 libgl1-mesa-dev \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
+fi
+
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
+[[/collapsible]]
+
++ 复制和展开Linux内核源代码
+
+从这里开始可以退出Root操作环境，亦可继续留在Root操作环境。为便于操作以及后续代码修改，此处选择退出Root操作环境。
+
+随后，复制Linux内核源代码并展开：
+
+[[code]]
+cd /home/picsell-dois/iTop4412/
+mkdir uBoot
+cd uBoot
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/06_源码_uboot和kernel/iTop4412_uboot_20180320.tar.gz' ./
+tar -vxf iTop4412_uboot_20180320.tar.gz
+cp -r '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/06_源码_uboot和kernel/CodeSign4SecureBoot_POP' ./
+cp -r '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/06_源码_uboot和kernel/CodeSign4SecureBoot_SCP' ./
+[[/code]]
+
++ 编译内核
+
+配置和修改操作完毕后，在终端执行：
+
+[[code]]
+cd iTop4412_uboot
+chmod 777 ./build_uboot.sh
+./build_uboot.sh SCP_1GDDR
+[[/code]]
+
+其中，{{SCP_1GDDR}}为设备的硬件属性，请根据您的实际设备进行更改。
+
+开始编译Linux内核。编译完成后得到的{{u-boot-iTOP-4412.bin}}文件位于{{/home/picsell-dois/iTop4412/uBoot/iTop4412_uboot/}}目录内。 

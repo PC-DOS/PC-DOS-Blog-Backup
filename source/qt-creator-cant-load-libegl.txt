@@ -10,7 +10,7 @@
 
 推测与缺失运行库有关。
 
-在[*https://packages.ubuntu.com/ Ubuntu套件查询站]上以{{libegl.so.1}}为关键字查询套件内容，发现{{ 	libegl1-mesa}}可以提供这个文件。
+在[*https://packages.ubuntu.com/ Ubuntu套件查询站]上以{{libegl.so.1}}为关键字查询套件内容，发现{{ libegl1-mesa}}可以提供这个文件。
 
 回到终端，执行：
 
@@ -24,4 +24,4 @@ sudo apt-get install libegl1-mesa
 
 [[code]]
 sudo apt-get install libegl1-mesa
-[[/code]]
+[[/code]] 

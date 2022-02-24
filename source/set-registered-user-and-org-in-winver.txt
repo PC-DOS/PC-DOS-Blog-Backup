@@ -8,4 +8,4 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Current Version\
 
 在右侧窗格中，打开或创建字符串值{{RegisteredOrganization}}，并在“编辑字符串”窗口中将值设为希望的组织名称。
 
-在右侧窗格中，打开或创建字符串值{{RegisteredUser}}，并在“编辑字符串”窗口中将值设为希望的用户名称。
+在右侧窗格中，打开或创建字符串值{{RegisteredUser}}，并在“编辑字符串”窗口中将值设为希望的用户名称。 

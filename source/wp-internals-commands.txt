@@ -60,4 +60,4 @@ WPinternals -DownloadAllByOperatorCode <Product type> <Operator code>
                 <Optional: Destination folder>
 WPinternals -DumpUEFI <UEFI binary or FFU file> <Destination folder>
 WPinternals -TestProgrammer <EDE file>
-[[/code]]
+[[/code]] 

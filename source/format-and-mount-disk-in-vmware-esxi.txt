@@ -70,4 +70,4 @@ partedUtil delete <DevicePath> <PartitionNumber>
 
 + 参考资料
 
-*https://kb.vmware.com/s/article/1036609
+*https://kb.vmware.com/s/article/1036609 

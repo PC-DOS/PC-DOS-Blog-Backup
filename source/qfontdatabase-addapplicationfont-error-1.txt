@@ -1,0 +1,23 @@
+**现象：**在Ubuntu 12.04.5 LTS桌面版上调试基于Qt 4.8.7的应用程序时，在{{main()}}函数中调用{{QFontDatabase::addApplicationFont()}}函数添加嵌入到程序内的中文字体时，反复产生-1号错误。
+
+**解决方案：**Qt在Linux桌面端运行时，需要FontConfig库以启用外部字体支持。
+
+在终端执行：
+
+[[code]]
+sudo apt-get install libfontconfig1-dev
+[[/code]]
+
+安装依赖（部分情况下可以不安装该依赖）。
+
+随后，重新编译Qt桌面框架，并在执行“{{./config}}”时，添加以下开关：
+
+[[code]]
+ -qt-freetype -fontconfig -continue
+[[/code]]
+
+**参考文献：**
+
+*https://blog.csdn.net/dataowner/article/details/103997008
+
+*https://blog.csdn.net/u011638848/article/details/85610352 

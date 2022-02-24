@@ -1,0 +1,9 @@
+**故障现象：**一台Surface Go 2平板电脑，硬件规格支持Windows Hello面部识别，但 [设置] > [账户] > [登录选项] 提示“某些设置由你的组织来管理”，无法配置生物识别。检查发现硬件设备状态、UAC状态等均正常，未使用内置管理员账户（Administrator）登录。
+
+**处理方法：**按 [Windows徽标键] + [R] 组合键，打开 [运行] 窗口，输入 [gpedit.msc] 并按 [回车] 键打开 [本地组策略编辑器]。展开左侧窗格的 [计算机配置] > [管理模板] > [Windows组件] > [生物特征]，将右侧窗格的 [允许用户使用生物特征登录] 策略设置为 [已启用]。重新配置Windows Hello，应该已经可以进行。
+
+**参考资料：**
+
+*https://answers.microsoft.com/zh-hans/windows/forum/all/%e8%ae%be%e7%bd%ae-%e8%b4%a6%e6%88%b7/08e5972e-f66d-4955-918c-b18106c628e0
+
+*https://zhuanlan.zhihu.com/p/164807253 

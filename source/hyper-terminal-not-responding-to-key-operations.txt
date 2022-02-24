@@ -2,4 +2,4 @@
 
 **排查：**检查串口连接，确保串行数据线路连接在底板CON3（UART2）连接座处的串行接口上，计算机端各驱动、硬件配置正常。
 
-进一步检查Hyper Terminal配置，发现新版Hyper Terminal默认的编码方式为UTF-8 (CJK)，修改为UTF-8 (Latin)后再次重试连接，恢复正常。
+进一步检查Hyper Terminal配置，发现新版Hyper Terminal默认的编码方式为UTF-8 (CJK)，修改为UTF-8 (Latin)后再次重试连接，恢复正常。 

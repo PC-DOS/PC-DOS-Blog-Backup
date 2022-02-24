@@ -1,0 +1,47 @@
+[[module css]]
+.win10-link-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #004b91;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
+
+.win10-link-button:hover {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #0073d7;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
+[[/module]]
+
+本文来自远景论坛：*https://bbs.pcbeta.com/viewthread-1893078-1-1.html
+
+首先，请下载本文所附的“EnterpriseS.zip”文件，将其中所有内容解压缩到{{%SystemRoot%\spp\tokens\skus}}目录内。
+
+*http://pc-dos.wdfiles.com/local--files/windows-10-11-ltsc-activation/EnterpriseS.zip
+
+[[a href="*http://pc-dos.wdfiles.com/local--files/windows-10-11-ltsc-activation/EnterpriseS.zip" class="win10-link-button"]]下载配置文件[[/a]]
+
+随后，请以管理员身份执行：
+
+[[code]]
+slmgr.vbs /rilc
+[[/code]]
+
+随后，继续执行：
+
+[[code]]
+slmgr.vbs /ipk 43TBQ-NH92J-XKTM7-KT3KK-P39PB
+[[/code]]
+
+[[code]]
+slmgr.vbs /ipk 93MGM-NTFKD-6BK63-R6FYR-6Q9PB
+[[/code]]
+
+最后，使用HEU KMS Activator进行数字权利激活（*https://wwi.lanzoui.com/b05gumbe ，密码：{{9xum}}）。 

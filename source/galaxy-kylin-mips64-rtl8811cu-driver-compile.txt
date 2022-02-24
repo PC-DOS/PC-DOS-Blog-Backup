@@ -1,0 +1,43 @@
++ 配置操作系统
+
+MIPS64架构上的银河麒麟仍然将体系结构依赖的配置项置于：
+
+[[code]]
+/usr/src/kylin-headers-X.Y.ZZZ-YYYYMMDD-generic/arch/mips/
+[[/code]]
+
+目录下，但这可能引发Make错误，请考虑在终端中执行以下指令，建立名为“{{mips64}}”的指向“{{mips}}”目录的链接：
+
+[[code]]
+cd /usr/src/kylin-headers-X.Y.ZZZ-YYYYMMDD-generic/arch/
+sudo ln -s mips mips64
+[[/code]]
+
+其中，“{{X.Y.ZZZ-YYYYMMDD}}”和您的系统版本相关。 
+
++ 获取驱动程序源代码
+
+您可以从 *https://service.tp-link.com.cn/detail_download_8874.html 下载驱动程序源代码。
+
+提取下载的压缩文件的 [{{RTL8811CU_Linux.tar.gz}}] > [{{rtl8821CU_rtl8731AU_WiFi_linux_v5.8.1.7_37266.20200929_COEX20200616-4141.tar.gz}}] 文件，在终端中执行：
+
+[[code]]
+tar -vxf rtl8821CU_rtl8731AU_WiFi_linux_v5.8.1.7_37266.20200929_COEX20200616-4141.tar.gz
+cd rtl8821CU_rtl8731AU_WiFi_linux_v5.8.1.7_37266.20200929_COEX20200616-4141
+[[/code]]
+
++ 编译和安装驱动程序
+
+在终端中执行：
+
+[[code]]
+make
+sudo make install
+sudo modprobe 8821cu
+[[/code]]
+
+插入无线网卡，应该已经可以识别和使用。
+
++ 参考资料
+
+*https://hub.fastgit.org/whitebatman2/rtl8821CU 

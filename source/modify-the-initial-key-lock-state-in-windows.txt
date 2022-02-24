@@ -14,4 +14,4 @@ DWORD值{{InitialKeyboardIndicators}}控制系统开机时三个锁定键，即{
 ||= 4 || 仅开启{{ScrollLock}} ||
 ||= 5 || 开启{{CapsLock}}与{{ScrollLock}} ||
 ||= 6 || 开启{{NumLock}}与{{ScrollLock}} ||
-||= 7 || 开启全部键锁定 ||
+||= 7 || 开启全部键锁定 || 

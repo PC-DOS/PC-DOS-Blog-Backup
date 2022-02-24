@@ -64,4 +64,4 @@ Windows Registry Editor Version 5.00
 
 *http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL_ImportInMSC.reg
 
-[[a href="*http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL_ImportInMSC.reg" class="win10-link-button"]]下载文件[[/a]]
+[[a href="*http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL_ImportInMSC.reg" class="win10-link-button"]]下载文件[[/a]] 

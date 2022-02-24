@@ -1,0 +1,9 @@
+HP LaserJet系列打印机进行双面打印时，可能会出现无法弹出“继续”对话框，导致无法打印第二面的问题。
+
+此时，可以在不关闭打印机的情况下，拔出硒鼓并装回，此时通常可以复位打印机状态并继续。
+
+参考：
+
+*https://zhidao.baidu.com/question/1384032638964521700.html
+
+*https://h30471.www3.hp.com/t5/da-yin-ji-an-zhuang-wen-ti/HP-LaserJet-P1106-shuang-mian-da-yin-shi-ji-xu-chuang-kou-wu-fa-dan-chu/td-p/967135 

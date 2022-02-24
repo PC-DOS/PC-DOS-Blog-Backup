@@ -1,0 +1,7 @@
+苏康码Web访问接口：*http://jsstm.jszwfw.gov.cn/jkmIndex.html
+
+部分View-Source路径：
+
+主页面：@@view-source:http://jsstm.jszwfw.gov.cn/jkmIndex.html@@
+
+跳转页面：@@view-source:http://jsstm.jszwfw.gov.cn/reload.html@@ 

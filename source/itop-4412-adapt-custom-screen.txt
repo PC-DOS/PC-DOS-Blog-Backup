@@ -10,14 +10,14 @@
 
 [[code type="Cpp"]]
 struct s3cfb_lcd {
-	int width; //像素宽度
-	int height; //像素高度
-	int bpp; //像素深度
-	int freq; //刷新率
-	struct  s3cfb_lcd_timing timing;  //时序参数
-	struct  s3cfb_lcd_polarity polarity; //电平极性参数
-	void  (*init_ldi)(void);
-	void  (*deinit_ldi)(void);
+    int width; //像素宽度
+    int height; //像素高度
+    int bpp; //像素深度
+    int freq; //刷新率
+    struct  s3cfb_lcd_timing timing;  //时序参数
+    struct  s3cfb_lcd_polarity polarity; //电平极性参数
+    void  (*init_ldi)(void);
+    void  (*deinit_ldi)(void);
  };
 [[/code]]
 
@@ -25,14 +25,14 @@ struct s3cfb_lcd {
 
 [[code type="Cpp"]]
 struct s3cfb_lcd_timing {
-	int h_fp;
-	int h_bp;
-	int h_sw;
-	int v_fp;
-	int v_fpe;
-	int v_bp;
-	int v_bpe;
-	int v_sw;
+    int h_fp;
+    int h_bp;
+    int h_sw;
+    int v_fp;
+    int v_fpe;
+    int v_bp;
+    int v_bpe;
+    int v_sw;
 };
 [[/code]]
 
@@ -40,10 +40,10 @@ struct s3cfb_lcd_timing {
 
 [[code type="Cpp"]]
 struct s3cfb_lcd_polarity {
-	int rise_vclk;
-	int inv_hsync;
-	int inv_vsync;
-	int inv_vden;
+    int rise_vclk;
+    int inv_hsync;
+    int inv_vsync;
+    int inv_vden;
 };
 [[/code]]
 
@@ -70,4 +70,4 @@ left=(Screen.Width-640)/2
 top=(Screen.Height-480)/2
 [[/code]]
 
-其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。
+其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。 

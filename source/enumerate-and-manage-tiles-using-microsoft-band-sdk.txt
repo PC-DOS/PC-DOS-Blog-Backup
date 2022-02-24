@@ -52,47 +52,47 @@ Public BandCurrentStartStrip As StartStrip '表示设备当前的主界面磁贴
 
 [[code]]
 Public Function IsTilePinned(TileToTest As AdminBandTile) As Boolean
-	For Each TileItem In UserEditedTiles
-		If TileToTest.Id.ToString = TileItem.Id.ToString Then
-			Return True
-		End If
-	Next
-	Return False
+    For Each TileItem In UserEditedTiles
+     If TileToTest.Id.ToString = TileItem.Id.ToString Then
+     Return True
+     End If
+    Next
+    Return False
 End Function
 
 Public Sub GetBandTileInfo()
-	BandDefaultTiles.Clear()
-	BandDefaultTilesNameList.Clear()
-	BandAvailableTiles.Clear()
-	BandAvailableTilesNameList.Clear()
-	UserEditedTiles.Clear()
-	UserEditedTilesNameList.Clear()
+    BandDefaultTiles.Clear()
+    BandDefaultTilesNameList.Clear()
+    BandAvailableTiles.Clear()
+    BandAvailableTilesNameList.Clear()
+    UserEditedTiles.Clear()
+    UserEditedTilesNameList.Clear()
 
-	BandDefaultTiles = BandClient.GetDefaultTilesNoImages()
-	For Each BandTileItem In BandDefaultTiles
-		BandDefaultTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-	Next
+    BandDefaultTiles = BandClient.GetDefaultTilesNoImages()
+    For Each BandTileItem In BandDefaultTiles
+     BandDefaultTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+    Next
 
-	BandCurrentStartStrip = BandClient.GetStartStripNoImages()
-	For Each BandTileItem In BandCurrentStartStrip
-		UserEditedTiles.Add(BandTileItem)
-		UserEditedTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-	Next
+    BandCurrentStartStrip = BandClient.GetStartStripNoImages()
+    For Each BandTileItem In BandCurrentStartStrip
+     UserEditedTiles.Add(BandTileItem)
+     UserEditedTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+    Next
 
-	GenerateAvailableTiles()
+    GenerateAvailableTiles()
 
 End Sub
 
 Public Sub GenerateAvailableTiles()
-	BandAvailableTiles.Clear()
-	BandAvailableTilesNameList.Clear()
+    BandAvailableTiles.Clear()
+    BandAvailableTilesNameList.Clear()
 
-	For Each BandTileItem In BandDefaultTiles
-		If Not IsTilePinned(BandTileItem) Then
-			BandAvailableTiles.Add(BandTileItem)
-			BandAvailableTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-		End If
-	Next
+    For Each BandTileItem In BandDefaultTiles
+     If Not IsTilePinned(BandTileItem) Then
+     BandAvailableTiles.Add(BandTileItem)
+     BandAvailableTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+     End If
+    Next
 End Sub
 [[/code]]
 
@@ -104,8 +104,8 @@ End Sub
 
 [[code]]
 Public Sub SetBandTileInfo()
-	BandCurrentStartStrip = New StartStrip(UserEditedTiles)
-	BandClient.SetStartStrip(BandCurrentStartStrip)
+    BandCurrentStartStrip = New StartStrip(UserEditedTiles)
+    BandClient.SetStartStrip(BandCurrentStartStrip)
 End Sub
 [[/code]]
 
@@ -182,4 +182,4 @@ End Module
 
 + 附注
 
-一些特殊的磁贴，例如Starbucks、Facebook Messenger等，不会被包括在默认磁贴池中，但是它们拥有特定的GUID（通过{{System.Guid}}对象表示），可以通过硬编码的方法指定这些磁贴。本文没有实现这个方法。
+一些特殊的磁贴，例如Starbucks、Facebook Messenger等，不会被包括在默认磁贴池中，但是它们拥有特定的GUID（通过{{System.Guid}}对象表示），可以通过硬编码的方法指定这些磁贴。本文没有实现这个方法。 

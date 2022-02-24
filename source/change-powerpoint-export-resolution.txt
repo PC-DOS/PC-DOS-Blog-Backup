@@ -27,4 +27,4 @@ HKEY_CURRENT_USER\Software\Microsoft\Office\{Office.Version}\PowerPoint\Options
 
 双击{{ExportBitmapResolution}}DWORD值，在弹出的窗格中选择 [十进制]，输入期望的导出图片的分辨率（单位为PPI或DPI），按 [确定] 按钮保存即可。
 
-参考资料：*https://docs.microsoft.com/zh-cn/office/troubleshoot/powerpoint/change-export-slide-resolution
+参考资料：*https://docs.microsoft.com/zh-cn/office/troubleshoot/powerpoint/change-export-slide-resolution 

@@ -97,4 +97,4 @@
 [!-- * Plase compose here * --]
 
 [!-- * Comments Module* --]
-[[footnoteblock title="Hoofnotes"]]
+[[footnoteblock title="Hoofnotes"]] 

@@ -75,4 +75,4 @@ SNRemove -r APPX_INPUT_DIRECTORY\*.dll
 
 参考资料：
 *https://forum.xda-developers.com/windows-phone-8/development/wp8-1-creating-deploying-appx-packages-t2807743
-*https://docs.microsoft.com/zh-cn/windows/msix/package/create-app-package-with-makeappx-tool
+*https://docs.microsoft.com/zh-cn/windows/msix/package/create-app-package-with-makeappx-tool 

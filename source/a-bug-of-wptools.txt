@@ -54,11 +54,11 @@ IntelliTrace窗格显示：
 将操作系统的地区格式改为中文(繁体，台湾)，重新运行上述测试程序，立即窗格正常显示调试信息：
 
 [[code]]
-Device	30F105C9-681E-420b-A277-7C086EAD8A4E
-Emulator WVGA 512MB(ZH-HANT)	5E7661DF-D928-40ff-B747-A4B1957194F9
-Emulator WVGA(ZH-HANT)	4E136B04-AB61-4D76-B040-894831FCA286
-Emulator WXGA(ZH-HANT)	30E884A8-265A-4089-B226-AD2326862248
-Emulator 720P(ZH-HANT)	1AAFB3E8-5202-4480-A5F0-8D44CD04FA32
+Device 30F105C9-681E-420b-A277-7C086EAD8A4E
+Emulator WVGA 512MB(ZH-HANT) 5E7661DF-D928-40ff-B747-A4B1957194F9
+Emulator WVGA(ZH-HANT) 4E136B04-AB61-4D76-B040-894831FCA286
+Emulator WXGA(ZH-HANT) 30E884A8-265A-4089-B226-AD2326862248
+Emulator 720P(ZH-HANT) 1AAFB3E8-5202-4480-A5F0-8D44CD04FA32
 [[/code]]
 
 重新启动Windows Phone Power Tools，问题解决。
@@ -83,4 +83,4 @@ Windows Registry Editor Version 5.00
 "LocaleName"="zh-TW"
 [[/code]]
 
-**补充：**在中文版Windows操作系统上安装Windows Phone 8.0 SDK精简版时同样可能在启动Application Deployment应用程序时遇到此阻碍性错误，原因同上。
+**补充：**在中文版Windows操作系统上安装Windows Phone 8.0 SDK精简版时同样可能在启动Application Deployment应用程序时遇到此阻碍性错误，原因同上。 

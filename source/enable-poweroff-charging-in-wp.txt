@@ -22,4 +22,4 @@ HKLM\BCD00000001\Objects\{7ea2e1ac-2e61-4728-aaa3-896d9d0a9f0e}\Elements\2600051
 
 [[code]]
 bcdedit -store bcd -set {globalsettings} offmodecharging on
-[[/code]]
+[[/code]] 

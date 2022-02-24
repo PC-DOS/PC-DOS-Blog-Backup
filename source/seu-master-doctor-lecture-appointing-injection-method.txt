@@ -1,0 +1,164 @@
+预约页面：*http://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*default/index.do?t_s=1635836530422#/hdyy
+
++ 纯Web策略
+
+在预约开启前，使用浏览器的“开发者工具”，将被禁用的、显示为“未开放”的讲座预约按钮的HTML代码使用下面的代码替换：
+
+[[code type="html"]]
+<a href="javascript:void(0)" data-wid="LECTURE_ID_HERE" data-action="appointment">预约</a>
+[[/code]]
+
+随后，将{{data-wid}}属性中的值使用对应讲座的“查看活动详情”按钮的HTML属性{{data-x-wid}}中的值替换。
+
+此时按钮的注入完成，待预约开放后直接点击按钮即可。注意：预约开放前勿点击被注入按钮，否则将导致页面被刷新。
+
+TamperMonkey脚本范例：
+
+[[code type="javascript"]]
+// ==UserScript==
+// @name         东南大学硕博人文讲座预约系统按钮注入工具
+// @namespace    http://pc-dos.scp-eq.org/
+// @version      0.5-beta
+// @description  草泥马的东大硕博人文讲座预约系统
+// @author       PC-DOS
+// @include      *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
+// @icon         https://www.seu.edu.cn/_upload/tpl/09/bc/2492/template2492/favicon.ico
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    //由于页面动态加载内容，故使用一个2000毫秒的延时执行
+    //若网络延迟较大可修改此数值
+    setTimeout(()=>{
+        MainFunction()
+    }, 2000)
+
+})();
+
+function MainFunction(){
+    var IsInDebug = false; //是否为调试版
+
+    if (IsInDebug) console.log("FuckSeuLectureAppointmentSystem: Started");
+
+    //枚举每一个讲座块
+    var arrLecturePosters = document.getElementsByTagName("tbody")[0]; //获取活动海报容器
+    if (typeof arrLecturePosters != "undefined"){ //避免相关网页元素没有加载完的情况
+        arrLecturePosters = arrLecturePosters.getElementsByTagName("tr"); //获取每一个活动资料
+        if (typeof arrLecturePosters != "undefined"){  //避免相关网页元素没有加载完的情况
+            if (IsInDebug) console.log("FuckSeuLectureAppointmentSystem: %d lecture posters found.", arrLecturePosters.length);
+            for (var i = 0; i < arrLecturePosters.length; i++){ //枚举每一个讲座
+                //获取讲座名字
+                var sLectureName = arrLecturePosters[i].getElementsByTagName("td")[3].getElementsByTagName("span")[0].innerHTML;
+                //审查元素，查找子元素中的所有botton
+                var arrButtons = arrLecturePosters[i].getElementsByTagName("a");
+                //预设每个讲座poster存在两个button
+                if (arrButtons.length >= 2){
+                    var btnAppoint = arrButtons[0];
+                    var btnLectureInfo = arrButtons[1];
+                    if (btnAppoint.getAttribute("style") == null || btnAppoint.getAttribute("style") != "pointer-events: none;color: #bbb;"){
+                        //如果讲座已经开放预约，跳过
+                        if (IsInDebug) console.log("FuckSeuLectureAppointmentSystem: Lecture \"%s\" has been opened for applications, ignoring...", sLectureName);
+                    }
+                    else{
+                        //如果讲座没有开放预约，进行按钮注入
+                        if (IsInDebug) console.log("FuckSeuLectureAppointmentSystem: Injecting the Appointment button of lecture \"%s\" ...", sLectureName);
+                        var sLectureId = btnLectureInfo.getAttribute("data-x-wid");
+                        //判断是否获取成功
+                        if (sLectureId != null){
+                            //获取成功，继续注入
+                            if (IsInDebug) console.log("FuckSeuLectureAppointmentSystem: ID of lecture \"%s\" is %s.", sLectureName, sLectureId);
+                            //替换预约按钮的外部HTML（outerHTML）
+                            var htmlInjectedButton = '<a href="javascript:void(0)" data-wid="LECTURE_ID_HERE" data-action="appointment">到点就点我</a>'; //待注入的HTML代码
+                            btnAppoint.outerHTML = htmlInjectedButton.replace("LECTURE_ID_HERE", sLectureId);
+                        }
+                        else{
+                            //获取失败，报错
+                            console.log("FuckSeuLectureAppointmentSystem: Failed to get ID of lecture \"%s\".", sLectureName);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (IsInDebug) console.log("FuckSeuLectureAppointmentSystem: Operation Finished.");
+
+    //注册每秒定时执行，避免误操作后需要刷新页面
+    setTimeout(()=>{
+        MainFunction()
+    }, 500)
+}
+[[/code]]
+
++ JavaScript + AJAX策略
+
+**##darkred|由于添加了图形验证码，本方法已过时##**
+
+讲座预约是通过向后端发送AJAX请求实现的。该请求调用了{{/gsapp/sys/jzxxtjapp/hdyy/yySave.do}}业务并传送讲座ID（即前述{{data-x-wid}}），通过BH_UTILS工具类向后端传送AJAX请求。可以通过直接向该接口发送AJAX请求实现注入。
+
+TamperMonkey脚本范例：
+
+[[code type="javascript"]]
+// ==UserScript==
+// @name         东南大学硕博人文讲座预约系统AJAX注入工具
+// @namespace    http://pc-dos.scp-eq.org/
+// @version      0.1
+// @description  草泥马的东大硕博人文讲座预约系统（暴力版）
+// @author       PC-DOS
+// @include      *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
+// @icon         https://www.seu.edu.cn/_upload/tpl/09/bc/2492/template2492/favicon.ico
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    //由于页面动态加载内容，故使用一个2000毫秒的延时执行
+    //若网络延迟较大可修改此数值
+    setTimeout(()=>{
+        MainFunction()
+    }, 2000)
+
+})();
+
+function MainFunction(){
+    //等待依赖项BH_UTILS类库可用
+    if (typeof BH_UTILS == "undefined"){
+        console.log("BH_UTILS is currently undefined, pending it...");
+        setTimeout(()=>{
+            MainFunction()
+        }, 2000)
+        return;
+    }
+
+    console.log("FuckSeuLectureAppointmentSystemAjax: Start to send appointment requests");
+
+    //讲座WID，可以从“查看活动详情”按钮的data-x-wid属性获取
+    //这个地方要自己修改
+    var sLectureID="0e9e5ea0162140e2b02828523164e8cb";
+
+    //构造参数
+    var arrParams = {
+        HD_WID : sLectureID
+    };
+
+    //调用页面加载的BH_UTILS库，发送讲座预约AJAX请求
+    console.log("FuckSeuLectureAppointmentSystemAjax: Sending appointment request of lecture ID %s", sLectureID);
+    BH_UTILS.doAjax('/gsapp/sys/jzxxtjapp/hdyy/yySave.do', {paramJson : JSON.stringify(arrParams)}).done(function (sJsonData){
+        console.log(sJsonData); //显示回报数据
+        if (sJsonData.success){ //判断是否预约成功
+            console.log("FuckSeuLectureAppointmentSystemAjax: Appointment has been made successfully, congratulations!");
+            return;
+        }
+        else{
+            //console.log("东大网信亲妈飞天");
+            console.log("FuckSeuLectureAppointmentSystemAjax: AJAX request failed, retrying...");
+        }
+    })
+
+    //注册定时执行
+    setTimeout(()=>{
+        MainFunction()
+    }, 500)
+}
+[[/code]] 

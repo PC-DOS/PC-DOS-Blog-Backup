@@ -15,10 +15,24 @@ about:config
 || {{plugins.flashBlock.enabled}} || {{false}} ||
 || {{extensions.blocklist.enabled}} || {{false}} ||
 
+您可以尝试在Firefox安装目录新建一名为“{{distribution}}”的文件夹，并在该文件夹指建立“{{policies.json}}”文件，输入以下内容并保存：
+
+[[code]]
+{
+  "policies": {
+    "FlashPlugin": {
+      "Default": true
+    }
+  }
+}
+[[/code]]
+
+您也可以考虑安装[*https://addons.mozilla.org/en-US/firefox/addon/enterprise-policy-generator Firefox策略生成器]小工具来协助您生成相关的配置资料。
+
 参考资料：
 
 *http://forums.mozillazine.org/viewtopic.php?f=8&t=2753795
 
 *https://bugzilla.mozilla.org/show_bug.cgi?id=1348089
 
-*https://jingyan.baidu.com/article/c33e3f48855b33ea15cbb52c.html
+*https://jingyan.baidu.com/article/c33e3f48855b33ea15cbb52c.html 

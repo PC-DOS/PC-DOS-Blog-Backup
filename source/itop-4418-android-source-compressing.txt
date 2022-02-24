@@ -1,0 +1,39 @@
+迅为iTop-4418开发板的源码文件将编译器、Android 4.4、Linux内核、uBoot源码构成了一个大包，如果您不需要Android源代码，可以进入解包源码包后得到的{{android}}目录中，删除以下目录：
+
+[[code]]
+abi
+art
+bionic
+cts
+dalvik
+developers
+development
+docs
+external
+frameworks
+libcore
+libnativehelper
+ndk
+packages
+pdk
+prebuilts/clang
+prebuilts/devtools
+prebuilts/eclipse
+prebuilts/ndk
+prebuilts/python
+prebuilts/qemu-kernel
+prebuilts/runtime
+prebuilts/sdk
+sdk
+system
+vendor/google
+[[/code]]
+
+随后，将{{android}}目录中的build_android.sh的下列代码移除或通过在行首加“{{#}}”的方式进行注释，跳过对Android的编译。
+
+[[code]]
+if [ "$kernel_type" = "android" ]
+then
+    build_android
+fi
+[[/code]] 

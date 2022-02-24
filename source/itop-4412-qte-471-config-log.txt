@@ -966,4 +966,4 @@ QCumstomPlot是一个支持Qt 4.6到Qt 5.11的绘图插件，可用于绘制专�
 
 下载链接：*https://www.qcustomplot.com/index.php/download
 
-配置指南：*https://www.qcustomplot.com/index.php/tutorials/settingup
+配置指南：*https://www.qcustomplot.com/index.php/tutorials/settingup 

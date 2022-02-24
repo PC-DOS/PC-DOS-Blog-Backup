@@ -7,4 +7,4 @@ sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4'
 cd /home/picsell-dois/iTop4412/Qtopia/
 rm system.img
 make_ext4fs -s -l 314572800 -a root -L linux system.img root
-[[/code]]
+[[/code]] 

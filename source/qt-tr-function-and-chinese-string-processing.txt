@@ -25,4 +25,4 @@ QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
 + 参考资料
 
-*https://blog.csdn.net/tju355/article/details/7253133
+*https://blog.csdn.net/tju355/article/details/7253133 

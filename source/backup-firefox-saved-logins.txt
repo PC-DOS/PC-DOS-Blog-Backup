@@ -11,6 +11,16 @@ Portable版本：{{Data\Profile}}
 请备份以下文件：
 
 [[code]]
+key3.db
 key4.db
 logins.json
+logins-backup.json
+formhistory.sqlite
+cookies.sqlite
+cookies.sqlite-shm
+cookies.sqlite-wal
 [[/code]]
+
++ 另请参考
+
+[[[backup-firefox-bookmarks|]]] 

@@ -1749,7 +1749,7 @@ Windows Registry Editor Version 5.00
   54,00,59,00,5f,00,43,00,4c,00,41,00,53,00,53,00,5f,00,54,00,48,00,49,00,52,\
   00,44,00,5f,00,50,00,41,00,52,00,54,00,59,00,5f,00,41,00,50,00,50,00,4c,00,\
   49,00,43,00,41,00,54,00,49,00,4f,00,4e,00,53,00,00,00,00,00
-"ID_CAP_CRITICAL_DATA	"=hex(7):43,00,41,00,50,00,41,00,42,00,49,00,4c,00,49,00,\
+"ID_CAP_CRITICAL_DATA "=hex(7):43,00,41,00,50,00,41,00,42,00,49,00,4c,00,49,00,\
   54,00,59,00,5f,00,43,00,4c,00,41,00,53,00,53,00,5f,00,54,00,48,00,49,00,52,\
   00,44,00,5f,00,50,00,41,00,52,00,54,00,59,00,5f,00,41,00,50,00,50,00,4c,00,\
   49,00,43,00,41,00,54,00,49,00,4f,00,4e,00,53,00,00,00,00,00
@@ -1880,4 +1880,4 @@ exit
 
 *http://pc-dos.wdfiles.com/local--files/wp-capabilities-unlock-registry/CapabilityUnlock.bat
 
-[[a href="*http://pc-dos.wdfiles.com/local--files/wp-capabilities-unlock-registry/CapabilityUnlock.bat" class="win10-link-button"]]下载文件[[/a]]
+[[a href="*http://pc-dos.wdfiles.com/local--files/wp-capabilities-unlock-registry/CapabilityUnlock.bat" class="win10-link-button"]]下载文件[[/a]] 

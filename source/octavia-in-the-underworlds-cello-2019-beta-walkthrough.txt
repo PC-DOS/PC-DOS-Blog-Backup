@@ -397,4 +397,4 @@ Melody of Gales: ABCBCDE
 
 11. 与穿着养蜂工作服的黄马Haute Cuisine对话，得知其持有蜂蜜。完成对话后她表示如果Octavia能为其做一道符合其胃口的菜肴，则她会分出一部分蜂蜜。接受任务后，画面会切换到Octavia的视角。
 
-12. Octavia和Sour Noute完成饭菜的制作后，自动切换到Vinyl视角，Vinyl将两道菜给予Haute Cuisine，只要先前的QTE全部成功，Haute Cuisine会对两道菜给予了极高评价并给予Vinyl蜂蜜。蜂蜜可被放在升降机上交给Octavia。
+12. Octavia和Sour Noute完成饭菜的制作后，自动切换到Vinyl视角，Vinyl将两道菜给予Haute Cuisine，只要先前的QTE全部成功，Haute Cuisine会对两道菜给予了极高评价并给予Vinyl蜂蜜。蜂蜜可被放在升降机上交给Octavia。 

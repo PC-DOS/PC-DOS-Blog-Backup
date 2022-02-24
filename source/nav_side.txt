@@ -88,4 +88,4 @@
 
 [[a href="#" class="close-menu"]]
 [[image http://scp-wiki.wikidot.com/local--files/nav:side/black.png style="z-index=-1; opacity: 0.3;"]]
-[[/a]]
+[[/a]] 

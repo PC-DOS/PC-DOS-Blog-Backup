@@ -52,4 +52,4 @@ hwclock -u -w
 
 [[code]]
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-[[/code]]
+[[/code]] 

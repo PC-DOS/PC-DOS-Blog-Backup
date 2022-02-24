@@ -11,4 +11,4 @@ Catch ex As Exception
 End Try
 [[/code]]
 
-该方法适用于lstMessage仅作为消息列表使用的情况。
+该方法适用于lstMessage仅作为消息列表使用的情况。 

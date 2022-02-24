@@ -24,4 +24,4 @@ Exec=/opt/Qt5.7.1/Tools/QtCreator/bin/qtcreator -noload Welcome
 
 *https://www.jianshu.com/p/0290c3d3a695
 
-*https://blog.csdn.net/bukehaha/article/details/85336023
+*https://blog.csdn.net/bukehaha/article/details/85336023 

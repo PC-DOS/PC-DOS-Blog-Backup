@@ -1,0 +1,55 @@
+在Linux中，由于调度器和自旋锁（spin_lock）的设计，当已在非中断处理程序的上下文中获取自旋锁、而未关闭中断时，仍可能被调度进中断处理程序并获取自旋锁，随即导致死锁。
+
+因此，在非中断处理程序、且没有关闭涉及目标自旋锁的中断的上下文中，使用共享在中断和非中断代码内的自旋锁时，应使用{{spin_lock_irqsave()}}和{{spin_unlock_irqrestore()}}变体，进行关闭中断的自旋锁获取和释放。
+
+在中断处理程序中，若已确保该中断在试图获取自旋锁前已被关闭，则可以使用正常的{{spin_lock()}}和{{spin_unlock()))函数，进行自旋锁获取和释放。
+
+范例代码：
+
+[[code type="Cpp"]]
+//假设程序只有一个中断，中断号为常量INT_ID
+//并且，有一个共享在中断和非中断之间的自旋锁spnlkSpinLock
+
+//头文件等省略
+
+spinlock_t spnlkSpinLock; //自旋锁结构
+
+unsigned long iIrqData; //IRQ数据备份
+
+//...
+
+static irqreturn_t interrupt_handler_proc(int iIrq, void * lpDevId){ //中断处理函数
+    disable_irq_nosync(INT_ID); //关中断，在中断处理程序内使用disable_irq_nosync()无条件关闭中断并不等待既有中断处理程序完成，否则会导致死锁
+    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁
+    //临界区操作
+    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁
+    enable_irq(INT_ID); //开中断
+    return IRQ_HANDLED;
+}
+
+//...
+
+void NormalProc(){ //非中断函数
+    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁，保存中断数据到本地
+    //临界区操作
+    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁，恢复中断数据
+    return;
+}
+
+void NormalProcInterruptsDisabled(){ //禁用了中断的非中断函数
+    disable_irq(INT_ID); //关中断
+    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁
+    //临界区操作
+    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁
+    enable_irq(INT_ID); //开中断
+    return;
+}
+
+//...
+[[/code]]
+
+参考资料
+
+*https://www.cnblogs.com/aaronLinux/p/5890924.html
+
+*https://www.cnblogs.com/chencesc/p/5659483.html 

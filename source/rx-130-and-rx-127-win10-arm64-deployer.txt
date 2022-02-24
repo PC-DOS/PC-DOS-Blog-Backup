@@ -190,4 +190,4 @@ exit
 echo 錯誤: 無法以系統管理員身分執行此程式，請按任意按鍵以結束。
 pause > nul
 exit
-[[/code]]
+[[/code]] 

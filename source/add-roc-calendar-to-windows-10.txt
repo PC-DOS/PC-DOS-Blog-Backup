@@ -58,4 +58,4 @@ dism /online /add-package /packagepath:"請在此填寫擴充功能包文件的�
 
 [*/local--files/add-roc-calendar-to-windows-10/AddROCCalendar_x86.zip 請在此處下載適用於32位元(x86)作業系統的國曆(中華民國曆)支援和安裝文件]
 
-[[a href="*/local--files/add-roc-calendar-to-windows-10/AddROCCalendar_x86.zip" class="win10-link-button"]]下載適用於32位元(x86)作業系統的國曆(中華民國曆)支援和安裝文件[[/a]]
+[[a href="*/local--files/add-roc-calendar-to-windows-10/AddROCCalendar_x86.zip" class="win10-link-button"]]下載適用於32位元(x86)作業系統的國曆(中華民國曆)支援和安裝文件[[/a]] 

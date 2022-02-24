@@ -87,4 +87,4 @@
 
     console.log("NoGrayscale: Execution Finished.");
 })();
-[[/code]]
+[[/code]] 

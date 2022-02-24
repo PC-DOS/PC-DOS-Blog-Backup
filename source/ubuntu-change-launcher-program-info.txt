@@ -21,4 +21,4 @@ sudo gedit app-icon-to-edit.desktop
 
 完成后，保存并退出即可。
 
-**参考资料：***https://www.jianshu.com/p/0290c3d3a695
+**参考资料：***https://www.jianshu.com/p/0290c3d3a695 

@@ -260,4 +260,4 @@ make menuconfig
 make zImage
 [[/code]]
 
-开始编译Linux内核。编译完成后得到的{{zImage}}文件位于{{/home/picsell-dois/iTop4412/LinuxKernel/iTop4412_Kernel_3.0/arch/arm/boot/}}目录内。
+开始编译Linux内核。编译完成后得到的{{zImage}}文件位于{{/home/picsell-dois/iTop4412/LinuxKernel/iTop4412_Kernel_3.0/arch/arm/boot/}}目录内。 

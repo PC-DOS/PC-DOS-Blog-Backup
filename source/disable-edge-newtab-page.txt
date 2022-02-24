@@ -1,0 +1,25 @@
+您可以通过阻止到{{@@ntp.msn.cn@@}}的方式阻止Microsoft Edge的新标签页面获取Web资源。
+
+对于Windows用户，请编辑{{%SystemRoot%\System32\Drivers\etc\Hosts}}文件，并追加下列内容：
+
+[[code]]
+0.0.0.0 c.msn.com
+0.0.0.0 ntp.msn.com
+0.0.0.0 ntp.msn.cn
+0.0.0.0 assets.msn.cn
+0.0.0.0 api.msn.com
+0.0.0.0 browser.events.data.msn.com
+0.0.0.0 img-s-msn-com.akamaized.net
+[[/code]]
+
+随后，保存该文件即可。
+
+对于Linux用户，{{Hosts}}文件的路径通常为{{/etc/hosts}}。
+
+您可能需要清空浏览器缓存和DNS缓存后才能使这项更改生效。
+
+参考资料：
+
+*https://www.zhihu.com/question/374362886
+
+*https://landian.vip/archives/90312.html 

@@ -10,4 +10,4 @@
 fastboot
 [[/code]]
 
-并回车，即可进入Fastboot模式。进入Fastboot模式后即可通过{{fastboot}}命令行工具操作刷写、擦除等工作。
+并回车，即可进入Fastboot模式。进入Fastboot模式后即可通过{{fastboot}}命令行工具操作刷写、擦除等工作。 

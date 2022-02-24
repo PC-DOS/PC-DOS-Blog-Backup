@@ -1,0 +1,105 @@
+[[=]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+----
+[[size larger]] **严禁用于商业及盈利目的。**[[/size]]
+
+控制 · 收容 · 保护
+[[/div]]
+[[/=]]
+
+本文主要针对一些罕见（并且通常不支持直接KMS激活）的Windows版本，如Windows Embedded等，以及一些Windows操作系统的早期预览版本，的可能较为通用的KMS激活方法。
+
+从需要激活的系统安装完毕，直到开始进行KMS激活前，建议断开该系统的Internet连接。
+
++ 1 准备
+
+首先，您需要准备一份与您需要激活的目标Windows操作系统版本接近、架构相同、正式发行的Windows操作系统副本。并且，该副本应为大量授权（VL）版本。
+
+将该副本安装到虚拟机或实体计算机可能是不需要的，您只需要从操作系统安装映像（通常为WIM文件）中提取相应文件即可。但是，在一个虚拟机上完成该副本的安装和激活仍然是推荐的。
+
+您可能需要从Windows操作系统副本中提取下列文件备用：
+
+++ 1.1 品牌相关动态链接库
+
+品牌相关的动态链接库通常位于{{%SystemRoot%\Branding\}}目录内，您需要提取该目录下{{Basebrd}}目录内的{{Basebrd.dll}}文件。
+
+MUI文件的提取是不必要的。
+
+请注意：替换{{Basebrd.dll}}文件可能导致Windows登录界面、{{winver}}实用程序等处显示的Windows版本徽标发生改变，您可以尝试使用Resource Hacker等工具进行位图资源的替换以尝试修复。
+
+++ 1.2 授权证书文件
+
+授权证书文件通常位于{{%SystemRoot%\System32\spp\tokens\skus}}目录内，您可以通过文件名进行判断，或直接复制整个目录。
+
+此外，如果您在已经完成了激活的Windows上操作，而不是直接操作安装映像，您还可以复制{{%SystemRoot%\System32\spp\store}}目录。
+
+此外，您还可以复制{{%SystemRoot%\System32\spp\tokens\pkeyconfig}}目录内的文件备用。
+
++ 2 激活
+
+激活操作涉及对Windows系统文件的替换，请确保您当前拥有对目标系统下所有下述文件的完全控制权限。
+
+++ 2.1 文件的替换
+
+需要激活的Windows操作系统安装完毕后，请使用前面提取备用的{{Basebrd.dll}}文件替换目标系统对应位置内的文件。
+
+++ 2.2 证书的安装
+
+开始前，若您已登录到目标系统上，请先通过“运行”窗格或命令行停止软件保护服务（SppSvc）：
+
+[[code]]
+net stop sppsvc
+[[/code]]
+
+如果您先前备份了整个{{%SystemRoot%\System32\spp\tokens\skus}}目录，您可以在备份目标系统的相应目录后，将先前准备的{{skus}}目录直接复制到目标系统的对应位置。
+
+然后，请在备份目标系统的相应目录后，复制先前准备的{{%SystemRoot%\System32\spp\store}}目录（若存在）到目标系统的对应位置。
+
+随后，请登入目标系统，启动软件保护服务（SppSvc）：
+
+[[code]]
+net start sppsvc
+[[/code]]
+
+随后，请执行：
+
+[[code]]
+slmgr.vbs /rilc
+[[/code]]
+
+重新安装所有产品证书。
+
+如果您还复制了{{%SystemRoot%\System32\spp\tokens\pkeyconfig}}目录内的文件，或您没有复制整个{{%SystemRoot%\System32\spp\tokens\skus}}目录而只保留了需要的产品证书，您可以通过下面的命令，依次安装证书：
+
+[[code]]
+slmgr.vbs /ilc Path\To\License\File
+[[/code]]
+
+++ 2.3 KMS激活
+
+随后，您可以使用[https://mstoolkit.org/ Microsoft Toolkit]等KMS激活工具，安装与您手动安装的品牌库和产品证书一致的Windows版本的GVLK密钥，并进行KMS激活。
+
+如果您使用自己的KMS服务器，您也可以使用下面的命令组合进行激活：
+
+[[code]]
+slmgr.vbs /ipk 您安装的产品证书对应的GVLK密钥
+slmgr.vbs /skms KMS服务器地址
+slmgr.vbs /ato
+[[/code]]
+
++ 阻止WLMS自动重新启动系统
+
+WLMS服务被用于监测Windows操作系统的激活状态，并会在该服务停止时自动重新启动计算机，若需要停用该服务，需以SYSTEM权限操作注册表：
+
+[[code]]
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WLMS
+[[/code]]
+
+主键下的{{start}}值，并将该值改为{{4}}。
+
+您同样可以删除WLMS用于监控计算机激活状态的程序文件，这个文件位于：
+
+[[code]]
+%SystemRoot%\System32\wlms\
+[[/code]] 

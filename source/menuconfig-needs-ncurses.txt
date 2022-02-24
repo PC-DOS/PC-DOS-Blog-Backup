@@ -6,4 +6,4 @@
 sudo apt-get install libncurses5-dev
 [[/code]]
 
-**参考资料：***https://blog.csdn.net/lhf_tiger/article/details/7216021
+**参考资料：***https://blog.csdn.net/lhf_tiger/article/details/7216021 

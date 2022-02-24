@@ -1,0 +1,10 @@
+**故障现象：**一台基于Windows 10 Enterprise LTSC 2019的开发机，安装了[*https://download.qt.io/archive/qt/4.8/4.8.7/qt-opensource-windows-x86-mingw482-4.8.7.exe Qt 4.8.7 Windows端开发套件]和[*https://download.qt.io/archive/qtcreator/4.3/4.3.1/qt-creator-opensource-windows-x86_64-4.3.1.exe Qt Creator 4.3.1 Windows端IDE]，从Qt Creator菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)] > [Qt Versions] 选项卡中配置Qt 4.8.7时，选择{{C:\Qt\4.8.7\bin\qmake.exe}}（Qt 4.8.7套件的安装位置）后报错，提示“无效的Qt版本”。
+
+**处理方法：**在资源管理器中导航到{{C:\Qt\4.8.7\bin\}}，创建一个名为{{qt.conf}}的文件，输入以下内容并保存，随后在Qt Creator中重新添加{{C:\Qt\4.8.7\bin\qmake.exe}}即可。
+
+[[code]]
+[paths]
+Prefix = ..
+[[/code]]
+
+**参考资料：***https://ask.csdn.net/questions/7635646 

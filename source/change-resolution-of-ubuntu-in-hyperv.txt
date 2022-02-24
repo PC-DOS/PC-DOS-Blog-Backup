@@ -24,4 +24,4 @@ video=hyperv_fb:1920x1080
 sudo update-grub
 [[/code]]
 
-重启Ubuntu系统，即可。
+重启Ubuntu系统，即可。 

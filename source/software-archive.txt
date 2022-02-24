@@ -6,4 +6,4 @@
 
 +++ Firefox
 
-*http://ftp.mozilla.org/pub/firefox/releases/
+*http://ftp.mozilla.org/pub/firefox/releases/ 

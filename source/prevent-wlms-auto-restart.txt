@@ -1,0 +1,13 @@
+WLMS服务被用于监测Windows操作系统的激活状态，并会在该服务停止时自动重新启动计算机，若需要停用该服务，需以SYSTEM权限操作注册表：
+
+[[code]]
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WLMS
+[[/code]]
+
+主键下的{{start}}值，并将该值改为{{4}}。
+
+您同样可以删除WLMS用于监控计算机激活状态的程序文件，这个文件位于：
+
+[[code]]
+%SystemRoot%\System32\wlms\
+[[/code]] 

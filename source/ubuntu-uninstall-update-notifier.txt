@@ -2,4 +2,4 @@
 
 [[code]]
 sudo apt-get purge update-notifier update-manager
-[[/code]]
+[[/code]] 

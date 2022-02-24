@@ -29,4 +29,4 @@ HKEY_LOCAL_MACHINE\PC_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Task
 
 -----
 
-参考资料：*https://superuser.com/questions/1213206/delete-all-scheduled-tasks-with-registry-file
+参考资料：*https://superuser.com/questions/1213206/delete-all-scheduled-tasks-with-registry-file 

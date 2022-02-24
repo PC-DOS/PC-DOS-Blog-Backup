@@ -167,4 +167,4 @@ Windows Registry Editor Version 5.00
 
 *http://pc-dos.wdfiles.com/local--files/enable-physical-keys-in-rx-130/RX-130%E6%81%A2%E5%A4%8D%E5%AE%9E%E4%BD%93%E6%8C%89%E9%94%AE.reg
 
-[[a href="*http://pc-dos.wdfiles.com/local--files/enable-physical-keys-in-rx-130/RX-130%E6%81%A2%E5%A4%8D%E5%AE%9E%E4%BD%93%E6%8C%89%E9%94%AE.reg" class="win10-link-button"]]下载文件[[/a]]
+[[a href="*http://pc-dos.wdfiles.com/local--files/enable-physical-keys-in-rx-130/RX-130%E6%81%A2%E5%A4%8D%E5%AE%9E%E4%BD%93%E6%8C%89%E9%94%AE.reg" class="win10-link-button"]]下载文件[[/a]] 

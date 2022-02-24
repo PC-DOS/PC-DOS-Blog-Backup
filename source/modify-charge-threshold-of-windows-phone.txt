@@ -24,4 +24,4 @@ bcdedit -store bcd -set {globalsettings} chargethreshold MinimalChargePercentage
 bcdedit /store bcd /deletevalue {globalsettings} chargethreshold
 [[/code]]
 
-删除该值。
+删除该值。 

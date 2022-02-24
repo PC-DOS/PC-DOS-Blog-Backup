@@ -2,4 +2,4 @@
 
 点击左侧窗格的 [添加或删除 Windows 功能] 链接，在弹出的对话框中勾选 [Microsoft Print to PDF]，并按确定键。
 
-即可重新安装Microsoft Print to PDF虚拟打印机。
+即可重新安装Microsoft Print to PDF虚拟打印机。 

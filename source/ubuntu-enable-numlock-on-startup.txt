@@ -36,4 +36,4 @@ greeter-setup-script=/usr/bin/numlockx on
 
 *https://jingyan.baidu.com/article/358570f65c46ddce4724fcbb.html
 
-*https://www.cnblogs.com/mawanglin2008/articles/2952651.html
+*https://www.cnblogs.com/mawanglin2008/articles/2952651.html 

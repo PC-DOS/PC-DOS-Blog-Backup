@@ -1,0 +1,14 @@
+MIPS64架构上的银河麒麟仍然将体系结构依赖的配置项置于：
+
+[[code]]
+/usr/src/kylin-headers-X.Y.ZZZ-YYYYMMDD-generic/arch/mips/
+[[/code]]
+
+目录下，这可能引发Make错误，请考虑在终端中执行以下指令，建立名为“{{mips64}}”的指向“{{mips}}”目录的链接：
+
+[[code]]
+cd /usr/src/kylin-headers-X.Y.ZZZ-YYYYMMDD-generic/arch/
+sudo ln -s mips mips64
+[[/code]]
+
+其中，“{{X.Y.ZZZ-YYYYMMDD}}”和您的系统版本相关。 

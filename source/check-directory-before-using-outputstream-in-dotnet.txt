@@ -15,4 +15,4 @@ If OutputFilePath.Contains("\") Or OutputFilePath.Contains("/") Then
 End If
 [[/code]]
 
-需要注意的是：在CommonDialog中，通过特定的操作顺序仍然可以指定不存在的目录为输出目标，故不应跳过该检查流程。
+需要注意的是：在CommonDialog中，通过特定的操作顺序仍然可以指定不存在的目录为输出目标，故不应跳过该检查流程。 

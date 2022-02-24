@@ -1,0 +1,68 @@
+Qt默认使用{{Qt::AutoConnection}}进行信号-槽的连接（{{connect()}}），并可能倾向于使用{{Qt::QueuedConnection}}，该连接方式将信号插入事件循环队列中进行处理。
+
+对于跨越线程的信号，尤其是带参数的信号，{{Qt::QueuedConnection}}可能在默认情况下失败并要求使用{{qRegisterMetaType<>()}}函数进行信号参数类型的注册。此时有两种处理方式：
+
++ 改为直接连接
+
+此方法在{{connect()}}操作中，将第五个参数从默认值{{Qt::AutoConnection}}改为{{Qt::DirectConnection}}，进行直接连接。此时，槽函数将在信号发出后立刻在发出信号的线程中同步地执行，而不在事件循环/消息队列中排队。
+
+**警告：**此方法极易在跨线程情况中导致程序崩溃，或发生意想不到的错误。
+
++ 注册参数类型并继续使用队列型连接
+
+这是一项推荐的选项。该方法要求在引发信号的线程中进行信号参数的注册，随后进行{{Qt::AutoConnection}}或{{Qt::QueuedConnection}}类型的连接。
+
+这个注册和连接过程必须在引发信号的线程的执行过程中完成。同时，对于自定义的类型，请在类型定义后使用{{Q_DECLARE_METATYPE()}}宏声明元数据类型。
+
+[[code type="Cpp"]]
+//HEADER FILE
+#include <QObject>
+#include <QThread>
+/* ... */
+
+/* Type definitions of MyType */
+Q_DECLARE_METATYPE(MyType);
+
+class MyClass : public QObject{
+    Q_OBJECT
+
+public:
+    void ConnectSignals(MyClass * objObject);
+
+public signals:
+    void signal(MyType typParam);
+
+private slots:
+    void slot(MyType typParam);
+};
+
+class MyThread : public QThread {
+    Q_OBJECT
+
+public:
+    MyThread() {_IsSignalConnected=false;}
+    virtual ~MyThread() {}
+
+protected:
+    void run();
+
+private:
+    bool _IsSignalConnected;
+};
+
+//CPP FILE
+MyClass * clsMyClass = new MyClass();
+
+void MyClass::ConnectSignals(MyClass * objObject){
+    qRegisterMetaType<MyType>("MyType");
+    connect(objObject, SIGNAL(signal(MyType)), this, SLOT(slot(MyType)),Qt::QueuedConnection);
+}
+
+void MyThread::run(){
+    if (!_IsSignalConnected){
+        MyClass.ConnectSignals(clsMyClass);
+    }
+    
+    //Real works
+}
+[[/code]] 

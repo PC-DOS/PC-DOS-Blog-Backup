@@ -19,4 +19,4 @@ printk(KERN_LEVEL "String", Parameters);
 #define KERN_DEBUG 7 //调试级别的消息
 [[/code]]
 
-参考文献：《iTop-4412开发板实战教程》
+参考文献：《iTop-4412开发板实战教程》 

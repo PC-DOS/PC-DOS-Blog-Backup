@@ -108,7 +108,7 @@ ping 127.0.0.1 -n 5 > nul
 
 REM Set semaphore folder path here.
 if exist "downloads\ZC08汽车技术创新与研发系列丛书" (
-	goto End
+    goto End
 )
 echo=
 echo Script finished, but semaphore folder not detected, retry after 30 minutes.
@@ -123,4 +123,4 @@ echo=
 echo Semaphore folder detected, press any key to exit.
 pause > nul
 Exit
-[[/code]]
+[[/code]] 

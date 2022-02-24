@@ -42,4 +42,4 @@ HKEY_LOCAL_MACHINE\PC_SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Task
 
 *https://support.microsoft.com/en-us/topic/kb4570006-update-to-disable-and-remove-the-remotefx-vgpu-component-in-windows-bbdf1531-7188-2bf4-0de6-641de79f09d2
 
-*https://docs.microsoft.com/en-us/answers/questions/53490/remotefxvgpudisablementexe.html
+*https://docs.microsoft.com/en-us/answers/questions/53490/remotefxvgpudisablementexe.html 

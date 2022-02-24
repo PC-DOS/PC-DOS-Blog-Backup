@@ -38,4 +38,4 @@ HKLM\SYSTEM\TOUCH\Settigns
 
 HKLM\SOFTWARE\Microsoft\Shell\Hover
 (DWORD)Start: 0x00000001 -> 0x00000000
-[[/code]]
+[[/code]] 

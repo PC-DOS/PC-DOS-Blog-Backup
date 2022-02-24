@@ -3,4 +3,4 @@
 [[div class="scp-image-caption" style="width:{$width};"]]
 {$caption}
 [[/div]]
-[[/div]]
+[[/div]] 

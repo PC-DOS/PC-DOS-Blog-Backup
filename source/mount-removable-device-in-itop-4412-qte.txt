@@ -20,4 +20,4 @@ mkdir /mnt/sdcard/
 mount /dev/mmcblk1p1 /mnt/sdcard/
 [[/code]]
 
-即可挂载TF卡。
+即可挂载TF卡。 

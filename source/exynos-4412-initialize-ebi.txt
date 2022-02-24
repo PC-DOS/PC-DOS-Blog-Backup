@@ -153,70 +153,70 @@ str  r1, [r0]
 #define S3C_REGISTER_SROM_BC1_CONFIG_BITS 0x220F2200 //Tacs=2, Tcos=2, Tacc=16, Tcoh=2, Tcah=2, Tacp=0 (Cycles). SROM_BC1=SROM_BC1 | S3C_REGISTER_SROM_BC1_CONFIG_BITS，视情况改变
 
 void InitializeEBI(){
-	//Config EBI and IORemap
-	//Config SROM_BXx Registers
-	request_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
-	lpSromRegistersBaseAddress = ioremap(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE);
-	lpSromRegistersResource = request_mem_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
-	if (lpSromRegistersBaseAddress){
-		NFOPRINT("SFR SROM_BW and SROM_BCn mapped to virtual address 0x%x.\n", lpSromRegistersBaseAddress);
-		
-		iSromBw=__raw_readl(lpSromRegistersBaseAddress);
-		DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
-		iSromBw=iSromBw | S3C_REGISTER_SROM_BW_CONFIG_BITS;
-		DBGPRINT("Writing SROM_BW with 0x%x inorder to config Xm0Cs1.\n", iSromBw);
-		__raw_writel(iSromBw, lpSromRegistersBaseAddress);
-		iSromBw=__raw_readl(lpSromRegistersBaseAddress);
-		DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
-		
-		iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
-		DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
-		//iSromBc1=iSromBc1 | S3C_REGISTER_SROM_BC1_CONFIG_BITS;
-		DBGPRINT("Writing SROM_BC1 with 0x%x inorder to config Xm0Cs1.\n", iSromBc1);
-		__raw_writel(iSromBc1, lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
-		iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
-		DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
-	}
-	else{
-		WRNPRINT("Failed to map SFR SROM_BW and SROM_BCn. The remap of external device at Xm0Cs1 may not success.\n");
-	}
-	//Map External Device
-	//Request GPIOs
-	int iCsResult=0;
-	iCsResult=gpio_request(CHIP_SELECT_GPIO_LABEL, CHIP_SELECT_GPIO_NAME);
-	if (0==iCsResult){
-		//Config EBI
-		//GPY0
-		s3c_gpio_cfgpin(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[1] to 0x2 (SROM_CSn[1])
-		s3c_gpio_setpull(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[1] to PULL_UP
-		s5p_gpio_set_drvstr(CHIP_SELECT_GPIO_LABEL, S5P_GPIO_DRVSTR_LV4); //Set drive strength to max
-		s3c_gpio_cfgpin(EBI_WEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[5] to 0x2 (EBI_WEn)
-		s3c_gpio_setpull(EBI_WEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[5] to PULL_UP
-		s3c_gpio_cfgpin(EBI_OEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[4] to 0x2 (EBI_OEn)
-		s3c_gpio_setpull(EBI_OEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[4] to PULL_UP
-		//GPY1
-		s3c_gpio_cfgall_range(EBI_GPY1CON_START, EBI_GPY1CON_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY1CON to 0x00002222 (EBI_DATA_RDn, SROM_WAITn, EBI_BEn[1], EBI_BEn[0])
-		//ADDR
-		s3c_gpio_cfgall_range(EBI_ADDRLOW_START, EBI_ADDRLOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY3CON to 0x22222222 (EBI_ADDR[7..0]), and set GPY3PUD to 0x0000FFFF (PULL_UP)
-		//s3c_gpio_cfgall_range(EBI_ADDRHIGH_START, EBI_ADDRHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY4CON to 0x22222222 (EBI_ADDR[15..8]), and set GPY4PUD to 0x0000FFFF (PULL_UP)
-		//DATA
-		s3c_gpio_cfgall_range(EBI_DATALOW_START, EBI_DATALOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP);
-		s3c_gpio_cfgall_range(EBI_DATAHIGH_START, EBI_DATAHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY5CON & GPY6CON to 0x22222222 (EBI_DATA), and set GPY5PUD & GPY6PUD to 0x0000FFFF (PULL_UP)
-		
-		//IORemap
-		request_region(MEM_MAPPING_BASE_ADDR, MEM_MAPPING_SIZE_BYTE, MEM_MAPPING_NAME);
-		lpIoResource = request_mem_region(MEM_MAPPING_BASE_ADDR, MEM_MAPPING_SIZE_BYTE, MEM_MAPPING_NAME);
-		lpExternalDeviceBaseAddress = ioremap(MEM_MAPPING_BASE_ADDR, MEM_MAPPING_SIZE_BYTE);
-		DBGPRINT("Mapping external device to virtual address 0x%x, Size=%d Bytes.\n", lpExternalDeviceBaseAddress, MEM_MAPPING_SIZE_BYTE);
-		if (!lpExternalDeviceBaseAddress){
-			WRNPRINT("Failed to map external device.\n");
-		}
-		else{
-			NFOPRINT("External device mapped to virtual address 0x%x.\n", lpExternalDeviceBaseAddress);
-		}
-	}
-	else{
-		WRNPRINT("Request GPIO %d failed with return code %d. Unnable to remap external device.\n", CHIP_SELECT_GPIO_LABEL, iCsResult);
-	}
+    //Config EBI and IORemap
+    //Config SROM_BXx Registers
+    request_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
+    lpSromRegistersBaseAddress = ioremap(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE);
+    lpSromRegistersResource = request_mem_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
+    if (lpSromRegistersBaseAddress){
+     NFOPRINT("SFR SROM_BW and SROM_BCn mapped to virtual address 0x%x.\n", lpSromRegistersBaseAddress);
+     
+     iSromBw=__raw_readl(lpSromRegistersBaseAddress);
+     DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
+     iSromBw=iSromBw | S3C_REGISTER_SROM_BW_CONFIG_BITS;
+     DBGPRINT("Writing SROM_BW with 0x%x inorder to config Xm0Cs1.\n", iSromBw);
+     __raw_writel(iSromBw, lpSromRegistersBaseAddress);
+     iSromBw=__raw_readl(lpSromRegistersBaseAddress);
+     DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
+     
+     iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
+     DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
+     //iSromBc1=iSromBc1 | S3C_REGISTER_SROM_BC1_CONFIG_BITS;
+     DBGPRINT("Writing SROM_BC1 with 0x%x inorder to config Xm0Cs1.\n", iSromBc1);
+     __raw_writel(iSromBc1, lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
+     iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
+     DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
+    }
+    else{
+     WRNPRINT("Failed to map SFR SROM_BW and SROM_BCn. The remap of external device at Xm0Cs1 may not success.\n");
+    }
+    //Map External Device
+    //Request GPIOs
+    int iCsResult=0;
+    iCsResult=gpio_request(CHIP_SELECT_GPIO_LABEL, CHIP_SELECT_GPIO_NAME);
+    if (0==iCsResult){
+     //Config EBI
+     //GPY0
+     s3c_gpio_cfgpin(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[1] to 0x2 (SROM_CSn[1])
+     s3c_gpio_setpull(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[1] to PULL_UP
+     s5p_gpio_set_drvstr(CHIP_SELECT_GPIO_LABEL, S5P_GPIO_DRVSTR_LV4); //Set drive strength to max
+     s3c_gpio_cfgpin(EBI_WEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[5] to 0x2 (EBI_WEn)
+     s3c_gpio_setpull(EBI_WEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[5] to PULL_UP
+     s3c_gpio_cfgpin(EBI_OEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[4] to 0x2 (EBI_OEn)
+     s3c_gpio_setpull(EBI_OEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[4] to PULL_UP
+     //GPY1
+     s3c_gpio_cfgall_range(EBI_GPY1CON_START, EBI_GPY1CON_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY1CON to 0x00002222 (EBI_DATA_RDn, SROM_WAITn, EBI_BEn[1], EBI_BEn[0])
+     //ADDR
+     s3c_gpio_cfgall_range(EBI_ADDRLOW_START, EBI_ADDRLOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY3CON to 0x22222222 (EBI_ADDR[7..0]), and set GPY3PUD to 0x0000FFFF (PULL_UP)
+     //s3c_gpio_cfgall_range(EBI_ADDRHIGH_START, EBI_ADDRHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY4CON to 0x22222222 (EBI_ADDR[15..8]), and set GPY4PUD to 0x0000FFFF (PULL_UP)
+     //DATA
+     s3c_gpio_cfgall_range(EBI_DATALOW_START, EBI_DATALOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP);
+     s3c_gpio_cfgall_range(EBI_DATAHIGH_START, EBI_DATAHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY5CON & GPY6CON to 0x22222222 (EBI_DATA), and set GPY5PUD & GPY6PUD to 0x0000FFFF (PULL_UP)
+     
+     //IORemap
+     request_region(MEM_MAPPING_BASE_ADDR, MEM_MAPPING_SIZE_BYTE, MEM_MAPPING_NAME);
+     lpIoResource = request_mem_region(MEM_MAPPING_BASE_ADDR, MEM_MAPPING_SIZE_BYTE, MEM_MAPPING_NAME);
+     lpExternalDeviceBaseAddress = ioremap(MEM_MAPPING_BASE_ADDR, MEM_MAPPING_SIZE_BYTE);
+     DBGPRINT("Mapping external device to virtual address 0x%x, Size=%d Bytes.\n", lpExternalDeviceBaseAddress, MEM_MAPPING_SIZE_BYTE);
+     if (!lpExternalDeviceBaseAddress){
+     WRNPRINT("Failed to map external device.\n");
+     }
+     else{
+     NFOPRINT("External device mapped to virtual address 0x%x.\n", lpExternalDeviceBaseAddress);
+     }
+    }
+    else{
+     WRNPRINT("Request GPIO %d failed with return code %d. Unnable to remap external device.\n", CHIP_SELECT_GPIO_LABEL, iCsResult);
+    }
 }
-[[/code]]
+[[/code]] 

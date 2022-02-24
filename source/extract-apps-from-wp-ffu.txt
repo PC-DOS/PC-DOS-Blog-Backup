@@ -25,4 +25,4 @@ thor2 -mode ffureader -ffufile <PATH_TO_FFU_FILE> -dump_partitions
 
 随后，请使用7-Zip等可处理磁盘映像文件的压缩文件管理工具或磁盘管理工具，打开得到的BIN文件的{{PROGRAMS\CommonFiles\Xaps}}目录，以及{{PROGRAMS\CommonFiles\OEM\Public\PreloadedApps\tier3Apps\}}目录，即可查看内置的应用包。
 
-请注意：对于XAP格式的包，需要解包并删除{{WMAppPRHeader.xml}}文件，再重新打包为ZIP包并修改扩展名为XAP，方可通过Windows Phone SDK正常部署。
+请注意：对于XAP格式的包，需要解包并删除{{WMAppPRHeader.xml}}文件，再重新打包为ZIP包并修改扩展名为XAP，方可通过Windows Phone SDK正常部署。 

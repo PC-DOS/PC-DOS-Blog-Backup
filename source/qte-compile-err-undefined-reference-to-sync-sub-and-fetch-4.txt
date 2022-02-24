@@ -57,4 +57,4 @@ sed -i '/^LIBS/{s/$/-L\/opt -llinux-atomic/}' qtscript/src/script/Makefile
 
 *https://www.cnblogs.com/lvdongjie/p/6101977.html
 
-*http://www.echojb.com/qt/2017/02/19/327048.html
+*http://www.echojb.com/qt/2017/02/19/327048.html 

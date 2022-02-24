@@ -10,8 +10,8 @@
 
 范例代码：
 [[code]]
-		<visualizationToolkit:ResourceDictionaryCollection x:Key="PieACPalette">
-			<ResourceDictionary>
+     <visualizationToolkit:ResourceDictionaryCollection x:Key="PieACPalette">
+     <ResourceDictionary>
                 <Style x:Key="DataPointStyle" TargetType="{x:Type chartingToolkit:PieDataPoint}">
                     <Setter Property="Background" Value="#FF4BAF4B"/>
                     <Setter Property="BorderBrush" Value="White"/>
@@ -45,7 +45,7 @@
                     </Setter>
                 </Style>
             </ResourceDictionary>
-			<ResourceDictionary>
+     <ResourceDictionary>
                 <Style x:Key="DataPointStyle" TargetType="{x:Type chartingToolkit:PieDataPoint}">
                     <Setter Property="Background" Value="#FFF54B00"/>
                     <Setter Property="BorderBrush" Value="White"/>
@@ -78,8 +78,8 @@
                         </Setter.Value>
                     </Setter>
                 </Style>
-			</ResourceDictionary>
-		</visualizationToolkit:ResourceDictionaryCollection>
+     </ResourceDictionary>
+     </visualizationToolkit:ResourceDictionaryCollection>
 ......
             <Grid>
                 <chartingToolkit:Chart x:Name="chartStudentACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
@@ -94,4 +94,4 @@
 
 参考资料：
 
-*https://stackoverflow.com/questions/9191711/colour-selection-of-silverlight-toolkit-chart-line-series/9824096#9824096
+*https://stackoverflow.com/questions/9191711/colour-selection-of-silverlight-toolkit-chart-line-series/9824096#9824096 

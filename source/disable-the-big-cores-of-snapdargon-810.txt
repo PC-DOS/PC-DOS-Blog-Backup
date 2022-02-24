@@ -9,4 +9,4 @@
 [[code]]
 bcdedit -store BCD /set {default} numproc 4
 bcdedit -store BCD /set {bootloadersettings} numproc 4
-[[/code]]
+[[/code]] 

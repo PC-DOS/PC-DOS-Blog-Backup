@@ -63,4 +63,4 @@ CTNET和CTLTE的稳定性等应进行权衡。
 > 接下来点击 手机网络+SIM卡~SIM卡设置~手动lnternet接入点设置为(关),注意一定要关掉手动接入点.
 > 
 > 重启手机就可以了
-[[/collapsible]]
+[[/collapsible]] 

@@ -1,0 +1,26 @@
+可以使用{{SendMessage()}}或{{PostMessage()}}消息API向系统发送关闭监视器的要求：
+
+[[code]]
+Option Explicit
+
+Private Declare Function SendMessage Lib "user32" Alias "SendMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, lParam As Any) As Long
+Private Const HWND_BROADCAST = &HFFFF&
+Private Const WM_SYSCOMMAND = &H112
+Private Const SC_MONITORPOWER = &HF170&
+Private Const MONITOR_OFF = 2
+
+Private Sub Form_Load()
+     SendMessage Me.hwnd, WM_SYSCOMMAND, SC_MONITORPOWER, ByVal MONITOR_OFF
+     End
+End Sub
+[[/code]]
+
+命令行：
+
+[[code]]
+powershell (Add-Type '[DllImport(\"user32.dll\")]^public static extern int PostMessage(int hWnd, int hMsg, int wParam, int lParam);' -Name a -Pas)::PostMessage(-1,0x0112,0xF170,2)
+[[/code]]
+
+参考资料：
+
+*https://www.zhihu.com/question/46324376 

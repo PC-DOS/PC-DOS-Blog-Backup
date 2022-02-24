@@ -17,4 +17,4 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is an
 sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock
 sudo rm /var/lib/dpkg/lock-frontend
-[[/code]]
+[[/code]] 

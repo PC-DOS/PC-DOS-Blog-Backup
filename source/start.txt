@@ -107,4 +107,4 @@ display:none;
 [[/div]]
 [[div class="panel-footer" style="text-align: center; height: 16px;"]]
 [[/div]]
-[[/div]]
+[[/div]] 

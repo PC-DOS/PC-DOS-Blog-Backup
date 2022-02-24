@@ -1,0 +1,14 @@
+Qt中，向类定义中添加“{{Q_OBJECT}}”宏后，可能出现以下编译错误：
+
+[[code]]
+undefined reference to `vtable for XXXXXXX'
+collect2:ld returned 1 exit status
+[[/code]]
+
+若检查确定{{<QObject>}}头文件已被包含、目标类已正确继承{{QObject}}基类，且所有虚函数已被正确实现和定义，则请检查是否需要重新执行qMake。请注意：务必重新执行qMake，而不是简单地执行一次重新构建。
+
+参考资料：
+
+*https://blog.csdn.net/qq_40732350/article/details/104135270
+
+*https://blog.csdn.net/u014546553/article/details/78781547 

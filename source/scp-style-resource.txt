@@ -1446,4 +1446,4 @@ display:none;
 @@[[include component:colend]]@@
 [[/div]]
 
-**提示：**如果您需要查询详细的使用方法，可以造访[[[component:colstyle | 这里]]]。
+**提示：**如果您需要查询详细的使用方法，可以造访[[[component:colstyle | 这里]]]。 

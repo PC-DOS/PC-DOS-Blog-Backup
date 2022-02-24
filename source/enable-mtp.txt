@@ -274,4 +274,4 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\0\ControlSet001\Control\USBFN\settings]
 "PromptForDataConnection"=dword:00000001
-[[/code]]
+[[/code]] 

@@ -10,4 +10,4 @@
 
 *https://docs.microsoft.com/en-us/windows/win32/shell/how-to-register-a-preview-handler
 
-*https://docs.microsoft.com/en-us/windows/win32/shell/preview-handlers
+*https://docs.microsoft.com/en-us/windows/win32/shell/preview-handlers 

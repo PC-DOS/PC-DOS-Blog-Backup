@@ -14,13 +14,13 @@
 
 /* Init function & Exit Functions */
 static int minimum_driver_init(void){
-	printk(KERN_INFO "MinimumDriver: Initializing...\n");
-	return 0;
+    printk(KERN_INFO "MinimumDriver: Initializing...\n");
+    return 0;
 }
 
 static void minimum_driver_exit(void){
-	printk(KERN_INFO "MinimumDriver: Exiting...\n");
-	return;
+    printk(KERN_INFO "MinimumDriver: Exiting...\n");
+    return;
 }
 
 /* Pointers to Init function & Exit Functions */
@@ -52,12 +52,12 @@ PWD ?= $(shell pwd)
 
 # Operations when calling make
 all:
-	rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
-	make -C $(KRNLDIR) M=$(PWD) modules
+    rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+    make -C $(KRNLDIR) M=$(PWD) modules
 
 # Operations when calling make clean
 clean:
-	rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+    rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
 [[/code]]
 
 + .gitignore
@@ -81,4 +81,4 @@ clean:
 
 + 参考文献
 
-《iTop-4412开发板实战教程》
+《iTop-4412开发板实战教程》 

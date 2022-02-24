@@ -31,3 +31,19 @@
 +++ AC-baidu:重定向优化百度搜狗谷歌搜索_去广告_favicon_双列：
 
 *https://greasyfork.org/zh-CN/scripts/14178-ac-baidu-%E9%87%8D%E5%AE%9A%E5%90%91%E4%BC%98%E5%8C%96%E7%99%BE%E5%BA%A6%E6%90%9C%E7%8B%97%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2-%E5%8E%BB%E5%B9%BF%E5%91%8A-favicon-%E5%8F%8C%E5%88%97
+
++++ Image Max URL
+
+*https://greasyfork.org/zh-TW/scripts/36662-image-max-url
+
++++ 去掉WEBP - 轉換WEBP圖片到源格式(JPG PNG GIF)用於Onenote與Evernote剪藏
+
+*https://greasyfork.org/zh-TW/scripts/396210-%E5%8E%BB%E6%8E%89webp-%E8%BD%AC%E6%8D%A2webp%E5%9B%BE%E7%89%87%E5%88%B0%E6%BA%90%E6%A0%BC%E5%BC%8F-jpg-png-gif-%E7%94%A8%E4%BA%8Eonenote%E4%B8%8Eevernote%E5%89%AA%E8%97%8F
+
++++ 網頁限制解除
+
+*https://greasyfork.org/zh-TW/scripts/14146-%E7%BD%91%E9%A1%B5%E9%99%90%E5%88%B6%E8%A7%A3%E9%99%A4
+
++++ 最强的老牌脚本CSDNGreener：CSDN广告完全过滤、人性化脚本优化
+
+*https://openuserjs.org/scripts/AdlerED/%E6%9C%80%E5%BC%BA%E7%9A%84%E8%80%81%E7%89%8C%E8%84%9A%E6%9C%ACCSDNGreener%EF%BC%9ACSDN%E5%B9%BF%E5%91%8A%E5%AE%8C%E5%85%A8%E8%BF%87%E6%BB%A4%E3%80%81%E4%BA%BA%E6%80%A7%E5%8C%96%E8%84%9A%E6%9C%AC%E4%BC%98%E5%8C%96 

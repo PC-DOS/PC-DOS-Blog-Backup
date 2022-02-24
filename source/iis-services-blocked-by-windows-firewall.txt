@@ -1,0 +1,9 @@
+Windows防火墙和Windows高级安全防火墙可能阻止外部到IIS业务的访问，此时请检查这两个防火墙中是否已授权了相关服务和端口的出入站许可。
+
+Windows服务宿主{{svchost.exe}}的出入站网络访问同样可能被Windows防火墙阻止，此时请打开 [控制面板] > [Windows 防火墙] > [允许应用程序或功能通过Windows防火墙]，然后点击 [允许其他应用程序...] 按钮，并添加：
+
+[[code]]
+%SystemRoot%\System32\svchost.exe
+[[/code]]
+
+此时即可授权Windows服务宿主通过Windows防火墙。 

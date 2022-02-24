@@ -124,4 +124,4 @@ rm system.img
 make_ext4fs -s -l 314572800 -a root -L linux system.img root
 [[/code]]
 
-重建{{system.img}}并执行刷写流程即可。
+重建{{system.img}}并执行刷写流程即可。 
