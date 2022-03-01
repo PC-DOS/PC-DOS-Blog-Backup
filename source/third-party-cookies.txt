@@ -2,25 +2,25 @@
 
 这个问题影响所有基于Chromium内核的浏览器，包括Microsoft Edge[[footnote]]译注：指新的、基于Chromium内核的Microsoft Edge浏览器。[[/footnote]]。
 
-此外，当您完成登录流程后，“登录到Wikidot”弹出窗口可能会冻结[[footnote]]译注：这个现象通常表现为登录弹窗冻结在“Please wait...”文本画面。[[/footnote]]。一般情况下，登录流程在此时已经完成，您可以直接关闭这个弹出窗口，并刷新页面。
+ 此外，当您完成登录流程后，“登录到Wikidot”弹出窗口可能会冻结[[footnote]]译注：这个现象通常表现为登录弹窗冻结在“Please wait...”文本画面。[[/footnote]]。一般情况下，登录流程在此时已经完成，您可以直接关闭这个弹出窗口，并刷新页面。
 
-您可以使用[https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd Redirector]这个Chrome扩展程序自动化地完成这个跳转。请参照下图添加一条重定向规则：
+ 您可以使用[https://chrome.google.com/webstore/detail/redirector/ocgpenflpmgnfapjedencafcfakcekcd Redirector]这个Chrome扩展程序自动化地完成这个跳转。请参照下图添加一条重定向规则：
 
 [[collapsible show="+ 显示图片" hide="- 隐藏图片"]]
-[[=image redirector-extension.png]]
-[[/collapsible]]
+ [[=image redirector-extension.png]]
+ [[/collapsible]]
 
 火狐浏览器目前并没有进行导致这一问题的代码变更，同时近期亦没有添加这项功能的开发计划。因此，作为代替，您也可以考虑将Firefox作为您通过[http://scpwiki.com/ http://scpwiki.com/]域名访问SCP维基的首选浏览器。
 
-若您对此存在任何疑问，您可以在我们的用于技术问题讨论的IRC频道，{{[[[chat-guide|#site11]]]}}中提问。
+ 若您对此存在任何疑问，您可以在我们的用于技术问题讨论的IRC频道，{{[[[chat-guide|#site11]]]}}中提问。
 
 [[collapsible show="+ 技术细节" hide="- 技术细节"]]
 2020年2月10日，Chromium项目[[footnote]]知名但持有专利的浏览器Google Chrome的开源内核项目。[[/footnote]][https://www.chromium.org/updates/same-site 宣布了一项有关SameSite Cookie的强制性更改]。这项改动要求Cookie中显式使用{{SameSite=None}}标志以允许跨站行为，而不是简单地向Cookie内容中添加一个{{SameSite}}标志。Wikidot在自定义域名下的登录功能的正常运作依赖这个Cookie跨站行为。
 
-遗憾的是，由于SCP维基仅是寄宿于Wikidot的一个站点，我们无法修改Wikidot的后台代码，因此，我们无法修改Cookie的分发方式来修复这一问题。Wikidot的运营方目前并不在维护网站的基础架构，因而对这个问题的修复也是极不可能的。
+ 遗憾的是，由于SCP维基仅是寄宿于Wikidot的一个站点，我们无法修改Wikidot的后台代码，因此，我们无法修改Cookie的分发方式来修复这一问题。Wikidot的运营方目前并不在维护网站的基础架构，因而对这个问题的修复也是极不可能的。
 
-针对这一问题，目前唯一的应对方案是使用一个这一更改被强制应用之前发布的基于Chromium的浏览器版本，或使用与Wikidot相同的域名（例如，使用{{*.wikidot.com}}链接）。
+ 针对这一问题，目前唯一的应对方案是使用一个这一更改被强制应用之前发布的基于Chromium的浏览器版本，或使用与Wikidot相同的域名（例如，使用{{*.wikidot.com}}链接）。
 
-另请参考{{[https://scuttle.atlassian.net/browse/WJ-9 WJ-9]}}。
+ 另请参考{{[https://scuttle.atlassian.net/browse/WJ-9 WJ-9]}}。
 [[footnoteblock]]
-[[/collapsible]] 
+ [[/collapsible]] 

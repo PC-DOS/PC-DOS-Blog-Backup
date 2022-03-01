@@ -1,39 +1,39 @@
 打开终端，安装{{numlockx}}程序：
 
 [[code]]
-sudo apt-get install numlockx
-[[/code]]
+ sudo apt-get install numlockx
+ [[/code]]
 
 编辑{{/etc/rc.local}}文件：
 
 [[code]]
-sudo gedit /etc/rc.local
-[[/code]]
+ sudo gedit /etc/rc.local
+ [[/code]]
 
 在{{exit 0}}前，插入：
 
 [[code]]
-Numlock enable [ -x /usr/bin/numlockx ] && numlockx on
+ Numlock enable [ -x /usr/bin/numlockx ] && numlockx on
 
-for tty in /dev/tty[1-9]*;do
-    setleds -D +num < $tty
-done
-[[/code]]
+ for tty in /dev/tty[1-9]*;do
+     setleds -D +num < $tty
+ done
+ [[/code]]
 
 编辑{{/usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf}}文件：
 
 [[code]]
-sudo gedit /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
-[[/code]]
+ sudo gedit /usr/share/lightdm/lightdm.conf.d/50-unity-greeter.conf
+ [[/code]]
 
 在文件末尾加入：
 
 [[code]]
-greeter-setup-script=/usr/bin/numlockx on
-[[/code]]
+ greeter-setup-script=/usr/bin/numlockx on
+ [[/code]]
 
 参考：
 
 *https://jingyan.baidu.com/article/358570f65c46ddce4724fcbb.html
 
-*https://www.cnblogs.com/mawanglin2008/articles/2952651.html 
+ *https://www.cnblogs.com/mawanglin2008/articles/2952651.html 

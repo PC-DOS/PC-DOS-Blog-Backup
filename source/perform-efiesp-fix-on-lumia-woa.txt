@@ -1,46 +1,46 @@
 在将Windows 10 ARM64系统部署到RX-130等设备后，由于系统结构不同，对于采用默认的MS Basic Data Partition（基本数据分区）形式的EFIESP分区，尽管可以成功引导操作系统，但是可能出现配置系统（OOBE阶段）时出现“Windows安装程序无法将Windows配置为在此计算机的硬件上运行”错误导致必须修改系统注册表跳过OOBE、无法安装系统更新、MSConfig工具无法读取引导选项（BCD）文件等错误，此时应当执行EFIESP分区修正，将EFIESP分区的类型指定为EFI系统分区。
 
-具体方法如下：
+ 具体方法如下：
 
 1. 将设备关机，并以大容量存储器模式（Mass Storage Mode）将设备连接到计算机。
 
 2. 以管理员身份运行DiskPart工具，并用指令
 
 [[code]]
-list disk
-[[/code]]
+ list disk
+ [[/code]]
 
 列出所有连接到计算机的磁盘，记录设备磁盘的编号，例如“1”。
 
 3. 通过指令
 
 [[code]]
-sel disk <磁盘编号>
-[[/code]]
+ sel disk <磁盘编号>
+ [[/code]]
 
 选定设备磁盘。
 
 4. 通过指令
 
 [[code]]
-list partition
-[[/code]]
+ list partition
+ [[/code]]
 
 列出设备磁盘上的所有分区，记录EFIESP分区的编号，例如“35”。
 
 5. 通过指令
 
 [[code]]
-set partition <EFIESP分区编号>
-[[/code]]
+ set partition <EFIESP分区编号>
+ [[/code]]
 
 选定EFIESP分区。
 
 6. 通过指令
 
 [[code]]
-set id=c12a7328-f81f-11d2-ba4b-00a0c93ec93b override
-[[/code]]
+ set id=c12a7328-f81f-11d2-ba4b-00a0c93ec93b override
+ [[/code]]
 
 将EFIESP分区的类型设为EFI系统分区。
 

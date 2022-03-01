@@ -3,7 +3,7 @@
 **解决方案：**在终端中输入以下指令并安装libncurses5-dev即可：
 
 [[code]]
-sudo apt-get install libncurses5-dev
-[[/code]]
+ sudo apt-get install libncurses5-dev
+ [[/code]]
 
-**参考资料：***https://blog.csdn.net/lhf_tiger/article/details/7216021 
+ **参考资料：***https://blog.csdn.net/lhf_tiger/article/details/7216021 

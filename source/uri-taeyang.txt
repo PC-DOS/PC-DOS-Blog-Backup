@@ -1,42 +1,42 @@
 + 出处
 
 # [*https://www.bilibili.com/video/av25827250 av25827250]
-# [*https://www.bilibili.com/video/av370778036 av370778036]
+ # [*https://www.bilibili.com/video/av370778036 av370778036]
 
-+ 朝鲜字体下载
+ + 朝鲜字体下载
 
 **PKS BG Galpil（多用于标题）：** [*/local--files/dprk-music-subtles/PSBGALPL.TTF 请点击此处下载]
 
-**笔书（多用于标题）：** [*/local--files/dprk-music-subtles/kp%E7%AD%86%E6%9B%B8.ttf 请点击此处下载]
+ **笔书（多用于标题）：** [*/local--files/dprk-music-subtles/kp%E7%AD%86%E6%9B%B8.ttf 请点击此处下载]
 
-**PKS Hulim Black（多用于标题）：** [*/local--files/dprk-music-subtles/Pwkshubk_0.ttf 请点击此处下载]
+ **PKS Hulim Black（多用于标题）：** [*/local--files/dprk-music-subtles/Pwkshubk_0.ttf 请点击此处下载]
 
-**青峰 粗体（多用于新版字幕）：** [*/local--files/dprk-music-subtles/KCC-KP-CheongPong-Bold-KP-2011KPS.ttf 请点击此处下载]
+ **青峰 粗体（多用于新版字幕）：** [*/local--files/dprk-music-subtles/KCC-KP-CheongPong-Bold-KP-2011KPS.ttf 请点击此处下载]
 
-**光明 粗体（多用于旧版字幕）：** [*/local--files/dprk-music-subtles/KCC-KP-KwangMyeong-Bold-KP-2011KPS.ttf 请点击此处下载]
+ **光明 粗体（多用于旧版字幕）：** [*/local--files/dprk-music-subtles/KCC-KP-KwangMyeong-Bold-KP-2011KPS.ttf 请点击此处下载]
 
-+ 真正的原版：《没有您就没有祖国》
+ + 真正的原版：《没有您就没有祖国》
 
 [[code]]
-[Script Info]
-Title:没有您就没有祖国
+ [Script Info]
+ Title:没有您就没有祖国
 Original Script:PC-DOS
-Synch Point:1
-ScriptType:v4.00+
-Collisions:Normal
-Timer:100.0000
-PlayResX:1920
-PlayResY:1080
+ Synch Point:1
+ ScriptType:v4.00+
+ Collisions:Normal
+ Timer:100.0000
+ PlayResX:1920
+ PlayResY:1080
 
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
-Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
-Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+ [V4+ Styles]
+ Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+ Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+ Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
+ Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
-[Events]
-Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:07.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,1190,960,890,0,2450)}{\clip(0,740,1920,1040)}당신이 없으면 조국도 없다
+ [Events]
+ Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+ Dialogue: 0,0:00:00.00,0:00:07.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,1190,960,890,0,2450)}{\clip(0,740,1920,1040)}당신이 없으면 조국도 없다
 Dialogue: 0,0:00:08.13,0:00:15.69,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}사나운 폭풍도 쳐몰아내고
 Dialogue: 0,0:00:15.69,0:00:23.88,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}신념을 안겨준 {\fs100}김정일{\fs}동지
 Dialogue: 0,0:00:23.88,0:00:31.94,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}당신이 없으면 우리도 없고
@@ -51,32 +51,32 @@ Dialogue: 0,0:01:44.94,0:01:53.07,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fs
 Dialogue: 0,0:01:53.07,0:02:01.92,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}당신이 없으면 조국도 없다
 [[/code]]
 
-+ 范例字幕
+ + 范例字幕
 
 ++ 《公主殿下应援歌》
 
 *https://www.bilibili.com/video/av711131573
 
-[[code]]
-[Script Info]
-Title:没有您就没有祖国
+ [[code]]
+ [Script Info]
+ Title:没有您就没有祖国
 Original Script:PC-DOS
-Synch Point:1
-ScriptType:v4.00+
-Collisions:Normal
-Timer:100.0000
-PlayResX:1920
-PlayResY:1080
+ Synch Point:1
+ ScriptType:v4.00+
+ Collisions:Normal
+ Timer:100.0000
+ PlayResX:1920
+ PlayResY:1080
 
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
-Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
-Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+ [V4+ Styles]
+ Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+ Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+ Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
+ Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
-[Events]
-Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:07.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,1190,960,890,0,2450)}{\clip(0,740,1920,1040)}당신이 없으면 조국도 없다
+ [Events]
+ Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+ Dialogue: 0,0:00:00.00,0:00:07.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,1190,960,890,0,2450)}{\clip(0,740,1920,1040)}당신이 없으면 조국도 없다
 Dialogue: 0,0:00:08.13,0:00:15.69,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}사나운 폭풍도 쳐몰아내고
 Dialogue: 0,0:00:15.69,0:00:23.88,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}신념을 안겨준 우리 공주님
 Dialogue: 0,0:00:23.88,0:00:31.94,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}당신이 없으면 우리도 없고
@@ -91,30 +91,30 @@ Dialogue: 0,0:01:44.94,0:01:53.07,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fs
 Dialogue: 0,0:01:53.07,0:02:01.92,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}당신이 없으면 조국도 없다
 [[/code]]
 
-++ 《主体斗焕》
+ ++ 《主体斗焕》
 
 *https://www.bilibili.com/video/av841031032
 
-[[code]]
-[Script Info]
-Title:没有您就没有祖国
+ [[code]]
+ [Script Info]
+ Title:没有您就没有祖国
 Original Script:PC-DOS
-Synch Point:1
-ScriptType:v4.00+
-Collisions:Normal
-Timer:100.0000
-PlayResX:1920
-PlayResY:1080
+ Synch Point:1
+ ScriptType:v4.00+
+ Collisions:Normal
+ Timer:100.0000
+ PlayResX:1920
+ PlayResY:1080
 
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
-Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
-Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+ [V4+ Styles]
+ Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+ Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+ Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
+ Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
-[Events]
-Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:07.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,1190,960,890,0,2450)}{\clip(0,740,1920,1040)}당신이 없으면 조국도 없다
+ [Events]
+ Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+ Dialogue: 0,0:00:00.00,0:00:07.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,1190,960,890,0,2450)}{\clip(0,740,1920,1040)}당신이 없으면 조국도 없다
 Dialogue: 0,0:00:08.13,0:00:15.69,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}사나운 폭풍도 쳐몰아내고
 Dialogue: 0,0:00:15.69,0:00:23.88,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}신념을 안겨준 {\fs100}전두환{\fs}동지
 Dialogue: 0,0:00:23.88,0:00:31.94,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}당신이 없으면 우리도 없고

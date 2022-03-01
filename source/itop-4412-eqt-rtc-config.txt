@@ -2,45 +2,45 @@ Exynos 4412自带实时时钟（RTC），并且适用于Qt/E环境的Linux-Qt文
 
 + 设置系统时间：{{date}}
 
-{{date}}程序用于设置系统时间，设置方法如下：
+ {{date}}程序用于设置系统时间，设置方法如下：
 
 [[code]]
-date -s TIME
-[[/code]]
+ date -s TIME
+ [[/code]]
 
 其中，{{TIME}}为时间字符串，通常需要使用半角引号（“{{"}}”）括起，例如：
 
 [[code]]
-date -s "YYYY-MM-DD HH:mm:ss"
-[[/code]]
+ date -s "YYYY-MM-DD HH:mm:ss"
+ [[/code]]
 
 其中，{{YYYY}}为年，{{MM}}为月，{{DD}}为日，{{HH}}为小时，{{mm}}为分钟，{{ss}}为秒（{{ss}}可省略，此时使用{{00}}）。
 
 {{date}}默认工作在本地时间（Local Time）模式下，如果需要在协调世界时（UTC）模式下工作，则使用{{-u}}开关进行操作：
 
-例如，设置UTC时间：
+ 例如，设置UTC时间：
 
 [[code]]
-date -u -s "YYYY-MM-DD HH:mm:ss"
-[[/code]]
+ date -u -s "YYYY-MM-DD HH:mm:ss"
+ [[/code]]
 
 显示UTC时间：
 
 [[code]]
-date -u
-[[/code]]
+ date -u
+ [[/code]]
 
-+ 向硬件写入时间：{{hwclock}}
+ + 向硬件写入时间：{{hwclock}}
 
-{{hwclock}}用于向硬件写入时间，即更新RTC寄存器中的时间。对于iTop-4412，RTC寄存器中保留的是UTC时间。
+ {{hwclock}}用于向硬件写入时间，即更新RTC寄存器中的时间。对于iTop-4412，RTC寄存器中保留的是UTC时间。
 
-使用下面的指令将当前时间写入RTC寄存器：
+ 使用下面的指令将当前时间写入RTC寄存器：
 
 [[code]]
-hwclock -u -w
-[[/code]]
+ hwclock -u -w
+ [[/code]]
 
-{{-u}}开关表示硬件使用UTC时间，{{hwclock}}会自动将时间从当地时间翻译到UTC时间。
+ {{-u}}开关表示硬件使用UTC时间，{{hwclock}}会自动将时间从当地时间翻译到UTC时间。
 
 {{-w}}开关表示将系统时间写入硬件。
 
@@ -48,8 +48,8 @@ hwclock -u -w
 
 {{/usr/share/zoneinfo}}目录下存储了预定义的时区信息，可以将该目录下对应特定国家/地区/时区的文件复制为{{/etc/localtime}}文件，以复写默认的时区设定。
 
-例如，将时区设为中国标准时间（上海）：
+ 例如，将时区设为中国标准时间（上海）：
 
 [[code]]
-cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-[[/code]] 
+ cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ [[/code]] 

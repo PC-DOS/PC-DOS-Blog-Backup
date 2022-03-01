@@ -1,26 +1,26 @@
 Qt的{{QVector}}、{{QMap}}等容器类实现了用于对成员进行只读存取的{{value()}}和{{at()}}等接口函数。其中，{{value()}}函数允许设置一个当目标索引不存在时的默认返回值，而{{at()}}函数要求目标索引必须存在。
 
-此外，{{value()}}和{{at()}}等接口函数返回的是目标成员的一个**常量副本**，而非标准C++ STL中近似的容器类的相关函数所定义的常量引用。
+ 此外，{{value()}}和{{at()}}等接口函数返回的是目标成员的一个**常量副本**，而非标准C++ STL中近似的容器类的相关函数所定义的常量引用。
 
-即，在Qt中{{value()}}和{{at()}}等接口函数的定义为：
-
-[[code type="Cpp"]]
-const T value(const Key &key, const T &defaultValue = T()) const;
-const T &QVector::at(int i) const;
-[[/code]]
-
-C++ STL中{{at()}}函数的定义为：
+ 即，在Qt中{{value()}}和{{at()}}等接口函数的定义为：
 
 [[code type="Cpp"]]
-const mapped_type& at (const key_type& k) const;
-[[/code]]
+ const T value(const Key &key, const T &defaultValue = T()) const;
+ const T &QVector::at(int i) const;
+ [[/code]]
+
+ C++ STL中{{at()}}函数的定义为：
+
+[[code type="Cpp"]]
+ const mapped_type& at (const key_type& k) const;
+ [[/code]]
 
 参考资料：
 
 *https://doc.qt.io/qt-5/qmap.html
 
-*https://doc.qt.io/qt-5/qvector.html
+ *https://doc.qt.io/qt-5/qvector.html
 
-*https://www.cplusplus.com/reference/map/map/
+ *https://www.cplusplus.com/reference/map/map/
 
-*https://www.cplusplus.com/reference/vector/vector/ 
+ *https://www.cplusplus.com/reference/vector/vector/ 

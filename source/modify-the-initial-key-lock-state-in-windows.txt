@@ -1,17 +1,17 @@
 注册表路径:
 
-[[code]]
-HKU\.DEFAULT\Control Panel\Keyboard\
-[[/code]]
+ [[code]]
+ HKU\.DEFAULT\Control Panel\Keyboard\
+ [[/code]]
 
-DWORD值{{InitialKeyboardIndicators}}控制系统开机时三个锁定键，即{{CapsLock}}、{{NumLock}}和{{ScrollLock}}的初始状态
+ DWORD值{{InitialKeyboardIndicators}}控制系统开机时三个锁定键，即{{CapsLock}}、{{NumLock}}和{{ScrollLock}}的初始状态
 
 ||~ 可用的设定值(十进制) ||~ 含义 ||
-||= 0 || 关闭所有键锁定 ||
-||= 1 || 仅开启{{CapsLock}} ||
-||= 2 || 仅开启{{NumLock}} ||
-||= 3 || 开启{{CapsLock}}与{{NumLock}} ||
-||= 4 || 仅开启{{ScrollLock}} ||
-||= 5 || 开启{{CapsLock}}与{{ScrollLock}} ||
-||= 6 || 开启{{NumLock}}与{{ScrollLock}} ||
-||= 7 || 开启全部键锁定 || 
+ ||= 0 || 关闭所有键锁定 ||
+ ||= 1 || 仅开启{{CapsLock}} ||
+ ||= 2 || 仅开启{{NumLock}} ||
+ ||= 3 || 开启{{CapsLock}}与{{NumLock}} ||
+ ||= 4 || 仅开启{{ScrollLock}} ||
+ ||= 5 || 开启{{CapsLock}}与{{ScrollLock}} ||
+ ||= 6 || 开启{{NumLock}}与{{ScrollLock}} ||
+ ||= 7 || 开启全部键锁定 || 

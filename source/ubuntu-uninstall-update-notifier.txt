@@ -1,5 +1,5 @@
 在终端中执行：
 
 [[code]]
-sudo apt-get purge update-notifier update-manager
-[[/code]] 
+ sudo apt-get purge update-notifier update-manager
+ [[/code]] 

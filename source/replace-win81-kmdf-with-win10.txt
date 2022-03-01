@@ -2,35 +2,35 @@
 
 Windows 8.1可以支持到Windows 10版本1709的KMDF 1.23版，不过对于来自Windows 10版本1511版本以上的KMDF框架驱动程序文件（{{Wdf01000.sys}}）需要修改文件名字和导入注册表使其生效。随着KMDF的迁移，Windows 10所使用的一些内置驱动也可以跟着迁移。
 
-对于来自高版本Windows 10的KMDF文件，需要提取下面两个文件：
+ 对于来自高版本Windows 10的KMDF文件，需要提取下面两个文件：
 
 * {{SleepStudyHelper.sys}}
-* {{Wdf01000.sys}}
+ * {{Wdf01000.sys}}
 
 提取的{{Wdf01000.sys}}需要改名为{{Wdf01001.sys}}，并替换到目标Windows 8.1系统的{{%SystemRoot%\System32\Drivers}}目录内，随后，导入下面的注册表内容，并重新启动系统：
 
 [[code]]
-Windows Registry Editor Version 5.00
+ Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Wdf\Kmdf\KmdfLibrary\Versions\1]
-"Service"="Wdf01001"
+ [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Wdf\Kmdf\KmdfLibrary\Versions\1]
+ "Service"="Wdf01001"
 
-[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Wdf01001]
-"Start"=dword:00000000
-"DisplayName"="@%SystemRoot%\\system32\\drivers\\Wdf01001.sys,-1000"
-"ErrorControl"=dword:00000001
-"Group"="WdfLoadGroup"
-"ImagePath"=hex(2):73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,64,00,\
-  72,00,69,00,76,00,65,00,72,00,73,00,5c,00,57,00,64,00,66,00,30,00,31,00,30,\
-  00,30,00,31,00,2e,00,73,00,79,00,73,00,00,00
-"Type"=dword:00000001
+ [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Wdf01001]
+ "Start"=dword:00000000
+ "DisplayName"="@%SystemRoot%\\system32\\drivers\\Wdf01001.sys,-1000"
+ "ErrorControl"=dword:00000001
+ "Group"="WdfLoadGroup"
+ "ImagePath"=hex(2):73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,64,00,\
+   72,00,69,00,76,00,65,00,72,00,73,00,5c,00,57,00,64,00,66,00,30,00,31,00,30,\
+   00,30,00,31,00,2e,00,73,00,79,00,73,00,00,00
+ "Type"=dword:00000001
 
-[-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Wdf01000]
-[[/code]]
+ [-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Wdf01000]
+ [[/code]]
 
 操作后，可能需要使用{{bcdedit}}命令行工具，打开Windows测试模式：
 
 [[code]]
-bcdedit -set testsigning on
-bcdedit -set debug on
-[[/code]] 
+ bcdedit -set testsigning on
+ bcdedit -set debug on
+ [[/code]] 

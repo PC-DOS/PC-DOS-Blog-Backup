@@ -1,15 +1,15 @@
 因性能和网络连接性问题，Dism++已关闭自动检测和下载Windows Update离线数据库的功能。对于已安装的Dism++，这可能表现为点击相关动作按钮后无响应；对于新安装的Dism++，这可能表现为出现“系统找不到指定的文件”错误对话框。
 
-您可能需要从初雨团队官方的GitHub发布页面下载数据库文件。
+ 您可能需要从初雨团队官方的GitHub发布页面下载数据库文件。
 
-发布页面：*https://github.com/Chuyu-Team/Dism-Multi-language/releases/
+ 发布页面：*https://github.com/Chuyu-Team/Dism-Multi-language/releases/
 
-FastGit反向代理服务提供的镜像：*https://hub.fastgit.org/Chuyu-Team/Dism-Multi-language/releases/
+ FastGit反向代理服务提供的镜像：*https://hub.fastgit.org/Chuyu-Team/Dism-Multi-language/releases/
 
 请下载{{wsusscn3.cab}}文件，并将其放置到Dism++主程序所在目录的{{Config}}子目录内。
 
-您可能希望使用GitHub传递加速服务，例如：
+ 您可能希望使用GitHub传递加速服务，例如：
 
 *https://g.ioiox.com/
 
-*https://hub.fastgit.org/ 
+ *https://hub.fastgit.org/ 

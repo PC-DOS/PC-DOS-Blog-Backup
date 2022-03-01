@@ -1,65 +1,65 @@
 + 获取源代码
-首先，从 *https://iperf.fr/iperf-download.php#source 获取iPerf源代码并在Linux开发机上使用{{tar}}指令解压缩：
+ 首先，从 *https://iperf.fr/iperf-download.php#source 获取iPerf源代码并在Linux开发机上使用{{tar}}指令解压缩：
 
 [[code]]
-tar -vxf ./iperf-3.1.3-source.tar.gz
-[[/code]]
+ tar -vxf ./iperf-3.1.3-source.tar.gz
+ [[/code]]
 
 得到{{iperf-3.1.3}}文件夹。
 
 + 配置编译器
 
-首先请确保已经正确安装了ARM交叉编译器，假设这里安装的编译器可执行文件位于
+ 首先请确保已经正确安装了ARM交叉编译器，假设这里安装的编译器可执行文件位于
 
 [[code]]
-/usr/local/arm/arm-2009q3/bin
-[[/code]]
+ /usr/local/arm/arm-2009q3/bin
+ [[/code]]
 
 目录内。
 
-在终端中执行：
+ 在终端中执行：
 
 [[code]]
-gedit ~/.bashrc
-[[/code]]
+ gedit ~/.bashrc
+ [[/code]]
 
 确保已经在环境变量中添加ARM交叉编译器，如果没有，可在文件末尾添加：
 
 [[code]]
-#Compiler path for ARM
-export PATH=$PATH:/usr/local/arm/arm-2009q3/bin
-[[/code]]
+ #Compiler path for ARM
+ export PATH=$PATH:/usr/local/arm/arm-2009q3/bin
+ [[/code]]
 
 保存并退出编辑器，回到终端中执行：
 
 [[code]]
-source ~/.bashrc
-[[/code]]
+ source ~/.bashrc
+ [[/code]]
 
 更新环境变量。
 
 + 获取编译器前缀
 
-在终端中输入
+ 在终端中输入
 
 [[code]]
-arm
-[[/code]]
+ arm
+ [[/code]]
 
 并按两次{{TAB}}键，即可得到一系列类似“{{arm-none-linux-gnueabi-g++}}”的输出，其中，“{{g++}}”前的“{{arm-none-linux-gnueabi-}}”字段（请注意：包括末尾的减号符号）即为交叉编译器前缀。
 
 + 配置并编译
 
-在终端中使用{{cd}}命令进入前面得到的{{iperf-3.1.3}}文件夹。执行：
+ 在终端中使用{{cd}}命令进入前面得到的{{iperf-3.1.3}}文件夹。执行：
 
 [[code]]
-./configure --host=arm CXX=arm-none-linux-gnueabi-g++ CC=arm-none-linux-gnueabi-gcc
-make
-[[/code]]
+ ./configure --host=arm CXX=arm-none-linux-gnueabi-g++ CC=arm-none-linux-gnueabi-gcc
+ make
+ [[/code]]
 
 请注意将范例代码中的“{{arm-none-linux-gnueabi-}}”前缀进行替换。
 
-编译成功后得到的二进制文件{{iperf3}}位于{{iperf-3.1.3}}文件夹下的{{src}}目录内。
+ 编译成功后得到的二进制文件{{iperf3}}位于{{iperf-3.1.3}}文件夹下的{{src}}目录内。
 
 + 参考资料
 

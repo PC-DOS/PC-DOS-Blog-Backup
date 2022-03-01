@@ -2,6 +2,6 @@
 
 部分View-Source路径：
 
-主页面：@@view-source:http://jsstm.jszwfw.gov.cn/jkmIndex.html@@
+ 主页面：@@view-source:http://jsstm.jszwfw.gov.cn/jkmIndex.html@@
 
 跳转页面：@@view-source:http://jsstm.jszwfw.gov.cn/reload.html@@ 

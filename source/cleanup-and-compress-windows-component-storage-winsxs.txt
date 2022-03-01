@@ -1,15 +1,15 @@
 WinSxS（{{%SystemRoot%\WinSxS\}}）目录存储了Windows组件的不同版本的副本，用于提供兼容性和修补程序卸载支撑。该目录可能具有较大的体积，通过Microsoft提供的{{Dism}}命令行工具，可以有效地清理和压缩该目录的大小。
 
-警告：将WinSxS整个删除是极其危险的，并很可能导致操作系统和/或应用程序无法正常启动和执行。下述命令行工具均应以系统管理员身份调用。
+ 警告：将WinSxS整个删除是极其危险的，并很可能导致操作系统和/或应用程序无法正常启动和执行。下述命令行工具均应以系统管理员身份调用。
 
 + 清理WinSxS
 
-{{Dism}}命令行工具提供了WinSxS清理指令。该指令将删除WinSxS中组件的替换版本：
+ {{Dism}}命令行工具提供了WinSxS清理指令。该指令将删除WinSxS中组件的替换版本：
 
 [[code]]
-Dism /Online /Cleanup-Image /StartComponentCleanup /ResetBase
-Dism /Online /Cleanup-Image /SPSuperseded
-[[/code]]
+ Dism /Online /Cleanup-Image /StartComponentCleanup /ResetBase
+ Dism /Online /Cleanup-Image /SPSuperseded
+ [[/code]]
 
 完成该操作后，将无法卸载已经安装的更新和服务包。
 
@@ -18,21 +18,21 @@ Dism /Online /Cleanup-Image /SPSuperseded
 可以使用下面的指令，分析WinSxS的存储空间占用：
 
 [[code]]
-Dism /Online /Cleanup-Image /AnalyzeComponentStore
-[[/code]]
+ Dism /Online /Cleanup-Image /AnalyzeComponentStore
+ [[/code]]
 
-+ 版本兼容性
+ + 版本兼容性
 
 Windows Vista、Windows Server 2008和早期版本的Windows 7、Windows Server 2008 R2内置的{{Dism}}命令行工具可能不支持上面的指令，请使用{{CompCln}}作为替代。
 
 [[code]]
-CompCln
-[[/code]]
+ CompCln
+ [[/code]]
 
-+ 参考资料
+ + 参考资料
 
 *https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/clean-up-the-winsxs-folder
 
-*https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/determine-the-actual-size-of-the-winsxs-folder
+ *https://docs.microsoft.com/zh-cn/windows-hardware/manufacture/desktop/determine-the-actual-size-of-the-winsxs-folder
 
-*https://support.microsoft.com/zh-cn/topic/%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8-vista-%E6%97%B6-c-%E9%A9%B1%E5%8A%A8%E5%99%A8%E7%9A%84%E5%B7%B2%E7%94%A8%E7%A9%BA%E9%97%B4%E5%BF%AB%E9%80%9F%E5%A2%9E%E5%8A%A0-268722b8-d556-7f45-76be-4a6d45c22609 
+ *https://support.microsoft.com/zh-cn/topic/%E4%B8%BA%E4%BD%95%E4%BD%BF%E7%94%A8-vista-%E6%97%B6-c-%E9%A9%B1%E5%8A%A8%E5%99%A8%E7%9A%84%E5%B7%B2%E7%94%A8%E7%A9%BA%E9%97%B4%E5%BF%AB%E9%80%9F%E5%A2%9E%E5%8A%A0-268722b8-d556-7f45-76be-4a6d45c22609 

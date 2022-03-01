@@ -1,22 +1,22 @@
 + 文件位置
 
-安装版本：{{%APPDATA%\Mozilla\Firefox\Profiles\}}
+ 安装版本：{{%APPDATA%\Mozilla\Firefox\Profiles\}}
 
-Portable版本：{{Data\Profile}}
+ Portable版本：{{Data\Profile}}
 
-+ 备份/恢复操作
+ + 备份/恢复操作
 
-请备份以下文件：
+ 请备份以下文件：
 
 [[code]]
-places.sqlite
-favicons.sqlite
-favicons.sqlite-shm
-places.sqlite-shm
-favicons.sqlite-wal
-places.sqlite-wal
-[[/code]]
+ places.sqlite
+ favicons.sqlite
+ favicons.sqlite-shm
+ places.sqlite-shm
+ favicons.sqlite-wal
+ places.sqlite-wal
+ [[/code]]
 
-+ 另请参考
+ + 另请参考
 
 [[[backup-firefox-saved-logins|]]] 

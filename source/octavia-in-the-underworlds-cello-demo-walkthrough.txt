@@ -1,81 +1,81 @@
 [[module css]]
-.promptbox .collapsible-block-link{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
-}
-.promptbox .collapsible-block-link:hover{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
-}
-.promptbox .collapsible-block-unfolded-link .collapsible-block-link{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
-}
-.promptbox .collapsible-block-unfolded-link .collapsible-block-link:hover{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
-}
-[[/module]]
+ .promptbox .collapsible-block-link{
+     color: black;
+     font-size: 150%;
+     font-weight: bold;
+     text-decoration: none;
+ }
+ .promptbox .collapsible-block-link:hover{
+     color: black;
+     font-size: 150%;
+     font-weight: bold;
+     text-decoration: none;
+ }
+ .promptbox .collapsible-block-unfolded-link .collapsible-block-link{
+     color: black;
+     font-size: 150%;
+     font-weight: bold;
+     text-decoration: none;
+ }
+ .promptbox .collapsible-block-unfolded-link .collapsible-block-link:hover{
+     color: black;
+     font-size: 150%;
+     font-weight: bold;
+     text-decoration: none;
+ }
+ [[/module]]
 
-[[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ; float: center; border: solid 2px #000000; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **本文尚未完成** [[/size]]##
-----
-[[size larger]] **本文尚未完成且可能被放弃，请注意。**[[/size]]
+ [[=]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ; float: center; border: solid 2px #000000; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **本文尚未完成** [[/size]]##
+ ----
+ [[size larger]] **本文尚未完成且可能被放弃，请注意。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
-[[/=]]
-@@@@
-[[=]]
-[[div class="promptbox" style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2); padding-top: 15px;"]]
-[[collapsible show="+ 写给异常地点探索者的简要提示" hide="写给异常地点探索者的简要提示"]]
+ [[/=]]
+ @@@@
+ [[=]]
+ [[div class="promptbox" style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2); padding-top: 15px;"]]
+ [[collapsible show="+ 写给异常地点探索者的简要提示" hide="写给异常地点探索者的简要提示"]]
 ----
 [[<]]
-[[size larger]]**1. 平和的心态最为重要，尽管异常地点通常是压抑而阴森的，但是，还请注意想办法平复情绪。过于紧张的情绪只会带来慌乱、粗心和疯癫，乃至死亡或是更不好的后果。保持冷静，保持警惕。**[[/size]]
-[[size larger]]**2. 在异常地点之中，危险无处不在，不要乱走，不要乱碰，不要靠近那些看起来就很危险的东西。保持谨慎，保持警惕。**[[/size]]
-[[size larger]]**3. 在异常地点之中，现实扭曲、空间扭曲之类，都是常见现象，眼见未必为实。还有注意那些不是异常现象但可能随时杀了您的机关。保持观察，保持警惕。**[[/size]]
-[[size larger]]**4. 在异常地点之中的实体不一定都是友善的，尽管可能有善意的存在，但是更多的情况下，它们可能随时想杀了您或让您为它们所用。更可怕的是，先前的朋友可能瞬间成为敌马，或是用一个圈套骗您上钩。保持审慎，保持警惕。**[[/size]]
-[[size larger]]**5. 探索总会有所得，不要骄傲，不要冒进。保持谦逊，保持警惕。**[[/size]]
-[[size larger]]**6. 工具总是有必要的，如果您不是装备精良的专业探索者，试着从异常地点里面找些东西吧，不过这意味着多了几分风险。同时，携带过多的物品也会带来行动不便之类的风险。保持轻便，保持警惕。**[[/size]]
-@@ @@
-[[size larger]]**敬祝一路平安**[[/size]]
-@@ @@
-[[size larger]]**您真诚的**[[/size]]
-[[size larger]]**Dr. Picsell Dois**[[/size]]
-[[/<]]
-[[/collapsible]]
+ [[size larger]]**1. 平和的心态最为重要，尽管异常地点通常是压抑而阴森的，但是，还请注意想办法平复情绪。过于紧张的情绪只会带来慌乱、粗心和疯癫，乃至死亡或是更不好的后果。保持冷静，保持警惕。**[[/size]]
+ [[size larger]]**2. 在异常地点之中，危险无处不在，不要乱走，不要乱碰，不要靠近那些看起来就很危险的东西。保持谨慎，保持警惕。**[[/size]]
+ [[size larger]]**3. 在异常地点之中，现实扭曲、空间扭曲之类，都是常见现象，眼见未必为实。还有注意那些不是异常现象但可能随时杀了您的机关。保持观察，保持警惕。**[[/size]]
+ [[size larger]]**4. 在异常地点之中的实体不一定都是友善的，尽管可能有善意的存在，但是更多的情况下，它们可能随时想杀了您或让您为它们所用。更可怕的是，先前的朋友可能瞬间成为敌马，或是用一个圈套骗您上钩。保持审慎，保持警惕。**[[/size]]
+ [[size larger]]**5. 探索总会有所得，不要骄傲，不要冒进。保持谦逊，保持警惕。**[[/size]]
+ [[size larger]]**6. 工具总是有必要的，如果您不是装备精良的专业探索者，试着从异常地点里面找些东西吧，不过这意味着多了几分风险。同时，携带过多的物品也会带来行动不便之类的风险。保持轻便，保持警惕。**[[/size]]
+ @@ @@
+ [[size larger]]**敬祝一路平安**[[/size]]
+ @@ @@
+ [[size larger]]**您真诚的**[[/size]]
+ [[size larger]]**Dr. Picsell Dois**[[/size]]
+ [[/<]]
+ [[/collapsible]]
 
 控制 · 收容 · 保护
 [[/div]]
-[[/=]]
-@@@@
-[[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f5af00; float: center; border: solid 2px #f56400; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **安适海角警方友情提醒** [[/size]]##
+ [[/=]]
+ @@@@
+ [[=]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f5af00; float: center; border: solid 2px #f56400; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **安适海角警方友情提醒** [[/size]]##
 
------
+ -----
 
-[[size larger]] **当您遇到异常现象时，请不要惊慌，注意自身安全，撤离事发地点。**[[/size]]
-[[size larger]] **确保安全后，请及时拨打安适海角警方24小时热线。**[[/size]]
-[[size 150%]] **727**[[/size]]
-[[size larger]] **或**[[/size]]
-[[size 150%]] **7777-222-7**[[/size]]
+ [[size larger]] **当您遇到异常现象时，请不要惊慌，注意自身安全，撤离事发地点。**[[/size]]
+ [[size larger]] **确保安全后，请及时拨打安适海角警方24小时热线。**[[/size]]
+ [[size 150%]] **727**[[/size]]
+ [[size larger]] **或**[[/size]]
+ [[size 150%]] **7777-222-7**[[/size]]
 
-Secure Cape Police
-[[/div]]
-[[/=]]
+ Secure Cape Police
+ [[/div]]
+ [[/=]]
 
 
-+ Octavia in the Underworld's Cello Demo 2.0部分
+ + Octavia in the Underworld's Cello Demo 2.0部分
 
 1. 在第一进厨房得到木勺，并在第二进厨房得到平底锅，将两项物件合并，吓退厨房连接到的楼梯间的木狼并得到小储物盒的钥匙。
 
@@ -105,51 +105,51 @@ Secure Cape Police
 [[collapsible show="后院蜜蜂分支" hide="后院蜜蜂分支"]]
 如果试图登上后院的绳梯，会遭到蜜蜂的攻击。因此，因注意在尝试登梯前从厨房连接到的楼梯间前往位于二楼卫生间的药品箱中拿取橙色的抗过敏药剂以及水槽边的广告名片，触发蜜蜂追逐剧情后立刻回到安全屋，对话结束后立刻将抗过敏药剂拖放到Octavia头像上，对话结束后再次将广告名片拖放到Octavia头像上以取出残留的蜂针。
 
-在触发蜜蜂追逐剧情前不拿取广告名片也是可以的，但是抗过敏药剂必须事先获取（否则进入安全屋后立刻因过敏引发窒息死亡），且应在使用完抗过敏药剂后尽快从厨房连接到的楼梯间前往二楼卫生间从水槽边拾取广告名片并对自身使用取出毒针，此处限时，超时则因过敏引发窒息死亡。
+ 在触发蜜蜂追逐剧情前不拿取广告名片也是可以的，但是抗过敏药剂必须事先获取（否则进入安全屋后立刻因过敏引发窒息死亡），且应在使用完抗过敏药剂后尽快从厨房连接到的楼梯间前往二楼卫生间从水槽边拾取广告名片并对自身使用取出毒针，此处限时，超时则因过敏引发窒息死亡。
 [[/collapsible]]
-@@@@
-[[collapsible show="后院花圃分支" hide="后院花圃分支"]]
+ @@@@
+ [[collapsible show="后院花圃分支" hide="后院花圃分支"]]
 在后院左侧方向有一5 x 5矩阵布局的花圃，描述如下：
 
 || 红色，三角形茎，锥形叶 || 橙色，三角形茎，方形叶 || 蓝色，三角形茎，上指叶 || 黄色，三角形茎，锥形叶 || 紫色，三角形茎，方形叶 ||
-|| 红色，双旋形茎，下垂叶 || 橙色，双旋形茎，方形叶 || 蓝色，双旋形茎，锥形叶 || 黄色，双旋形茎，伞形叶 || 紫色，双旋形茎，下垂叶 ||
-|| 红色，钻石形茎，上指叶 || 橙色，钻石形茎，方形叶 || 蓝色，钻石形茎，上指叶 || 黄色，钻石形茎，下垂叶 || 紫色，钻石形茎，伞形叶 ||
-|| 红色，闪电形茎，锥形叶 || 橙色，闪电形茎，伞形叶 || 蓝色，闪电形茎，上指叶 || 黄色，闪电形茎，伞形叶 || 紫色，闪电形茎，下垂叶 ||
-|| 红色，直线形茎，上指叶 || 橙色，直线形茎，方形叶 || 蓝色，直线形茎，伞形叶 || 黄色，直线形茎，锥形叶 || 紫色，直线形茎，下垂叶 ||
+ || 红色，双旋形茎，下垂叶 || 橙色，双旋形茎，方形叶 || 蓝色，双旋形茎，锥形叶 || 黄色，双旋形茎，伞形叶 || 紫色，双旋形茎，下垂叶 ||
+ || 红色，钻石形茎，上指叶 || 橙色，钻石形茎，方形叶 || 蓝色，钻石形茎，上指叶 || 黄色，钻石形茎，下垂叶 || 紫色，钻石形茎，伞形叶 ||
+ || 红色，闪电形茎，锥形叶 || 橙色，闪电形茎，伞形叶 || 蓝色，闪电形茎，上指叶 || 黄色，闪电形茎，伞形叶 || 紫色，闪电形茎，下垂叶 ||
+ || 红色，直线形茎，上指叶 || 橙色，直线形茎，方形叶 || 蓝色，直线形茎，伞形叶 || 黄色，直线形茎，锥形叶 || 紫色，直线形茎，下垂叶 ||
 
 同列第一元素相同，同行第二元素相同，化简得：
 
 || 锥形叶 || 方形叶 || 上指叶 || 锥形叶 || 方形叶 ||
-|| 下垂叶 || 方形叶 || 锥形叶 || 伞形叶 || 下垂叶 ||
-|| 上指叶 || 方形叶 || 上指叶 || 下垂叶 || 伞形叶 ||
-|| 锥形叶 || 伞形叶 || 上指叶 || 伞形叶 || 下垂叶 ||
-|| 上指叶 || 方形叶 || 伞形叶 || 锥形叶 || 下垂叶 ||
+ || 下垂叶 || 方形叶 || 锥形叶 || 伞形叶 || 下垂叶 ||
+ || 上指叶 || 方形叶 || 上指叶 || 下垂叶 || 伞形叶 ||
+ || 锥形叶 || 伞形叶 || 上指叶 || 伞形叶 || 下垂叶 ||
+ || 上指叶 || 方形叶 || 伞形叶 || 锥形叶 || 下垂叶 ||
 
 穷举验证的第二行第四列“黄色，双旋形茎，伞形叶”为安全的花。接触其他的花会导致被寄生并死亡。
 
-从安全的花可以得到黄色花瓣。
+ 从安全的花可以得到黄色花瓣。
 [[/collapsible]]
-@@@@
-[[collapsible show="游戏厅台球台分支" hide="游戏厅台球台分支"]]
+ @@@@
+ [[collapsible show="游戏厅台球台分支" hide="游戏厅台球台分支"]]
 由于所给台球共有编号为{{1}}至{{15}}的共计15只球，又{{Σ,,@@{i = 1 To 15}@@,,(i) = 120 = 20 * 6}}，故设法使6个洞内球的编号和（即6个洞的分值）均为20，且球不重不漏即可。
 
-组合方式为：
+ 组合方式为：
 
 [[code]]
-20 = 15+4+1
-20 = 14+6
-20 = 13+5+2
-20 = 12+8
-20 = 11+9
-20 = 10+7+3
-[[/code]]
+ 20 = 15+4+1
+ 20 = 14+6
+ 20 = 13+5+2
+ 20 = 12+8
+ 20 = 11+9
+ 20 = 10+7+3
+ [[/code]]
 
 备注：此处的思考方式可以先考虑编号大的球，并尽可能将编号小的球分配给编号大的球。
 
-操作完成后，得到琴弦。
+ 操作完成后，得到琴弦。
 [[/collapsible]]
 
-9. 在餐厅连接到的楼梯间，用从卫生间水槽下得到的杀虫剂杀死蜘蛛，再用从工具箱中获取的扳手移除蜘蛛网，可以通往二楼左侧部分。注意：不要搜索二楼儿童房的床底，否则会被不明生物啃咬导致全身组织器官坏死死亡。同时不要试图推动堵住路面的柜子，会被倒下的家具砸压致死。
+ 9. 在餐厅连接到的楼梯间，用从卫生间水槽下得到的杀虫剂杀死蜘蛛，再用从工具箱中获取的扳手移除蜘蛛网，可以通往二楼左侧部分。注意：不要搜索二楼儿童房的床底，否则会被不明生物啃咬导致全身组织器官坏死死亡。同时不要试图推动堵住路面的柜子，会被倒下的家具砸压致死。
 
 [[collapsible show="一楼餐厅瓷盘摆放顺序" hide="一楼餐厅瓷盘摆放顺序"]]
 在二楼儿童房的独立床头柜中，可发现《Sun & Moon》图画书一本，该书给出的排列顺序为：
@@ -157,17 +157,17 @@ Secure Cape Police
 > 第一页：粉色叶子树，太阳，绿色叶子树
 > 第二页：黄色叶子数，月亮，枯树
 
-在二楼卫生间，使用扳手拧开下水道，得到钥匙。
+ 在二楼卫生间，使用扳手拧开下水道，得到钥匙。
 
-回到餐厅，用钥匙打开橱柜，将瓷器依照其印花如下排列：
+ 回到餐厅，用钥匙打开橱柜，将瓷器依照其印花如下排列：
 
 > 左列从上到下：太阳，粉色叶子树，绿色叶子树
 > 右列从上到下：月亮，黄色叶子数，枯树
 
-排列完成后，柜子下方一层抽屉打开，得到卷轴（无法查看）。
+ 排列完成后，柜子下方一层抽屉打开，得到卷轴（无法查看）。
 [[/collapsible]]
 
-10. 在二楼游戏室和鬼魂赌命，玩“High-Low游戏”（该游戏规则如下：庄家（鬼魂）取{{2}}至{{A}}共计13张不重不漏的牌，开局时先抽出一张，由玩家（Octavia）猜下一张抽出的牌比当前牌大还是小，猜错达指定次数则玩家失败，若直到牌堆空玩家错误次数未超过指定次数，则玩家胜利）。胜利后鬼魂告知玩家“Wax Bomb”卷轴位于游戏室沙发背后，调查沙发得到“Wax Bomb”卷轴。注意：不要再次和鬼魂赌命玩三牌猜{{A}}，必输。
+ 10. 在二楼游戏室和鬼魂赌命，玩“High-Low游戏”（该游戏规则如下：庄家（鬼魂）取{{2}}至{{A}}共计13张不重不漏的牌，开局时先抽出一张，由玩家（Octavia）猜下一张抽出的牌比当前牌大还是小，猜错达指定次数则玩家失败，若直到牌堆空玩家错误次数未超过指定次数，则玩家胜利）。胜利后鬼魂告知玩家“Wax Bomb”卷轴位于游戏室沙发背后，调查沙发得到“Wax Bomb”卷轴。注意：不要再次和鬼魂赌命玩三牌猜{{A}}，必输。
 
 11. 配制药水“Wax Bomb”
 > 11.1 携带缠绕有蜘蛛网的扳手，前往第一进厨房，调查右手侧的橱柜，得到面粉，将面粉与缠绕有蜘蛛网的扳手结合，得到裹有面粉的蜘蛛网。

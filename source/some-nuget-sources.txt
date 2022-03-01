@@ -2,30 +2,30 @@
 
 **CNBlogs**
 
-[[code]]
-https://nuget.cnblogs.com/v3/index.json
-[[/code]]
+ [[code]]
+ https://nuget.cnblogs.com/v3/index.json
+ [[/code]]
 
-**Azure.cn**
+ **Azure.cn**
 
-[[code]]
-https://nuget.cdn.azure.cn/v3/index.json
-[[/code]]
+ [[code]]
+ https://nuget.cdn.azure.cn/v3/index.json
+ [[/code]]
 
-**Huawei**
+ **Huawei**
 
-[[code]]
-https://repo.huaweicloud.com/repository/nuget/v3/index.json
-[[/code]]
+ [[code]]
+ https://repo.huaweicloud.com/repository/nuget/v3/index.json
+ [[/code]]
 
-**Tencent**
+ **Tencent**
 
-[[code]]
-https://mirrors.cloud.tencent.com/nuget/
-[[/code]]
+ [[code]]
+ https://mirrors.cloud.tencent.com/nuget/
+ [[/code]]
 
-**NuGet V2 （默认）**
+ **NuGet V2 （默认）**
 
-[[code]]
-https://www.nuget.org/api/v2/
-[[/code]] 
+ [[code]]
+ https://www.nuget.org/api/v2/
+ [[/code]] 

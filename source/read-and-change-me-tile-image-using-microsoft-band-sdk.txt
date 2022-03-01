@@ -3,79 +3,42 @@
 Visual Basic.NET代码：
 
 [[code]]
-Imports Microsoft.Band
-Imports Microsoft.Band.Tiles
-Imports Microsoft.Band.Admin
-Imports Microsoft.Band.Personalization
-Imports System.IO
-Imports System.Windows.Media
-Imports System.Windows.Media.Imaging
-Imports Microsoft.WindowsAPICodePack.Dialogs
-[[/code]]
+ Imports Microsoft.Band
+ Imports Microsoft.Band.Tiles
+ Imports Microsoft.Band.Admin
+ Imports Microsoft.Band.Personalization
+ Imports System.IO
+ Imports System.Windows.Media
+ Imports System.Windows.Media.Imaging
+ Imports Microsoft.WindowsAPICodePack.Dialogs
+ [[/code]]
 
-+ 通用变量
+ + 通用变量
 
-通过{{Microsoft.Band.IBandClient}}类型或{{Microsoft.Band.Admin.ICargoClient}}类型的变量{{BandClient}}，表示一个已经连接的Microsoft Band对象。
+ 通过{{Microsoft.Band.IBandClient}}类型或{{Microsoft.Band.Admin.ICargoClient}}类型的变量{{BandClient}}，表示一个已经连接的Microsoft Band对象。
 
-该对象通过{{BandConnectionManager}}模块封装。
+ 该对象通过{{BandConnectionManager}}模块封装。
 
 [[code]]
-Imports Microsoft.Band
-Imports Microsoft.Band.Tiles
-Imports Microsoft.Band.Admin
-Imports Microsoft.Band.Personalization
-Module BandConnectionManager
-    Public BandClient As ICargoClient
-    Public BandClientLimited As IBandClient
-    Public CurrentBandClass As BandClass = BandClass.Unknown
-End Module
-[[/code]]
+ Imports Microsoft.Band
+ Imports Microsoft.Band.Tiles
+ Imports Microsoft.Band.Admin
+ Imports Microsoft.Band.Personalization
+ Module BandConnectionManager
+     Public BandClient As ICargoClient
+     Public BandClientLimited As IBandClient
+     Public CurrentBandClass As BandClass = BandClass.Unknown
+ End Module
+ [[/code]]
 
-+ 读取Microsoft Band的主磁贴背景图像
+ + 读取Microsoft Band的主磁贴背景图像
 
-通过{{Microsoft.Band.Admin.ICargoClient.GetMeTileImageAsync()}}或{{Microsoft.Band.IBandClient.PersonalizationManager.GetMeTileImageAsync()}}方法，读取{{Microsoft.Band.Personalization.BandImage}}类型的主磁贴（Me Tile）背景图像。{{Microsoft.Band.Personalization.BandImage}}提供了{{ToWriteableBitmap()}}方法，将{{Microsoft.Band.Personalization.BandImage}}转换为{{System.Windows.Media.Imaging.WriteableBitmap}}。
+ 通过{{Microsoft.Band.Admin.ICargoClient.GetMeTileImageAsync()}}或{{Microsoft.Band.IBandClient.PersonalizationManager.GetMeTileImageAsync()}}方法，读取{{Microsoft.Band.Personalization.BandImage}}类型的主磁贴（Me Tile）背景图像。{{Microsoft.Band.Personalization.BandImage}}提供了{{ToWriteableBitmap()}}方法，将{{Microsoft.Band.Personalization.BandImage}}转换为{{System.Windows.Media.Imaging.WriteableBitmap}}。
 
 Visual Basic.NET代码：
 
 [[code]]
-Try
-    Dim BandImage As BandImage
-    BandImage = Await BandClient.PersonalizationManager.GetMeTileImageAsync()
-    Dim BandImageBitmap As WriteableBitmap
-    BandImageBitmap = BandImage.ToWriteableBitmap()
-    CurrentBandMeTileImage = BandImageBitmap
-    imgMeTileImage.Source = BandImageBitmap
-    imgMeTileImage.Tag = "CurrentBandMeTileImage"
-Catch ex As Exception
-    MessageBox.Show("試圖獲取主動態磚背景圖片時發生例外情況: " & ex.Message, "錯誤", MessageBoxButton.OK, MessageBoxImage.Error)
-    imgMeTileImage.Source = Nothing
-    CurrentBandMeTileImage = Nothing
-    imgMeTileImage.Tag = ""
-End Try
-[[/code]]
-
-+ 设置Microsoft Band的主磁贴背景图像
-
-对于Microsoft Band第一代而言，该设备需要将传入的图像修改为长310像素、宽（高）102像素的尺寸，且需使用Pbgra32进行像素编码。{{System.Windows.Media.Imaging.WriteableBitmap}}提供了{{ToBandImage()}}方法，将{{System.Windows.Media.Imaging.WriteableBitmap}}转换为{{Microsoft.Band.Personalization.BandImage}}。
-
-Visual Basic.NET代码：
-
-[[code]]
-Private Async Sub btnSetMeTileImage_Click(sender As Object, e As RoutedEventArgs) Handles btnSetMeTileImage.Click
-    'Code adapted from unBand
-    Try
-     Dim BitmapSource As New BitmapImage()
-     BitmapSource = imgMeTileImage.Source
-     BitmapSource.DecodePixelHeight = 102
-     BitmapSource.DecodePixelWidth = 310
-     Dim Pbgra32Image = New FormatConvertedBitmap(BitmapSource, PixelFormats.Pbgra32, Nothing, 0)
-     Dim NewMeTileImage As New WriteableBitmap(Pbgra32Image)
-     Dim NewBandMeTileImage As BandImage = NewMeTileImage.ToBandImage()
-     Await BandClient.PersonalizationManager.SetMeTileImageAsync(NewBandMeTileImage)
-    Catch ex As Exception
-     MessageBox.Show("試圖設置主動態磚背景圖片時發生例外情況: " & ex.Message, "錯誤", MessageBoxButton.OK, MessageBoxImage.Error)
-    End Try
-    Try
+ Try
      Dim BandImage As BandImage
      BandImage = Await BandClient.PersonalizationManager.GetMeTileImageAsync()
      Dim BandImageBitmap As WriteableBitmap
@@ -83,9 +46,46 @@ Private Async Sub btnSetMeTileImage_Click(sender As Object, e As RoutedEventArgs
      CurrentBandMeTileImage = BandImageBitmap
      imgMeTileImage.Source = BandImageBitmap
      imgMeTileImage.Tag = "CurrentBandMeTileImage"
-    Catch ex As Exception
+ Catch ex As Exception
      MessageBox.Show("試圖獲取主動態磚背景圖片時發生例外情況: " & ex.Message, "錯誤", MessageBoxButton.OK, MessageBoxImage.Error)
+     imgMeTileImage.Source = Nothing
+     CurrentBandMeTileImage = Nothing
      imgMeTileImage.Tag = ""
-    End Try
-End Sub
-[[/code]] 
+ End Try
+ [[/code]]
+
+ + 设置Microsoft Band的主磁贴背景图像
+
+ 对于Microsoft Band第一代而言，该设备需要将传入的图像修改为长310像素、宽（高）102像素的尺寸，且需使用Pbgra32进行像素编码。{{System.Windows.Media.Imaging.WriteableBitmap}}提供了{{ToBandImage()}}方法，将{{System.Windows.Media.Imaging.WriteableBitmap}}转换为{{Microsoft.Band.Personalization.BandImage}}。
+
+Visual Basic.NET代码：
+
+[[code]]
+ Private Async Sub btnSetMeTileImage_Click(sender As Object, e As RoutedEventArgs) Handles btnSetMeTileImage.Click
+     'Code adapted from unBand
+     Try
+      Dim BitmapSource As New BitmapImage()
+      BitmapSource = imgMeTileImage.Source
+      BitmapSource.DecodePixelHeight = 102
+      BitmapSource.DecodePixelWidth = 310
+      Dim Pbgra32Image = New FormatConvertedBitmap(BitmapSource, PixelFormats.Pbgra32, Nothing, 0)
+      Dim NewMeTileImage As New WriteableBitmap(Pbgra32Image)
+      Dim NewBandMeTileImage As BandImage = NewMeTileImage.ToBandImage()
+      Await BandClient.PersonalizationManager.SetMeTileImageAsync(NewBandMeTileImage)
+     Catch ex As Exception
+      MessageBox.Show("試圖設置主動態磚背景圖片時發生例外情況: " & ex.Message, "錯誤", MessageBoxButton.OK, MessageBoxImage.Error)
+     End Try
+     Try
+      Dim BandImage As BandImage
+      BandImage = Await BandClient.PersonalizationManager.GetMeTileImageAsync()
+      Dim BandImageBitmap As WriteableBitmap
+      BandImageBitmap = BandImage.ToWriteableBitmap()
+      CurrentBandMeTileImage = BandImageBitmap
+      imgMeTileImage.Source = BandImageBitmap
+      imgMeTileImage.Tag = "CurrentBandMeTileImage"
+     Catch ex As Exception
+      MessageBox.Show("試圖獲取主動態磚背景圖片時發生例外情況: " & ex.Message, "錯誤", MessageBoxButton.OK, MessageBoxImage.Error)
+      imgMeTileImage.Tag = ""
+     End Try
+ End Sub
+ [[/code]] 

@@ -1,0 +1,5 @@
+**现象：**执行{{git add .}}指令签入更改时，出现一系列“{{fatal: git status --porcelain failed}}”错误。
+
+**故障处理：**跟踪错误提示指示的目录，发现这些目录中同样存在{{.git}}目录，将这些{{.git}}目录移除，问题解决。
+
+**参考资料：***https://stackoverflow.com/questions/5456683/why-do-i-get-fatal-git-status-porcelain-failed 

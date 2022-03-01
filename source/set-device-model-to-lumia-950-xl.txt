@@ -1,67 +1,67 @@
 [[module css]]
-.win10-link-button {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    color: #fff;
-    background-color: #004b91;
-    padding: 0.75em;
-    font-size: 105%;
-    text-decoration:none;
-}
+ .win10-link-button {
+     margin-top: 1em;
+     margin-bottom: 1em;
+     color: #fff;
+     background-color: #004b91;
+     padding: 0.75em;
+     font-size: 105%;
+     text-decoration:none;
+ }
 
-.win10-link-button:hover {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    color: #fff;
-    background-color: #0073d7;
-    padding: 0.75em;
-    font-size: 105%;
-    text-decoration:none;
-}
-[[/module]]
+ .win10-link-button:hover {
+     margin-top: 1em;
+     margin-bottom: 1em;
+     color: #fff;
+     background-color: #0073d7;
+     padding: 0.75em;
+     font-size: 105%;
+     text-decoration:none;
+ }
+ [[/module]]
 
 使用前，请先备份原来的机型数据，重置设备也可以恢复机型数据。
 
 + 用于在设备上直接导入的注册表文件
 
-您可以通过Interop Tools等工具，直接在设备上导入这个REG文件。
+ 您可以通过Interop Tools等工具，直接在设备上导入这个REG文件。
 
 [[code]]
-Windows Registry Editor Version 5.00
+ Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\SYSTEM\Platform\DeviceTargetingInfo]
-"PhoneHardwareVariant"="RM-1116"
-"PhoneManufacturer"="MicrosoftMDG"
-"PhoneManufacturerModelName"="RM-1116_11258"
-"PhoneMobileOperatorName"="000-CN"
-"PhoneModelName"="RM-1116"
-[[/code]]
+ [HKEY_LOCAL_MACHINE\SYSTEM\Platform\DeviceTargetingInfo]
+ "PhoneHardwareVariant"="RM-1116"
+ "PhoneManufacturer"="MicrosoftMDG"
+ "PhoneManufacturerModelName"="RM-1116_11258"
+ "PhoneMobileOperatorName"="000-CN"
+ "PhoneModelName"="RM-1116"
+ [[/code]]
 
 您可以从以下链接下载这个REG文件：
 
 *http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL.reg
 
-[[a href="*http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL.reg" class="win10-link-button"]]下载文件[[/a]]
+ [[a href="*http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL.reg" class="win10-link-button"]]下载文件[[/a]]
 
-+ 用于在大容量存储器模式下导入的注册表文件
+ + 用于在大容量存储器模式下导入的注册表文件
 
-开始前，请将设备以大容量存储器模式（Mass Storage Mode）连接到计算机，并将{{MainOS}}分区的{{\Windows\System32\Config\SYSTEM}}注册表储巢挂载在本机的{{HKEY_LOCAL_MACHINE}}主键下，并命名为{{0}}。
+ 开始前，请将设备以大容量存储器模式（Mass Storage Mode）连接到计算机，并将{{MainOS}}分区的{{\Windows\System32\Config\SYSTEM}}注册表储巢挂载在本机的{{HKEY_LOCAL_MACHINE}}主键下，并命名为{{0}}。
 
-然后，请导入下述REG文件：
+ 然后，请导入下述REG文件：
 
 [[code]]
-Windows Registry Editor Version 5.00
+ Windows Registry Editor Version 5.00
 
-[HKEY_LOCAL_MACHINE\0\Platform\DeviceTargetingInfo]
-"PhoneHardwareVariant"="RM-1116"
-"PhoneManufacturer"="MicrosoftMDG"
-"PhoneManufacturerModelName"="RM-1116_11258"
-"PhoneMobileOperatorName"="000-TW"
-"PhoneModelName"="RM-1116"
-[[/code]]
+ [HKEY_LOCAL_MACHINE\0\Platform\DeviceTargetingInfo]
+ "PhoneHardwareVariant"="RM-1116"
+ "PhoneManufacturer"="MicrosoftMDG"
+ "PhoneManufacturerModelName"="RM-1116_11258"
+ "PhoneMobileOperatorName"="000-TW"
+ "PhoneModelName"="RM-1116"
+ [[/code]]
 
 您可以从以下链接下载这个REG文件：
 
 *http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL_ImportInMSC.reg
 
-[[a href="*http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL_ImportInMSC.reg" class="win10-link-button"]]下载文件[[/a]] 
+ [[a href="*http://pc-dos.wdfiles.com/local--files/set-device-model-to-lumia-950-xl/SetModelToLumia950XL_ImportInMSC.reg" class="win10-link-button"]]下载文件[[/a]] 

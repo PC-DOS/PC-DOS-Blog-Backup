@@ -1,23 +1,23 @@
 ++ 本页用于测试页面技术
 
 [[div class="content-panel centered standalone"]]
-[[div class="welcome"]]
-[[module ListUsers users="."]]
-[[size 150%]]## green|身份认证已通过，欢迎回来，基金会职员 %%title%%。##[[/size]]
-[[/module]]
-[[size 150%]]## red|身份认证未通过，请检查您的身份识别和访问权限。##[[/size]]
-[[/div]]
-[[/div]]
+ [[div class="welcome"]]
+ [[module ListUsers users="."]]
+ [[size 150%]]## green|身份认证已通过，欢迎回来，基金会职员 %%title%%。##[[/size]]
+ [[/module]]
+ [[size 150%]]## red|身份认证未通过，请检查您的身份识别和访问权限。##[[/size]]
+ [[/div]]
+ [[/div]]
 
-+++ 来自SCP-CN-790
+ +++ 来自SCP-CN-790
 
-[[div class="textchange"]]
-[[module ListUsers users="."]]
-[[div class="sitemember"]]
+ [[div class="textchange"]]
+ [[module ListUsers users="."]]
+ [[div class="sitemember"]]
 基金会职员███"%%title%%"应被严格控制于项目的收容单元外。
 [[/div]]
-[[/module]]
-[[div class="sitemember"]]
+ [[/module]]
+ [[div class="sitemember"]]
 基金会职员███"Markdown"应被严格控制于项目的收容单元外。
 [[/div]]
-[[/div]] 
+ [[/div]] 

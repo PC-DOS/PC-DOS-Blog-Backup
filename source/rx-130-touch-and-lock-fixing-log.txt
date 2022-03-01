@@ -1,31 +1,31 @@
 [[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ; float: center; border: solid 2px #000000; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **仅为实验记录** [[/size]]##
-----
-[[size larger]] **本文仅为实验记录，不建议将其作为解决实际问题的方略，请注意。**[[/size]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ; float: center; border: solid 2px #000000; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **仅为实验记录** [[/size]]##
+ ----
+ [[size larger]] **本文仅为实验记录，不建议将其作为解决实际问题的方略，请注意。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
-[[/=]]
+ [[/=]]
 
-[[toc]]
+ [[toc]]
 
-+ 代码格式
+ + 代码格式
 
 [[code]]
-PATH\TO\TARGET\FILE\OR\REGISTRY\ITEM
-(Type)FileOrRegistryItem: OriginalValueOrData -> NewValueOrData
-[[/code]]
+ PATH\TO\TARGET\FILE\OR\REGISTRY\ITEM
+ (Type)FileOrRegistryItem: OriginalValueOrData -> NewValueOrData
+ [[/code]]
 
-+ 屏载IMEI后四位：_4097
+ + 屏载IMEI后四位：_4097
 
-**型号：**RX-130
+ **型号：**RX-130
 
-**固件版本：**Lumia 950XL固件，Build 10.0.15063.603
+ **固件版本：**Lumia 950XL固件，Build 10.0.15063.603
 
-++ 异常现象
+ ++ 异常现象
 
-正常启动、重新启动或长按电源键重新启动时可以正常使用，但是
+ 正常启动、重新启动或长按电源键重新启动时可以正常使用，但是
 
 * 按下电源按钮锁定屏幕后，无法再次点亮屏幕。已设置锁定屏幕变暗超时为10秒。
 * 等待屏幕超时并关闭后，按下电源按钮可以点亮屏幕，但是触控功能失效。
@@ -33,9 +33,9 @@ PATH\TO\TARGET\FILE\OR\REGISTRY\ITEM
 ++ 2020年4月11日
 
 [[code]]
-HKLM\SYSTEM\TOUCH\Settigns
-(DWORD)UseControllerSellep: 0x00000001 -> 0x00000000
+ HKLM\SYSTEM\TOUCH\Settigns
+ (DWORD)UseControllerSellep: 0x00000001 -> 0x00000000
 
-HKLM\SOFTWARE\Microsoft\Shell\Hover
-(DWORD)Start: 0x00000001 -> 0x00000000
-[[/code]] 
+ HKLM\SOFTWARE\Microsoft\Shell\Hover
+ (DWORD)Start: 0x00000001 -> 0x00000000
+ [[/code]] 

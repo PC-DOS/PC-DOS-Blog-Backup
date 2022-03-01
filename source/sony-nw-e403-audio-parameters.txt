@@ -2,8 +2,8 @@
 
 **使用的工具：**SonicStage V
 
-**编码：**{{MPEG1 Audio Layer3}}
+ **编码：**{{MPEG1 Audio Layer3}}
 
-**码率：**{{128 kbps}}
+ **码率：**{{128 kbps}}
 
-**采样率：**{{44.1 kHz}} 
+ **采样率：**{{44.1 kHz}} 

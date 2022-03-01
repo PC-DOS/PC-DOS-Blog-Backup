@@ -3,5 +3,5 @@
 **解决方案：**在{{/lib/modules/}}目录下新建错误提示中指明的目录：
 
 [[code]]
-mkdir /lib/modules/X.X.X
-[[/code]] 
+ mkdir /lib/modules/X.X.X
+ [[/code]] 

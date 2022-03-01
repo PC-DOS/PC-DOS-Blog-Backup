@@ -1,27 +1,27 @@
 命令提示符启动路径：
 
 [[code]]
-%EFIESP%\EFI\Microsft\Boot
-[[/code]]
+ %EFIESP%\EFI\Microsft\Boot
+ [[/code]]
 
 命令语句：
 
 [[code]]
-bcdedit -store bcd -set {globalsettings} chargethreshold MinimalChargePercentageToBoot
-[[/code]] 
+ bcdedit -store bcd -set {globalsettings} chargethreshold MinimalChargePercentageToBoot
+ [[/code]] 
 
 其中{{MinimalChargePercentageToBoot}}指示启动所需的最低电量，范围为0到100之间的整数。该方法适用于某些固件指定的充电门限过低导致极端情况下无法完成系统引导，但可以进行基础充电并支持设备进入大容量存储器模式的设备。
 
-需要注意的是，在某些设备上，修改该值将导致设备无法在不连接电源的情况下完成引导，此时，请在设备充电成功后，回到目录
+ 需要注意的是，在某些设备上，修改该值将导致设备无法在不连接电源的情况下完成引导，此时，请在设备充电成功后，回到目录
 
 [[code]]
-%EFIESP%\EFI\Microsft\Boot
-[[/code]]
+ %EFIESP%\EFI\Microsft\Boot
+ [[/code]]
 
 打开命令提示符，并执行下列指令：
 
 [[code]]
-bcdedit /store bcd /deletevalue {globalsettings} chargethreshold
-[[/code]]
+ bcdedit /store bcd /deletevalue {globalsettings} chargethreshold
+ [[/code]]
 
 删除该值。 

@@ -1,5 +1,5 @@
 在控制面板中打开 [程序和功能] 界面，或在 [运行] 对话框（按Windows徽标键+R键调出）中输入“appwiz.cpl”并按回车键调出。
 
-点击左侧窗格的 [添加或删除 Windows 功能] 链接，在弹出的对话框中勾选 [Microsoft Print to PDF]，并按确定键。
+ 点击左侧窗格的 [添加或删除 Windows 功能] 链接，在弹出的对话框中勾选 [Microsoft Print to PDF]，并按确定键。
 
-即可重新安装Microsoft Print to PDF虚拟打印机。 
+ 即可重新安装Microsoft Print to PDF虚拟打印机。 

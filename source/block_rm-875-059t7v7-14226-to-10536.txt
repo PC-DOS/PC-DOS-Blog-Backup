@@ -1,134 +1,134 @@
 [[code]]
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mobilecore.updateos.spkg_0c9a696dcfeaa80fdad3e4a936f4a5d0eb8aa1e4.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production.spkg_b0b882ca68291b814d6445713c005aba352423a7.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2015/03/microsoft.tools.studyid310.spkg_f0ebea59378d82675403b5432882c29f76b0e91d.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.updateos.production.spkg_a5977ebc628c87815573e1675cd2f02eccac67f1.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.efiesp.production.spkg_e55f81426f042c0cafe88b01d08957bd2af92a71.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.phonefm.spkg_43bef878297a88261b1c1780c0a17ff857b7cfd7.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ar-sa.spkg_33a864b16376275bda8cb64ebaf4ab63404bf52b.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_az-latn-az.spkg_cba9309f039ca5e8cc63fe776538b48203a519de.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_be-by.spkg_7c9603789a7e9d3f4ed6a5ac3ab273fc64f1d783.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_bg-bg.spkg_5df1fbdf8b824d928962019d63c16c0d6f9df737.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ca-es.spkg_93c26c5068245d7e8b934d8ac8bbee6048f1a86c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_cs-cz.spkg_3cbc8d264471788de965ea9163c25d9d42870906.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_da-dk.spkg_b5c06012a1644816d42f28ba7cbf51b6125be8e1.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_de-de.spkg_098847affd4f471668f3149045688a552c74a29c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_el-gr.spkg_b2a6ffedc465a3f2be4a000889695ca270484646.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_en-gb.spkg_2e8887eeff3ed5db0126ba62e71ce70a0f1363d6.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_en-us.spkg_c1611f1d56e82c19ffd51f8ef243c7977d367e1f.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_es-es.spkg_9785aba2c13ccc8bfb650694e3ed6c266713f9f0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_es-mx.spkg_82deae0e158cf58113b4de93a22cd7c173e0498d.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_et-ee.spkg_7961ea04ab4f523ba13772773017bf4acee61453.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fa-ir.spkg_8b886538f340375b4d22757531f640913e0974b2.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fi-fi.spkg_32a24504d30acea9c5f739ce3a9234db2fe189af.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fil-ph.spkg_06b8277879a95245632207aad3c55a8f01318960.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fr-fr.spkg_c6bed145f7f7e3b2cbe5b979f1ac1b3e5a231de7.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_he-il.spkg_c4e17e2ed12937303a7098e70b95d86bc78b9fe0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_hi-in.spkg_f75fa79d1b4bb40cbcef45b9a53d9c95318a7108.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_hr-hr.spkg_097afc6e3690b5ffa09d8e75188b7adcf9cbe069.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_hu-hu.spkg_426b9d257593a1e795c2f65e1411b70e95197cec.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_id-id.spkg_63c27d4dd89f762f762f8747cfa29b3eaa6b0d93.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_it-it.spkg_df57054ea4f4b132eef62ef31a124e99829e0111.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ja-jp.spkg_2b632c7042a6c6b58e2ef72a26e2c97d395e4d9c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_kk-kz.spkg_acdce2e68c58b2e42923c818ec0f682f9cfd2a2b.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ko-kr.spkg_383a58599ba5387411056e53f8b42225f97ff4b5.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_lt-lt.spkg_1a1de56ac6246a4250ebddc27ef585bf2b961c74.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_lv-lv.spkg_93d2726bf5030a0878c8d74c571f1723b0814b3c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_mk-mk.spkg_b2f7fcc18ee47fa39711d17c073076533e1d2f5a.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ms-my.spkg_99e158554ed51d0692eacf0550dd096358bc7746.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_nb-no.spkg_1e218623a27fc50e98d492bb99c0b0b8f6465da7.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_nl-nl.spkg_736f63a273bd71b360240a571712bce7ea96928e.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_pl-pl.spkg_8df28bb986f6ba89f766b3b5c075ebbcbdd87889.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_pt-br.spkg_1d3a6c17b9d39c97b8b37d5c5c26f672f0b72ac6.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_pt-pt.spkg_aa67a3f7d8c59ff5feb1d61f9079828bd05c60fc.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ro-ro.spkg_697052f5bf860fd14b25b0a6334ba9800492abe3.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ru-ru.spkg_84ce551a16e5d957dd9d6bad925d81a1f1d344a4.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sk-sk.spkg_9287b9e7fa0f8dd549c48a92875d25c4111e4280.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sl-si.spkg_0ccf3181ce24711aa0b0721e55d8bacf3b6bad3f.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sq-al.spkg_d73d1f3c3bef686bb7450fc516e7fdf9c3e1175a.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sr-latn-rs.spkg_b28e411dfa04d75795e5e9df8ac7e9516a874817.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sv-se.spkg_a2663181158aa5b079630606810701eb0a628296.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_th-th.spkg_4dfecd442baaad6823920bbce4f2bc564b9855b0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_tr-tr.spkg_41612ddc3b4b7705a2275472fb4e48ec2e4189d5.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_uk-ua.spkg_253ff73800d5d85d934e7f0040822c97a2331306.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_uz-latn-uz.spkg_bb8d5a2430c35c24688305a82530c276ff01132f.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_vi-vn.spkg_2917a2a3e175b0ea23e57547551edcd22746cac8.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_zh-cn.spkg_154f635f5297509a33af0984a20cc281d620f463.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_zh-tw.spkg_937617b27f067ca95dcc1389348ad8d132e97340.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_res_768x1280.spkg_0f654b468560140d03f38e3625d4aa1159507d8a.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_optimized_boot.mainos.spkg_b124f613b13764e25c6fd61a3d97b115e6e2d52f.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mobilecore.prod.mainos.spkg_294c1d6f65014652b2f1693edd64c7b7bd571922.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mobilecore.prod.efiesp.spkg_374e87dae277f96d474c66ce9da270b9b5b7c076.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.release_production.mainos.spkg_31ba222b9647425edb95ff3ee8954e2fc569990e.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.release_production.efiesp.spkg_b81595af20b15b2ff70e21c14e488e8cc27b13e0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.release_production.updateos.spkg_665ed7388191dbac37e44defcaf21569457d038a.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_standard_feature_1.mainos.spkg_9b5bfefd3acb1ba042a806a2037c00673da2427f.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_mmosloader_retail.mainos.spkg_f73a7f36a478fabc3e86f55e731e473dc46cf42c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_mmosloader_retail.efiesp.spkg_72bf99a09fe7261c96de29e3ee94ef3a16206a05.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_facebook.mainos.spkg_69330b398b69d275bfc08134ae3abf4876ce4100.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_bingapps.mainos.spkr_58ad49827c1459bf42b5085fe9ba482efd81260f.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_bingfood.mainos.spkr_3baca714001303ce71c2c85dfe882c9c6858f155.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_binghealth.mainos.spkr_95a7547af0a6cc9cc935ab9c095862d5f35c0ba5.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_bingtravel.mainos.spkr_468b74b66cfc92d3673677e8c9f52d8ff121a26b.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos.spkg_7c64db3264b1776c9468a01dd2fc812c409277d3.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_skype.mainos.spkg_62722368fc9e1c85477ed6a696011090a47bbd13.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ar-sa.spkg_0811421f585c2a3379aa4d9b574fd2503143b3e1.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_az-latn-az.spkg_9d116d00b18569f3adb753a435177bf4a7eba7b3.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_be-by.spkg_d9e6f93fc3e3cefbc1396eb2def27a41efabcd57.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_bg-bg.spkg_9e5fc2835281a83e6870496e5b1d49fe173505ff.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ca-es.spkg_0c88df9dbf212679d912ba25120d59f478754d66.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_cs-cz.spkg_6773e79d87643221a11edba3d5321c097e25e935.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_da-dk.spkg_33ebf4b681259b2f277355b6db799917cb0be6a2.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_de-de.spkg_4ce452827039bb5e1023e926eb12a5e024467375.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_el-gr.spkg_e46e322a1f30c86034c6f8f82eff13c9b9398de8.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_en-gb.spkg_f962360ab9481ceee2ae4e82f2aa75d813c5265d.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_en-us.spkg_81fbdb11990b05c07481b39e7c714f33879053f0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_es-es.spkg_a37d4cbcdc54205df0adb27c4290705012f5ccfc.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_es-mx.spkg_afd44d2d19be11b8f04f66cc3907faba83c141b3.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_et-ee.spkg_4a94679ce2ff9560b6bf16940e5bc0a6035296be.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fa-ir.spkg_7f848c7b339e85784f209fe79eeaaa92cac23d44.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fi-fi.spkg_801ddc9730052da259570f1254f8fcb156b2eb94.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fil-ph.spkg_d67ce1f74f81b80e1278a8ddd7d1f8ffe89b66ab.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fr-fr.spkg_6f38acb3c31075d0c2ee9e99d2cd8e35f33f4826.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_he-il.spkg_d37b156419f520cc6fbdde05f74f8d5b4340b54e.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_hi-in.spkg_ad167c8f2c98a575fccfc5180780621b36d2cd0c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_hr-hr.spkg_35430eea4cc9bce9e76061af0f7ec745534079ed.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_hu-hu.spkg_7521d50adc0cb861a119cc73cb1de5be115e8a01.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_id-id.spkg_729a002c927adde36f63338cf079bdda31e3b4d0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_it-it.spkg_2c85192785a06e68dad7c42bb6e42d31c6c1597a.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ja-jp.spkg_a130d2ee5ac62184d0d80e0b7ce0b15eb1e5d0c1.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_kk-kz.spkg_f88b5d720280e334816f528afb26799e10898dd6.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ko-kr.spkg_c19eb2fb57ae9963e72256962a7b93fb0a09a5e4.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_lt-lt.spkg_a54f173fb1383a243b22d7127488141bdabb9d95.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_lv-lv.spkg_06539ff727efc0d19ad8a0b457672b82a02ca912.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_mk-mk.spkg_79b76cd2413e47e6acd79a2d889bee78d2b10326.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ms-my.spkg_99642670d1137fb7302fcf48dc051a6ebe74f24e.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_nb-no.spkg_406bfffc7c088ff630361e72c7447bf6c577113e.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_nl-nl.spkg_aae0bf644c46d74aa9627853b6373cd39d4b0743.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_pl-pl.spkg_f0b62ac485c44e66558f841cf90893149f158143.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_pt-br.spkg_a70b471e26300eb63e0f2d42ec934249dffaad51.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_pt-pt.spkg_3bb48576a978a221cd47b4f18662738373c4fdf0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ro-ro.spkg_7fb622477f3be1d4a08a76393b48cf756e2dfbf2.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ru-ru.spkg_53f075e5f184cd1b126f80789d3246b3c49224b8.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sk-sk.spkg_13812517297388f86f21b47f4d1e4dad29372332.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sl-si.spkg_b17b30d4d102bd870cad7c12678cc6150010101b.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sq-al.spkg_0eb8cd077545a78b425fcdf2d30efa853ad1d7a2.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sr-latn-rs.spkg_15556608b20c5a91c8332130ba9f6b19f145d564.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sv-se.spkg_02e1a83abe775938fe7477e809b39079d004ce04.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_th-th.spkg_710b13b5189129669e340a83fceaffbbdcf0aa83.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_tr-tr.spkg_56feb2d9c4fdc88661a7205fee825c0e72d4ad66.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_uk-ua.spkg_759c5858f0cc73a3b323de41e802f7cdaef3332c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_uz-latn-uz.spkg_c670ddefccaf7e2cc056c92b90b281e96021c266.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_vi-vn.spkg_a9aced36912e3d57ed3b2c1666548a9d0283b938.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_zh-cn.spkg_dd0842de65145b4780fd18de040d9666cf7aedf1.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_zh-tw.spkg_26184f00774f8b0d0a20e9ccbddd2e9bddca8343.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_res_768x1280.spkg_e6a44007f1e268c4347e88c2d4a9aa9824ac6125.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.soc_qc8960.mainos.spkg_8ce04f249b0df1e7ba2fbcfad42305fe079063f0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.soc_qc8960.updateos.spkg_443bf0b2702e5141dc2662eebbd0873eb4783867.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.devicelayout_qc8960.mainos.spkg_a3b5b2df89cf5c70cb9d81895d520f0b32f6a7c3.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.input.mtf_lang_de-de.spkg_bb0415e56eb77c27c758b42cfe0fa3f6fc9cfa46.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.input.mtf_lang_en-us.spkg_3a96953223fac32eb170d6cf293c8bf0f46a5767.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.input.mtf_lang_fr-ch.spkg_dcb7c1f7faa4453ed4f9c14a33db6f014aec4588.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.speech.data_lang_en-us.spkg_28def440659083ef24a5571d8f428108b57ddb3d.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2015/09/microsoft.ms_commsmessagingglobal.mainos.spkg_c23e4af85210ee74eade34fc8e3afe41c26fe7c2.cab
-[[/code]] 
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mobilecore.updateos.spkg_0c9a696dcfeaa80fdad3e4a936f4a5d0eb8aa1e4.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production.spkg_b0b882ca68291b814d6445713c005aba352423a7.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2015/03/microsoft.tools.studyid310.spkg_f0ebea59378d82675403b5432882c29f76b0e91d.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.updateos.production.spkg_a5977ebc628c87815573e1675cd2f02eccac67f1.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.efiesp.production.spkg_e55f81426f042c0cafe88b01d08957bd2af92a71.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.phonefm.spkg_43bef878297a88261b1c1780c0a17ff857b7cfd7.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ar-sa.spkg_33a864b16376275bda8cb64ebaf4ab63404bf52b.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_az-latn-az.spkg_cba9309f039ca5e8cc63fe776538b48203a519de.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_be-by.spkg_7c9603789a7e9d3f4ed6a5ac3ab273fc64f1d783.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_bg-bg.spkg_5df1fbdf8b824d928962019d63c16c0d6f9df737.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ca-es.spkg_93c26c5068245d7e8b934d8ac8bbee6048f1a86c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_cs-cz.spkg_3cbc8d264471788de965ea9163c25d9d42870906.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_da-dk.spkg_b5c06012a1644816d42f28ba7cbf51b6125be8e1.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_de-de.spkg_098847affd4f471668f3149045688a552c74a29c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_el-gr.spkg_b2a6ffedc465a3f2be4a000889695ca270484646.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_en-gb.spkg_2e8887eeff3ed5db0126ba62e71ce70a0f1363d6.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_en-us.spkg_c1611f1d56e82c19ffd51f8ef243c7977d367e1f.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_es-es.spkg_9785aba2c13ccc8bfb650694e3ed6c266713f9f0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_es-mx.spkg_82deae0e158cf58113b4de93a22cd7c173e0498d.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_et-ee.spkg_7961ea04ab4f523ba13772773017bf4acee61453.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fa-ir.spkg_8b886538f340375b4d22757531f640913e0974b2.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fi-fi.spkg_32a24504d30acea9c5f739ce3a9234db2fe189af.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fil-ph.spkg_06b8277879a95245632207aad3c55a8f01318960.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_fr-fr.spkg_c6bed145f7f7e3b2cbe5b979f1ac1b3e5a231de7.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_he-il.spkg_c4e17e2ed12937303a7098e70b95d86bc78b9fe0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_hi-in.spkg_f75fa79d1b4bb40cbcef45b9a53d9c95318a7108.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_hr-hr.spkg_097afc6e3690b5ffa09d8e75188b7adcf9cbe069.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_hu-hu.spkg_426b9d257593a1e795c2f65e1411b70e95197cec.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_id-id.spkg_63c27d4dd89f762f762f8747cfa29b3eaa6b0d93.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_it-it.spkg_df57054ea4f4b132eef62ef31a124e99829e0111.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ja-jp.spkg_2b632c7042a6c6b58e2ef72a26e2c97d395e4d9c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_kk-kz.spkg_acdce2e68c58b2e42923c818ec0f682f9cfd2a2b.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ko-kr.spkg_383a58599ba5387411056e53f8b42225f97ff4b5.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_lt-lt.spkg_1a1de56ac6246a4250ebddc27ef585bf2b961c74.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_lv-lv.spkg_93d2726bf5030a0878c8d74c571f1723b0814b3c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_mk-mk.spkg_b2f7fcc18ee47fa39711d17c073076533e1d2f5a.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ms-my.spkg_99e158554ed51d0692eacf0550dd096358bc7746.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_nb-no.spkg_1e218623a27fc50e98d492bb99c0b0b8f6465da7.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_nl-nl.spkg_736f63a273bd71b360240a571712bce7ea96928e.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_pl-pl.spkg_8df28bb986f6ba89f766b3b5c075ebbcbdd87889.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_pt-br.spkg_1d3a6c17b9d39c97b8b37d5c5c26f672f0b72ac6.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_pt-pt.spkg_aa67a3f7d8c59ff5feb1d61f9079828bd05c60fc.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ro-ro.spkg_697052f5bf860fd14b25b0a6334ba9800492abe3.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_ru-ru.spkg_84ce551a16e5d957dd9d6bad925d81a1f1d344a4.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sk-sk.spkg_9287b9e7fa0f8dd549c48a92875d25c4111e4280.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sl-si.spkg_0ccf3181ce24711aa0b0721e55d8bacf3b6bad3f.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sq-al.spkg_d73d1f3c3bef686bb7450fc516e7fdf9c3e1175a.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sr-latn-rs.spkg_b28e411dfa04d75795e5e9df8ac7e9516a874817.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_sv-se.spkg_a2663181158aa5b079630606810701eb0a628296.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_th-th.spkg_4dfecd442baaad6823920bbce4f2bc564b9855b0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_tr-tr.spkg_41612ddc3b4b7705a2275472fb4e48ec2e4189d5.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_uk-ua.spkg_253ff73800d5d85d934e7f0040822c97a2331306.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_uz-latn-uz.spkg_bb8d5a2430c35c24688305a82530c276ff01132f.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_vi-vn.spkg_2917a2a3e175b0ea23e57547551edcd22746cac8.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_zh-cn.spkg_154f635f5297509a33af0984a20cc281d620f463.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_lang_zh-tw.spkg_937617b27f067ca95dcc1389348ad8d132e97340.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mainos.production_res_768x1280.spkg_0f654b468560140d03f38e3625d4aa1159507d8a.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_optimized_boot.mainos.spkg_b124f613b13764e25c6fd61a3d97b115e6e2d52f.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mobilecore.prod.mainos.spkg_294c1d6f65014652b2f1693edd64c7b7bd571922.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.mobilecore.prod.efiesp.spkg_374e87dae277f96d474c66ce9da270b9b5b7c076.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.release_production.mainos.spkg_31ba222b9647425edb95ff3ee8954e2fc569990e.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.release_production.efiesp.spkg_b81595af20b15b2ff70e21c14e488e8cc27b13e0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.release_production.updateos.spkg_665ed7388191dbac37e44defcaf21569457d038a.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_standard_feature_1.mainos.spkg_9b5bfefd3acb1ba042a806a2037c00673da2427f.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_mmosloader_retail.mainos.spkg_f73a7f36a478fabc3e86f55e731e473dc46cf42c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_mmosloader_retail.efiesp.spkg_72bf99a09fe7261c96de29e3ee94ef3a16206a05.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_facebook.mainos.spkg_69330b398b69d275bfc08134ae3abf4876ce4100.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_bingapps.mainos.spkr_58ad49827c1459bf42b5085fe9ba482efd81260f.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_bingfood.mainos.spkr_3baca714001303ce71c2c85dfe882c9c6858f155.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_binghealth.mainos.spkr_95a7547af0a6cc9cc935ab9c095862d5f35c0ba5.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_bingtravel.mainos.spkr_468b74b66cfc92d3673677e8c9f52d8ff121a26b.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos.spkg_7c64db3264b1776c9468a01dd2fc812c409277d3.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.ms_skype.mainos.spkg_62722368fc9e1c85477ed6a696011090a47bbd13.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ar-sa.spkg_0811421f585c2a3379aa4d9b574fd2503143b3e1.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_az-latn-az.spkg_9d116d00b18569f3adb753a435177bf4a7eba7b3.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_be-by.spkg_d9e6f93fc3e3cefbc1396eb2def27a41efabcd57.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_bg-bg.spkg_9e5fc2835281a83e6870496e5b1d49fe173505ff.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ca-es.spkg_0c88df9dbf212679d912ba25120d59f478754d66.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_cs-cz.spkg_6773e79d87643221a11edba3d5321c097e25e935.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_da-dk.spkg_33ebf4b681259b2f277355b6db799917cb0be6a2.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_de-de.spkg_4ce452827039bb5e1023e926eb12a5e024467375.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_el-gr.spkg_e46e322a1f30c86034c6f8f82eff13c9b9398de8.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_en-gb.spkg_f962360ab9481ceee2ae4e82f2aa75d813c5265d.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_en-us.spkg_81fbdb11990b05c07481b39e7c714f33879053f0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_es-es.spkg_a37d4cbcdc54205df0adb27c4290705012f5ccfc.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_es-mx.spkg_afd44d2d19be11b8f04f66cc3907faba83c141b3.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_et-ee.spkg_4a94679ce2ff9560b6bf16940e5bc0a6035296be.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fa-ir.spkg_7f848c7b339e85784f209fe79eeaaa92cac23d44.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fi-fi.spkg_801ddc9730052da259570f1254f8fcb156b2eb94.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fil-ph.spkg_d67ce1f74f81b80e1278a8ddd7d1f8ffe89b66ab.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_fr-fr.spkg_6f38acb3c31075d0c2ee9e99d2cd8e35f33f4826.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_he-il.spkg_d37b156419f520cc6fbdde05f74f8d5b4340b54e.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_hi-in.spkg_ad167c8f2c98a575fccfc5180780621b36d2cd0c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_hr-hr.spkg_35430eea4cc9bce9e76061af0f7ec745534079ed.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_hu-hu.spkg_7521d50adc0cb861a119cc73cb1de5be115e8a01.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_id-id.spkg_729a002c927adde36f63338cf079bdda31e3b4d0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_it-it.spkg_2c85192785a06e68dad7c42bb6e42d31c6c1597a.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ja-jp.spkg_a130d2ee5ac62184d0d80e0b7ce0b15eb1e5d0c1.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_kk-kz.spkg_f88b5d720280e334816f528afb26799e10898dd6.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ko-kr.spkg_c19eb2fb57ae9963e72256962a7b93fb0a09a5e4.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_lt-lt.spkg_a54f173fb1383a243b22d7127488141bdabb9d95.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_lv-lv.spkg_06539ff727efc0d19ad8a0b457672b82a02ca912.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_mk-mk.spkg_79b76cd2413e47e6acd79a2d889bee78d2b10326.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ms-my.spkg_99642670d1137fb7302fcf48dc051a6ebe74f24e.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_nb-no.spkg_406bfffc7c088ff630361e72c7447bf6c577113e.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_nl-nl.spkg_aae0bf644c46d74aa9627853b6373cd39d4b0743.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_pl-pl.spkg_f0b62ac485c44e66558f841cf90893149f158143.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_pt-br.spkg_a70b471e26300eb63e0f2d42ec934249dffaad51.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_pt-pt.spkg_3bb48576a978a221cd47b4f18662738373c4fdf0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ro-ro.spkg_7fb622477f3be1d4a08a76393b48cf756e2dfbf2.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_ru-ru.spkg_53f075e5f184cd1b126f80789d3246b3c49224b8.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sk-sk.spkg_13812517297388f86f21b47f4d1e4dad29372332.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sl-si.spkg_b17b30d4d102bd870cad7c12678cc6150010101b.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sq-al.spkg_0eb8cd077545a78b425fcdf2d30efa853ad1d7a2.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sr-latn-rs.spkg_15556608b20c5a91c8332130ba9f6b19f145d564.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_sv-se.spkg_02e1a83abe775938fe7477e809b39079d004ce04.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_th-th.spkg_710b13b5189129669e340a83fceaffbbdcf0aa83.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_tr-tr.spkg_56feb2d9c4fdc88661a7205fee825c0e72d4ad66.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_uk-ua.spkg_759c5858f0cc73a3b323de41e802f7cdaef3332c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_uz-latn-uz.spkg_c670ddefccaf7e2cc056c92b90b281e96021c266.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_vi-vn.spkg_a9aced36912e3d57ed3b2c1666548a9d0283b938.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_zh-cn.spkg_dd0842de65145b4780fd18de040d9666cf7aedf1.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_lang_zh-tw.spkg_26184f00774f8b0d0a20e9ccbddd2e9bddca8343.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.prerelease_protected.mainos_res_768x1280.spkg_e6a44007f1e268c4347e88c2d4a9aa9824ac6125.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.soc_qc8960.mainos.spkg_8ce04f249b0df1e7ba2fbcfad42305fe079063f0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.soc_qc8960.updateos.spkg_443bf0b2702e5141dc2662eebbd0873eb4783867.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.devicelayout_qc8960.mainos.spkg_a3b5b2df89cf5c70cb9d81895d520f0b32f6a7c3.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.input.mtf_lang_de-de.spkg_bb0415e56eb77c27c758b42cfe0fa3f6fc9cfa46.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.input.mtf_lang_en-us.spkg_3a96953223fac32eb170d6cf293c8bf0f46a5767.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.input.mtf_lang_fr-ch.spkg_dcb7c1f7faa4453ed4f9c14a33db6f014aec4588.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2015/09/microsoft.speech.data_lang_en-us.spkg_28def440659083ef24a5571d8f428108b57ddb3d.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2015/09/microsoft.ms_commsmessagingglobal.mainos.spkg_c23e4af85210ee74eade34fc8e3afe41c26fe7c2.cab
+ [[/code]] 

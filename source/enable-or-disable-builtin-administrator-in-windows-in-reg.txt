@@ -1,8 +1,8 @@
 注册表路径：
 
 [[code]]
-HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\000001F4
-[[/code]]
+ HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\000001F4
+ [[/code]]
 
 打开二进制注册表项{{F}}，将偏移量{{0038}}处的第一个字节修改为{{10}}或{{11}}即可决定内置管理员账户的状态。
 
@@ -10,4 +10,4 @@ HKEY_LOCAL_MACHINE\SAM\SAM\Domains\Account\Users\000001F4
 
 {{11}}表示禁用该账户。
 
-本方法在Windows Vista、Windows 7、Windows 8.x、Windows 10上测试通过。 
+ 本方法在Windows Vista、Windows 7、Windows 8.x、Windows 10上测试通过。 

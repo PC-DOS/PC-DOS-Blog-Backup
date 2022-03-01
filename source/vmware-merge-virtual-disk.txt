@@ -1,12 +1,12 @@
 首先，打开命令提示符，定位到VMWare的安装路径（通常为{{%ProgramFiles%\VMware\VMware Workstation\}}或{{%ProgramFiles(x86)%\VMware\VMware Workstation\}}），并执行：
 
 [[code]]
-vmware-vdiskmanager.exe -r "PATH\TO\SEPARATED\VIRTUAL\DISK.vmdk" -t 0 "PATH\TO\MERGED\VIRTUAL\DISK.vmdk" 
-[[/code]]
+ vmware-vdiskmanager.exe -r "PATH\TO\SEPARATED\VIRTUAL\DISK.vmdk" -t 0 "PATH\TO\MERGED\VIRTUAL\DISK.vmdk" 
+ [[/code]]
 
 其中：
 
 * {{PATH\TO\SEPARATED\VIRTUAL\DISK.vmdk}}表示虚拟机当前使用的虚拟磁盘的路径。您可以在VMWare中查看虚拟机设置页面中的“磁盘”选项，来查看虚拟磁盘的文件路径。
 * {{PATH\TO\MERGED\VIRTUAL\DISK.vmdk}}表示合并后虚拟磁盘的路径。
 
-参考资料：*https://www.cnblogs.com/findumars/p/8182010.html 
+ 参考资料：*https://www.cnblogs.com/findumars/p/8182010.html 

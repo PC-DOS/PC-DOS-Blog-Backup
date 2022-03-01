@@ -1,63 +1,63 @@
 Windows Phone Internals工具可以通过命令行调用。
 
 [[code]]
-WPinternals -ShowPhoneInfo
-WPinternals -AddFFU <FFU file>
-WPinternals -AddEmergency <Product type> <EDE file> <EDP file>
-WPinternals -RemoveFFU <FFU file>
-WPinternals -RemoveEmergency <EDE file>
-WPinternals -ListRepository
-WPinternals -FindFlashingProfile <Optional: Profile FFU file>
-WPinternals -UnlockBootloader
-                <Optional: donor-FFU file with supported version of bootfiles>
-WPinternals -FixBootAfterUnlockingBootloader
-WPinternals -EnableRootAccess
-WPinternals -UnlockBootLoaderOnImage <EFIESP image file>
-                <Optional: MainOS image file>
-                <Optional: donor-FFU file with supported version of bootfiles>
-WPinternals -EnableRootAccessOnImage <EFIESP image file> <MainOS image file>
-                <Optional: donor-FFU file with supported version of bootfiles>
-WPinternals -UnlockBootLoaderOnMountedImage <Directory of mounted EFIESP image file>
-                <Optional: Directory of mounted MainOS image file>
-                <Optional: donor-FFU file with supported version of bootfiles>
-WPinternals -EnableRootAccessOnMountedImage <Directory of mounted EFIESP image file>
-                <Directory of mounted MainOS image file>
-                <Optional: donor-FFU file with supported version of bootfiles>
-WPinternals -EnableTestSigning
-WPinternals -RelockPhone
-WPinternals -SwitchToMassStorageMode
-WPinternals -FlashFFU <FFU file>
-WPinternals -FlashCustomROM <ZIP file>
-WPinternals -FlashPartition <Partition name> <Partition file>
-WPinternals -FlashRaw <Start sector> <Raw file>
-WPinternals -ClearNV
-WPinternals -ReadGPT
-WPinternals -BackupGPT <Path to xml-file>
-WPinternals -RestoreGPT <Path to xml-file>
-WPinternals -MergeGPT <Path to input-xml-file> <Path to input-xml-file>
-                <Optional: Path to output-xml-file>
-WPinternals -MergeGPT <Path to input-xml-file>
-                <Path to ZIP file which includes Partitions.xml>
-                <Optional: Path to output-xml-file>
-WPinternals -ShowFFU <FFU file>
-WPinternals -DumpFFU <FFU file> <Destination folder> <Optional: Partition Name>
-WPinternals -DownloadFFU <Optional: Destination folder>
-WPinternals -DownloadFFUbyProductType <Product type>
-                <Optional: Destination folder>
-WPinternals -DownloadFFUbyProductCode <Product code>
-                <Optional: Destination folder>
-WPinternals -DownloadFFUbyOperatorCode <Product type> <Operator code>
-                <Optional: Destination folder>
-WPinternals -DownloadEmergency <Optional: Destination folder>
-WPinternals -DownloadEmergencyByProductType <Product type>
-                <Optional: Destination folder>
-WPinternals -DownloadAll <Optional: Destination folder>
-WPinternals -DownloadAllByProductType <Product type>
-                <Optional: Destination folder>
-WPinternals -DownloadAllByProductCode <Product code>
-                <Optional: Destination folder>
-WPinternals -DownloadAllByOperatorCode <Product type> <Operator code>
-                <Optional: Destination folder>
-WPinternals -DumpUEFI <UEFI binary or FFU file> <Destination folder>
-WPinternals -TestProgrammer <EDE file>
-[[/code]] 
+ WPinternals -ShowPhoneInfo
+ WPinternals -AddFFU <FFU file>
+ WPinternals -AddEmergency <Product type> <EDE file> <EDP file>
+ WPinternals -RemoveFFU <FFU file>
+ WPinternals -RemoveEmergency <EDE file>
+ WPinternals -ListRepository
+ WPinternals -FindFlashingProfile <Optional: Profile FFU file>
+ WPinternals -UnlockBootloader
+                 <Optional: donor-FFU file with supported version of bootfiles>
+ WPinternals -FixBootAfterUnlockingBootloader
+ WPinternals -EnableRootAccess
+ WPinternals -UnlockBootLoaderOnImage <EFIESP image file>
+                 <Optional: MainOS image file>
+                 <Optional: donor-FFU file with supported version of bootfiles>
+ WPinternals -EnableRootAccessOnImage <EFIESP image file> <MainOS image file>
+                 <Optional: donor-FFU file with supported version of bootfiles>
+ WPinternals -UnlockBootLoaderOnMountedImage <Directory of mounted EFIESP image file>
+                 <Optional: Directory of mounted MainOS image file>
+                 <Optional: donor-FFU file with supported version of bootfiles>
+ WPinternals -EnableRootAccessOnMountedImage <Directory of mounted EFIESP image file>
+                 <Directory of mounted MainOS image file>
+                 <Optional: donor-FFU file with supported version of bootfiles>
+ WPinternals -EnableTestSigning
+ WPinternals -RelockPhone
+ WPinternals -SwitchToMassStorageMode
+ WPinternals -FlashFFU <FFU file>
+ WPinternals -FlashCustomROM <ZIP file>
+ WPinternals -FlashPartition <Partition name> <Partition file>
+ WPinternals -FlashRaw <Start sector> <Raw file>
+ WPinternals -ClearNV
+ WPinternals -ReadGPT
+ WPinternals -BackupGPT <Path to xml-file>
+ WPinternals -RestoreGPT <Path to xml-file>
+ WPinternals -MergeGPT <Path to input-xml-file> <Path to input-xml-file>
+                 <Optional: Path to output-xml-file>
+ WPinternals -MergeGPT <Path to input-xml-file>
+                 <Path to ZIP file which includes Partitions.xml>
+                 <Optional: Path to output-xml-file>
+ WPinternals -ShowFFU <FFU file>
+ WPinternals -DumpFFU <FFU file> <Destination folder> <Optional: Partition Name>
+ WPinternals -DownloadFFU <Optional: Destination folder>
+ WPinternals -DownloadFFUbyProductType <Product type>
+                 <Optional: Destination folder>
+ WPinternals -DownloadFFUbyProductCode <Product code>
+                 <Optional: Destination folder>
+ WPinternals -DownloadFFUbyOperatorCode <Product type> <Operator code>
+                 <Optional: Destination folder>
+ WPinternals -DownloadEmergency <Optional: Destination folder>
+ WPinternals -DownloadEmergencyByProductType <Product type>
+                 <Optional: Destination folder>
+ WPinternals -DownloadAll <Optional: Destination folder>
+ WPinternals -DownloadAllByProductType <Product type>
+                 <Optional: Destination folder>
+ WPinternals -DownloadAllByProductCode <Product code>
+                 <Optional: Destination folder>
+ WPinternals -DownloadAllByOperatorCode <Product type> <Operator code>
+                 <Optional: Destination folder>
+ WPinternals -DumpUEFI <UEFI binary or FFU file> <Destination folder>
+ WPinternals -TestProgrammer <EDE file>
+ [[/code]] 

@@ -1,31 +1,31 @@
 [[code]]
-https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/{{YEAR}}/{{DATE}}-uri-q.mp4
-[[/code]]
+ https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/{{YEAR}}/{{DATE}}-uri-q.mp4
+ [[/code]]
 
-{{@@{{YEAR}}@@}}为年份，格式为YYYY。
+ {{@@{{YEAR}}@@}}为年份，格式为YYYY。
 
 {{@@{{DATE}}@@}}为日期，格式为YYYYMMDD。
 
-例如：
+ 例如：
 
 [[code]]
-https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/2019/20190501-uri-q.mp4
-[[/code]]
+ https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/2019/20190501-uri-q.mp4
+ [[/code]]
 
------
+ -----
 
 有时会在主文件名和扩展名之间出现一个空格（{{%20}}），成为以下格式：
 
 [[code]]
-https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/{{YEAR}}/{{DATE}}-uri-q%20.mp4
-[[/code]]
+ https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/{{YEAR}}/{{DATE}}-uri-q%20.mp4
+ [[/code]]
 
-{{@@{{YEAR}}@@}}为年份，格式为YYYY。
+ {{@@{{YEAR}}@@}}为年份，格式为YYYY。
 
 {{@@{{DATE}}@@}}为日期，格式为YYYYMMDD。
 
-例如：
+ 例如：
 
 [[code]]
-https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/2019/20190501-uri-q%20.mp4
-[[/code]] 
+ https://dprktoday.com/content/movie/flv_mv/vod/dprktoday/kor_tv/2019/20190501-uri-q%20.mp4
+ [[/code]] 

@@ -3,18 +3,18 @@ Qt的{{QDataStream}}类提供了一个以二进制方式操作文件等IO设备�
 {{QDataStream::status()}}函数返回了一个描述数据流当前状态的枚举量，可能是以下列表中的一个：
 
 ||~ 名称 ||~ 值 ||~ 含义 ||
-|| {{QDataStream::Ok}} || 0 || 数据流运行正常。 ||
-|| {{QDataStream::ReadPastEnd}} || 1 || 数据流读取的数据已超过底层设备中数据的结尾。 ||
-|| {{QDataStream::ReadCorruptData}} || 2 || 数据流已读取损坏的数据。 ||
-|| {{QDataStream::WriteFailed}} || 3 || 试图将数据流写入设备时失败。 ||
+ || {{QDataStream::Ok}} || 0 || 数据流运行正常。 ||
+ || {{QDataStream::ReadPastEnd}} || 1 || 数据流读取的数据已超过底层设备中数据的结尾。 ||
+ || {{QDataStream::ReadCorruptData}} || 2 || 数据流已读取损坏的数据。 ||
+ || {{QDataStream::WriteFailed}} || 3 || 试图将数据流写入设备时失败。 ||
 
-{{QDataStream::atEnd()}}指示数据流是否已到达关联的文件的末尾。
+ {{QDataStream::atEnd()}}指示数据流是否已到达关联的文件的末尾。
 
-结合使用{{QDataStream::status()}}和{{QDataStream::atEnd()}}两个状态函数可以获取一个IO操作序列后目标文件和数据流的状态，对于文件读操作而言，有：
+ 结合使用{{QDataStream::status()}}和{{QDataStream::atEnd()}}两个状态函数可以获取一个IO操作序列后目标文件和数据流的状态，对于文件读操作而言，有：
 
 ||~ {{QDataStream::status()}}返回值 ||~ {{QDataStream::atEnd()}}返回值 ||~ 含义 ||
-|| {{QDataStream::Ok (0)}} || False || 文件读取正常完成，尚未抵达文件末尾。 ||
-|| {{QDataStream::Ok (0)}} || True || 文件读取正常完成，并已抵达文件末尾。 ||
-|| 非{{QDataStream::Ok}} || 任意值 || 读取数据时出错。 ||
+ || {{QDataStream::Ok (0)}} || False || 文件读取正常完成，尚未抵达文件末尾。 ||
+ || {{QDataStream::Ok (0)}} || True || 文件读取正常完成，并已抵达文件末尾。 ||
+ || 非{{QDataStream::Ok}} || 任意值 || 读取数据时出错。 ||
 
 参考资料：*https://blog.csdn.net/qq_38832450/article/details/102587454 

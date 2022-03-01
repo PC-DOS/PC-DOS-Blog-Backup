@@ -1,7 +1,7 @@
 在基于嵌入式Linux的Qt/E中使用QSettings时，由于QSettings的默认信息存储方法可能不适用于嵌入式Linux，因此可能导致程序启动时冻结，请使用{{INI}}方法保存配置文件：
 
 [[code type="Cpp"]]
-QSettings SettingsContainer("./Settings.ini",QSettings::IniFormat);
-[[/code]]
+ QSettings SettingsContainer("./Settings.ini",QSettings::IniFormat);
+ [[/code]]
 
-**参考资料：***https://doc.qt.io/qt-5/qsettings.html 
+ **参考资料：***https://doc.qt.io/qt-5/qsettings.html 

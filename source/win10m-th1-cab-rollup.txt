@@ -1,235 +1,235 @@
 [[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f5af00; float: center; border: solid 2px #f56400; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **本文档具有较大的尺寸** [[/size]]##
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f5af00; float: center; border: solid 2px #f56400; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **本文档具有较大的尺寸** [[/size]]##
 
------
+ -----
 
-[[size larger]] **您可能需要等待一分钟左右时间才能正常查阅本文档。**[[/size]]
+ [[size larger]] **您可能需要等待一分钟左右时间才能正常查阅本文档。**[[/size]]
 
-**这主要与本文含有大量文本以及页面包含/汇入指令有关。**
+ **这主要与本文含有大量文本以及页面包含/汇入指令有关。**
 
-**影响因素包括您的网络传输速率、浏览器引擎渲染效能等。**
+ **影响因素包括您的网络传输速率、浏览器引擎渲染效能等。**
 
-**请您耐心等待，如有不便，万分抱歉。**
+ **请您耐心等待，如有不便，万分抱歉。**
 
-@@ @@
-
-控制 · 收容 · 保护
-[[/div]]
-[[/=]]
-@@@@
-[[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ; float: center; border: solid 2px #000000; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **本文尚未完成** [[/size]]##
-----
-[[size larger]] **您可能遇到不完全的内容。**[[/size]]
+ @@ @@
 
 控制 · 收容 · 保护
 [[/div]]
-[[/=]]
+ [[/=]]
+ @@@@
+ [[=]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ; float: center; border: solid 2px #000000; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **本文尚未完成** [[/size]]##
+ ----
+ [[size larger]] **您可能遇到不完全的内容。**[[/size]]
 
-> 本文内容引自[*https://forum.xda-developers.com/windows-10-mobile/w10m-builds-update-links-collection-cab-t3234805 XDA论坛]。
+控制 · 收容 · 保护
+[[/div]]
+ [[/=]]
+
+ > 本文内容引自[*https://forum.xda-developers.com/windows-10-mobile/w10m-builds-update-links-collection-cab-t3234805 XDA论坛]。
 
 **说明：**您需要通过IUTool工具方能将CAB形式的更新文件包推送到设备中。更新包是与SoC、屏幕分辨率[[footnote]]屏幕分辨率相关性可能已过时。[[/footnote]]等紧密相关的。
 
-如果您的设备使用虚拟按键，且您仅找到具有实体按键的设备的更新包，您可能需要寻找虚拟按键所需的包并添加到更新包中。
+ 如果您的设备使用虚拟按键，且您仅找到具有实体按键的设备的更新包，您可能需要寻找虚拟按键所需的包并添加到更新包中。
 
-如果您的设备使用实体按键，且您仅找到具有虚拟按键的设备的更新包，您可能需要从更新包中删除虚拟按键的包或在更新后从注册表禁用虚拟按键。
+ 如果您的设备使用实体按键，且您仅找到具有虚拟按键的设备的更新包，您可能需要从更新包中删除虚拟按键的包或在更新后从注册表禁用虚拟按键。
 
 -----
 
 [[toc]]
 
-++ SoC型号：QC8974
+ ++ SoC型号：QC8974
 
-+++ 1080 x 1920屏幕分辨率
+ +++ 1080 x 1920屏幕分辨率
 
 ++++ 使用虚拟按键的设备
 
 +++++ HTC One M8 for Windows (0P6B140_TMOUS)
 
-++++++ 预备更新：从WP8.1 14203更新到WP8.1 14219
+ ++++++ 预备更新：从WP8.1 14203更新到WP8.1 14219
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:0p6b140-tmous-14203-to-14219]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:0p6b140-tmous-14203-to-14219]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14219更新到Win10M 10536
+ ++++++ 正式更新：从WP8.1 14219更新到Win10M 10536
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:0p6b140-tmous-14219-to-10536]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:0p6b140-tmous-14219-to-10536]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10549
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10549
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:0p6b140-tmous-14219-to-10549]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:0p6b140-tmous-14219-to-10549]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10572
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10572
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:0p6b140-tmous-14219-to-10572]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:0p6b140-tmous-14219-to-10572]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10586.11
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10586.11
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:0p6b140-tmous-14219-to-10586]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:0p6b140-tmous-14219-to-10586]]
+ [[/collapsible]]
 
-++++ 使用实体按键的设备
+ ++++ 使用实体按键的设备
 
 +++++ Nokia Lumia 930 (RM1045_059W1K8_000-CH_MV)
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10166
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10166
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-1045-059w1k8-000-ch-14226-to-10166]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-1045-059w1k8-000-ch-14226-to-10166]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10536
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10536
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-1045-059w1k8-000-ch-14226-to-10536]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-1045-059w1k8-000-ch-14226-to-10536]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10549
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10549
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-1045-059w1k8-000-ch-14226-to-10549]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-1045-059w1k8-000-ch-14226-to-10549]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10572
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10572
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-1045-059w1k8-000-ch-14226-to-10572]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-1045-059w1k8-000-ch-14226-to-10572]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10581
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10581
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-1045-059w1k8-000-ch-14226-to-10581]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-1045-059w1k8-000-ch-14226-to-10581]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10586.11
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10586.11
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-1045-059w1k8-000-ch-14226-to-10586]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-1045-059w1k8-000-ch-14226-to-10586]]
+ [[/collapsible]]
 
-+++++ Nokia Lumia 1520 (RM-940_059T5X9_AT&T) 
+ +++++ Nokia Lumia 1520 (RM-940_059T5X9_AT&T) 
 
-**说明：**如果您使用的不是AT&T版本的Lumia 1520，请删除“attwifi”包。
+ **说明：**如果您使用的不是AT&T版本的Lumia 1520，请删除“attwifi”包。
 
 ++++++ 正式更新：从WP8.1 14219更新到Win10M 10549
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-940-059t5x9-att-14219-to-10549]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-940-059t5x9-att-14219-to-10549]]
+ [[/collapsible]]
 
-++++++ 正式更新：从Win10M 10572更新到Win10M 10581
+ ++++++ 正式更新：从Win10M 10572更新到Win10M 10581
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-940-059t5x9-att-10572-to-10581]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-940-059t5x9-att-10572-to-10581]]
+ [[/collapsible]]
 
-++ SoC型号：QC8960
+ ++ SoC型号：QC8960
 
-+++ 768 x 1280屏幕分辨率
+ +++ 768 x 1280屏幕分辨率
 
 ++++ 使用实体按键的设备
 
 +++++ Nokia Lumia 1020 (RM875_059T7V7_eu_euro2_332)
 
-++++++ 预备更新：从WP8.1 12393更新到WP8.1 14226
+ ++++++ 预备更新：从WP8.1 12393更新到WP8.1 14226
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-875-059t7v7-12393-to-14226]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-875-059t7v7-12393-to-14226]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10166
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10166
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-875-059t7v7-14226-to-10166]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-875-059t7v7-14226-to-10166]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10536
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10536
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-875-059t7v7-14226-to-10536]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-875-059t7v7-14226-to-10536]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10549
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10549
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-875-059t7v7-14226-to-10549]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-875-059t7v7-14226-to-10549]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10572
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10572
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-875-059t7v7-14226-to-10572]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-875-059t7v7-14226-to-10572]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10581
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10581
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-875-059t7v7-14226-to-10581]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-875-059t7v7-14226-to-10581]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14226更新到Win10M 10586.11
+ ++++++ 正式更新：从WP8.1 14226更新到Win10M 10586.11
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-875-059t7v7-14226-to-10586]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-875-059t7v7-14226-to-10586]]
+ [[/collapsible]]
 
-++ SoC型号：QC8x26
+ ++ SoC型号：QC8x26
 
-+++ 480 x 800屏幕分辨率
+ +++ 480 x 800屏幕分辨率
 
 ++++ 使用虚拟按键的设备
 
 +++++ Nokia Lumia 635 [512MB RAM] (RM-974_059W747_000-CH)
 
-++++++ 正式更新：从WP8.1 14219更新到Win10M 10536
+ ++++++ 正式更新：从WP8.1 14219更新到Win10M 10536
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-974-059w747-000-ch-14219-to-10536]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-974-059w747-000-ch-14219-to-10536]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14219更新到Win10M 10572
+ ++++++ 正式更新：从WP8.1 14219更新到Win10M 10572
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-974-059w747-000-ch-14219-to-10572]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-974-059w747-000-ch-14219-to-10572]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14219更新到Win10M 10581
+ ++++++ 正式更新：从WP8.1 14219更新到Win10M 10581
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-974-059w747-000-ch-14219-to-10581]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-974-059w747-000-ch-14219-to-10581]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 14219更新到Win10M 10586.11
+ ++++++ 正式更新：从WP8.1 14219更新到Win10M 10586.11
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-974-059w747-000-ch-14219-to-10586]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-974-059w747-000-ch-14219-to-10586]]
+ [[/collapsible]]
 
-+++ 720 x 1280屏幕分辨率
+ +++ 720 x 1280屏幕分辨率
 
 ++++ 使用实体按键的设备
 
 +++++ Nokia Lumia 830 (RM-984_059X0J5_000-CH)
 
-++++++ 正式更新：从WP8.1 15148更新到Win10M 10581
+ ++++++ 正式更新：从WP8.1 15148更新到Win10M 10581
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-984-059x0j5-000-ch-15148-to-10581]]
-[[/collapsible]]
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-984-059x0j5-000-ch-15148-to-10581]]
+ [[/collapsible]]
 
-++++++ 正式更新：从WP8.1 15148更新到Win10M 10586.11
+ ++++++ 正式更新：从WP8.1 15148更新到Win10M 10586.11
 
-[[collapsible show="显示下载链接" hide="隐藏下载链接"]]
-[[include block:rm-984-059x0j5-000-ch-15148-to-10586]]
-[[/collapsible]] 
+ [[collapsible show="显示下载链接" hide="隐藏下载链接"]]
+ [[include block:rm-984-059x0j5-000-ch-15148-to-10586]]
+ [[/collapsible]] 

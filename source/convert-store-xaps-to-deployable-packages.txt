@@ -1,36 +1,36 @@
 [[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
-----
-[[size larger]] **请尊重应用程序作者的知识产权，请勿反编译通过本文提供的方式得到的APPX包。**[[/size]]
-[[size larger]] **请勿将通过本文提供的方式得到的XAP包用于商业及盈利目的。**[[/size]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+ ----
+ [[size larger]] **请尊重应用程序作者的知识产权，请勿反编译通过本文提供的方式得到的APPX包。**[[/size]]
+ [[size larger]] **请勿将通过本文提供的方式得到的XAP包用于商业及盈利目的。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
-[[/=]]
+ [[/=]]
 
 本文指导您将从Microsoft应用商店安装的XAP应用程序重新打包为可通过Application Deployment部署的XAP包。
 
-您需要事先安装Windows Phone SDK。
+ 您需要事先安装Windows Phone SDK。
 
-由于Windows Phone 8.x的应用商店已被关闭，且直接从Microsoft商店下载的XAP文件经过了加密，因此您需要通过Windows 10 Mobile设备访问Microsoft应用商店来安装XAP应用程序。
+ 由于Windows Phone 8.x的应用商店已被关闭，且直接从Microsoft商店下载的XAP文件经过了加密，因此您需要通过Windows 10 Mobile设备访问Microsoft应用商店来安装XAP应用程序。
 
-如果您的设备是工程设备或已解锁并可使用大容量存储器模式，您也可以直接通过该模式访问设备存储器。如果您的设备可以通过MTP模式访问整个磁盘，也可以通过该方法访问设备存储器。但是，更推荐您过MTP模式访问设备存储器，因为这样不会涉及由于NTFS权限导致的问题。如果您通过大容量存储器模式访问设备存储器，请切记不要变更任何NTFS权限设置。
+ 如果您的设备是工程设备或已解锁并可使用大容量存储器模式，您也可以直接通过该模式访问设备存储器。如果您的设备可以通过MTP模式访问整个磁盘，也可以通过该方法访问设备存储器。但是，更推荐您过MTP模式访问设备存储器，因为这样不会涉及由于NTFS权限导致的问题。如果您通过大容量存储器模式访问设备存储器，请切记不要变更任何NTFS权限设置。
 
-从Microsoft商店安装的XAP应用程序位于下列目录中：
+ 从Microsoft商店安装的XAP应用程序位于下列目录中：
 
 [[code]]
-MainOS\Data\PROGRAMS\
-[[/code]]
+ MainOS\Data\PROGRAMS\
+ [[/code]]
 
 其中，{{MainOS}}在固件文件和大容量存储器模式下均指代MainOS分区，在MTP模式下通常显示为“Phone”。
 
-首先，请核查上述目录下每一个以GUID命名的文件夹中的{{Install}}目录，以得到需要复制的应用程序。然后，请复制相应程序的{{Install}}目录到本地计算机备用。
+ 首先，请核查上述目录下每一个以GUID命名的文件夹中的{{Install}}目录，以得到需要复制的应用程序。然后，请复制相应程序的{{Install}}目录到本地计算机备用。
 
-完成解压后，请删除复制到本地计算机的{{Install}}目录中的以下文件及目录：
+ 完成解压后，请删除复制到本地计算机的{{Install}}目录中的以下文件及目录：
 
 [[code]]
-WMAppPRHeader.xml
-[[/code]]
+ WMAppPRHeader.xml
+ [[/code]]
 
 然后，请通过操作系统自带的ZIP压缩工具，将得到的解压缩目录中所有的文件压缩为一个ZIP文件，并将扩展名改为XAP。 

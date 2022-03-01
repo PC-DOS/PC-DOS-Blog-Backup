@@ -3,13 +3,13 @@ Linux内核的{{printk()}}函数具有不同的消息等级。
 {{printk()}}函数调用方法：
 
 [[code type="Cpp"]]
-printk(KERN_LEVEL "String", Parameters);
-[[/code]]
+ printk(KERN_LEVEL "String", Parameters);
+ [[/code]]
 
 其中，消息等级{{KERN_LEVEL}}定义如下：
 
 [[code type="Cpp"]]
-#define KERN_EMERG 0 //紧急事件消息，系统崩溃之前提示，表示系统不可用
+ #define KERN_EMERG 0 //紧急事件消息，系统崩溃之前提示，表示系统不可用
 #define KERN_ALERT 1 //报告消息，表示必须立即采取措施
 #define KERN_CRIT 2 //临界条件，通常涉及严重的硬件或软件操作失败
 #define KERN_ERR 3 //错误条件，驱动程序常用 KERN_ERR 来报告硬件的错误

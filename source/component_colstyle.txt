@@ -2,28 +2,28 @@
 
 +++ 用法
 [[div class="code"]]
-@@[[include component:coltop show=+ 显示标题1|hide=- 隐藏标题1]]@@
+ @@[[include component:coltop show=+ 显示标题1|hide=- 隐藏标题1]]@@
 文本1
-@@[[include component:coltop show=+ 显示标题2|hide=- 隐藏标题2]]@@
+ @@[[include component:coltop show=+ 显示标题2|hide=- 隐藏标题2]]@@
 文本2
-@@[[include component:coltop show=+ 显示标题3|hide=- 隐藏标题3]]@@
+ @@[[include component:coltop show=+ 显示标题3|hide=- 隐藏标题3]]@@
 文本3
-@@[[include component:colend]]@@
-@@[[include component:colend]]@@
-@@[[include component:colend]]@@
-[[/div]]
-[[include component:coltop show=+ 显示标题1|hide=- 隐藏标题1]]
+ @@[[include component:colend]]@@
+ @@[[include component:colend]]@@
+ @@[[include component:colend]]@@
+ [[/div]]
+ [[include component:coltop show=+ 显示标题1|hide=- 隐藏标题1]]
 文本1
-[[include component:coltop show=+ 显示标题2|hide=- 隐藏标题2]]
+ [[include component:coltop show=+ 显示标题2|hide=- 隐藏标题2]]
 文本2
-[[include component:coltop show=+ 显示标题3|hide=- 隐藏标题3]]
+ [[include component:coltop show=+ 显示标题3|hide=- 隐藏标题3]]
 文本3
-[[include component:colend]]
-[[include component:colend]]
-[[include component:colend]]
+ [[include component:colend]]
+ [[include component:colend]]
+ [[include component:colend]]
 
 代码可以按您的需要继续往下延伸。//在您第一次保存页面之前，本代码不会正常显示！//
-[[include component:coltop show=+ 显示变量|hide=- 隐藏变量]]
+ [[include component:coltop show=+ 显示变量|hide=- 隐藏变量]]
 一些变量只能用于coltop或者两者之上，用法如下：
 {{@@[[[[include component:coltop 变量1=值1|变量2=值2]]@@}}
 变量之间必须用|分隔开来。所有的变量都是非必需的（show和hide也是变量，且只能用于coltop上）。为避免存在未定义的变量，一些初始值被设定。
@@ -43,99 +43,99 @@
 [[include component:coltop show=+ 显示ifprot=true的实例|hide=- 隐藏ifprot=true的实例|ifprot=true]]
 文本
 [[include component:colend]]
-[[include component:colend]]
+ [[include component:colend]]
 
-+ 当前的折叠模块版式
+ + 当前的折叠模块版式
 [[code type="css"]]
-.colmod-block > ul,
-.colmod-block > ul > li {
-    display:block;
-    line-height:normal;
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-.colmod-block > ul > li > ul,
-li.folded > .colmod-link-top a + a,
-li.folded > .colmod-content,
-li.folded > .colmod-link-end a,
-li.unfolded > .colmod-link-top a:first-child {
-    display:none;
-}
-.colmod-content {
-    -webkit-animation:colmod-fade-in 0.2s ease-in-out;
-    -moz-animation:colmod-fade-in 0.2s ease-in-out;
-    animation:colmod-fade-in 0.2s ease-in-out;
-    -webkit-animation-timing-function:cubic-bezier(0.3649610494,0,0.6350389506,1);
-    -moz-animation-timing-function:cubic-bezier(0.3649610494,0,0.6350389506,1);
-    animation-timing-function:cubic-bezier(0.3649610494,0,0.6350389506,1);
-}
-li.folded > .colmod-content {
-    -webkit-animation-name:none;
-    -moz-animation-name:none;
-    animation-name:none;
-}
-@-webkit-keyframes colmod-fade-in { from { opacity:0; } to { opacity:1; } }
-@-moz-keyframes colmod-fade-in { from { opacity:0; } to { opacity:1; } }
-@keyframes colmod-fade-in { from { opacity:0; } to { opacity:1; } }
-[class|="colmod-link"] div.foldable-list-container {
-    display:inline;
-}
-.colmod-collapsiblealt > [class|="colmod-link"],
-.collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] {
-    margin:0.5em 0;
-    text-align:center;
-}
-.colmod-collapsiblealt > [class|="colmod-link"] a,
-.collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] a {
-    padding:0.1em 0.5em;
-    text-decoration:none;
-    background-color:#F4F4F4;
-    border:1px solid #AAA;
-    color:#000;
-}
-.colmod-collapsiblealt > [class|="colmod-link"] a:hover,
-.colmod-collapsiblealt > [class|="colmod-link"] a:active,
-.collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] a:hover,
-.collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] a:active {
-    background:#DDD;
-    text-decoration:none;
-}
-[[/code]]
-----
-[[# inclusion]]
-+ 复制指导
-如需将该折叠模块添加至您的站点，创建如下页面并附上如下内容（并翻译默认的显示/隐藏文本）。一般来说，复制上面的版式是没有必要的。
+ .colmod-block > ul,
+ .colmod-block > ul > li {
+     display:block;
+     line-height:normal;
+     list-style:none;
+     margin:0;
+     padding:0;
+ }
+ .colmod-block > ul > li > ul,
+ li.folded > .colmod-link-top a + a,
+ li.folded > .colmod-content,
+ li.folded > .colmod-link-end a,
+ li.unfolded > .colmod-link-top a:first-child {
+     display:none;
+ }
+ .colmod-content {
+     -webkit-animation:colmod-fade-in 0.2s ease-in-out;
+     -moz-animation:colmod-fade-in 0.2s ease-in-out;
+     animation:colmod-fade-in 0.2s ease-in-out;
+     -webkit-animation-timing-function:cubic-bezier(0.3649610494,0,0.6350389506,1);
+     -moz-animation-timing-function:cubic-bezier(0.3649610494,0,0.6350389506,1);
+     animation-timing-function:cubic-bezier(0.3649610494,0,0.6350389506,1);
+ }
+ li.folded > .colmod-content {
+     -webkit-animation-name:none;
+     -moz-animation-name:none;
+     animation-name:none;
+ }
+ @-webkit-keyframes colmod-fade-in { from { opacity:0; } to { opacity:1; } }
+ @-moz-keyframes colmod-fade-in { from { opacity:0; } to { opacity:1; } }
+ @keyframes colmod-fade-in { from { opacity:0; } to { opacity:1; } }
+ [class|="colmod-link"] div.foldable-list-container {
+     display:inline;
+ }
+ .colmod-collapsiblealt > [class|="colmod-link"],
+ .collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] {
+     margin:0.5em 0;
+     text-align:center;
+ }
+ .colmod-collapsiblealt > [class|="colmod-link"] a,
+ .collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] a {
+     padding:0.1em 0.5em;
+     text-decoration:none;
+     background-color:#F4F4F4;
+     border:1px solid #AAA;
+     color:#000;
+ }
+ .colmod-collapsiblealt > [class|="colmod-link"] a:hover,
+ .colmod-collapsiblealt > [class|="colmod-link"] a:active,
+ .collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] a:hover,
+ .collapsiblealt > .colmod-block > ul > li > [class|="colmod-link"] a:active {
+     background:#DDD;
+     text-decoration:none;
+ }
+ [[/code]]
+ ----
+ [[# inclusion]]
+ + 复制指导
+ 如需将该折叠模块添加至您的站点，创建如下页面并附上如下内容（并翻译默认的显示/隐藏文本）。一般来说，复制上面的版式是没有必要的。
 
 +++ {{**component:coltop**}}
-[[div class="code"]]
-@@[[module css]]@@
-@@@import url('http://scp-wiki-cn.wikidot.com/component:colstyle/code/1');@@
-@@[[/module]]@@
+ [[div class="code"]]
+ @@[[module css]]@@
+ @@@import url('http://scp-wiki-cn.wikidot.com/component:colstyle/code/1');@@
+ @@[[/module]]@@
 
-@@[[include :scp-jp:component:coltop-deep@@
-@@ifprot={$ifprot}|ifprot=0@@
-@@|nohide={$nohide}|nohide=0@@
-@@|folded={$folded}|folded=1@@
-@@|hide={$hide}|hide=- Hide block@@
-@@|show={$show}|show=+ Show block]]@@
-[[/div]]
-@@@@
-+++ {{**component:colend**}}
-[[div class="code"]]
-@@[[include :scp-jp:component:colend-deep@@
-@@|nohide={$nohide}|nohide=0@@
-@@|hide={$hide}|hide=- Hide block]]@@
-[[/div]]
-@@@@
-----
-@@@@
+ @@[[include :scp-jp:component:coltop-deep@@
+ @@ifprot={$ifprot}|ifprot=0@@
+ @@|nohide={$nohide}|nohide=0@@
+ @@|folded={$folded}|folded=1@@
+ @@|hide={$hide}|hide=- Hide block@@
+ @@|show={$show}|show=+ Show block]]@@
+ [[/div]]
+ @@@@
+ +++ {{**component:colend**}}
+ [[div class="code"]]
+ @@[[include :scp-jp:component:colend-deep@@
+ @@|nohide={$nohide}|nohide=0@@
+ @@|hide={$hide}|hide=- Hide block]]@@
+ [[/div]]
+ @@@@
+ ----
+ @@@@
 如果您想修改折叠模块版式的话，创建下面的页面然后用如下的办法将该修改版式用@import链接到您的coltop上：
 +++ {{**component:colstyle**}}
-[[div class="code"]]
-@@[[module css]]@@
-@@@import url('http://scp-wiki-cn.wikidot.com/component:colstyle/code/1');@@
-@@[[/module]]@@
+ [[div class="code"]]
+ @@[[module css]]@@
+ @@@import url('http://scp-wiki-cn.wikidot.com/component:colstyle/code/1');@@
+ @@[[/module]]@@
 
-@@/* 下面是您做出的修改 */@@
-[[/div]] 
+ @@/* 下面是您做出的修改 */@@
+ [[/div]] 

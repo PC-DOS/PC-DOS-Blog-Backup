@@ -1,14 +1,14 @@
 在C++中，对指针执行{{delete}}（包括Qt的{{deletelater()}}）操作后，仅会释放该指针指向的结构所占用的内存空间，而不会将指针重设为{{NULL}}，可能诱发后续代码中试图删除野指针（悬空指针）的情况。
 
-因此，执行{{delete}}操作后，立即将相关指针变量设为空指针{{NULL}}。
+ 因此，执行{{delete}}操作后，立即将相关指针变量设为空指针{{NULL}}。
 
 [[code type="Cpp"]]
-Object * objSomething = new Object();
-//...
-//...
-//...
-delete objSomething;
-objSomething = NULL;
-[[/code]]
+ Object * objSomething = new Object();
+ //...
+ //...
+ //...
+ delete objSomething;
+ objSomething = NULL;
+ [[/code]]
 
 参考资料：*https://www.cnblogs.com/liushui-sky/p/5852090.html 

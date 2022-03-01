@@ -1,30 +1,30 @@
 该方法可以修改通过PowerPoint的 [另存为] 功能导出演示文稿为图片时的分辨率（PPI/DPI），如果您正在寻找将演示文稿、通过自选图形绘制的插图或文字内容导出为可操作性更好的矢量图的方法，请参考[[[export-vectogram-in-ms-office|]]]。
 
-请按键盘上的 [Windows 徽标键]+[R] 组合键，打开 [运行] 窗口，输入：
+ 请按键盘上的 [Windows 徽标键]+[R] 组合键，打开 [运行] 窗口，输入：
 
 [[code]]
-regedit
-[[/code]]
+ regedit
+ [[/code]]
 
 按 [回车] 键，打开注册表编辑器。
 
-定位到以下路径：
+ 定位到以下路径：
 
 [[code]]
-HKEY_CURRENT_USER\Software\Microsoft\Office\{Office.Version}\PowerPoint\Options
-[[/code]]
+ HKEY_CURRENT_USER\Software\Microsoft\Office\{Office.Version}\PowerPoint\Options
+ [[/code]]
 
 其中，{{@@{Office.Version}@@}}为您的Office软件的版本号，如下表所示：
 
 ||~ Office版本 ||~ {{@@{Office.Version}@@}}的值 ||
-|| Office 2016, 2019, Office 365 || {{16.0}} ||
-|| Office 2013 || {{15.0}} ||
-|| Office 2010 || {{14.0}} ||
-|| Office 2007 || {{12.0}} ||
-|| Office 2003 || {{11.0}} ||
+ || Office 2016, 2019, Office 365 || {{16.0}} ||
+ || Office 2013 || {{15.0}} ||
+ || Office 2010 || {{14.0}} ||
+ || Office 2007 || {{12.0}} ||
+ || Office 2003 || {{11.0}} ||
 
 在右侧窗格按右键，在弹出的菜单中选择 [新建] > [DOWRD (32位) 值]，建立一个DWORD值，命名为{{ExportBitmapResolution}}。
 
-双击{{ExportBitmapResolution}}DWORD值，在弹出的窗格中选择 [十进制]，输入期望的导出图片的分辨率（单位为PPI或DPI），按 [确定] 按钮保存即可。
+ 双击{{ExportBitmapResolution}}DWORD值，在弹出的窗格中选择 [十进制]，输入期望的导出图片的分辨率（单位为PPI或DPI），按 [确定] 按钮保存即可。
 
-参考资料：*https://docs.microsoft.com/zh-cn/office/troubleshoot/powerpoint/change-export-slide-resolution 
+ 参考资料：*https://docs.microsoft.com/zh-cn/office/troubleshoot/powerpoint/change-export-slide-resolution 

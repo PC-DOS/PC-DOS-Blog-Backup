@@ -1,35 +1,35 @@
 对于[[[deploy-gitlab-on-aliyun-server-with-other-sites-deployed | 手动编译安装的GitLab]]]，其配置文件路径、类型以及默认仓库路径和通过OmniBus安装的版本不同。
 
-本例中，GitLab被安装到{{/home/git}}路径下，此时，其默认仓库路径为：
+ 本例中，GitLab被安装到{{/home/git}}路径下，此时，其默认仓库路径为：
 
 [[code]]
-/home/git/repositories/
-[[/code]]
+ /home/git/repositories/
+ [[/code]]
 
 其配置文件位于：
 
 [[code]]
-/home/git/gitlab/config/gitlab.yml
-[[/code]]
+ /home/git/gitlab/config/gitlab.yml
+ [[/code]]
 
 该文件中的以下节描述了默认仓库路径：
 
 [[code]]
-  ## Repositories settings
-  repositories:
-    # Paths where repositories can be stored. Give the canonicalized absolute pathname.
-    # IMPORTANT: None of the path components may be symlink, because
-    # gitlab-shell invokes Dir.pwd inside the repository path and that results
-    # real path not the symlink.
-    storages: # You must have at least a `default` storage path.
-      default:
-        path: /home/git/repositories/
-        gitaly_address: unix:/home/git/gitlab/tmp/sockets/private/gitaly.socket # TCP connections are supported too (e.g. tcp://host:port). TLS connections are also supported using the system certificate pool (eg: tls://host:port).
-        # gitaly_token: 'special token' # Optional: override global gitaly.token for this storage.
-[[/code]]
+   ## Repositories settings
+   repositories:
+     # Paths where repositories can be stored. Give the canonicalized absolute pathname.
+     # IMPORTANT: None of the path components may be symlink, because
+     # gitlab-shell invokes Dir.pwd inside the repository path and that results
+     # real path not the symlink.
+     storages: # You must have at least a `default` storage path.
+       default:
+         path: /home/git/repositories/
+         gitaly_address: unix:/home/git/gitlab/tmp/sockets/private/gitaly.socket # TCP connections are supported too (e.g. tcp://host:port). TLS connections are also supported using the system certificate pool (eg: tls://host:port).
+         # gitaly_token: 'special token' # Optional: override global gitaly.token for this storage.
+ [[/code]]
 
 参考资料：
 
 [[[deploy-gitlab-on-aliyun-server-with-other-sites-deployed | ]]]
 
-*https://www.cnblogs.com/zhehan/p/10716800.html 
+ *https://www.cnblogs.com/zhehan/p/10716800.html 

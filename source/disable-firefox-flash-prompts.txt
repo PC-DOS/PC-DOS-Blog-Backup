@@ -1,38 +1,38 @@
 请注意，从Firefox 85版本开始，Firefox不再支持Flash Player，您可以从[*https://www.mozilla.org/zh-CN/firefox/all/#product-desktop-esr 这里]下载Firefox长期支持（ESR）版本。您也可以从[*https://ftp.mozilla.org/pub/firefox/releases/ Firefox历史版本存档服务器]下载Firefox的历史版本。
 
-打开Firefox浏览器，访问：
+ 打开Firefox浏览器，访问：
 
 [[code]]
-about:config
-[[/code]]
+ about:config
+ [[/code]]
 
 如果弹出“三思而后行：更改高级配置的首选项可能会影响 Firefox 的性能和安全性”提示信息，请取消勾选“当我尝试修改底层首选项时警示我”复选框，并点击 [接受并继续] 按钮。
 
-通过搜索栏，定位以下设置项，并修改为相应的值：
+ 通过搜索栏，定位以下设置项，并修改为相应的值：
 
 ||~ 设置项 ||~ 值 ||
-|| {{plugin.state.flash}} || {{2}} ||
-|| {{plugins.flashBlock.enabled}} || {{false}} ||
-|| {{extensions.blocklist.enabled}} || {{false}} ||
+ || {{plugin.state.flash}} || {{2}} ||
+ || {{plugins.flashBlock.enabled}} || {{false}} ||
+ || {{extensions.blocklist.enabled}} || {{false}} ||
 
 您可以尝试在Firefox安装目录新建一名为“{{distribution}}”的文件夹，并在该文件夹指建立“{{policies.json}}”文件，输入以下内容并保存：
 
 [[code]]
-{
-  "policies": {
-    "FlashPlugin": {
-      "Default": true
-    }
-  }
-}
-[[/code]]
+ {
+   "policies": {
+     "FlashPlugin": {
+       "Default": true
+     }
+   }
+ }
+ [[/code]]
 
 您也可以考虑安装[*https://addons.mozilla.org/en-US/firefox/addon/enterprise-policy-generator Firefox策略生成器]小工具来协助您生成相关的配置资料。
 
-参考资料：
+ 参考资料：
 
 *http://forums.mozillazine.org/viewtopic.php?f=8&t=2753795
 
-*https://bugzilla.mozilla.org/show_bug.cgi?id=1348089
+ *https://bugzilla.mozilla.org/show_bug.cgi?id=1348089
 
-*https://jingyan.baidu.com/article/c33e3f48855b33ea15cbb52c.html 
+ *https://jingyan.baidu.com/article/c33e3f48855b33ea15cbb52c.html 

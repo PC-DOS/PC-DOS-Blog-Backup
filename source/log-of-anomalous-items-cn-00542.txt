@@ -1,65 +1,65 @@
 系统消息：检测到嵌入的外部数据，正在加载，请稍候。这可能需要数分钟的时间。
 
 [[html style="overflow:auto; zoom:1;"]]
-<body>
-<style type="text/css" id="internal-style">
-@import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
-@import url(https://cdn.jsdelivr.net/gh/scp-cn-tech/sigma9@cn/cn/sigma9_ch.min.css);
-</style>
-<style>
-.row-0 {
-    display: none;
-}
-</style>
+ <body>
+ <style type="text/css" id="internal-style">
+ @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+ @import url(https://cdn.jsdelivr.net/gh/scp-cn-tech/sigma9@cn/cn/sigma9_ch.min.css);
+ </style>
+ <style>
+ .row-0 {
+     display: none;
+ }
+ </style>
 
-<div>
+ <div>
 
-    <form id="edit-page-form" class="form-horizontal data-form" role="form" onkeypress="return OZONE.utils.disableEnterKey(event)">
-        <input type="hidden" name="page_id" value="">
-        <input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field">
-        <input type="hidden" name="recaptcha_response_field" id="recaptcha_response_field">
-        <input type="hidden" name="form-use" value="true">
-        <input type="hidden" name="form-fields" value="content">
-        <input type="hidden" name="form-file-still-uploading" value="0">
-        
-            <table class="form-table">
-            
-            <tbody><tr class="form-row row-0">
-                <td class="form-labels"><span class="form-label">标题</span></td>
-                <td class="form-values">
-                    <span class="form-value-title">
-                        <input class="text" id="edit-page-title" name="title" type="text" value="00542" size="35" maxlength="128" style="font-weight: bold; font-size: 130%;">
-                    </span>
-                </td>
-            </tr>
-            
-                        <tr class="form-row row-1">
-                <td class="form-labels">
-                    <span class="form-label"></span>
-                </td>
-                <td class="form-values"><div class="form-value field-content"> <textarea cols="40" rows="10" name="field-content" placeholder="" class="form-control form-wiki" style="width: 341px; height: 232px;" readonly>**项目描述：**编号{{00542}}的SCP基金会中国分部异常物品录入接口，试图通过图形方式访问该接口将导致访问该接口的软件或硬件失效，试图通过直接操作数据库或存储器的方式向这个编号内添加内容的尝试被证实是可行的，但是通过该方法录入的数据无法被解析，且会被异常物品数据呈现和渲染接口渲染为一个无法编辑的异常物品数据录入控件。
+     <form id="edit-page-form" class="form-horizontal data-form" role="form" onkeypress="return OZONE.utils.disableEnterKey(event)">
+         <input type="hidden" name="page_id" value="">
+         <input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field">
+         <input type="hidden" name="recaptcha_response_field" id="recaptcha_response_field">
+         <input type="hidden" name="form-use" value="true">
+         <input type="hidden" name="form-fields" value="content">
+         <input type="hidden" name="form-file-still-uploading" value="0">
+         
+             <table class="form-table">
+             
+             <tbody><tr class="form-row row-0">
+                 <td class="form-labels"><span class="form-label">标题</span></td>
+                 <td class="form-values">
+                     <span class="form-value-title">
+                         <input class="text" id="edit-page-title" name="title" type="text" value="00542" size="35" maxlength="128" style="font-weight: bold; font-size: 130%;">
+                     </span>
+                 </td>
+             </tr>
+             
+                         <tr class="form-row row-1">
+                 <td class="form-labels">
+                     <span class="form-label"></span>
+                 </td>
+                 <td class="form-values"><div class="form-value field-content"> <textarea cols="40" rows="10" name="field-content" placeholder="" class="form-control form-wiki" style="width: 341px; height: 232px;" readonly>**项目描述：**编号{{00542}}的SCP基金会中国分部异常物品录入接口，试图通过图形方式访问该接口将导致访问该接口的软件或硬件失效，试图通过直接操作数据库或存储器的方式向这个编号内添加内容的尝试被证实是可行的，但是通过该方法录入的数据无法被解析，且会被异常物品数据呈现和渲染接口渲染为一个无法编辑的异常物品数据录入控件。
 **回收日期：**20██/██/██
-**回收地点：**SCP基金会中国分部Site-CN-██数据中心，该数据中心承载了SCP基金会中国分部的异常物品数据。
+ **回收地点：**SCP基金会中国分部Site-CN-██数据中心，该数据中心承载了SCP基金会中国分部的异常物品数据。
 **当前状态：**通过修改数据库计数器的方式跳过并屏蔽了这个异常物品编号。
 **笔记：**//不过说起来，我用这个接口录入数据的时候死机已经不是一两次了。 ——发现该项目的助理研究员Picsell Dois//
-</textarea> <span class="form-message text-danger"></span></div></td>
-            </tr>
-                           
-        </tbody></table>
-        
-        
-                    
-        <div id="edit-page-captcha">
-            
-        </div>
-        
-        <div class="buttons alignleft">
-            <input type="button" name="cancel" id="edit-cancel-button" value="取消" onclick="alert('错误：不允许的方法。')">
-            <input type="button" name="save" id="edit-save-button" value="保存" onclick="alert('错误：拒绝访问。')" class="">
-        </div>
-    
-    </form>
-    <div id="background-file-upload" style="display: none;"></div>
-</div>
-</body>
-[[/html]] 
+ </textarea> <span class="form-message text-danger"></span></div></td>
+             </tr>
+                            
+         </tbody></table>
+         
+         
+                     
+         <div id="edit-page-captcha">
+             
+         </div>
+         
+         <div class="buttons alignleft">
+             <input type="button" name="cancel" id="edit-cancel-button" value="取消" onclick="alert('错误：不允许的方法。')">
+             <input type="button" name="save" id="edit-save-button" value="保存" onclick="alert('错误：拒绝访问。')" class="">
+         </div>
+     
+     </form>
+     <div id="background-file-upload" style="display: none;"></div>
+ </div>
+ </body>
+ [[/html]] 

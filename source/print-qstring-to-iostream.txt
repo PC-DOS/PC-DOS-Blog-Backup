@@ -1,12 +1,12 @@
 在Qt中可以通过包含{{<iostream>}}头文件的方法使用标准输入输出流，但是由于标准输出流的{{@@<<@@}}运算符重载并不支持{{QString}}类型，因此需要通过{{qPrintable()}}宏进行转换：
 
 [[code]]
-#include <iostream>
+ #include <iostream>
 
-void PrintMessageToConsole(QString sConsoleMessage){
-    std::cerr<<qPrintable(sConsoleMessage)<<endl;
-    return;
-}
-[[/code]]
+ void PrintMessageToConsole(QString sConsoleMessage){
+     std::cerr<<qPrintable(sConsoleMessage)<<endl;
+     return;
+ }
+ [[/code]]
 
 参考资料：*https://www.cnblogs.com/DawaTech/p/5609332.html 

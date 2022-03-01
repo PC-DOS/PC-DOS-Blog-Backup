@@ -16,8 +16,8 @@ Gitee等部分具有隐私保护功能的平台可能会阻止GitLab的推送并
 
 GitHub从2021年08月13日开始将不允许通过用户名和密码直接验证的方式进行Git操作，并建议使用使用[*https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token GitHub个人访问令牌（Personal Access Token）]进行验证。
 
-请先前往[*https://github.com/settings/tokens GitHub个人访问令牌设置页面]，添加一个具有{{public_repo}}权限的个人访问令牌并保存。
+ 请先前往[*https://github.com/settings/tokens GitHub个人访问令牌设置页面]，添加一个具有{{public_repo}}权限的个人访问令牌并保存。
 
-请注意：您应当妥善保存您的个人访问令牌，您无法再次通过GitHub的页面查看这个令牌。
+ 请注意：您应当妥善保存您的个人访问令牌，您无法再次通过GitHub的页面查看这个令牌。
 
-完成后，您可以重新配置GitLab的推送功能，与先前不同的是，您需要在 [密码] 文本框中填入您的个人访问令牌，而非您的GitHub账户密码。 
+ 完成后，您可以重新配置GitLab的推送功能，与先前不同的是，您需要在 [密码] 文本框中填入您的个人访问令牌，而非您的GitHub账户密码。 

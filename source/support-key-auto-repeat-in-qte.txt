@@ -1,20 +1,20 @@
 默认情况下，Qt/E使用来自输入设备驱动程序提供的自动重复设置，该设置可在导出{{QWS_KEYBOARD}}变脸时复写：
 
 [[code]]
-export QWS_KEYBOARD="DRIVER:Input:Device:Parameters"
-[[/code]]
+ export QWS_KEYBOARD="DRIVER:Input:Device:Parameters"
+ [[/code]]
 
 用于控制按键自动重复设置的选项包括：
 
 * {{repeat-delay=MsecDelay}}：在长按按键{{MsecDelay}}毫秒后，触发自动重复。
 * {{repeat-rate=MsecDelay}}：指定两次自动重复之间的间隔为{{MsecDelay}}毫秒。
 
-需注意，在部分平台上，Qt/E的自动按键重复仅会循环触发Qt事件循环内的{{keyPressEvent(QKeyEvent * KeyEventArgs)}}事件，{{keyReleaseEvent(QKeyEvent * KeyEventArgs)}}事件可能仅会在松开按键时触发一次。
+ 需注意，在部分平台上，Qt/E的自动按键重复仅会循环触发Qt事件循环内的{{keyPressEvent(QKeyEvent * KeyEventArgs)}}事件，{{keyReleaseEvent(QKeyEvent * KeyEventArgs)}}事件可能仅会在松开按键时触发一次。
 
 {{QKeyEvent::isAutoRepeat()}}成员函数的返回值指示了该按键事件是否为由自动重复引发的，可用于实现一个简单的按键事件筛选器。
 
-参考资料：
+ 参考资料：
 
 *https://doc.qt.io/archives/qt-4.8/qt-embedded-envvars.html
 
-*https://doc.qt.io/archives/qt-4.8/qt-embedded-charinput.html 
+ *https://doc.qt.io/archives/qt-4.8/qt-embedded-charinput.html 

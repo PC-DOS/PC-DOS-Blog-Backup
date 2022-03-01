@@ -1,45 +1,45 @@
 该方法用于在超过每日健康申报时限的情况下强制向东南大学每日健康申报系统（*http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1630288701166/dailyReport#/dailyReport）提交健康申报数据。
 
-范例中使用的是Firefox 78.11.0 ESR浏览器。
+ 范例中使用的是Firefox 78.11.0 ESR浏览器。
 
-首先，请打开[*http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1630288701166/dailyReport#/dailyReport 健康申报页面]，按{{F12}}键打开开发者工具，切换到“调试器”。
+ 首先，请打开[*http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/index.do?t_s=1630288701166/dailyReport#/dailyReport 健康申报页面]，按{{F12}}键打开开发者工具，切换到“调试器”。
 
-在左侧浏览窗格中，展开到下面的JavaScript代码文件：
+ 在左侧浏览窗格中，展开到下面的JavaScript代码文件：
 
 [[code]]
-http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/modules/dailyReport/dailyReport.js
-[[/code]]
+ http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/modules/dailyReport/dailyReport.js
+ [[/code]]
 
 在左侧代码窗格中，找到下面的代码块：
 
 [[code type="javascript"]]
-            //...
-            var sfksbData = checkMrbpaSfksb();
-            if (sfksbData.success) {
-                if (!sfksbData.SFKSB_TQ) {
-                    $.warn(sfksbData.TQTBTS || '根据东南大学疫情防控工作安排，每天执行晨/午检制度（申报早晨、中午体温）。为方便师生一次性填报，将健康申报时间调整为11点～15点。');
-                    return false;
-                }
-                if (!sfksbData.SFKSB_CS) {
-                    $.warn('每日健康申报截止时间' + sfksbData.JZSJ);
-                    return false;
-                }
-            }
-            //...
-[[/code]]
+             //...
+             var sfksbData = checkMrbpaSfksb();
+             if (sfksbData.success) {
+                 if (!sfksbData.SFKSB_TQ) {
+                     $.warn(sfksbData.TQTBTS || '根据东南大学疫情防控工作安排，每天执行晨/午检制度（申报早晨、中午体温）。为方便师生一次性填报，将健康申报时间调整为11点～15点。');
+                     return false;
+                 }
+                 if (!sfksbData.SFKSB_CS) {
+                     $.warn('每日健康申报截止时间' + sfksbData.JZSJ);
+                     return false;
+                 }
+             }
+             //...
+ [[/code]]
 
 通过点击左侧显示的行号，在下面的{{if}}语句上下断点：
 
 [[code type="javascript"]]
-if (sfksbData.success) {
-[[/code]]
+ if (sfksbData.success) {
+ [[/code]]
 
 然后，点击“新增”按钮，此时浏览器会中断，切换到开发者工具的“控制台”页面，输入并按“回车”键执行下面的指令：
 
 [[code type="javascript"]]
-sfksbData.SFKSB_CS = true;
-[[/code]]
+ sfksbData.SFKSB_CS = true;
+ [[/code]]
 
 点击调试器覆盖在页面上的三角形“继续”按钮，即可继续进行健康申报。
 
-参考资料：*https://blog.csdn.net/shida_csdn/article/details/78982491 
+ 参考资料：*https://blog.csdn.net/shida_csdn/article/details/78982491 

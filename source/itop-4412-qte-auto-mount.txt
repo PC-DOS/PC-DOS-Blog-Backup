@@ -1,47 +1,47 @@
 iTop-4412有一个内置存储卡设备{{sdcard}}，这个设备的设备文件位于：
 
 [[code]]
-/dev/sdcard
-[[/code]]
+ /dev/sdcard
+ [[/code]]
 
 可以修改启动配置脚本{{/etc/init.d/rcS}}实现这个设备的自动挂载。在超级终端输入：
 
 [[code]]
-vi /etc/init.d/rcS
-[[/code]]
+ vi /etc/init.d/rcS
+ [[/code]]
 
 编辑该文件，该文件中有形如下面的行：
 
 [[code]]
-mkdir -p /dev/pts
-mkdir -p /dev/shm
-/bin/mount -n -t devpts none /dev/pts -o mode=0622
-/bin/mount -n -t tmpfs tmpfs /dev/shm
-/bin/mount -n -t ramfs none /tmp
-/bin/mount -n -t ramfs none /var
-[[/code]]
+ mkdir -p /dev/pts
+ mkdir -p /dev/shm
+ /bin/mount -n -t devpts none /dev/pts -o mode=0622
+ /bin/mount -n -t tmpfs tmpfs /dev/shm
+ /bin/mount -n -t ramfs none /tmp
+ /bin/mount -n -t ramfs none /var
+ [[/code]]
 
 按{{i}}键进入插入编辑模式，插入下面所示的行：
 
 [[code]]
-mkdir -p /mnt/storage
-/bin/mount -n /dev/sdcard /mnt/storage
-[[/code]]
+ mkdir -p /mnt/storage
+ /bin/mount -n /dev/sdcard /mnt/storage
+ [[/code]]
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，下次启动设备时即可自动挂载这一设备到{{/mnt/storage}}目录。
 
-如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/etc/init.d/rcS}}文件：
+ 如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/etc/init.d/rcS}}文件：
 
 [[code]]
-sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/etc/init.d/rcS'
-[[/code]]
+ sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/etc/init.d/rcS'
+ [[/code]]
 
 完成后，回到终端执行：
 
 [[code]]
-cd /home/picsell-dois/iTop4412/Qtopia/
-rm system.img
-make_ext4fs -s -l 314572800 -a root -L linux system.img root
-[[/code]]
+ cd /home/picsell-dois/iTop4412/Qtopia/
+ rm system.img
+ make_ext4fs -s -l 314572800 -a root -L linux system.img root
+ [[/code]]
 
 重建{{system.img}}并执行刷写流程即可。 

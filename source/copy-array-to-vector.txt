@@ -1,18 +1,18 @@
 C++ STL的{{vector}}容器提供了一个优秀的动态数组实现，但有时需要将定长数组复制到{{vector}}容器内，循环使用{{push_back()}}函数可能严重影响性能，因此可以使用{{std::copy()}}函数进行数组的整体复制，以提升性能。
 
-需要注意的是，使用{{std::copy()}}函数不会为容器分配空间，因此需要在执行操作前使用{{vector::resize()}}等函数以确保容器已经分配了足够的内存空间，从而避免内存错误。
+ 需要注意的是，使用{{std::copy()}}函数不会为容器分配空间，因此需要在执行操作前使用{{vector::resize()}}等函数以确保容器已经分配了足够的内存空间，从而避免内存错误。
 
 [[code type="Cpp"]]
-//数据大小
+ //数据大小
 #define DATA_SIZE 1024
 
-//数组
+ //数组
 int arrData[DATA_SIZE];
 
-//vector容器
+ //vector容器
 std::vector<int> arrDataVector;
 
-//将数组复制到容器
+ //将数组复制到容器
 arrDataVector.clear(); //清空
 arrDataVector.resize(DATA_SIZE); //预分配空间
 std::fill(arrDataVector.begin(), arrDataVector.end(), 0); //填充预设值
@@ -22,16 +22,16 @@ std::copy(arrData, arrData+DATA_SIZE, arrDataVector.begin()); //复制数组
 对于Qt的{{QVector}}等实现，该方法同样可用：
 
 [[code type="Cpp"]]
-//数据大小
+ //数据大小
 #define DATA_SIZE 1024
 
-//数组
+ //数组
 int arrData[DATA_SIZE];
 
-//QVector容器
+ //QVector容器
 QVector<int> arrDataVector;
 
-//将数组复制到容器
+ //将数组复制到容器
 arrDataVector.clear(); //清空
 arrDataVector.fill(0, DATA_SIZE); //预分配空间并填充预设值
 std::copy(arrData, arrData+DATA_SIZE, arrDataVector.begin()); //复制数组
@@ -41,6 +41,6 @@ std::copy(arrData, arrData+DATA_SIZE, arrDataVector.begin()); //复制数组
 
 *https://www.cnblogs.com/silentNight/p/5508605.html
 
-*https://vimsky.com/examples/usage/stl-std-fill-function-with-example-02.html
+ *https://vimsky.com/examples/usage/stl-std-fill-function-with-example-02.html
 
-*https://doc.qt.io/archives/qt-4.8/qvector.html 
+ *https://doc.qt.io/archives/qt-4.8/qvector.html 

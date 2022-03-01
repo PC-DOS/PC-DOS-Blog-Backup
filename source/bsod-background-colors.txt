@@ -1,49 +1,49 @@
 参考自*https://commons.wikimedia.org/wiki/BSoD
 
-Windows 1.0：{{RGB(0,0,173), HEX(#0000AD)}}
+ Windows 1.0：{{RGB(0,0,173), HEX(#0000AD)}}
 
-[[div style="width: 100%; height: 100px; background-color: #0000ad"]]
+ [[div style="width: 100%; height: 100px; background-color: #0000ad"]]
 
-[[/div]]
+ [[/div]]
 
-Windows 9x：{{RGB(16,48,183), HEX(#1030B7)}}
+ Windows 9x：{{RGB(16,48,183), HEX(#1030B7)}}
 
-[[div style="width: 100%; height: 100px; background-color: #1030b7"]]
+ [[div style="width: 100%; height: 100px; background-color: #1030b7"]]
 
-[[/div]]
+ [[/div]]
 
-Windows 9x：{{RGB(0,0,170), HEX(#0000AA)}}
+ Windows 9x：{{RGB(0,0,170), HEX(#0000AA)}}
 
-[[div style="width: 100%; height: 100px; background-color: #0000AA"]]
+ [[div style="width: 100%; height: 100px; background-color: #0000AA"]]
 
-[[/div]]
+ [[/div]]
 
-Windows 2000：{{RGB(0,0,128), HEX(#000080)}}
+ Windows 2000：{{RGB(0,0,128), HEX(#000080)}}
 
-[[div style="width: 100%; height: 100px; background-color: #000080"]]
+ [[div style="width: 100%; height: 100px; background-color: #000080"]]
 
-[[/div]]
+ [[/div]]
 
-Windows XP/Vista/7：{{RGB(0,0,130), HEX(#000082)}}
+ Windows XP/Vista/7：{{RGB(0,0,130), HEX(#000082)}}
 
-[[div style="width: 100%; height: 100px; background-color: #000082"]]
+ [[div style="width: 100%; height: 100px; background-color: #000082"]]
 
-[[/div]]
+ [[/div]]
 
-Windows 8/8.1：{{RGB(17,114,169), HEX(#1172A9)}}
+ Windows 8/8.1：{{RGB(17,114,169), HEX(#1172A9)}}
 
-[[div style="width: 100%; height: 100px; background-color: #1172a9"]]
+ [[div style="width: 100%; height: 100px; background-color: #1172a9"]]
 
-[[/div]]
+ [[/div]]
 
-Windows 8.1/10：{{RGB(8,116,171), HEX(#0874AB)}}
+ Windows 8.1/10：{{RGB(8,116,171), HEX(#0874AB)}}
 
-[[div style="width: 100%; height: 100px; background-color: #0874AB"]]
+ [[div style="width: 100%; height: 100px; background-color: #0874AB"]]
 
-[[/div]]
+ [[/div]]
 
-Windows 10：{{RGB(0,121,216), HEX(#0079D8)}}
+ Windows 10：{{RGB(0,121,216), HEX(#0079D8)}}
 
-[[div style="width: 100%; height: 100px; background-color: #0079D8"]]
+ [[div style="width: 100%; height: 100px; background-color: #0079D8"]]
 
-[[/div]] 
+ [[/div]] 

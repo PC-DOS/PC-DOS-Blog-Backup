@@ -1,19 +1,19 @@
 [[>]]
-[[module Rate]]
-[[/>]]
+ [[module Rate]]
+ [[/>]]
 
-**项目编号：**
+ **项目编号：**
 
-**项目等级：**
+ **项目等级：**
 
-**特殊收容措施：**
+ **特殊收容措施：**
 
-**描述：**
+ **描述：**
 
-**附录：**
+ **附录：**
 
-[[footnoteblock title="蹄注"]]
+ [[footnoteblock title="蹄注"]]
 
-[[=]]
-<< [[[SCP-EQ-YYY]]] | SCP-EQ-XXX | [[[SCP-EQ-ZZZ]]] >>
-[[/=]] 
+ [[=]]
+ << [[[SCP-EQ-YYY]]] | SCP-EQ-XXX | [[[SCP-EQ-ZZZ]]] >>
+ [[/=]] 

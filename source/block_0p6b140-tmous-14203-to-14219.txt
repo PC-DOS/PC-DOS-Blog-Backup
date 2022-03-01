@@ -1,53 +1,53 @@
 [[code]]
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mobilecore.prod.mainos.spku_2eb32e91cca8e52802d464f16f7a2a8f0188382c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production.spku_2c57739615dfc79afcd714a4476c7d968cf9bacc.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mobilecore.updateos.spku_4959ae0813cb8653fb867cdef89ba809b0efd3da.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.updateos.production.spku_7094d395c1cd3704c5392cb052ad07d423ce8d61.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.efiesp.production.spku_6e3e4eeecce83ea717440e76293c61d0c0ff9433.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.phonefm.spkg_eec63998a9caa535c8c2c26f75c3734fda682e6c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_de-de.spku_48c36a9969a9543d32fb24486f8c23a2513dba71.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_en-us.spku_e4f2edd9b6fa648aa8f48f1bb645b2b4e6fb4a75.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_es-es.spku_0194c2b4bc0d4bee05bfd1738de4c5cc7707dceb.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_fr-fr.spku_e68ec876dcd22546fbd35cefe350e0dec4b915a7.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_it-it.spku_2daa1d23dc88674908afec5a9c8f700202177bb0.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_res_1080x1920.spku_cc24426d9c60104793288b83a47ab6c2a5e670ee.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_optimized_boot.mainos.spku_817918e0000e58d4ef5fdc099ac90741cdb8c08f.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_bootsequence_retail.mainos.spku_9d41491af2089569a1a89813a06e3494d7f3c0e5.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_bootsequence_retail.efiesp.spku_1e36bafb11da1c1c1d428815806a382b85fec941.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mobilecore.prod.efiesp.spku_39b9ef05c320a8b6a04437b3537fa665c2679fcc.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.release_production.mainos.spku_823cc4824410beae69bc41fff943b5577e3fab39.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.release_production.efiesp.spku_1c40a16f6e5f6aab2cc00af4554430a7ca52eb16.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.release_production.updateos.spku_701d5a6fee19e8c3f8a12c8be3b6c79f9e4c3275.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_standard_feature_1.mainos.spku_bc16294b75f90ed7c7313953ad8e6b9e6130360d.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos.spku_671064fe3af47aedee299bd20d07430299f2fa19.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_de-de.spku_05609504c5cd2ae11d78a0744b045ced9ccc4c20.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_en-us.spku_58da6c313f27fa1030993e1b5140b87f48265864.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_es-es.spku_1f5b7d1cadae5498a9c6939c92d7041c35ae22b6.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_fr-fr.spku_75435033eb04eb58d8cf8da73d69612288ab6217.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_it-it.spku_617cc2e1e28cbb3edd88f6dc05e952258355aa97.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_facebook.mainos.spku_15a18b171b5fbddc67d44d06d12cacdda963d8d4.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.ms_bingapps.mainos.spku_96b5f9cb94257bf0f662629b2fa10da8c7bc871e.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.ms_bingfood.mainos.spkg_f08fe04d1ffb7edbe4a6fd2f8a6828803dc133f8.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_binghealth.mainos.spkg_17f6b0d6156878ec33051bc7a91c0d1df78a5ca6.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_bingtravel.mainos.spkg_4b59f7d5c3beb9ea847d3a3f1a5e1b41b2f7aa1f.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.ms_skype.mainos.spkg_f855762a5464f356fc3e3b43adf1eb36f76130a3.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos.spku_8941b278730a7f661fe462a4b90506c4a37b42e2.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_de-de.spku_9f95e9580dfabeeb234545314a30f4f4af365514.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_en-us.spkg_b7bb726609704cfe34fdbab586b082d9044c2bc3.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_es-es.spku_1f457e268eb54a37c39ddf9d2a86b28d7d545c2e.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_fr-fr.spku_562a62b723cf427995da14e18fb93c66cdac2f76.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_it-it.spku_105092dde3e9661860190f61b45345e0d686cdd3.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_res_1080x1920.spku_d0f113115bf8a7b07fa6e30769abca23f7cf3b63.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.soc_qc8974.mainos.spku_2ad880d15d46fc890de9bb138dac97a4fd4fc2ce.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.devicelayout_qc8974.mainos.spku_4446ae0462e78523d3ce3004405c89bc28392fbe.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_de-de.spku_2525576a2a79373faf6f4a740c6c4243653d04b7.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_en-us.spku_e5d6546584534703f39fa0fa63f1130a92bfff85.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_es-es.spku_30c6ad3070eef9f1fbe3d16ead4cd5a51f8afa42.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_fr-fr.spku_51b452ef3cc19f5fdd1e4747f6a5aa91dcb607a2.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_it-it.spku_9cee9261a47edae89af01495a7180cc00c4cccb5.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_de-de.spku_3b81e1e645f7cad5fb014cb6cb637a7c504de385.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_en-us.spku_be36dd4e31e2ac574184ec8cf8792d428ea3d81c.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_es-es.spku_5cc6ad1a0bf9dde497c205916eb9c225165602b1.cab
-http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_fr-fr.spku_7ed4a43f28041a47715926dfb8e32c85f276e3a7.cab
-http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_it-it.spku_5f69f7c3566fa9a3a0686ac2233eed267943db36.cab
-[[/code]] 
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mobilecore.prod.mainos.spku_2eb32e91cca8e52802d464f16f7a2a8f0188382c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production.spku_2c57739615dfc79afcd714a4476c7d968cf9bacc.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mobilecore.updateos.spku_4959ae0813cb8653fb867cdef89ba809b0efd3da.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.updateos.production.spku_7094d395c1cd3704c5392cb052ad07d423ce8d61.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.efiesp.production.spku_6e3e4eeecce83ea717440e76293c61d0c0ff9433.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.phonefm.spkg_eec63998a9caa535c8c2c26f75c3734fda682e6c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_de-de.spku_48c36a9969a9543d32fb24486f8c23a2513dba71.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_en-us.spku_e4f2edd9b6fa648aa8f48f1bb645b2b4e6fb4a75.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_es-es.spku_0194c2b4bc0d4bee05bfd1738de4c5cc7707dceb.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_fr-fr.spku_e68ec876dcd22546fbd35cefe350e0dec4b915a7.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_lang_it-it.spku_2daa1d23dc88674908afec5a9c8f700202177bb0.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mainos.production_res_1080x1920.spku_cc24426d9c60104793288b83a47ab6c2a5e670ee.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_optimized_boot.mainos.spku_817918e0000e58d4ef5fdc099ac90741cdb8c08f.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_bootsequence_retail.mainos.spku_9d41491af2089569a1a89813a06e3494d7f3c0e5.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_bootsequence_retail.efiesp.spku_1e36bafb11da1c1c1d428815806a382b85fec941.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.mobilecore.prod.efiesp.spku_39b9ef05c320a8b6a04437b3537fa665c2679fcc.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.release_production.mainos.spku_823cc4824410beae69bc41fff943b5577e3fab39.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.release_production.efiesp.spku_1c40a16f6e5f6aab2cc00af4554430a7ca52eb16.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.release_production.updateos.spku_701d5a6fee19e8c3f8a12c8be3b6c79f9e4c3275.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_standard_feature_1.mainos.spku_bc16294b75f90ed7c7313953ad8e6b9e6130360d.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos.spku_671064fe3af47aedee299bd20d07430299f2fa19.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_de-de.spku_05609504c5cd2ae11d78a0744b045ced9ccc4c20.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_en-us.spku_58da6c313f27fa1030993e1b5140b87f48265864.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_es-es.spku_1f5b7d1cadae5498a9c6939c92d7041c35ae22b6.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_fr-fr.spku_75435033eb04eb58d8cf8da73d69612288ab6217.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_navigationbar.mainos_lang_it-it.spku_617cc2e1e28cbb3edd88f6dc05e952258355aa97.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_facebook.mainos.spku_15a18b171b5fbddc67d44d06d12cacdda963d8d4.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.ms_bingapps.mainos.spku_96b5f9cb94257bf0f662629b2fa10da8c7bc871e.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.ms_bingfood.mainos.spkg_f08fe04d1ffb7edbe4a6fd2f8a6828803dc133f8.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_binghealth.mainos.spkg_17f6b0d6156878ec33051bc7a91c0d1df78a5ca6.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.ms_bingtravel.mainos.spkg_4b59f7d5c3beb9ea847d3a3f1a5e1b41b2f7aa1f.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.ms_skype.mainos.spkg_f855762a5464f356fc3e3b43adf1eb36f76130a3.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos.spku_8941b278730a7f661fe462a4b90506c4a37b42e2.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_de-de.spku_9f95e9580dfabeeb234545314a30f4f4af365514.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_en-us.spkg_b7bb726609704cfe34fdbab586b082d9044c2bc3.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_es-es.spku_1f457e268eb54a37c39ddf9d2a86b28d7d545c2e.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_fr-fr.spku_562a62b723cf427995da14e18fb93c66cdac2f76.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_lang_it-it.spku_105092dde3e9661860190f61b45345e0d686cdd3.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.prerelease_protected.mainos_res_1080x1920.spku_d0f113115bf8a7b07fa6e30769abca23f7cf3b63.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.soc_qc8974.mainos.spku_2ad880d15d46fc890de9bb138dac97a4fd4fc2ce.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.devicelayout_qc8974.mainos.spku_4446ae0462e78523d3ce3004405c89bc28392fbe.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_de-de.spku_2525576a2a79373faf6f4a740c6c4243653d04b7.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_en-us.spku_e5d6546584534703f39fa0fa63f1130a92bfff85.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_es-es.spku_30c6ad3070eef9f1fbe3d16ead4cd5a51f8afa42.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_fr-fr.spku_51b452ef3cc19f5fdd1e4747f6a5aa91dcb607a2.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.input.mtf_lang_it-it.spku_9cee9261a47edae89af01495a7180cc00c4cccb5.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_de-de.spku_3b81e1e645f7cad5fb014cb6cb637a7c504de385.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_en-us.spku_be36dd4e31e2ac574184ec8cf8792d428ea3d81c.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_es-es.spku_5cc6ad1a0bf9dde497c205916eb9c225165602b1.cab
+ http://wp.ds.download.windowsupdate.com/d/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_fr-fr.spku_7ed4a43f28041a47715926dfb8e32c85f276e3a7.cab
+ http://wp.ds.download.windowsupdate.com/c/msdownload/update/software/dflt/2014/11/microsoft.speech.data_lang_it-it.spku_5f69f7c3566fa9a3a0686ac2233eed267943db36.cab
+ [[/code]] 

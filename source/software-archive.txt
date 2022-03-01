@@ -1,9 +1,9 @@
 [[toc]]
 
-+++ Sumatra PDF
+ +++ Sumatra PDF
 
-*https://www.sumatrapdfreader.org/download-prev.html
+ *https://www.sumatrapdfreader.org/download-prev.html
 
-+++ Firefox
+ +++ Firefox
 
-*http://ftp.mozilla.org/pub/firefox/releases/ 
+ *http://ftp.mozilla.org/pub/firefox/releases/ 

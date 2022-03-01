@@ -1,11 +1,11 @@
 作为一项安全措施，Windows会自动对下载的文件进行锁定，导致Office套件默认无法打开这些文件。需要通过文件的 [属性] > [解除锁定] 功能进行解锁。
 
-若需停用该功能，请执行如下步骤：
+ 若需停用该功能，请执行如下步骤：
 
 # 按下 [Windows徽标键] + [R] 组合键，打开“运行”对话框，输入“{{gpedit.msc}}”并按回车键，打开“本地组策略编辑器”。
 # 展开左侧窗格的 [本地计算机策略] > [用户配置] > [管理模板] > [Windows组件] > [附件管理器]。双击右侧窗格的“文件附件中不保留区域信息”策略项，并点击“已启用”单选钮，随后点击“确定”按钮退出并关闭本地组策略编辑器。
 # 此时该功能应当已被停用。
 
-您也可以通过Dism++工具停用该功能，开启 [系统优化] > [Internel Explorer] > [文件附件中不保留区域信息] 设定项即可。
+ 您也可以通过Dism++工具停用该功能，开启 [系统优化] > [Internel Explorer] > [文件附件中不保留区域信息] 设定项即可。
 
-参考资料：*https://answers.microsoft.com/zh-hans/windows/forum/windows_10-security/%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e8%a7%a3/c46d14db-31cd-4091-b78b-125bff5db331 
+ 参考资料：*https://answers.microsoft.com/zh-hans/windows/forum/windows_10-security/%e4%b8%8b%e8%bd%bd%e6%96%87%e4%bb%b6%e8%a7%a3/c46d14db-31cd-4091-b78b-125bff5db331 

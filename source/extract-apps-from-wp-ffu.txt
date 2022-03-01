@@ -1,28 +1,28 @@
 [[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
-----
-[[size larger]] **请尊重应用程序作者的知识产权，请勿反编译通过本文提供的方式得到的XAP包。**[[/size]]
-[[size larger]] **请勿将通过本文提供的方式得到的XAP包用于商业及盈利目的。**[[/size]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+ ----
+ [[size larger]] **请尊重应用程序作者的知识产权，请勿反编译通过本文提供的方式得到的XAP包。**[[/size]]
+ [[size larger]] **请勿将通过本文提供的方式得到的XAP包用于商业及盈利目的。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
-[[/=]]
+ [[/=]]
 
-+ 通过WPInternals工具提取
+ + 通过WPInternals工具提取
 
-首先，请通过WPInternals的Dump功能，提取固件的MainOS分区。请打开WPInternals，导航到 [Dump] 页面，在 [Source FFU] 处选择FFU格式的固件文件，并在 [MainOS] 处指定提取得到的文件储存的位置（建议不要勾选 [Compress MainOS partition] 复选框）。随后点击 [Dump partitions] 按钮，开始提取MainOS分区的映像。提取的文件默认将保存为BIN格式的磁盘映像文件。
+ 首先，请通过WPInternals的Dump功能，提取固件的MainOS分区。请打开WPInternals，导航到 [Dump] 页面，在 [Source FFU] 处选择FFU格式的固件文件，并在 [MainOS] 处指定提取得到的文件储存的位置（建议不要勾选 [Compress MainOS partition] 复选框）。随后点击 [Dump partitions] 按钮，开始提取MainOS分区的映像。提取的文件默认将保存为BIN格式的磁盘映像文件。
 
 + 通过Thor2工具提取
 
-如果您无法启动WPInternals，请尝试使用Thor2命令行工具。请在命令提示符或PowerShell中，通过{{cd}}命令导航到Thor2程序所在的位置，并执行下列命令：
+ 如果您无法启动WPInternals，请尝试使用Thor2命令行工具。请在命令提示符或PowerShell中，通过{{cd}}命令导航到Thor2程序所在的位置，并执行下列命令：
 
 [[code]]
-thor2 -mode ffureader -ffufile <PATH_TO_FFU_FILE> -dump_partitions
-[[/code]]
+ thor2 -mode ffureader -ffufile <PATH_TO_FFU_FILE> -dump_partitions
+ [[/code]]
 
 请首先将{{<PATH_TO_FFU_FILE>}}替换为FFU文件所在的位置，提取的文件将保存为BIN格式的磁盘映像文件并存储在Thor2程序所在的位置，需要使用的是MainOS.bin文件。
 
-随后，请使用7-Zip等可处理磁盘映像文件的压缩文件管理工具或磁盘管理工具，打开得到的BIN文件的{{PROGRAMS\CommonFiles\Xaps}}目录，以及{{PROGRAMS\CommonFiles\OEM\Public\PreloadedApps\tier3Apps\}}目录，即可查看内置的应用包。
+ 随后，请使用7-Zip等可处理磁盘映像文件的压缩文件管理工具或磁盘管理工具，打开得到的BIN文件的{{PROGRAMS\CommonFiles\Xaps}}目录，以及{{PROGRAMS\CommonFiles\OEM\Public\PreloadedApps\tier3Apps\}}目录，即可查看内置的应用包。
 
-请注意：对于XAP格式的包，需要解包并删除{{WMAppPRHeader.xml}}文件，再重新打包为ZIP包并修改扩展名为XAP，方可通过Windows Phone SDK正常部署。 
+ 请注意：对于XAP格式的包，需要解包并删除{{WMAppPRHeader.xml}}文件，再重新打包为ZIP包并修改扩展名为XAP，方可通过Windows Phone SDK正常部署。 

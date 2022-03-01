@@ -1,14 +1,14 @@
 **前言：**本文为2019年3月1日、2019年3月2日期间在一台已经部署了其他Web项目的阿里云服务器上部署GitLab中文社区版的记录。
 
-由于水平有限，如有纰漏，万望海涵。
+ 由于水平有限，如有纰漏，万望海涵。
 
 -----
 
 [[toc]]
 
-+++ 服务器基本参数
+ +++ 服务器基本参数
 
-本服务器由阿里云托管。双核CPU，8GB内存，80GB存储空间。操作系统为Ubuntu 16.04 LTS。
+ 本服务器由阿里云托管。双核CPU，8GB内存，80GB存储空间。操作系统为Ubuntu 16.04 LTS。
 
 +++ 更新NGINX
 
@@ -17,100 +17,100 @@
 **注意：**由于服务器已经部署了其他网页项目，因此应当在操作前备份/etc/nginx目录：
 
 [[code]]
-sudo cp -r /etc/nginx ~
-[[/code]]
+ sudo cp -r /etc/nginx ~
+ [[/code]]
 
 至少应当备份/etc/nginx/nginx.conf、/etc/nginx/sites-available与/etc/nginx/sites-enabled：
 
 [[code]]
-sudo cp /etc/nginx/nginx.conf ~
-sudo cp -r /etc/nginx/sites-available ~
-sudo cp -r /etc/nginx/sites-enabled ~
-[[/code]]
+ sudo cp /etc/nginx/nginx.conf ~
+ sudo cp -r /etc/nginx/sites-available ~
+ sudo cp -r /etc/nginx/sites-enabled ~
+ [[/code]]
 
 在终端输入
 
 [[code]]
-sudo vim /etc/apt/sources.list
-[[/code]]
+ sudo vim /etc/apt/sources.list
+ [[/code]]
 
 在VIM控制台中，在打开的/etc/apt/sources.list文件尾部加入
 
 [[code]]
-deb http://nginx.org/packages/ubuntu/ xenial nginx
-deb-src http://nginx.org/packages/ubuntu/ xenial nginx
-[[/code]]
+ deb http://nginx.org/packages/ubuntu/ xenial nginx
+ deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+ [[/code]]
 
 按下{{ESC}}键，输入{{:wq}}保存并退出VIM。
 
-随后，更新软件包安装源
+ 随后，更新软件包安装源
 
 [[code]]
-sudo apt-get update
-[[/code]]
+ sudo apt-get update
+ [[/code]]
 
 并安装NGINX
 
-[[code]]
-sudo apt-get install nginx
-[[/code]]
+ [[code]]
+ sudo apt-get install nginx
+ [[/code]]
 
 在更新时，会询问是否用随附的nginx.conf替换现有文件，建议输入{{N}}或直接按回车键，代表不替换文件。安装完毕后，建议检查/etc/nginx/sites-available与/etc/nginx/sites-enabled目录，确保现有的站点配置没有被变更。
 
-更新完毕后，尝试手动启动NGINX
+ 更新完毕后，尝试手动启动NGINX
 
-[[code]]
-sudo nginx
-[[/code]]
+ [[code]]
+ sudo nginx
+ [[/code]]
 
 如果出错，表示NGINX可能已经开始运行，请尝试重新启动NGINX
 
-[[code]]
-sudo nginx -s reload
-[[/code]]
+ [[code]]
+ sudo nginx -s reload
+ [[/code]]
 
-+++ 安装GitLab中文社区版
+ +++ 安装GitLab中文社区版
 
-具体请参考[*https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md GitLab社区版官方安装说明]以及[*https://gitlab.com/xhang/gitlab/wikis/home GitLab中文社区版安装及汉化指南]。
+ 具体请参考[*https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md GitLab社区版官方安装说明]以及[*https://gitlab.com/xhang/gitlab/wikis/home GitLab中文社区版安装及汉化指南]。
 
 ++++ 前期准备
 
 +++++ 安装Ruby所需的包
 
-通过终端安装Ruby运行所需的包
+ 通过终端安装Ruby运行所需的包
 
 [[code]]
-sudo apt-get install -y build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libre2-dev \
-  libreadline-dev libncurses5-dev libffi-dev curl openssh-server checkinstall libxml2-dev \
-  libxslt-dev libcurl4-openssl-dev libicu-dev logrotate rsync python-docutils pkg-config cmake \
-  runit
-[[/code]]
+ sudo apt-get install -y build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libre2-dev \
+   libreadline-dev libncurses5-dev libffi-dev curl openssh-server checkinstall libxml2-dev \
+   libxslt-dev libcurl4-openssl-dev libicu-dev logrotate rsync python-docutils pkg-config cmake \
+   runit
+ [[/code]]
 
-+++++ 安装Git、确认Git版本以及更新Git
+ +++++ 安装Git、确认Git版本以及更新Git
 
-[[code]]
-sudo apt-get install -y git-core
-[[/code]]
+ [[code]]
+ sudo apt-get install -y git-core
+ [[/code]]
 
 确认Git版本，确认其大于等于2.18.0
 
-[[code]]
-git --version
-[[/code]]
+ [[code]]
+ git --version
+ [[/code]]
 
 如果Git版本低于2.18.0，请考虑手动下载源代码并编译
 
 [[code]]
-sudo apt-get remove git-core
-sudo apt-get install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libssl-dev build-essential
-cd /tmp
-curl --remote-name --location --progress https://www.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz
-echo '94faf2c0b02a7920b0b46f4961d8e9cad08e81418614102898a55f980fa3e7e4  git-2.18.0.tar.gz' | shasum -a256 -c - && tar -xzf git-2.18.0.tar.gz
-cd git-2.18.0/
-./configure
-make prefix=/usr/local all
-sudo make prefix=/usr/local install
-[[/code]]
+ sudo apt-get remove git-core
+ sudo apt-get install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libssl-dev build-essential
+ cd /tmp
+ curl --remote-name --location --progress https://www.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz
+ echo '94faf2c0b02a7920b0b46f4961d8e9cad08e81418614102898a55f980fa3e7e4  git-2.18.0.tar.gz' | shasum -a256 -c - && tar -xzf git-2.18.0.tar.gz
+ cd git-2.18.0/
+ ./configure
+ make prefix=/usr/local all
+ sudo make prefix=/usr/local install
+ [[/code]]
 
 如果您手动下载并编译了Git，请在后续步骤中编辑gitlab.yml时，将{{git:}}命名空间下的{{bin_path}}改为{{/usr/local/bin/git}}。
 
@@ -119,156 +119,156 @@ sudo make prefix=/usr/local install
 如果需要让自定义的FavIcon能够工作，请安装GraphicsMagick，阿里云默认的源可能存在包缺失的问题。
 
 [[code]]
-sudo addapt-repository ppa:dhor/myway
-sudo apt-get update
-sudo apt-get install graphicsmagick
-[[/code]]
+ sudo addapt-repository ppa:dhor/myway
+ sudo apt-get update
+ sudo apt-get install graphicsmagick
+ [[/code]]
 
-+++++ 安装Postfix邮件服务器
+ +++++ 安装Postfix邮件服务器
 
 GitLab默认通过Postfix发送邮件
 
 [[code]]
-sudo apt-get install -y postfix
-[[/code]]
+ sudo apt-get install -y postfix
+ [[/code]]
 
-+++++ 安装Ruby
+ +++++ 安装Ruby
 
 移除老版本Ruby
 
-[[code]]
-sudo apt-get remove ruby1.8
-[[/code]]
+ [[code]]
+ sudo apt-get remove ruby1.8
+ [[/code]]
 
 下载并手动编译Ruby
 
-[[code]]
-mkdir /tmp/ruby && cd /tmp/ruby
-curl --remote-name --progress https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz
-echo 'f919a9fbcdb7abecd887157b49833663c5c15fda  ruby-2.5.3.tar.gz' | shasum -c - && tar xzf ruby-2.5.3.tar.gz
-cd ruby-2.5.3
-./configure --disable-install-rdoc
-make
-sudo make install
-[[/code]]
+ [[code]]
+ mkdir /tmp/ruby && cd /tmp/ruby
+ curl --remote-name --progress https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz
+ echo 'f919a9fbcdb7abecd887157b49833663c5c15fda  ruby-2.5.3.tar.gz' | shasum -c - && tar xzf ruby-2.5.3.tar.gz
+ cd ruby-2.5.3
+ ./configure --disable-install-rdoc
+ make
+ sudo make install
+ [[/code]]
 
 安装Bundler Gem
 
-[[code]]
-sudo gem install bundler --no-document --version '< 2'
-[[/code]]
+ [[code]]
+ sudo gem install bundler --no-document --version '< 2'
+ [[/code]]
 
-+++++ 安装Go语言支持环境
+ +++++ 安装Go语言支持环境
 
 GitLab需要Go语言环境支持。
 
 [[code]]
-sudo rm -rf /usr/local/go
-curl --remote-name --progress https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
-echo 'fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035  go1.10.3.linux-amd64.tar.gz' | shasum -a256 -c - && \
-  sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
-sudo ln -sf /usr/local/go/bin/{go,godoc,gofmt} /usr/local/bin/
-rm go1.10.3.linux-amd64.tar.gz
-[[/code]]
+ sudo rm -rf /usr/local/go
+ curl --remote-name --progress https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
+ echo 'fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035  go1.10.3.linux-amd64.tar.gz' | shasum -a256 -c - && \
+   sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
+ sudo ln -sf /usr/local/go/bin/{go,godoc,gofmt} /usr/local/bin/
+ rm go1.10.3.linux-amd64.tar.gz
+ [[/code]]
 
-+++++ 安装Node和Yarn
+ +++++ 安装Node和Yarn
 
-GitLab要求Node v8.10.0、Yarn 1.10.0及以上。
-
-[[code]]
-curl --location https://deb.nodesource.com/setup_8.x | sudo bash -
-sudo apt-get install -y nodejs
-curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update
-sudo apt-get install yarn
-[[/code]]
-
-+++++ 添加用户
-
-添加供GitLab使用的git账户
+ GitLab要求Node v8.10.0、Yarn 1.10.0及以上。
 
 [[code]]
-sudo adduser --disabled-login --gecos 'GitLab' git
-[[/code]]
+ curl --location https://deb.nodesource.com/setup_8.x | sudo bash -
+ sudo apt-get install -y nodejs
+ curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+ sudo apt-get update
+ sudo apt-get install yarn
+ [[/code]]
 
-+++++ 安装PostgreSQL数据库
+ +++++ 添加用户
+
+ 添加供GitLab使用的git账户
+
+[[code]]
+ sudo adduser --disabled-login --gecos 'GitLab' git
+ [[/code]]
+
+ +++++ 安装PostgreSQL数据库
 
 GitLab推荐使用PostgreSQL数据库。
 
-安装PostgreSQL软件包
+ 安装PostgreSQL软件包
 
 [[code]]
-sudo apt-get install -y postgresql postgresql-client libpq-dev postgresql-contrib
-[[/code]]
+ sudo apt-get install -y postgresql postgresql-client libpq-dev postgresql-contrib
+ [[/code]]
 
 为GitLab建立一个PostgreSQL数据库用户
 
 [[code]]
-sudo -u postgres psql -d template1 -c "CREATE USER git CREATEDB;"
-[[/code]]
+ sudo -u postgres psql -d template1 -c "CREATE USER git CREATEDB;"
+ [[/code]]
 
 创建pg_trgm扩展
 
 [[code]]
-sudo -u postgres psql -d template1 -c "CREATE EXTENSION IF NOT EXISTS pg_trgm;"
-[[/code]]
+ sudo -u postgres psql -d template1 -c "CREATE EXTENSION IF NOT EXISTS pg_trgm;"
+ [[/code]]
 
 建立GitLab生产环境所需的数据库并授予git用户完全访问权限
 
 [[code]]
-sudo -u postgres psql -d template1 -c "CREATE DATABASE gitlabhq_production OWNER git;"
-[[/code]]
+ sudo -u postgres psql -d template1 -c "CREATE DATABASE gitlabhq_production OWNER git;"
+ [[/code]]
 
 尝试连线到数据库
 
 [[code]]
-sudo -u git -H psql -d gitlabhq_production
-[[/code]]
+ sudo -u git -H psql -d gitlabhq_production
+ [[/code]]
 
 检查pg_trgm扩展是否已启用
 
 [[code]]
-SELECT true AS enabled
-FROM pg_available_extensions
-WHERE name = 'pg_trgm'
-AND installed_version IS NOT NULL;
-[[/code]]
+ SELECT true AS enabled
+ FROM pg_available_extensions
+ WHERE name = 'pg_trgm'
+ AND installed_version IS NOT NULL;
+ [[/code]]
 
 若扩展已启用，则会显示如下消息
 
 [[code]]
-enabled
----------
- t
-(1 row)
-[[/code]]
+ enabled
+ ---------
+  t
+ (1 row)
+ [[/code]]
 
 确认无误后，输入{{\q}}登出PostgreSQL环境。
 
 +++++ 安装Redis
 
-GitLab需要至少Redis 2.8。
+ GitLab需要至少Redis 2.8。
 
 [[code]]
-sudo apt-get install redis-server
-[[/code]]
+ sudo apt-get install redis-server
+ [[/code]]
 
-++++ 安装GitLab中文社区版
+ ++++ 安装GitLab中文社区版
 
 +++++ 克隆GitLab中文社区版仓库
 
-进入/home/git
+ 进入/home/git
 
-[[code]]
-cd /home/git
-[[/code]]
+ [[code]]
+ cd /home/git
+ [[/code]]
 
 克隆GitLab中文社区版仓库
 
 [[code]]
-sudo -u git -H git clone https://gitlab.com/xhang/gitlab.git -b X-Y-stable-zh gitlab
-[[/code]]
+ sudo -u git -H git clone https://gitlab.com/xhang/gitlab.git -b X-Y-stable-zh gitlab
+ [[/code]]
 
 其中，“X-Y”表示版本，“-zh”表示下载中文版，例如“11-7-stable-zh”表示下载GitLab 11.7中文社区版。如果删去“-zh”标识则可以下载英文版。
 
@@ -277,217 +277,217 @@ sudo -u git -H git clone https://gitlab.com/xhang/gitlab.git -b X-Y-stable-zh gi
 进入GitLab安装路径
 
 [[code]]
-cd /home/git/gitlab
-[[/code]]
+ cd /home/git/gitlab
+ [[/code]]
 
 复制GitLab配置文件范例
 
 [[code]]
-sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml
-[[/code]]
+ sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml
+ [[/code]]
 
 根据文件内指示编辑配置文件
 
 [[code]]
-sudo -u git -H editor config/gitlab.yml
-[[/code]]
+ sudo -u git -H editor config/gitlab.yml
+ [[/code]]
 
 复制组态文件范例、创建目录并配置权限
 
 [[code]]
-sudo -u git -H cp config/secrets.yml.example config/secrets.yml
-sudo -u git -H chmod 0600 config/secrets.yml
-sudo chown -R git log/
-sudo chown -R git tmp/
-sudo chmod -R u+rwX,go-w log/
-sudo chmod -R u+rwX tmp/
-sudo chmod -R u+rwX tmp/pids/
-sudo chmod -R u+rwX tmp/sockets/
-sudo -u git -H mkdir public/uploads/
-sudo chmod 0700 public/uploads
-sudo chmod -R u+rwX builds/
-sudo chmod -R u+rwX shared/artifacts/
-sudo chmod -R ug+rwX shared/pages/
-[[/code]]
+ sudo -u git -H cp config/secrets.yml.example config/secrets.yml
+ sudo -u git -H chmod 0600 config/secrets.yml
+ sudo chown -R git log/
+ sudo chown -R git tmp/
+ sudo chmod -R u+rwX,go-w log/
+ sudo chmod -R u+rwX tmp/
+ sudo chmod -R u+rwX tmp/pids/
+ sudo chmod -R u+rwX tmp/sockets/
+ sudo -u git -H mkdir public/uploads/
+ sudo chmod 0700 public/uploads
+ sudo chmod -R u+rwX builds/
+ sudo chmod -R u+rwX shared/artifacts/
+ sudo chmod -R ug+rwX shared/pages/
+ [[/code]]
 
 复制Unicorn配置文件范例
 
 [[code]]
-sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb
-[[/code]]
+ sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb
+ [[/code]]
 
 编辑Unicorn配置文件
 
 [[code]]
-sudo -u git -H editor config/unicorn.rb
-[[/code]]
+ sudo -u git -H editor config/unicorn.rb
+ [[/code]]
 
 复制安全性配置范例文件
 
 [[code]]
-sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
-[[/code]]
+ sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
+ [[/code]]
 
 修改Git全局配置
 
 [[code]]
-sudo -u git -H git config --global core.autocrlf input
-sudo -u git -H git config --global gc.auto 0
-sudo -u git -H git config --global repack.writeBitmaps true
-sudo -u git -H git config --global receive.advertisePushOptions true
-sudo -u git -H cp config/resque.yml.example config/resque.yml
-sudo -u git -H editor config/resque.yml
-[[/code]]
+ sudo -u git -H git config --global core.autocrlf input
+ sudo -u git -H git config --global gc.auto 0
+ sudo -u git -H git config --global repack.writeBitmaps true
+ sudo -u git -H git config --global receive.advertisePushOptions true
+ sudo -u git -H cp config/resque.yml.example config/resque.yml
+ sudo -u git -H editor config/resque.yml
+ [[/code]]
 
 如果出现找不到文件的错误，可以直接通过{{sudo vim <文件位置>}}建立所需文件。
 
-配置数据库
+ 配置数据库
 
 [[code]]
-sudo -u git cp config/database.yml.postgresql config/database.yml
-[[/code]]
+ sudo -u git cp config/database.yml.postgresql config/database.yml
+ [[/code]]
 
 安装所需的Gems
 
+ [[code]]
+ sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
+ [[/code]]
+
+ +++++ 安装GitLab附加组件
+
+ 安装GitLab Shell
+
+ [[code]]
+ cd /home/git/gitlab
+ sudo -u git -H bundle exec rake gitlab:shell:install REDIS_URL=unix:/var/run/redis/redis.sock RAILS_ENV=production SKIP_STORAGE_VALIDATION=true
+ [[/code]]
+
+ GitLab Shell配置文件默认从gitlab.yml生成，您也可以手动编辑
+
 [[code]]
-sudo -u git -H bundle install --deployment --without development test mysql aws kerberos
-[[/code]]
-
-+++++ 安装GitLab附加组件
-
-安装GitLab Shell
-
-[[code]]
-cd /home/git/gitlab
-sudo -u git -H bundle exec rake gitlab:shell:install REDIS_URL=unix:/var/run/redis/redis.sock RAILS_ENV=production SKIP_STORAGE_VALIDATION=true
-[[/code]]
-
-GitLab Shell配置文件默认从gitlab.yml生成，您也可以手动编辑
-
-[[code]]
-sudo -u git -H editor /home/git/gitlab-shell/config.yml
-[[/code]]
+ sudo -u git -H editor /home/git/gitlab-shell/config.yml
+ [[/code]]
 
 安装GitLab Workhorse
 
-[[code]]
-sudo -u git -H bundle exec rake "gitlab:workhorse:install[/home/git/gitlab-workhorse]" RAILS_ENV=production
-[[/code]]
+ [[code]]
+ sudo -u git -H bundle exec rake "gitlab:workhorse:install[/home/git/gitlab-workhorse]" RAILS_ENV=production
+ [[/code]]
 
 安装并配置Gitaly
 
-[[code]]
-sudo -u git -H bundle exec rake "gitlab:gitaly:install[/home/git/gitaly,/home/git/repositories]" RAILS_ENV=production
-sudo chmod 0700 /home/git/gitlab/tmp/sockets/private
-sudo chown git /home/git/gitlab/tmp/sockets/private
-[[/code]]
+ [[code]]
+ sudo -u git -H bundle exec rake "gitlab:gitaly:install[/home/git/gitaly,/home/git/repositories]" RAILS_ENV=production
+ sudo chmod 0700 /home/git/gitlab/tmp/sockets/private
+ sudo chown git /home/git/gitlab/tmp/sockets/private
+ [[/code]]
 
-+++++ 配置GitLab数据库并启用高级功能
+ +++++ 配置GitLab数据库并启用高级功能
 
 GitLab数据库需要被初始化
 
 [[code]]
-sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production
-[[/code]]
+ sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production
+ [[/code]]
 
-**注意：**如果出现“密码认证失败”错误，请考虑为PostgreSQL数据库的git用户制定一个显式密码并修改/home/git/gitlab/config/database.yml文件中的配置。
+ **注意：**如果出现“密码认证失败”错误，请考虑为PostgreSQL数据库的git用户制定一个显式密码并修改/home/git/gitlab/config/database.yml文件中的配置。
 
 +++++ 初始化GitLab
 
 安装初始化脚本
 
 [[code]]
-sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
-[[/code]]
+ sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab
+ [[/code]]
 
 配置GitLab为开机自动启动
 
 [[code]]
-sudo update-rc.d gitlab defaults 21
-[[/code]]
+ sudo update-rc.d gitlab defaults 21
+ [[/code]]
 
 安装并配置Logrotate
 
-[[code]]
-sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
-[[/code]]
+ [[code]]
+ sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
+ [[/code]]
 
 检查GitLab配置状态
 
 [[code]]
-sudo -u git -H bundle exec rake gitlab:env:info RAILS_ENV=production
-[[/code]]
+ sudo -u git -H bundle exec rake gitlab:env:info RAILS_ENV=production
+ [[/code]]
 
 编译GetText PO文件
 
 [[code]]
-sudo -u git -H bundle exec rake gettext:compile RAILS_ENV=production
-[[/code]]
+ sudo -u git -H bundle exec rake gettext:compile RAILS_ENV=production
+ [[/code]]
 
 编译GitLab资产
 
 [[code]]
-sudo -u git -H yarn install --production --pure-lockfile
-sudo -u git -H bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
-[[/code]]
+ sudo -u git -H yarn install --production --pure-lockfile
+ sudo -u git -H bundle exec rake gitlab:assets:compile RAILS_ENV=production NODE_ENV=production
+ [[/code]]
 
 启动GitLab实例
 
 [[code]]
-sudo service gitlab start
-[[/code]]
+ sudo service gitlab start
+ [[/code]]
 
-+++ 配置NGINX
+ +++ 配置NGINX
 
-++++ 复制范本文件并建立硬链接
+ ++++ 复制范本文件并建立硬链接
 
-复制GitLab的NGINX配置范本到/etc/nginx/sites-available/并在/etc/nginx/sites-enabled/建立硬链接。代码中的{{site-name}}可以被变更为需要的名称。
-
-[[code]]
-sudo cp lib/support/nginx/gitlab /etc/nginx/sites-available/site-name
-sudo ln -s /etc/nginx/sites-available/site-name /etc/nginx/sites-enabled/site-name
-[[/code]]
-
-++++ 编辑站点配置文件
-
-打开编辑器
+ 复制GitLab的NGINX配置范本到/etc/nginx/sites-available/并在/etc/nginx/sites-enabled/建立硬链接。代码中的{{site-name}}可以被变更为需要的名称。
 
 [[code]]
-sudo editor /etc/nginx/sites-available/gitlab
-[[/code]]
+ sudo cp lib/support/nginx/gitlab /etc/nginx/sites-available/site-name
+ sudo ln -s /etc/nginx/sites-available/site-name /etc/nginx/sites-enabled/site-name
+ [[/code]]
+
+ ++++ 编辑站点配置文件
+
+ 打开编辑器
+
+[[code]]
+ sudo editor /etc/nginx/sites-available/gitlab
+ [[/code]]
 
 编辑时，请将{{YOUR_SERVER_FQDN}}替换为您的域名，这应该与gitlab.yml中指定的一致。若GitLab不是您站点的默认页面，请从配置文件删去{{default_server}}。进一步的配置请参考其他文献。
 
 ++++ 测试NGINX配置
 
-您应当校验您的站点配置文件
+ 您应当校验您的站点配置文件
 
 [[code]]
-sudo nginx -t
-[[/code]]
+ sudo nginx -t
+ [[/code]]
 
-++++ 重新启动NGINX
+ ++++ 重新启动NGINX
 
 通过命令行可以重新启动NGINX服务
 
 [[code]]
-sudo service nginx restart
-[[/code]]
+ sudo service nginx restart
+ [[/code]]
 
-+++ GitLab日常维护
+ +++ GitLab日常维护
 
 ++++ 重新启动GitLab服务
 
-克隆安装的GitLab没有gitlab-ctl命令行工具，需使用服务管理命令行工具重新启动
+ 克隆安装的GitLab没有gitlab-ctl命令行工具，需使用服务管理命令行工具重新启动
 
 [[code]]
-sudo service gitlab restart
-[[/code]]
+ sudo service gitlab restart
+ [[/code]]
 
-++++ 校验GitLab配置的正确性
+ ++++ 校验GitLab配置的正确性
 
-请在/home/git/gitlab下执行
+ 请在/home/git/gitlab下执行
 
 [[code]]
-sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
-[[/code]] 
+ sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
+ [[/code]] 

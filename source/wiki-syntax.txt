@@ -1,95 +1,95 @@
 以下为您写作时用的着的语法，合理使用则可以令您的文档变的精美又好看。
-部分内容经删减及修改，完整而且最新版的英语原文请到[http://www.wikidot.com/doc:wiki-syntax 这里]查看。
+ 部分内容经删减及修改，完整而且最新版的英语原文请到[http://www.wikidot.com/doc:wiki-syntax 这里]查看。
 
 [[toc]]
 
-+ [[# inline]]行内格式
+ + [[# inline]]行内格式
 
 ||~ 您所打的文字 ||~ 您将看见的文字 ||
-|| {{@@//斜体//@@}} || //斜体// ||
-|| {{@@**粗体**@@}} || **粗体** ||
-|| {{@@//**粗斜体**//@@}} || //**粗斜体**// ||
-|| {{@@__底线__@@}} || __底线__ ||
-|| {{@@--删除线--@@}} || --删除线-- ||
-|| {{@@{{等宽字(monospaced text))}}@@}}(英语限定) || {{(monospaced text)}} ||
-|| {{@@[[span style="font-family:Microsoft YaHei"]]中文等宽字[[/span]]@@}}|| [[span style="font-family:Microsoft YaHei"]]中文等宽字[[/span]] ||
-|| {{@@普通^^上标^^@@}} || 普通^^上标^^ ||
-|| {{@@普通,,下标,,@@}} || 普通,,下标,, ||
-|| {{@@[!-- 不可见内容 --]@@}} || [!-- 不可见内容 --] ||
-|| {{@@[[span style="color:red"]]自定义//span//元素[[/span]]@@}} || [[span style="color:red"]]自定义//span//元素[[/span]] ||
-|| {{@@##blue|预设## 或 ##44FF88|自定义色码## 颜色@@}} || ##blue|预设## 或 ##44FF88|自定义色码## 颜色 ||
+ || {{@@//斜体//@@}} || //斜体// ||
+ || {{@@**粗体**@@}} || **粗体** ||
+ || {{@@//**粗斜体**//@@}} || //**粗斜体**// ||
+ || {{@@__底线__@@}} || __底线__ ||
+ || {{@@--删除线--@@}} || --删除线-- ||
+ || {{@@{{等宽字(monospaced text))}}@@}}(英语限定) || {{(monospaced text)}} ||
+ || {{@@[[span style="font-family:Microsoft YaHei"]]中文等宽字[[/span]]@@}}|| [[span style="font-family:Microsoft YaHei"]]中文等宽字[[/span]] ||
+ || {{@@普通^^上标^^@@}} || 普通^^上标^^ ||
+ || {{@@普通,,下标,,@@}} || 普通,,下标,, ||
+ || {{@@[!-- 不可见内容 --]@@}} || [!-- 不可见内容 --] ||
+ || {{@@[[span style="color:red"]]自定义//span//元素[[/span]]@@}} || [[span style="color:red"]]自定义//span//元素[[/span]] ||
+ || {{@@##blue|预设## 或 ##44FF88|自定义色码## 颜色@@}} || ##blue|预设## 或 ##44FF88|自定义色码## 颜色 ||
 
 下列格式为[[*user Devanos]]提供添加的独特格式：
 ||~ 您所打的文字 ||~ 您将看见的文字 ||
-|| {{@@[[span class="ruby"]]拼音或其他文字标示[[span class="rt"]]Pīnyīn huò qítā wénzì biāoshì[[/span]][[/span]]@@}} ||[[span class="ruby"]]拼音或其他文字标示[[span class="rt"]]Pīnyīn huò qítā wénzì biāoshì[[/span]][[/span]] ||
-|| {{@@[[span class="keycap"]]Ctrl[[/span]] + [[span class="keycap"]]C[[/span]]@@}} || [[span class="keycap"]]Ctrl[[/span]] + [[span class="keycap"]]C[[/span]] ||
+ || {{@@[[span class="ruby"]]拼音或其他文字标示[[span class="rt"]]Pīnyīn huò qítā wénzì biāoshì[[/span]][[/span]]@@}} ||[[span class="ruby"]]拼音或其他文字标示[[span class="rt"]]Pīnyīn huò qítā wénzì biāoshì[[/span]][[/span]] ||
+ || {{@@[[span class="keycap"]]Ctrl[[/span]] + [[span class="keycap"]]C[[/span]]@@}} || [[span class="keycap"]]Ctrl[[/span]] + [[span class="keycap"]]C[[/span]] ||
 
-[!--
-thanks for Erich for that!
---]
+ [!--
+ thanks for Erich for that!
+ --]
 
-+ [[# text-size]]字体大小
+ + [[# text-size]]字体大小
 
-字体大小可以用 {{@@[[size@@}} ...{{@@]]@@}} ... {{@@[[/size]]@@}}设定。
+ 字体大小可以用 {{@@[[size@@}} ...{{@@]]@@}} ... {{@@[[/size]]@@}}设定。
 
 +++ 相对字体大小
-相对字体大小基于现时的字体 -- 它们放大或缩小目前的字体大小。用{{@@[[size smaller]]@@}}，{{@@[[size larger]]@@}}，{{@@[[size@@}} //n//{{@@em]]@@}}，或{{@@[[size@@}} //n//{{@@%]]@@}}(//n//是1-5位连小数点的数字)去指定相对字体大小。
+ 相对字体大小基于现时的字体 -- 它们放大或缩小目前的字体大小。用{{@@[[size smaller]]@@}}，{{@@[[size larger]]@@}}，{{@@[[size@@}} //n//{{@@em]]@@}}，或{{@@[[size@@}} //n//{{@@%]]@@}}(//n//是1-5位连小数点的数字)去指定相对字体大小。
 ||~ 您所打的文字 ||~ 您将看见的文字 ||
-|| {{@@[[size smaller]]更小的字[[/size]]@@}} || [[size smaller]]更小的字[[/size]] ||
-|| {{@@[[size larger]]更大的字[[/size]]@@}} || [[size larger]]更大的字[[/size]] ||
-|| {{@@[[size 80%]]原来大小的80%[[/size]]@@}} || [[size 80%]]原来大小的80%[[/size]] ||
-|| {{@@[[size 100%]]原来大小的100%[[/size]]@@}} || [[size 100%]]原来大小的100%[[/size]] ||
-|| {{@@[[size 150%]]原来大小的150%[[/size]]@@}} || [[size 150%]]原来大小的150%[[/size]] ||
-|| {{@@[[size 0.8em]]原来大小的80%[[/size]]@@}} || [[size 0.8em]]原来大小的80%[[/size]] ||
-|| {{@@[[size 1em]]原来大小的100%[[/size]]@@}} || [[size 1em]]原来大小的100%[[/size]] ||
-|| {{@@[[size 1.5em]]原来大小的150%[[/size]]@@}} || [[size 1.5em]]原来大小的150%[[/size]] ||
+ || {{@@[[size smaller]]更小的字[[/size]]@@}} || [[size smaller]]更小的字[[/size]] ||
+ || {{@@[[size larger]]更大的字[[/size]]@@}} || [[size larger]]更大的字[[/size]] ||
+ || {{@@[[size 80%]]原来大小的80%[[/size]]@@}} || [[size 80%]]原来大小的80%[[/size]] ||
+ || {{@@[[size 100%]]原来大小的100%[[/size]]@@}} || [[size 100%]]原来大小的100%[[/size]] ||
+ || {{@@[[size 150%]]原来大小的150%[[/size]]@@}} || [[size 150%]]原来大小的150%[[/size]] ||
+ || {{@@[[size 0.8em]]原来大小的80%[[/size]]@@}} || [[size 0.8em]]原来大小的80%[[/size]] ||
+ || {{@@[[size 1em]]原来大小的100%[[/size]]@@}} || [[size 1em]]原来大小的100%[[/size]] ||
+ || {{@@[[size 1.5em]]原来大小的150%[[/size]]@@}} || [[size 1.5em]]原来大小的150%[[/size]] ||
 
-+++ 绝对字体大小
-绝对字体大小并//不//基于现时的字体 。用 {{@@[[size xx-small]]@@}}，{{@@[[size x-small]]@@}}，{{@@[[size small]]@@}}，{{@@[[size large]]@@}}，{{@@[[size x-large]]@@}}，{{@@[[size xx-large]]@@}}，或{{@@[[size@@}} //n//{{@@px]]@@}},(//n//是1-5位连小数点的数字)去指定绝对字体大小。
+ +++ 绝对字体大小
+ 绝对字体大小并//不//基于现时的字体 。用 {{@@[[size xx-small]]@@}}，{{@@[[size x-small]]@@}}，{{@@[[size small]]@@}}，{{@@[[size large]]@@}}，{{@@[[size x-large]]@@}}，{{@@[[size xx-large]]@@}}，或{{@@[[size@@}} //n//{{@@px]]@@}},(//n//是1-5位连小数点的数字)去指定绝对字体大小。
 ||~ 您所打的文字 ||~ 您将看见的文字 ||
-|| {{@@[[size xx-small]]微型字[[/size]]@@}} || [[size xx-small]]微型字[[/size]] ||
-|| {{@@[[size x-small]]超小型字[[/size]]@@}} || [[size x-small]]超小型字[[/size]] ||
-|| {{@@[[size small]]小型字[[/size]]@@}} || [[size small]]小型字[[/size]] ||
-|| {{@@[[size large]]大型字[[/size]]@@}} || [[size large]]大型字[[/size]] ||
-|| {{@@[[size x-large]]超大型字[[/size]]@@}} || [[size x-large]]超大型字[[/size]] ||
-|| {{@@[[size xx-large]]巨型字[[/size]]@@}} || [[size xx-large]]巨型字[[/size]] ||
-|| {{@@[[size 7px]]7像素大小字型 pixels[[/size]]@@}} || [[size 7px]]7像素大小字型[[/size]] ||
-|| {{@@[[size 18.75px]]18.75像素大小字型[[/size]]@@}} || [[size 18.75px]]18.75像素大小字型[[/size]] ||
+ || {{@@[[size xx-small]]微型字[[/size]]@@}} || [[size xx-small]]微型字[[/size]] ||
+ || {{@@[[size x-small]]超小型字[[/size]]@@}} || [[size x-small]]超小型字[[/size]] ||
+ || {{@@[[size small]]小型字[[/size]]@@}} || [[size small]]小型字[[/size]] ||
+ || {{@@[[size large]]大型字[[/size]]@@}} || [[size large]]大型字[[/size]] ||
+ || {{@@[[size x-large]]超大型字[[/size]]@@}} || [[size x-large]]超大型字[[/size]] ||
+ || {{@@[[size xx-large]]巨型字[[/size]]@@}} || [[size xx-large]]巨型字[[/size]] ||
+ || {{@@[[size 7px]]7像素大小字型 pixels[[/size]]@@}} || [[size 7px]]7像素大小字型[[/size]] ||
+ || {{@@[[size 18.75px]]18.75像素大小字型[[/size]]@@}} || [[size 18.75px]]18.75像素大小字型[[/size]] ||
 
-+ [[# paragraphs]]段落及换行
+ + [[# paragraphs]]段落及换行
 
-段落间以换行两次分隔开。换行一次则是新的一行。
+ 段落间以换行两次分隔开。换行一次则是新的一行。
 
 [[code]]
 第一段。友谊是魔法
 
-第二段。友谊，魔法，收容，控制，保护。
-下一行。
-另一行。
+ 第二段。友谊，魔法，收容，控制，保护。
+ 下一行。
+ 另一行。
 [[/code]]
 
 第一段。友谊是魔法
 
-第二段。友谊，魔法，收容，控制，保护。
-下一行。
-另一行。
+ 第二段。友谊，魔法，收容，控制，保护。
+ 下一行。
+ 另一行。
 
 + [[# typography]]标点符号
 
 ||~ 您所打的  ||~ 您得到的 ||
-|| {{@@``引号'' @@}} || ``引号''||
-|| {{@@`引号' @@}} || `引号' ||
-|| {{@@,,引号''@@}} || ,,引号'' ||
-|| {{@@<<引号>>@@}} || <<引号>> ||
-|| {{@@>>引号<<@@}} || >>引号<< ||
-|| {{@@点点点...@@}} || 点点点... ||
-|| {{@@破折 -- 号@@}} || 破折 -- 号 ||
+ || {{@@``引号'' @@}} || ``引号''||
+ || {{@@`引号' @@}} || `引号' ||
+ || {{@@,,引号''@@}} || ,,引号'' ||
+ || {{@@<<引号>>@@}} || <<引号>> ||
+ || {{@@>>引号<<@@}} || >>引号<< ||
+ || {{@@点点点...@@}} || 点点点... ||
+ || {{@@破折 -- 号@@}} || 破折 -- 号 ||
 
 注： 破折号两边要留空格。
 
 + [[# literal]]直接显示文字
 
-如果想直接显示语法而不是解析它，用两个@@包围它。
+ 如果想直接显示语法而不是解析它，用两个@@包围它。
 
 [[code]]
 
@@ -97,28 +97,28 @@ thanks for Erich for that!
 
 @@这段//字//没**解析**。@@
 
-[[/code]]
+ [[/code]]
 
 这段//字//已**解析**。
 
 @@这段//字//没**解析**。@@
 
-+ [[# comments]]注释
+ + [[# comments]]注释
 
-注释并不会出现于已编译版本上。使用{{@@[!-- ... --]@@}}结构加上注释，就如：
+ 注释并不会出现于已编译版本上。使用{{@@[!-- ... --]@@}}结构加上注释，就如：
 
 [[code]]
-[!--
+ [!--
 这段字不会被编译出来。
 --]
-[[/code]]
+ [[/code]]
 
-+ [[# headings]]标题
+ + [[# headings]]标题
 
-在每行开头加上"+"号就能将之变成标题，加号的数量决定标题的等级。
+ 在每行开头加上"+"号就能将之变成标题，加号的数量决定标题的等级。
 
 [[code]]
-+ 1级标题
+ + 1级标题
 ++ 2级标题
 +++ 3级标题
 ++++ 4级标题
@@ -126,166 +126,166 @@ thanks for Erich for that!
 ++++++ 6级标题
 [[/code]]
 
-+ [[# tablesofcontent]]内容列表(Table of Content)
+ + [[# tablesofcontent]]内容列表(Table of Content)
 
 要列出每个标题，以及到达该处的连结，就在一行空行加上内容列表。
 
 [[code]]
-[[toc]]
-[[f>toc]] - 靠右
+ [[toc]]
+ [[f>toc]] - 靠右
 [[f<toc]] - 靠左
 [[/code]]
 
 要注意内容列表会造出叫"#toc"的书签。
 
-如果不想让特定标题出现在内容列表，在"+"号后加上"*"，就像：
+ 如果不想让特定标题出现在内容列表，在"+"号后加上"*"，就像：
 
 [[code]]
-+ 这会出现于内容列表里
+ + 这会出现于内容列表里
 +* 而这不会出现
 ++* 这也不会
 [[/code]]
 
-+ [[# rules]]水平线
+ + [[# rules]]水平线
 
-用四个或以上的"-"号 ({{@@----@@}})去拉出一条水平线。
+ 用四个或以上的"-"号 ({{@@----@@}})去拉出一条水平线。
 
 + [[# lists]]列表
 
 ++ 无序列表
 
-在每行开始加"*"去制作列表。在"*"前面加空格可以缩进一格。
+ 在每行开始加"*"去制作列表。在"*"前面加空格可以缩进一格。
 
 [[code]]
-* 事项1
-* 事项 2
- * 事项 2.1
-[[/code]]
+ * 事项1
+ * 事项 2
+  * 事项 2.1
+ [[/code]]
 
-* 事项1
-* 事项2
- * 事项2.1
+ * 事项1
+ * 事项2
+  * 事项2.1
 
 如果要在列表中弄一行以上，在行尾放"_"(要空格)，"_"后面不能放东西。
 
 [[code]]
-* 事项1 _
+ * 事项1 _
 另一行
 * 事项2
- * 事项2.1
-[[/code]]
+  * 事项2.1
+ [[/code]]
 
-* 事项1 _
+ * 事项1 _
 另一行
 * 事项2
- * 事项2.1
+  * 事项2.1
 
-++ 有序列表
+ ++ 有序列表
 
-同样，您能在每行开始加"#"去制作有数字排序的列表。
+ 同样，您能在每行开始加"#"去制作有数字排序的列表。
 
 [[code]]
-# 事项1
-# 事项2
- # 事项2.1
-[[/code]]
+ # 事项1
+ # 事项2
+  # 事项2.1
+ [[/code]]
 
-# 事项1
-# 事项2
- # 事项2.1
+ # 事项1
+ # 事项2
+  # 事项2.1
 
 如果要在列表中弄一行以上，在行尾放"_"(要空格)，"_"后面不能放东西。
 
 [[code]]
-# 事项1 _
+ # 事项1 _
 另一行
 # 事项2
- # 事项2.1
-[[/code]]
+  # 事项2.1
+ [[/code]]
 
-# 事项1 _
+ # 事项1 _
 另一行
 # 事项2
- # 事项2.1
+  # 事项2.1
 
 有序和无序的列表可以混用。
 
 ++ 高级列表
 
-您能用@@[[ul]]@@ / @@[[ol]]@@ 及 @@[[li]]@@ 去建立高级列表。每个 @@[[ul]]@@ / @@[[ol]]@@ 及 @@[[li]]@@ 都能放入 //class//， //data-// 及 //style// 参数。
+ 您能用@@[[ul]]@@ / @@[[ol]]@@ 及 @@[[li]]@@ 去建立高级列表。每个 @@[[ul]]@@ / @@[[ol]]@@ 及 @@[[li]]@@ 都能放入 //class//， //data-// 及 //style// 参数。
 
 [[code]]
-[[ul]]
- [[li class="item1" data-toggle="data1"]]Item1[[/li]]
- [[li style="color: red;"]]Item 2[[/li]]
-  [[ul]]
-    [[li]]Item 2.1[[/li]]
-    [[li]]Item 2.2[[/li]]
-  [[/ul]]
-[[/ul]]
-[[/code]]
+ [[ul]]
+  [[li class="item1" data-toggle="data1"]]Item1[[/li]]
+  [[li style="color: red;"]]Item 2[[/li]]
+   [[ul]]
+     [[li]]Item 2.1[[/li]]
+     [[li]]Item 2.2[[/li]]
+   [[/ul]]
+ [[/ul]]
+ [[/code]]
 
-[[ul]]
- [[li class="item1" data-toggle="data1"]]Item1[[/li]]
- [[li style="color: red;"]]Item 2[[/li]]
-  [[ol]]
-    [[li]]Item 2.1[[/li]]
-    [[li]]Item 2.2[[/li]]
-  [[/ol]]
-[[/ul]]
+ [[ul]]
+  [[li class="item1" data-toggle="data1"]]Item1[[/li]]
+  [[li style="color: red;"]]Item 2[[/li]]
+   [[ol]]
+     [[li]]Item 2.1[[/li]]
+     [[li]]Item 2.2[[/li]]
+   [[/ol]]
+ [[/ul]]
 
-+ [[# definitions]]定义列表
+ + [[# definitions]]定义列表
 
 [[code]]
-: 事项1 : Something
-: 事项2 : Something else
-[[/code]]
+ : 事项1 : Something
+ : 事项2 : Something else
+ [[/code]]
 
-: 事项1 : Something
-: 事项2 : Something else
+ : 事项1 : Something
+ : 事项2 : Something else
 
 如果要在列表中弄一行以上，在行尾放"_"(要空格)，"_"后面不能放东西。
 
 [[code]]
-: 事项1 : Something _
+ : 事项1 : Something _
 另一行
 : 事项2 : Something else
-[[/code]]
+ [[/code]]
 
-: 事项1 : Something _
+ : 事项1 : Something _
 另一行
 : 事项2 : Something else
 
-+ [[# block-quotes]]引用方块
+ + [[# block-quotes]]引用方块
 
-在每行开头加上一个或以上的{{'>'}}再加上空格就能用引用方块括住文字。在文里加上"\"就能把句子分行存放方便编辑，显示出来时仍然是连在一起。
+ 在每行开头加上一个或以上的{{'>'}}再加上空格就能用引用方块括住文字。在文里加上"\"就能把句子分行存放方便编辑，显示出来时仍然是连在一起。
 
 [[code]]
 塞拉斯蒂亚公主
 > Princess Celestia \
 是小马国多年的公主。
 >
-> 塞拉斯蒂亚公主用负责魔法将太阳升起，驱逐黑暗，带来白昼。
+ > 塞拉斯蒂亚公主用负责魔法将太阳升起，驱逐黑暗，带来白昼。
 >> Friendship is Magic.
-[[/code]]
+ [[/code]]
 
 塞拉斯蒂亚公主
 > Princess Celestia \
 是小马国多年的公主。
 >
-> 塞拉斯蒂亚公主负责用魔法将太阳升起，驱逐黑暗，带来白昼。
+ > 塞拉斯蒂亚公主负责用魔法将太阳升起，驱逐黑暗，带来白昼。
 >> Friendship is Magic. 
 
-+ [[# collapsible]]可折迭方块(Collapsible blocks)
+ + [[# collapsible]]可折迭方块(Collapsible blocks)
 
-[[collapsible show="+ 例子证明一切" hide="- 就是这样子"]]
-@@[[collapsible]]@@能让您在点击指定文字时显示/隐藏一段文字。用途很广泛。
+ [[collapsible show="+ 例子证明一切" hide="- 就是这样子"]]
+ @@[[collapsible]]@@能让您在点击指定文字时显示/隐藏一段文字。用途很广泛。
 
 [[code]]
-[[collapsible show="+ 显示里面的东西" hide="- 隐藏里面的东西"]]
+ [[collapsible show="+ 显示里面的东西" hide="- 隐藏里面的东西"]]
 这是里面的东西
 [[/collapsible]]
-[[/code]]
+ [[/code]]
 
 直接把@@[[collapsible]]@@ 和 @@[[/collapsible]]@@ 放在头尾的话会出现默认值(显示"+ show block"，点下去变成"- hide block")。
 [[/collapsible]]
@@ -296,74 +296,74 @@ thanks for Erich for that!
 
 ++ [[# page-links]]内部连结
 
-在Wikidot，要连到站内其他页面，要用三个'['和']'包围连结。
+ 在Wikidot，要连到站内其他页面，要用三个'['和']'包围连结。
 
-注意：页面名称**必须**为英语，如果您的页面标题是中文的话，请为它起个英语名字或其他什么英语作为页面名称。
+ 注意：页面名称**必须**为英语，如果您的页面标题是中文的话，请为它起个英语名字或其他什么英语作为页面名称。
 
 ||~ 您所打的 ||~ 您所见到的||~ 描述||
-|| {{@@[[[link-to-a-page]]]@@}} || [[[link-to-a-page]]] || 用原本的页面名称 ||
-|| {{@@[[[link "TO" a; pagE]]]@@}} || [[[link "TO" a; pagE]]] || 自动转换成正确的页面名称||
-|| {{@@[[[category: sample page]]]@@}} || [[[category: sample page]]] || 连接到带有分类的页面||
-|| {{@@[[[some page| 特定文字]]]@@}} || [[[some page| 特定文字]]] || 使用特定文字(注：这种用法在中文wiki极重要！) ||
-|| {{@@[[[wiki syntax|维基语法]]]@@}} || [[[wiki syntax|维基语法]]] || 连到存在的页面||
-|| {{@@[[[some page|]]]@@}} || [[[some page|]]] || 用页面名称作为连结名称||
-|| {{@@[[[wiki syntax#toc1|Section 1]]]@@}} || [[[wiki syntax#toc1|Section 1]]] || 连到锚点||
-|| {{@@[[[wiki syntax#toc1]]]@@}} || [[[wiki syntax#toc1]]] || 连到锚点 ||
-|| {{@@[[[特定文字]]]@@}} || [[[特定文字]]] || 错误的用法－这样会直接连到网站首页||
+ || {{@@[[[link-to-a-page]]]@@}} || [[[link-to-a-page]]] || 用原本的页面名称 ||
+ || {{@@[[[link "TO" a; pagE]]]@@}} || [[[link "TO" a; pagE]]] || 自动转换成正确的页面名称||
+ || {{@@[[[category: sample page]]]@@}} || [[[category: sample page]]] || 连接到带有分类的页面||
+ || {{@@[[[some page| 特定文字]]]@@}} || [[[some page| 特定文字]]] || 使用特定文字(注：这种用法在中文wiki极重要！) ||
+ || {{@@[[[wiki syntax|维基语法]]]@@}} || [[[wiki syntax|维基语法]]] || 连到存在的页面||
+ || {{@@[[[some page|]]]@@}} || [[[some page|]]] || 用页面名称作为连结名称||
+ || {{@@[[[wiki syntax#toc1|Section 1]]]@@}} || [[[wiki syntax#toc1|Section 1]]] || 连到锚点||
+ || {{@@[[[wiki syntax#toc1]]]@@}} || [[[wiki syntax#toc1]]] || 连到锚点 ||
+ || {{@@[[[特定文字]]]@@}} || [[[特定文字]]] || 错误的用法－这样会直接连到网站首页||
 
-++ [[# urls]]URLs
+ ++ [[# urls]]URLs
 
-||~ 您所打的||~ 您所见到的||~ 描述||
-|| {{@@[[[http://www.wikidot.com | Wikidot]]]@@}} || [[[http://www.wikidot.com | Wikidot]]] || 命名连结||
-|| {{@@[[[*http://www.wikidot.com | Wikidot]]]@@}} || [[[*http://www.wikidot.com | Wikidot]]] || 命名链接，会开新窗口/分页||
-|| {{@@[[[/category:page/option1/option2 | link text]]]@@}} || [[[/category:page/option1/option2 | link text]]] || 用短连结去打开网站内连结，不用加http。 _
+ ||~ 您所打的||~ 您所见到的||~ 描述||
+ || {{@@[[[http://www.wikidot.com | Wikidot]]]@@}} || [[[http://www.wikidot.com | Wikidot]]] || 命名连结||
+ || {{@@[[[*http://www.wikidot.com | Wikidot]]]@@}} || [[[*http://www.wikidot.com | Wikidot]]] || 命名链接，会开新窗口/分页||
+ || {{@@[[[/category:page/option1/option2 | link text]]]@@}} || [[[/category:page/option1/option2 | link text]]] || 用短连结去打开网站内连结，不用加http。 _
 例子；您能用 _
-{{@@[[[/blog:post/edit/true | 编辑这页]]]@@}} _
+ {{@@[[[/blog:post/edit/true | 编辑这页]]]@@}} _
 去取代 _
-{{@@[[[http://site.wikidot.com/ blog:post/edit/true | 编辑这页]]]@@}}||
-|| {{@@http://www.wikidot.com@@}} || http://www.wikidot.com || 直接上连结 ||
-|| {{@@[http://www.wikidot.com wikidot]@@}} || [http://www.wikidot.com wikidot] || 命名连结||
-|| {{@@*http://www.wikidot.com@@}} _
-{{@@[*http://www.wikidot.com wikidot]@@}} || *http://www.wikidot.com _
-[*http://www.wikidot.com wikidot] || 开新窗口 ||
-|| {{@@[# empty link]@@}} || [# empty link] || 连到{{href="javascript:;"}} ||
-|| {{@@[/category:page/option1/option2 link text]@@}} ||  [http://your-site.wikidot.com/cat:page/opt1/opt2 link text] || 用短连结去打开网站内连结，不用加http。 _
+ {{@@[[[http://site.wikidot.com/ blog:post/edit/true | 编辑这页]]]@@}}||
+ || {{@@http://www.wikidot.com@@}} || http://www.wikidot.com || 直接上连结 ||
+ || {{@@[http://www.wikidot.com wikidot]@@}} || [http://www.wikidot.com wikidot] || 命名连结||
+ || {{@@*http://www.wikidot.com@@}} _
+ {{@@[*http://www.wikidot.com wikidot]@@}} || *http://www.wikidot.com _
+ [*http://www.wikidot.com wikidot] || 开新窗口 ||
+ || {{@@[# empty link]@@}} || [# empty link] || 连到{{href="javascript:;"}} ||
+ || {{@@[/category:page/option1/option2 link text]@@}} ||  [http://your-site.wikidot.com/cat:page/opt1/opt2 link text] || 用短连结去打开网站内连结，不用加http。 _
 例子；您能用 _
-{{@@[[[/blog:post/edit/true 编辑这页]]]@@}} _
+ {{@@[[[/blog:post/edit/true 编辑这页]]]@@}} _
 去取代 _
-{{@@[[[http://site.wikidot.com/ blog:post/edit/true 编辑这页]]]@@}} ||
+ {{@@[[[http://site.wikidot.com/ blog:post/edit/true 编辑这页]]]@@}} ||
 
-++ [[# anchors]]锚点
+ ++ [[# anchors]]锚点
 
-用{{@@[[# 锚点名称(英语)]]@@}}语法设置锚点。要前往锚点则用{{@@[#锚点名称(英语) 显示的文字]@@}}
+ 用{{@@[[# 锚点名称(英语)]]@@}}语法设置锚点。要前往锚点则用{{@@[#锚点名称(英语) 显示的文字]@@}}
 
-+ [[# images]]图片
+ + [[# images]]图片
 
 ++ 单张图片
 
-使用以下格式插入图片：
+ 使用以下格式插入图片：
 
 [[code]]
-[[image 图源 属性1="数值1" 属性2="数值2" ...]]
-[[/code]]
+ [[image 图源 属性1="数值1" 属性2="数值2" ...]]
+ [[/code]]
 
 而(在这里)能用的上的属性有:
 
-||~ 属性 ||~ 能用的数值 ||~ 例子 ||~ 描述 ||
-|| link || 维基页面名称或URL || {{@@"wiki-page"@@}} _
-{{@@"http://www.example.com"@@}} _
-{{@@"#anchor"@@}} _
-{{@@"#"@@}} || 点图前往其他页面或网址; 在前面加上'*'就能开新窗口；; 可以选择连至页内的[#toc22 锚点]||
-|| width || 像素数 || {{@@"200px"@@}} || 强制设定图片宽度||
-|| height || 像素数  || {{@@"200px"@@}} || 强制设定图片高度 ||
+ ||~ 属性 ||~ 能用的数值 ||~ 例子 ||~ 描述 ||
+ || link || 维基页面名称或URL || {{@@"wiki-page"@@}} _
+ {{@@"http://www.example.com"@@}} _
+ {{@@"#anchor"@@}} _
+ {{@@"#"@@}} || 点图前往其他页面或网址; 在前面加上'*'就能开新窗口；; 可以选择连至页内的[#toc22 锚点]||
+ || width || 像素数 || {{@@"200px"@@}} || 强制设定图片宽度||
+ || height || 像素数  || {{@@"200px"@@}} || 强制设定图片高度 ||
 
 
-//而图源//可以用下面的其中之一：
+ //而图源//可以用下面的其中之一：
 
 ||~ 图源 ||~ 格式||~ 例子 ||~ 描述 ||
-|| URL 地址|| 任何有效的URL地址 || {{@@http://www.example.com/image.jpg@@}} || 显示目标网址的图片 ||
-|| 本页附件 || {{//文件名//}} || {{@@exampleimage.jpg@@}} || 显示上传到此页的图片 ||
-|| 他页附件 || {{///其他页名/文件名}} || {{@@/another-page/exampleimage.jpg@@}} || 显示上传到其他页面的图片 ||
+ || URL 地址|| 任何有效的URL地址 || {{@@http://www.example.com/image.jpg@@}} || 显示目标网址的图片 ||
+ || 本页附件 || {{//文件名//}} || {{@@exampleimage.jpg@@}} || 显示上传到此页的图片 ||
+ || 他页附件 || {{///其他页名/文件名}} || {{@@/another-page/exampleimage.jpg@@}} || 显示上传到其他页面的图片 ||
 
 您也能设定图片的位置：
 
@@ -371,64 +371,64 @@ thanks for Erich for that!
 * {{[[<image...}} - 靠左
 * {{[[>image...}} - 靠右
 * {{[[f<image...}} - 靠左(被文字包围)
-* {{[[f>image...}} - 靠右(被文字包围)
+ * {{[[f>image...}} - 靠右(被文字包围)
 
 而在这个维基中用的最多的是这种插图方块：
 > @@[[include component:image-block name=图源 |caption=描述]]@@
 
 还有这种：
 [[code]]
-[[div style="float:right; margin:0 2em 1em 2em; width:300px; border:0;"]]
-|||| [[image URL图源  width="300px"]] ||
-||||~ ^^描述^^ ||
-[[/div]]
-[[/code]]
+ [[div style="float:right; margin:0 2em 1em 2em; width:300px; border:0;"]]
+ |||| [[image URL图源  width="300px"]] ||
+ ||||~ ^^描述^^ ||
+ [[/div]]
+ [[/code]]
 
-+ [[# notes]]笔记
+ + [[# notes]]笔记
 
-使用 {{[[note]] ... [[/note]]}}(这两个都要独自放一行) 来造一栏笔记
+ 使用 {{[[note]] ... [[/note]]}}(这两个都要独自放一行) 来造一栏笔记
 
-例子:
-[[note]]
+ 例子:
+ [[note]]
 这是一段笔记。
 [[/note]]
 
-+ [[# html-blocks]]HTML 方块
+ + [[# html-blocks]]HTML 方块
 
-用{{[[html]] ... @@[[/html]]@@}}(这两个都要独自放一行)做出 HTML 方块。HTML 方块能令您更好地使用 [http://community.wikidot.com/howto:use-html-scripting HTML 语法]。
+ 用{{[[html]] ... @@[[/html]]@@}}(这两个都要独自放一行)做出 HTML 方块。HTML 方块能令您更好地使用 [http://community.wikidot.com/howto:use-html-scripting HTML 语法]。
 
 [[code type="html"]]
-[[html]]
-<h1>Custom HTML</h1>
-<p>Something else</p>
-<img src="anything.png" alt="hello ;-)"/>
-[[/html]]
-[[/code]]
+ [[html]]
+ <h1>Custom HTML</h1>
+ <p>Something else</p>
+ <img src="anything.png" alt="hello ;-)"/>
+ [[/html]]
+ [[/code]]
 
 在 HTML 方块里，维基语法是用不了的。
 
 [[code]]
-[[html]]
-<div style="background-color: black; color: lightgreen">
-<p>这是个例子</p>
-</div>
-[[/html]]
-[[/code]]
+ [[html]]
+ <div style="background-color: black; color: lightgreen">
+ <p>这是个例子</p>
+ </div>
+ [[/html]]
+ [[/code]]
 
 之后会产生以下效果：
 
 [[html]]
-<div style="background-color: black; color: lightgreen">
-<p>这是个例子</p>
-</div>
-[[/html]]
+ <div style="background-color: black; color: lightgreen">
+ <p>这是个例子</p>
+ </div>
+ [[/html]]
 
 每个 HTML 方块都有自己的 URL。您可以右点方框然后在"本页框"点"只显示本页框"去查找其网址(firefox)。
 ~~~~~~~~~~
 
-+ [[# code-blocks]]代码方块
+ + [[# code-blocks]]代码方块
 
-用{{[[code]]...[[/code]]}}(这两个都要独自放一行)做出代码方块。
+ 用{{[[code]]...[[/code]]}}(这两个都要独自放一行)做出代码方块。
 
 [[code]]
 此处为代码
@@ -438,32 +438,32 @@ thanks for Erich for that!
 
 ~~~~~~~~~~
 
-+ [[# tables]]表格
+ + [[# tables]]表格
 
 ++ 简单表格
 
-您能用"||"去建立表格：
+ 您能用"||"去建立表格：
 
 [[div style="float:left; width: 45%; margin: 0 2%"]]
-[[code]]
-||~ 标题 1 ||~ 标题 2 ||~ 标题 3 ||
-|| 内容 1 || 内容 2 || 内容 3 ||
-|||| 长内容 4 || 内容 5 ||
-||内容 6 |||| 长内容  7 ||
-|||||| 超长 _
+ [[code]]
+ ||~ 标题 1 ||~ 标题 2 ||~ 标题 3 ||
+ || 内容 1 || 内容 2 || 内容 3 ||
+ |||| 长内容 4 || 内容 5 ||
+ ||内容 6 |||| 长内容  7 ||
+ |||||| 超长 _
 内容 8||
-[[/code]]
-[[/div]]
+ [[/code]]
+ [[/div]]
 
-[[div style="float:left; width: 45%; margin: 0 2%"]]
-||~ 标题 1 ||~ 标题 2 ||~ 标题 3 ||
-|| 内容 1 || 内容 2 || 内容 3 ||
-|||| 长内容 4 || 内容 5 ||
-||内容 6 |||| 长内容 7 ||
-|||||| 超长 _
+ [[div style="float:left; width: 45%; margin: 0 2%"]]
+ ||~ 标题 1 ||~ 标题 2 ||~ 标题 3 ||
+ || 内容 1 || 内容 2 || 内容 3 ||
+ |||| 长内容 4 || 内容 5 ||
+ ||内容 6 |||| 长内容 7 ||
+ |||||| 超长 _
 内容 8||
-[[/div]]
-~~~~~~~~~~~~~~
+ [[/div]]
+ ~~~~~~~~~~~~~~
 
 在行尾加" _"能在表格内开新行(如上例)。
 
@@ -472,89 +472,89 @@ thanks for Erich for that!
 ++ 靠左，右，置中及左右对齐
 
 || {{@@[[<]]@@ _
-... _
-@@[[/<]]@@}} || 靠左 ||
-|| {{@@[[>]]@@ _
-... _
-@@[[/>]]@@}} || 靠右 ||
-|| {{@@[[=]]@@ _
-... _
-@@[[/=]]@@}} ||置中 ||
-|| {{@@[[==]]@@ _
-... _
-@@[[/==]]@@}} ||左右对齐||
+ ... _
+ @@[[/<]]@@}} || 靠左 ||
+ || {{@@[[>]]@@ _
+ ... _
+ @@[[/>]]@@}} || 靠右 ||
+ || {{@@[[=]]@@ _
+ ... _
+ @@[[/=]]@@}} ||置中 ||
+ || {{@@[[==]]@@ _
+ ... _
+ @@[[/==]]@@}} ||左右对齐||
 
 E.g.
-[[div style="float:left; width: 45%; padding: 0 2%"]]
-[[code]]
-[[=]]
+ [[div style="float:left; width: 45%; padding: 0 2%"]]
+ [[code]]
+ [[=]]
 范例范例
-范例范例
+ 范例范例
 [[/=]]
-[[/code]]
-[[/div]]
+ [[/code]]
+ [[/div]]
 
-[[div style="float:left; width: 45%; padding: 0 2%"]]
-[[=]]
+ [[div style="float:left; width: 45%; padding: 0 2%"]]
+ [[=]]
 范例范例
-范例范例
+ 范例范例
 [[/=]]
-[[/div]]
-~~~~~~~~~
+ [[/div]]
+ ~~~~~~~~~
 
 在行开头用{{=}}就能直接置中该行 at the beginning:
-[[div style="float:left; width: 45%; padding: 0 2%"]]
-[[code]]
-= 就像这样
+ [[div style="float:left; width: 45%; padding: 0 2%"]]
+ [[code]]
+ = 就像这样
 [[/code]]
+ [[/div]]
+ [[div style="float:left; width: 45%; padding: 0 2%"]]
+ = 就像这样
 [[/div]]
-[[div style="float:left; width: 45%; padding: 0 2%"]]
-= 就像这样
-[[/div]]
-~~~~~~~~~~
+ ~~~~~~~~~~
 
-**注意:** 以上代码一定要自己独立一行而且前面不应该有任何东西包括空格。
+ **注意:** 以上代码一定要自己独立一行而且前面不应该有任何东西包括空格。
 
 ++ [[# custom-divs]]//div// 方块
 
-用{{@@[[div]] ... [[/div]]@@}}就可以转化成 HTML 格式的{{@< <div> ... </div> >@}}方块。
-其中能用的属性有: {{class}}, {{style}}, {{data-}}。
+ 用{{@@[[div]] ... [[/div]]@@}}就可以转化成 HTML 格式的{{@< <div> ... </div> >@}}方块。
+ 其中能用的属性有: {{class}}, {{style}}, {{data-}}。
 
-切记将@@[[div]]@@ 和 @@[[/div]]@@放在独立一行上。以下为用 div 方块做出两个水平放置的方块：
+ 切记将@@[[div]]@@ 和 @@[[/div]]@@放在独立一行上。以下为用 div 方块做出两个水平放置的方块：
 [[code]]
-[[div style="float:left; width: 45%; padding: 0 2%"]]
-left column left column left column left column left column
-left column left column left column left column left column
-[[/div]]
-[[div style="float:left; width: 45%; padding: 0 2%"]]
-right column right column right column right column right column
-right column right column right column right column right column
-[[/div]]
+ [[div style="float:left; width: 45%; padding: 0 2%"]]
+ left column left column left column left column left column
+ left column left column left column left column left column
+ [[/div]]
+ [[div style="float:left; width: 45%; padding: 0 2%"]]
+ right column right column right column right column right column
+ right column right column right column right column right column
+ [[/div]]
 
-~~~~
-[[/code]]
+ ~~~~
+ [[/code]]
 
-[[div style="float:left; width: 40%; padding: 0 4%"]]
-left column left column left column left column left column left column left column left column left column left column
-[[/div]]
-[[div style="float:left; width: 40%; padding: 0 4%"]]
-right column right column right column right column right column right column right column right column right column right column
-[[/div]]
+ [[div style="float:left; width: 40%; padding: 0 4%"]]
+ left column left column left column left column left column left column left column left column left column left column
+ [[/div]]
+ [[div style="float:left; width: 40%; padding: 0 4%"]]
+ right column right column right column right column right column right column right column right column right column right column
+ [[/div]]
 
-~~~~
+ ~~~~
 
 只要用好 {{@@[[div]]@@}}方法就能造出高级的页面。
 
 ~~~~~~~~
 
-+ [[# footnotes]]注脚(Footnotes)
+ + [[# footnotes]]注脚(Footnotes)
 
 用{{@@[[footnote]]@@}}造出注脚。用{{@@[[footnoteblock]]@@}}使注脚__不会__出现在页底。
 [[code]]
 友谊是魔法[[footnote]]Friendship is Magic.[[/footnote]]。
 
 [[footnoteblock]]
-[[/code]]
+ [[/code]]
 
 友谊是魔法[[footnote]]Friendship is Magic.[[/footnote]]。
 
@@ -566,68 +566,68 @@ right column right column right column right column right column right column ri
 + [[# users]]用户
 
 ||~ 您所打的 ||~ 您看到的 ||~ 描述||
-|| {{@@[[user@@ //用户名称//]]}} _
- e.g. {{@@[[user PC-DOS]]@@}} ||  [[user PC-DOS]] || 用户信息(没头像)||
-|| {{@@[[*user@@ //用户名称//]]}} _
- e.g. {{@@[[*user PC-DOS]]@@}} ||  [[*user PC-DOS]] || 用户信息(连头像)||
+ || {{@@[[user@@ //用户名称//]]}} _
+  e.g. {{@@[[user PC-DOS]]@@}} ||  [[user PC-DOS]] || 用户信息(没头像)||
+ || {{@@[[*user@@ //用户名称//]]}} _
+  e.g. {{@@[[*user PC-DOS]]@@}} ||  [[*user PC-DOS]] || 用户信息(连头像)||
 
-+ 设计元素
+ + 设计元素
 
 ++ [[# tab-view]]Tab View
 
-Tab View 是一种能透过点击卷标去切换显示内容的方格。
+ Tab View 是一种能透过点击卷标去切换显示内容的方格。
 
 **注: Tab View 会使 TOC，锚点及返回接钮失效**
-* 您连不上 Tab 里面的锚点。
+ * 您连不上 Tab 里面的锚点。
 * TOC 不会连到 Tab 里的标题。
 * 如果您点击 Tab 里的链接返回，您总会看见第一个 Tab。
 
-要造一个 Tab View，即是一连串的 Tab，可以用以下的语法：
+ 要造一个 Tab View，即是一连串的 Tab，可以用以下的语法：
 
 [[code]]
-[[tabview]]
-[[tab Twilight Sparkle]]
+ [[tabview]]
+ [[tab Twilight Sparkle]]
 魔法元素的持有者。
 [[/tab]]
-[[tab Rainbow Dash]]
+ [[tab Rainbow Dash]]
 忠诚元素的持有者。
 [[/tab]]
-[[tab Fluttershy]]
+ [[tab Fluttershy]]
 善良元素的持有者。
 [[/tab]]
-[[tab Applejack]]
+ [[tab Applejack]]
 诚实元素的持有者。
 [[/tab]]
-[[tab Pinkie Pie]]
+ [[tab Pinkie Pie]]
 欢笑元素的持有者。
 [[/tab]]
-[[tab Rarity]]
+ [[tab Rarity]]
 慷慨元素的持有者。
 [[/tab]]
-[[/tabview]]
-[[/code]]
+ [[/tabview]]
+ [[/code]]
 
 实现效果见下:
 
-[[tabview]]
-[[tab Twilight Sparkle]]
+ [[tabview]]
+ [[tab Twilight Sparkle]]
 魔法元素的持有者。
 [[/tab]]
-[[tab Rainbow Dash]]
+ [[tab Rainbow Dash]]
 忠诚元素的持有者。
 [[/tab]]
-[[tab Fluttershy]]
+ [[tab Fluttershy]]
 善良元素的持有者。
 [[/tab]]
-[[tab Applejack]]
+ [[tab Applejack]]
 诚实元素的持有者。
 [[/tab]]
-[[tab Pinkie Pie]]
+ [[tab Pinkie Pie]]
 欢笑元素的持有者。
 [[/tab]]
-[[tab Rarity]]
+ [[tab Rarity]]
 慷慨元素的持有者。
 [[/tab]]
-[[/tabview]]
+ [[/tabview]]
 
-Tabs能装下所有的内容。 
+ Tabs能装下所有的内容。 

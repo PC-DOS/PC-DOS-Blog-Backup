@@ -2,24 +2,24 @@
 
 [*https://www.jsdelivr.com/features JSDelivr]服务可用于分发宿主于[*https://github.com GitHub]上的代码仓库中的内容，例如图像、CSS样式表、JavaScript脚本等。
 
-使用JSDelivr服务时，仅需在{{@@https://cdn.jsdelivr.net/gh/@@}}后追加GitHub用户名、代码仓库名和文件路径，即可实现内容的分发。
+ 使用JSDelivr服务时，仅需在{{@@https://cdn.jsdelivr.net/gh/@@}}后追加GitHub用户名、代码仓库名和文件路径，即可实现内容的分发。
 
-例如，对于宿主在GitHub账户{{ContosoAccount}}下的代码仓库{{Contoso-Repo}}、分支{{contoso-branch}}内的路径{{/Contoso/Path/}}内的{{contoso.ext}}文件，使用JSDelivr服务进行分发的路径即为：
+ 例如，对于宿主在GitHub账户{{ContosoAccount}}下的代码仓库{{Contoso-Repo}}、分支{{contoso-branch}}内的路径{{/Contoso/Path/}}内的{{contoso.ext}}文件，使用JSDelivr服务进行分发的路径即为：
 
 [[code]]
-https://cdn.jsdelivr.net/gh/ContosoAccount/Contoso-Repo@contoso-branch/Contoso/Path/contoso.ext
-[[/code]]
+ https://cdn.jsdelivr.net/gh/ContosoAccount/Contoso-Repo@contoso-branch/Contoso/Path/contoso.ext
+ [[/code]]
 
-+ 使用JSDelivr时的注意事项
+ + 使用JSDelivr时的注意事项
 
 ++ 缓存的问题
 
 JSDelivr会为对被加速的文件进行缓存，如遇清除该缓存，可在前述加速路径中，将“{{@@jsdelivr.net@@}}”域名前的“{{cdn}}”二级域名替换为“{{purge}}”并进行一次访问。此时，您应该会收到一个JSON响应，告知您相关内容已被清除。
 
-对于CSS和JavaScript内容，您可以使用相应的CSS或JS的“{{.min}}”版本以保证JSDelivr不会进行缓存。使用“{{.min}}”版本的最简单的方式是在JSDelivr加速路径中，在相应CSS文件或JS文件的“{{.css}}”扩展名前追加“{{.min}}”。例如，对于原名为“{{ContosoCSS.css}}”的文件，您可以将加速路径重命名为“{{ContosoCSS.min.css}}”；对于原名为“{{ContosoJS.js}}”的文件，您可以将加速路径重命名为“{{ContosoJS.min.js}}”。
+ 对于CSS和JavaScript内容，您可以使用相应的CSS或JS的“{{.min}}”版本以保证JSDelivr不会进行缓存。使用“{{.min}}”版本的最简单的方式是在JSDelivr加速路径中，在相应CSS文件或JS文件的“{{.css}}”扩展名前追加“{{.min}}”。例如，对于原名为“{{ContosoCSS.css}}”的文件，您可以将加速路径重命名为“{{ContosoCSS.min.css}}”；对于原名为“{{ContosoJS.js}}”的文件，您可以将加速路径重命名为“{{ContosoJS.min.js}}”。
 
 + 参考资料
 
 *https://blog.csdn.net/qq_27862223/article/details/108506349
 
-*https://ld246.com/article/1583894928771 
+ *https://ld246.com/article/1583894928771 

@@ -3,53 +3,53 @@
 从 *http://download.qt.io/new_archive/qt/5.3/5.3.2/ 下载[*http://download.qt.io/new_archive/qt/5.3/5.3.2/qt-opensource-linux-x64-android-5.3.2.run qt-opensource-linux-x64-android-5.3.2.run]。在终端中定位到该文件所在目录并执行：
 
 [[code]]
-./qt-opensource-linux-x64-android-5.3.2.run
-[[/code]]
+ ./qt-opensource-linux-x64-android-5.3.2.run
+ [[/code]]
 
 开始安装（是否用{{sudo}}指令以Root身份运行可随意）。
 
 + 配置所需的ARM编译器
 
-使用arm-linux-4.4.1编译器，因此需要进行编译器配置：
+ 使用arm-linux-4.4.1编译器，因此需要进行编译器配置：
 
 [[code]]
-cd /usr/local/arm/
-sudo cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/arm-linux-4.4.1.tar.gz' ./
-sudo tar -vxf arm-linux-4.4.1.tar.gz
-[[/code]]
+ cd /usr/local/arm/
+ sudo cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/arm-linux-4.4.1.tar.gz' ./
+ sudo tar -vxf arm-linux-4.4.1.tar.gz
+ [[/code]]
 
-+ 配置Qt/E 4.7.1编译套件
+ + 配置Qt/E 4.7.1编译套件
 
-从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
+ 从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
 
-首先，切换到 [编译器(Compilers)] 选项卡，点击 [添加(Add)] > [GCC]，[名称(Name)]可自由填写，[编译器路径(Compiler path)] 填写为：
+ 首先，切换到 [编译器(Compilers)] 选项卡，点击 [添加(Add)] > [GCC]，[名称(Name)]可自由填写，[编译器路径(Compiler path)] 填写为：
 
 [[code]]
-/usr/local/arm/4.4.1/bin/arm-none-linux-gnueabi-gcc
-[[/code]]
+ /usr/local/arm/4.4.1/bin/arm-none-linux-gnueabi-gcc
+ [[/code]]
 
 点击 [Apply] 按钮。
 
-随后，切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中Qt/E 4.7.1的{{qmake}}文件，由于笔者电脑已经编译过Qt/E 4.7.1，因此{{qmake}}文件位于：
+ 随后，切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中Qt/E 4.7.1的{{qmake}}文件，由于笔者电脑已经编译过Qt/E 4.7.1，因此{{qmake}}文件位于：
 
 [[code]]
-/opt/qt-4.7.1/bin/qmake
-[[/code]]
+ /opt/qt-4.7.1/bin/qmake
+ [[/code]]
 
 光盘的{{/08_源码_QtE以及qtopia2.2.0文件系统/root_@@********@@.tar.gz}}文件的{{/root/opt/qt-4.7.1/bin}}中也提供了{{qmake}}文件。
 
-点击 [Apply] 按钮。
+ 点击 [Apply] 按钮。
 
-最后，切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 为之前添加的ARM编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.7.1。
+ 最后，切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 为之前添加的ARM编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.7.1。
 
-点击 [OK] 按钮，保存退出。
+ 点击 [OK] 按钮，保存退出。
 
 + 使用Qt/E 4.7.1编译套件
 
-对于新建的项目，在 [Kit Selection] 界面，勾选之前添加的Qt 4.7.1套件即可。
+ 对于新建的项目，在 [Kit Selection] 界面，勾选之前添加的Qt 4.7.1套件即可。
 
-对于已有的项目，打开项目后切换到左侧栏的 [项目(Projects)] 选项卡，点击 [添加构建套件(Add kit)]按钮，添加先前配置的Qt 4.7.1套件即可。
+ 对于已有的项目，打开项目后切换到左侧栏的 [项目(Projects)] 选项卡，点击 [添加构建套件(Add kit)]按钮，添加先前配置的Qt 4.7.1套件即可。
 
 + 故障排除
 
-如果向Qt 4.7.1编译时出现“ui_MainWindow.h Error 1”等错误，可能由兼容性问题引发，建议右键点击错误窗格并切换到详细信息模式，检查出错原因。 
+ 如果向Qt 4.7.1编译时出现“ui_MainWindow.h Error 1”等错误，可能由兼容性问题引发，建议右键点击错误窗格并切换到详细信息模式，检查出错原因。 
