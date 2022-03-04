@@ -1,4 +1,4 @@
-+ 主程序
+﻿+ 主程序
 
  文件名：{{minimum-driver.c}}
 
@@ -14,16 +14,14 @@
  /* Useful header files */
  #include <linux/kernel.h>
  #include <linux/fs.h>
- #include <mach/gpio.h>
- #include <plat/gpio-cfg.h>
  #include <linux/miscdevice.h>
  #include <linux/platform_device.h>
- #include <mach/regs-gpio.h>
- #include <asm/io.h>
  #include <linux/regulator/consumer.h>
  #include <linux/delay.h>
  #include <linux/cdev.h>
  #include <linux/device.h>
+/* Assembly (ASM) header files */
+ #include <asm/io.h>
 
  /* Definitions, you can put them in a separated header(*.h) file and use #include "xxx.h" to include them */
  //DBGPRINT() is used to print debug messages, comment #define IS_IN_DEBUG to disable them

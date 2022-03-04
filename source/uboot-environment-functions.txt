@@ -1,0 +1,81 @@
+uBoot支持对环境变量进行配置，环境变量是一系列由uBoot固件维护的可持久化存储的配置项。用户和固件可以通过环境变量对设备参数、状态等进行调校。这些变量同时可以传递到上层系统，作为启动和配置参数。
+
++ 使用代码维护环境变量
+
+uBoot提供了{{getenv()}}、{{setenv()}}、{{saveenv()}}函数，用于获取和设置环境变量的值。
+
+++ 获取环境变量的值：{{getenv()}}
+
+ {{getenv()}}函数的原型如下：
+
+[[code type="cpp"]]
+ char *getenv(const char *name);
+ [[/code]]
+
+参数{{name}}为包含被请求变量名称的C字符串。
+
+ 该函数返回一个以{{NULL}}结尾的字符串，该字符串为被请求环境变量的值。如果该环境变量不存在，则返回{{NULL}}。
+
+{{getenv()}}函数包括以下变体：
+
+[[code type="cpp"]]
+ ulong getenv_hex(const char *varname, ulong default_val);
+ ulong getenv_ulong(const char *name, int base, ulong default_val)
+ [[/code]]
+
+ ++ 设置环境变量的值：{{setenv()}}
+
+ {{setenv()}}函数的原型如下：
+
+[[code type="cpp"]]
+ int setenv(const char *varname, const char *varvalue);
+ [[/code]]
+
+参数{{varname}}为包含被请求变量名称的C字符串；参数{{varvalue}}为包含被请求变量参数的C字符串，设为{{NULL}}表示删除被请求的环境变量。
+
+ 返回{{0}}表示成功。
+
+{{setenv()}}函数包括以下变体：
+
+[[code type="cpp"]]
+ int setenv_ulong(const char *varname, ulong value);
+ int setenv_hex(const char *varname, ulong value);
+ [[/code]]
+
+ ++ 保存环境变量状态：{{saveenv()}}
+
+使用{{saveenv()}}函数保存当前的环境变量状态：
+
+[[code type="cpp"]]
+ int saveenv(void);
+ [[/code]]
+
+返回{{0}}表示成功。
+
++ 使用命令行维护环境变量
+
+uBoot提供了{{printenv}}、{{setenv}}、{{saveenv}}命令，用于通过uBoot命令行接口获取和设置环境变量的值。
+
+++ 获取环境变量的值：{{printenv}}
+
+命令{{printenv}}以键值对的形式打印当前所有的环境变量。
+
+++ 设置环境变量的值：{{setenv}}
+
+ {{setenv}}命令的结构如下：
+
+[[code type="cpp"]]
+ setenv VARNAME value
+ [[/code]]
+
+必选参数{{VARNAME}}为被请求变量名称；可选参数{{value}}为包含被请求变量参数，留空表示删除被请求的环境变量。
+
+++ 保存环境变量状态：{{saveenv}}
+
+使用{{saveenv}}命令保存当前的环境变量状态：
+
++ 参考资料
+
+*https://www.runoob.com/cprogramming/c-function-getenv.html
+
+ *https://wizardforcel.gitbooks.io/linux-c-api-ref/content/293.html 
