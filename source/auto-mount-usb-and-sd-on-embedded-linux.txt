@@ -30,10 +30,11 @@ then
 	if [ -e "/dev/$MDEV" ] ; then
 		mkdir -p /mnt/$MDEV
 		mount -rw /dev/$MDEV /mnt/$MDEV
+		echo "Hotplug: USB disk $MDEV mounted to /mnt/$MDEV ." > /dev/console
 	fi
 else
 	#Device unplugged operations
-	echo "Hotplug: USB disk $MDEV unplugged." > /dev/console
+	echo "Hotplug: USB disk $MDEV unplugged. Unmounting /mnt/$MDEV ..." > /dev/console
 	umount /mnt/$MDEV
 	rm -r /mnt/$MDEV
 fi
@@ -54,10 +55,11 @@ then
 	if [ -e "/dev/$MDEV" ] ; then
 		mkdir -p /mnt/$MDEV
 		mount -rw /dev/$MDEV /mnt/$MDEV
+		echo "Hotplug: SD card $MDEV mounted to /mnt/$MDEV ." > /dev/console
 	fi
 else
 	#Device unplugged operations
-	echo "Hotplug: USB disk $MDEV unplugged." > /dev/console
+	echo "Hotplug: USB disk $MDEV unplugged. Unmounting /mnt/$MDEV ..." > /dev/console
 	umount /mnt/$MDEV
 	rm -r /mnt/$MDEV
 fi
