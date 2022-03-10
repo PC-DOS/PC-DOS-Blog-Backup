@@ -15,60 +15,52 @@ Linux System Utilities  --->
 
 以下操作均把Qt/E文件系统所在的目录视为根目录。
 
-++ 挂载脚本
+++ USB磁盘
 
-+++ USB磁盘
-
-创建{{/etc/hotplug/usbdisk/}}目录，创建{{usbdisk_insert}}文件，赋予执行权限，写入以下内容：
+创建{{/etc/hotplug/}}目录，创建{{usbdisk}}文件，赋予执行权限，写入以下内容：
 
 [[code]]
 #!/bin/sh
 
-echo "Hotplug: USB disk $MDEV inserted." > /bin/console
-if [ -e "/dev/$MDEV" ] ; then
-	mkdir -p /mnt/$MDEV
-	mount /dev/$MDEV /mnt/$MDEV
+#Judge device action variable ($ACTION)
+if [ $ACTION == "add" ]
+then
+	#Device plugged operations
+	echo "Hotplug: USB disk $MDEV plugged." > /dev/console
+	if [ -e "/dev/$MDEV" ] ; then
+		mkdir -p /mnt/$MDEV
+		mount -rw /dev/$MDEV /mnt/$MDEV
+	fi
+else
+	#Device unplugged operations
+	echo "Hotplug: USB disk $MDEV unplugged." > /dev/console
+	umount /mnt/$MDEV
+	rm -r /mnt/$MDEV
 fi
 [[/code]]
 
-+++ SD卡
+++ SD卡
 
-创建{{/etc/hotplug/sdcard/}}目录，创建{{sdcard_insert}}文件，赋予执行权限，写入以下内容：
+创建{{/etc/hotplug/}}目录，创建{{sdcard}}文件，赋予执行权限，写入以下内容：
 
 [[code]]
 #!/bin/sh
 
-echo "Hotplug: SD card $MDEV inserted." > /bin/console
-if [ -e "/dev/$MDEV" ] ; then
-	mkdir -p /mnt/$MDEV
-	mount -rw /dev/$MDEV /mnt/$MDEV
+#Judge device action variable ($ACTION)
+if [ $ACTION == "add" ]
+then
+	#Device plugged operations
+	echo "Hotplug: USB disk $MDEV plugged." > /dev/console
+	if [ -e "/dev/$MDEV" ] ; then
+		mkdir -p /mnt/$MDEV
+		mount -rw /dev/$MDEV /mnt/$MDEV
+	fi
+else
+	#Device unplugged operations
+	echo "Hotplug: USB disk $MDEV unplugged." > /dev/console
+	umount /mnt/$MDEV
+	rm -r /mnt/$MDEV
 fi
-[[/code]]
-
-++ 卸载脚本
-
-+++ USB磁盘
-
-创建{{/etc/hotplug/usbdisk/}}目录，创建{{usbdisk_remove}}文件，赋予执行权限，写入以下内容：
-
-[[code]]
-#!/bin/sh
-
-echo "Hotplug: USB disk $MDEV removed" > /bin/console
-umount -l /mnt/$MDEV
-rm -rf /mnt/$MDEV
-[[/code]]
-
-+++ SD卡
-
-创建{{/etc/hotplug/sdcard/}}目录，创建{{sdcard_remove}}文件，赋予执行权限，写入以下内容：
-
-[[code]]
-#!/bin/sh
-
-echo "Hotplug: SD card $MDEV removed." > /bin/console
-umount -l /mnt/$MDEV
-rm -rf /mnt/$MDEV
 [[/code]]
 
 + 编辑{{mdev.conf}}
@@ -85,14 +77,12 @@ sda1		0:0	0600	=udisk * /bin/hotplug
 
 [[code]]
 # USB disk
-sd[a-z][0-9]      0:0 666        @/etc/hotplug/usbdisk/usbdisk_insert                      
-sd[a-z]           0:0 666        $/etc/hotplug/usbdisk/usbdisk_remove
+sd[a-z][0-9]      0:0 666        * /etc/hotplug/usbdisk
 
 # SD card
-mmcblk1p[0-9]     0:0 666        @/etc/hotplug/sdcard/sdcard_insert
-mmcblk1           0:0 666        $/etc/hotplug/sdcard/sdcard_remove
+mmcblk1p[0-9]     0:0 666        * /etc/hotplug/sdcard
 [[/code]]
 
 + 参考资料
 
-*https://blog.csdn.net/dragon101788/article/details/8757204
+*https://blog.csdn.net/t01051/article/details/107904394
