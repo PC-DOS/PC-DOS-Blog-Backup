@@ -1,4 +1,4 @@
-﻿+ 主程序
++ 主程序
 
  文件名：{{minimum-char-driver.c}}
 
@@ -21,7 +21,7 @@
  #include <linux/cdev.h>
  #include <linux/device.h>
  #include <linux/uaccess.h>
-/* Assembly (ASM) header files */
+ /* Assembly (ASM) header files */
  #include <asm/io.h>
 
  /* Definitions, you can put them in a separated header(*.h) file and use #include "xxx.h" to include them */

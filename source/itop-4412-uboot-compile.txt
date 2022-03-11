@@ -67,6 +67,13 @@
  sudo apt-get install lsb-core
  [[/code]]
 
+同时，为了便于今后的操作，也可以使用{{exit}}命令临时退出Root环境、返回当前登录用户的操作环境，并采用和上面一致的方法更新当前用户的环境变量：
+
+[[code]]
+ gedit ~/.bashrc
+ source ~/.bashrc
+ [[/code]]
+
  + 先导工作
 
  前期工作需要借用Android 4.0.3的配置编译环境中的安装脚本，安装大量的程序包，但是，可以不执行安装Java的脚本：
@@ -210,11 +217,11 @@
  [[/code]]
  [[/collapsible]]
 
- + 复制和展开Linux内核源代码
+ + 复制和展开uBoot源代码
 
  从这里开始可以退出Root操作环境，亦可继续留在Root操作环境。为便于操作以及后续代码修改，此处选择退出Root操作环境。
 
- 随后，复制Linux内核源代码并展开：
+ 随后，复制uBoot源代码并展开：
 
 [[code]]
  cd /home/picsell-dois/iTop4412/
@@ -226,9 +233,9 @@
  cp -r '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/06_源码_uboot和kernel/CodeSign4SecureBoot_SCP' ./
  [[/code]]
 
- + 编译内核
+ + 编译uBoot
 
- 配置和修改操作完毕后，在终端执行：
+配置和修改操作完毕后，在终端执行：
 
 [[code]]
  cd iTop4412_uboot
@@ -238,4 +245,4 @@
 
 其中，{{SCP_1GDDR}}为设备的硬件属性，请根据您的实际设备进行更改。
 
- 开始编译Linux内核。编译完成后得到的{{u-boot-iTOP-4412.bin}}文件位于{{/home/picsell-dois/iTop4412/uBoot/iTop4412_uboot/}}目录内。 
+ 开始编译uBoot。编译完成后得到的{{u-boot-iTOP-4412.bin}}文件位于{{/home/picsell-dois/iTop4412/uBoot/iTop4412_uboot/}}目录内。 

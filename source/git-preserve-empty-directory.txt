@@ -1,0 +1,9 @@
+Git程序会忽略所有空目录，但是可能存在需要在代码仓库中保留空目录以保持目录树结构完整的情况，此时可以使用在空目录下建立拥有以下内容的{{.gitignore}}文件实现：
+
+[[code]]
+ # Ignore all files
+ *
+
+ # Keep .gitignore to preserve this directory
+ !.gitignore
+ [[/code]] 

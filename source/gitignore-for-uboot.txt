@@ -105,4 +105,15 @@
  # pylint files
  /pylint.cur
  /pylint.out/
+ [[/code]]
+
+对于已针对特定板卡特殊化的uBoot，可能需要保留{{boards.cfg}}配置文件，并使用下面的语法保留一些厂商提供的固件和配置文件：
+
+[[code]]
+ # Keep boards.cfg
+ !boards.cfg
+
+ # Keep OEM firmware
+ !/oem_firmware/board*.img
+ !/bl*.bin
  [[/code]] 
