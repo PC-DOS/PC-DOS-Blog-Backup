@@ -87,8 +87,8 @@ struct matrix_keypad_platform_data {
  static u32 arrKeyMapping[] = {
      //KEY(row, col, keycode)
      KEY( 3, 3, KEY_1), KEY( 3, 2, KEY_2), KEY( 3, 1, KEY_3), KEY( 3, 0, KEY_4),
-     KEY( 7, 3, KEY_5), KEY( 7, 2, KEY_6), KEY( 7, 1, KEY_7), KEY( 7, 0, KEY_8),
-     KEY( 6, 3, KEY_9), KEY( 6, 2, KEY_0), KEY( 6, 1, KEY_A), KEY( 6, 0, KEY_B),
+     KEY( 2, 3, KEY_5), KEY( 2, 2, KEY_6), KEY( 2, 1, KEY_7), KEY( 2, 0, KEY_8),
+     KEY( 1, 3, KEY_9), KEY( 1, 2, KEY_0), KEY( 1, 1, KEY_A), KEY( 1, 0, KEY_B),
      KEY( 0, 3, KEY_C), KEY( 0, 2, KEY_D), KEY( 0, 1, KEY_E), KEY( 0, 0, KEY_F)
  };
   

@@ -1,7 +1,128 @@
 S5P4418外部地址总线与GPIO接口组C/D/E（GPIOC/D/E）部分引脚存在端口复用关系。
 
-* 地址线{{SA[0..23]}}（{{GPIOC[0..23]}}）需要配置为{{Alternate Function 0}}。
-* 数据线{{SD[0..15]}}（{{GPIOB[13, 15, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]}}）需要配置为{{Alternate Function 0}}。
-* SROM片选信号引脚{{GPIOC28}}需要配置为{{Alternate Function 1}}。
-* SROM读选通信号引脚{{GPIOE30}}需要配置为{{Alternate Function 0}}。
-* SROM写选通信号引脚{{GPIOE31}}需要配置为{{Alternate Function 0}}。 
+* 地址线{{SA[0..23]}}（{{GPIOC[0..23]}}）需要配置为{{Alternate Function 0}}。关闭硬中断。
+* 数据线{{SD[0..15]}}（{{GPIOB[13, 15, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]}}）需要配置为{{Alternate Function 0}}。关闭硬中断。
+* SROM片选信号引脚{{GPIOC28}}需要配置为{{Alternate Function 1}}。关闭硬中断。
+* SROM读选通信号引脚{{GPIOE30}}需要配置为{{Alternate Function 0}}。关闭硬中断。
+* SROM写选通信号引脚{{GPIOE31}}需要配置为{{Alternate Function 0}}。关闭硬中断。
+
+ 范例代码（Linux驱动程序）：
+
+[[code type="Cpp"]]
+ /* External Bus Interface (EBI) Configurations */
+ //Chip Select (nSCS)
+ #define CHIP_SELECT_GPIO_LABEL PAD_GPIO_C + 28 //Chip Select pin label
+ #define CHIP_SELECT_GPIO_NAME "CHIP_SELECT_NSCS1" //Chip Select pin name
+ #define CHIP_SELECT_GPIO_FUNCTION NX_GPIO_PADFUNC_1 //Chip Select pin GPIO function
+ #define CHIP_SELECT_GPIO_PULL NX_GPIO_PADPULL_UP //Chip Select pin GPIO pull
+ //Output Enable (nSOE)
+ #define OUTPUT_ENABLE_GPIO_LABEL PAD_GPIO_E + 30 //Output Enable pin label
+ #define OUTPUT_ENABLE_GPIO_NAME "OUTPUT_ENABLE_NSOE" //Output Enable pin name
+ #define OUTPUT_ENABLE_GPIO_FUNCTION NX_GPIO_PADFUNC_0 //Output Enable pin GPIO function
+ #define OUTPUT_ENABLE_GPIO_PULL NX_GPIO_PADPULL_UP //Output Enable pin GPIO pull
+ //Write Enable (nSWE)
+ #define WRITE_ENABLE_GPIO_LABEL PAD_GPIO_E + 31 //Write Enable pin label
+ #define WRITE_ENABLE_GPIO_NAME "WRITE_ENABLE_NSWE" //Write Enable pin name
+ #define WRITE_ENABLE_GPIO_FUNCTION NX_GPIO_PADFUNC_0 //Write Enable pin GPIO function
+ #define WRITE_ENABLE_GPIO_PULL NX_GPIO_PADPULL_UP //Write Enable pin GPIO pull
+ //Address
+ #define ADDR_GPIO_WIDTH_TOTAL 24 //Physical width of ADDR bus
+ #define ADDR_GPIO_WIDTH_USED 5 //Used width of ADDR bus
+ #define ADDR_GPIO_BASE PAD_GPIO_C //Base GPIO Pad of ADDR bus
+ const int ADDR_GPIO_OFFSET[ADDR_GPIO_WIDTH_TOTAL] = { 0,  1,  2,  3, 
+        4,  5,  6,  7, 
+        8,  9, 10, 11,
+      12, 13, 14, 15, 
+      16, 17, 18, 19,
+      20, 21, 22, 23}; //Offsets of ADDR GPIO pins
+ #define ADDR_GPIO_FUNCTION NX_GPIO_PADFUNC_0 //Function IDs of ADDR GPIO pins
+ #define ADDR_GPIO_PULL NX_GPIO_PADPULL_UP //Pull of ADDR GPIO pins
+ //Data
+ #define DATA_GPIO_WIDTH_TOTAL 16 //Physical width of DATA bus
+ #define DATA_GPIO_WIDTH_USED 16 //Used width of DATA bus
+ #define DATA_GPIO_BASE PAD_GPIO_B //Base GPIO Pad of DATA bus
+ const int DATA_GPIO_OFFSET[DATA_GPIO_WIDTH_TOTAL] = {13, 15, 17, 19, 
+      20, 21, 22, 23, 
+      24, 25, 26, 27,
+      28, 29, 30, 31}; //Offsets of DATA GPIO pins
+ #define DATA_GPIO_FUNCTION NX_GPIO_PADFUNC_0 //Offsets of DATA GPIO pins
+ #define DATA_GPIO_PULL NX_GPIO_PADPULL_UP //Pull of DATA GPIO pins
+ //Registers' Addresses
+ #define SROM_REGISTER_BASE_ADDR 0xC0051000
+ #define SROM_REGISTER_MAPPING_SIZE_BYTE 0x80
+ #define SROM_REGISTER_MAPPING_NAME "MCUS_CTL_REG" //Name of requested memory region
+ #define SROM_REGISTER_MEMBW_OFFSET 0x00
+ #define SROM_REGISTER_MEMTIMEACSL_OFFSET 0x04
+ #define SROM_REGISTER_MEMTIMECOSL_OFFSET 0x0C
+ #define SROM_REGISTER_MEMTIMEACC0_OFFSET 0x14
+ #define SROM_REGISTER_MEMTIMESACC0_OFFSET 0x24
+ #define SROM_REGISTER_MEMTIMECOHL_OFFSET 0x44
+ #define SROM_REGISTER_MEMTIMECAHL_OFFSET 0x4C
+ #define SROM_REGISTER_MEMBURSTL_OFFSET 0x54
+ #define SROM_REGISTER_MEMWAIT_OFFSET 0x5C
+ //Registers' Configurations
+ #define SROM_REGISTER_MEMBW_CONFIG_BITS 0x00000002 //Set MEMBW[1] to binary value 1 to use 16bit data bus width for nSCS1
+
+ /* Address of SROM Registers */
+ void * lpSromRegistersBaseAddress = NULL; //Remapped address for MEMBW
+ struct resource * lpSromRegistersResource = NULL; //Memory region resource
+ unsigned int iMemBw; //Value of MEMBW
+
+ /* Configure SROM access on initializing */
+ //Returns 0 if operation is success
+ int InitConfigureSROMAccess(){
+     //Config MCU-S Registers
+     request_region(SROM_REGISTER_BASE_ADDR, SROM_REGISTER_MAPPING_SIZE_BYTE, SROM_REGISTER_MAPPING_NAME);
+     lpSromRegistersBaseAddress = ioremap(SROM_REGISTER_BASE_ADDR, SROM_REGISTER_MAPPING_SIZE_BYTE);
+     lpSromRegistersResource = request_mem_region(SROM_REGISTER_BASE_ADDR, SROM_REGISTER_MAPPING_SIZE_BYTE, SROM_REGISTER_MAPPING_NAME);
+     if (lpSromRegistersBaseAddress){
+      NFOPRINT("MCU-S controlling registers mapped to virtual address 0x%x.\n", lpSromRegistersBaseAddress);
+      
+      iMemBw=__raw_readl(lpSromRegistersBaseAddress+SROM_REGISTER_MEMBW_OFFSET);
+      DBGPRINT("SFR MEMBW=0x%x.\n", iMemBw);
+      iMemBw=iMemBw | SROM_REGISTER_MEMBW_CONFIG_BITS;
+      DBGPRINT("Writing MEMBW with 0x%x inorder to config nSCS1.\n", iMemBw);
+      __raw_writel(iMemBw, lpSromRegistersBaseAddress);
+      iMemBw=__raw_readl(lpSromRegistersBaseAddress);
+      DBGPRINT("SFR MEMBW=0x%x.\n", iMemBw);
+     }
+     else{
+      WRNPRINT("Failed to map MCU-S controlling registers. The remap of external device at nSCS1 may not success.\n");
+     }
+     //Configure Chip Select pin
+     nxp_soc_gpio_set_int_enable(CHIP_SELECT_GPIO_LABEL, 0);
+     nxp_soc_gpio_set_io_func(CHIP_SELECT_GPIO_LABEL, CHIP_SELECT_GPIO_FUNCTION);
+     nxp_soc_gpio_set_io_pull_sel(CHIP_SELECT_GPIO_LABEL, CHIP_SELECT_GPIO_PULL);
+     //Configure Output Enable pin
+     nxp_soc_gpio_set_int_enable(OUTPUT_ENABLE_GPIO_LABEL, 0);
+     nxp_soc_gpio_set_io_func(OUTPUT_ENABLE_GPIO_LABEL, OUTPUT_ENABLE_GPIO_FUNCTION);
+     nxp_soc_gpio_set_io_pull_sel(OUTPUT_ENABLE_GPIO_LABEL, OUTPUT_ENABLE_GPIO_PULL);
+     //Configure Write Enable pin
+     nxp_soc_gpio_set_int_enable(WRITE_ENABLE_GPIO_LABEL, 0);
+     nxp_soc_gpio_set_io_func(WRITE_ENABLE_GPIO_LABEL, WRITE_ENABLE_GPIO_FUNCTION);
+     nxp_soc_gpio_set_io_pull_sel(WRITE_ENABLE_GPIO_LABEL, WRITE_ENABLE_GPIO_PULL);
+     //Configure ADDR pins
+     int i;
+     for (i=0; i<ADDR_GPIO_WIDTH_USED; ++i){
+      nxp_soc_gpio_set_int_enable(ADDR_GPIO_BASE + ADDR_GPIO_OFFSET[i], 0);
+      nxp_soc_gpio_set_io_func(ADDR_GPIO_BASE + ADDR_GPIO_OFFSET[i], ADDR_GPIO_FUNCTION);
+      nxp_soc_gpio_set_io_pull_sel(ADDR_GPIO_BASE + ADDR_GPIO_OFFSET[i], ADDR_GPIO_PULL);
+     }
+     //Configure DATA pins
+     for (i=0; i<DATA_GPIO_WIDTH_USED; ++i){
+      nxp_soc_gpio_set_int_enable(DATA_GPIO_BASE + DATA_GPIO_OFFSET[i], 0);
+      nxp_soc_gpio_set_io_func(DATA_GPIO_BASE + DATA_GPIO_OFFSET[i], DATA_GPIO_FUNCTION);
+      nxp_soc_gpio_set_io_pull_sel(DATA_GPIO_BASE + DATA_GPIO_OFFSET[i], DATA_GPIO_PULL);
+     }
+     
+     return 0;
+ }
+
+ /* Release SROM access on initializing */
+ void ExitReleaseSROMAccess(){
+     iounmap(lpSromRegistersBaseAddress);
+     release_mem_region(lpSromRegistersResource, SROM_REGISTER_MAPPING_SIZE_BYTE);
+     release_region(SROM_REGISTER_BASE_ADDR, SROM_REGISTER_MAPPING_SIZE_BYTE);
+     return;
+ }
+ [[/code]] 
