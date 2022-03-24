@@ -1,5 +1,5 @@
-﻿超级终端Hyper Terminal在Windows上的配置文件位于下列路径：
+超级终端Hyper Terminal在Windows上的配置文件位于下列路径：
 
 [[code]]
-%AppData%\Poderosa\options.conf
-[[/code]] 
+ %AppData%\Poderosa\options.conf
+ [[/code]] 

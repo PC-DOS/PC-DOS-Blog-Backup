@@ -1,0 +1,18 @@
+在没有TF卡槽的设备上开机时，iTop-4418的uBoot仍然会进行SD MMC检测并报错，可以跳过该检测以避免阻塞开机过程。
+
+ 修改{{u-boot/board/s5p4418/drone2/board.c}}文件中{{board_late_init()}}函数，屏蔽以下语句块：
+
+[[code type="Cpp"]]
+ struct mmc *mmc = find_mmc_device(CFG_FASTBOOT_SDFUSE_MMCDEV);
+ if (mmc_init(mmc)) {
+     printf("Not found tf card.\n");
+
+     tf_insert_flags = 0;
+ }
+ else
+ {
+     printf("Found tf card.\n");
+
+     tf_insert_flags = 1;
+ }
+ [[/code]] 
