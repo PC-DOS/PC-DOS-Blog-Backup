@@ -1,10 +1,10 @@
-﻿三星S5P4418没有SAMSUNG矩阵键盘控制器，因此需要使用Linux自带的{{matrix-keypad}}驱动程序驱动矩阵键盘。
+三星S5P4418没有SAMSUNG矩阵键盘控制器，因此需要使用Linux自带的{{matrix-keypad}}驱动程序驱动矩阵键盘。
 
 + 配置GPIO
 
  iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet/include/cfg_gpio.h}}，每个GPIO脚通过5组在头文件{{kernel/arch/arm/plat-s5p4418/topeet/include/cfg_type.h}}中的宏定义的或运算组合实现配置。
 
-同时，在uBoot代码仓库{{u-boot/board/s5p4418/drone2/include/cfg_gpio.h}}中，也有格式相同的、用于GPIO配置的头文件。
+ 同时，在uBoot代码仓库{{u-boot/board/s5p4418/drone2/include/cfg_gpio.h}}中，也有格式相同的、用于GPIO配置的头文件。
 
  第一组：{{PAD_MODE_XXX}}，用于设置GPIO为对应模式（复用功能/输入/输出/中断）。
 

@@ -1,0 +1,33 @@
+在注册表中建立下面所示的注册表键：
+
+[[code]]
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes\0\Accents\20
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes\1\Accents\20
+ [[/code]]
+
+在上述每个注册表键中均建立名为{{Color}}和{{ComplementaryColor}}的DWORD值，以ARGB(透明度-红色-绿色-蓝色)模式将您喜欢的颜色的RGB值转换为十进制写入并保存。
+
+ 之后，在下面的注册表路径：
+
+[[code]]
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\AccentDisplayNames
+ [[/code]]
+
+中新建名为{{20}}的字符串值，输入“{{@UIXMobileRes.dll,-10021}}”并保存，您也可以参考该注册表项下其他项的值。
+
+ 范例注册表配置：加入RGB值为(0, 175, 245)的颜色：
+
+[[code]]
+ Windows Registry Editor Version 5.00
+
+ [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes\0\Accents\20]
+ "Color"=dword:FF00AFF5
+ "ComplementaryColor"=dword:FF00AFF5
+
+ [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes\1\Accents\20]
+ "Color"=dword:FF00AFF5
+ "ComplementaryColor"=dword:FF00AFF5
+
+ [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\AccentDisplayNames]
+ "20"="@UIXMobileRes.dll,-10021"
+ [[/code]] 

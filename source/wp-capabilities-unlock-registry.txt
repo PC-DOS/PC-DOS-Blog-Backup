@@ -35,6 +35,36 @@
 [[code]]
  Windows Registry Editor Version 5.00
 
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE]
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft]
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\PackageManager]
+ "EnableAppLicenseCheck"=dword:00000000
+ "EnableAppSignatureCheck"=dword:00000000
+ "EnableAppProvisioning"=dword:00000000
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\DeviceReg]
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\DeviceReg\Install]
+ "MaxUnsignedApp"=dword:0003bdfd
+
+ [HKEY_LOCAL_MACHINE\WP_SYSTEM]
+
+ [HKEY_LOCAL_MACHINE\WP_SYSTEM\controlset001]
+
+ [HKEY_LOCAL_MACHINE\WP_SYSTEM\controlset001\services]
+
+ [HKEY_LOCAL_MACHINE\WP_SYSTEM\controlset001\services\SdStor]
+
+ [HKEY_LOCAL_MACHINE\WP_SYSTEM\controlset001\services\SdStor\Parameters]
+ "PackedCommandEnable"=dword:00000001
+
+ [HKEY_LOCAL_MACHINE\WP_SYSTEM\controlset001\Control]
+
+ [HKEY_LOCAL_MACHINE\WP_SYSTEM\controlset001\Control\CI]
+ "CI_DEVELOPERMODE"=dword:00000001
+
  [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\SecurityManager\AuthorizationRules\Capability\capabilityRule_DevUnlock]
  "CapabilityClass"="capabilityClass_DevUnlock_Internal"
  "PrincipalClass"="principalClass_DevUnlock_Internal"
@@ -90,10 +120,31 @@
  [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\Shell\Start]
  "BackgroundMode"=dword:00000000
  "ScreenSize"=dword:00000002
+ "GroupingThreshold"=dword:00245245
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\Shell\OEM\Start]
+ "ScreenSize"=dword:00000002
 
  [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\Shell\Timeouts]
  "ACUserIdle"=dword:00000000
  "DCUserIdle"=dword:00000000
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\OEM\VolumeLimit]
+ "EnableVolumeLimit"=dword:00000000
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes\0\Accents\20]
+ "Color"=dword:FF00AFF5
+ "ComplementaryColor"=dword:FF00AFF5
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\Themes\1\Accents\20]
+ "Color"=dword:FF00AFF5
+ "ComplementaryColor"=dword:FF00AFF5
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\Windows\CurrentVersion\Control Panel\Theme\AccentDisplayNames]
+ "20"="@UIXMobileRes.dll,-10021"
+
+ [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\Settings\Lock]
+ "DisableNever"=dword:00000000
 
  [HKEY_LOCAL_MACHINE\WP_SOFTWARE\Microsoft\WCMSvc\WifiNetworkManager\Config]
  "EnableStaticIP"=dword:00000001
