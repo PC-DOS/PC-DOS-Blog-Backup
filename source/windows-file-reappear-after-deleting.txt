@@ -1,0 +1,5 @@
+﻿**问题现象：**在Windows中删除某些文件后，在资源管理器刷新后文件再次出现，但无法访问、无法修改安全选项、无法写入。检查磁盘无异常，等待一段时间或关闭某些应用程序后
+
+**问题处理：**在“运行”窗格中输入“{{services.msc}}”并回车，打开Windows服务管理器，将{{Application Experience}}服务的启动方式设为“自动”，保存并退出，问题解决。
+
+参考：*https://blog.csdn.net/do_fork/article/details/4823307 
