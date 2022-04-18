@@ -1,0 +1,36 @@
++ 安装MinGW
+
+从 *https://download.qt.io/development_releases/prebuilt/mingw_32/ 下载MinGW工具链，笔者使用的是[*https://download.qt.io/development_releases/prebuilt/mingw_32/i686-4.8.2-release-posix-dwarf-rt_v3-rev3.7z i686-4.8.2-release-posix-dwarf-rt_v3-rev3.7z]。
+
+ 下载完成后，将压缩文件中的{{mingw}}目录解压缩到系统分区根目录。您可以在系统的{{PATH}}变量中添加指定指向该目录下的{{bin}}目录的条目。
+
++ 安装Qt 4.8.7
+
+从 *https://download.qt.io/archive/qt/4.8/4.8.7/qt-opensource-windows-x86-mingw482-4.8.7.exe 下载适用于Windows和MinGW组合的Qt 4.8.7套件，安装时会要求您指定MinGW工具链的路径。
+
+ 完成后，您可以在系统的{{PATH}}变量中添加指定指向Qt 4.8.7安装目录下的{{bin}}目录的条目。
+
++ 安装和配置Qt Creator
+
+从 *https://download.qt.io/archive/qtcreator/ 下载并安装Qt Creator，笔者使用的是[*https://download.qt.io/archive/qtcreator/4.3/4.3.1/qt-creator-opensource-windows-x86_64-4.3.1.exe qt-creator-opensource-windows-x86_64-4.3.1.exe]。
+
+ 安装完成后，启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
+
+ 切换到 [Qt Versions] 选项卡，点击 [添加…(Add…)] 按钮，导航并选中Qt 4.8.7安装目录下的{{bin}}目录下的qmake.exe程序文件。
+
+ 点击 [Apply] 按钮。
+
+ 如果提示“无效的Qt版本”，请在qmake.exe所在的目录建立一个名为{{qt.conf}}的文件，输入以下内容并保存，随后重新添加：
+
+[[code]]
+ [paths]
+ Prefix = ..
+ [[/code]]
+
+切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 根据主机的实际情况选择MinGW安装目录下的{{bin}}目录内的GCC / G++编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.8.7。
+
+ 点击 [OK] 按钮，保存退出。
+
++ 参考资料
+
+*https://www.cnblogs.com/findumars/p/6345113.html 

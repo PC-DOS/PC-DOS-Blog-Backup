@@ -1,61 +1,61 @@
-﻿# 自定义结构的类定义应使用{{DataContract}}修饰，成员使用{{DataMember}}修饰。
+# 自定义结构的类定义应使用{{DataContract}}修饰，成员使用{{DataMember}}修饰。
 # 自定义结构的类定义应具有无参数的公有构造函数，否则会诱发“{{cannot be deserialized because it does not have a parameterless constructor}}”错误。
 # 自定义结构的类定义还需要被存储的成员应为公有（{{Public}}）。
 # 特别注意，使用Visual Basic .NET语言、定义在模块（{{Module}}）中的公有类，应对模块加{{Public}}修饰。在否则在Windows Phone 8.0上会诱发“{{cannot be deserialized because it does not have a parameterless constructor}}”错误。
 
-示例代码（VB.NET）：
+ 示例代码（VB.NET）：
 
 [[code]]
-Imports System.Runtime.Serialization
+ Imports System.Runtime.Serialization
 
-Public Module AppSettings
-    Public AppSettingsContainer As IO.IsolatedStorage.IsolatedStorageSettings
-    Public Sub InitializeAppSettings()
-        ' Initializes settings container
-        AppSettingsContainer = IO.IsolatedStorage.IsolatedStorageSettings.ApplicationSettings
+ Public Module AppSettings
+     Public AppSettingsContainer As IO.IsolatedStorage.IsolatedStorageSettings
+     Public Sub InitializeAppSettings()
+         ' Initializes settings container
+         AppSettingsContainer = IO.IsolatedStorage.IsolatedStorageSettings.ApplicationSettings
 
-        InitializeSubmittedLocationHistory()
-    End Sub
+         InitializeSubmittedLocationHistory()
+     End Sub
 
-    'Location History
-    <DataContract> Public Class LocationHistoryEntry
-        <DataMember> Public LocationName As String
-        <DataMember> Public LocationAddress As String
-        <DataMember> Public LocationCity As String
-        <DataMember> Public Reserved1 As String
-        <DataMember> Public Reserved2 As String
-        <DataMember> Public Reserved3 As String
-        <DataMember> Public Reserved4 As String
-        <DataMember> Public Reserved5 As String
-        Public Sub New()
-            LocationName = ""
-            LocationAddress = ""
-            LocationCity = "N/A"
-            Reserved1 = ""
-            Reserved2 = ""
-            Reserved3 = ""
-            Reserved4 = ""
-            Reserved5 = ""
-        End Sub
-    End Class
-    Public SubmittedLocationHistoryList As New List(Of LocationHistoryEntry)
-    Public Const SubmittedLocationHistoryKey As String = "SubmittedLocationHistoryList"
-    Public Sub InitializeSubmittedLocationHistory()
-        If AppSettingsContainer.Contains(SubmittedLocationHistoryKey) Then
-            SubmittedLocationHistoryList = AppSettingsContainer(SubmittedLocationHistoryKey)
-        Else
-            SubmittedLocationHistoryList = New List(Of LocationHistoryEntry)
-        End If
-    End Sub
-    Public Sub SaveSubmittedLocationHistory()
-        AppSettingsContainer(SubmittedLocationHistoryKey) = SubmittedLocationHistoryList
-        AppSettingsContainer.Save()
-    End Sub
-End Module
-[[/code]]
+     'Location History
+     <DataContract> Public Class LocationHistoryEntry
+         <DataMember> Public LocationName As String
+         <DataMember> Public LocationAddress As String
+         <DataMember> Public LocationCity As String
+         <DataMember> Public Reserved1 As String
+         <DataMember> Public Reserved2 As String
+         <DataMember> Public Reserved3 As String
+         <DataMember> Public Reserved4 As String
+         <DataMember> Public Reserved5 As String
+         Public Sub New()
+             LocationName = ""
+             LocationAddress = ""
+             LocationCity = "N/A"
+             Reserved1 = ""
+             Reserved2 = ""
+             Reserved3 = ""
+             Reserved4 = ""
+             Reserved5 = ""
+         End Sub
+     End Class
+     Public SubmittedLocationHistoryList As New List(Of LocationHistoryEntry)
+     Public Const SubmittedLocationHistoryKey As String = "SubmittedLocationHistoryList"
+     Public Sub InitializeSubmittedLocationHistory()
+         If AppSettingsContainer.Contains(SubmittedLocationHistoryKey) Then
+             SubmittedLocationHistoryList = AppSettingsContainer(SubmittedLocationHistoryKey)
+         Else
+             SubmittedLocationHistoryList = New List(Of LocationHistoryEntry)
+         End If
+     End Sub
+     Public Sub SaveSubmittedLocationHistory()
+         AppSettingsContainer(SubmittedLocationHistoryKey) = SubmittedLocationHistoryList
+         AppSettingsContainer.Save()
+     End Sub
+ End Module
+ [[/code]]
 
 参考资料：
 
 *https://docs.microsoft.com/en-us/dotnet/framework/wcf/feature-details/collection-types-in-data-contracts
 
-*https://stackoverflow.com/questions/18074764/windows-phone-8-saving-a-list-to-isolatedstorage 
+ *https://stackoverflow.com/questions/18074764/windows-phone-8-saving-a-list-to-isolatedstorage 
