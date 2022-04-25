@@ -1,0 +1,9 @@
+Windows Phone 8 SilverLight应用程序的独立存储区（{{IsolatedStorageFile}}）和独立存储配置（{{IsolatedStorageSettings}}）位于：
+
+[[code]]
+ %MainOS%\Data\USERS\DefApps\APPDATA\{ProductID}\Local
+ [[/code]]
+
+其中{{@{ProductID}@}}为{{WMAppManifet.xml}}文件中的{{ProductID}}属性定义的GUID。
+
+ 该路径下的{{__ApplicationSettings}}文件以XML的形式存储了独立存储配置（{{IsolatedStorageSettings}}）信息。 

@@ -52,6 +52,7 @@
      quint16 _iPort; //INTERNAL: Remote port
      bool _IsAutoReconnectEnabled; //INTERNAL: Is auto reconnect function on
      unsigned int _iAutoReconnectDelay; //INTERNAL: Auto reconnect retry interval
+     bool _IsDataSending; //INTERNAL: Marks if we are sending data, avoid recursive calling of SendDataToServerEventHandler() and segmentation faults
  };
 
  /* TCP Networking Client Wrapper */
@@ -127,6 +128,9 @@
 
  /* TCP Networking Data Sending Thread Worker Object */
  TCPClientDataSender::TCPClientDataSender(){
+     //Initialize internal variables
+     _IsDataSending=false;
+
      //Create TCP socket object and connect events
      connect(this, SIGNAL(connected()), this, SLOT(TCPClientDataSender_Connected()), Qt::QueuedConnection);
      connect(this, SIGNAL(disconnected()), this, SLOT(TCPClientDataSender_Disconnected()), Qt::QueuedConnection);
@@ -168,8 +172,20 @@
  }
 
  void TCPClientDataSender::SendDataToServerEventHandler(){
+     //Check if SendDataToServerEventHandler() is running, avoid recursive calling of SendDataToServerEventHandler() and segmentation faults
+     if (_IsDataSending){
+         //If this is a recursive calling, simply returns
+         return;
+     }
+     else{
+         //Marks SendDataToServerEventHandler() is running
+         _IsDataSending=true;
+     }
+
      //Send data to remote
      //It's suggested that you maintain a data queue to cache data panding sending
+
+     _IsDataSending=false;
      return;
  }
 

@@ -1,0 +1,23 @@
+在Qt程序的信号槽（事件处理）函数中调用{{QApplication::processEvents()}}时需特别注意，因为这可能导致对当前信号槽函数的无限循环调用，尤其是重负载的情况。
+
+ 可以考虑引入一个{{IsRunning}}变量，避免槽函数的循环调用：
+
+[[code type="Cpp"]]
+ bool IsRunning = false;
+
+ void SignalSlot(){
+     if (IsRunning) {
+         return;
+     }
+     else{
+         IsRunning=true;
+     }
+
+     //Handle event
+
+     IsRunning=false;
+     return;
+ }
+ [[/code]]
+
+参考资料库：*https://forum.qt.io/topic/22434/issue-with-qapplication-processevents 
