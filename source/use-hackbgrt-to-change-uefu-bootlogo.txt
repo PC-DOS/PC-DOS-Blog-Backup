@@ -1,0 +1,7 @@
+HackBGRT可用于简单地修改UEFI系统上Windows的启动标志。
+
+HackBGRT可以从以下位置获取：
+
+*https://github.com/Metabolix/HackBGRT
+
+解压缩后，编辑{{splash.bmp}}文件（格式为24位Windows位图，推荐使用128px的高度），并执行{{setup.exe}}即可。 

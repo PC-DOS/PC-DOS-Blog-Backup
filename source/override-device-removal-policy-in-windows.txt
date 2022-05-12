@@ -8,11 +8,41 @@
  打开注册表编辑器，定位到：
 
 [[code]]
- HKLM\SYSTEM\CurrentControlSet\Enum\{{DevInstancePath}}\DeviceParameters
+ HKLM\SYSTEM\CurrentControlSet\Enum\{{DevInstancePath}}\Device Parameters
  [[/code]]
 
 建立一个名为{{ClassPNP}}的注册表键，并在该键中建立一个名为{{UserRemovalPolicy}}的{{DWORD}}值，将其设为{{1}}。
 
  关闭注册表编辑器并重新启动系统，应该已经无法在“安全移除硬件”菜单中看到设备。
 
-**参考资料：** *https://www.tenforums.com/drivers-hardware/138212-change-removal-policy-defaults-current-all-future-drives.html 
+ 若该方法无效，可以考虑从注册表编辑器中，导出注册表项：
+
+[[code]]
+ HKLM\SYSTEM\CurrentControlSet\Enum\{{DevInstancePath}}\
+ [[/code]]
+
+随后，删掉其他内容，仅保留类似如下结构：
+
+[[code]]
+ Windows Registry Editor Version 5.00
+
+ [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00]
+ "Capabilities"=dword:00000014
+ [[/code]]
+
+那之后，将{{dword:}}后的十六进制值减4，变为类似：
+
+[[code]]
+ Windows Registry Editor Version 5.00
+
+ [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00]
+ "Capabilities"=dword:00000010
+ [[/code]]
+
+建立一个以SYSTEM权限执行的任务计划项目，配置在开机时自动导入该注册表项即可。
+
+**参考资料：** 
+
+ *https://www.tenforums.com/drivers-hardware/138212-change-removal-policy-defaults-current-all-future-drives.html
+
+ *https://tsmith.co/2011/vm%e2%80%99s-nic-shows-as-a-removable-device/ 

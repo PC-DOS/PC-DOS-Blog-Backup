@@ -1,0 +1,9 @@
+**故障现象：**一台计算机在安装SSD后，使用第三方工具的磁盘迁移工具复制系统分区到SSD后，重新启动并启动SSD上的操作系统后，发现驱动器号变成了{{F:}}而不是{{C:}}。
+
+**故障处理：**重新启动计算机，并进入USB磁盘上的Windows PE环境，启动注册表编辑器，挂载目标系统分区上的{{\Windows\System32\Config\SYSTEM}}文件（这里假设挂载到{{HKEY_LOCAL_MACHINE\WINSYSTEM}}）。随后，展开注册表：
+
+[[code]]
+ HKEY_LOCAL_MACHINE\WINSYSTEM\MountedDevices
+ [[/code]]
+
+将除“{{\DosDevices\F:}}”之外的“{{\DosDevices\X:}}”命名格式的注册表项删除，并将“{{\DosDevices\F:}}”改为“{{\DosDevices\C:}}”（这里的“{{F:}}”为前文提供的错误的驱动器号）。卸载注册表项，重新启动计算机，进入系统后重新为其他分区分配驱动器号即可。 
