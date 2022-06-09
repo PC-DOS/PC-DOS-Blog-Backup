@@ -1,0 +1,23 @@
+﻿+ DELL OptiPlex 390
+
+**芯片组：**Intel Q65
+
+**插槽：**LGA1155
+
+**原始处理器：**Intel Pentium G620
+
+**升级到：**Intel Xeon E3-1245，步进D2，物料采购于*https://item.taobao.com/item.htm?spm=a1z09.2.0.0.67002e8dkWI5uD&id=533842977154&_u=f3hicbg80721
+
+**结果：****##darkgreen|成功##**
+
++ DELL OptiPlex 755
+
+**芯片组：**Intel Q35
+
+**插槽：**LGA775
+
+**原始处理器：**Intel Core2 Duo E6550
+
+**升级到：**Intel Xeon X3363，步进C0，物料采购于*https://item.taobao.com/item.htm?spm=a1z0k.7385961.1997985097.d4918993.7e5b37deYvPjC0&id=521324722967&_u=t2dmg8j26111
+
+**结果：****##darkgreen|成功##**
