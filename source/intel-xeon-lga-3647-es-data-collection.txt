@@ -1,0 +1,133 @@
+[[toc]]
+
+ + QPK2
+
+ **QDF编号（S-Spec编号）：**{{QPK2}}
+
+ **批次编号（Bach编号）：**{{L819D852}}
+
+ **产地/生产时间/批次：**马来西亚 / 2018年第19周 / D852
+
+ **对应正式版型号（推测）：**Intel Xeon Gold 6240 QS
+
+ **内核数：**18核，36线程
+
+**基准频率：**2.60 GHz
+
+ **参考资料：** *https://www.ebay.com.au/itm/304513158866?hash=item46e6660ed2:g:~lkAAOSw0BJihVRb
+
+ + QL1J
+
+ **QDF编号（S-Spec编号）：**{{QL1J}}
+
+ **批次编号（Bach编号）：**{{L627F768}}
+
+ **产地/生产时间/批次：**马来西亚 / 2016年第27周 / F768
+
+ **对应正式版型号（推测）：**Intel Xeon Gold 5117 / 5120 / 6132 ES
+
+ **内核数：**14核，28线程
+
+**基准频率：**1.80 GHz
+
+ **参考资料：** *https://www.uresinca.top/index.php?main_page=product_info&products_id=367511 ； *https://www.ebay.ca/itm/Intel-Xeon-Gold-5120-ES-QL1J-14C-1-8GHz-19-25M-LGA3647-Socket-P-Skylake-SP/164375433917 ； *https://www.ebay.com/itm/124962563518
+
+ + QL2F
+
+ **QDF编号（S-Spec编号）：**{{QL2F}}
+
+ **批次编号（Bach编号）：**{{L621F961}}
+
+ **产地/生产时间/批次：**马来西亚 / 2016年第21周 / F961
+
+ **对应正式版型号（推测）：**Intel Xeon Silver 4114 ES
+
+ **基准频率：**1.80 GHz
+
+ **内核数：**10核
+
+**参考资料：** *https://www.cpu-world.com/sspec/QL/QL2F.html ； *https://www.ebay.com/p/4022480187
+
+ + QSKZ
+
+ **QDF编号（S-Spec编号）：**{{QSKZ}}
+
+ **批次编号（Bach编号）：**{{L924F705}}
+
+ **产地/生产时间/批次：**马来西亚 / 2019年第24周 / F705
+
+ **对应正式版型号（推测）：**Intel Xeon Gold 5220R QS
+
+ **基准频率：**2.20 GHz
+
+ **内核数：**18核，36线程
+
+**参考资料：** *https://www.ebay.com/itm/363683816760 ； *https://www.anandtech.com/bench/CPU-2020/2758
+
+ + QSKT
+
+ **QDF编号（S-Spec编号）：**{{QSKT}}
+
+ **批次编号（Bach编号）：**{{L924F675}}
+
+ **产地/生产时间/批次：**马来西亚 / 2019年第24周 / F675
+
+ **对应正式版型号（推测）：**Intel Xeon Silver 4214R QS
+
+ **基准频率：**2.40 GHz
+
+ **内核数：**12核
+
+**参考资料：** *https://www.ebay.com/itm/185086547553 ； *https://stockmarketsreview.com/store/Intel-Xeon-Silver-4214r-Qs-Processor-12-Core-2-4ghz-Lga3647-Qskt_185086547553.html
+
+ + QPKG
+
+ **QDF编号（S-Spec编号）：**{{QPKG}}
+
+ **批次编号（Bach编号）：**{{L822E428}}
+
+ **产地/生产时间/批次：**马来西亚 / 2018年第22周 / E428
+
+ **对应正式版型号（推测）：**Intel Xeon ???? 0000 ES/QS[[footnote]]未查到资料[[/footnote]]
+
+ **基准频率：**2.10 GHz
+
+ **内核数：**?[[footnote]]未查到资料[[/footnote]]
+
+ **参考资料：**N/A
+
+ + QKGL
+
+ **QDF编号（S-Spec编号）：**{{QKGL}}
+
+ **批次编号（Bach编号）：**{{C545A712}}
+
+ **产地/生产时间/批次：**不明（C） / 2015年第45周 / A712
+
+ **对应正式版型号（推测）：**Intel Xeon Gold 6122 ES
+
+ **基准频率：**1.50 GHz
+
+ **内核数：**20核
+
+**参考资料：** *https://www.ebay.com/itm/174991475738
+
+ [!--
+
+ + Q
+
+ **QDF编号（S-Spec编号）：**{{}}
+
+ **批次编号（Bach编号）：**{{}}
+
+ **产地/生产时间/批次：**
+
+ **对应正式版型号（推测）：**
+
+ **基准频率：**
+
+ **内核数：**
+
+ **参考资料：**
+
+--] 

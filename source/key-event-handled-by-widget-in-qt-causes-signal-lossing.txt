@@ -1,0 +1,9 @@
+**问题现象：**一个Qt对话框（{{QDialog}}），仅放置了一个{{QListWidget}}列表控件，要求使用数字键控制列表中选定项的改变和移动。运行时发现按键无响应，断点显示{{keyPressEvent()}}函数正常执行，打印键码（{{QKeyEvent::key()}}）发现为异常值（如按下数字键5（对应{{Qt::Key_5, 0x35, 53}}），得到的键码为Alt（对应{{Qt::Key_5, 0x01000023, 16777251}}等））。
+
+**处理：**运行时发现列表控件具有焦点并拦截了按键事件，将{{QListWidget}}列表控件的{{FocusPolicy}}属性设为{{NoFocus}}后问题解决。
+
+**参考资料：**
+
+ *https://doc.qt.io/archives/qt-4.8/qkeyevent.html
+
+ *https://doc.qt.io/archives/qt-4.8/qt.html#Key-enum 

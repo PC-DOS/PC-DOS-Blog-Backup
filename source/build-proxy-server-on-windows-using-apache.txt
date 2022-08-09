@@ -1,64 +1,64 @@
-﻿首先，从 *https://www.apachehaus.com/cgi-bin/download.plx 下载Apache程序包。将程序包解压缩到C分区根目录。这里假设程序包路径为{{C:\Apache24}}。
+首先，从 *https://www.apachehaus.com/cgi-bin/download.plx 下载Apache程序包。将程序包解压缩到C分区根目录。这里假设程序包路径为{{C:\Apache24}}。
 
-编辑程序包内的{{conf}}目录下的{{httpd.conf}}文件。
+ 编辑程序包内的{{conf}}目录下的{{httpd.conf}}文件。
 
-修改“{{Define SRVROOT}}”后字符串的内容为程序包的路径，例如：
+ 修改“{{Define SRVROOT}}”后字符串的内容为程序包的路径，例如：
 
 [[code]]
-Define SRVROOT "C:/Apache24"
-[[/code]]
+ Define SRVROOT "C:/Apache24"
+ [[/code]]
 
 注意这里需要使用正斜杠（“{{/}}”）分割目录。
 
-修改“{{Listen}}”行后为监听端口，例如：
+ 修改“{{Listen}}”行后为监听端口，例如：
 
 [[code]]
-Listen 5245
-[[/code]]
+ Listen 5245
+ [[/code]]
 
 在“{{Dynamic Shared Object (DSO) Support}}”块中，解除注释以下行：
 
 [[code]]
-LoadModule access_compat_module modules/mod_access_compat.so
-LoadModule lbmethod_bybusyness_module modules/mod_lbmethod_bybusyness.so
-LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so
-LoadModule llbmethod_bytraffic_module modules/mod_lbmethod_bytraffic.so
-LoadModule llbmethod_heartbeat_module modules/mod_lbmethod_heartbeat.so
-LoadModule lproxy_module modules/mod_proxy.so
-LoadModule lproxy_connect_module modules/mod_proxy_connect.so
-LoadModule lproxy_ftp_module modules/mod_proxy_ftp.so
-LoadModule lproxy_html_module modules/mod_proxy_html.so
-LoadModule lproxy_http_module modules/mod_proxy_http.so
-LoadModule lxml2enc_module modules/mod_xml2enc.so
-[[/code]]
+ LoadModule access_compat_module modules/mod_access_compat.so
+ LoadModule lbmethod_bybusyness_module modules/mod_lbmethod_bybusyness.so
+ LoadModule lbmethod_byrequests_module modules/mod_lbmethod_byrequests.so
+ LoadModule llbmethod_bytraffic_module modules/mod_lbmethod_bytraffic.so
+ LoadModule llbmethod_heartbeat_module modules/mod_lbmethod_heartbeat.so
+ LoadModule lproxy_module modules/mod_proxy.so
+ LoadModule lproxy_connect_module modules/mod_proxy_connect.so
+ LoadModule lproxy_ftp_module modules/mod_proxy_ftp.so
+ LoadModule lproxy_html_module modules/mod_proxy_html.so
+ LoadModule lproxy_http_module modules/mod_proxy_http.so
+ LoadModule lxml2enc_module modules/mod_xml2enc.so
+ [[/code]]
 
 同时，注释掉以下行：
 
 [[code]]
-#LoadModule ssl_module modules/mod_ssl.so
-[[/code]]
+ #LoadModule ssl_module modules/mod_ssl.so
+ [[/code]]
 
 在文件末尾添加：
 
 [[code]]
-# Proxy
-ProxyRequests On
-<Proxy *>
-    Order allow,deny
-    Allow from all
-    Deny from 127.0.0.1
-</Proxy>
-[[/code]]
+ # Proxy
+ ProxyRequests On
+ <Proxy *>
+     Order allow,deny
+     Allow from all
+     Deny from 127.0.0.1
+ </Proxy>
+ [[/code]]
 
 随后，在程序包目录的{{bin}}目录下启动命令提示符或PowerShell，执行：
 
 [[code]]
-httpd -k install
-httpd -k start
-[[/code]]
+ httpd -k install
+ httpd -k start
+ [[/code]]
 
 启动Apache服务器。
 
-之后，在Windows防火墙中放行Apache程序包目录的{{bin}}目录下的{{httpd.exe}}程序即可。
+ 之后，在Windows防火墙中放行Apache程序包目录的{{bin}}目录下的{{httpd.exe}}程序即可。
 
-参考资料：*https://www.orcy.net.cn/811.html
+ 参考资料：*https://www.orcy.net.cn/811.html 

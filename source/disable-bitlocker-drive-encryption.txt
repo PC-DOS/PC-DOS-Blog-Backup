@@ -1,0 +1,15 @@
+命令提示符执行：
+
+[[code]]
+ manage-bde -status
+ [[/code]]
+
+对所有列出的处于加密状态的分区执行：
+
+[[code]]
+ manage-bde -off X:
+ [[/code]]
+
+其中{{X:}}为驱动器号。随后系统将提示“解密正在进行中”，且呈现出磁盘高占用率，等待操作完成即可。
+
+ 参考：*https://zhuanlan.zhihu.com/p/37381814 

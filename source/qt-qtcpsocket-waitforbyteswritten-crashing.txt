@@ -64,6 +64,10 @@
      TCPClient(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay); //Constructor with options. Will update options saved in ini file
      ~TCPClient();
 
+     /* Options Management */
+     void LoadSettings(); //Load settings from persistent storage
+     void SaveSettings() const; //Save settings to persistent storage
+
      /* TCP Socket Object Management */
      bool IsConnected() const; //Get if we have connected to a remote server
 
@@ -113,10 +117,6 @@
      quint16 _iPort; //INTERNAL: Remote port
      bool _IsAutoReconnectEnabled; //INTERNAL: Is auto reconnect function on
      unsigned int _iAutoReconnectDelay; //INTERNAL: Auto reconnect retry interval
-
-     /* Options Management */
-     void LoadSettings(); //INTERNAL: Load settings from external ini file
-     void SaveSettings() const; //INTERNAL: Save settings to external ini file
  };
 
  /* TCP Client */
@@ -323,6 +323,17 @@
      trdTCPDataSender=NULL;
  }
 
+ /* Options Management */
+ void TCPClient::LoadSettings(){
+     //Load settings
+     return;
+ }
+
+ void TCPClient::SaveSettings() const{
+     //Save settings
+     return;
+ }
+
  /* TCP Socket Object Management */
  bool TCPClient::IsConnected() const{
      return (tcpDataSender->state()==QTcpSocket::ConnectedState);
@@ -418,16 +429,5 @@
          iPortIDMax=32767;
      }
      return ((iPort >= iPortIDMin) && (iPort <= iPortIDMax));
- }
-
- /* Options Management */
- void TCPClient::LoadSettings(){
-     //Load settings
-     return;
- }
-
- void TCPClient::SaveSettings() const{
-     //Save settings
-     return;
  }
  [[/code]] 

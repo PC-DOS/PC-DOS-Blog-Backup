@@ -1,0 +1,52 @@
+Intel处理器的S-Spec编号和Batch批次编号（FPO）通常被铭刻在处理器顶盖上。
+
++ S-Spec编号
+
+ 规格编号，或S-Spec编号，是一个五字符的代码，用于唯一标识诸如核心频率、总线频率、二级缓存大小、热设计功率等CPU特性。规格编号通常是从字母“S”开始并刻印在 CPU 的顶部。采用塑料 PPGA 封装的 Intel Pentium、Pentium MMX 和 Celeron 处理器在 CPU 底部印有规格编号。
+
+ 英特尔工程和鉴定样品标有以“Q”开头的规格编号，又被称为QDF编号，它们用于识别鉴定和工程样品。
+
+——引自[*https://www.cpu-world.com/Glossary/S/Specification_(S-Spec)_number.html CPU-World文章《Specification (S-Spec) Number》]
+
+ + Batch编号/批次编号/FPO
+
+ Batch/批次编号，Intel文档称为成品工艺订单（FPO）编号，标识了处理器的产地、生产时间等信息。其长度为八位：
+
+||~ 产地缩写 ||~ 生产年份尾码 ||~ 生产周数 ||~ 批次号 ||
+ || {{L}} || {{8}} || {{19}} || {{D852}} ||
+
+上面的批次号{{L819D852}}表示该处理器生产于马来西亚，在2018年第19周制造，批次号为D852。
+
+ 部分已知的产地缩写：
+
+[[code]]
+ 0 = San Jose, Costa Rica
+ 1 = Cavite, Philippines
+ 3 = Costa Rica
+ 5 = Chengdu, China
+ 6 = Chandler, Arizona
+ 7 = Philippines
+ 8 = Leixlip, Ireland
+ 9 = Penang, Malaysia
+ L = Malaysia
+ Q = Malaysia
+ R = Manila, Philippines
+ X = Vietnam
+ Y = Leixlip, Ireland
+ [[/code]]
+
+ + 参考资料
+
+*http://www.lotpc.com/yjzs/8445.html
+
+ *https://tech.ifeng.com/c/8CrZTC7j3Os
+
+ *https://rog.asus.com/forum/showthread.php?278-HOWTO-Read-an-Intel-CPU-FPO-Batch-Code
+
+ *https://www.intel.cn/content/www/cn/zh/support/articles/000025633/processors.html
+
+ *https://www.intel.cn/content/www/cn/zh/support/articles/000005609/processors.html
+
+ *https://www.intel.cn/content/www/cn/zh/support/articles/000054958/processors/intel-core-processors.html
+
+ *https://www.intel.cn/content/www/cn/zh/support/articles/000055716/processors/intel-xeon-processors.html 
