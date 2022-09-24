@@ -1,0 +1,7 @@
+**故障描述：**一台安装了Windows Server 2012 R2的DELL OptiPlex 390计算机，不慎从控制面板的“程序和功能”中卸载了集成声卡驱动程序，尝试再次安装时失败，设备管理器提示“系统找不到指定的文件”。尝试通过原始安装程序安装驱动程序同样提示失败。
+
+**故障处理：**查阅Windows设备安装日志文件（{{%SystemRoot%\INF\setupapi.dev.log}}），发现即使尝试从原始安装盘安装驱动程序，系统仍会尝试依照{{%SystemRoot%\INF\}}目录中缓存的INF文件{{%SystemRoot%\INF\oemXX.inf}}进行安装，因此提示“系统找不到指定的文件”。
+
+ 从{{%SystemRoot%\INF\}}目录中移除相应的INF文件后，再次执行安装时仍然失败，并提示“系统找不到指定的路径”。分析日志文件发现，系统仍在尝试使用{{%SystemRoot%\System32\DriverStore\FileRepository\}}目录中，具有“{{drvname.inf_arch_shacode}}”形式命名的文件源目录缓存的驱动程序文件进行安装。
+
+ 以SYSTEM权限执行注册表编辑器（{{RegEdit}}），搜索并删除指向“{{drvname.inf_arch_shacode}}”的注册表项。重新执行驱动程序安装，此时安装过程成功完成。 

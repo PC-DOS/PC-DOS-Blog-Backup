@@ -2,8 +2,12 @@
 
 **处理：**运行时发现列表控件具有焦点并拦截了按键事件，将{{QListWidget}}列表控件的{{FocusPolicy}}属性设为{{NoFocus}}后问题解决。
 
+ 此外，如果有控件调用了{{QWidget::grabKeyboard()}}函数，将导致所有控件上的按键事件被该控件拦截，直到{{QWidget::releaseKeyboard()}}函数被调用为止。
+
 **参考资料：**
 
  *https://doc.qt.io/archives/qt-4.8/qkeyevent.html
 
- *https://doc.qt.io/archives/qt-4.8/qt.html#Key-enum 
+ *https://doc.qt.io/archives/qt-4.8/qt.html#Key-enum
+
+ *https://doc.qt.io/archives/qt-4.8/qwidget.html#grabKeyboard 

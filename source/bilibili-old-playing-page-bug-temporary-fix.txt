@@ -1,0 +1,12 @@
+用于临时修复[*https://greasyfork.org/zh-CN/scripts/394296-bilibili-%E6%97%A7%E6%92%AD%E6%94%BE%E9%A1%B5 Bilibili 旧播放页]脚本插件的以下问题：
+
+# 使用按键控制视频播放时，原新版页面上的视频被一并播放，导致出现两个音轨。
+# 开启页面时先出现新版页面，若干秒后进入旧版页面，并提示：“bilibiliPlayer.min.js 已回滚，当前可能无法访问 jsdelivr ！反查弹幕发送者等部分播放器增强功能暂时无法使用🤣”
+
+请编辑该脚本，并删除下面的行，禁用外部脚本：
+
+[[code type="JavaScript"]]
+ // @resource     bilibiliPlayer.js https://fastly.jsdelivr.net/gh/MotooriKashin/Bilibili-Old@3ae20f30de5ad37882b474aa886ea06f9641886b/src/bilibili/bilibiliPlayer.min.js
+ [[/code]]
+
+参考自：*https://greasyfork.org/zh-TW/scripts/394296/discussions/145015 

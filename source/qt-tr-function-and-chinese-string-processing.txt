@@ -9,7 +9,8 @@ Qt的{{QObject::tr()}}函数用于提供翻译文本。推荐的行为是：
  使用{{QTextCodec::setCodecForTr()}}函数可以设置{{QObject::tr()}}函数使用的编码方式：
 
 [[code]]
- QTextCodec::setCodecForTr(QTextCodec::codecForName("GB2312")); QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+ QTextCodec::setCodecForTr(QTextCodec::codecForName("GB2312"));
+ QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
  [[/code]]
 
  + Qt中中文等非拉丁语的处理

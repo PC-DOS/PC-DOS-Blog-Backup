@@ -55,6 +55,7 @@
 
 [[code]]
  SNRemove -d APPX_INPUT_DIRECTORY\*.dll
+ SNRemove -d APPX_INPUT_DIRECTORY\*.winmd
  [[/code]]
 
 请将{{APPX_INPUT_DIRECTORY}}替换为解压缩APPX得到的目录。
@@ -65,6 +66,7 @@
 
 [[code]]
  SNRemove -r APPX_INPUT_DIRECTORY\*.dll
+ SNRemove -r APPX_INPUT_DIRECTORY\*.winmd
  [[/code]]
 
 请将{{APPX_INPUT_DIRECTORY}}替换为解压缩APPX得到的目录。

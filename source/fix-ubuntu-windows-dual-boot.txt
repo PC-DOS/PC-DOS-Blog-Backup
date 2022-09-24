@@ -1,0 +1,11 @@
+**故障现象：**一台同时安装了Windows Server 2019 Datacenter和Ubuntu 22.04.1 LTS的PC机，在一次重启后无法进入Ubuntu的UEFI Grub引导选单，仅能引导进入Windows环境。检查发现EFI分区状态正常，文件完好，BIOS选项中无Ubuntu的启动选项。
+
+**故障处理：**正常启动进入Windows，在命令提示符界面中执行：
+
+[[code]]
+ bcdedit /set {bootmgr} path \EFI\ubuntu\shimx64.efi
+ [[/code]]
+
+重新启动PC，正常进入Grub选单。
+
+**参考资料：***https://blog.csdn.net/chekongfu/article/details/84872841 
