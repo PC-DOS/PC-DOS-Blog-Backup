@@ -1,0 +1,53 @@
++ 系统配置
+
+**处理器：**Intel Xeon E5-2640 v4
+
+ **内存：**128GB DDR4 REG ECC
+
+ **硬盘1：**512GB SSD
+
+ **硬盘2：**4TB HDD
+
+ **显示卡：**NVIDIA TITAN XP
+
+ **操作系统：**AlmaLinux 9 (Linux 5.14.0)
+
+ + 安装NVIDIA驱动程序
+
+ 本步骤操作均在Root环境下进行。
+
+[[code]]
+ su
+ [[/code]]
+
+添加EPEL存储库并更新缓存：
+
+[[code]]
+ sudo dnf install epel-release epel-next-release
+ sudo dnf makecache
+ [[/code]]
+
+安装依赖项：
+
+[[code]]
+ sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconfig dkms
+ [[/code]]
+
+添加NVIDIA存储库并更新缓存：
+
+[[code]]
+ sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+ sudo dnf makecache
+ [[/code]]
+
+安装NVIDIA驱动程序：
+
+[[code]]
+ sudo dnf module install nvidia-driver:latest-dkms
+ [[/code]]
+
+重新启动系统并自动退出Root操作环境：
+
+[[code]]
+ reboot
+ [[/code]] 

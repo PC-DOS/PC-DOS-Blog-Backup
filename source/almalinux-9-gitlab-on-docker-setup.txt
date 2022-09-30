@@ -1,0 +1,151 @@
++ 系统配置
+
+**处理器：**Intel Xeon E5-2640 v4
+
+ **内存：**128GB DDR4 REG ECC
+
+ **硬盘1：**512GB SSD
+
+ **硬盘2：**4TB HDD
+
+ **显示卡：**NVIDIA TITAN XP
+
+ **操作系统：**AlmaLinux 9 (Linux 5.14.0)
+
+ + 安装Docker
+
+安装企业版 Linux 附加软件包（EPEL）：
+
+[[code]]
+ sudo dnf install epel-release epel-next-release
+ [[/code]]
+
+安装依赖项：
+
+[[code]]
+ sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+ [[/code]]
+
+添加软件源，这里采用阿里云源：
+
+[[code]]
+ sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+ [[/code]]
+
+安装Docker，这里加入了{{--allowerasing}}开关以避免包冲突：
+
+[[code]]
+ yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin --allowerasing
+ [[/code]]
+
+将当前用户添加到{{docker}}组：
+
+[[code]]
+ sudo gpasswd -a USER_NAME docker
+ [[/code]]
+
+ {{USER_NAME}}为需要加入{{docker}}组的用户名。
+
+ 设置Docker为开机自启动：
+
+[[code]]
+ systemctl enable docker
+ [[/code]]
+
+启动Docker：
+
+[[code]]
+ sudo service docker start
+ [[/code]]
+
+ + 修改Docker默认的镜像存储路径
+
+Docker默认会将拉取的镜像存储到{{/var/lib/docker}}目录，为节省系统磁盘空间，可以将其移动到大容量磁盘。这里假设大容量磁盘被挂载到{{/mnt/hdd1}}。
+
+ 建立Docker镜像存储路径：
+
+[[code]]
+ mkdir /mnt/hdd1/docker
+ [[/code]]
+
+编辑{{/etc/docker/daemon.json}}文件：
+
+[[code]]
+ sudo vim /etc/docker/daemon.json
+ [[/code]]
+
+修改字符串值{{"data-root"}}（或{{"graph"}}）的值为具体的存储路径：
+
+[[code]]
+  "graph":"/mnt/hdd1/docker",
+  "data-root":"/mnt/hdd1/docker",
+ [[/code]]
+
+保存并重启系统：
+
+[[code]]
+ sudo reboot
+ [[/code]]
+
+ + 安装Docker-Compose
+
+ Docker-Compose依赖Python3-Pip。
+
+[[code]]
+ sudo yum install python3-pip
+ pip3 install docker-compose
+ [[/code]]
+
+ + 拉取GitLab的Docker映像
+
+[[code]]
+ docker pull gitlab/gitlab-ce
+ [[/code]]
+
+ + 配置自动启动和自动重启动
+
+ 建立GitLab配置目录{{gitlab}}和配置文件{{docker-compose.yml}}：
+
+[[code]]
+ cd /mnt/hdd1
+ mkdir gitlab
+ sudo vim docker-compose.yml
+ [[/code]]
+
+编辑配置文件{{docker-compose.yml}}，配置自动启动、端口映射、文件系统映射等：
+
+[[code]]
+ version: '3'
+ services:
+   web:
+     stdin_open: true
+     tty: true
+     restart: always
+     image: gitlab/gitlab-ce
+     ports:
+       - 80:80
+     volumes:
+       - ./config:/etc/gitlab
+       - ./logs:/var/log/gitlab
+       - ./data:/var/opt/gitlab
+ [[/code]]
+
+保存文件，并套用配置：
+
+[[code]]
+ docker-compose up -d
+ [[/code]]
+
+ + GitLab配置
+
+ 设置GitLab配置文件的权限，以免GitLab返回502错误：
+
+[[code]]
+ sudo chmod 777 /mnt/hdd1/gitlab/config/gitlab.rb
+ [[/code]]
+
+从映射的文件中获取GitLab默认用户root的默认密码：
+
+[[code]]
+ sudo cat /mnt/hdd1/gitlab/config/initial_root_password
+ [[/code]] 

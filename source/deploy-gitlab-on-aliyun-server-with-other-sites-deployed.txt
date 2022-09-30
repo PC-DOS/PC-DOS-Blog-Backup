@@ -490,4 +490,12 @@ GitLab数据库需要被初始化
 
 [[code]]
  sudo -u git -H bundle exec rake gitlab:check RAILS_ENV=production
+ [[/code]]
+
+ ++++ GitLab默认管理员的密码
+
+GitLab默认的管理员用户（Root）的初始密码可以在下列位置找到：
+
+[[code]]
+ /etc/gitlab/initial_root_password
  [[/code]] 
