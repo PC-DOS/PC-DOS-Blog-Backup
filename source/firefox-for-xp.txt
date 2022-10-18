@@ -1,0 +1,17 @@
+Firefox从[*http://ftp.mozilla.org/pub/firefox/releases/52.9.0esr/ 版本52.9ESR]之后不再支持Windows XP，但是，基于Firefox的MyPal浏览器继续对Windows XP提供基本支持。
+
+MyPal主页面：
+
+*https://mypal-browser.org/
+
+ MyPal下载页面：
+
+*https://mypal-browser.org/download.html
+
+ + 中文语言包的启用
+
+ 从 *http://www.mypal-browser.org/release/langpack/ 下载适用于您的MyPal浏览器版本的语言包，并将下载的{{XPI}}文件拖入浏览器界面进行安装。
+
+ 随后，访问 *about:config ，查找{{general.useragent.locale}}项目，并将其值修改为您希望的语言名称。对于中文而言，应为“{{zh}}”。随后，保存并重新启动MyPal。
+
+ 参考资料：*https://blog.csdn.net/ebw123/article/details/8874437 

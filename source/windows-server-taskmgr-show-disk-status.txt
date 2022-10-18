@@ -1,0 +1,13 @@
+Windows Server的任务管理器默认不会显示磁盘占用，这是因为Windows Server操作系统的逻辑和物理磁盘性能计数器被配置为按需启用。
+
+ 您可以在命令提示符或PowerShell中执行：
+
+[[code]]
+ diskperf -y
+ [[/code]]
+
+以将逻辑和物理磁盘性能计数器配置为始终启用。
+
+ 执行该命令并再次开启任务管理器，此时可以看到任务管理器已经可以显示磁盘占用情况。
+
+ 参考资料：*https://blog.csdn.net/kunyus/article/details/104418601 
