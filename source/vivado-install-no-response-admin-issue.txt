@@ -1,0 +1,20 @@
+**故障现象：**一台Windows主机上安装Vivado 2018.3时，执行安装程序{{xsetup.exe}}无反应，手动执行安装脚本{{bin\xsetup.bat}}提示{{ERROR: Administrative permissions are not available. Please restart the command line shell as Administrator.}}，即要求管理员权限，但此时用户已经在以管理员身份执行。
+
+**故障排除：**在Windows服务管理器（Services.msc）中启动{{Server}}服务，重新执行安装程序{{xsetup.exe}}，问题解决
+
+ 您也可以编辑{{bin\xsetup.bat}}，删除下列行：
+
+[[code]]
+ %SYSTEMROOT%\System32\net session >nul 2>&1
+ if NOT %errorLevel% == 0 (
+   echo ERROR: Administrative permissions are not available. Please restart the command line shell as Administrator.
+   set EXITCODE=1
+   goto :end
+ )
+ [[/code]]
+
+随后，重新执行{{bin\xsetup.bat}}，开始安装流程。
+
+ 安装流程中，可能发生同样的错误（例如安装线缆驱动程序时），此时请在Vivado安装目录中搜索批处理文件（bat文件），删除前述行并重新执行。
+
+ 请注意：由于此过程破坏了安装文件的完整性，{{xsetup.exe}}会提示错误，因此需要手动执行安装批处理文件。 

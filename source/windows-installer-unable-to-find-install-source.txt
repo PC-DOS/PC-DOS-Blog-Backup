@@ -1,0 +1,20 @@
+在部分情况（尤其是对系统磁盘分区进行了清理的情况）下，升级或卸载基于Windows Installer的程序时，可能出现Windows Installer无法找到安装来源、弹出对话框要求指定安装文件路径且无法继续的情况，此时，可以考虑从注册表中清除原先的安装信息后再继续。
+
+ 这些安装信息可能位于下列注册表项中：
+
+[[code]]
+ HKEY_CLASSES_ROOT\Installer\Products\
+ HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Dependencies\
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Products\
+ [[/code]]
+
+ **{{HKEY_CLASSES_ROOT\Installer\Products\}}**：该注册表项中包含了一系列子项，每个子项又包含一个{{SourceList}}子项，该项中的{{LastUsedSource}}字符串值指定了Windows Installer安装来源的路径。若该字符串值包含Windows Installer弹出的对话框中默认指定的安装源路径，则应删除该值所在的{{SourceList}}项所在的注册表项。
+
+**{{HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Dependencies\}}**：Windows Installer的安装来源路径中可能包含一个形如{{@@{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}@@}}的GUID，若有以该GUID命名的子项出现在该注册表项中，则应将该子项删除。
+
+**{{HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\}}**：Windows Installer的安装来源路径中可能包含一个形如{{@@{XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX}@@}}的GUID，若有以该GUID命名的子项出现在该注册表项中，则应将该子项删除。或者，若该注册表项的某一子项中的{{InstallSource}}字符串值包含Windows Installer弹出的对话框中默认指定的安装源路径，则应删除该值所在的注册表项。
+
+**{{HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Products\}}**：该注册表项中包含了一系列子项，每个子项又包含一个{{InstallProperties}}子项，该项中的{{InstallSource}}和{{LocalPackage}}字符串值指定了Windows Installer安装来源的路径。若该字符串值包含Windows Installer弹出的对话框中默认指定的安装源路径，则应删除该值所在的{{InstallProperties}}项所在的注册表项。
+
+ 您也可以继续在注册表中搜索Windows Installer弹出的对话框中提示的GUID或安装源路径，并删除相应的注册表项。 

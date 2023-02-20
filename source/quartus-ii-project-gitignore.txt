@@ -1,0 +1,36 @@
+参考自：*https://qiita.com/ryo_i6/items/f2132799fe2c1b319086
+
+ [[code]]
+ *.*
+ !/*.gitignore
+
+ # ignore Quartus generated folders
+ /db/
+ /incremental_db/
+ /simulation/
+ /timing/
+ /testbench/
+ /*_sim/
+
+ # project files
+ !*.qpf
+ !*.qsf
+ # source files
+ !*.bdf
+ !*.vhd
+ !*.v
+ !*.sv
+ # IP core files
+ !*.qip
+ !*.sip
+ !*.bsf
+ # SOPC builder project source files
+ !*.ptf
+ !*.bsf
+ # board description
+ !**/class.ptf
+ # sdc files:
+ !*.sdc
+ # tcl files:
+ !*.tcl
+ [[/code]] 
