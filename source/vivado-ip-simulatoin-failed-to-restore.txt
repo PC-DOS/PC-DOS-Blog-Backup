@@ -1,0 +1,27 @@
+**问题描述：**使用Vivado 2018.3仿真一个引入了Divider Generator除法器IP核。进行行为仿真时，编译过程失败，且日志文件中提示错误：
+
+[[code]]
+ 'xbip_pipe_v3_0_5.xbip_pipe_v3_0_5_viv_comp' failed to restore
+ [[/code]]
+
+ **故障处理：**在Vivado开发环境点击 [Tools] > [Settings]，打开设置界面，取消下列两项的勾选：
+
+* [IP] > [Use precompiled IP simulation libraries]
+ * [Simulation] > [Advanced] > [Enable incremental compilation]
+
+随后保存并退出设置界面，重新执行仿真。
+
+ 此外，也可以在本地磁盘上建立一个目录（记为{{PATH/TO/PRECOMPILED/IP/}}），在Vivado中开启TCL控制台，依次执行：
+
+[[code]]
+ cd PATH/TO/PRECOMPILED/IP/
+ compile_simlib –simulator xsim –directory . –language all –family all –library all
+ [[/code]]
+
+并将该目录加入RTL仿真参数的 [Compiled Library Location] 中。
+
+**参考资料：**
+
+ *https://bbs.huaweicloud.com/blogs/detail/283563
+
+ *https://support.xilinx.com/s/question/0D52E00006hpIHpSAM/error-vrfc-103032vrfc-10213-xbippipev305xbippipev305vivcomp-failed-to-restore?language=en_US 

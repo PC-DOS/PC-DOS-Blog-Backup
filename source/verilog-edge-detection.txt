@@ -50,14 +50,6 @@
      //Registers to storage the level of iSignalToDetect in 1 clock before (rSignalPrevStatus[0]) and 2 clocks before (rSignalPrevStatus[1])
      reg [1:0] rSignalPrevStatus;
      
-     //Initialize
-     initial begin
-         rSignalPrevStatus <= 2'b00;
-         oIsPosEdgeDetected <= 1'b0;
-         oIsNegEdgeDetected <= 1'b0;
-         oIsAnyEdgeDetected <= 1'b0;
-     end
-     
      //Use clock to synchronize status
      always @ (posedge iClock) begin
          //Check if reset requested
