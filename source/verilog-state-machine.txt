@@ -1,384 +1,384 @@
-对于具有复杂逻辑结构的时序电路，或需要依照特定的顺序执行代码片段、或需要等待各类外部信号有效的时序电路，通常需要引入状态机（State Machine）或具有类似功能的计数器来控制整个时序电路的运行。通常而言，此类状态机具有有限个明确定义的状态，故称为有限状态机（Finity State Machine, FSM）
+﻿对于具有复杂逻辑结构的时序电路，或需要依照特定的顺序执行代码片段、或需要等待各类外部信号有效的时序电路，通常需要引入状态机（State Machine）或具有类似功能的计数器来控制整个时序电路的运行。通常而言，此类状态机具有有限个明确定义的状态，故称为有限状态机（Finity State Machine, FSM）
 
- 通常而言状态机的核心部件包括一个存储了当前状态的寄存器、一份状态转移表以及在定义各个状态下需要执行的动作的功能电路。
+通常而言状态机的核心部件包括一个存储了当前状态的寄存器、一份状态转移表以及在定义各个状态下需要执行的动作的功能电路。
 
- 状态机可以分为Moore型状态机和Mealy型状态机：
+状态机可以分为Moore型状态机和Mealy型状态机：
 
 * Moore型状态机：此类状态机的具体功能执行与输出仅与状态机当前所处的状态有关。即状态机的状态转移路径是相对固定的。
 * Mealy型状态机：此类状态机的具体功能执行与不仅与状态机当前所处的状态有关，还与当前的输入有关。即状态机的状态转移路径会受到输入值的影响。
 
- 在Verilog中，依照编码方式，可以分为一段式状态机、二段式状态机和三段式状态机。
+在Verilog中，依照编码方式，可以分为一段式状态机、二段式状态机和三段式状态机。
 
 + 一段式状态机
 
- 一段式状态机只有一个以时钟边沿作为触发的{{always}}块。在这个时序{{always}}块中，同时完成了状态寄存器的更新、相应状态功能的执行和状态的转移。
+一段式状态机只有一个以时钟边沿作为触发的{{always}}块。在这个时序{{always}}块中，同时完成了状态寄存器的更新、相应状态功能的执行和状态的转移。
 
- 一段式状态机理论上不存在毛刺，但是一段式状态机在代码较长时的管理相对困难。对于状态较少、功能简单的电路，一段式状态机同样具有相对简洁的特征。
+一段式状态机理论上不存在毛刺，但是一段式状态机在代码较长时的管理相对困难。对于状态较少、功能简单的电路，一段式状态机同样具有相对简洁的特征。
 
- 一段式状态机样例：
+一段式状态机样例：
 
 [[code]]
- `timescale 1ns / 1ps
- //////////////////////////////////////////////////////////////////////////////////
- // Company: 
- // Engineer: 
- // 
- // Create Date: 2023/02/27 23:38:24
- // Design Name: 1-Part State Machine
- // Module Name: StateMachineDemo1Part
- // Project Name: 
- // Target Devices: 
- // Tool Versions: 
- // Description: A demo state machine with only one part.
- //              This timing logic part finishs all work: Judgement, execution and state transition.
- // 
- // Dependencies: 
- // 
- // Revision:
- // Revision 0.01 - File Created
- // Additional Comments:
- // 
- //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: SCP Foundation Equestria Branch
+// Engineer: Picsell Dois
+//
+// Create Date: 2023/02/27 23:38:24
+// Design Name: 1-Part State Machine
+// Module Name: StateMachineDemo1Part
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: A demo state machine with only one part.
+//              This timing logic part finishs all work: Judgement, execution and state transition.
+//
+// Dependencies:
+//
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+//
+//////////////////////////////////////////////////////////////////////////////////
 
 
- module StateMachineDemo1Part(
-     //Clock and Reset signal
-     input iClock,
-     input iReset,
-     //Sample input
-     input [1:0] iData,
-     //Sample output
-     output reg [3:0] oResult
-     );
-     
-     //State definitions
-     localparam STATE_DEFAULT = 4'b0000,
-                STATE_S1      = 4'b0001,
-                STATE_S2      = 4'b0010,
-                STATE_S3      = 4'b0011;
-     
-     //State register
-     reg [3:0] rCurrentState;
-     
-     //Timing logic: State Machine judegement, output and state transition (combined with state update)
-     always @ (posedge iClock) begin
-         if (iReset) begin
-             oResult <= 0;
-             rCurrentState <= STATE_DEFAULT;
-         end
-         else begin
-             case (rCurrentState)
-                 STATE_DEFAULT: begin
-                     if (iData == 2'b01) begin
-                         //Function execution & Output update
-                         oResult <= 1;
-                         //State transition
-                         rCurrentState <= STATE_S1;
-                     end
-                     else begin
-                         //Function execution & Output update
-                         oResult <= 0;
-                         //State transition
-                         rCurrentState <= STATE_DEFAULT;
-                     end
-                 end
-                 STATE_S1: begin
-                     //Function execution & Output update
-                     oResult <= 2;
-                     //State transition
-                     rCurrentState <= STATE_S2;
-                 end
-                 STATE_S2: begin
-                     //Function execution & Output update
-                     oResult <= 3;
-                     //State transition
-                     rCurrentState <= STATE_S3;
-                 end
-                 STATE_S3: begin
-                     //Function execution & Output update
-                     oResult <= 0;
-                     //State transition
-                     rCurrentState <= STATE_DEFAULT;
-                 end
-                 default: begin
-                     //Function execution & Output update
-                     oResult <= 0;
-                     //State transition
-                     rCurrentState <= STATE_DEFAULT;
-                 end
-             endcase 
-         end
-     end
-     
- endmodule
- [[/code]]
+module StateMachineDemo1Part(
+    //Clock and Reset signal
+    input iClock,
+    input iReset,
+    //Sample input
+    input [1:0] iData,
+    //Sample output
+    output reg [3:0] oResult
+    );
+    
+    //State definitions
+    localparam STATE_DEFAULT = 4'b0000,
+               STATE_S1      = 4'b0001,
+               STATE_S2      = 4'b0010,
+               STATE_S3      = 4'b0011;
+    
+    //State register
+    reg [3:0] rCurrentState;
+    
+    //Timing logic: State Machine judegement, output and state transition (combined with state update)
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            oResult <= 0;
+            rCurrentState <= STATE_DEFAULT;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //Function execution & Output update
+                        oResult <= 1;
+                        //State transition
+                        rCurrentState <= STATE_S1;
+                    end
+                    else begin
+                        //Function execution & Output update
+                        oResult <= 0;
+                        //State transition
+                        rCurrentState <= STATE_DEFAULT;
+                    end
+                end
+                STATE_S1: begin
+                    //Function execution & Output update
+                    oResult <= 2;
+                    //State transition
+                    rCurrentState <= STATE_S2;
+                end
+                STATE_S2: begin
+                    //Function execution & Output update
+                    oResult <= 3;
+                    //State transition
+                    rCurrentState <= STATE_S3;
+                end
+                STATE_S3: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                    //State transition
+                    rCurrentState <= STATE_DEFAULT;
+                end
+                default: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                    //State transition
+                    rCurrentState <= STATE_DEFAULT;
+                end
+            endcase
+        end
+    end
+    
+endmodule
+[[/code]]
 
- + 二段式状态机
++ 二段式状态机
 
- 二段式状态机存在两个{{always}}块，同时除当前状态寄存器外，还存在一个存放下一状态的后继态寄存器：
+二段式状态机存在两个{{always}}块，同时除当前状态寄存器外，还存在一个存放下一状态的后继态寄存器：
 
 * 第一个{{always}}块是一个时序块。通过时钟边沿触发，将后继态寄存器的值存入当前状态寄存器中，实现状态的更新。
 * 第二个{{always}}块是一个组合逻辑电路。这个电路通过对当前状态寄存器的判断，完成状态机具体的功能执行与输出，同时更新后继态寄存器。
 
- 二段式状态机将用于更新当前状态的时序逻辑和判断当前状态并执行相应功能以及产生下一状态的逻辑分离，状态机的结构相对清晰。但由于整个状态机的功能执行在组合逻辑中完成，状态机的功能执行和输出可能出现毛刺和竞争-冒险现象。为了消除毛刺以及竞争-冒险，需要在状态机的输出端附加D触发器电路消去毛刺。
+二段式状态机将用于更新当前状态的时序逻辑和判断当前状态并执行相应功能以及产生下一状态的逻辑分离，状态机的结构相对清晰。但由于整个状态机的功能执行在组合逻辑中完成，状态机的功能执行和输出可能出现毛刺和竞争-冒险现象。为了消除毛刺以及竞争-冒险，需要在状态机的输出端附加D触发器电路消去毛刺。
 
- 二段式状态机样例：
+二段式状态机样例：
 
 [[code]]
- `timescale 1ns / 1ps
- //////////////////////////////////////////////////////////////////////////////////
- // Company: 
- // Engineer: 
- // 
- // Create Date: 2023/02/27 23:38:24
- // Design Name: 2-Part State Machine
- // Module Name: StateMachineDemo2Parts
- // Project Name: 
- // Target Devices: 
- // Tool Versions: 
- // Description: A demo state machine with 2 parts.
- //              Part 1: A timing logic part, updates current state register.
- //              Part 2: A combo logic part, judges current staste, executes corresponding function, and generates next state.
- // 
- // Dependencies: 
- // 
- // Revision:
- // Revision 0.01 - File Created
- // Additional Comments:
- // 
- //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: SCP Foundation Equestria Branch
+// Engineer: Picsell Dois
+//
+// Create Date: 2023/02/27 23:38:24
+// Design Name: 2-Part State Machine
+// Module Name: StateMachineDemo2Parts
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: A demo state machine with 2 parts.
+//              Part 1: A timing logic part, updates current state register.
+//              Part 2: A combo logic part, judges current staste, executes corresponding function, and generates next state.
+//
+// Dependencies:
+//
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+//
+//////////////////////////////////////////////////////////////////////////////////
 
 
- module StateMachineDemo2Parts(
-     input iClock,
-     input iReset,
-     input [7:0] iData,
-     output reg [3:0] oResult
-     );
-     
-     //State definitions
-     localparam STATE_DEFAULT = 4'b0000,
-                STATE_S1      = 4'b0001,
-                STATE_S2      = 4'b0010,
-                STATE_S3      = 4'b0011;
-     
-     //State register
-     reg [3:0] rCurrentState, rNextState;
-     
-     //Timing logic: State Machine state update
-     always @ (posedge iClock) begin
-         if (iReset) begin
-             rCurrentState <= STATE_DEFAULT;
-         end
-         else begin
-             rCurrentState <= rNextState;
-         end
-     end
-     
-     //Combo logic: State Machine judegement, output and state transition
-     always @ (*) begin
-         if (iReset) begin
-             oResult = 0;
-             rNextState = STATE_DEFAULT;
-         end
-         else begin
-             case (rCurrentState)
-                 STATE_DEFAULT: begin
-                     if (iData == 2'b01) begin
-                         //Function execution & Output update
-                         oResult = 1;
-                         //State transition
-                         rNextState = STATE_S1;
-                     end
-                     else begin
-                         //Function execution & Output update
-                         oResult = 0;
-                         //State transition
-                         rNextState = STATE_DEFAULT;
-                     end
-                 end
-                 STATE_S1: begin
-                     //Function execution & Output update
-                     oResult = 2;
-                     //State transition
-                     rNextState = STATE_S2;
-                 end
-                 STATE_S2: begin
-                     //Function execution & Output update
-                     oResult = 3;
-                     //State transition
-                     rCurrentState = STATE_S3;
-                 end
-                 STATE_S3: begin
-                     //Function execution & Output update
-                     oResult = 0;
-                     //State transition
-                     rNextState = STATE_DEFAULT;
-                 end
-                 default: begin
-                     //Function execution & Output update
-                     oResult = 0;
-                     //State transition
-                     rNextState = STATE_DEFAULT;
-                 end
-             endcase 
-         end
-     end
-     
- endmodule
- [[/code]]
+module StateMachineDemo2Parts(
+    input iClock,
+    input iReset,
+    input [7:0] iData,
+    output reg [3:0] oResult
+    );
+    
+    //State definitions
+    localparam STATE_DEFAULT = 4'b0000,
+               STATE_S1      = 4'b0001,
+               STATE_S2      = 4'b0010,
+               STATE_S3      = 4'b0011;
+    
+    //State register
+    reg [3:0] rCurrentState, rNextState;
+    
+    //Timing logic: State Machine state update
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rCurrentState <= STATE_DEFAULT;
+        end
+        else begin
+            rCurrentState <= rNextState;
+        end
+    end
+    
+    //Combo logic: State Machine judegement, output and state transition
+    always @ (*) begin
+        if (iReset) begin
+            oResult = 0;
+            rNextState = STATE_DEFAULT;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //Function execution & Output update
+                        oResult = 1;
+                        //State transition
+                        rNextState = STATE_S1;
+                    end
+                    else begin
+                        //Function execution & Output update
+                        oResult = 0;
+                        //State transition
+                        rNextState = STATE_DEFAULT;
+                    end
+                end
+                STATE_S1: begin
+                    //Function execution & Output update
+                    oResult = 2;
+                    //State transition
+                    rNextState = STATE_S2;
+                end
+                STATE_S2: begin
+                    //Function execution & Output update
+                    oResult = 3;
+                    //State transition
+                    rCurrentState = STATE_S3;
+                end
+                STATE_S3: begin
+                    //Function execution & Output update
+                    oResult = 0;
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+                default: begin
+                    //Function execution & Output update
+                    oResult = 0;
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+            endcase
+        end
+    end
+    
+endmodule
+[[/code]]
 
- + 三段式状态机
++ 三段式状态机
 
- 三段式状态机存在三个{{always}}块，同时除当前状态寄存器外，还存在一个存放下一状态的后继态寄存器：
+三段式状态机存在三个{{always}}块，同时除当前状态寄存器外，还存在一个存放下一状态的后继态寄存器：
 
 * 第一个{{always}}块是一个时序块。通过时钟边沿触发，将后继态寄存器的值存入当前状态寄存器中，实现状态的更新。
 * 第二个{{always}}块是一个组合逻辑电路。这个电路通过对当前状态寄存器的判断，更新后继态寄存器。即通过组合逻辑定义了整个状态机的状态转移表。
 * 第三个{{always}}块是一个时序块。通过时钟边沿触发，判断状态机当前所处的状态，并完成相应状态所需完成的工作。
 
- 三段式状态机使用三个逻辑块，分别描述了状态机状态更新、状态转移和功能执行的功能。由于状态判断和功能执行被放置于时序电路中，状态机的输出和功能执行避免了毛刺以及竞争-冒险现象。
+三段式状态机使用三个逻辑块，分别描述了状态机状态更新、状态转移和功能执行的功能。由于状态判断和功能执行被放置于时序电路中，状态机的输出和功能执行避免了毛刺以及竞争-冒险现象。
 
- 但是，由于状态机的状态判断和功能执行被分离，状态机的执行可能会慢一个时钟周期，此时的一个策略是在第三个{{always}}块中，不对当前状态寄存器做判断，而是判断后继态寄存器。但该优化方法可能在依赖输入的Mealy型状态机上产生问题。
+但是，由于状态机的状态判断和功能执行被分离，状态机的执行可能会慢一个时钟周期，此时的一个策略是在第三个{{always}}块中，不对当前状态寄存器做判断，而是判断后继态寄存器。但该优化方法可能在依赖输入的Mealy型状态机上产生问题。
 
- 三段式状态机样例：
+三段式状态机样例：
 
 [[code]]
- `timescale 1ns / 1ps
- //////////////////////////////////////////////////////////////////////////////////
- // Company: 
- // Engineer: 
- // 
- // Create Date: 2023/02/27 23:38:24
- // Design Name: 3-Part State Machine
- // Module Name: StateMachineDemo3Parts
- // Project Name: 
- // Target Devices: 
- // Tool Versions: 
- // Description: A demo state machine with 3 parts.
- //              Part 1: A timing logic part, updates current state register.
- //              Part 2: A combo logic part, defines a state transition table.
- //              Part 3: A timing logic part, judges current staste and executes corresponding function.
- // 
- // Dependencies: 
- // 
- // Revision:
- // Revision 0.01 - File Created
- // Additional Comments:
- // 
- //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: SCP Foundation Equestria Branch
+// Engineer: Picsell Dois
+//
+// Create Date: 2023/02/27 23:38:24
+// Design Name: 3-Part State Machine
+// Module Name: StateMachineDemo3Parts
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: A demo state machine with 3 parts.
+//              Part 1: A timing logic part, updates current state register.
+//              Part 2: A combo logic part, defines a state transition table.
+//              Part 3: A timing logic part, judges current staste and executes corresponding function.
+//
+// Dependencies:
+//
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+//
+//////////////////////////////////////////////////////////////////////////////////
 
 
- module StateMachineDemo3Parts(
-     input iClock,
-     input iReset,
-     input [7:0] iData,
-     output reg [3:0] oResult
-     );
-     
-     //State definitions
-     localparam STATE_DEFAULT = 4'b0000,
-                STATE_S1      = 4'b0001,
-                STATE_S2      = 4'b0010,
-                STATE_S3      = 4'b0011;
-     
-     //State register
-     reg [3:0] rCurrentState, rNextState;
-     
-     //Timing logic: State Machine state update
-     always @ (posedge iClock) begin
-         if (iReset) begin
-             rCurrentState <= STATE_DEFAULT;
-         end
-         else begin
-             rCurrentState <= rNextState;
-         end
-     end
-     
-     //Combo logic: State Machine state transition
-     always @ (*) begin
-         if (iReset) begin
-             rNextState = STATE_DEFAULT;
-         end
-         else begin
-             case (rCurrentState)
-                 STATE_DEFAULT: begin
-                     if (iData == 2'b01) begin
-                         //State transition
-                         rNextState = STATE_S1;
-                     end
-                     else begin
-                         //State transition
-                         rNextState = STATE_DEFAULT;
-                     end
-                 end
-                 STATE_S1: begin
-                     //State transition
-                     rNextState = STATE_S2;
-                 end
-                 STATE_S2: begin
-                     //State transition
-                     rCurrentState = STATE_S3;
-                 end
-                 STATE_S3: begin
-                     //State transition
-                     rNextState = STATE_DEFAULT;
-                 end
-                 default: begin
-                     //State transition
-                     rNextState = STATE_DEFAULT;
-                 end
-             endcase 
-         end
-     end
-     
-     //Timing logic: State Machine judegement and output
-     always @ (posedge iClock) begin
-         if (iReset) begin
-             oResult <= 0;
-         end
-         else begin
-             case (rCurrentState)
-                 STATE_DEFAULT: begin
-                     if (iData == 2'b01) begin
-                         //Function execution & Output update
-                         oResult <= 1;
-                     end
-                     else begin
-                         //Function execution & Output update
-                         oResult <= 0;
-                     end
-                 end
-                 STATE_S1: begin
-                     //Function execution & Output update
-                     oResult <= 2;
-                 end
-                 STATE_S2: begin
-                     //Function execution & Output update
-                     oResult <= 3;
-                 end
-                 STATE_S3: begin
-                     //Function execution & Output update
-                     oResult <= 0;
-                 end
-                 default: begin
-                     //Function execution & Output update
-                     oResult <= 0;
-                 end
-             endcase 
-         end
-     end
-     
- endmodule
- [[/code]]
+module StateMachineDemo3Parts(
+    input iClock,
+    input iReset,
+    input [7:0] iData,
+    output reg [3:0] oResult
+    );
+    
+    //State definitions
+    localparam STATE_DEFAULT = 4'b0000,
+               STATE_S1      = 4'b0001,
+               STATE_S2      = 4'b0010,
+               STATE_S3      = 4'b0011;
+    
+    //State register
+    reg [3:0] rCurrentState, rNextState;
+    
+    //Timing logic: State Machine state update
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rCurrentState <= STATE_DEFAULT;
+        end
+        else begin
+            rCurrentState <= rNextState;
+        end
+    end
+    
+    //Combo logic: State Machine state transition
+    always @ (*) begin
+        if (iReset) begin
+            rNextState = STATE_DEFAULT;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //State transition
+                        rNextState = STATE_S1;
+                    end
+                    else begin
+                        //State transition
+                        rNextState = STATE_DEFAULT;
+                    end
+                end
+                STATE_S1: begin
+                    //State transition
+                    rNextState = STATE_S2;
+                end
+                STATE_S2: begin
+                    //State transition
+                    rCurrentState = STATE_S3;
+                end
+                STATE_S3: begin
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+                default: begin
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+            endcase
+        end
+    end
+    
+    //Timing logic: State Machine judegement and output
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            oResult <= 0;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //Function execution & Output update
+                        oResult <= 1;
+                    end
+                    else begin
+                        //Function execution & Output update
+                        oResult <= 0;
+                    end
+                end
+                STATE_S1: begin
+                    //Function execution & Output update
+                    oResult <= 2;
+                end
+                STATE_S2: begin
+                    //Function execution & Output update
+                    oResult <= 3;
+                end
+                STATE_S3: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                end
+                default: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                end
+            endcase
+        end
+    end
+    
+endmodule
+[[/code]]
 
- + 状态编码
++ 状态编码
 
- 常见的状态编码包括顺序编码、格雷码、一位有效编码等。
+常见的状态编码包括顺序编码、格雷码、一位有效编码等。
 
 + 参考资料
 
 *https://blog.csdn.net/Jackiezhang1993/article/details/85045621
 
- *https://blog.csdn.net/wangkai_2019/article/details/107692192
+*https://blog.csdn.net/wangkai_2019/article/details/107692192
 
- *https://inst.eecs.berkeley.edu/~cs150/sp12/resources/FSM.pdf 
+*https://inst.eecs.berkeley.edu/~cs150/sp12/resources/FSM.pdf 
