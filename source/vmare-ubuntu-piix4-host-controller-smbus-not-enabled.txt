@@ -1,0 +1,34 @@
+**故障现象：**一台基于Intel Xeon E3-1245 v5处理器构建的工作站，使用VMWare Workstation 15.5.0宿主Ubuntu 12.04.5 LTS操作系统时，开机时出现“{{i2c_piix4 ******Host SMBus controller not enabled}}”提示。
+
+**故障处理：**开机时按住{{Shif}}键，从GRUB选单选择Recovery Mode进入恢复模式。并选择{{root}}项，输入Root密码后进入Root命令行。
+
+ 挂载文件系统为可读写：
+
+[[code]]
+ mount -o remount,rw /
+ [[/code]]
+
+编辑{{/etc/modprobe.d/blacklist.conf}}文件：
+
+[[code]]
+ vim /etc/modprobe.d/blacklist.conf
+ [[/code]]
+
+按{{I}}键进入插入编辑模式，在文件末尾追加：
+
+[[code]]
+ # Block I2C_PIIX4 to avoid SMBus Controller errors
+ blacklist i2c_piix4
+ [[/code]]
+
+随后按键盘上的{{Esc}}键，输入{{:wq}}保存并退出Vim编辑器。
+
+ 重建RAMFS：
+
+[[code]]
+ update-initramfs  -u  -k  all
+ [[/code]]
+
+随后重启系统即可。
+
+ 参考资料：*https://www.cnblogs.com/wenchaoz/p/8982122.html 

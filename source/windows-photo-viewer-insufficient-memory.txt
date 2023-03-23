@@ -1,12 +1,12 @@
-﻿**故障现象：**一台运行Windows 8操作系统的PC，使用Windows照片查看器打开图片文件时，提示“Windows 照片查看器无法显示此图片，因为计算机上的可用内存可能不足。请关闭一些目前没有使用的程序或者释放部分硬盘空间（如果硬盘几乎已满），然后重试”，但此时用户的磁盘和内存仍有大量可用空间。图片文件经验证没有损坏或异常的数据负载。
+**故障现象：**一台运行Windows 8操作系统的PC，使用Windows照片查看器打开图片文件时，提示“Windows 照片查看器无法显示此图片，因为计算机上的可用内存可能不足。请关闭一些目前没有使用的程序或者释放部分硬盘空间（如果硬盘几乎已满），然后重试”，但此时用户的磁盘和内存仍有大量可用空间。图片文件经验证没有损坏或异常的数据负载。
 
 **故障处理：**打开 [控制面板] > [颜色管理] > [高级]，将 [设备配置文件] 改为 [Agfa：Swop Standard]。随后保存并退出。再次尝试打开图片文件，Windows照片查看器可以正常显示。
 
-注册表项变更：
+ 注册表项变更：
 
 [[code]]
-[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\ICM\RegisteredProfiles]
-"sRGB"="RSWOP.icm"
-[[/code]]
+ [HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\ICM\RegisteredProfiles] 
+ "sRGB"="RSWOP.icm" 
+ [[/code]]
 
-参考资料：*https://new.qq.com/rain/a/20210723A0ERJS00
+参考资料：*https://new.qq.com/rain/a/20210723A0ERJS00 

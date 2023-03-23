@@ -1,0 +1,5 @@
+[[code]]
+ %AppData%\Notepad++\config.xml
+ [[/code]]
+
+文件为XML格式编码。 

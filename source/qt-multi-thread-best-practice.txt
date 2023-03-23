@@ -80,7 +80,7 @@
      
  public slots:
      /* 这里放置各类槽函数的实现 */
-     void ExecuteWorkEventHandler();
+     void ExecuteWorkRequestedEventHandler();
  };
 
  #endif // WORKER_H
@@ -91,7 +91,15 @@
  [[code type="Cpp"]]
  #include "Worker.h"
 
- void ExecuteWorkEventHandler(){
+ Worker::Worker(){
+     IsRunning=false;
+ }
+
+ Worker::~Worker(){
+     IsRunning=false;
+ }
+
+ void Worker::ExecuteWorkRequestedEventHandler(){
      /* 在这里编写异步工作 */
      return;
  }
@@ -129,7 +137,7 @@
      
  signals:
      /* 这里放置各类用于与工作者通讯的信号 */
-     void ExecuteWorkEvent();
+     void ExecuteWorkRequestedEvent();
  };
 
  #endif // CONTROLLER_H
@@ -152,9 +160,9 @@ Controller::Controller(){
     wrkWorker->moveToThread(trdWorkerThread);
      
      //连接信号与槽
-    connect(this,SIGNAL(ExecuteWorkEvent()),wrkWorker,SLOT(ExecuteWorkEventHandler),Qt::QueuedConnection); //使用Qt::QueuedConnection对列化连接，这样信号即可在触发后被置入目标线程的消息队列（事件循环）中
+    connect(this, SIGNAL(ExecuteWorkRequestedEvent()), wrkWorker, SLOT(ExecuteWorkRequestedEventHandler)); //对于信号发射者和接收者不在同一线程的情况，会默认使用Qt::QueuedConnection队列化连接，这样信号即可在触发后被置入目标线程的消息队列（事件循环）中
     //如果工作者对象wrkWorker有子对象需要进行信号-槽的连接，也可以在这里使用Qt::QueuedConnection方式连接：
-    //connect(wrkWorker->objSubObject,SIGNAL(EventOfSubObject()),wrkWorker,SLOT(EventOfSubObjectHandler()),Qt::QueuedConnection);
+    //connect(wrkWorker->objSubObject, SIGNAL(EventOfSubObject()), wrkWorker, SLOT(EventOfSubObjectHandler()));
      
      //启动子线程的事件循环
     trdWorkerThread->start();
@@ -176,7 +184,7 @@ Controller::Controller(){
 
  /* 操作接口 */
 void Controller::ExecuteWork(){
-     emit ExecuteWorkEvent(); //发射相应的信号到目标进程的消息队列
+     emit ExecuteWorkRequestedEvent(); //发射相应的信号到目标进程的消息队列
     return;
  }
  [[/code]]
@@ -194,6 +202,8 @@ void Controller::ExecuteWork(){
  需要注意的是，在Qt中使用{{moveToThread()}}函数将{{QObject}}对象移动到另一线程时，若被移动的对象包含了指向其它对象的指针，这些对象不会自动被移动。因此，使用{{moveToThread()}}函数将{{QObject}}对象移动到另一线程时，需要对目标对象自身及其所有子对象调用{{moveToThread()}}函数，否则可能诱发“QObject不能跨线程创建对象”的运行时警告。
 
  删除容器线程时，应先删除容器线程的所有子对象，再删除容器线程，否则将导致错误。
+
+ 对于需要需要在子线程中执行时长无限的耗时操作的情况，一种常见的实现是使用{{@@while (true) {}@@}}循环，并结合{{QThread::sleep()}}或{{QThread::usleep()}}实现等待。这种情况下，可能在运行中遇到意料之外的线程阻塞异常，甚至可能导致整个程序（包括主线程和子线程）进入休眠状态。这时，一个比较推荐的行为是使用{{QTimer::singleShot()}}函数，通过0毫秒的延时值模拟无限循环的行为。
 
 + 参考资料
 
