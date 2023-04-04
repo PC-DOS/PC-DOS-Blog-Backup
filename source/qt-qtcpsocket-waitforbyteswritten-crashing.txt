@@ -5,6 +5,8 @@
 另一种处理措施：使用一个继承自{{QObject}}工作者子对象将对{{QTcpSocket}}的初始化和引用全部置于{{QThread}}辅助线程中进行。使用一个同时包含了工作者子对象和{{QThread}}辅助线程的、继承自{{QObject}}的控制类进行管理。子类被控制类通过{{moveToThread()}}函数整体移入{{QThread}}线程内并做好信号与槽之间的连接，启动线程后，即可使用子线程自己的事件循环进行调度和管理。
 
 [[code type="Cpp"]]
+/* HEADER FILE */
+
 #include <QApplication>
 #include <QHostAddress>
 #include <QMap>
@@ -27,6 +29,9 @@ public:
     explicit TCPClientDataSender();
     ~TCPClientDataSender();
 
+    /* Data Sending Status Indicator */
+    bool IsDataSending() const;
+
 public slots:
     /* Connection Management Command Handlers */
     void ConnectToServerRequestedEventHandler(const QString sServerIPNew, quint16 iPortNew,
@@ -35,17 +40,11 @@ public slots:
     void SetAutoReconnectOptionsRequestedEventHandler(bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew);
     void SendDataToServerRequestedEventHandler();
 
-    /* TCP Socket Event Handler Slots */
-    void TCPClientDataSender_Connected();
-    void TCPClientDataSender_Disconnected();
-    void TCPClientDataSender_Error(QAbstractSocket::SocketError errErrorInfo);
-    void TCPClientDataSender_ReadyRead();
-
-    /* Functional Slots */
-    void TryReconnect();
-
 signals:
-    void SocketResponseReceivedFromServerEvent(QString sResponse);
+    void SocketConnectedToServerEvent(QString sServerName, QString sServerIPAddress, quint16 iServerPort);
+    void SocketDisconnectedFromServerEvent(QString sServerName, QString sServerIPAddress, quint16 iServerPort);
+    void SocketErrorOccurredEvent(QAbstractSocket::SocketError errErrorInfo, QString sServerName, QString sServerIPAddress, quint16 iServerPort);
+    void SocketResponseReceivedFromServerEvent(QString sResponse, QString sServerName, QString sServerIPAddress, quint16 iServerPort);
 
 private:
     QString sServerIP; //INTERNAL: Remote IP Address
@@ -55,6 +54,16 @@ private:
     bool bIsUserInitiatedDisconnection; //INTERNAL: Marks if user has initiated a disconnection, to avoid unexpected TryReconnect() flooding
     bool bIsReconnecting; //INTERNAL: Marks if we are alreading waiting a reconnection, to avoid unexpected TryReconnect() flooding
     bool bIsDataSending; //INTERNAL: Marks if we are sending data, avoid recursive calling of SendDataToServerRequestedEventHandler() and segmentation faults
+
+private slots:
+    /* TCP Socket Event Handler Slots */
+    void TCPClientDataSender_Connected();
+    void TCPClientDataSender_Disconnected();
+    void TCPClientDataSender_Error(QAbstractSocket::SocketError errErrorInfo);
+    void TCPClientDataSender_ReadyRead();
+
+    /* Functional Slots */
+    void TryReconnect();
 };
 
 /* TCP Networking Client Wrapper */
@@ -66,6 +75,10 @@ public:
     TCPClient(const QString sServerIPNew, quint16 iPortNew,
               bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew); //Constructor with options. Will update options saved in ini file
     ~TCPClient();
+
+    /* Options Management */
+    void LoadSettings(); //Load settings
+    void SaveSettings() const; //Save settings
 
     /* TCP Socket Object Management */
     bool IsConnected() const; //Get if we have connected to a remote server
@@ -88,15 +101,11 @@ public:
 
     /* Validators */
     bool IsValidIPAddress(const QString sIPAddress) const; //Check if the given address is valid
-    bool IsValidTCPPort(quint16 iPort, bool bUseRegisteredPortsOnly = true) const; //Check if the given port ID is valid (typically in the range of [1,65535], or [1024,32767] if RegisteredPortsOnly is true)
-
-    /* Threads & Worker Objects */
-    QThread * trdTCPDataSender; //Thread which is used to host and control worker thread
-    TCPClientDataSender * tcpDataSender; //Worker object
+    bool IsValidTCPPort(quint16 iPort, bool bUseRegisteredPortsOnly = true) const; //Check if the given port ID is valid (typically in the range of [1,65535], or [1024,32767] if bUseRegisteredPortsOnly is true)
 
 public slots:
     /* Worker Object Event Handler */
-    void SocketResponseReceivedFromServerEventHandler(QString sResponse);
+    void SocketResponseReceivedFromServerEventHandler(QString sResponse, QString sServerName, QString sServerIPAddress, quint16 iServerPort);
 
 signals:
     /* Signals to Communicate with Worker Object */
@@ -107,30 +116,28 @@ signals:
     void SendDataToServerRequestedEvent();
 
     /* Signals to Communicate with Upper Layer */
-    void ResponseReceivedFromServerEvent(QString sResponse);
-    void ConnectedToServerEvent();
-    void DisconnectedFromServerEvent();
-    void NetworkingErrorEvent(QAbstractSocket::SocketError errErrorInfo);
+    void ResponseReceivedFromServerEvent(QString sResponse, QString sServerName, QString sServerIPAddress, quint16 iServerPort);
+    void ConnectedToServerEvent(QString sServerName, QString sServerIPAddress, quint16 iServerPort);
+    void DisconnectedFromServerEvent(QString sServerName, QString sServerIPAddress, quint16 iServerPort);
+    void NetworkingErrorOccurredEvent(QAbstractSocket::SocketError errErrorInfo, QString sServerName, QString sServerIPAddress, quint16 iServerPort);
 
 private:
-    /* Connection Management */
-    //volatile bool _IsConnected; //INTERNAL: Get if we have connected to remote server. Not used, use tcpDataSnder->tcpSocket->state() instead.
+    /* Threads & Worker Objects */
+    QThread * trdTCPDataSender; //Thread which is used to host and control worker thread
+    TCPClientDataSender * tcpDataSender; //Worker object
 
     /* Options Var */
     QString sServerIP; //INTERNAL: Remote IP Address
     quint16 iPort; //INTERNAL: Remote port
     bool bIsAutoReconnectEnabled; //INTERNAL: Is auto reconnect function on
     unsigned int iAutoReconnectDelay; //INTERNAL: Auto reconnect retry interval
-
-    /* Options Management */
-    void LoadSettings(); //INTERNAL: Load settings from external ini file
-    void SaveSettings() const; //INTERNAL: Save settings to external ini file
 };
 
 /* TCP Client */
 extern TCPClient * tcpDataClient;
 
 /* IMPLEMENTATION */
+
 /* TCP Client */
 TCPClient * tcpDataClient;
 
@@ -150,6 +157,11 @@ TCPClientDataSender::TCPClientDataSender() {
 }
 
 TCPClientDataSender::~TCPClientDataSender() {
+}
+
+/* Data Sending Status Indicator */
+bool TCPClientDataSender::IsDataSending() const {
+    return bIsDataSending;
 }
 
 /* Connection Management Command Handlers */
@@ -197,9 +209,9 @@ void TCPClientDataSender::SendDataToServerRequestedEventHandler() {
     }
 
     //Send data to remote
-    //It's suggested that you maintain a data queue to cache data panding sending
+    //You can maintain a data queue to cache data panding sending
 
-    _IsDataSending = false;
+    bIsDataSending = false;
     return;
 }
 
@@ -207,11 +219,13 @@ void TCPClientDataSender::SendDataToServerRequestedEventHandler() {
 void TCPClientDataSender::TCPClientDataSender_Connected() {
     qDebug() << "TCPClient: Connected to" << sServerIP << ":" << iPort;
     bIsReconnecting = false;
+    emit SocketConnectedToServerEvent(peerName(), sServerIP, iPort);
     return;
 }
 
 void TCPClientDataSender::TCPClientDataSender_Disconnected() {
     qDebug() << "TCPClient: Disconnected from" << sServerIP << ":" << iPort;
+    emit SocketDisconnectedFromServerEvent(peerName(), sServerIP, iPort);
     return;
 }
 
@@ -226,16 +240,17 @@ void TCPClientDataSender::TCPClientDataSender_Error(QAbstractSocket::SocketError
         QTimer::singleShot(iAutoReconnectDelay, this, SLOT(TryReconnect()));
         bIsReconnecting = true;
     }
+    emit SocketErrorOccurredEvent(errErrorInfo, peerName(), sServerIP, iPort);
     return;
 }
 
 void TCPClientDataSender::TCPClientDataSender_ReadyRead() {
     while (bytesAvailable()) {
         //Read a command line and emit a signal
-        emit SocketResponseReceivedFromServerEvent(readLine());
+        emit SocketResponseReceivedFromServerEvent(readLine(), peerName(), sServerIP, iPort);
 
         //Process events
-        QApplication::processEvents();
+        //QApplication::processEvents();
     }
     return;
 }
@@ -278,10 +293,10 @@ TCPClient::TCPClient() {
     connect(this, SIGNAL(DisconnectFromServerRequestedEvent(bool)), tcpDataSender, SLOT(DisconnectFromServerRequestedEventHandler(bool)));
     connect(this, SIGNAL(SetAutoReconnectOptionsRequestedEvent(bool, uint)), tcpDataSender, SLOT(SetAutoReconnectOptionsRequestedEventHandler(bool, uint)));
     connect(this, SIGNAL(SendDataToServerRequestedEvent()), tcpDataSender, SLOT(SendDataToServerRequestedEventHandler()));
-    connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString)));
-    connect(tcpDataSender, SIGNAL(connected()), this, SIGNAL(ConnectedToServerEvent()));
-    connect(tcpDataSender, SIGNAL(disconnected()), this, SIGNAL(DisconnectedFromServerEvent()));
-    connect(tcpDataSender, SIGNAL(error(QAbstractSocket::SocketError)), this, SIGNAL(NetworkingErrorEvent(QAbstractSocket::SocketError)));
+    connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString, QString, QString, quint16)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString, QString, QString, quint16)));
+    connect(tcpDataSender, SIGNAL(SocketConnectedToServerEvent(QString, QString, quint16)), this, SIGNAL(ConnectedToServerEvent(QString, QString, quint16)));
+    connect(tcpDataSender, SIGNAL(SocketDisconnectedFromServerEvent(QString, QString, quint16)), this, SIGNAL(DisconnectedFromServerEvent(QString, QString, quint16)));
+    connect(tcpDataSender, SIGNAL(SocketErrorOccurredEvent(QAbstractSocket::SocketError, QString, QString, quint16)), this, SIGNAL(NetworkingErrorOccurredEvent(QAbstractSocket::SocketError, QString, QString, quint16)));
 
     //Start child thread's own event loop
     trdTCPDataSender->start();
@@ -308,10 +323,10 @@ TCPClient::TCPClient(const QString sServerIPNew, quint16 iPortNew,
     connect(this, SIGNAL(DisconnectFromServerRequestedEvent(bool)), tcpDataSender, SLOT(DisconnectFromServerRequestedEventHandler(bool)));
     connect(this, SIGNAL(SetAutoReconnectOptionsRequestedEvent(bool, uint)), tcpDataSender, SLOT(SetAutoReconnectOptionsRequestedEventHandler(bool, uint)));
     connect(this, SIGNAL(SendDataToServerRequestedEvent()), tcpDataSender, SLOT(SendDataToServerRequestedEventHandler()));
-    connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString)));
-    connect(tcpDataSender, SIGNAL(connected()), this, SIGNAL(ConnectedToServerEvent()));
-    connect(tcpDataSender, SIGNAL(disconnected()), this, SIGNAL(DisconnectedFromServerEvent()));
-    connect(tcpDataSender, SIGNAL(error(QAbstractSocket::SocketError)), this, SIGNAL(NetworkingErrorEvent(QAbstractSocket::SocketError)));
+    connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString, QString, QString, quint16)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString, QString, QString, quint16)));
+    connect(tcpDataSender, SIGNAL(SocketConnectedToServerEvent(QString, QString, quint16)), this, SIGNAL(ConnectedToServerEvent(QString, QString, quint16)));
+    connect(tcpDataSender, SIGNAL(SocketDisconnectedFromServerEvent(QString, QString, quint16)), this, SIGNAL(DisconnectedFromServerEvent(QString, QString, quint16)));
+    connect(tcpDataSender, SIGNAL(SocketErrorOccurredEvent(QAbstractSocket::SocketError, QString, QString, quint16)), this, SIGNAL(NetworkingErrorOccurredEvent(QAbstractSocket::SocketError, QString, QString, quint16)));
 
     //Start child thread's own event loop
     trdTCPDataSender->start();
@@ -337,6 +352,17 @@ TCPClient::~TCPClient() {
     //Delete child thread
     trdTCPDataSender->deleteLater();
     trdTCPDataSender = NULL;
+}
+
+/* Options Management */
+void TCPClient::LoadSettings() {
+    //Load settings from persistent storage or something else
+    return;
+}
+
+void TCPClient::SaveSettings() const {
+    //Save settings to persistent storage or something else
+    return;
 }
 
 /* TCP Socket Object Management */
@@ -420,9 +446,9 @@ unsigned int TCPClient::GetAutoReconnectDelay() const {
 }
 
 /* Worker Object Event Handler */
-void TCPClient::SocketResponseReceivedFromServerEventHandler(QString sResponse) {
+void TCPClient::SocketResponseReceivedFromServerEventHandler(QString sResponse, QString sServerName, QString sServerIPAddress, quint16 iServerPort) {
     qDebug() << "TCPClient: Response" << sResponse << "received from the remote";
-    emit ResponseReceivedFromServerEvent(sResponse);
+    emit ResponseReceivedFromServerEvent(sResponse, sServerName, sServerIPAddress, iServerPort);
     return;
 }
 
@@ -439,16 +465,5 @@ bool TCPClient::IsValidTCPPort(quint16 iPort, bool bUseRegisteredPortsOnly) cons
         iPortIDMax = 32767;
     }
     return ((iPort >= iPortIDMin) && (iPort <= iPortIDMax));
-}
-
-/* Options Management */
-void TCPClient::LoadSettings() {
-    //Load Settings
-    return;
-}
-
-void TCPClient::SaveSettings() const {
-    //Save Settings
-    return;
 }
 [[/code]]
