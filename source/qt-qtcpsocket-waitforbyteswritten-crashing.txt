@@ -1,444 +1,454 @@
-开发一个包含较重的网络传输（发送）负载的程序时，在一个{{QThread}}辅助线程中使用{{QTcpSocket::waitForBytesWritten()}}等待发送操作完成。发现时常诱发{{QAbstractSocket::SocketTimeoutError}}，甚至出现难以调试的崩溃问题。
+﻿开发一个包含较重的网络传输（发送）负载的程序时，在一个{{QThread}}辅助线程中使用{{QTcpSocket::waitForBytesWritten()}}等待发送操作完成。发现时常诱发{{QAbstractSocket::SocketTimeoutError}}，甚至出现难以调试的崩溃问题。
 
- 一种处理措施：将{{QTcpSocket::waitForBytesWritten()}}调用替换为{{QTcpSocket::flush()}}调用。或仅执行{{QTcpSocket::write()}}写操作，由Qt事件循环处理所有工作。使用此方法时，可能需要跨线程共享{{QTcpSocket}}对象，此时对{{QTcpSocket}}对象的定义和引用应全部通过指针在堆区完成，并进行加锁保护（有助于在一定程度上避免高速调用时的栈错误）。
+一种处理措施：将{{QTcpSocket::waitForBytesWritten()}}调用替换为{{QTcpSocket::flush()}}调用。或仅执行{{QTcpSocket::write()}}写操作，由Qt事件循环处理所有工作。使用此方法时，可能需要跨线程共享{{QTcpSocket}}对象，此时对{{QTcpSocket}}对象的定义和引用应全部通过指针在堆区完成，并进行加锁保护（有助于在一定程度上避免高速调用时的栈错误）。
 
- 另一种处理措施：使用一个继承自{{QObject}}工作者子对象将对{{QTcpSocket}}的初始化和引用全部置于{{QThread}}辅助线程中进行。使用一个同时包含了工作者子对象和{{QThread}}辅助线程的、继承自{{QObject}}的控制类进行管理。子类被控制类通过{{moveToThread()}}函数整体移入{{QThread}}线程内并做好信号与槽之间的连接，启动线程后，即可使用子线程自己的事件循环进行调度和管理。
+另一种处理措施：使用一个继承自{{QObject}}工作者子对象将对{{QTcpSocket}}的初始化和引用全部置于{{QThread}}辅助线程中进行。使用一个同时包含了工作者子对象和{{QThread}}辅助线程的、继承自{{QObject}}的控制类进行管理。子类被控制类通过{{moveToThread()}}函数整体移入{{QThread}}线程内并做好信号与槽之间的连接，启动线程后，即可使用子线程自己的事件循环进行调度和管理。
 
 [[code type="Cpp"]]
- #include <QVector>
- #include <QQueue>
- #include <QString>
- #include <QMap>
- #include <QTcpSocket>
- #include <QThread>
- #include <QMutex>
- #include <QMutexLocker>
- #include <QReadWriteLock>
- #include <QTimer>
- #include <QApplication>
- #include <QHostAddress>
-
- /* HEADER FILE */
- /* TCP Networking Data Sending Thread Worker Object */
- //This object is moved to a child thread to have its own event loop
- class TCPClientDataSender : public QTcpSocket{
-     Q_OBJECT
-
- public:
-     explicit TCPClientDataSender();
-     ~TCPClientDataSender();
-
- public slots:
-     /* Connection Management Command Handlers */
-     void ConnectToServerRequestedEventHandler(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay, bool WairForOperationToComplete);
-     void DisconnectFromServerRequestedEventHandler(bool WairForOperationToComplete);
-     void SetAutoReconnectOptionsRequestedEventHandler(bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay);
-     void SendDataToServerRequestedEventHandler();
-
-     /* TCP Socket Event Handler Slots */
-     void TCPClientDataSender_Connected();
-     void TCPClientDataSender_Disconnected();
-     void TCPClientDataSender_Error(QAbstractSocket::SocketError errErrorInfo);
-     void TCPClientDataSender_ReadyRead();
-
-     /* Functional Slots */
-     void TryReconnect();
-
- signals:
-     void SocketResponseReceivedFromServerEvent(QString sResponse);
-
- private:
-     QString _sServerIP; //INTERNAL: Remote IP Address
-     quint16 _iPort; //INTERNAL: Remote port
-     bool _IsAutoReconnectEnabled; //INTERNAL: Is auto reconnect function on
-     unsigned int _iAutoReconnectDelay; //INTERNAL: Auto reconnect retry interval
-     bool _IsUserInitiatedDisconnection; //INTERNAL: Marks if user has initiated a disconnection, to avoid unexpected TryReconnect() flooding
-     bool _IsReconnecting; //INTERNAL: Marks if we are alreading waiting a reconnection, to avoid unexpected TryReconnect() flooding
-     bool _IsDataSending; //INTERNAL: Marks if we are sending data, avoid recursive calling of SendDataToServerRequestedEventHandler() and segmentation faults
- };
-
- /* TCP Networking Client Wrapper */
- class TCPClient : public QObject{
-     Q_OBJECT
-
- public:
-     TCPClient(); //Default constructor, loads options from ini file or default values
-     TCPClient(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay); //Constructor with options. Will update options saved in ini file
-     ~TCPClient();
-
-     /* Options Management */
-     void LoadSettings(); //Load settings from persistent storage
-     void SaveSettings() const; //Save settings to persistent storage
-
-     /* TCP Socket Object Management */
-     bool IsConnected() const; //Get if we have connected to a remote server
-
-     /* Connection Management */
-     void SetServerParameters(const QString sServerIP, quint16 iPort); //Host information (IP & Port)
-     const QString & GetServerIP() const;
-     quint16 GetServerPort() const;
-     void ConnectToServer(bool WairForOperationToComplete = false); //Connect to remote server with saved values
-     void ConnectToServer(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled=false, unsigned int iAutoReconnectDelay=0, bool WairForOperationToComplete = false); //Connect to remote server with given address and port. Will update options saved in ini file
-     void DisconnectFromServer(bool WairForOperationToComplete = false); //Disconnect
-     void SendDataToServer();
-
-     /* Options */
-     void SetAutoReconnectMode(bool IsAutoReconnectEnabled); //Set & Get auto reconnect function (handles error events)
-     bool GetIsAutoReconnectEnabled() const;
-     void SetAutoReconnectDelay(unsigned int iAutoReconnectDelay); //Set & Get auto reconnect retry interval
-     unsigned int GetAutoReconnectDelay() const;
-
-     /* Validators */
-     bool IsValidIPAddress(const QString sIPAddress) const; //Check if the given address is valid
-     bool IsValidTCPPort(quint16 iPort, bool UseRegisteredPortsOnly=true) const; //Check if the given port ID is valid (typically in the range of [1,65535], or [1024,32767] if RegisteredPortsOnly is true)
-
-     /* Threads & Worker Objects */
-     QThread * trdTCPDataSender; //Thread which is used to host and control worker thread
-     TCPClientDataSender * tcpDataSender; //Worker object
-
- public slots:
-     /* Worker Object Event Handler */
-     void SocketResponseReceivedFromServerEventHandler(QString sResponse);
-
- signals:
-     /* Signals to Communicate with Worker Object */
-     void ConnectToServerRequestedEvent(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay, bool WairForOperationToComplete);
-     void DisconnectFromServerRequestedEvent(bool WairForOperationToComplete);
-     void SetAutoReconnectOptionsRequestedEvent(bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay);
-     void SendDataToServerRequestedEvent();
-     void ConnectedToServerEvent();
-     void DisconnectedFromServerEvent();
-     void NetworkingErrorEvent(QAbstractSocket::SocketError errErrorInfo);
-
-     /* Signals to Communicate with Upper Layer */
-     void ResponseReceivedFromServerEvent(QString sResponse);
-
- private:
-     /* Connection Management */
-     //volatile bool _IsConnected; //INTERNAL: Get if we have connected to remote server. Not used, use tcpDataSender->state() instead.
-
-     /* Options Var */
-     QString _sServerIP; //INTERNAL: Remote IP Address
-     quint16 _iPort; //INTERNAL: Remote port
-     bool _IsAutoReconnectEnabled; //INTERNAL: Is auto reconnect function on
-     unsigned int _iAutoReconnectDelay; //INTERNAL: Auto reconnect retry interval
- };
-
- /* TCP Client */
- extern TCPClient * tcpDataClient;
-
- /* IMPLEMENTATION */
- /* TCP Client */
- TCPClient * tcpDataClient;
-
- /* TCP Networking Data Sending Thread Worker Object */
- TCPClientDataSender::TCPClientDataSender(){
-     //Initialize internal variables
-     _IsDataSending=false;
-     _IsUserInitiatedDisconnection=false;
-     _IsReconnecting=false;
-
-     //Create TCP socket object and connect events
-     connect(this, SIGNAL(connected()), this, SLOT(TCPClientDataSender_Connected()));
-     connect(this, SIGNAL(disconnected()), this, SLOT(TCPClientDataSender_Disconnected()));
-     qRegisterMetaType<QAbstractSocket::SocketError>("QAbstractSocket::SocketError"); //Register QAbstractSocket::SocketError type for QueuedConnection
-     connect(this, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(TCPClientDataSender_Error(QAbstractSocket::SocketError)));
-     connect(this, SIGNAL(readyRead()), this, SLOT(TCPClientDataSender_ReadyRead()));
- }
-
- TCPClientDataSender::~TCPClientDataSender(){
- }
-
- /* Connection Management Command Handlers */
- void TCPClientDataSender::ConnectToServerRequestedEventHandler(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay, bool WairForOperationToComplete){
-     _sServerIP=sServerIP;
-     _iPort=iPort;
-     _IsAutoReconnectEnabled=IsAutoReconnectEnabled;
-     _iAutoReconnectDelay=iAutoReconnectDelay;
-     _IsUserInitiatedDisconnection=false;
-
-     connectToHost(sServerIP, iPort);
-     if (WairForOperationToComplete){
-         waitForConnected();
-     }
-
-     return;
- }
-
- void TCPClientDataSender::DisconnectFromServerRequestedEventHandler(bool WairForOperationToComplete){
-     disconnectFromHost();
-     _IsUserInitiatedDisconnection=true;
-     _IsReconnecting=false;
-     if (WairForOperationToComplete){
-         waitForDisconnected();
-     }
-     return;
- }
-
- void TCPClientDataSender::SetAutoReconnectOptionsRequestedEventHandler(bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay){
-     _IsAutoReconnectEnabled=IsAutoReconnectEnabled;
-     _iAutoReconnectDelay=iAutoReconnectDelay;
-     return;
- }
-
- void TCPClientDataSender::SendDataToServerRequestedEventHandler(){
-     //Check if SendDataToServerRequestedEventHandler() is running, avoid recursive calling of SendDataToServerRequestedEventHandler() and segmentation faults
-     if (_IsDataSending){
-         //If this is a recursive calling, simply returns
-         return;
-     }
-     else{
-         //Marks SendDataToServerRequestedEventHandler() is running
-         _IsDataSending=true;
-     }
-
-     //Send data to remote
-     //It's suggested that you maintain a data queue to cache data panding sending
-
-     _IsDataSending=false;
-     return;
- }
-
- /* TCP Socket Event Handler Slots */
- void TCPClientDataSender::TCPClientDataSender_Connected(){
-     qDebug()<<"TCPClient: Connected to"<<_sServerIP<<":"<<_iPort;
-     _IsReconnecting=false;
-     return;
- }
-
- void TCPClientDataSender::TCPClientDataSender_Disconnected(){
-     qDebug()<<"TCPClient: Disconnected from"<<_sServerIP<<":"<<_iPort;
-     return;
- }
-
- void TCPClientDataSender::TCPClientDataSender_Error(QAbstractSocket::SocketError errErrorInfo){
-     qDebug()<<"TCPClient: Error"<<errErrorInfo<<": "<<errorString();
-     if (state() != QTcpSocket::UnconnectedState){
-         disconnectFromHost();
-         waitForDisconnected(245000);
-     }
-     if (_IsAutoReconnectEnabled && !_IsReconnecting && !_IsUserInitiatedDisconnection){ //Check if we need to reconnect
-         qDebug()<<"TCPClient: Will retry connect after"<<_iAutoReconnectDelay<<"ms";
-         QTimer::singleShot(_iAutoReconnectDelay, this, SLOT(TryReconnect()));
-         _IsReconnecting=true;
-     }
-     return;
- }
-
- void TCPClientDataSender::TCPClientDataSender_ReadyRead(){
-     while (bytesAvailable()){
-         //Read a command line and emit a signal
-         emit SocketResponseReceivedFromServerEvent(readLine());
-
-         //Process events
-         QApplication::processEvents();
-     }
-     return;
- }
-
- /* Functional Slots */
- void TCPClientDataSender::TryReconnect(){
-     if (_IsUserInitiatedDisconnection){
-         return;
-     }
-     if (state() != QTcpSocket::ConnectingState && state() != QTcpSocket::ConnectedState){
-         qDebug()<<"TCPClient: Retrying to connect to"<<_sServerIP<<":"<<_iPort;
-         connectToHost(_sServerIP, _iPort);
-         waitForConnected(245000);
-     }
-     if (state() != QTcpSocket::ConnectedState){
-         qDebug()<<"TCPClient: Will retry connect after"<<_iAutoReconnectDelay<<"ms";
-         if (state() != QTcpSocket::UnconnectedState){
-             disconnectFromHost();
-             waitForDisconnected(245000);
-         }
-         QTimer::singleShot(_iAutoReconnectDelay, this, SLOT(TryReconnect()));
-     }
-     return;
- }
-
- /* TCP Networking Client Wrapper */
- TCPClient::TCPClient(){
-     //Load settings
-     TCPClient::LoadSettings();
-
-     //Create worker object
-     tcpDataSender = new TCPClientDataSender;
-
-     //Creat thread object
-     trdTCPDataSender = new QThread;
-     tcpDataSender->moveToThread(trdTCPDataSender);
-
-     //Connect events and handlers
-     connect(this, SIGNAL(ConnectToServerRequestedEvent(QString,quint16,bool,unsigned int,bool)), tcpDataSender, SLOT(ConnectToServerRequestedEventHandler(QString,quint16,bool,unsigned int,bool)));
-     connect(this, SIGNAL(DisconnectFromServerRequestedEvent(bool)), tcpDataSender, SLOT(DisconnectFromServerRequestedEventHandler(bool)));
-     connect(this, SIGNAL(SetAutoReconnectOptionsRequestedEvent(bool,uint)), tcpDataSender, SLOT(SetAutoReconnectOptionsRequestedEventHandler(bool,uint)));
-     connect(this, SIGNAL(SendDataToServerRequestedEvent()), tcpDataSender, SLOT(SendDataToServerRequestedEventHandler()));
-     connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString)));
-     connect(tcpDataSender, SIGNAL(connected()), this, SIGNAL(ConnectedToServerEvent()));
-     connect(tcpDataSender, SIGNAL(disconnected()), this, SIGNAL(DisconnectedFromServerEvent()));
-     connect(tcpDataSender, SIGNAL(error(QAbstractSocket::SocketError)), this, SIGNAL(NetworkingErrorEvent(QAbstractSocket::SocketError)));
-
-     //Start child thread's own event loop
-     trdTCPDataSender->start();
- }
-
- TCPClient::TCPClient(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay){
-     //Save settings
-     _sServerIP=sServerIP;
-     _iPort=iPort;
-     _IsAutoReconnectEnabled=IsAutoReconnectEnabled;
-     _iAutoReconnectDelay=iAutoReconnectDelay;
-     TCPClient::SaveSettings();
-
-     //Create worker object
-     tcpDataSender = new TCPClientDataSender;
-
-     //Creat thread object and move worker object (and all of it's child objects) to this thread
-     trdTCPDataSender = new QThread;
-     tcpDataSender->moveToThread(trdTCPDataSender);
-
-     //Connect events and handlers
-     connect(this, SIGNAL(ConnectToServerRequestedEvent(QString,quint16,bool,unsigned int,bool)), tcpDataSender, SLOT(ConnectToServerRequestedEventHandler(QString,quint16,bool,unsigned int,bool)));
-     connect(this, SIGNAL(DisconnectFromServerRequestedEvent(bool)), tcpDataSender, SLOT(DisconnectFromServerRequestedEventHandler(bool)));
-     connect(this, SIGNAL(SetAutoReconnectOptionsRequestedEvent(bool,uint)), tcpDataSender, SLOT(SetAutoReconnectOptionsRequestedEventHandler(bool,uint)));
-     connect(this, SIGNAL(SendDataToServerRequestedEvent()), tcpDataSender, SLOT(SendDataToServerRequestedEventHandler()));
-     connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString)));
-     connect(tcpDataSender, SIGNAL(connected()), this, SIGNAL(ConnectedToServerEvent()));
-     connect(tcpDataSender, SIGNAL(disconnected()), this, SIGNAL(DisconnectedFromServerEvent()));
-     connect(tcpDataSender, SIGNAL(error(QAbstractSocket::SocketError)), this, SIGNAL(NetworkingErrorEvent(QAbstractSocket::SocketError)));
-
-     //Start child thread's own event loop
-     trdTCPDataSender->start();
- }
-
- TCPClient::~TCPClient(){
-     //Save settings
-     if (TCPClient::IsConnected()){
-         TCPClient::DisconnectFromServer();
-     }
-     TCPClient::SaveSettings();
-
-     //Quit child thread
-     trdTCPDataSender->quit();
-     if (!trdTCPDataSender->wait(1000)){
-         trdTCPDataSender->terminate();
-     }
-
-     //Delete worker object
-     tcpDataSender->deleteLater();
-     tcpDataSender=NULL;
-     
-     //Delete child thread
-     trdTCPDataSender->deleteLater();
-     trdTCPDataSender=NULL;
- }
-
- /* Options Management */
- void TCPClient::LoadSettings(){
-     //Load settings
-     return;
- }
-
- void TCPClient::SaveSettings() const{
-     //Save settings
-     return;
- }
-
- /* TCP Socket Object Management */
- bool TCPClient::IsConnected() const{
-     return (tcpDataSender->state()==QTcpSocket::ConnectedState);
- }
-
- /* Connection Management */
- void TCPClient::SetServerParameters(const QString sServerIP, quint16 iPort){
-     if (TCPClient::IsValidIPAddress(sServerIP) && TCPClient::IsValidTCPPort(iPort)){
-         //Save settings
-         _sServerIP=sServerIP;
-         _iPort=iPort;
-         TCPClient::SaveSettings();
-     }
-     return;
- }
-
- const QString & TCPClient::GetServerIP() const{
-     return _sServerIP;
- }
-
- quint16 TCPClient::GetServerPort() const{
-     return _iPort;
- }
-
- void TCPClient::ConnectToServer(bool WairForOperationToComplete){
-     emit ConnectToServerRequestedEvent(_sServerIP,_iPort,_IsAutoReconnectEnabled,_iAutoReconnectDelay,WairForOperationToComplete);
-     return;
- }
-
- void TCPClient::ConnectToServer(const QString sServerIP, quint16 iPort, bool IsAutoReconnectEnabled, unsigned int iAutoReconnectDelay, bool WairForOperationToComplete){
-     //Save settings
-     _sServerIP=sServerIP;
-     _iPort=iPort;
-     _IsAutoReconnectEnabled=IsAutoReconnectEnabled;
-     _iAutoReconnectDelay=iAutoReconnectDelay;
-     TCPClient::SaveSettings();
-
-     //Connect
-     emit ConnectToServerRequestedEvent(_sServerIP,_iPort,_IsAutoReconnectEnabled,_iAutoReconnectDelay,WairForOperationToComplete);
-     return;
- }
-
- void TCPClient::DisconnectFromServer(bool WairForOperationToComplete){
-     emit DisconnectFromServerRequestedEvent(WairForOperationToComplete);
-     return;
- }
-
- void TCPClient::SendDataToServer(){
-     emit SendDataToServerRequestedEvent();
-     return;
- }
-
- /* Options */
- void TCPClient::SetAutoReconnectMode(bool IsAutoReconnectEnabled){
-     _IsAutoReconnectEnabled=IsAutoReconnectEnabled;
-     TCPClient::SaveSettings();
-     emit SetAutoReconnectOptionsRequestedEvent(_IsAutoReconnectEnabled,_iAutoReconnectDelay);
-     return;
- }
-
- bool TCPClient::GetIsAutoReconnectEnabled() const{
-     return _IsAutoReconnectEnabled;
- }
-
- void TCPClient::SetAutoReconnectDelay(unsigned int iAutoReconnectDelay){
-     _iAutoReconnectDelay=iAutoReconnectDelay;
-     TCPClient::SaveSettings();
-     emit SetAutoReconnectOptionsRequestedEvent(_IsAutoReconnectEnabled,_iAutoReconnectDelay);
-     return;
- }
-
- unsigned int TCPClient::GetAutoReconnectDelay() const{
-     return _iAutoReconnectDelay;
- }
-
- /* Worker Object Event Handler */
- void TCPClient::SocketResponseReceivedFromServerEventHandler(QString sResponse){
-     qDebug()<<"TCPClient: Response"<<sResponse<<"received from the remote";
-     emit ResponseReceivedFromServerEvent(sResponse);
-     return;
- }
-
- /* Validators */
- bool TCPClient::IsValidIPAddress(const QString sIPAddress) const{
-     QHostAddress hstTestAddr;
-     return hstTestAddr.setAddress(sIPAddress);
- }
-
- bool TCPClient::IsValidTCPPort(quint16 iPort, bool UseRegisteredPortsOnly) const{
-     quint16 iPortIDMin = 1, iPortIDMax = 65535;
-     if (UseRegisteredPortsOnly){
-         iPortIDMin=1024;
-         iPortIDMax=32767;
-     }
-     return ((iPort >= iPortIDMin) && (iPort <= iPortIDMax));
- }
- [[/code]] 
+#include <QApplication>
+#include <QHostAddress>
+#include <QMap>
+#include <QMutex>
+#include <QMutexLocker>
+#include <QQueue>
+#include <QReadWriteLock>
+#include <QString>
+#include <QTcpSocket>
+#include <QThread>
+#include <QTimer>
+#include <QVector>
+
+/* TCP Networking Data Sending Thread Worker Object */
+//This object is moved to a child thread to have its own event loop
+class TCPClientDataSender : public QTcpSocket {
+    Q_OBJECT
+
+public:
+    explicit TCPClientDataSender();
+    ~TCPClientDataSender();
+
+public slots:
+    /* Connection Management Command Handlers */
+    void ConnectToServerRequestedEventHandler(const QString sServerIPNew, quint16 iPortNew,
+                                              bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew, bool bWairForOperationToComplete);
+    void DisconnectFromServerRequestedEventHandler(bool bWairForOperationToComplete);
+    void SetAutoReconnectOptionsRequestedEventHandler(bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew);
+    void SendDataToServerRequestedEventHandler();
+
+    /* TCP Socket Event Handler Slots */
+    void TCPClientDataSender_Connected();
+    void TCPClientDataSender_Disconnected();
+    void TCPClientDataSender_Error(QAbstractSocket::SocketError errErrorInfo);
+    void TCPClientDataSender_ReadyRead();
+
+    /* Functional Slots */
+    void TryReconnect();
+
+signals:
+    void SocketResponseReceivedFromServerEvent(QString sResponse);
+
+private:
+    QString sServerIP; //INTERNAL: Remote IP Address
+    quint16 iPort; //INTERNAL: Remote port
+    bool bIsAutoReconnectEnabled; //INTERNAL: Is auto reconnect function on
+    unsigned int iAutoReconnectDelay; //INTERNAL: Auto reconnect retry interval
+    bool bIsUserInitiatedDisconnection; //INTERNAL: Marks if user has initiated a disconnection, to avoid unexpected TryReconnect() flooding
+    bool bIsReconnecting; //INTERNAL: Marks if we are alreading waiting a reconnection, to avoid unexpected TryReconnect() flooding
+    bool bIsDataSending; //INTERNAL: Marks if we are sending data, avoid recursive calling of SendDataToServerRequestedEventHandler() and segmentation faults
+};
+
+/* TCP Networking Client Wrapper */
+class TCPClient : public QObject {
+    Q_OBJECT
+
+public:
+    TCPClient(); //Default constructor, loads options from ini file or default values
+    TCPClient(const QString sServerIPNew, quint16 iPortNew,
+              bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew); //Constructor with options. Will update options saved in ini file
+    ~TCPClient();
+
+    /* TCP Socket Object Management */
+    bool IsConnected() const; //Get if we have connected to a remote server
+
+    /* Connection Management */
+    void SetServerParameters(const QString sServerIPNew, quint16 iPortNew); //Host information (IP & Port)
+    const QString & GetServerIP() const;
+    quint16 GetServerPort() const;
+    void ConnectToServer(bool bWairForOperationToComplete = false); //Connect to remote server with saved values
+    void ConnectToServer(const QString sServerIPNew, quint16 iPortNew,
+                         bool bIsAutoReconnectEnabledNew = false, unsigned int iAutoReconnectDelayNew = 0, bool bWairForOperationToComplete = false); //Connect to remote server with given address and port. Will update options saved in ini file
+    void DisconnectFromServer(bool bWairForOperationToComplete = false); //Disconnect
+    void SendDataToServer();
+
+    /* Options */
+    void SetAutoReconnectMode(bool bIsAutoReconnectEnabledNew); //Set & Get auto reconnect function (handles error events)
+    bool GetIsAutoReconnectEnabled() const;
+    void SetAutoReconnectDelay(unsigned int iAutoReconnectDelayNew); //Set & Get auto reconnect retry interval
+    unsigned int GetAutoReconnectDelay() const;
+
+    /* Validators */
+    bool IsValidIPAddress(const QString sIPAddress) const; //Check if the given address is valid
+    bool IsValidTCPPort(quint16 iPort, bool bUseRegisteredPortsOnly = true) const; //Check if the given port ID is valid (typically in the range of [1,65535], or [1024,32767] if RegisteredPortsOnly is true)
+
+    /* Threads & Worker Objects */
+    QThread * trdTCPDataSender; //Thread which is used to host and control worker thread
+    TCPClientDataSender * tcpDataSender; //Worker object
+
+public slots:
+    /* Worker Object Event Handler */
+    void SocketResponseReceivedFromServerEventHandler(QString sResponse);
+
+signals:
+    /* Signals to Communicate with Worker Object */
+    void ConnectToServerRequestedEvent(const QString sServerIPNew, quint16 iPortNew,
+                                       bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew, bool bWairForOperationToComplete);
+    void DisconnectFromServerRequestedEvent(bool bWairForOperationToComplete);
+    void SetAutoReconnectOptionsRequestedEvent(bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew);
+    void SendDataToServerRequestedEvent();
+
+    /* Signals to Communicate with Upper Layer */
+    void ResponseReceivedFromServerEvent(QString sResponse);
+    void ConnectedToServerEvent();
+    void DisconnectedFromServerEvent();
+    void NetworkingErrorEvent(QAbstractSocket::SocketError errErrorInfo);
+
+private:
+    /* Connection Management */
+    //volatile bool _IsConnected; //INTERNAL: Get if we have connected to remote server. Not used, use tcpDataSnder->tcpSocket->state() instead.
+
+    /* Options Var */
+    QString sServerIP; //INTERNAL: Remote IP Address
+    quint16 iPort; //INTERNAL: Remote port
+    bool bIsAutoReconnectEnabled; //INTERNAL: Is auto reconnect function on
+    unsigned int iAutoReconnectDelay; //INTERNAL: Auto reconnect retry interval
+
+    /* Options Management */
+    void LoadSettings(); //INTERNAL: Load settings from external ini file
+    void SaveSettings() const; //INTERNAL: Save settings to external ini file
+};
+
+/* TCP Client */
+extern TCPClient * tcpDataClient;
+
+/* IMPLEMENTATION */
+/* TCP Client */
+TCPClient * tcpDataClient;
+
+/* TCP Networking Data Sending Thread Worker Object */
+TCPClientDataSender::TCPClientDataSender() {
+    //Initialize internal variables
+    bIsDataSending = false;
+    bIsUserInitiatedDisconnection = false;
+    bIsReconnecting = false;
+
+    //Create TCP socket object and connect events
+    connect(this, SIGNAL(connected()), this, SLOT(TCPClientDataSender_Connected()));
+    connect(this, SIGNAL(disconnected()), this, SLOT(TCPClientDataSender_Disconnected()));
+    qRegisterMetaType<QAbstractSocket::SocketError>("QAbstractSocket::SocketError"); //Register QAbstractSocket::SocketError type for QueuedConnection
+    connect(this, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(TCPClientDataSender_Error(QAbstractSocket::SocketError)));
+    connect(this, SIGNAL(readyRead()), this, SLOT(TCPClientDataSender_ReadyRead()));
+}
+
+TCPClientDataSender::~TCPClientDataSender() {
+}
+
+/* Connection Management Command Handlers */
+void TCPClientDataSender::ConnectToServerRequestedEventHandler(const QString sServerIPNew, quint16 iPortNew,
+                                                               bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew, bool bWairForOperationToComplete) {
+    sServerIP = sServerIPNew;
+    iPort = iPortNew;
+    bIsAutoReconnectEnabled = bIsAutoReconnectEnabledNew;
+    iAutoReconnectDelay = iAutoReconnectDelayNew;
+    bIsUserInitiatedDisconnection = false;
+
+    connectToHost(sServerIPNew, iPortNew);
+    if (bWairForOperationToComplete) {
+        waitForConnected();
+    }
+
+    return;
+}
+
+void TCPClientDataSender::DisconnectFromServerRequestedEventHandler(bool bWairForOperationToComplete) {
+    disconnectFromHost();
+    bIsUserInitiatedDisconnection = true;
+    bIsReconnecting = false;
+    if (bWairForOperationToComplete) {
+        waitForDisconnected();
+    }
+    return;
+}
+
+void TCPClientDataSender::SetAutoReconnectOptionsRequestedEventHandler(bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew) {
+    bIsAutoReconnectEnabled = bIsAutoReconnectEnabledNew;
+    iAutoReconnectDelay = iAutoReconnectDelayNew;
+    return;
+}
+
+void TCPClientDataSender::SendDataToServerRequestedEventHandler() {
+    //Check if SendDataToServerRequestedEventHandler() is running, avoid recursive calling of SendDataToServerRequestedEventHandler() and segmentation faults
+    if (bIsDataSending) {
+        //If this is a recursive calling, simply returns
+        return;
+    }
+    else {
+        //Marks SendDataToServerRequestedEventHandler() is running
+        bIsDataSending = true;
+    }
+
+    //Send data to remote
+    //It's suggested that you maintain a data queue to cache data panding sending
+
+    _IsDataSending = false;
+    return;
+}
+
+/* TCP Socket Event Handler Slots */
+void TCPClientDataSender::TCPClientDataSender_Connected() {
+    qDebug() << "TCPClient: Connected to" << sServerIP << ":" << iPort;
+    bIsReconnecting = false;
+    return;
+}
+
+void TCPClientDataSender::TCPClientDataSender_Disconnected() {
+    qDebug() << "TCPClient: Disconnected from" << sServerIP << ":" << iPort;
+    return;
+}
+
+void TCPClientDataSender::TCPClientDataSender_Error(QAbstractSocket::SocketError errErrorInfo) {
+    qDebug() << "TCPClient: Error" << errErrorInfo << ": " << errorString();
+    if (state() != QTcpSocket::UnconnectedState) {
+        disconnectFromHost();
+        waitForDisconnected(245000);
+    }
+    if (bIsAutoReconnectEnabled && !bIsReconnecting && !bIsUserInitiatedDisconnection) { //Check if we need to reconnect
+        qDebug() << "TCPClient: Will retry connect after" << iAutoReconnectDelay << "ms";
+        QTimer::singleShot(iAutoReconnectDelay, this, SLOT(TryReconnect()));
+        bIsReconnecting = true;
+    }
+    return;
+}
+
+void TCPClientDataSender::TCPClientDataSender_ReadyRead() {
+    while (bytesAvailable()) {
+        //Read a command line and emit a signal
+        emit SocketResponseReceivedFromServerEvent(readLine());
+
+        //Process events
+        QApplication::processEvents();
+    }
+    return;
+}
+
+/* Functional Slots */
+void TCPClientDataSender::TryReconnect() {
+    if (bIsUserInitiatedDisconnection) {
+        return;
+    }
+    if (state() != QTcpSocket::ConnectingState && state() != QTcpSocket::ConnectedState) {
+        qDebug() << "TCPClient: Retrying to connect to" << sServerIP << ":" << iPort;
+        connectToHost(sServerIP, iPort);
+        waitForConnected(245000);
+    }
+    if (state() != QTcpSocket::ConnectedState) {
+        qDebug() << "TCPClient: Will retry connect after" << iAutoReconnectDelay << "ms";
+        if (state() != QTcpSocket::UnconnectedState) {
+            disconnectFromHost();
+            waitForDisconnected(245000);
+        }
+        QTimer::singleShot(iAutoReconnectDelay, this, SLOT(TryReconnect()));
+    }
+    return;
+}
+
+/* TCP Networking Client Wrapper */
+TCPClient::TCPClient() {
+    //Load settings
+    TCPClient::LoadSettings();
+
+    //Create worker object
+    tcpDataSender = new TCPClientDataSender;
+
+    //Creat thread object and move worker object (and all it's child objects) to this thread
+    trdTCPDataSender = new QThread;
+    tcpDataSender->moveToThread(trdTCPDataSender);
+
+    //Connect events and handlers
+    connect(this, SIGNAL(ConnectToServerRequestedEvent(QString, quint16, bool, unsigned int, bool)), tcpDataSender, SLOT(ConnectToServerRequestedEventHandler(QString, quint16, bool, unsigned int, bool)));
+    connect(this, SIGNAL(DisconnectFromServerRequestedEvent(bool)), tcpDataSender, SLOT(DisconnectFromServerRequestedEventHandler(bool)));
+    connect(this, SIGNAL(SetAutoReconnectOptionsRequestedEvent(bool, uint)), tcpDataSender, SLOT(SetAutoReconnectOptionsRequestedEventHandler(bool, uint)));
+    connect(this, SIGNAL(SendDataToServerRequestedEvent()), tcpDataSender, SLOT(SendDataToServerRequestedEventHandler()));
+    connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString)));
+    connect(tcpDataSender, SIGNAL(connected()), this, SIGNAL(ConnectedToServerEvent()));
+    connect(tcpDataSender, SIGNAL(disconnected()), this, SIGNAL(DisconnectedFromServerEvent()));
+    connect(tcpDataSender, SIGNAL(error(QAbstractSocket::SocketError)), this, SIGNAL(NetworkingErrorEvent(QAbstractSocket::SocketError)));
+
+    //Start child thread's own event loop
+    trdTCPDataSender->start();
+}
+
+TCPClient::TCPClient(const QString sServerIPNew, quint16 iPortNew,
+                     bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew) {
+    //Save settings
+    sServerIP = sServerIPNew;
+    iPort = iPortNew;
+    bIsAutoReconnectEnabled = bIsAutoReconnectEnabledNew;
+    iAutoReconnectDelay = iAutoReconnectDelayNew;
+    TCPClient::SaveSettings();
+
+    //Create worker object
+    tcpDataSender = new TCPClientDataSender;
+
+    //Creat thread object
+    trdTCPDataSender = new QThread;
+    tcpDataSender->moveToThread(trdTCPDataSender);
+
+    //Connect events and handlers
+    connect(this, SIGNAL(ConnectToServerRequestedEvent(QString, quint16, bool, unsigned int, bool)), tcpDataSender, SLOT(ConnectToServerRequestedEventHandler(QString, quint16, bool, unsigned int, bool)));
+    connect(this, SIGNAL(DisconnectFromServerRequestedEvent(bool)), tcpDataSender, SLOT(DisconnectFromServerRequestedEventHandler(bool)));
+    connect(this, SIGNAL(SetAutoReconnectOptionsRequestedEvent(bool, uint)), tcpDataSender, SLOT(SetAutoReconnectOptionsRequestedEventHandler(bool, uint)));
+    connect(this, SIGNAL(SendDataToServerRequestedEvent()), tcpDataSender, SLOT(SendDataToServerRequestedEventHandler()));
+    connect(tcpDataSender, SIGNAL(SocketResponseReceivedFromServerEvent(QString)), this, SLOT(SocketResponseReceivedFromServerEventHandler(QString)));
+    connect(tcpDataSender, SIGNAL(connected()), this, SIGNAL(ConnectedToServerEvent()));
+    connect(tcpDataSender, SIGNAL(disconnected()), this, SIGNAL(DisconnectedFromServerEvent()));
+    connect(tcpDataSender, SIGNAL(error(QAbstractSocket::SocketError)), this, SIGNAL(NetworkingErrorEvent(QAbstractSocket::SocketError)));
+
+    //Start child thread's own event loop
+    trdTCPDataSender->start();
+}
+
+TCPClient::~TCPClient() {
+    //Save settings
+    if (TCPClient::IsConnected()) {
+        TCPClient::DisconnectFromServer();
+    }
+    TCPClient::SaveSettings();
+
+    //Quit child thread
+    trdTCPDataSender->quit();
+    if (!trdTCPDataSender->wait(1000)) {
+        trdTCPDataSender->terminate();
+    }
+
+    //Delete worker object
+    tcpDataSender->deleteLater();
+    tcpDataSender = NULL;
+
+    //Delete child thread
+    trdTCPDataSender->deleteLater();
+    trdTCPDataSender = NULL;
+}
+
+/* TCP Socket Object Management */
+bool TCPClient::IsConnected() const {
+    return (tcpDataSender->state() == QTcpSocket::ConnectedState);
+}
+
+/* Connection Management */
+void TCPClient::SetServerParameters(const QString sServerIPNew, quint16 iPortNew) {
+    if (TCPClient::IsValidIPAddress(sServerIPNew) && TCPClient::IsValidTCPPort(iPortNew)) {
+        //Save settings
+        sServerIP = sServerIPNew;
+        iPort = iPortNew;
+        TCPClient::SaveSettings();
+    }
+    return;
+}
+
+const QString & TCPClient::GetServerIP() const {
+    return sServerIP;
+}
+
+quint16 TCPClient::GetServerPort() const {
+    return iPort;
+}
+
+void TCPClient::ConnectToServer(bool bWairForOperationToComplete) {
+    emit ConnectToServerRequestedEvent(sServerIP, iPort, bIsAutoReconnectEnabled, iAutoReconnectDelay, bWairForOperationToComplete);
+    return;
+}
+
+void TCPClient::ConnectToServer(const QString sServerIPNew, quint16 iPortNew,
+                                bool bIsAutoReconnectEnabledNew, unsigned int iAutoReconnectDelayNew, bool bWairForOperationToComplete) {
+    //Save settings
+    sServerIP = sServerIPNew;
+    iPort = iPortNew;
+    bIsAutoReconnectEnabled = bIsAutoReconnectEnabledNew;
+    iAutoReconnectDelay = iAutoReconnectDelayNew;
+    TCPClient::SaveSettings();
+
+    //Connect
+    emit ConnectToServerRequestedEvent(sServerIP, iPort, bIsAutoReconnectEnabled, iAutoReconnectDelay, bWairForOperationToComplete);
+    return;
+}
+
+void TCPClient::DisconnectFromServer(bool bWairForOperationToComplete) {
+    emit DisconnectFromServerRequestedEvent(bWairForOperationToComplete);
+    return;
+}
+
+void TCPClient::SendDataToServer() {
+    //In high frame rate mode, avoid SendDataToServerRequestedEvent() signal flooding
+    if (tcpDataSender->IsDataSending()) {
+        return;
+    }
+    emit SendDataToServerRequestedEvent();
+    return;
+}
+
+/* Options */
+void TCPClient::SetAutoReconnectMode(bool bIsAutoReconnectEnabledNew) {
+    bIsAutoReconnectEnabled = bIsAutoReconnectEnabledNew;
+    TCPClient::SaveSettings();
+    emit SetAutoReconnectOptionsRequestedEvent(bIsAutoReconnectEnabled, iAutoReconnectDelay);
+    return;
+}
+
+bool TCPClient::GetIsAutoReconnectEnabled() const {
+    return bIsAutoReconnectEnabled;
+}
+
+void TCPClient::SetAutoReconnectDelay(unsigned int iAutoReconnectDelayNew) {
+    iAutoReconnectDelay = iAutoReconnectDelayNew;
+    TCPClient::SaveSettings();
+    emit SetAutoReconnectOptionsRequestedEvent(bIsAutoReconnectEnabled, iAutoReconnectDelay);
+    return;
+}
+
+unsigned int TCPClient::GetAutoReconnectDelay() const {
+    return iAutoReconnectDelay;
+}
+
+/* Worker Object Event Handler */
+void TCPClient::SocketResponseReceivedFromServerEventHandler(QString sResponse) {
+    qDebug() << "TCPClient: Response" << sResponse << "received from the remote";
+    emit ResponseReceivedFromServerEvent(sResponse);
+    return;
+}
+
+/* Validators */
+bool TCPClient::IsValidIPAddress(const QString sIPAddress) const {
+    QHostAddress hstTestAddr;
+    return hstTestAddr.setAddress(sIPAddress);
+}
+
+bool TCPClient::IsValidTCPPort(quint16 iPort, bool bUseRegisteredPortsOnly) const {
+    quint16 iPortIDMin = 1, iPortIDMax = 65535;
+    if (bUseRegisteredPortsOnly) {
+        iPortIDMin = 1024;
+        iPortIDMax = 32767;
+    }
+    return ((iPort >= iPortIDMin) && (iPort <= iPortIDMax));
+}
+
+/* Options Management */
+void TCPClient::LoadSettings() {
+    //Load Settings
+    return;
+}
+
+void TCPClient::SaveSettings() const {
+    //Save Settings
+    return;
+}
+[[/code]]

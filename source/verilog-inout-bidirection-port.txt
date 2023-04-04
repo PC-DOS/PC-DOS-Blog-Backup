@@ -109,11 +109,11 @@
          
          #200 rWriteEnable = 1'b1;
          #0   rDataToWrite = 4'b1111;
-         #100  rWriteEnable = 1'b0;
+         #100 rWriteEnable = 1'b0;
          
          #200 rWriteEnable = 1'b1;
          #0   rDataToWrite = 4'b1010;
-         #100  rWriteEnable = 1'b0;
+         #100 rWriteEnable = 1'b0;
      end
      
  endmodule
