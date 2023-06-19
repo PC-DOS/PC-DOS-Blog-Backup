@@ -1,0 +1,11 @@
+﻿**故障描述：**用户计算机安装了Windows Server 2012 R2和Office 2013。每次启动Office组件时均会看到Office安装界面弹出并显示“正在准备文件”。该界面会自动消失。尝试重新安装Office套件无法解决。
+
+**缓解措施：**打开下列目录：
+
+[[code]]
+C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE15\Office Setup Controller
+[[/code]]
+
+将{{Setup.exe}}改名或删除，问题缓解。
+
+**参考资料：***https://blog.csdn.net/x_ivy/article/details/85293977 
