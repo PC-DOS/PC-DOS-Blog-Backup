@@ -33,6 +33,7 @@
  hardware/ti
  libcore
  libnativehelper
+ linux/platform/s5p4418/tools/crosstools/arm-cortex_a9-eabi-4.7-eglibc-2.18.tar.gz
  linux/prototype/s5p4418/.git
  linux/prototype/s5p6818/.git
  ndk
@@ -46,6 +47,8 @@
  prebuilts/qemu-kernel
  prebuilts/runtime
  prebuilts/sdk
+ qt_system/linux-x86/bin/clang
+ qt_system/linux-x86/bin/clang++
  sdk
  system
  vendor/google

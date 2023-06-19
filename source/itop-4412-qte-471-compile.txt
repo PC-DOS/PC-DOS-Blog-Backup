@@ -4,7 +4,7 @@
 
  开发板为迅为iTop-4412精英版（Elite），核心板采用SCP封装，1 GB内存。
 
- 开发计算机操作系统为Windows 8 Enterprise x64，在VMware Workstation Pro 15.5中运行64位Ubuntu 12.04.5 LTS系统。Ubuntu登录用户名为{{picsell-dois}}。
+ 开发计算机操作系统为Windows Server 2012 R2 Datacenter x64，在VMware Workstation Pro 15.5中运行64位Ubuntu 12.04.5 LTS系统。Ubuntu登录用户名为{{picsell-dois}}。
 
  为便于操作，已将iTop-4412随附光盘内的文件挂载共享目录到Ubuntu的{{/mnt/hgfs/Shared/}}目录内的“iTOP-4412精英版光盘资料”文件夹。
 

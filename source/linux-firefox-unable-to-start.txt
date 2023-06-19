@@ -1,0 +1,9 @@
+**故障现象：**一台安装了CentOS 8的主机，无法从桌面或终端启动Firefox图形界面。系统监视器中显示Firefox处于僵死状态。
+
+**故障处理：**移除Firefox配置文件后，再次尝试启动Firefox，发现Firefox成功启动：
+
+[[code]]
+ rm -rf ~/.mozilla
+ [[/code]]
+
+ **参考资料：***https://blog.csdn.net/sinat_42884063/article/details/123008498 

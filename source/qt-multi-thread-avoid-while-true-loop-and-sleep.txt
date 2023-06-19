@@ -1,84 +1,86 @@
-﻿[[[qt-multi-thread-best-practice | 在Qt实现多线程]]]时，经常遇到需要需要在子线程中执行时长无限的耗时操作的情况，一种常见的实现是使用{{@@while (true) {}@@}}循环，并结合{{QThread::sleep()}}或{{QThread::usleep()}}实现等待，例如：
+[[[qt-multi-thread-best-practice | 在Qt实现多线程]]]时，经常遇到需要需要在子线程中执行时长无限的耗时操作的情况，一种常见的实现是使用{{@@while (true) {}@@}}循环，并结合{{QThread::sleep()}}或{{QThread::usleep()}}实现等待，例如：
 
 [[code type="Cpp"]]
-//Worker是继承自QObject的工作者对象，使用QObject::moveToThread()移动到子线程上
+ //Worker是继承自QObject的工作者对象，使用QObject::moveToThread()移动到子线程上
 void Worker::InfinityJob() {
-    while (bIsRunning) {
-        //执行耗时操作和sleep()延时
+     while (bIsRunning) {
+         //执行耗时操作和sleep()延时
         //usleep(50);
 
-        //允许子线程事件循环处理事件队列，并更新IsRunning变量
+         //允许子线程事件循环处理事件队列，并更新IsRunning变量
         QApplication::processEvents();
-    }
-    return;
-}
-[[/code]]
+     }
+     return;
+ }
+ [[/code]]
 
 这种情况下，可能在运行中遇到意料之外的线程阻塞异常，甚至可能导致整个程序（包括主线程和子线程）进入休眠状态。这时，一个比较推荐的行为是使用{{QTimer::singleShot()}}函数，通过0毫秒的延时值模拟无限循环的行为。此时，需要将{{Worker::InfinityJob()}}定义为{{Worker}}类的槽函数（通过{{slot}}修饰）。
 
-头文件{{Worker.h}}：
+ 头文件{{Worker.h}}：
 
 [[code type="Cpp"]]
-#ifndef WORKER_H
-#define WORKER_H
+ #ifndef WORKER_H
+ #define WORKER_H
 
-#include <QObject>
+ #include <QObject>
 
-class Worker : public QObject {
-    Q_OBJECT
-    
-public:
-    Worker();
-    ~Worker();
-    
-public slots:
-    /* 这里放置各类槽函数的实现 */
-    void ExecuteWorkRequestedEventHandler();
-    void StopWorkRequestedEventHandler();
-    
-    /* 具体的工作 */
-    void InfinityJob();
-    
-private:
-    bool bIsRunning; //指示是否需要继续工作循环
+ class Worker : public QObject {
+     Q_OBJECT
+     
+ public:
+     Worker();
+     ~Worker();
+     
+ public slots:
+     /* 这里放置各类槽函数的实现 */
+     void ExecuteWorkRequestedEventHandler();
+     void StopWorkRequestedEventHandler();
+     
+     /* 具体的工作 */
+     void InfinityJob();
+     
+ private:
+     bool bIsRunning; //指示是否需要继续工作循环
 };
 
-#endif // WORKER_H
-[[/code]]
+ #endif // WORKER_H
+ [[/code]]
 
 代码文件{{Worker.cpp}}：
 
 [[code type="Cpp"]]
-#include "Worker.h"
+ #include "Worker.h"
 
-Worker::Worker() {
-    bIsRunning = false;
-}
+ Worker::Worker() {
+     bIsRunning = false;
+ }
 
-Worker::~Worker() {
-    bIsRunning = false;
-}
+ Worker::~Worker() {
+     bIsRunning = false;
+ }
 
-void Worker::ExecuteWorkRequestedEventHandler() {
-    bIsRunning = true;
-    //开始执行InfinityJob()
-    QTimer::singleShot(0, this, SLOT(InfinityJob()));
-    return;
-}
+ void Worker::ExecuteWorkRequestedEventHandler() {
+     bIsRunning = true;
+     //开始执行InfinityJob()
+     QTimer::singleShot(0, this, SLOT(InfinityJob()));
+     return;
+ }
 
-void Worker::StopWorkRequestedEventHandler() {
-    bIsRunning = false;
-    return;
-}
+ void Worker::StopWorkRequestedEventHandler() {
+     bIsRunning = false;
+     return;
+ }
 
-void Worker::InfinityJob() {
-    //执行耗时操作
+ void Worker::InfinityJob() {
+     //执行耗时操作
 
     //检查是否需要继续执行，并调用QTimer::singleShot()执行自身
     if (bIsRunning) {
-        QTimer::singleShot(0, this, SLOT(InfinityJob()));
-    }
+         QTimer::singleShot(0, this, SLOT(InfinityJob()));
+     }
 
-    return;
-}
-[[/code]]
+     return;
+ }
+ [[/code]]
+
+参考资料：*https://forum.qt.io/topic/98407/gui-freezes-even-with-multithreading/2 

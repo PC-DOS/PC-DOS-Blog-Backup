@@ -1,0 +1,13 @@
+不分情况下，可能需要更新ToDesk的设备号，此时可以尝试执行以下操作：
+
+1. 退出本机运行的ToDesk。
+
+2. 打开注册表编辑器，定位到{{HKEY_LOCAL_MACHINE\SOFTWARE\ToDesk}}，并在下面三个注册表项中各随意修改一个数字或拉丁字母：
+
+* {{GUID}}
+ * {{RandomID}}
+ * {{UUID}}
+
+ 3. 删除{{%ProgramFiles%\ToDesk\config.ini}}。
+
+4. 重新启动ToDesk。 

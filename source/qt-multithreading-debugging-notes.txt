@@ -1,0 +1,66 @@
++ 引言 项目背景
+
+ 本项目为一个使用Qt编写的采集设备控制器应用程序。程序运行在ARM Linux上，从采集卡采集具有特定格式的数据帧，封包后通过以太网络发送到上位机。
+
+ 本程序的线程布局如下：
+
+# 主线程：运行时调度工作，同时接收用户发来的指令并响应。
+# 数据采集线程：轮询驱动程序中的采集完成状态标志，并在采集完成时通过驱动程序读取接口拷贝数据到用户地址空间，同时发射信号提示主线程处理数据。
+# 网络发送线程：由主线程负责激活，将数据从缓冲区读出，写入发送缓冲区，并通过TCP或UDP协议发送数据。
+
++ 1 数据采集线程和主线程一同挂起的问题
+
+**故障现象：**程序运行不特定的时间后，数据发送终止，同时数据发送线程和主线程全部处于休眠状态。驱动程序的调试信息显示驱动程序仍在正常响应数据就绪中断。
+
+**调试记录：**检查源码发现，数据采集线程使用重载{{QThread::run()}}的方式，并定义一个无限的{{@@while (true)  {}@@}}循环实现，同时在实现中使用了QThread::sleep()函数及其变体。[查阅参考资料 *https://forum.qt.io/topic/98407/gui-freezes-even-with-multithreading/2]发现，该行为为不推荐的写法，改为使用[[[qt-multi-thread-best-practice | Controller-Worker设计范式]]]，同时[[[qt-multi-thread-avoid-while-true-loop-and-sleep | 使用延时参数为0毫秒的{{QTimer::singleShot()}}调用模拟无限循环]]]，问题得到缓解。
+
+ 同时，将保护临界区（数据缓冲区）的读写锁{{QReadWriteLock}}的锁定操作全部改为使用{{QReadWriteLock::tryLockForRead()}}和{{QReadWriteLock::tryLockForWrite()}}。
+
++ 2 数据采集线程单独挂起的问题
+
+**故障现象：**程序运行不特定的时间后，数据发送终止，同时数据发送线程处于休眠状态，而主线程依然可以响应用户操作。驱动程序的调试信息显示驱动程序仍在正常响应数据就绪中断。
+
+**调试记录：**检查源码发现，数据采集线程使用以下的方式轮询驱动程序的数据采集状态：
+
+[[code type="Cpp"]]
+ unsigned char chrDataAcquisitionState = DATA_BUFFER_STATUS_NO_NEW_DATA;
+ ioctl(hDriver, CTL_CMD_GET_DATA_BUFFER_STATUS, (unsigned long)(&chrDataAcquisitionState));
+ return (chrDataAcquisitionState == DATA_BUFFER_STATUS_NEW_DATA_ARRIVED);
+ [[/code]]
+
+程序编译时开启了O3优化，推测与{{chrDataAcquisitionState}}标志被优化到CPU缓存内有关，为{{chrDataAcquisitionState}}添加{{volatile}}修饰，问题得到缓解。
+
++ 3 网络发送线程和主线程一同挂起的问题
+
+**故障现象：**程序运行不特定的时间后，数据发送终止，同时网络发送线程和主线程全部处于休眠状态，而数据采集线程仍在正常运行。驱动程序的调试信息显示驱动程序仍在正常响应数据就绪中断。
+
+**调试记录：**将保护临界区（数据发送缓冲区）的互斥量{{QMutex}}在主线程内的锁定操作改为使用{{QMutex::tryLock()}}，问题得到缓解。
+
++ 4 数据采集和发送速率较低
+
+**故障现象：**数据采集和发送速率无法达到标称。
+
+**调试记录：**本故障存在多个影响因素：
+
+# 从驱动程序中拷贝数据时，进行了重复的内存复制。
+# 轮询驱动程序采集完成状态时，驱动程序直接关闭了数据就绪中断的响应，导致频繁轮询时错过中断。
+
++ 5 数据不一致问题
+
+**故障现象：**某些情况下，主线程可能采集到和用户配置的采集参数不一致的数据，或出现计算错误。
+
+**调试记录：**为所有跨线程共享，或可能通过{{read()}}、{{ioctl()}}等接口被驱动程序等外部因素修改的变量添加{{volatile}}修饰，问题得到缓解。
+
++ 6 重新启动后程序异常宕机问题
+
+**故障现象：**通过安装介质将编译后的应用程序拷入仪器，首次运行正常，但重新启动后频繁出现宕机、线程挂起等异常情况。再次通过安装介质将编译后的应用程序拷入仪器，恢复正常运行。
+
+**调试记录：**发现程序在响应用户发来的关机（或重启）指令时，直接使用{{system("poweroff")}}指令进行同步的关机，导致程序无法安全退出。改为异步的关机/重启后，问题得到缓解：
+
+[[code type="Cpp"]]
+ //Request system to shutdown asynchronously
+ system("poweroff -d 1 &");
+
+ //Schedule the app to quit
+ QTimer::singleShot(245, qApp, SLOT(quit()));
+ [[/code]] 

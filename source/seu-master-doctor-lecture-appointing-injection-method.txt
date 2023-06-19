@@ -21,7 +21,7 @@ TamperMonkey脚本范例：
  // @version      0.5-beta
  // @description  草泥马的东大硕博人文讲座预约系统
 // @author       PC-DOS
- // @include      *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
+ // @match        *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
  // @icon         https://www.seu.edu.cn/_upload/tpl/09/bc/2492/template2492/favicon.ico
  // ==/UserScript==
 
@@ -45,7 +45,7 @@ TamperMonkey脚本范例：
     var arrLecturePosters = document.getElementsByTagName("tbody")[0]; //获取活动海报容器
     if (typeof arrLecturePosters != "undefined"){ //避免相关网页元素没有加载完的情况
         arrLecturePosters = arrLecturePosters.getElementsByTagName("tr"); //获取每一个活动资料
-        if (typeof arrLecturePosters != "undefined"){  //避免相关网页元素没有加载完的情况
+        if (typeof arrLecturePosters != "undefined"){ //避免相关网页元素没有加载完的情况
             if (IsInDebug) console.log("FuckSeuLectureAppointmentSystem: %d lecture posters found.", arrLecturePosters.length);
              for (var i = 0; i < arrLecturePosters.length; i++){ //枚举每一个讲座
                 //获取讲座名字
@@ -106,7 +106,7 @@ TamperMonkey脚本范例：
  // @version      0.1
  // @description  草泥马的东大硕博人文讲座预约系统（暴力版）
 // @author       PC-DOS
- // @include      *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
+ // @match        *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
  // @icon         https://www.seu.edu.cn/_upload/tpl/09/bc/2492/template2492/favicon.ico
  // ==/UserScript==
 

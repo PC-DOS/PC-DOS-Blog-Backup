@@ -1,0 +1,21 @@
+**故障描述：**客户机器运行RedStar OS 3.0，发现无法向{{/var/log}}目录写入任何文件或修改权限。
+
+**故障处理：**首先尝试使用{{sudo chmod -R 777 /var/log/}}指令复写权限，发现依然提示拒绝访问，但是用{{ll}}指令枚举权限发现Root用户拥有目录所有权和写入权限。
+
+ 后发现SELinux处于启动状态，禁用SELinux后问题解决。
+
+ 编辑{{/etc/sysconfig/selinux}}文件：
+
+[[code]]
+ sudo vi /etc/sysconfig/selinux
+ [[/code]]
+
+将{{SELINUX=}}行改为：
+
+[[code]]
+ SELINUX=disabled
+ [[/code]]
+
+保存并重新启动系统。
+
+**参考资料：***https://blog.csdn.net/u012562117/article/details/106412635 

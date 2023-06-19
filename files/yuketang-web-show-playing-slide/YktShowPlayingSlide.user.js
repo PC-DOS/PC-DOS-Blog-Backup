@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  雨课堂网页版显示播放中的PPT
 // @author       PC-DOS
-// @include      https://www.yuketang.cn/lesson/fullscreen/v3/*
+// @match        https://www.yuketang.cn/lesson/fullscreen/v3/*
 // @icon         https://www.yuketang.cn/static/images/favicon.ico
 // ==/UserScript==
 

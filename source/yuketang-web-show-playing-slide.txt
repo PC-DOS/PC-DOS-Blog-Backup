@@ -1,4 +1,4 @@
-雨课堂网页版使用一个类名为“{{slide__cmp}}”的{{div}}容器存储PPT影像，且默认在播放时设置该元素的{{style}}样式属性中的“{{display}}”显示属性为“{{none}}”来隐藏该容器。同时添加了一个类名为“{{ppt__modal box-center}}”的遮罩层。
+雨课堂网页版使用一个类名为“{{@@slide__cmp@@}}”的{{div}}容器存储PPT影像，且默认在播放时设置该元素的{{style}}样式属性中的“{{display}}”显示属性为“{{none}}”来隐藏该容器。同时添加了一个类名为“{{@@ppt__modal box-center@@}}”的遮罩层。
 
  将该属性移除、并删除遮罩层即可恢复显示。
 
@@ -11,7 +11,7 @@ TamperMonkey脚本：
  // @version      0.2
  // @description  雨课堂网页版显示播放中的PPT
  // @author       PC-DOS
- // @include      https://www.yuketang.cn/lesson/fullscreen/v3/*
+ // @match        https://www.yuketang.cn/lesson/fullscreen/v3/*
  // @icon         https://www.yuketang.cn/static/images/favicon.ico
  // ==/UserScript==
 

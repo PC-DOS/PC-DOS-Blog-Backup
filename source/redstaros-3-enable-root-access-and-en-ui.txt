@@ -1,0 +1,112 @@
+RedStar OS 3.0默认未开启安装时创建的用户的{{sudo}}权限，导致无法以Root身份存取系统。且系统默认为朝鲜语。为了获取Root访问权和英文界面，可以使用LiveCD引导系统（笔者使用的是Ubuntu 12.04 LTS），并修改配置文件。**您同样可以通过在终端中使用{{rootsetting}}命令启用Root访问。**
+
+进入LiveCD后，挂载RedStar OS安装磁盘（Ubuntu 12.04 LTS LiveCD挂载位置为{{/media/RedStar/}}），启动终端并进入该目录：
+
+[[code]]
+ cd /media/RedStar/
+ [[/code]]
+
+编辑{{etc/sudoers}}文件：
+
+[[code]]
+ sudo gedit ./etc/sudoers
+ [[/code]]
+
+将下列两行解除注释（即删除行前端的井号（“{{#}}”））：
+
+[[code]]
+ %wheel  ALL=(ALL)       ALL
+ %wheel  ALL=(ALL)       NOPASSWD: ALL
+ [[/code]]
+
+完成后，保存并退出。
+
+ 编辑{{etc/group}}文件：
+
+[[code]]
+ sudo gedit ./etc/group
+ [[/code]]
+
+将{{admin:x:0:root}}行中，{{root,}}后的字符串复制到{{wheel:x:10:}}行的末尾。即让它们看起来像这样：
+
+[[code]]
+ admin:x:0:root,PicsellDois
+ wheel:x:10:PicsellDois
+ [[/code]]
+
+其中，{{PicsellDois}}应被替换为用户安装RedStar OS时创建的用户的用户名。
+
+ 完成后，保存并退出。
+
+ 编辑{{etc/sysconfig/i18n}}文件：
+
+[[code]]
+ sudo gedit ./etc/sysconfig/i18n
+ [[/code]]
+
+将{{LANG=}}行改为：
+
+[[code]]
+ LANG="en_US.utf8"
+ [[/code]]
+
+完成后，保存并退出。
+
+ 编辑{{usr/share/config/kdeglobals}}文件：
+
+[[code]]
+ sudo gedit ./usr/share/config/kdeglobals
+ [[/code]]
+
+将{{@@[Locale]@@}}一节改为：
+
+[[code]]
+ [Locale]
+ Country=en_US
+ Language=en_US
+ [[/code]]
+
+完成后，保存并退出。
+
+ 随后，移除LiveCD，重启并登录RedStar OS。启动终端，目前{{sudo}}指令应该已经可用。
+
+ 修改Root密码：
+
+[[code]]
+ sudo passwd root
+ [[/code]]
+
+启用Root登录和{{su}}控制台：
+
+[[code]]
+ sudo usermod -s /bin/bash root
+ [[/code]]
+
+禁用SELinux：
+
+ 编辑{{/etc/sysconfig/selinux}}文件：
+
+[[code]]
+ sudo vi /etc/sysconfig/selinux
+ [[/code]]
+
+将{{SELINUX=}}行改为：
+
+[[code]]
+ SELINUX=disabled
+ [[/code]]
+
+保存并重新启动系统。
+
+ 移除Naenara浏览器网站限制：
+
+[[code]]
+ sudo rm /etc/sysconfig/iptables
+ [[/code]]
+
+ Naenara浏览器改为英文：
+
+ 打开浏览器，
+ 点击上方倒数第二个菜单项，然后选第三个选项，随后选第四个选项。
+
+ 点击快速操作键为{{D}}的按钮，再点上方弹出的消息条中快速操作键为{{R}}的按钮。按下回车键，浏览器会重启，界面语言变更为英文。 

@@ -1,0 +1,23 @@
+使用Lattice Diamond与ModelSim联合仿真时，发现电路无输出。目标电路包含一个使能引脚，该引脚由片内上游电路发出的使能信号使能。使能信号的保持时间为1个时钟周期。但发现电路无法被正确使能。电路使用250 MHz系统时钟。
+
+ 检查Testbench文件发现，仿真开始前有一个保持了250 ns的复位信号，将该复位信号的保持时间改为4的整数倍，发现仿真可以正常运行：
+
+[[code]]
+ initial begin
+
+     //...
+
+     #0 rRest = 1;
+     //#250 rReset = 0; //Should align with clock cycle
+     #240 rReset = 0;
+
+     #0 ; //Simulation code
+
+     //...
+
+ end
+
+ always #2 rClock = ~rClock;
+ [[/code]]
+
+编写Testbench时需要注意时钟与信号的对齐问题 

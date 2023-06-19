@@ -1,0 +1,36 @@
+由于CentOS 8已停止支持，因此原先的yum源已无法用于软件的下载和更新，故需要配置为vault源。
+
+ 此处使用阿里云（ *http://mirrors.aliyun.com/repo/ ）提供的vault源。
+
+ 切换到yum软件源归档目录：
+
+[[code]]
+ cd /etc/yum.repos.d/
+ [[/code]]
+
+删除旧有的源：
+
+[[code]]
+ sudo rm CentOS-*.*
+ [[/code]]
+
+下载vault源到本地：
+
+[[code]]
+ cd ~
+ wget http://mirrors.aliyun.com/repo/Centos-vault-8.5.2111.repo
+ [[/code]]
+
+将vault源移动到yum仓库：
+
+[[code]]
+ sudo mv ~/Centos-vault-8.5.2111.repo /etc/yum.repos.d/
+ [[/code]]
+
+更新yum软件源仓库：
+
+[[code]]
+ sudo yum update
+ [[/code]]
+
+参考资料：*https://zhuanlan.zhihu.com/p/464296947 

@@ -1,211 +1,211 @@
-﻿[[toc]]
+[[toc]]
 
-Qt使用{{QThread}}对象管理线程，通常有两种多线程实现：
+ Qt使用{{QThread}}对象管理线程，通常有两种多线程实现：
 
 # **重载{{QThread::run()}}函数：**非常简单的方法，定义一个继承自{{QThread}}类的类，并重写{{run()}}函数即可。该方法易于操作，但在操作涉及对象操作、事件循环等时，易出现难以调试的内存错误和/或线程调度错误。同时可能存在大量的线程切换，影响性能。
 # **定义一个继承自{{QObject}}的工作者类，并使用{{moveToThread()}}函数将其移动到{{QThread}}对象内：**使用此方法可以简洁地使用Qt的事件循环机制。通过一系列信号-槽的连接，主线程与子线程分别使用独立的事件循环，并进行安全的通讯。同时工作者类的所有函数实现均可在子线程中进行。但是，此方法要求所有跨线程的互操作全部使用Qt的信号-槽机制完成，需要进行大量的{{connect()}}操作以及信号-槽定义。
 
 + 重载{{QThread::run()}}函数
 
-该方法的实现较为简单，此处假设类定义位于头文件{{ChildThread.h}}中，实现于代码文件{{ChildThread.cpp}}中。
+ 该方法的实现较为简单，此处假设类定义位于头文件{{ChildThread.h}}中，实现于代码文件{{ChildThread.cpp}}中。
 
 ++ 头文件{{ChildThread.h}}
 
-[[code type="Cpp"]]
-#ifndef CHILDTHREAD_H
-#define CHILDTHREAD_H
+ [[code type="Cpp"]]
+ #ifndef CHILDTHREAD_H
+ #define CHILDTHREAD_H
 
-#include <QThread>
+ #include <QThread>
 
-class ChildThread : public QObject {
-	Q_OBJECT
-	
-public:
-	ChildThread();
-	virtual ~ChildThread();
-	
-protected:
-	void run(); //重载执行函数
+ class ChildThread : public QObject {
+     Q_OBJECT
+     
+ public:
+     ChildThread();
+     virtual ~ChildThread();
+     
+ protected:
+     void run(); //重载执行函数
 };
 
-#endif // CHILDTHREAD_H
-[[/code]]
+ #endif // CHILDTHREAD_H
+ [[/code]]
 
-++ 代码文件{{ChildThread.cpp}}
+ ++ 代码文件{{ChildThread.cpp}}
 
-[[code type="Cpp"]]
-#include "ChildThread.h"
+ [[code type="Cpp"]]
+ #include "ChildThread.h"
 
-void ChildThread::run() {
-    /* 在这里编写异步工作 */
-    return;
-}
-[[/code]]
+ void ChildThread::run() {
+     /* 在这里编写异步工作 */
+     return;
+ }
+ [[/code]]
 
-++ 使用
+ ++ 使用
 
-使用时，实例化{{ChildThread}}，并执行{{ChildThread::start()}}即可。
+ 使用时，实例化{{ChildThread}}，并执行{{ChildThread::start()}}即可。
 
 ++ 说明
 
-重载{{QThread::run()}}函数的方法适合大多数简单的操作，但是不适合需要Qt事件循环介入的操作。这种操作可能带来非预期的线程切换乃至内存错误（例如在高速执行时的堆栈损坏错误）。
+ 重载{{QThread::run()}}函数的方法适合大多数简单的操作，但是不适合需要Qt事件循环介入的操作。这种操作可能带来非预期的线程切换乃至内存错误（例如在高速执行时的堆栈损坏错误）。
 
 + {{moveToThread()}}方法
 
-在目前常见Qt版本的{{QThread::run()}}默认实现中，会调用{{QThread::exec()}}函数启动线程自身的事件循环，因此，可以结合Qt自身的信号-槽事件循环机制，将整个工作者类移动到{{QThread}}对象内，并使用信号和槽的绑定，异步地启动相应工作。
+ 在目前常见Qt版本的{{QThread::run()}}默认实现中，会调用{{QThread::exec()}}函数启动线程自身的事件循环，因此，可以结合Qt自身的信号-槽事件循环机制，将整个工作者类移动到{{QThread}}对象内，并使用信号和槽的绑定，异步地启动相应工作。
 
-这样的实现通常包括两个继承自{{QObject}}的对象：
+ 这样的实现通常包括两个继承自{{QObject}}的对象：
 
 # **一个{{Worker}}工作者对象：**这个对象定义了一系列槽函数，用于异步地执行相应的工作。
 # **一个{{Controller}}控制器对象：**这个对象包含了一个{{QThread}}线程，以及{{Worker}}工作者对象的实例。该线程同时定义了一系列信号函数，用于启动{{Worker}}工作者对象中的槽函数。
 
 ++ 工作者对象
 
-假设工作者对象定义位于头文件{{Worker.h}}中，实现于代码文件{{Worker.cpp}}中。
+ 假设工作者对象定义位于头文件{{Worker.h}}中，实现于代码文件{{Worker.cpp}}中。
 
 +++ 头文件{{Worker.h}}
 
-[[code type="Cpp"]]
-#ifndef WORKER_H
-#define WORKER_H
+ [[code type="Cpp"]]
+ #ifndef WORKER_H
+ #define WORKER_H
 
-#include <QObject>
+ #include <QObject>
 
-class Worker : public QObject {
-	Q_OBJECT
-	
-public:
-	Worker();
-	~Worker();
-	
-public slots:
-	/* 这里放置各类槽函数的实现 */
-	void ExecuteWorkRequestedEventHandler();
-};
+ class Worker : public QObject {
+     Q_OBJECT
+     
+ public:
+     Worker();
+     ~Worker();
+     
+ public slots:
+     /* 这里放置各类槽函数的实现 */
+     void ExecuteWorkRequestedEventHandler();
+ };
 
-#endif // WORKER_H
-[[/code]]
+ #endif // WORKER_H
+ [[/code]]
 
-+++ 代码文件{{Worker.cpp}}
+ +++ 代码文件{{Worker.cpp}}
 
-[[code type="Cpp"]]
-#include "Worker.h"
+ [[code type="Cpp"]]
+ #include "Worker.h"
 
-Worker::Worker() {
-}
+ Worker::Worker() {
+ }
 
-Worker::~Worker() {
-}
+ Worker::~Worker() {
+ }
 
-void Worker::ExecuteWorkRequestedEventHandler() {
-	/* 在这里编写异步工作 */
-	return;
-}
-[[/code]]
+ void Worker::ExecuteWorkRequestedEventHandler() {
+     /* 在这里编写异步工作 */
+     return;
+ }
+ [[/code]]
 
-++ 控制器对象
+ ++ 控制器对象
 
-假设控制器对象定义位于头文件{{Controller.h}}中，实现于代码文件{{Controller.cpp}}中。
+ 假设控制器对象定义位于头文件{{Controller.h}}中，实现于代码文件{{Controller.cpp}}中。
 
 +++ 头文件{{Controller.h}}
 
-[[code type="Cpp"]]
-#ifndef CONTROLLER_H
-#define CONTROLLER_H
+ [[code type="Cpp"]]
+ #ifndef CONTROLLER_H
+ #define CONTROLLER_H
 
-#include <QObject>
-#include <QThread>
+ #include <QObject>
+ #include <QThread>
 
-class Controller : public QObject {
-	Q_OBJECT
-	
-public:
-	/* 构造与析构 */
-	Controller();
-	~Controller();
-	
-	/* 操作接口 */
-	void ExecuteWork();
-	
-signals:
-	/* 这里放置各类用于与工作者通讯的信号 */
-	void ExecuteWorkRequestedEvent();
-	
-private:
-	/* 子线程对象 */
-	QThread * trdWorkerThread;
-	
-	/* 工作者对象 */
-	Worker * wrkWorker;
-};
+ class Controller : public QObject {
+     Q_OBJECT
+     
+ public:
+     /* 构造与析构 */
+     Controller();
+     ~Controller();
+     
+     /* 操作接口 */
+     void ExecuteWork();
+     
+ signals:
+     /* 这里放置各类用于与工作者通讯的信号 */
+     void ExecuteWorkRequestedEvent();
+     
+ private:
+     /* 子线程对象 */
+     QThread * trdWorkerThread;
+     
+     /* 工作者对象 */
+     Worker * wrkWorker;
+ };
 
-#endif // CONTROLLER_H
-[[/code]]
+ #endif // CONTROLLER_H
+ [[/code]]
 
-+++ 代码文件{{Controller.cpp}}
+ +++ 代码文件{{Controller.cpp}}
 
-[[code type="Cpp"]]
-#include "Controller.h"
+ [[code type="Cpp"]]
+ #include "Controller.h"
 
-/* 构造与析构 */
+ /* 构造与析构 */
 Controller::Controller() {
-    //实例化工作者对象
+     //实例化工作者对象
     wrkWorker = new Worker;
 
-    //实例化子线程对象
+     //实例化子线程对象
     trdWorkerThread = new QThread;
 
-    //将工作者对象移动到子线程
+     //将工作者对象移动到子线程
     wrkWorker->moveToThread(trdWorkerThread);
 
-    //连接信号与槽
+     //连接信号与槽
     connect(this, SIGNAL(ExecuteWorkRequestedEvent()), wrkWorker, SLOT(ExecuteWorkRequestedEventHandler)); //对于信号发射者和接收者不在同一线程的情况，会默认使用Qt::QueuedConnection队列化连接，这样信号即可在触发后被置入目标线程的消息队列（事件循环）中
     //如果工作者对象wrkWorker有子对象需要进行信号-槽的连接，也可以在这里使用Qt::QueuedConnection方式连接：
     //connect(wrkWorker->objSubObject, SIGNAL(EventOfSubObject()), wrkWorker, SLOT(EventOfSubObjectHandler()));
 
-    //启动子线程的事件循环
+     //启动子线程的事件循环
     trdWorkerThread->start();
-}
+ }
 
-Controller::~Controller() {
-    //结束子线程的事件循环
+ Controller::~Controller() {
+     //结束子线程的事件循环
     trdWorkerThread->quit();
-    trdWorkerThread->wait();
+     trdWorkerThread->wait();
 
-    //删除工作者对象
+     //删除工作者对象
     wrkWorker->deleteLater();
-    wrkWorker = NULL;
+     wrkWorker = NULL;
 
-    //删除子线程对象
+     //删除子线程对象
     trdWorkerThread->deleteLater();
-    trdWorkerThread = NULL;
-}
+     trdWorkerThread = NULL;
+ }
 
-/* 操作接口 */
+ /* 操作接口 */
 void Controller::ExecuteWork() {
-    emit ExecuteWorkRequestedEvent(); //发射相应的信号到目标进程的消息队列
+     emit ExecuteWorkRequestedEvent(); //发射相应的信号到目标进程的消息队列
     return;
-}
-[[/code]]
+ }
+ [[/code]]
 
-++ 使用
+ ++ 使用
 
-使用时，实例化{{Controller}}，并执行{{Controller::ExecuteWork()}}即可。
+ 使用时，实例化{{Controller}}，并执行{{Controller::ExecuteWork()}}即可。
 
 ++ 说明
 
-本方法可以充分利用子线程的事件循环机制，并在子线程中执行工作者对象的的几乎所有函数。
+ 本方法可以充分利用子线程的事件循环机制，并在子线程中执行工作者对象的的几乎所有函数。
 
-但需要注意的是，必须通过Qt的信号-槽机制从主线程启动工作者对象的工作。直接引用相应函数将导致这些函数在主线程内执行。
+ 但需要注意的是，必须通过Qt的信号-槽机制从主线程启动工作者对象的工作。直接引用相应函数将导致这些函数在主线程内执行。
 
-需要注意的是，在Qt中使用{{moveToThread()}}函数将{{QObject}}对象移动到另一线程时，若被移动的对象包含了指向其它对象的指针，这些对象不会自动被移动。因此，使用{{moveToThread()}}函数将{{QObject}}对象移动到另一线程时，需要对目标对象自身及其所有子对象调用{{moveToThread()}}函数，否则可能诱发“QObject不能跨线程创建对象”的运行时警告。
+ 需要注意的是，在Qt中使用{{moveToThread()}}函数将{{QObject}}对象移动到另一线程时，若被移动的对象包含了指向其它对象的指针，这些对象不会自动被移动。因此，使用{{moveToThread()}}函数将{{QObject}}对象移动到另一线程时，需要对目标对象自身及其所有子对象调用{{moveToThread()}}函数，否则可能诱发“QObject不能跨线程创建对象”的运行时警告。
 
-删除容器线程时，应先删除容器线程的所有子对象，再删除容器线程，否则将导致错误。
+ 删除容器线程时，应先删除容器线程的所有子对象，再删除容器线程，否则将导致错误。
 
-对于需要需要在子线程中执行时长无限的耗时操作的情况，一种常见的实现是使用{{@@while (true) {}@@}}循环，并结合{{QThread::sleep()}}或{{QThread::usleep()}}实现等待。这种情况下，可能在运行中遇到意料之外的线程阻塞异常，甚至可能导致整个程序（包括主线程和子线程）进入休眠状态。这时，一个比较推荐的行为是使用{{QTimer::singleShot()}}函数，通过0毫秒的延时值模拟无限循环的行为。
+ 对于需要需要在子线程中执行时长无限的耗时操作的情况，一种常见的实现是使用{{@@while (true) {}@@}}循环，并结合{{QThread::sleep()}}或{{QThread::usleep()}}实现等待。这种情况下，可能在运行中遇到意料之外的线程阻塞异常，甚至可能导致整个程序（包括主线程和子线程）进入休眠状态。这时，一个比较推荐的行为是使用{{QTimer::singleShot()}}函数，通过0毫秒的延时值模拟无限循环的行为。
 
 + 参考资料
 
 *https://doc.qt.io/archives/qt-4.8/qthread.html
 
-*https://zhuanlan.zhihu.com/p/349896858
+ *https://zhuanlan.zhihu.com/p/349896858 

@@ -1,151 +1,151 @@
-﻿+ 主程序
++ 主程序
 
-文件名：{{minimum-driver.c}}
+ 文件名：{{minimum-driver.c}}
 
-[[code type="Cpp"]]
-/* Minimum Linux Driver Demo
- *
- * This is a demo driver, which is used to demostrate Linux driver's structure
- */
+ [[code type="Cpp"]]
+ /* Minimum Linux Driver Demo
+  *
+  * This is a demo driver, which is used to demostrate Linux driver's structure
+  */
 
-/* Main header files, include them in all your drivers */
-#include <linux/init.h>
-#include <linux/module.h>
-/* Useful header files */
-#include <linux/cdev.h>
-#include <linux/delay.h>
-#include <linux/device.h>
-#include <linux/fs.h>
-#include <linux/kernel.h>
-#include <linux/miscdevice.h>
-#include <linux/platform_device.h>
-#include <linux/regulator/consumer.h>
-/* Assembly (ASM) header files */
-#include <asm/io.h>
+ /* Main header files, include them in all your drivers */
+ #include <linux/init.h>
+ #include <linux/module.h>
+ /* Useful header files */
+ #include <linux/cdev.h>
+ #include <linux/delay.h>
+ #include <linux/device.h>
+ #include <linux/fs.h>
+ #include <linux/kernel.h>
+ #include <linux/miscdevice.h>
+ #include <linux/platform_device.h>
+ #include <linux/regulator/consumer.h>
+ /* Assembly (ASM) header files */
+ #include <asm/io.h>
 
-/* Definitions, you can put them in a separated header(*.h) file and use #include "xxx.h" to include them */
-//DBGPRINT() is used to print debug messages, comment #define IS_IN_DEBUG to disable them
-#define IS_IN_DEBUG
-#ifdef IS_IN_DEBUG
-#define DBGPRINT(sInfo...) printk(KERN_INFO "MinimumDriver: " sInfo)
-#else
-#define DBGPRINT(sInfo...)
-#endif
-//printk() in different levels
-#define NFOPRINT(sInfo...) printk(KERN_INFO "MinimumDriver: " sInfo)
-#define WRNPRINT(sInfo...) printk(KERN_WARNING "MinimumDriver: " sInfo)
-#define ERRPRINT(sInfo...) printk(KERN_ERR "MinimumDriver: " sInfo)
+ /* Definitions, you can put them in a separated header(*.h) file and use #include "xxx.h" to include them */
+ //DBGPRINT() is used to print debug messages, comment #define IS_IN_DEBUG to disable them
+ #define IS_IN_DEBUG
+ #ifdef IS_IN_DEBUG
+ #define DBGPRINT(sInfo...) printk(KERN_INFO "MinimumDriver: " sInfo)
+ #else
+ #define DBGPRINT(sInfo...)
+ #endif
+ //printk() in different levels
+ #define NFOPRINT(sInfo...) printk(KERN_INFO "MinimumDriver: " sInfo)
+ #define WRNPRINT(sInfo...) printk(KERN_WARNING "MinimumDriver: " sInfo)
+ #define ERRPRINT(sInfo...) printk(KERN_ERR "MinimumDriver: " sInfo)
 
-// Name strings
-#define DRIVER_NAME "minimum_driver"
-/* End of definitions */
+ // Name strings
+ #define DRIVER_NAME "minimum_driver"
+ /* End of definitions */
 
-/* Platform Device Related Functions */
-static int minimum_driver_probe(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Initializing...\n");
-    return 0;
-}
+ /* Platform Device Related Functions */
+ static int minimum_driver_probe(struct platform_device * lpPlatformDevice) {
+     DBGPRINT("Initializing...\n");
+     return 0;
+ }
 
-static int minimum_driver_remove(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Removing...\n");
-    return 0;
-}
+ static int minimum_driver_remove(struct platform_device * lpPlatformDevice) {
+     DBGPRINT("Removing...\n");
+     return 0;
+ }
 
-static void minimum_driver_shutdown(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Shutting down...\n");
-    return 0;
-}
+ static void minimum_driver_shutdown(struct platform_device * lpPlatformDevice) {
+     DBGPRINT("Shutting down...\n");
+     return 0;
+ }
 
-static int minimum_driver_suspend(struct platform_device * lpPlatformDevice, pm_message_t iState) {
-    DBGPRINT("Suspending...\n");
-    return 0;
-}
+ static int minimum_driver_suspend(struct platform_device * lpPlatformDevice, pm_message_t iState) {
+     DBGPRINT("Suspending...\n");
+     return 0;
+ }
 
-static int minimum_driver_resume(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Resuming...\n");
-    return 0;
-}
+ static int minimum_driver_resume(struct platform_device * lpPlatformDevice) {
+     DBGPRINT("Resuming...\n");
+     return 0;
+ }
 
-/* Init & Exit Functions */
-static int minimum_driver_init(void) {
-    NFOPRINT("Initializing...\n");
-    return 0;
-}
+ /* Init & Exit Functions */
+ static int minimum_driver_init(void) {
+     NFOPRINT("Initializing...\n");
+     return 0;
+ }
 
-static void minimum_driver_exit(void) {
-    NFOPRINT("Exiting...\n");
-    return;
-}
+ static void minimum_driver_exit(void) {
+     NFOPRINT("Exiting...\n");
+     return;
+ }
 
-/* Pointers to Init function & Exit Functions */
-module_init(minimum_driver_init);
-module_exit(minimum_driver_exit);
+ /* Pointers to Init function & Exit Functions */
+ module_init(minimum_driver_init);
+ module_exit(minimum_driver_exit);
 
-/* Pointers to Platform Driver Related Functions */
-static struct platform_driver minimum_driver = {
-    .probe = minimum_driver_probe,
-    .remove = minimum_driver_remove,
-    .shutdown = minimum_driver_shutdown,
-    .suspend = minimum_driver_suspend,
-    .resume = minimum_driver_suspend,
-    .driver = {
-        .name = DRIVER_NAME
-        //.owner = THIS_MODULE
-    }
-};
+ /* Pointers to Platform Driver Related Functions */
+ static struct platform_driver minimum_driver = {
+     .probe = minimum_driver_probe,
+     .remove = minimum_driver_remove,
+     .shutdown = minimum_driver_shutdown,
+     .suspend = minimum_driver_suspend,
+     .resume = minimum_driver_suspend,
+     .driver = {
+         .name = DRIVER_NAME
+         //.owner = THIS_MODULE
+     }
+ };
 
-/* Licenses, Authors & Descriptions */
-MODULE_LICENSE("Dual BSD/GPL");
-MODULE_AUTHOR("Picsell-Dois@SCP-EQ");
-MODULE_DESCRIPTION("Minimum Linux driver demo");
-[[/code]]
+ /* Licenses, Authors & Descriptions */
+ MODULE_LICENSE("Dual BSD/GPL");
+ MODULE_AUTHOR("Picsell-Dois@SCP-EQ");
+ MODULE_DESCRIPTION("Minimum Linux driver demo");
+ [[/code]]
 
-+ Makefile
+ + Makefile
 
 文件名：{{Makefile}}
 
-[[code]]
-#!/bin/bash
+ [[code]]
+ #!/bin/bash
 
-# Specify source code
-# Define object file
-obj-m += minimum-driver.o
+ # Specify source code
+ # Define object file
+ obj-m += minimum-driver.o
 
-# KRNLDIR specifies source code directory
-KRNLDIR := /home/picsell-dois/iTop4412/LinuxKernel/iTop4412_Kernel_3.0
+ # KRNLDIR specifies source code directory
+ KRNLDIR := /home/picsell-dois/iTop4412/LinuxKernel/iTop4412_Kernel_3.0
 
-# PWD specifies current working directory
-PWD ?= $(shell pwd)
+ # PWD specifies current working directory
+ PWD ?= $(shell pwd)
 
-# Operations when calling make
-all:
-	rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
-	make -C $(KRNLDIR) M=$(PWD) modules
+ # Operations when calling make
+ all:
+     rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+     make -C $(KRNLDIR) M=$(PWD) modules
 
-# Operations when calling make clean
-clean:
-	rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
-[[/code]]
+ # Operations when calling make clean
+ clean:
+     rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+ [[/code]]
 
-+ .gitignore
+ + .gitignore
 
 供{{git}}使用，文件名：{{.gitignore}}
 
-[[code]]
-*.ko
-*.o
-*.mod.*
-*.order
-*.symvers
-*.cmd
-*.*.cmd
-.*.cmd
-.*.*.cmd
-.tmp_versions
-*~
-*.*~
-[[/code]]
+ [[code]]
+ *.ko
+ *.o
+ *.mod.*
+ *.order
+ *.symvers
+ *.cmd
+ *.*.cmd
+ .*.cmd
+ .*.*.cmd
+ .tmp_versions
+ *~
+ *.*~
+ [[/code]]
 
-+ 参考文献
+ + 参考文献
 
-《iTop-4412开发板实战教程》
+ 《iTop-4412开发板实战教程》 
