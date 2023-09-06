@@ -1,6 +1,6 @@
 Qt的{{QString}}类原生支持Unicode，并支持GB2312、UTF-8等多种编码方式，但是由于构造时常使用{{const char *}}类型的输入参数而没有提前设置C/C++风格字符串的编码方式，常导致乱码。
 
- 这时，需要通过{{QTextCodec::setCodecForCStrings()}}函数，设置C/C++风格字符串的编码方式。
+ 这时，需要通过{{QTextCodec::setCodecForCStrings()}}函数，设置C/C++风格字符串的编码方式。使用该函数前需要包含{{<QTextCodec>}}头文件。
 
 [[code]]
  QTextCodec::setCodecForCStrings(QTextCodec::codecForName("GB2312"));

@@ -1,0 +1,8 @@
+在Windows 10 Mobile与IoT版本中，存在一个位于{{%SystemRoot%\System32\}}目录下的{{SetBootOption.exe}}命令行程序，该程序可将系统的引导模式在有头（Headed）和无头（Headless）之间切换。
+
+ 该程序会改动下列注册表项：
+
+# {{HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WinInit\}}中名为{{Headless}}的DWORD值，该值为{{@@1@@}}时，系统为无头模式，该值为{{@@0@@}}或不存在时，为有头模式。
+# {{HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ConKbd\}}中名为{{Headless}}和{{UseBGFX}}的DWORD值。Windows 10 Mobile中，{{Headless}}始终为{{@@0@@}}，{{UseBGFX}}始终为{{@@1@@}}。
+
+ 参考资料：*https://learn.microsoft.com/zh-cn/windows/iot-core/learn-about-hardware/headlessmode 

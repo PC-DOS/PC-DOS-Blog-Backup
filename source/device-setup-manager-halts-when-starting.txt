@@ -1,0 +1,11 @@
+**故障现象：**一台运行Windows Server 2012 R2 DataCenter x64的计算机，发现登录时存在自动启动的安全软件任务栏托盘图标出现迟缓甚至Explorer启动缓慢、桌面黑屏的问题。
+
+**故障处理：**初步排除了第三方软件和/或硬件驱动程序导致的问题后，检查问题计算机的系统事件日志，发现频繁出现事件ID为7022、内容为“Device Setup Manager 服务在启动时挂起”的错误日志。同时发现Device Setup Manager服务在启动时长期处于“正在启动”状态。
+
+ 将Device Setup Manager服务的启动方式设为“自动（延迟启动）”或“手动”后，重新启动计算机，问题解决，同时Device Setup Manager服务可以正常被启动和运行。
+
+**参考资料：**
+
+ *https://zhidao.baidu.com/question/1642474784022682380.html
+
+ *https://zhuanlan.zhihu.com/p/137173993 

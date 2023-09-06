@@ -50,4 +50,20 @@
 
  +++ Github 增強 - 高速下載
 
-https://greasyfork.org/zh-TW/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD 
+*https://greasyfork.org/zh-TW/scripts/412245-github-%E5%A2%9E%E5%BC%BA-%E9%AB%98%E9%80%9F%E4%B8%8B%E8%BD%BD
+
+ +++ 清理百度贴吧插入广告
+
+*https://greasyfork.org/zh-CN/scripts/21315-%E6%B8%85%E7%90%86%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E6%8F%92%E5%85%A5%E5%B9%BF%E5%91%8A
+
+ +++ 贴吧页面精简
+
+*https://greasyfork.org/zh-CN/scripts/23687-%E8%B4%B4%E5%90%A7%E9%A1%B5%E9%9D%A2%E7%B2%BE%E7%AE%80
+
+ +++ 骚扰拦截
+
+*https://greasyfork.org/zh-CN/scripts/440871-%E9%AA%9A%E6%89%B0%E6%8B%A6%E6%88%AA
+
+ +++ redirect 外链跳转
+
+*https://greasyfork.org/zh-CN/scripts/416338-redirect-%E5%A4%96%E9%93%BE%E8%B7%B3%E8%BD%AC 

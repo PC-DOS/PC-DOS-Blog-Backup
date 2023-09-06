@@ -1,5 +1,5 @@
-﻿**故障描述：**一台安装了Windows Server 2012 R2的DELL PowerEdge R720服务器，在一次固件更新后每次开机时均在设备管理器中发现名为“MAS022”的可移动设备。
+**故障描述：**一台安装了Windows Server 2012 R2的DELL PowerEdge R720服务器，在一次固件更新后每次开机时均在设备管理器中发现名为“MAS022”的可移动设备。
 
 **解决方案：**长按前面板的“{{i}}”按钮或通过iDRAC Web控制台重新启动iDRAC，问题解决。
 
-**参考资料：***https://www.dell.com/community/PowerEdge-Hardware-General/MAS022-in-quot-device-manager-quot/td-p/4443373
+**参考资料：***https://www.dell.com/community/PowerEdge-Hardware-General/MAS022-in-quot-device-manager-quot/td-p/4443373 

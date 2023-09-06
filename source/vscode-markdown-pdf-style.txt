@@ -1,0 +1,15 @@
+Visual Studio Code的Markdown-PDF插件可以快速地将Markdown文件转化为PDF、HTML、PNG等多种格式的文件。该插件的默认样式基于Visual Studio Code的Markdown样式，但同样允许用户进行修改。
+
+ 用户可以从如[*https://theme.typoraio.cn/ Typora]等处获取Markdown样式，并提取其中的CSS样式表。
+
+ 随后，在VSCode的 [用户配置] >  [扩展模块] > [Markdown PDF] 的“Styles”一节中，添加该CSS文件的路径即可。
+
+ 用户亦可编辑{{settings.json}}文件（从VSCode的设置界面右上角的“打开设定（JSON）”）选项中即可打开，并编辑{{markdown-pdf.styles}}属性，例如：
+
+[[code type="json"]]
+     "markdown-pdf.styles": [
+         "F:\\MarkdownStyles\\Demo.css"
+     ],
+ [[/code]]
+
+ Markdown PDF默认会向样式表中插入VSCode默认的样式和少量修改，若不需要该功能，则可在设定中取消“Include Default Styles”的勾选。 

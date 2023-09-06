@@ -15,7 +15,7 @@
 
  您可以通过[*http://store.rg-adguard.net/ Microsoft Store Generation Project]或FFU固件包获取应用商店型APPX包。
 
- 接下来，您可以通过常用的压缩文件包管理工具解压缩APPX包。
+ 接下来，您可以通过常用的压缩文件包管理工具解压缩APPX包。需要注意的是：来自Microsoft Store Generation Project的商店型APPX应用包中的文件的文件名中的空格、半角圆括号、半角井号等符号可能被Microsoft Store替换为[*https://blog.csdn.net/superit401/article/details/78052965 URL转义字符]，从而引发打包错误，开始前需将这些转义字符进行替换。
 
  完成解压后，请删除得到的解压缩目录中的以下文件及目录：
 

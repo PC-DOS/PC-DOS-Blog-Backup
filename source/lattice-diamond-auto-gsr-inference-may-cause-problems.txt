@@ -1,0 +1,12 @@
+Lattice Diamond的综合器的默认设置会尝试自动推断全局复位（GSR）信号，并可能将正常的状态信号推断为复位信号，导致电路异常自动复位、存储器被异常清空、FIFO等无输出且自动复位等问题，并且可能引发更多的仿真时时序检查错误导致难以进行调试。因此，可以考虑：
+
+* 通过 [Spreadsheet View] > [Global Preferences] > [Global Set/Reset Net] 手动指定GSR信号。
+* 编辑当前的Strategy：
+ * 在LSE综合器选项中，将 [Force GSR] 设为{{False}}。
+ * 在Map Design选项中，将 [Force GSR] 设为{{False}}。
+
+ 参考资料：
+
+*https://www.latticesemi.com/~/media/LatticeSemi/Documents/UserManuals/EI/HowtouseGSRPURandTSALL.PDF?document_id=31408
+
+ *https://blog.csdn.net/tbzj_2000/article/details/90520279 
