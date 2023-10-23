@@ -1,10 +1,12 @@
-命令提示符执行：
+BitLocker驱动器加密可以协助您保护您的数据免遭离线攻击侵害，但当您需要维修您的设备或恢复数据时，BitLocker可能导致您的数据无法恢复。Windows提供了[*https://learn.microsoft.com/zh-cn/windows-server/administration/windows-commands/manage-bde Manage-BDE命令行工具]来管理磁盘上的BitLocker状态。
+
+ 若您需要查看当前系统上各分区的BitLocker状态，可在命令提示符执行：
 
 [[code]]
  manage-bde -status
  [[/code]]
 
-对所有列出的处于加密状态的分区执行：
+若您需要关闭所有分区上的BitLocker，请对所有列出的处于“加密”状态的分区执行：
 
 [[code]]
  manage-bde -off X:
@@ -12,4 +14,8 @@
 
 其中{{X:}}为驱动器号。随后系统将提示“解密正在进行中”，且呈现出磁盘高占用率，等待操作完成即可。
 
- 参考：*https://zhuanlan.zhihu.com/p/37381814 
+ 参考资料：
+
+*https://learn.microsoft.com/zh-cn/windows-server/administration/windows-commands/manage-bde
+
+ *https://zhuanlan.zhihu.com/p/37381814 
