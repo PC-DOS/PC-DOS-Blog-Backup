@@ -1,4 +1,4 @@
-[[module css]]
+﻿[[module css]]
  @import url(http://scp-equestria.wikidot.com/component:metro-design-theme/code/1);
  [[/module]]
 
@@ -829,7 +829,7 @@ SCP基金会小马利亚分部：叙事者权限
  [[=]]
 
  [[collapsible show="▶ 职员简介" hide="▼ 职员简介" folded="no"]]
- [[=image http://pc-dos.wdfiles.com/local--files/my-ponysonas/Avatar.png width="150px"]]
+ [[=image http://pc-dos.wdfiles.com/local--files/my-ponysonas/Avatar3.png width="150px"]]
  [[div style="margin-left:10px; margin-right: 10px;  text-align: left;"]]
  **姓名：**Picsell Dois
  **性别：**雄性
