@@ -41,9 +41,9 @@ Fail2Ban通过监视SSH等服务的日志文件，对短时间内多次认证失
 
  [DEFAULT]
  bantime.increment = true
- bantime = 25m
+ bantime = 25h
  bantime.factor = 5
- bantime.formula = (ban.Time * (1<<(ban.Count if ban.Count<20 else 20)) * banFactor) if ban.Count<5 else -1
+ bantime.formula = (ban.Time * (1<<(ban.Count if ban.Count<20 else 20)) * banFactor) if ban.Count<3 else -1
 
  [sshd]
  enabled = true

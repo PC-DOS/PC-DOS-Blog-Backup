@@ -1,4 +1,4 @@
-﻿[[module css]]
+[[module css]]
  @import url(http://scp-equestria.wikidot.com/component:metro-design-theme/code/1);
  [[/module]]
 

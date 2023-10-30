@@ -1,72 +1,72 @@
-﻿Steam商店地址：*https://store.steampowered.com/app/670160/DLIRIUM/
+Steam商店地址：*https://store.steampowered.com/app/670160/DLIRIUM/
 
-Windows下存档与自定义角色存储位置：
-
-[[code]]
-%UserProfile%\AppData\Local\Delirium
-[[/code]]
-
-+ 备份存档批处理
+ Windows下存档与自定义角色存储位置：
 
 [[code]]
-@echo off
-set iSlot=1
-echo Please input Save Slot ID
-set /p iSlot=
-xcopy /cheriky "%UserProfile%\AppData\Local\Delirium" "Saves%iSlot%\Delirium\"
-pause > nul
-[[/code]]
+ %UserProfile%\AppData\Local\Delirium
+ [[/code]]
 
-+ 应用存档批处理
+ + 备份存档批处理
 
 [[code]]
-@echo off
-set iSlot=1
-echo Please input Save Slot ID
-set /p iSlot=
-xcopy /cheriky "Saves%iSlot%\Delirium" "%UserProfile%\AppData\Local\Delirium\"
-pause > nul
-[[/code]]
+ @echo off
+ set iSlot=1
+ echo Please input Save Slot ID
+ set /p iSlot=
+ xcopy /cheriky "%UserProfile%\AppData\Local\Delirium" "Saves%iSlot%\Delirium\"
+ pause > nul
+ [[/code]]
 
-+ Cheat Engine说明
+ + 应用存档批处理
 
-在游戏 [设置] > [选项] 中，将“血量显示”设为“精确版”，可看到当前HP、SAN值、中毒值的具体数值。在Cheat Engine中搜索相关变量时，输入100与相关数值的显示值的差，变量的数据类型为Double（双精度型），存储值显示为整数。
+[[code]]
+ @echo off
+ set iSlot=1
+ echo Please input Save Slot ID
+ set /p iSlot=
+ xcopy /cheriky "Saves%iSlot%\Delirium" "%UserProfile%\AppData\Local\Delirium\"
+ pause > nul
+ [[/code]]
 
-例如，游戏中的HUD（精确版显示风格）：
+ + Cheat Engine说明
+
+ 在游戏 [设置] > [选项] 中，将“血量显示”设为“精确版”，可看到当前HP、SAN值、中毒值的具体数值。在Cheat Engine中搜索相关变量时，输入100与相关数值的显示值的差，变量的数据类型为Double（双精度型），存储值显示为整数。
+
+ 例如，游戏中的HUD（精确版显示风格）：
 
 > SAN：10
-> 毒：5
-> HP：25
+ > 毒：5
+ > HP：25
 
 则在Cheat Engine中搜索相关值时，应使用双精度（Double）搜索，极限取整模式，命中的精确值为：
 
 > SAN：90
-> 毒：95
-> HP：75
+ > 毒：95
+ > HP：75
 
 闪电箭魔法剩余持有量、安魂曲魔法剩余持有量、死亡跑酷圈数等数值均为以数据类型为Double（双精度型）的变量存储的真实值（游戏“精确版”HUD中显示的数值）。
 
 + 存档文件结构
 
-存档文件（扩展名为{{save}}或{{dsave}}的文件）使用明文存储为JSON文本，您可以使用Notepad++等文本编辑器进行编辑。请注意，由于文件末尾有一个{{\0}}字符，不推荐使用Windows记事本进行编辑。
+ 存档文件（扩展名为{{save}}或{{dsave}}的文件）使用明文存储为JSON文本，您可以使用Notepad++等文本编辑器进行编辑。请注意，由于文件末尾有一个{{\0}}字符，不推荐使用Windows记事本进行编辑。
 
-其中，（Beta19版中）{{cheat_}}开头的项表示了上帝模式、隐身、穿墙等作弊功能的状态，将{{achiev_stat_Cheated}}改为{{False}}或{{0.0}}可以取消游戏内的“Warning”提示以及读档界面主角头部的遮盖图示。旧版（Beta18版）中，作弊状态指示为{{General Once Cheated}}，其余作弊状态同样以{{General}}开头，部分对照如下：
+ 其中，（Beta19版中）{{cheat_}}开头的项表示了上帝模式、隐身、穿墙等作弊功能的状态，将{{achiev_stat_Cheated}}改为{{False}}或{{0.0}}可以取消游戏内的“Warning”提示以及读档界面主角头部的遮盖图示。旧版（Beta18版）中，作弊状态指示为{{General Once Cheated}}，其余作弊状态同样以{{General}}开头，部分对照如下：
 
 ||~ Beta19版属性值 ||~ Beta18版属性值 ||~ 描述 ||
-|| {{cheat_godmode}} || {{General GodMode}} || 上帝模式开关，{{1.0}}或{{true}}为启用，{{0.0}}或{{false}}为禁用 ||
-|| {{cheat_notarget}} || {{General NoTarget}} || 隐身模式开关，{{1.0}}或{{true}}为启用，{{0.0}}或{{false}}为禁用 ||
-|| {{cheat_noclip}} || {{General Noclip}} || 穿墙模式开关，{{1.0}}或{{true}}为启用，{{0.0}}或{{false}}为禁用 ||
-|| {{achiev_stat_Cheated}} || {{General Once Cheated}} || 作弊状态指示，{{1.0}}或{{true}}表示玩家已作弊（游戏右下角会显示“WARNING”提示，且读档界面主角头部会被一个调侃用的图示遮盖），{{0.0}}或{{false}}表示玩家未作弊。使用控制台代码后将该值设为{{0.0}}或{{false}}可以消除这些副作用，一颗直接修改存档文件中的对应作弊项直接绕过改状态检测系统激活作弊 ||
-|| {{stats_kills_total}} || {{Statistics Kills Total}} || 游戏过程中的总击杀数 ||
-|| {{achiev_stat_Magic}} || {{General Once Magic}} || 指示玩家是否在游戏过程中使用过魔法，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
-|| {{achiev_stat_flashlightOnce}} || {{General Once Flashlight}} || 指示玩家是否在游戏过程中使用过电筒，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
-|| {{achiev_stat_loadOnce}} || {{General Once Loaded}} || 指示玩家是否在游戏过程中使用过读档功能，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
-|| {{achiev_stat_saveOnce}} || {{General Once Saved}} || 指示玩家是否在游戏过程中使用过存档功能，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
-|| {{achiev_stat_teleportOnce}} || {{General Once Teleported}} || 指示玩家是否在游戏过程中使用过传送魔法，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
+ || {{cheat_godmode}} || {{General GodMode}} || 上帝模式开关，{{1.0}}或{{true}}为启用，{{0.0}}或{{false}}为禁用 ||
+ || {{cheat_notarget}} || {{General NoTarget}} || 隐身模式开关，{{1.0}}或{{true}}为启用，{{0.0}}或{{false}}为禁用 ||
+ || {{cheat_noclip}} || {{General Noclip}} || 穿墙模式开关，{{1.0}}或{{true}}为启用，{{0.0}}或{{false}}为禁用 ||
+ || {{achiev_stat_Cheated}} || {{General Once Cheated}} || 作弊状态指示，{{1.0}}或{{true}}表示玩家已作弊（游戏右下角会显示“WARNING”提示，且读档界面主角头部会被一个调侃用的图示遮盖），{{0.0}}或{{false}}表示玩家未作弊。使用控制台代码后将该值设为{{0.0}}或{{false}}可以消除这些副作用，一颗直接修改存档文件中的对应作弊项直接绕过改状态检测系统激活作弊 ||
+ || {{stats_kills_total}} || {{Statistics Kills Total}} || 游戏过程中的总击杀数 ||
+ || {{achiev_stat_Magic}} || {{General Once Magic}} || 指示玩家是否在游戏过程中使用过魔法，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
+ || {{achiev_stat_flashlightOnce}} || {{General Once Flashlight}} || 指示玩家是否在游戏过程中使用过电筒，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
+ || {{achiev_stat_loadOnce}} || {{General Once Loaded}} || 指示玩家是否在游戏过程中使用过读档功能，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
+ || {{achiev_stat_saveOnce}} || {{General Once Saved}} || 指示玩家是否在游戏过程中使用过存档功能，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
+ || {{achiev_stat_teleportOnce}} || {{General Once Teleported}} || 指示玩家是否在游戏过程中使用过传送魔法，{{1.0}}或{{true}}为使用过，{{0.0}}或{{false}}为未使用过 ||
 
-+ 常用控制台指令
+ + 常用控制台指令
 
-在游戏中按下{{F3}}键可以打开控制台，并执行指令：
+ 在游戏中按下{{F3}}键可以打开控制台，并执行指令：
 
 * {{iddqd}}：上帝模式，免疫所有伤害和死亡。等效于在存档中将{{cheat_godmode}}设为{{1.0}}或{{true}}，但直接执行该指令会在存档中将{{achiev_stat_Cheated}}设为{{1.0}}或{{true}}，并带来副作用。
 * {{notarget}}：隐身模式，不会被怪物发现。等效于在存档中将{{cheat_notarget}}设为{{1.0}}或{{true}}，但直接执行该指令会在存档中将{{achiev_stat_Cheated}}设为{{1.0}}或{{true}}，并带来副作用。
@@ -75,4 +75,4 @@ pause > nul
 * {{dev}}或{{developer}}：开发人员功能，包括显示一些变量状态（按{{Z}}键）、画出怪物感知范围等。
 * {{devroom}}：用于快速选择关卡的房间。直接执行该指令会在存档中将{{achiev_stat_Cheated}}设为{{1.0}}或{{true}}，并带来副作用。
 * {{kill all}}：击杀所有怪物，通常会使主角进入Maniac状态。直接执行该指令会在存档中将{{achiev_stat_Cheated}}设为{{1.0}}或{{true}}，并带来副作用。
-* {{map MAP_NAME}}：跳至特定地图。直接执行该指令会在存档中将{{achiev_stat_Cheated}}设为{{1.0}}或{{true}}，并带来副作用。可选的地图包括：{{Mansion}}（Abel的豪宅，直接从主角发现朋友们死去开始）、{{Industrial}}（第二关，“工业区”）、{{Cave}}（第三关，洞穴）、{{Crystal}}（第四关，无法使用电筒的蓝色洞穴）、{{Graveyard}}（第五关，坟场）、{{Lanterns}}（第五关“坟场”关卡更危险的变体，所有怪物被替换为“灯笼之灵”）、{{Cathedral}}（连接第五关和第六关的教堂）、{{Pandemonium}}（第六关，混沌之地）、{{SteamMachine}}或{{Factory}}（位于第五关和第六关之间的隐藏关卡，正常流程中可以从第五关的教堂后面的隐藏区域进入）、{{Gestas}}（用途不明的地图，但是从一个墙外有植物的区域穿墙切出可以进入一个隐藏区域，按空格键加入派对蹦迪后可以解锁一个成就）等。
+* {{map MAP_NAME}}：跳至特定地图。直接执行该指令会在存档中将{{achiev_stat_Cheated}}设为{{1.0}}或{{true}}，并带来副作用。可选的地图包括：{{Mansion}}（Abel的豪宅，直接从主角发现朋友们死去开始）、{{Industrial}}（第二关，“工业区”）、{{Cave}}（第三关，洞穴）、{{Crystal}}（第四关，无法使用电筒的蓝色洞穴）、{{Graveyard}}（第五关，坟场）、{{Lanterns}}（第五关“坟场”关卡更危险的变体，所有怪物被替换为“灯笼之灵”）、{{Cathedral}}（连接第五关和第六关的教堂）、{{Pandemonium}}（第六关，混沌之地）、{{SteamMachine}}或{{Factory}}（位于第五关和第六关之间的隐藏关卡，正常流程中可以从第五关的教堂后面的隐藏区域进入）、{{Gestas}}（用途不明的地图，但是从一个墙外有植物的区域穿墙切出可以进入一个隐藏区域，按空格键加入派对蹦迪后可以解锁一个成就）等。 
