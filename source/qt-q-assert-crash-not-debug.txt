@@ -1,0 +1,43 @@
+部分情况下使用QtCreator+MinGW+GDB调试应用程序时，若应用程序遇到{{Q_ASSERT}}断言失败，被调试程序可能直接崩溃，而非中断并显示栈痕迹信息。此时，可使用下列方式处理：
+
+ 编辑{{main.cpp}}，在{{main()}}函数前加入自定义的错误消息处理程序：
+
+[[code type="cpp"]]
+ //Debugging asserts in Qt code is tricky with MinGw. You get a crash, instead of a backtrace.
+ //enable the define below to get a crash that results in a backtrace instead. Note that it does
+ //mess up your debug output, so don't leave it enabled if you're not working on fixing an assert
+ #define DEBUG_QT_ASSERT
+
+ #ifdef DEBUG_QT_ASSERT
+ void MessageHandlerForDebug(QtMsgType type, const char *msg) {
+     switch (type) {
+     case QtDebugMsg:
+         fprintf(stderr, "Debug: %s\n", msg);
+         break;
+     case QtWarningMsg:
+         fprintf(stderr, "Warning: %s\n", msg);
+         break;
+     case QtCriticalMsg:
+         fprintf(stderr, "Critical: %s\n", msg);
+         break;
+     case QtFatalMsg:
+         fprintf(stderr, "Fatal: %s\n", msg);
+         __asm("int3");
+         abort();
+         break;
+     }
+ }
+ #endif
+ [[/code]]
+
+在{{main()}}函数注册自定义的消息处理函数：
+
+[[code type="cpp"]]
+ #ifdef DEBUG_QT_ASSERT
+     qInstallMsgHandler(MessageHandlerForDebug);
+ #endif
+ [[/code]]
+
+正式发布前，请取消定义{{DEBUG_QT_ASSERT}}。
+
+ 参考资料：*https://forum.qt.io/topic/12842/q_assert-no-longer-pauses-debugger/12 

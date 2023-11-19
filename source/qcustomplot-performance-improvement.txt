@@ -74,6 +74,18 @@ QCustomPlot的{{setData()}}函数中涉及大量的数据转移，可以修改QC
  QVector<DataType>* coreData() {return &mData;}
  [[/code]]
 
+需要向QCustomPlot控件添加内容时，可以使用以下方式直接访问其数据存储区：
+
+[[code]]
+ //Get a pointer of mData
+ QVector<QCPGraphData> * mData = ui->chrtPlot->graph(0)->data()->coreData();
+ //Read data
+ double dX = mData->at(iIndex)->key;
+ double dY = mData->at(iIndex)->value;
+ //Add data
+ mData->push_back(QCPGraphData(dX, dY));
+ [[/code]]
+
  + 参考文献
 
 *https://www.qcustomplot.com/documentation/performanceimprovement.html

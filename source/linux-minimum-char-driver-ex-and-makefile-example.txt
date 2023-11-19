@@ -50,7 +50,7 @@
 
  /* Character Device Related Functions */
  static int minimum_char_driver_open(struct inode * lpNode, struct file * lpFile) {
-     DBGPRINT("Device file opending...\n");
+     DBGPRINT("Device file opening...\n");
      return 0;
  }
 
@@ -65,7 +65,7 @@
  }
 
  static ssize_t minimum_char_driver_write(struct file * lpFile, const char __user * lpszBuffer, size_t iSize, loff_t * lpOffset) {
-     DBGPRINT("Wrtiting data to device file...\n");
+     DBGPRINT("Writing data to device file...\n");
      return 0;
  }
 

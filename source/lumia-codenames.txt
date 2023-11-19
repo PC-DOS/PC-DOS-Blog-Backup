@@ -1,0 +1,117 @@
+[[=]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ; float: center; border: solid 2px #000000; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##ff5c48|[[size 150%]] **INCOMPLETE** [[/size]]##
+ ----
+ The following contents might be incomplete and/or contains errors.
+ [[/div]]
+ [[/=]]
+
+ *https://wiki.postmarketos.org/wiki/Devices
+ Microsoft Lumia 640 (Codename: microsoft-dempsey)
+ Microsoft Lumia 640 XL (Codename: microsoft-makepeace)
+ Microsoft Lumia 950 XL (Codename: microsoft-cityman)
+ Nokia Lumia 520 (Codename: nokia-fame)
+ Nokia Lumia 620 (Codename: nokia-sand)
+ Nokia Lumia 630 (Codename: nokia-moneypenny)
+ Nokia Lumia 720 (Codename: nokia-rm885) // Nokia Lumia 720 (Codename: nokia-zeal)
+ Nokia Lumia 730 (Codename: nokia-superman)
+ Nokia Lumia 830 (Codename: nokia-tesla)
+ Microsoft Lumia 535 (Codename: microsoft-chakra)
+ Microsoft Lumia 650 LTE (Codename: microsoft-saana)
+ Microsoft Lumia 950 (Codename: microsoft-talkman)
+ Nokia Lumia 530 (Codename: nokia-rock)
+ Nokia Lumia 625 (Codename: nokia-max)
+ Nokia Lumia 820 (Codename: nokia-arrow)
+ Nokia Lumia 920 (Codename: nokia-phi)
+ Nokia Lumia 925 (Codename: nokia-catwalk)
+ Nokia Lumia 930 (Codename: nokia-martini)
+
+ *https://betawiki.net/wiki/List_of_Microsoft_codenames
+ Astro
+     Canceled Lumia model, this model uses Qualcomm Snapdragon 820 (MSM8996) SoC.
+ Cityman
+     Lumia 950 XL
+ Guilin
+     Canceled Microsoft Lumia phone model. Utilized a Qualcomm Snapdragon 210 (MSM8909) SoC.
+ Honjo
+     Canceled Lumia model, this model uses Qualcomm Snapdragon 210 (MSM8909) SoC.
+ Northstar
+     Canceled Lumia model, this model uses Qualcomm Snapdragon 820 (MSM8996) SoC.
+ Saana
+     Lumia 650
+ Saimaa
+     Lumia 550
+ Talkman
+     Lumia 950
+
+ *https://github.com/Android4Lumia/android_device_nokia_fame
+ ||~ Device Type ||~ Codename ||~ Device Model ||
+ || RM-913 || fame_cmmc || Lumia 520 ||
+ || RM-914 || fame_row || Lumia 520 ||
+ || RM-915 || fame_lta || Lumia 520 ||
+ || RM-917 || fame_tmo || Lumia 521 ||
+ || RM-997 || glee_cmmc || Lumia 526 ||
+ || RM-998 || glee_row || Lumia 525 ||
+
+ *https://github.com/Android4Lumia/android_device_nokia_zeal
+ ||~ Device Type ||~ Codename ||~ Device Model ||
+ || RM-885 || zeal_row || Lumia 720 ||
+ || RM-887 || zeal_cmcc || Lumia 720T ||
+
+ *https://github.com/Android4Lumia/android_device_nokia_sand
+ ||~ Device Type ||~ Codename ||~ Device Model ||
+ || TBC || sand || Lumia 620 ||
+
+ *https://www.betaworld.cn/Microsoft_Lumia
+ ||~ Name ||~ Codename ||~ SoC ||~ Release Date ||
+ || Microsoft Lumia 530 || Doris || MSM8212 || 2014 ||
+ || Microsoft Lumia 535 || Chakra || MSM8212 || 2014 ||
+
+ *https://microsoft.fandom.com/wiki/Microsoft_Lumia
+ ||~ Name ||~ Codename ||~ Release Date ||~ Series ||~ Generation ||~ Operating System ||
+ || Nokia Lumia 800 || Sea Ray || November 2011 || 800 || 1 || Windows Phone 7.5 ||
+ || Nokia Lumia 710 || Sword || January 2012 || 700 || 1 || Windows Phone 7.5 ||
+ || Nokia Lumia 900 || Eloko || April 2012 || 900 || 1 || Windows Phone 7.5 ||
+ || Nokia Lumia 610 || || April 2012 || 600 || 1 || Windows Phone 7.5 ||
+ || Nokia Lumia 510 || || September 2012 || 500 || 1 || Windows Phone 7.5 ||
+ || Nokia Lumia 920 || Phi || November 2012 || 900 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 820 || Arrow || November 2012 || 800 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 505 || || December 2012 || 500 || 1 || Windows Phone 7.8 ||
+ || Nokia Lumia 720 || Zeal || January 2013 || 700 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 620 || Sand || January 2013 || 600 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 520 || Fame || January 2013 || 500 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 925 || Catwalk || June 2013 || 900 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 1020 || Elvis || July 2013 || 1000 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 625 || Max || August 2013 || 600 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 2520 || Sirius || October 2013 || 2000 || 2 || Windows RT ||
+ || Nokia Lumia 1520 || Bandit || October 2013 || 1000 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 1320 || Batman || October 2013 || 1000 || 2 || Windows Phone 8 ||
+ || Nokia Lumia 525 || Glee || December 2013 || 500 || 2 || Windows Phone 8 ||
+ || Nokia Lumia Icon || || February 2014 || 900 || 3 || Windows Phone 8.1 ||
+ || Nokia Lumia 930 || Martini || April 2014 || 900 || 3 || Windows Phone 8.1 ||
+ || Nokia Lumia 630 || Moneypenny || April 2014 || 600 || 3 || Windows Phone 8.1 ||
+ || Nokia Lumia 530 || Rock || July 2014 || 500 || 3 || Windows Phone 8.1 ||
+ || Nokia Lumia 830 || Tesla || September 2014 || 800 || 3 || Windows Phone 8.1 ||
+ || Nokia Lumia 735 || Superman || September 2014 || 700 || 3 || Windows Phone 8.1 ||
+
+ ||~ Name ||~ Codename ||~ Release Date ||~ Series ||~ Generation ||~ Operating System ||
+ || Microsoft Lumia 535 || || November 2014 || 500 || 3 || Windows Phone 8.1 ||
+ || Microsoft Lumia 435 || || January 2015 || 400 || 3 || Windows Phone 8.1 ||
+ || Microsoft Lumia 532 || || January 2015 || 500 || 3 || Windows Phone 8.1 ||
+ || Microsoft Lumia 430 || || March 2015 || 400 || 3 || Windows Phone 8.1 ||
+ || Microsoft Lumia 640 || || March 2015 || 600 || 4 || Windows Phone 8.1 ||
+ || Microsoft Lumia 640 XL || || March 2015 || 600 || 4 || Windows Phone 8.1 ||
+ || Microsoft Lumia 540 || || April 2015 || 500 || 4 || Windows Phone 8.1 ||
+ || Microsoft Lumia 950 || Talkman || December 2015 || 900 || 5 || Windows 10 Mobile ||
+ || Microsoft Lumia 950 XL || Cityman || December 2015 || 900 || 5 || Windows 10 Mobile ||
+ || Microsoft Lumia 550 || || December 2015 || 500 || 5 || Windows 10 Mobile ||
+ || Microsoft Lumia 650 || || Feburary 2016 || 600 || 5 || Windows 10 Mobile ||
+
+ **Personal Data / Unreleased Prototype**
+ Lumia 929/Icon (Prototype): Vanquish
+ id326-3: Vela
+ RX-130: Hapanero
+ Canceled Phone with MSM8974: McLaren
+ RX-100: DogPhone
+ RX-112: Midas
+ RX-107: Vega 

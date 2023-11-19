@@ -1,0 +1,105 @@
+[*https://www.qcustomplot.com/ QCustomPlot]是一个基于C++/Qt框架开发的轻量级多功能绘图模块，具有轻量、无需引入外部动态库、易于使用等优点。
+
+QCustomPlot的发行版本可以从 *https://www.qcustomplot.com/index.php/download 下载。需注意的是，从版本2.1.0开始，强制性要求编译期支持C++11标准。
+
++ 基本配置
+
+QCustomPlot仅包含{{qcustomplot.h}}和{{qcustomplot.cpp}}等2个文件。将其引入您的工程中即可准备使用QCustomPlot。
+
+ 需要注意的是，若您使用Qt 5及以上的Qt版本，您可能需要在工程描述文件（通常是扩展名为“{{PRO}}”的文件）中，引入对“{{printsupport}}”功能的支持。您可以通过在工程描述文件中向“{{QT}}”变量追加“{{printsupport}}”的方式完成。类似这样：
+
+[[code]]
+ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
+ [[/code]]
+
+随后，QCustomPlot即已就绪。
+
+ 若您需要将QCustomPlot控件添加到您的窗体上，您可以在窗体设计器中向窗体添加一个Widget控件，并从该Widget控件的右键菜单中点击“提升为...（Promote to ...）”菜单项，打开“提升的窗口部件（Promoted Widgets）”对话框。随后，请在“提升的类名称（Promoted class name）”中输入{{QCustomPlot}}，并在“头文件（Header file）”一项中输入{{qcustomplot.h}}头文件的路径。随后，点击“添加（Add）”按钮，确保QCustomPlot的信息已正确地出现在“提升的类（Promoted Classes）”列表中，并点击“提升（Promote）”按钮，完成控件的提升。
+ 有关QCustomPlot基础配置的详细信息，请参考：*https://www.qcustomplot.com/index.php/tutorials/settingup
+
+ + QCustomPlot基本绘图
+
+QCustomPlot的基础绘图功能可用于绘制X-Y模式的坐标图。在这类图像的绘制中，需要提供2个同尺寸的{{QVector<double>}}类型的一维数组，分别用于表示数据的X、Y坐标。
+
+ 下面的代码假设您已在窗体上添加了一个名为{{wgtCustomPlot}}的控件，并已提升为QCustomPlot控件。{{arrX}}和{{arrY}}为已经备妥的数据横纵坐标序列。
+
+[[code type="Cpp"]]
+ //向QCustomPlot控件增加一幅图表
+ui->wgtCustomPlot->addGraph();
+ //设置坐标轴标签
+ui->wgtCustomPlot->xAxis->setLabel(tr("x"));
+ ui->wgtCustomPlot->yAxis->setLabel(tr("y"));
+ //设置坐标轴范围，这将决定位于哪个横纵坐标范围内的数据将被绘制
+ui->wgtCustomPlot->xAxis->setRange(-1, 1);
+ ui->wgtCustomPlot->yAxis->setRange(0, 1);
+ //将数据序列的横、纵坐标添加到新的图表
+ui->wgtCustomPlot->graph(0)->setData(arrX, arrY);
+ //更新QCustomPlot控件
+ui->wgtCustomPlot->replot(QCustomPlot::rpQueuedReplot);
+ [[/code]]
+
+ + QCustomPlot颜色图绘制
+
+ 颜色图（ColorMap）通过色彩数据在二维平面上展示具有3个维度信息的数据，即除了横纵坐标之外，颜色图通过不同的颜色表示数据的强度等附加参数。颜色图常用于绘制如地形图、频谱图等具有3个数据维度的图像。
+
+QCustomPlot提供了{{QCPColorMap}}类，以支持颜色图的绘制。同时可以通过{{QCPColorScale}}创建描述了颜色图的色彩与数据数值之间的映射关系的图表。
+
+ 下面的代码假设您已在窗体上添加了一个名为{{wgtCustomPlot}}的控件，并已提升为QCustomPlot控件。需要创建的颜色图的行数为{{nRow}}、列数为{{nCol}}，X轴上的数据范围为{{[dXMin, dXMax]}}，Y轴上的数据范围为{{[dYMin, dYMax]}}，数据范围为{{[dDataMin, dDataMax]}}。
+
+[[code type="Cpp"]]
+ //设置坐标轴范围与标签
+ui->wgtCustomPlot->xAxis->setLabel(tr("x"));
+ ui->wgtCustomPlot->xAxis->setRange(dXMin, dXMax);
+ ui->wgtCustomPlot->yAxis->setLabel(tr("y"));
+ ui->wgtCustomPlot->yAxis->setRange(dYMin, dYMax);
+ //向QCustomPlot控件增加一幅颜色图
+//QCPColorMap颜色图对象通过其容器CustomPlot控件的X轴（xAxis）和Y轴（yAxis）进行绑定
+QCPColorMap * lpColorMap = new QCPColorMap(ui->wgtCustomPlot->xAxis, ui->wgtCustomPlot->yAxis);
+ //建立一个颜色图图例对象
+QCPColorScale * lpLegend = new QCPColorScale(ui->wgtCustomPlot);
+ //将颜色图图例与颜色图绑定，这样一方的变更会自动反映到另一方
+lpColorMap->setColorScale(lpLegend);
+ //设置数据的行数与列数
+lpColorMap->data()->setSize(nRow, nCol);
+ //设置数据在X、Y坐标轴上的范围
+lpColorMap->data()->setRange(QCPRange(dXMin, dXMax), QCPRange(dYMin, dYMax));
+ //设置数据范围
+lpColorMap->setDataRange(QCPRange(dDataMin, dDataMax));
+ //设置颜色渐变模式，您可以参考：https://www.qcustomplot.com/documentation/classQCPColorGradient.html
+ lpColorMap->setGradient(QCPColorGradient::gpJet);
+ //添加颜色图图例
+ui->wgtCustomPlot->plotLayout()->addElement(0, 1, lpLegend);
+ //调整颜色图图例的位置
+QCPMarginGroup * lpLegendMargin = new QCPMarginGroup(ui->wgtCustomPlot);
+ lpLegend->setMarginGroup(QCP::msTop|QCP::msBottom, lpLegendMargin);
+ ui->wgtCustomPlot->axisRect()->setMarginGroup(QCP::msTop|QCP::msBottom, lpLegendMargin);
+ //添加数据，setCell()函数直接使用数据点的绝对坐标（通常其坐标原点位于颜色图的左下角）来设置颜色图各点上的值
+//如果您希望根据您给出的X/Y坐标范围内的坐标来操作数据，请使用setData()方法，具体请参考：https://www.qcustomplot.com/documentation/classQCPColorMapData.html
+ for (int iRow = 0; iRow < nRow; ++iRow) {
+     for (int iCol = 0; iCol < nCol; ++iCol) {
+         lpColorMap->data()->setCell(iRow, iCol, dData);
+     }
+ }
+ //更新坐标轴
+ui->wgtCustomPlot->rescaleAxes();
+ //更新QCustomPlot控件
+ui->wgtCustomPlot->replot(QCustomPlot::rpQueuedReplot);
+ [[/code]]
+
+进一步信息可以参考：*https://www.qcustomplot.com/documentation/classQCPColorMap.html
+
+ + 参考资料
+
+*https://www.qcustomplot.com/
+
+ *https://www.qcustomplot.com/index.php/tutorials/settingup
+
+ *https://www.qcustomplot.com/index.php/tutorials/basicplotting
+
+ *https://www.qcustomplot.com/documentation/
+
+ *https://www.qcustomplot.com/documentation/classQCPColorMap.html
+
+ *https://www.qcustomplot.com/documentation/classQCPColorGradient.html
+
+ *https://blog.csdn.net/jlf521521/article/details/106689503 

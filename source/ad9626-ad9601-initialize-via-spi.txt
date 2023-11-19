@@ -1,0 +1,75 @@
+AD9626/AD9601系列ADC使用串行外设接口（Serial Peripheral Interface，SPI）总线进行内部寄存器的配置。该系列ADC涉及的引脚包括：
+
+* **{{CSB}}：**片选信号（Chip Select Bank）引脚，低电平有效。
+* **{{SCLK}}：**SPI时钟信号。
+* **{{SDIO}}：**SPI串行数据信号。
+
+ 该系列ADC的传输模式为：首先拉低片选信号{{CSB}}，随后向时钟线{{SCLK}}加载时钟、数据线{{SDIO}}加载数据。每次传输的数据比特会在时钟{{SCLK}}的上升沿被从数据线{{SDIO}}读取。传输完毕后，拉高片选信号{{CSB}}。
+
+ 该系列ADC的SPI传输在单字节模式下，每次传输24个比特的指令帧{{@@Data[23:0]@@}}。MSB优先模式下，最先发送{{@@Data[23]@@}}。该指令帧的解释为：
+
+* **{{@@Data[23]@@}}：**读写选通位{{@@R/W@@}}。向ADC发送数据（写寄存器）时，应置为{{@@0@@}}。
+* **{{@@Data[22:21]@@}}：**数据字长选择位{{@@{W1, W0}@@}}，指定该指令帧中数据负载的字节长度。单字节传输时，应取{{@@{W1, W0} == 2'b00@@}}，即数据负载长度为1字节[[footnote]]多字节传输时，{{@@{W1, W0} == 2'b01@@}}表示数据负载长度为2字节，{{@@{W1, W0} == 2'b10@@}}表示数据负载长度为3字节，{{@@{W1, W0} == 2'b11@@}}表示数据负载长度为4字节及以上，此时的数据会从数据帧的地址段给出的起始地址开始按顺序写入，即从数据帧的地址段给出的起始地址开始，每写入一个字节，就将写入指针加1，指向下一个字节的写入地址。[[/footnote]]。
+* **{{@@Data[20:8]@@}}：**13比特地址段{{@@ADDR[12:0]@@}}，指示该指令帧的数据负载将被写入或读取的寄存器起始地址。对于AD9626/AD9601系列ADC，仅使用地址的低8位{{@@ADDR[7:0]@@}}，地址的高5位{{@@ADDR[12:8]@@}}始终为{{@@0@@}}。
+* **{{@@Data[7:0]@@}}：8比特（1字节）数据负载，指示需要写入目标寄存器地址的数据。多字节模式（数据字长选择位{{@@{W1, W0} != 2'b00@@}}时）下，一个指令帧会包含多个数据负载。此时指令帧的长度为{{@@16 + 8 * N, N >= 1@@}}，{{N}}为数据负载个数。
+
+ 每次传输结束后，可以向地址{{0xFF}}传送数据{{0x01}}，指示ADC将数据从缓冲区转移到实际寄存器内。
+
+AD9626/AD9601系列ADC初始化需要的寄存器简表如下，有关详细信息，请参阅Analog Devices数据手册：
+
+||~ 地址 ||~ 名称 ||~ 释义 ||
+ || {{@@0x00@@}} || {{chip_port_config}} || 芯片端口配置寄存器。该寄存器低4位和高4位在传输时必须互为镜像。{{@@chip_port_config[3]@@}}和{{@@chip_port_config[4]@@}}必须始终为{{@@1@@}}；{{@@chip_port_config[0]@@}}和{{@@chip_port_config[7]@@}}必须始终为{{@@0@@}}；{{@@chip_port_config[1]@@}}和{{@@chip_port_config[6]@@}}为{{@@1@@}}时，启用LSB优先传输方式，否则为MSB优先；{{@@chip_port_config[2]@@}}和{{@@chip_port_config[5]@@}}为{{@@1@@}}时，指示芯片进行软复位，软复位结束后这两个位将被自动置为{{@@0@@}}。该寄存器默认值为{{@@0x18@@}}。 ||
+ || {{@@0xFF@@}} || {{device_update}} || 寄存器更新指示寄存器。将{{@@device_update[0]@@}}置为{{@@1@@}}将强制芯片将数据从缓冲区刷新到实际的寄存器。结束后这个位将被自动置为{{@@0@@}}。该寄存器默认值为{{@@0x00@@}}。 ||
+ || {{@@0x08@@}} || {{modes}} || 电源模式寄存器。将{{@@modes[5]@@}}置为{{@@1@@}}将使芯片进入待机模式。{{@@modes[2:0]@@}}指示了内部供电状态，{{3'b000}}为默认状态，{{3'b001}}为完全掉电状态，{{3'b010}}为待机状态，{{3'b011}}为默认状态。该寄存器默认值为{{@@0x00@@}}。 ||
+ || {{@@0x09@@}} || {{clock}} || 时钟模式寄存器。将{{@@clock[0]@@}}置为{{@@1@@}}将启用占空比均衡器（Duty Cycle Stabilizer）。该寄存器默认值为{{@@0x01@@}}。 ||
+ || {{@@0x0D@@}} || {{test_io}} || 测试信号输出模式寄存器。将{{@@clock[3:0]@@}}置为非{{@@4'b0000@@}}的值将启用测试信号输出。该寄存器默认值为{{@@0x00@@}}。 ||
+ || {{@@0x0F@@}} || {{ain_config}} || 模拟信号输入模式寄存器。将{{@@ain_config[1]@@}}置为{{@@1@@}}将启用共模输出引脚（{{CML}}）；将{{@@ain_config[2]@@}}置为{{@@1@@}}将禁用模拟输入。该寄存器默认值为{{@@0x00@@}}。 ||
+ || {{@@0x14@@}} || {{output_mode}} || 输出模式寄存器。将{{@@output_mode[5]@@}}置为{{@@1@@}}将交错输出；将{{@@ain_config[4]@@}}置为{{@@1@@}}将禁用输出；将{{@@ain_config[2]@@}}置为{{@@1@@}}将反转输出；{{@@ain_config[1:0]@@}}指定了输出编码方式，{{2'b00}}为二进制偏移量，{{2'b01}}为补码输出，{{2'b10}}为格雷码输出。该寄存器默认值为{{@@0x00@@}}。 ||
+ || {{@@0x16@@}} || {{output_phase}} || 输出相位寄存器。将{{@@output_phase[7]@@}}置为{{@@1@@}}将反转输出时钟极性。该寄存器默认值为{{@@0x03@@}}。 ||
+ || {{@@0x17@@}} || {{flex_output_delay}} || 相位延时控制寄存器。将{{@@flex_output_delay[7]@@}}置为{{@@1@@}}将禁用输出延时；{{@@flex_output_delay[4:0]@@}}控制了输出延时的长度，单位为纳秒（ns），控制精度为0.1 ns，即{{@@Delay = flex_output_delay[4:0] * 0.1 + 0.1@@}}。该寄存器默认值为{{@@0x00@@}}。 ||
+ || {{@@0x18@@}} || {{flex_vref}} || 输入电压范围控制寄存器。{{@@flex_vref[4:0]@@}}控制了输入电压的范围，单位为伏特（V），控制精度为0.02 V。{{@@flex_vref[4] == 1'b0@@}}时，有{{@@Vref = flex_vref[3:0] * 0.02 + 1.25@@}}；{{@@flex_vref[4] == 1'b1@@}}时，有{{@@Vref = flex_vref[3:0] * 0.02 + 0.98@@}}[[footnote]]AD9601/AD9626手册本节给出的数据不是线性递增关系，和所给函数不同。[[/footnote]]。该寄存器默认值为{{@@0x00@@}}。 ||
+
+下面的代码演示了AD9626/AD9601系列ADC的初始化。函数{{@@WriteADCParameters(int16 iCommand)@@}}调用SPI总线控制器，以单字节模式、MSB优先的传输方式传送控制字。16位整型参数{{iCommand}}的高8位为地址，低8位为数据，并被填充为24位指令帧的低16位。24位指令帧的高8位被自动填充为{{8'b00000000}}。初始化参数大多使用默认值，但修改了输入电压范围，并启用了共模输出（{{CML}}），并禁用了输出延迟。
+
+[[code type="Cpp"]]
+ //Initiate ADC soft reset
+ DeviceControl::WriteADCParameters(0x003C);
+ //Send command 0xff01 to flush data from Master register to Salve register
+ DeviceControl::WriteADCParameters(0xff01);
+ usleep(1000);
+ //"chip_port_config" register, use default value
+ DeviceControl::WriteADCParameters(0x0018);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"modes" register, use default value (full power)
+ DeviceControl::WriteADCParameters(0x0800);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"clock" register, use default value (duty cycle stabilizer enabled)
+ DeviceControl::WriteADCParameters(0x0901);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"test_io" register, use default value (don't use test data)
+ DeviceControl::WriteADCParameters(0x0d00);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"ain_config" register, enable CML (Common-Mode Output)
+ DeviceControl::WriteADCParameters(0x0f02);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"output_mode" register, use default value (no interleave, enable output, no invert, offset binary mode)
+ DeviceControl::WriteADCParameters(0x1400);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"output_phase" register, use default value (normal output clock polarity)
+ DeviceControl::WriteADCParameters(0x1603);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"flex_output_delay" register, output delay disabled
+ DeviceControl::WriteADCParameters(0x1780);
+ DeviceControl::WriteADCParameters(0xff01);
+ //"flex_vref" register, use 5'b01111 (1.5V)
+ DeviceControl::WriteADCParameters(0x180f);
+ DeviceControl::WriteADCParameters(0xff01);
+ [[/code]]
+
+参考资料：
+
+*https://www.analog.com/media/en/technical-documentation/application-notes/AN-877.pdf
+
+ *https://www.analog.com/media/en/technical-documentation/data-sheets/AD9601.pdf
+
+ *https://www.analog.com/media/en/technical-documentation/data-sheets/AD9626.pdf 
