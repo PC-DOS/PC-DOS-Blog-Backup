@@ -1,0 +1,3 @@
+Firefox扩展商店阻止了来自中国大陆地区的IP对AdBlock、AdBlocker Ultimate等反广告插件的访问，但是可以通过镜像的Firefox插件商店，例如 *https://www.crxsoso.com/firefox/category/extensions 安装。
+
+ 参考：*https://www.zhihu.com/question/583025847/answer/2886377504 

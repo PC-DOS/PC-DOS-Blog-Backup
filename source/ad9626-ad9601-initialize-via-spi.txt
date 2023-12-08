@@ -11,15 +11,15 @@ AD9626/AD9601系列ADC使用串行外设接口（Serial Peripheral Interface，S
 * **{{@@Data[23]@@}}：**读写选通位{{@@R/W@@}}。向ADC发送数据（写寄存器）时，应置为{{@@0@@}}。
 * **{{@@Data[22:21]@@}}：**数据字长选择位{{@@{W1, W0}@@}}，指定该指令帧中数据负载的字节长度。单字节传输时，应取{{@@{W1, W0} == 2'b00@@}}，即数据负载长度为1字节[[footnote]]多字节传输时，{{@@{W1, W0} == 2'b01@@}}表示数据负载长度为2字节，{{@@{W1, W0} == 2'b10@@}}表示数据负载长度为3字节，{{@@{W1, W0} == 2'b11@@}}表示数据负载长度为4字节及以上，此时的数据会从数据帧的地址段给出的起始地址开始按顺序写入，即从数据帧的地址段给出的起始地址开始，每写入一个字节，就将写入指针加1，指向下一个字节的写入地址。[[/footnote]]。
 * **{{@@Data[20:8]@@}}：**13比特地址段{{@@ADDR[12:0]@@}}，指示该指令帧的数据负载将被写入或读取的寄存器起始地址。对于AD9626/AD9601系列ADC，仅使用地址的低8位{{@@ADDR[7:0]@@}}，地址的高5位{{@@ADDR[12:8]@@}}始终为{{@@0@@}}。
-* **{{@@Data[7:0]@@}}：8比特（1字节）数据负载，指示需要写入目标寄存器地址的数据。多字节模式（数据字长选择位{{@@{W1, W0} != 2'b00@@}}时）下，一个指令帧会包含多个数据负载。此时指令帧的长度为{{@@16 + 8 * N, N >= 1@@}}，{{N}}为数据负载个数。
+* **{{@@Data[7:0]@@}}：**8比特（1字节）数据负载，指示需要写入目标寄存器地址的数据。多字节模式（数据字长选择位{{@@{W1, W0} != 2'b00@@}}时）下，一个指令帧会包含多个数据负载。此时指令帧的长度为{{@@16 + 8 * N, N >= 1@@}}，{{N}}为数据负载个数。
 
  每次传输结束后，可以向地址{{0xFF}}传送数据{{0x01}}，指示ADC将数据从缓冲区转移到实际寄存器内。
 
 AD9626/AD9601系列ADC初始化需要的寄存器简表如下，有关详细信息，请参阅Analog Devices数据手册：
 
 ||~ 地址 ||~ 名称 ||~ 释义 ||
- || {{@@0x00@@}} || {{chip_port_config}} || 芯片端口配置寄存器。该寄存器低4位和高4位在传输时必须互为镜像。{{@@chip_port_config[3]@@}}和{{@@chip_port_config[4]@@}}必须始终为{{@@1@@}}；{{@@chip_port_config[0]@@}}和{{@@chip_port_config[7]@@}}必须始终为{{@@0@@}}；{{@@chip_port_config[1]@@}}和{{@@chip_port_config[6]@@}}为{{@@1@@}}时，启用LSB优先传输方式，否则为MSB优先；{{@@chip_port_config[2]@@}}和{{@@chip_port_config[5]@@}}为{{@@1@@}}时，指示芯片进行软复位，软复位结束后这两个位将被自动置为{{@@0@@}}。该寄存器默认值为{{@@0x18@@}}。 ||
- || {{@@0xFF@@}} || {{device_update}} || 寄存器更新指示寄存器。将{{@@device_update[0]@@}}置为{{@@1@@}}将强制芯片将数据从缓冲区刷新到实际的寄存器。结束后这个位将被自动置为{{@@0@@}}。该寄存器默认值为{{@@0x00@@}}。 ||
+ || {{@@0x00@@}} || {{chip_port_config}} || 芯片端口配置寄存器。该寄存器低4位和高4位在传输时必须互为镜像。{{@@chip_port_config[3]@@}}和{{@@chip_port_config[4]@@}}必须始终为{{@@1@@}}；{{@@chip_port_config[0]@@}}和{{@@chip_port_config[7]@@}}必须始终为{{@@0@@}}；{{@@chip_port_config[1]@@}}和{{@@chip_port_config[6]@@}}为{{@@1@@}}时，启用LSB优先传输方式，否则为MSB优先；{{@@chip_port_config[2]@@}}和{{@@chip_port_config[5]@@}}为{{@@1@@}}时，指示芯片进行软复位，软复位结束后这两个位将被自动置为{{@@0@@}}。该寄存器默认值为{{@@0x18@@}}。对该寄存器的写入会被设备立即响应。 ||
+ || {{@@0xFF@@}} || {{device_update}} || 寄存器更新指示寄存器。将{{@@device_update[0]@@}}置为{{@@1@@}}将强制芯片将数据从缓冲区刷新到实际的寄存器。结束后这个位将被自动置为{{@@0@@}}。该寄存器默认值为{{@@0x00@@}}。Analog Devices手册推荐在配置完所有寄存器后再发起数据转移。 ||
  || {{@@0x08@@}} || {{modes}} || 电源模式寄存器。将{{@@modes[5]@@}}置为{{@@1@@}}将使芯片进入待机模式。{{@@modes[2:0]@@}}指示了内部供电状态，{{3'b000}}为默认状态，{{3'b001}}为完全掉电状态，{{3'b010}}为待机状态，{{3'b011}}为默认状态。该寄存器默认值为{{@@0x00@@}}。 ||
  || {{@@0x09@@}} || {{clock}} || 时钟模式寄存器。将{{@@clock[0]@@}}置为{{@@1@@}}将启用占空比均衡器（Duty Cycle Stabilizer）。该寄存器默认值为{{@@0x01@@}}。 ||
  || {{@@0x0D@@}} || {{test_io}} || 测试信号输出模式寄存器。将{{@@clock[3:0]@@}}置为非{{@@4'b0000@@}}的值将启用测试信号输出。该寄存器默认值为{{@@0x00@@}}。 ||
@@ -33,37 +33,30 @@ AD9626/AD9601系列ADC初始化需要的寄存器简表如下，有关详细信�
 
 [[code type="Cpp"]]
  //Initiate ADC soft reset
+ //Commands sent to register 0x00 will be executed automatically
+ //Thus we don't need to flush it to device by sending 0x01 to register 0x00
  DeviceControl::WriteADCParameters(0x003C);
- //Send command 0xff01 to flush data from Master register to Salve register
- DeviceControl::WriteADCParameters(0xff01);
- usleep(1000);
+ usleep(2450);
  //"chip_port_config" register, use default value
  DeviceControl::WriteADCParameters(0x0018);
- DeviceControl::WriteADCParameters(0xff01);
  //"modes" register, use default value (full power)
  DeviceControl::WriteADCParameters(0x0800);
- DeviceControl::WriteADCParameters(0xff01);
  //"clock" register, use default value (duty cycle stabilizer enabled)
  DeviceControl::WriteADCParameters(0x0901);
- DeviceControl::WriteADCParameters(0xff01);
  //"test_io" register, use default value (don't use test data)
- DeviceControl::WriteADCParameters(0x0d00);
- DeviceControl::WriteADCParameters(0xff01);
+ DeviceControl::WriteADCParameters(0x0D00);
  //"ain_config" register, enable CML (Common-Mode Output)
- DeviceControl::WriteADCParameters(0x0f02);
- DeviceControl::WriteADCParameters(0xff01);
+ DeviceControl::WriteADCParameters(0x0F02);
  //"output_mode" register, use default value (no interleave, enable output, no invert, offset binary mode)
  DeviceControl::WriteADCParameters(0x1400);
- DeviceControl::WriteADCParameters(0xff01);
  //"output_phase" register, use default value (normal output clock polarity)
  DeviceControl::WriteADCParameters(0x1603);
- DeviceControl::WriteADCParameters(0xff01);
  //"flex_output_delay" register, output delay disabled
  DeviceControl::WriteADCParameters(0x1780);
- DeviceControl::WriteADCParameters(0xff01);
  //"flex_vref" register, use 5'b01111 (1.5V)
- DeviceControl::WriteADCParameters(0x180f);
- DeviceControl::WriteADCParameters(0xff01);
+ DeviceControl::WriteADCParameters(0x180F);
+ //Send command 0xff01 to flush data from Master register to Salve register
+ DeviceControl::WriteADCParameters(0xFF01);
  [[/code]]
 
 参考资料：

@@ -1,0 +1,76 @@
+**故障描述：**一台运行Windows Server 2012 R2的工作站，启动任务管理器（{{taskmgr.exe}}）时提示“传递给系统调用的数据区域太小”错误，无法启动任务管理器。
+
+**故障排查：**首先测试了位于{{%SystemRoot%\System32}}和{{%SystemRoot%\SysWow64}}两个目录内的{{taskmgr.exe}}，均提示该错误。从同版本正常功能的系统内拷贝文件覆盖原始文件测试，错误依旧。
+
+ 后发现将{{taskmgr.exe}}改名可以运行，故联想到映像劫持。且用户回忆曾在工作站上运行过一款会以全屏幕模式运行并阻止任务管理器调用的演示程序。查阅该程序源代码，发现该程序使用Windows系统策略和映像劫持两个方式禁止用户调用任务管理器。
+
+[[code]]
+ Imports Microsoft.Win32
+
+ Module BlockTaskmanager
+     Public Class ManageTaskManagerUsingSystemPolicy
+         Public Sub DisableTaskManager()
+             Dim regkey As RegistryKey
+             Dim keyValueInt As String = "1"
+             Dim subKey As String = "Software\Microsoft\Windows\CurrentVersion\Policies\System"
+             Try
+                 regkey = Registry.CurrentUser.CreateSubKey(subKey)
+                 regkey.SetValue("DisableTaskMgr", keyValueInt)
+                 regkey.Close()
+             Catch ex As Exception
+                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Registry Error")
+             End Try
+         End Sub
+         Public Sub EnableTaskManager()
+             Dim regkey As RegistryKey
+             Dim keyValueInt As String = "0"    '0x00000000 (0)
+             Dim subKey As String = "Software\Microsoft\Windows\CurrentVersion\Policies\System"
+             Try
+                 regkey = Registry.CurrentUser.CreateSubKey(subKey)
+                 regkey.SetValue("DisableTaskMgr", keyValueInt)
+                 regkey.Close()
+             Catch ex As Exception
+                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Registry Error")
+             End Try
+         End Sub
+     End Class
+     Public Class ManageTaskManagerUsingIFEO
+         Public Sub DisableTaskManager()
+             Dim regkey As RegistryKey
+             Dim subKey As String = "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\taskmgr.exe"
+             Try
+                 regkey = Registry.LocalMachine.CreateSubKey(subKey)
+                 regkey.SetValue("Debugger", "Taskmgr Disabled", RegistryValueKind.String)
+                 regkey.Close()
+             Catch ex As Exception
+                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Registry Error")
+             End Try
+         End Sub
+         Public Sub EnableTaskManager()
+             Dim subKey As String = "SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\taskmgr.exe"
+             Try
+                 Registry.LocalMachine.DeleteSubKey(subKey)
+             Catch ex As Exception
+                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Registry Error")
+             End Try
+         End Sub
+     End Class
+ End Module
+ [[/code]]
+
+ **故障处理：**启动注册表编辑器，定位到：
+
+[[code]]
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\
+ [[/code]]
+
+发现存在名为“{{taskmgr.exe}}”的注册表键，其内部包括一名为“{{Debugger}}”、内容为“{{Taskmgr Disabled}}”的字符串值。删除该注册表键，并检查确保
+
+[[code]]
+ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+ [[/code]]
+
+内不存在名为“{{DisableTaskMgr}}”的DWORD值（或其值为{{@@0@@}})。
+
+ 再次尝试启动任务管理器，故障解决。 
