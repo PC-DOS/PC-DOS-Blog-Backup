@@ -1,0 +1,16 @@
+**故障描述：**一台安装Ubuntu 12.04.5 LTS操作系统的VMware虚拟机，在更新到VMware 17后，尝试登录时提示“Failed to load session Ubuntu”错误，且反复回到登录界面。Ubuntu 12.04.5 LTS操作系统使用LightDM桌面环境，最初使用VMware 15.5构建。
+
+**故障处理：**在Ubuntu登录界面中，按下 [Ctrl] + [Alt] + [F2] 组合键，切换并登录到字符型终端操作环境。
+
+ 随后，在终端中依次执行：
+
+[[code]]
+ sudo apt-get remove gnome-icon-theme
+ sudo apt-get install gnome-shell
+ sudo apt-get install gnome-tweak-tool
+ sudo reboot
+ [[/code]]
+
+重新启动系统后，将进入Ubuntu登录界面，请点击密码输入框上方的图标，选择使用“GNOME”作为桌面环境。选择登录用户并输入密码，成功进入GNOME桌面环境。
+
+GNOME的初始配置可能存在文字显示不清等问题。点击虚拟机画面右上角的“计算机”图标，点击 [系统设置…]，并打开 [个人] 选项下的 [外观]。在 [外观] 对话框中，展开 [主题] 右侧的下拉菜单，并点击 [Adwaita（默认）]。此时，主题应该已被正确地设置。 

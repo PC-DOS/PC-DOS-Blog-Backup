@@ -1,0 +1,19 @@
+**目标平台：**迅为iTop-4418开发板，编译器位于{{/usr/local/arm/4.3.2/bin/arm-none-linux-gnueabi-gcc}}。
+
+**编译流程：**
+
+1. 获取MemTester源代码：*https://pyropus.ca./software/memtester/ 。源码文件{{[*https://pyropus.ca./software/memtester/old-versions/memtester-4.6.0.tar.gz memtester-4.6.0.tar.gz]}}位于{{~/memtester-4.6.0.tar.gz}}。
+
+2. 解压缩并进入源码目录：
+
+[[code]]
+ cd ~
+ tar -vxf memtester-4.6.0.tar.gz
+ cd memtester-4.6.0
+ [[/code]]
+
+ 3. 编辑{{conf-cc}}和{{conf-ld}}文件，将文件第一行的{{cc}}替换为交叉编译器完整路径{{/usr/local/arm/4.3.2/bin/arm-none-linux-gnueabi-gcc}}。保存两个文件。
+
+4. 使用{{make}}指令交叉编译MemTester。
+
+**参考资料：***https://blog.csdn.net/dropping_1979/article/details/22865773 

@@ -1,0 +1,5 @@
+在PowerShell中执行下面的命令，即可移除Copilot：
+
+[[code]]
+ Get-AppxPackage -All -Name Microsoft.Windows.Ai.Copilot.Provider | Remove-AppxPackage -All
+ [[/code]] 

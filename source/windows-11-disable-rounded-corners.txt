@@ -1,0 +1,3 @@
+此工具需要Internet连接。
+
+*https://github.com/valinet/Win11DisableRoundedCorners 
