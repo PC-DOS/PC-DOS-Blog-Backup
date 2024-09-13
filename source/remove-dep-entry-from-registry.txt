@@ -1,0 +1,9 @@
+**故障描述：**一台客户机安装了Windows Server 2012 R2操作系统，并为部分应用程序设置了DEP豁免。随后发现部分应用程序无法从 [高级系统设置] 的DEP配置中移除。
+
+**故障处理：**打开注册表编辑器，定位到：
+
+[[code]]
+ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers\
+ [[/code]]
+
+移除名称为不再需要DEP豁免的应用程序的路径的字符串值即可。 

@@ -1,0 +1,9 @@
+启动注册表编辑器，定位到：
+
+[[code]]
+ HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager
+ [[/code]]
+
+建立或编辑DWORD值{{SubscribedContent-353698Enabled}}，将其改为{{@@0@@}}即可。
+
+ 参考资料：*https://www.tenforums.com/tutorials/102071-turn-off-timeline-suggestions-windows-10-a.html 

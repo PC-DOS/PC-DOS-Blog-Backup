@@ -1,0 +1,50 @@
+本方法可以帮助您在不重设设备的情况下从Windows 10 Mobile上移除已登录的Microsoft账户。开始前，请确保您的设备可以进入大容量存储器模式。您可以使用[Windows Phone Internals *https://github.com/ReneLergner/WPinternals]等工具解锁设备并开启对该模式的支持。
+
+ 开启设备对大容量存储器模式的支持后，请将设备置入该模式。此时，您的计算机上应该可以看到一个名为“MainOS”的磁盘。假设该磁盘的驱动器号为“{{W:}}”。
+
+ 随后，请启动注册表编辑器，并通过 [加载配置单元] 将下列文件挂载到{{HKEY_LOCAL_MACHINE}}注册表主键下：
+
+[[code]]
+ W:\Windows\System32\Config\DEFAULT
+ [[/code]]
+
+假设该文件的挂载点为{{WP_HKU_DEFAULT}}（该文件对应Windows 10 Mobile运行时的{{HKEY_USERS\.DEFAULT\}}注册表项），定位到下面的路径：
+
+[[code]]
+ HKEY_LOCAL_MACHINE\WP_HKU_DEFAULT\Software\Microsoft\IdentityCRL\StoredIdentities\
+ [[/code]]
+
+删除该路径下所有以电子邮箱地址命名的注册表项，并卸载配置单元。
+
+ 接下来，通过 [加载配置单元] 将下列文件挂载到{{HKEY_LOCAL_MACHINE}}注册表主键下：
+
+[[code]]
+ W:\Data\USERS\DefApps\NTUSER.DAT
+ [[/code]]
+
+假设该文件的挂载点为{{WP_HKCU}}（该文件对应Windows 10 Mobile运行时的{{HKEY_CURRENT_USER}}注册表项），定位到下面的路径：
+
+[[code]]
+ HKEY_LOCAL_MACHINE\WP_HKCU\Software\Microsoft\IdentityCRL\UserExtendedProperties\
+ [[/code]]
+
+删除该路径下所有以电子邮箱地址命名的注册表项，并卸载配置单元。
+
+ 完成后，退出注册表编辑器。
+
+ 随后，请使用DiskGenius等可以以无视Windows权限分配的文件管理工具，浏览MainOS分区中的文件，导航到：
+
+[[code]]
+ W:\Data\USERS\DefApps\AppData\Local\Packages\Microsoft.CloudExperienceHost_8wekyb3d8bbwe\AC
+ [[/code]]
+
+并删除下列文件夹：
+
+[[code]]
+ Microsoft
+ TokenBroker
+ [[/code]]
+
+移除硬件并重新启动设备，您应该已经成功地移除了登录的Microsoft账户。
+
+ 参考资料：*https://appuals.com/remove-microsoft-account-windows-10 

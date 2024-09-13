@@ -1,5 +1,7 @@
 预约页面：*http://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*default/index.do?t_s=1635836530422#/hdyy
 
+新版页面：*https://yjs.seu.edu.cn/gsapp/sys/jzxxtjapp/*default/index.do?t_s=1635836530422#/hdyy
+
  + 纯Web策略
 
  在预约开启前，使用浏览器的“开发者工具”，将被禁用的、显示为“未开放”的讲座预约按钮的HTML代码使用下面的代码替换：
@@ -22,6 +24,7 @@ TamperMonkey脚本范例：
  // @description  草泥马的东大硕博人文讲座预约系统
 // @author       PC-DOS
  // @match        *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
+ // @match        *://yjs.seu.edu.cn/gsapp/sys/jzxxtjapp/*
  // @icon         https://www.seu.edu.cn/_upload/tpl/09/bc/2492/template2492/favicon.ico
  // ==/UserScript==
 
@@ -107,6 +110,7 @@ TamperMonkey脚本范例：
  // @description  草泥马的东大硕博人文讲座预约系统（暴力版）
 // @author       PC-DOS
  // @match        *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
+ // @match        *://yjs.seu.edu.cn/gsapp/sys/jzxxtjapp/*
  // @icon         https://www.seu.edu.cn/_upload/tpl/09/bc/2492/template2492/favicon.ico
  // ==/UserScript==
 

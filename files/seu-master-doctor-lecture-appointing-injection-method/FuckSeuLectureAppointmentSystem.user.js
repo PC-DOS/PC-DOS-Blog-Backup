@@ -5,6 +5,7 @@
 // @description  草泥马的东大硕博人文讲座预约系统
 // @author       PC-DOS
 // @match        *://ehall.seu.edu.cn/gsapp/sys/jzxxtjapp/*
+// @match        *://yjs.seu.edu.cn/gsapp/sys/jzxxtjapp/*
 // @icon         https://www.seu.edu.cn/_upload/tpl/09/bc/2492/template2492/favicon.ico
 // ==/UserScript==
 

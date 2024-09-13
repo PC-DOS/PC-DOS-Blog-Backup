@@ -8,6 +8,12 @@
 [[/div]]
  [[/=]]
 
+ References:
+
+ *https://ea-technology.xp3.biz/category/serial-number/
+
+ *https://49.232.85.58/24.html
+
  +++ Visual Studio 6.0
 
  {{111-1111111}}
@@ -83,4 +89,18 @@
  +++ Visual Studio 2017 Enterprise Edition
 
  {{NJVYC-BMHX2-G77MM-4XJMR-6Q8QF}}
- {{N2VYX-9VR2K-T733M-MWD9X-KQCDF}} 
+ {{N2VYX-9VR2K-T733M-MWD9X-KQCDF}}
+
+ +++ Visual Studio 2019 Professional Edition
+ NYWVH-HT4XC-R2WYW-9Y3CM-X4V3Y
+ NJVYC-BMHX2-G77MM-4XJMR-6Q8QF
+
+ +++ Visual Studio 2019 Enterprise Edition
+ BF8Y8-GN2QH-T84XB-QVY3B-RC4DF
+ KBJFW-NXHK6-W4WJM-CRMQB-G3CDH
+
+ +++ Visual Studio 2022 Professional Edition
+ TD244-P4NB7-YQ6XK-Y8MMM-YWV2J
+
+ +++ Visual Studio 2022 Enterprise Edition
+ VHF9H-NXBBB-638P6-6JHCY-88JWH 

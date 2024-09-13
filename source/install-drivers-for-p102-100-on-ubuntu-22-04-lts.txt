@@ -1,55 +1,55 @@
-﻿Ubuntu 22.04 LTS的“附加驱动”程序可能无法为P102-100挖矿显卡提供支持。为此，需要从NVIDIA网站下载并安装470版本的驱动程序。
+Ubuntu 22.04 LTS的“附加驱动”程序可能无法为P102-100挖矿显卡提供支持。为此，需要从NVIDIA网站下载并安装470版本的驱动程序。
 
-首先从NVIDIA驱动下载网站（ *https://www.nvidia.cn/geforce/drivers/ ）下载470版本的GeForce GTX 1080Ti驱动程序，470.2390版本的驱动程序可以从下列地址下载：
+ 首先从NVIDIA驱动下载网站（ *https://www.nvidia.cn/geforce/drivers/ ）下载470版本的GeForce GTX 1080Ti驱动程序，470.2390版本的驱动程序可以从下列地址下载：
 
 *https://cn.download.nvidia.com/XFree86/Linux-x86_64/470.239.06/NVIDIA-Linux-x86_64-470.239.06.run
 
 下载得到的{{NVIDIA-Linux-x86_64-470.239.06.run}}文件请置于当前登录用户的主文件夹中，路径内请勿包含中文等特殊字符。
 
-随后，注销当前登录用户，在Ubuntu登录界面按Ctrl+Alt+F2组合键，切换到文本控制台，并使用您的用户名和密码登录到Ubuntu终端。
+ 随后，注销当前登录用户，在Ubuntu登录界面按Ctrl+Alt+F2组合键，切换到文本控制台，并使用您的用户名和密码登录到Ubuntu终端。
 
-定位到用户主文件夹：
+ 定位到用户主文件夹：
 
 [[code]]
-cd ~
-[[/code]]
+ cd ~
+ [[/code]]
 
 安装依赖项：
 
 [[code]]
-sudo apt-get install gcc
-sudo apt-get install make
-[[/code]]
+ sudo apt-get install gcc
+ sudo apt-get install make
+ [[/code]]
 
 配置安装文件权限：
 
 [[code]]
-sudo chmod 777 ./NVIDIA-Linux-x86_64-470.239.06.run
-[[/code]]
+ sudo chmod 777 ./NVIDIA-Linux-x86_64-470.239.06.run
+ [[/code]]
 
 首次执行安装文件：
 
 [[code]]
-sudo ./NVIDIA-Linux-x86_64-470.239.06.run
-[[/code]]
+ sudo ./NVIDIA-Linux-x86_64-470.239.06.run
+ [[/code]]
 
 首次执行时，会提示禁用Ubuntu自带的开源驱动程序。同意禁用开源驱动程序后，安装程序会创建相应的配置文件，并在完成后提示安装失败。此时，请退出安装程序，并重新启动系统：
 
 [[code]]
-sudo reboot
-[[/code]]
+ sudo reboot
+ [[/code]]
 
 重新启动系统后，在Ubuntu登录界面按Ctrl+Alt+F2组合键，切换到文本控制台，并使用您的用户名和密码登录到Ubuntu终端。随后，重新启动安装程序：
 
 [[code]]
-cd ~
-sudo ./NVIDIA-Linux-x86_64-470.239.06.run
-[[/code]]
+ cd ~
+ sudo ./NVIDIA-Linux-x86_64-470.239.06.run
+ [[/code]]
 
 完成后，重新启动系统：
 
 [[code]]
-sudo reboot
-[[/code]]
+ sudo reboot
+ [[/code]]
 
 正常从图形界面登录到Ubuntu桌面，此时应该已可以通过{{nvidia-smi}}命令行程序看到P102-100显卡。 
