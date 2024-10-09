@@ -35,3 +35,5 @@ adb shell settings put global ntp_server ntp1.aliyun.com
 断开并重新连接到WLAN网络，应当已可用。
 
 参考资料：*https://www.wunote.cn/article/3536/ 
+
+若您的设备已获得Root权限，也可以考虑使用CaptiveMgr工具在本地设备上完成该项工作。
