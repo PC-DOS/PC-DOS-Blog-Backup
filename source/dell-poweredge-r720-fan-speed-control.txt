@@ -1,4 +1,4 @@
-﻿+ 修改System Profile
++ 修改System Profile
 
  # 开机自检时按下{{F2}}键，进入系统设置，导航到 [System BIOS] > [System Profile Settings]。
 # 将 [System Profile] 改为 [Performance Per Watt (OS)]。
@@ -27,12 +27,12 @@
  在测试过程中，笔者将iDRAC升级到最新版本后，发现该版本的iDRAC固件在自动转速模式下风扇转速较高，故降级到iDRAC版本1.30。具体版本信息：
 
 > **BIOS 版本：**{{@@2.0.19@@}}
->
-> **固件版本：**{{@@1.30.30 (Build 43)@@}}
->
-> **Lifecycle Controller 固件：**{{@@2.65.65.65@@}}
+ > 
+ > **固件版本：**{{@@1.30.30 (Build 43)@@}}
+ > 
+ > **Lifecycle Controller 固件：**{{@@2.65.65.65@@}}
 
-+ 参考资料
+ + 参考资料
 
 *https://zhuanlan.zhihu.com/p/157796567
  *https://blog.csdn.net/qq_37272728/article/details/115793770 

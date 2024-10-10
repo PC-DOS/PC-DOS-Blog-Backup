@@ -1,0 +1,5 @@
+Firefox默认的浏览器主题可能无法显示Windows主题色，若您希望Firefox在标题栏中展示该颜色，可以通过Firefox高级配置选项恢复该功能。
+
+ 开始前，请确保您已将Firefox更新为最新的版本，Firefox 115 ESR等较早的版本可能无法正常显示Windows主题色。
+
+ 随后，请在Firefox中访问{{about:config}}高级配置页面，建立或编辑{{@@browser.theme.windows.accent-color-in-tabs.enabled@@}}选项，将其值改为{{@@True@@}}。 

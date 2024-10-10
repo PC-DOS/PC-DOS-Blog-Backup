@@ -1,0 +1,3 @@
+Firefox在从http站点下载文件时，可能阻止下载并弹出安全警告，您可以通过Firefox高级配置选项禁止该警告。
+
+ 在Firefox中访问{{about:config}}高级配置页面，将{{@@dom.block_download_in_sandboxed_iframes@@}}和{{@@dom.block_download_insecure@@}}选项的值改为{{@@False@@}}。 

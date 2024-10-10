@@ -1,39 +1,39 @@
-﻿您可以使用该方案修复原生Android或LineageOS等类原生Android上连接到WLAN热点后，提示“无网络连接”错误的问题。该故障可能影响Android下载管理器的正常工作。
+您可以使用该方案修复原生Android或LineageOS等类原生Android上连接到WLAN热点后，提示“无网络连接”错误的问题。该故障可能影响Android下载管理器的正常工作。
 
-开始前，请下载ADB工具，并在目标设备上开启ADB调试：
+ 开始前，请下载ADB工具，并在目标设备上开启ADB调试：
 
 Windows版本：*https://dl.google.com/android/repository/platform-tools-latest-windows.zip
 
-Mac版本：*https://dl.google.com/android/repository/platform-tools-latest-darwin.zip
+ Mac版本：*https://dl.google.com/android/repository/platform-tools-latest-darwin.zip
 
-Linux版本：*https://dl.google.com/android/repository/platform-tools-latest-linux.zip
+ Linux版本：*https://dl.google.com/android/repository/platform-tools-latest-linux.zip
 
 随后，请通过ADB连接到目标设备，您可以通过USB连接实现。您也可以通过无线调试功能实现：
 
 [[code]]
-adb connect XXX.XXX.XXX.XXX:PORT
-[[/code]]
+ adb connect XXX.XXX.XXX.XXX:PORT
+ [[/code]]
 
 其中，{{XXX.XXX.XXX.XXX}}为开启了无线调试的目标设备的IP地址，{{PORT}}为调试端口号。
 
-随后，依次执行下列命令，删除原连通性检测配置：
+ 随后，依次执行下列命令，删除原连通性检测配置：
 
 [[code]]
-adb shell settings delete global captive_portal_https_url
-adb shell settings delete global captive_portal_http_url
-[[/code]]
+ adb shell settings delete global captive_portal_https_url
+ adb shell settings delete global captive_portal_http_url
+ [[/code]]
 
 接下来，添加中国大陆地区可用的配置：
 
 [[code]]
-adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate\_204
-adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate\_204
-adb shell setprop persist.sys.timezone Asia/Shanghai
-adb shell settings put global ntp_server ntp1.aliyun.com
-[[/code]]
+ adb shell settings put global captive_portal_https_url https://connect.rom.miui.com/generate\_204
+ adb shell settings put global captive_portal_http_url http://connect.rom.miui.com/generate\_204
+ adb shell setprop persist.sys.timezone Asia/Shanghai
+ adb shell settings put global ntp_server ntp1.aliyun.com
+ [[/code]]
 
 断开并重新连接到WLAN网络，应当已可用。
 
-参考资料：*https://www.wunote.cn/article/3536/ 
+ 参考资料：*https://www.wunote.cn/article/3536/
 
-若您的设备已获得Root权限，也可以考虑使用CaptiveMgr工具在本地设备上完成该项工作。
+若您的设备已获得Root权限，也可以考虑使用CaptiveMgr工具在本地设备上完成该项工作。 
