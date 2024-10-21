@@ -3,6 +3,9 @@
 在新线程打开窗口的代码如下所示：
 
 [[code type="vb"]]
+Imports System.Threading
+Imports System.Threading.Tasks
+
 Private Function OpenWindowAsync(Of TWindow As {System.Windows.Window, New})() As Task
     Dim TaskComp As New TaskCompletionSource(Of Object)
 
