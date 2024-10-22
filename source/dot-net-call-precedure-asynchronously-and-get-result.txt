@@ -74,6 +74,32 @@ Public Class OperationController
         
         'Return result
         Return WorkerInstance.Result
-    End Sub
+    End Function
+    
+    'Call worker asynchronously, no return values
+    Public Async Function DoWorkAsyncNoReturnValue(Param1 As Param1Type, Param2 As Param2Type) As Task
+        'Initialize worker instance
+        Dim WorkerInstance As New Worker(Param1, Param2)
+        
+        'Run work in a separated thread
+        Await Task.Factory.StartNew(Sub()
+                                        WorkerInstance.DoWork()
+                                    End Sub)
+    End Function
 End Class
 [[/code]] 
+
+从外部调用时：
+
+[[code]]
+Private Async Sub AsyncSubDemo()
+    Dim ControllerInstance As New Controller
+    Dim WorkResult As ResultType
+    
+    'With result
+    WorkResult = await ControllerInstance.DoWorkAsync()
+    
+    'Without result
+    await ControllerInstance.DoWorkAsyncNoReturnValue()
+End Sub
+[[/code]]
