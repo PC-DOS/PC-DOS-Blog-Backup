@@ -1,0 +1,79 @@
+﻿.Net支持对过程或函数进行异步调用，通过将目标过程或函数封装为对象，可以实现参数和结果的双向传递。
+
+下例中，控制器类{{OperationController}}位于主线程中，通过{{DoWorkAsync()}}函数控制工作线程{{Worker}}的实例{{WorkerInstance}}执行一耗时操作（在{{Worker.DoWork()}}中实现）。工作开始时，传入{{Param1}}（{{Param1Type}}类型）和{{Param2}}（{{Param2Type}}类型）两个参数，并接收类型为{{ResultType}}的返回结果。
+
+[[code type="vb"]]
+Imports System.Threading.Tasks
+
+'Controller class
+Public Class OperationController
+    
+    'Worker thread
+    Private Class Worker
+        'Input parameters
+        Private _Param1 As Param1Type
+        Private _Param2 As Param2Type
+        
+        'Return values
+        Private _Result As ResultType
+        
+        'Constructor
+        Public Sub New(Optional NewParam1 As Param1Type = Nothing, Optional NewParam2 As Param2Type = Nothing)
+            _Param1 = NewParam1
+            _Param2 = NewParam2
+        End Sub
+        
+        'Work content
+        Public Function DoWork() As ResultType
+            'Do work here
+            '...
+            '...
+            
+            'Set results
+            _Result = New ResultType()
+            Return _Result
+        End Function
+        
+        'Param1 property
+        Public Property Param1 As Param1Type
+            Get
+                Return _Param1
+            End Get
+            Set(value as Param1Type)
+                _Param1 = value
+            End Set
+        End Property
+        
+        'Param2 property
+        Public Property Param2 As Param2Type
+            Get
+                Return _Param2
+            End Get
+            Set(value as Param2Type)
+                _Param2 = value
+            End Set
+        End Property
+        
+        'Result property
+        Public ReadOnly Property Result As ResultType
+            Get
+                Return _Result
+            End Get
+        End Property
+    End Class
+    
+    'Call worker asynchronously
+    Public Async Function DoWorkAsync(Param1 As Param1Type, Param2 As Param2Type) As Task(Of ResultType)
+        'Initialize worker instance
+        Dim WorkerInstance As New Worker(Param1, Param2)
+        
+        'Run work in a separated thread
+        Await Task.Factory.StartNew(Sub()
+                                        WorkerInstance.DoWork()
+                                    End Sub)
+        
+        'Return result
+        Return WorkerInstance.Result
+    End Sub
+End Class
+[[/code]] 
