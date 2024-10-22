@@ -1,0 +1,75 @@
+﻿Windows Phone SDK提供了使用编程方法访问Windows 10 Mobile设备的程序集，以Windows 10 Build 14393.795 SDK为例，它们位于：
+
+[[code]]
+%ProgramFiles(x86)%\Windows Kits\10\bin\x86\Microsoft.Diagnostics.Tracing.EventSource.dll
+%ProgramFiles(x86)%\Windows Kits\10\bin\x86\Microsoft.Tools.Connectivity.dll
+%ProgramFiles(x86)%\Windows Kits\10\bin\x86\Microsoft.Tools.Deploy.dll
+%ProgramFiles(x86)%\Windows Kits\10\bin\x86\SirepClient.dll
+%ProgramFiles(x86)%\Windows Kits\10\bin\x86\SirepInterop.dll
+%ProgramFiles(x86)%\Windows Kits\10\bin\x86\SshClient.dll
+%ProgramFiles(x86)%\Windows Kits\10\bin\x86\WinAppDeployCommon.dll
+[[/code]]
+
+在项目中参考这些程序集后，引入下面的命名空间：
+
+[[code]]
+Imports Microsoft.Tools.Connectivity
+Imports Microsoft.Tools.Deploy
+[[/code]]
+
+随后，即可以编程的形式访问Windows 10 Mobile。
+
++ 枚举和连接设备
+
+首先，初始化设备发现工具，配置一个合理的设备发现超时值，并建立设备发现结果容器：
+
+[[code]]
+Dim PhoneConnectionManager As New DeviceDiscoveryService
+Dim PhoneDiscoveryTimeOut As TimeSpan = TimeSpan.FromSeconds(5)
+Dim DevicesDiscovered As New List(Of DiscoveredDeviceInfo)
+[[/code]]
+
+连接{{DeviceDiscoveryService.Discovered()}}事件，该事件在发现连接的设备时触发，并提供可连接设备的{{DiscoveredDeviceInfo}}对象：
+
+[[code]]
+AddHandler PhoneConnectionManager.Discovered, Sub(sender As Object, e As DiscoveredEventArgs)
+                                                  DevicesDiscovered.Add(e.Info)
+                                              End Sub
+[[/code]]
+
+配置设备发现超时值，并进行等待：
+
+[[code]]
+PhoneConnectionManager.Timeout = _PhoneDiscoveryTimeOut
+PhoneConnectionManager.Start()
+Thread.Sleep(_PhoneDiscoveryTimeOut)
+PhoneConnectionManager.Stop()
+[[/code]]
+
+{{DiscoveredDeviceInfo}}对象提供了设备的基本信息，使用这些信息可以配置{{ConnectionOptions}}实例，该实例可通过配置IP地址（{{ConnectionOptions.IPAddress}}）或GUID（{{ConnectionOptions.Guid}}）等方式，指定要连接的设备：
+
+[[code]]
+Dim ConnectionParam As New ConnectionOptions
+ConnectionParam.Guid = DevicesDiscovered(0).UniqueId
+[[/code]]
+
+配置{{ConnectionOptions}}实例完成后，使用{{RemoteDeployClient}}对象提供的{{Connect()}}方法实现设备连接：
+
+[[code]]
+Dim ConnectedPhone As RemoteDeployClient = RemoteDeployClient.CreateRemoteDeployClient()
+ConnectionParam.ConnectTimeout = TimeSpan.FromSeconds(5)
+ConnectedPhone.Connect(ConnectionParam)
+[[/code]]
+
+此时，应该已经成功连接到了目标设备。
+
++ 安装应用程序包
+
+您可以通过编程方式向设备部署AppX或AppXBundle程序包。此处使用字符串变量{{AppPackagePath}}表示需要部署的程序包的路径，字符串列表{{AppDependencies}}表示该程序包的依赖项的路径集合（可以为空），字符串列表{{AppCertPath}}表示该程序包的证书路径（可以为空）。
+
+开始安装应用程序：
+
+[[code]]
+'Install package
+ConnectedPhone.InstallAppx(InstallAppxOptions.Install, AppPackagePath, AppDependencies, AppCertPath)
+[[/code]]
