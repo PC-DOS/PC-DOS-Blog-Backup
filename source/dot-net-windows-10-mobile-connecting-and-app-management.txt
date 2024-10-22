@@ -17,6 +17,8 @@ Imports Microsoft.Tools.Connectivity
 Imports Microsoft.Tools.Deploy
 [[/code]]
 
+请注意，{{SirepClient.dll}}和{{SshClient.dll}}不是.Net程序集，您无需将它们加入参考，只需要将它们加入您的项目解决方案，并将“构建动作”设为“无”、“复制到输出目录”设为“有更新时才复制”即可。
+
 随后，即可以编程的形式访问Windows 10 Mobile。
 
 + 枚举和连接设备
