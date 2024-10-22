@@ -40,9 +40,9 @@ AddHandler PhoneConnectionManager.Discovered, Sub(sender As Object, e As Discove
 配置设备发现超时值，并进行等待：
 
 [[code]]
-PhoneConnectionManager.Timeout = _PhoneDiscoveryTimeOut
+PhoneConnectionManager.Timeout = PhoneDiscoveryTimeOut
 PhoneConnectionManager.Start()
-Thread.Sleep(_PhoneDiscoveryTimeOut)
+Thread.Sleep(PhoneDiscoveryTimeOut)
 PhoneConnectionManager.Stop()
 [[/code]]
 
