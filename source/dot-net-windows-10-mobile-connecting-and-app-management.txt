@@ -67,11 +67,11 @@ ConnectedPhone.Connect(ConnectionParam)
 
 + 安装应用程序包
 
-您可以通过编程方式向设备部署AppX或AppXBundle程序包。此处使用字符串变量{{AppPackagePath}}表示需要部署的程序包的路径，字符串列表{{AppDependencies}}表示该程序包的依赖项的路径集合（可以为空），字符串列表{{AppCertPath}}表示该程序包的证书路径（可以为空）。
+您可以通过编程方式向设备部署AppX或AppXBundle程序包。此处使用字符串变量{{AppPackagePath}}表示需要部署的程序包的路径，字符串列表{{AppDependencies}}表示该程序包的依赖项的路径集合（可以为空列表，不能为{{Nothing}}），字符串列表{{AppCertPath}}表示该程序包的证书路径（不需要证书时，应设为Nothing，不可以为空字符串）。
 
 开始安装应用程序：
 
 [[code]]
 'Install package
-ConnectedPhone.InstallAppx(InstallAppxOptions.Install, AppPackagePath, AppDependencies, AppCertPath)
+ConnectedPhone.InstallAppx(InstallAppxOptions.ResolveDependencies, AppPackagePath, AppDependencies, AppCertPath)
 [[/code]]
