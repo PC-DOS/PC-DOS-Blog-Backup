@@ -55,11 +55,12 @@ Dim ConnectionParam As New ConnectionOptions
 ConnectionParam.Guid = DevicesDiscovered(0).UniqueId
 [[/code]]
 
+请注意：建议不要在代码中显式设置{{ConnectionOptions}}对象的{{ConnectTimeout}}属性，设置该属性可能导致后续执行部署操作时，出现内容类似“violates pattern constraint of '\bms-resource:.{1,256}'”的COM组件异常（但实际上应用程序包最终可以在目标设备上正常部署和运行）。
+
 配置{{ConnectionOptions}}实例完成后，使用{{RemoteDeployClient}}对象提供的{{Connect()}}方法实现设备连接：
 
 [[code]]
 Dim ConnectedPhone As RemoteDeployClient = RemoteDeployClient.CreateRemoteDeployClient()
-ConnectionParam.ConnectTimeout = TimeSpan.FromSeconds(5)
 ConnectedPhone.Connect(ConnectionParam)
 [[/code]]
 
