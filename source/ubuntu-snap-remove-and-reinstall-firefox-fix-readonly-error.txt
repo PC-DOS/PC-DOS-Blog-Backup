@@ -1,48 +1,48 @@
-﻿+ 卸载Firefox
++ 卸载Firefox
 
 直接尝试移除Firefox可能提示类似“unlinkat /var/snap/firefox/common/host-hunspell/en_US.dic: read-only file system”的错误，因此需要先解除只读挂载点：
 
 [[code]]
-sudo systemctl stop var-snap-firefox-common-host\\x2dhunspell.mount
-sudo systemctl disable var-snap-firefox-common-host\\x2dhunspell.mount
-sudo umount /var/snap/firefox/common/host-hunspell
-[[/code]]
+ sudo systemctl stop var-snap-firefox-common-host\\x2dhunspell.mount
+ sudo systemctl disable var-snap-firefox-common-host\\x2dhunspell.mount
+ sudo umount /var/snap/firefox/common/host-hunspell
+ [[/code]]
 
 禁用Firefox的Snap包：
 
 [[code]]
-sudo snap disable firefox
-[[/code]]
+ sudo snap disable firefox
+ [[/code]]
 
 移除Firefox：
 
 [[code]]
-sudo snap remove --purge firefox
-[[/code]]
+ sudo snap remove --purge firefox
+ [[/code]]
 
-+ 安装Firefox
+ + 安装Firefox
 
 使用Snap可以直接安装Firefox：
 
 [[code]]
-sudo snap install firefox
-[[/code]]
+ sudo snap install firefox
+ [[/code]]
 
 若提示“cannot locate base snap core22”错误，请尝试重新启用{{core}}系列Snap包，再安装Firefox：
 
 [[code]]
-sudo snap disable core22
-sudo snap enable core22
-sudo snap disable core20
-sudo snap enable core20
-sudo snap disable core18
-sudo snap enable core18
-[[/code]]
+ sudo snap disable core22
+ sudo snap enable core22
+ sudo snap disable core20
+ sudo snap enable core20
+ sudo snap disable core18
+ sudo snap enable core18
+ [[/code]]
 
-+ 参考资料
+ + 参考资料
 
 *https://cn.ubuntu.com/blog/what-is-snap-application
 
-*https://askubuntu.com/questions/1414173/completely-remove-firefox-snap-package
+ *https://askubuntu.com/questions/1414173/completely-remove-firefox-snap-package
 
-*https://stackoverflow.com/questions/77304029/snap-if-present-run-hook-configure-cannot-locate-base-snap-core22-no-such-f 
+ *https://stackoverflow.com/questions/77304029/snap-if-present-run-hook-configure-cannot-locate-base-snap-core22-no-such-f 

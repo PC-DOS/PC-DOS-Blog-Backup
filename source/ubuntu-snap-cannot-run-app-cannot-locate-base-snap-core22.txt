@@ -1,4 +1,4 @@
-﻿**故障描述：**用户PC运行Ubuntu 22.04 LTS系统，某次使用{{apt-get purge}}命令移除软件包时，对Snap框架{{snapd}}产生了影响，导致：
+**故障描述：**用户PC运行Ubuntu 22.04 LTS系统，某次使用{{apt-get purge}}命令移除软件包时，对Snap框架{{snapd}}产生了影响，导致：
 
 * Firefox无法运行，从终端调用{{firefox}}命令提示未安装Firefox。
 * VSCode无法运行，从终端调用{{code}}命令提示文件不存在（而实际上文件确实存在于磁盘上）。
@@ -8,30 +8,30 @@
 **故障处理：**推测故障与Snap核心包{{core}}损坏有关，故尝试重新启用Snap核心包：
 
 [[code]]
-sudo snap disable core22
-sudo snap enable core22
-sudo snap disable core20
-sudo snap enable core20
-sudo snap disable core18
-sudo snap enable core18
-[[/code]]
+ sudo snap disable core22
+ sudo snap enable core22
+ sudo snap disable core20
+ sudo snap enable core20
+ sudo snap disable core18
+ sudo snap enable core18
+ [[/code]]
 
 重新安装Firefox和VSCode：
 
 [[code]]
-# Firefox
-sudo snap disable firefox
-sudo snap remove --purge firefox
-sudo snap install firefox
+ # Firefox
+ sudo snap disable firefox
+ sudo snap remove --purge firefox
+ sudo snap install firefox
 
-# VSCode
-sudo snap disable code
-sudo snap remove --purge code
-sudo snap install code --classic
-[[/code]]
+ # VSCode
+ sudo snap disable code
+ sudo snap remove --purge code
+ sudo snap install code --classic
+ [[/code]]
 
 随后，故障解决。
 
 **参考资料：**
 
-*https://stackoverflow.com/questions/77304029/snap-if-present-run-hook-configure-cannot-locate-base-snap-core22-no-such-f 
+ *https://stackoverflow.com/questions/77304029/snap-if-present-run-hook-configure-cannot-locate-base-snap-core22-no-such-f 

@@ -1,17 +1,17 @@
-﻿此处使用Windows模式换行符（{{vbCrLf}}）。
+此处使用Windows模式换行符（{{vbCrLf}}）。
 
-错误用法：
+ 错误用法：
 
 [[code]]
-Dim SplittedLines() As String = MergedString.Split(vbCrLf)
-[[/code]]
+ Dim SplittedLines() As String = MergedString.Split(vbCrLf)
+ [[/code]]
 
 此用法会导致拆分得到的字符串序列不正确。
 
-正确用法：
+ 正确用法：
 
 [[code]]
-Dim SplittedLines() As String = MergedString.Split(New Char(){vbCr, vbLf}, StringSplitOptions.RemoveEmptyEntries)
-[[/code]]
+ Dim SplittedLines() As String = MergedString.Split(New Char(){vbCr, vbLf}, StringSplitOptions.RemoveEmptyEntries)
+ [[/code]]
 
 参考资料：*https://learn.microsoft.com/zh-cn/dotnet/api/system.string.split?view=netframework-4.5 
