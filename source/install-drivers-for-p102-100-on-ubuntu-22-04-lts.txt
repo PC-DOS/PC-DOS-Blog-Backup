@@ -1,16 +1,16 @@
-Ubuntu 22.04 LTS的“附加驱动”程序可能无法为P102-100挖矿显卡提供支持。为此，需要从NVIDIA网站下载并手动安装驱动程序。
+﻿Ubuntu 22.04 LTS的“附加驱动”程序可能无法为P102-100挖矿显卡提供支持。为此，需要从NVIDIA网站下载并手动安装驱动程序。
 
 + 驱动程序的获取
 
- 首先从NVIDIA驱动下载网站（ *https://www.nvidia.cn/geforce/drivers/ ）下载470版本的GeForce GTX 1080Ti驱动程序，470.239版本的驱动程序可以从下列地址下载：
+首先从NVIDIA驱动下载网站（ *https://www.nvidia.cn/geforce/drivers/ ）下载470版本的GeForce GTX 1080Ti驱动程序，470.239版本的驱动程序可以从下列地址下载：
 
 *https://cn.download.nvidia.com/XFree86/Linux-x86_64/470.239.06/NVIDIA-Linux-x86_64-470.239.06.run
 
 下载得到的{{NVIDIA-Linux-x86_64-470.239.06.run}}文件请置于当前登录用户的主文件夹中，路径内请勿包含中文等特殊字符。
 
- 其他版本可供尝试的驱动程序：
+其他版本可供尝试的驱动程序：
 
- 来自 *https://www.learndiary.com/2024/02/p106-100-linux-game/ ：
+来自 *https://www.learndiary.com/2024/02/p106-100-linux-game/ ：
 
 *https://cn.download.nvidia.cn/XFree86/Linux-x86_64/515.48.07/NVIDIA-Linux-x86_64-515.48.07.run
 
@@ -22,68 +22,80 @@ Ubuntu 22.04 LTS的“附加驱动”程序可能无法为P102-100挖矿显卡�
 
 + 驱动程序的安装
 
- 驱动程序的安装需要在控制台模式下进行。因此，请注销当前登录用户，在Ubuntu登录界面按{{Ctrl+Alt+F2}}组合键，切换到文本控制台，并使用您的用户名和密码登录到Ubuntu终端。
+驱动程序的安装需要在控制台模式下进行。因此，请注销当前登录用户，在Ubuntu登录界面按{{Ctrl+Alt+F2}}组合键，切换到文本控制台，并使用您的用户名和密码登录到Ubuntu终端。
 
- 定位到用户主文件夹：
+定位到用户主文件夹：
 
 [[code]]
- cd ~
- [[/code]]
+cd ~
+[[/code]]
 
 安装依赖项：
 
 [[code]]
- sudo apt-get install gcc
- sudo apt-get install make
- [[/code]]
+sudo apt-get install gcc
+sudo apt-get install make
+[[/code]]
 
 若安装时出现GCC版本不匹配（内核使用GCC 12编译，安装的GCC版本为GCC 11），则需要手动配置GCC 12：
 
 [[code]]
- sudo apt-get install gcc-12
- cd /bin
- sudo ln gcc-12 cc
- cd ~
- [[/code]]
+sudo apt install gcc-12
+sudo apt install g++-12
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-12 60 --slave /usr/bin/g++ g++ /usr/bin/g++-12
+[[/code]]
+
+[[collapsible show="+另一种方法" hide="-收起"]]
+
+推荐使用{{apt}}处理GCC版本，此方法不推荐：
+
+[[code]]
+sudo apt-get install gcc-12
+cd /bin
+sudo ln gcc-12 cc
+cd ~
+[[/code]]
+
+[[/collapsible]]
 
 配置安装文件权限：
 
 [[code]]
- sudo chmod 777 ./NVIDIA-Linux-x86_64-470.239.06.run
- [[/code]]
+sudo chmod 777 ./NVIDIA-Linux-x86_64-470.239.06.run
+[[/code]]
 
 首次执行安装文件：
 
 [[code]]
- sudo ./NVIDIA-Linux-x86_64-470.239.06.run
- [[/code]]
+sudo ./NVIDIA-Linux-x86_64-470.239.06.run
+[[/code]]
 
 首次执行时，会提示禁用Ubuntu自带的开源驱动程序。同意禁用开源驱动程序后，安装程序会创建相应的配置文件，并在完成后提示安装失败。此时，请退出安装程序，并重新启动系统：
 
 [[code]]
- sudo reboot
- [[/code]]
+sudo reboot
+[[/code]]
 
 重新启动系统后，在Ubuntu登录界面按Ctrl+Alt+F2组合键，切换到文本控制台，并使用您的用户名和密码登录到Ubuntu终端。随后，重新启动安装程序：
 
 [[code]]
- cd ~
- sudo ./NVIDIA-Linux-x86_64-470.239.06.run
- [[/code]]
+cd ~
+sudo ./NVIDIA-Linux-x86_64-470.239.06.run
+[[/code]]
 
 完成后，重新启动系统：
 
 [[code]]
- sudo reboot
- [[/code]]
+sudo reboot
+[[/code]]
 
 正常从图形界面登录到Ubuntu桌面，此时应该已可以通过{{nvidia-smi}}命令行程序看到P102-100显卡。
 
 + 驱动程序的卸载
 
- 您可以在执行驱动程序安装程序时，使用{{--uninstall}}；命令进行卸载：
+您可以在执行驱动程序安装程序时，使用{{--uninstall}}；命令进行卸载：
 
 [[code]]
- cd ~
- sudo ./NVIDIA-Linux-x86_64-470.239.06.run --uninstall
- [[/code]] 
+cd ~
+sudo ./NVIDIA-Linux-x86_64-470.239.06.run --uninstall
+[[/code]] 
