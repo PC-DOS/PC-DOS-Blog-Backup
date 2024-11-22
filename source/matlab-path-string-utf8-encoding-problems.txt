@@ -1,0 +1,20 @@
+﻿**故障描述：**用户计算机运行繁体中文（zh-TW）版本的Windows Server 2012 R2 Datacenter，使用MATLAB R2018b编辑脚本文件。发现脚本文件可以正常存储为UTF-8编码，并显示中文等字符。但运行脚本时，Workspace窗格中的中文字符串被错误地使用BIG5编码方式解析，导致含有中文等字符的路径无法被正常处理。
+
+**故障处理：**检查MATLAB安装路径（{{C:\Program Files\MATLAB\R2018b\bin}}）中的{{lcdata.xml}}文件，发现Big5已被正确地定义为UTF-8的别名：
+
+[[code]]
+<encoding name="UTF-8">
+    <encoding_alias name="utf8"/>
+    <encoding_alias name="Big5"/>
+</encoding>
+[[/code]]
+
+在MATLAB脚本文件头部加入：
+
+[[code]]
+feature('DefaultCharacterSet', 'UTF-8');
+[[/code]]
+
+再次尝试运行脚本，故障解决。
+
+**参考资料：** *https://blog.csdn.net/happyangry/article/details/86237693 
