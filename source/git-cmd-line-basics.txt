@@ -4,7 +4,7 @@
 
 *https://www.cnblogs.com/shenxiaolin/p/7896489.html
 
-本文预设默认分支名为{{master}}。
+本文预设默认分支名称为{{master}}。
 
 [[toc]]
 
@@ -39,7 +39,7 @@ git init
 git init --initial-branch=master
 [[/code]]
 
-您也可以使用下面的指令，修改全局默认仓库名称：
+您也可以使用下面的指令，修改全局默认分支名称：
 
 [[code]]
 git config --global init.defaultBranch master
