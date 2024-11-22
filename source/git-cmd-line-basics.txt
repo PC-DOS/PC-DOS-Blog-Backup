@@ -160,7 +160,7 @@ git add -i
 git config --global credential.helper 'cache --timeout=3600'
 [[/code]]
 
-其中，`--timeout`参数为用户名和密码保留的时间，单位为秒。
+其中，{{--timeout}}参数为用户名和密码保留的时间，单位为秒。
 
 要求Git无限期保留用户名和密码，数据被存放在当前用户的主目录下的`.git-credentials`文件中：
 
@@ -168,4 +168,4 @@ git config --global credential.helper 'cache --timeout=3600'
 git config --global credential.helper 'store'
 [[/code]]
 
-请注意，`.git-credentials`文件中的用户名和密码为明文。
+请注意，{{.git-credentials}}文件中的用户名和密码为明文。
