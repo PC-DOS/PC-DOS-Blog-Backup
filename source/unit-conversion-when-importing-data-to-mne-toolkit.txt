@@ -1,0 +1,22 @@
+﻿[*https://mne.tools/stable/index.html MNE工具包]的{{[*https://mne.tools/stable/generated/mne.io.RawArray.html mne.io.RawArray()]}}函数提供了从外部数组（例如，使用{{[*https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html pandas.read_csv()]}}函数从外部CSV读取的{{[*https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html pandas.DataFrame]}}对象转换得到的二维数组）导入神经电生理数据的方法。但是，调用该方法前，需要确保外部数据的单位已经过合理的转换，否则，可能导致数据数量级异常等问题。
+
+对于不同的通道数据类型（通道数据类型通过{{[*https://mne.tools/stable/generated/mne.create_info.html mne.create_info()]}}函数的{{ch_types}}参数确定，该参数可以为字符串或字符串数组），MNE使用下面的单位处理导入的数据：
+
+* V: eeg, eog, seeg, dbs, emg, ecg, bio, ecog, resp, fnirs_fd_ac_amplitude, fnirs_cw_amplitude, fnirs_od
+* T: mag, chpi, ref_meg
+* T/m: grad
+* M: hbo, hbr
+* rad: fnirs_fd_phase
+* Am: dipole
+* S: gsr
+* C: temperature
+* V/m²: csd
+* GOF: gof
+* AU: misc, stim, eyegaze, pupil
+
+例如，若外部CSV文件使用微伏（μV）作为计量单位，则需要在调用{{mne.io.RawArray()}}函数前，将数据数组内所有数据点的值除以{{1e6}}（即1.0 × 10^^6^^），从而将单位转换为伏特（V）。
+
+参考资料：
+
+*https://mne.tools/stable/generated/mne.io.RawArray.html
+*https://mne.tools/stable/generated/mne.create_info.html 
