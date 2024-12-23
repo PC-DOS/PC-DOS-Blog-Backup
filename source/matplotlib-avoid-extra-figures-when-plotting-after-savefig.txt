@@ -1,0 +1,37 @@
+**问题描述：**
+
+使用Python的[*https://matplotlib.org/stable/ MatPlotLib]编写数据分析程序时，在程序中需要先针对每项分析结果导出独立的图表文件到磁盘，最后显示单一的总结图表，编写了如下代码：
+
+[[code type="python"]]
+ # Import MatPlotLib
+ import matplotlib.pyplot as plt
+
+ # Data analysis
+ arrAnalysisResults = DoDataAnalysis()
+
+ # Save standalone figures
+ for AnalysisResult in arrAnalysisResults :
+     # This plot() calling won't open a new MetPlotLib window
+     figResult = AnalysisResult.plot()
+     
+     # Configure and save figure
+     figResult.set_size_inches(w=8, h=6)
+     plt.savefig(f"{AnalysisResult.Name}.png", dpi=120)
+ #Next
+
+ # Draw a new figure
+ figOverView = GenerateResultOverviewFigure(arrAnalysisResults)
+ plt.show()
+ [[/code]]
+
+此时发现，完成所有{{[*https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html matplotlib.pyplot.savefig()]}}调用后，再次调用{{[*https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html matplotlib.pyplot.plot()]}}函数，会出现2张图表，分别为最后一张被保存的图表，和需要的结果总结图表。
+
+**解决方案：**
+
+在{{plt.savefig()}}调用后，增加对{{[*https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.close.html matplotlib.pyplot.close()]}}的调用（即调用{{plt.close()}}），关闭当前图表。
+
+**参考资料：**
+
+ *https://blog.csdn.net/cxx654/article/details/105763129
+
+ *https://www.zhihu.com/question/37221233 

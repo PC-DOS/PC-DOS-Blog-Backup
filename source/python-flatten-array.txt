@@ -1,0 +1,14 @@
+Python的[*https://numpy.org/doc/stable/index.html NumPy]库提供了将多维数组对象{{[*https://numpy.org/doc/stable/reference/arrays.ndarray.html numpy.ndarray]}}扁平化为一维数组的{{[*https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flatten.html numpy.ndarray.flatten()]}}函数。
+
+ 对于一般的多维数组，可以使用Python的[*https://docs.python.org/3/library/itertools.html IterTools]库进行扁平化：
+
+[[code type="python"]]
+ import itertools
+
+ # Flatten arrays with over 1 dimensions to 1D-array
+ def FlattenArray(arrOrig : array) -> array :
+     return list(itertools.chain.from_iterable(arrOrig))
+ #End Function
+ [[/code]]
+
+参考资料：*https://blog.csdn.net/qq_36853469/article/details/106928360 

@@ -1,41 +1,41 @@
-﻿[[=]]
-[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
-##black|[[size 150%]] **仅供测试使用** [[/size]]##
-----
-[[size larger]] **严禁将本文提供的方法用于制作违反用户协议的二次MOD版本或盈利。**[[/size]]
+[[=]]
+ [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+ ##black|[[size 150%]] **仅供测试使用** [[/size]]##
+ ----
+ [[size larger]] **严禁将本文提供的方法用于制作违反用户协议的二次MOD版本或盈利。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
-[[/=]]
+ [[/=]]
 
-[*https://github.com/ChrisLv-CN/DPKratos-Lite DP-Kratos]是一个有效的《红色警戒2：尤里的复仇》增强模组平台，但是该模组在[*https://github.com/ChrisLv-CN/YRDynamicPatcher-Kratos 7.4版本]之后引入了二次修改检测，检测到模组当前被挂接到《心灵终结》等Mod版本上时会拒绝运行，并产生大量导致用户无法正常进行游戏的异常效果。
+ [*https://github.com/ChrisLv-CN/DPKratos-Lite DP-Kratos]是一个有效的《红色警戒2：尤里的复仇》增强模组平台，但是该模组在[*https://github.com/ChrisLv-CN/YRDynamicPatcher-Kratos 7.4版本]之后引入了二次修改检测，检测到模组当前被挂接到《心灵终结》等Mod版本上时会拒绝运行，并产生大量导致用户无法正常进行游戏的异常效果。
 
-由于DP-Kratos是基于.NET平台编译的，因此结合其[*https://github.com/ChrisLv-CN/DPKratos-Lite-Source 源代码]，可以使用[*https://github.com/dnSpy/dnSpy dnSpy]等工具，直接修改其二进制文件以绕过该检测。
+ 由于DP-Kratos是基于.NET平台编译的，因此结合其[*https://github.com/ChrisLv-CN/DPKratos-Lite-Source 源代码]，可以使用[*https://github.com/dnSpy/dnSpy dnSpy]等工具，直接修改其二进制文件以绕过该检测。
 
-将DP-Kratos解压后，启动dnSpy，加载下列文件：
+ 将DP-Kratos解压后，启动dnSpy，加载下列文件：
 
 [[code]]
-{$DPKratosRoot}\DynamicPatcher\Libraries\Extension.Kratos.dll
-[[/code]]
+ {$DPKratosRoot}\DynamicPatcher\Libraries\Extension.Kratos.dll
+ [[/code]]
 
 其中，{{@@{$DPKratosRoot}@@}}为DP-Kratos的安装根目录，例如您的游戏文件夹。
 
-在dnSpy中，定位到下列函数：
+ 在dnSpy中，定位到下列函数：
 
 [[code]]
-Extension.Kratos
--> Extension.Kratos.dll
--> Extension.Ext
--> Kratos
--> NotAllowedList()
-[[/code]]
+ Extension.Kratos
+ -> Extension.Kratos.dll
+ -> Extension.Ext
+ -> Kratos
+ -> NotAllowedList()
+ [[/code]]
 
 该函数是一个返回值为布尔（Boolean）类型的函数。在dnSpy右侧的代码窗格中，右键单击函数名“{{NotAllowedList()}}”，点击“Edit IL Instructions...”，弹出IL指令编辑窗口。
 
-在该窗口中，定位到最后一行（即“Op Code”为{{ret}}的返回行），将其上一行的OpCode从原先的“{{ldloc.s}}”，改为“{{ldc.i4.0}}”，表示固定向返回栈中压入{{False}}，从而使该函数永远返回{{False}}。
+ 在该窗口中，定位到最后一行（即“Op Code”为{{ret}}的返回行），将其上一行的OpCode从原先的“{{ldloc.s}}”，改为“{{ldc.i4.0}}”，表示固定向返回栈中压入{{False}}，从而使该函数永远返回{{False}}。
 
-完成后，点击IL编辑窗口的“OK”按钮，回到dnSpy主界面，此时应该可以观察到dnSpy的代码窗格中函数的“{{Return}}”指令已经固定变为“{{Return False}}”。点击dnSpy工具栏的“Save All”选项，保存对当前文件的更改。
+ 完成后，点击IL编辑窗口的“OK”按钮，回到dnSpy主界面，此时应该可以观察到dnSpy的代码窗格中函数的“{{Return}}”指令已经固定变为“{{Return False}}”。点击dnSpy工具栏的“Save All”选项，保存对当前文件的更改。
 
-使用修改后的DP-Kratos全部复制到目标游戏根目录，或单独替换{{DynamicPatcher\Libraries\Extension.Kratos.dll}}文件，再次启动目标游戏，即可绕过该检测。
+ 使用修改后的DP-Kratos全部复制到目标游戏根目录，或单独替换{{DynamicPatcher\Libraries\Extension.Kratos.dll}}文件，再次启动目标游戏，即可绕过该检测。
 
-本方法在Kratos-Lite Ver.0.43上测试通过。
+ 本方法在Kratos-Lite Ver.0.43上测试通过。 

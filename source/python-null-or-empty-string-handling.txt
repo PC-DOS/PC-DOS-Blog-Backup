@@ -1,0 +1,45 @@
++ 检测字符串是否为空
+
+Python的{{[*https://docs.python.org/3/library/stdtypes.html#str.isspace str.isspace()]}}函数提供了检验字符串是否全部为空白字符的功能，但要求字符串长度至少为1。因此，检验空字符串前需要确定字符串是否为{{None}}或不包含任何字符：
+
+[[code type="python"]]
+ # Empty or null string validation
+ def IsStringNullOrEmpty(sStringToTest : str) -> bool :
+     if sStringToTest is None :
+         return True
+     #End If
+
+     if len(sStringToTest) == 0 :
+         return True
+     #End If
+
+     if sStringToTest.isspace() :
+         return True
+     #End If
+
+     return False
+ #End Function
+ [[/code]]
+
+参考资料：*https://geek-docs.com/python/python-ask-answer/52_tk_1703035565.html
+
+ + 从{{str.split()}}结果中移除空字符串
+
+Python的{{[*https://docs.python.org/3/library/stdtypes.html#str.split str.split()]}}函数在{{sep}}分隔符指定参数为空时，会因为连续的分隔符之间包含空字符串，此时，可以使用{{[*https://docs.python.org/3/library/functions.html#filter filter()]}}内置函数移除不需要的空字符串，并将其结果使用{{[*https://docs.python.org/3/library/stdtypes.html#list list]}}类型转换为常规数组：
+
+[[code type="python"]]
+ # Splitting string with given separator, and remove empty results if requested
+ def SplitString(sStringToSplit : str, sSeparator : str = None, nMaxSplitCount : int = -1, RemoveEmptyEntries : bool = False) -> array :
+     # Split string
+     arrResult = sStringToSplit.split(sep=sSeparator, maxsplit=nMaxSplitCount)
+
+     # Remove empty enrties
+     if RemoveEmptyEntries :
+         arrResult = list(filter(None, arrResult))
+     #End If
+
+     return arrResult
+ #End Function
+ [[/code]]
+
+参考资料：*https://blog.csdn.net/qq523176585/article/details/83003346 

@@ -1,0 +1,50 @@
++ 建立嵌套的目录
+
+Python的{{[*https://docs.python.org/3/library/os.html#os.makedirs os.makedirs()]}}函数提供了嵌套建立目录的能力。将该函数的{{exist_ok}}参数设为{{True}}可以避免在目录已存在时发生错误：
+
+[[code type="python"]]
+ import os
+
+ # Check existence of file or directory
+ def IsFileOrDirectoryExists(sPath : str) :
+     return os.path.exists(sPath)
+ #End Function
+
+ # Create nested directories
+ def CreateDirectory(sPath : str) :
+     if not IsFileOrDirectoryExists(sPath) :
+         os.makedirs(sPath, exist_ok=True)
+     #End If
+ #End Sub
+ [[/code]]
+
+参考资料：*https://blog.csdn.net/zdc1305/article/details/106138491
+
+ + 获取当前脚本的执行路径
+
+Python提供了不同的方案获取脚本执行路径，不同方案的获取目标（返回值）存在差异：
+
+* {{[*https://docs.python.org/3/library/os.html#os.getcwd os.getcwd()]}}：获取当前调用脚本的命令行执行的路径。这可能不是脚本文件实际所在的路径。
+* {{[*https://docs.python.org/3/library/sys.html#sys.path sys.path[0]]}}：获取最初被调用的脚本所在的路径。
+* {{@@os.path.split(os.path.realpath(__file__))[0]@@}}：获取该行指令所在的脚本文件的路径。其中，{{[*https://docs.python.org/3/library/os.path.html#os.path.realpath os.path.realpath()]}}调用会将路径中的所有潜在符号链接和重解析点替换为真实路径，{{[*https://docs.python.org/3/library/os.path.html#os.path.split os.path.split()]}}调用将指向文件的路径拆分为路径和文件名2个元素。
+
+[[code type="python"]]
+ # Get current script's working directory
+ def GetCurrentScriptWorkingDir(sTarget : str = "") -> str :
+     sTarget = sTarget.upper()
+
+     if sTarget == "CMDLINE" :
+         sPath = os.getcwd()
+     elif sTarget == "ROOTSCRIPT" :
+         sPath = sys.path[0]
+     elif sTarget == "THISSCRIPT" :
+         sPath = os.path.split(os.path.realpath(__file__))[0]
+     else :
+         sPath = os.getcwd()
+     #End If
+
+     return sPath
+ #End Function
+ [[/code]]
+
+参考资料：*https://blog.csdn.net/nixiang_888/article/details/109174340 
