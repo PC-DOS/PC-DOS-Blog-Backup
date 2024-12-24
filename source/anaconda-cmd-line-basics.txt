@@ -1,0 +1,162 @@
+参考自
+
+*https://blog.csdn.net/miracleoa/article/details/106115730
+
+命令需要从Anaconda Prompt等已包含Anaconda相关环境变量引用的环境中执行。
+
+[[toc]]
+
+ + 基本管理
+
+++ 版本查看
+
+[[code]]
+ conda --version
+ [[/code]]
+
+ ++ 升级Conda
+
+ [[code]]
+ conda update conda
+ conda update anaconda
+ [[/code]]
+
+ + 环境管理
+
+++ 列出已有环境
+
+[[code]]
+ conda env list
+ [[/code]]
+
+ ++ 建立环境
+
+ 建立名为{{EnvironmentName}}、Python版本为{{x.x}}的环境：
+
+[[code]]
+ conda create -n EnvironmentName python=x.x
+ [[/code]]
+
+若虚指定需要预安装到环境中的包，可以使用：
+
+[[code]]
+ conda create -n EnvironmentName python=x.x [List of Preinstalled Packages]
+ [[/code]]
+
+其中，{{@@[List of Preinstalled Packages]@@}}列出了需要与安装的包，包名之间使用空格分隔。
+
+ 环境默认安装在Conda安装目录的{{envs}}文件夹下。
+
+++ 激活环境
+
+ 激活名为{{EnvironmentName}}的环境：
+
+[[code]]
+ conda activate EnvironmentName
+ [[/code]]
+
+ ++ 退出环境
+
+[[code]]
+ conda deactivate
+ [[/code]]
+
+ ++ 移除环境
+
+ 移除名为{{EnvironmentName}}的环境：
+
+[[code]]
+ conda env remove -n EnvironmentName
+ [[/code]]
+
+ ++ 克隆环境
+
+ 克隆名为{{BaseName}}的环境到名为{{ClonedBaseName}}的新环境：
+
+[[code]]
+ conda create -n ClonedBaseName --clone BaseName
+ [[/code]]
+
+ + 包管理
+
+++ 列出已安装的包
+
+[[code]]
+ conda list
+ [[/code]]
+
+ ++ 安装包
+
+[[code]]
+ conda install package-name
+ [[/code]]
+
+ ++ 安装特定版本的包
+
+[[code]]
+ conda install package-name==version
+ [[/code]]
+
+ ++ 移除包
+
+[[code]]
+ conda remove package-name
+ [[/code]]
+
+ ++ 更新特定包
+
+[[code]]
+ conda update package-name
+ [[/code]]
+
+ ++ 更新所有包
+
+[[code]]
+ conda update --all
+ [[/code]]
+
+ + 其它
+
+++ 恢复Windows中的Anaconda快捷方式
+
+ 部分情况下，安装Anaconda时可能无法在Windows的“开始”菜单中自动创建快捷方式。此时，请在Anaconda安装目录（即{{conda.exe}}所在的位置）以管理员身份开启命令提示符或PowerShell，并执行：
+
+[[code]]
+ conda install console_shortcut
+ [[/code]]
+
+参考资料：
+
+*https://anaconda.org/anaconda/console_shortcut
+
+ *https://blog.csdn.net/zhangzeyuan56/article/details/110093239
+
+ ++ Conda更换包源
+
+ 参考：*https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/
+
+建立或编辑{{.condarc}}文件，它位于：
+* Windows：{{@@%UserProfile%\@@}}
+ * Linux：{{@@${HOME}/@@}}
+ * MacOS：{{@@${HOME}/@@}}
+
+编辑{{.condarc}}文件，修改{{default_channels}}等节的内容，类似：
+
+[[code]]
+ channels:
+   - defaults
+ show_channel_urls: true
+ default_channels:
+   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r
+   - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/msys2
+ custom_channels:
+   conda-forge: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+   pytorch: https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud
+ [[/code]]
+
+刷新Conda缓存：
+
+[[code]]
+ conda clean -i
+ [[/code]] 

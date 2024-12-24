@@ -1,0 +1,84 @@
+参考自：
+
+*https://www.runoob.com/w3cnote/python-pip-install-usage.html
+
+ [[toc]]
+
+ + 基本管理
+
+++ 版本查看
+
+[[code]]
+ pip --version
+ [[/code]]
+
+ ++ 升级Pip
+
+ [[code]]
+ pip install -U pip
+ [[/code]]
+
+ + 包管理
+
+++ 列出已安装的包
+
+[[code]]
+ pip list
+ [[/code]]
+
+ ++ 安装包
+
+[[code]]
+ pip install package-name
+ [[/code]]
+
+若需要安装特定版本的包：
+
+[[code]]
+ pip install package-name==version
+ [[/code]]
+
+若需要高于特定版本的包：
+
+[[code]]
+ pip install package-name>=version
+ [[/code]]
+
+ ++ 移除包
+
+[[code]]
+ pip uninstall package-name
+ [[/code]]
+
+ ++ 升级包
+
+[[code]]
+ pip install --upgrade package-name
+ [[/code]]
+
+ + 其它
+
+++ 更换包源
+
+ 参考：*https://mirrors.tuna.tsinghua.edu.cn/help/pypi/
+
+临时使用：
+
+[[code]]
+ pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple package-name
+ [[/code]]
+
+设置默认源：
+
+[[code]]
+ python -m pip install --upgrade pip
+ pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+ [[/code]]
+
+配置多个镜像源：
+
+[[code]]
+ pip config set global.extra-index-url "url1 url2 url3 ..."
+ [[/code]]
+
+多个{{url}}之间使用空格分隔。 
