@@ -93,7 +93,7 @@
 
 [[code]]
  Private Async Sub AsyncSubDemo()
-     Dim ControllerInstance As New Controller
+     Dim ControllerInstance As New OperationController
      Dim WorkResult As ResultType
      
      'With result
@@ -102,4 +102,10 @@
      'Without result
      await ControllerInstance.DoWorkAsyncNoReturnValue()
  End Sub
- [[/code]] 
+ [[/code]]
+
+参考资料：
+
+*https://learn.microsoft.com/zh-cn/dotnet/standard/asynchronous-programming-patterns/calling-synchronous-methods-asynchronously
+
+ *https://www.cnblogs.com/yilezhu/p/10555849.html 

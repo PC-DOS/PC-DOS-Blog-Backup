@@ -1,0 +1,145 @@
++ 利用线程池
+
+Python的{{[*https://docs.python.org/3/library/concurrent.futures.html concurrent.futures]}}库提供了多线程编程接口。{{[*https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor concurrent.futures.ThreadPoolExecutor]}}类则提供了线程池化的线程管理基础设施。
+
+[[code type="python"]]
+ import concurrent.futures
+ import multiprocessing
+
+ # Worker function
+ def DoWork(Param1, Param2, Param3) :
+     # Do some work
+     
+     return WorkResult
+ #End Function
+
+ # Script entry
+ if __name__ == "__main__" :
+     # Get processor count
+     nProcessorCount = multiprocessing.cpu_count()
+
+     # Preprocessing
+     # Do some pre processing here
+     # arrWorkerParams is an example of worker's parameters
+     arrWorkerParams = [
+         (2,4,5),
+         (2,5,0),
+         (3,8,0),
+         (3,8,1)
+     ]
+     
+     # Array of workers
+     arrWorkers = []
+     
+     # Create thread pool object
+     with concurrent.futures.ThreadPoolExecutor(max_workers=nProcessorCount/2) as polWorkers :
+         for Params in arrWorkerParams :
+             # Assign parameter values
+             Param1Value = Params[0]
+             Param2Value = Params[1]
+             Param3Value = Params[2]
+         
+             # Submit works
+             resCurrentWorker = polWorkers.submit(DoWork,
+                 Param1Value,
+                 Param2Value,
+                 Param3Value)
+             
+             # Cache current worker
+             arrWorkers.append(resCurrentWorker)
+         #Next
+         
+         # Register completion list
+         arrCompletedTasks = concurrent.futures.as_completed(arrWorkers)
+         
+         # Collect results
+         arrWorkerResults = []
+         for WorkerResult in arrCompletedTasks :
+             # Do post processting
+             arrWorkerResults.append(WorkResult)
+         #Next
+     #End With
+ #End If
+ [[/code]]
+
+参考资料：
+
+*https://blog.csdn.net/huapingqi/article/details/132521391
+
+ *https://deepinout.com/python/python-qa/18_python_pass_multiple_parameters_to_concurrentfuturesexecutormap.html
+
+ *https://blog.csdn.net/waitan2018/article/details/108386898
+
+ + 利用进程池
+
+Python的{{[*https://docs.python.org/3/library/concurrent.futures.html concurrent.futures]}}库提供了多线程编程接口。{{[*https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor concurrent.futures.ProcessPoolExecutor]}}类则提供了进程池化的线程管理基础设施。
+
+ 利用进程池化的多线程编程，可以在一定程度上避免如[*https://blog.csdn.net/qq_19408097/article/details/123609372 MatPlotLib的多线程绘图报警]等问题。
+
+ 需要注意的是，在其它脚本中调用会创建进程池或子进程的函数时，需将该脚本的入口代码使用“{{@@if __name__ == "__main__" :@@}}”结构包裹，否则在执行时会产生“An attempt has been made to start a new process before the current process has finished its bootstrapping phase.”错误。
+
+[[code type="python"]]
+ import concurrent.futures
+ import multiprocessing
+
+ # Worker function
+ def DoWork(Param1, Param2, Param3) :
+     # Do some work
+     
+     return WorkResult
+ #End Function
+
+ # Script entry
+ if __name__ == "__main__" :
+     # Get processor count
+     nProcessorCount = multiprocessing.cpu_count()
+
+     # Preprocessing
+     # Do some pre processing here
+     # arrWorkerParams is an example of worker's parameters
+     arrWorkerParams = [
+         (2,4,5),
+         (2,5,0),
+         (3,8,0),
+         (3,8,1)
+     ]
+     
+     # Array of workers
+     arrWorkers = []
+     
+     # Create process pool object
+     with concurrent.futures.ProcessPoolExecutor(max_workers=nProcessorCount/2) as polWorkers :
+         for Params in arrWorkerParams :
+             # Assign parameter values
+             Param1Value = Params[0]
+             Param2Value = Params[1]
+             Param3Value = Params[2]
+         
+             # Submit works
+             resCurrentWorker = polWorkers.submit(DoWork,
+                 Param1Value,
+                 Param2Value,
+                 Param3Value)
+             
+             # Cache current worker
+             arrWorkers.append(resCurrentWorker)
+         #Next
+         
+         # Register completion list
+         arrCompletedTasks = concurrent.futures.as_completed(arrWorkers)
+         
+         # Collect results
+         arrWorkerResults = []
+         for WorkerResult in arrCompletedTasks :
+             # Do post processting
+             arrWorkerResults.append(WorkResult)
+         #Next
+     #End With
+ #End If
+ [[/code]]
+
+参考资料：
+
+*https://docs.python.org/3/library/multiprocessing.html#the-spawn-and-forkserver-start-methods
+
+ *https://gairuo.com/p/python-multiprocessing-pool 
