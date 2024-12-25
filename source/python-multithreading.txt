@@ -1,4 +1,4 @@
-+ 利用线程池
+﻿+ 利用线程池
 
 Python的{{[*https://docs.python.org/3/library/concurrent.futures.html concurrent.futures]}}库提供了多线程编程接口。{{[*https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor concurrent.futures.ThreadPoolExecutor]}}类则提供了线程池化的线程管理基础设施。
 
@@ -77,6 +77,8 @@ Python的{{[*https://docs.python.org/3/library/concurrent.futures.html concurren
  利用进程池化的多线程编程，可以在一定程度上避免如[*https://blog.csdn.net/qq_19408097/article/details/123609372 MatPlotLib的多线程绘图报警]等问题。
 
  需要注意的是，在其它脚本中调用会创建进程池或子进程的函数时，需将该脚本的入口代码使用“{{@@if __name__ == "__main__" :@@}}”结构包裹，否则在执行时会产生“An attempt has been made to start a new process before the current process has finished its bootstrapping phase.”错误。
+
+ 同时，如果子进程中调用了可能建立{{[*https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Future concurrent.futures.Future]}}对象的函数或方法（例如：某些并行化计算工具），可能导致进程池在退出（离开{{with}}子句确定的域，或显式调用{{[*https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.Executor.shutdown shutdown()]}}方法）时进入长时间甚至无限等待状态。请参考： *https://github.com/python/cpython/issues/94440 。
 
 [[code type="python"]]
  import concurrent.futures
