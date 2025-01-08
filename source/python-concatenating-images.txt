@@ -164,4 +164,10 @@ Python的[*https://pillow.readthedocs.io/en/stable/reference/Image.html PIL]库�
 
      return arrConcatenatedImages
  #End Function
- [[/code]] 
+ [[/code]]
+
+参考资料：
+
+*https://zhuanlan.zhihu.com/p/270669498
+
+ *https://blog.csdn.net/weixin_43789195/article/details/105783414 
