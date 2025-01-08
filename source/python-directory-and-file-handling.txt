@@ -47,4 +47,17 @@ Python提供了不同的方案获取脚本执行路径，不同方案的获取�
  #End Function
  [[/code]]
 
-参考资料：*https://blog.csdn.net/nixiang_888/article/details/109174340 
+参考资料：*https://blog.csdn.net/nixiang_888/article/details/109174340
+
+ + 根据搜索条件枚举文件和目录
+
+Python的{{[*https://docs.python.org/3/library/glob.html#glob.glob glob.glob()]}}函数提供了根据给定的搜索条件（支持通配符）枚举文件和目录的能力：
+
+[[code type="python"]]
+ # Enumerate files and directories under specified directory
+ def EnumerateFilesAndDirectories(sEnumerateTerm : str, sRootPath : str = None, DoRecursiveEnumerate : bool = False, IncludeHiddenItems : bool = False) -> array :
+     return glob.glob(sEnumerateTerm, root_dir=sRootPath, recursive=DoRecursiveEnumerate, include_hidden=IncludeHiddenItems)
+ #End Function
+ [[/code]]
+
+参考资料：*https://blog.csdn.net/GeorgeAI/article/details/81035422 

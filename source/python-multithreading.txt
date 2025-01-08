@@ -1,4 +1,4 @@
-﻿+ 利用线程池
++ 利用线程池
 
 Python的{{[*https://docs.python.org/3/library/concurrent.futures.html concurrent.futures]}}库提供了多线程编程接口。{{[*https://docs.python.org/3/library/concurrent.futures.html#concurrent.futures.ThreadPoolExecutor concurrent.futures.ThreadPoolExecutor]}}类则提供了线程池化的线程管理基础设施。
 
