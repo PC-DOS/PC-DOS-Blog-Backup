@@ -1,0 +1,288 @@
+.NET的[*https://oxyplot.readthedocs.io/en/latest/introduction/index.html OxyPlot]库提供了优秀的绘图能力。[*https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf.html OxyPlot.Wpf]是供WPF环境使用的OxyPlot扩展。
+
++ OxyPlot安装
+
+ 您可以通过NuGet安装OxyPlot.Wpf：*https://www.nuget.org/packages/OxyPlot.Wpf
+
+完成后，将OxyPlot相关组件加入项目参考即可。
+
++ 添加OxyPlot控件
+
+ 首先，在需要加入OxyPlot控件的窗口XAML文件的根节点添加OxyPlot命名空间：
+
+[[code]]
+ xmlns:oxyplot="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+ [[/code]]
+
+随后，在需要放置OxyPlot控件的容器中添加{{Plot}}控件：
+
+[[code]]
+ <oxyplot:Plot x:Name="pltLineChart" />
+ <oxyplot:Plot x:Name="pltColorMap" />
+ [[/code]]
+
+此时，OxyPlot控件已经被成功添加到窗口上。
+
+ 为了在代码中使用OxyPlot相关功能，导入OxyPlot命名空间：
+
+[[code]]
+ Imports OxyPlot
+ Imports OxyPlot.Wpf
+ [[/code]]
+
+ + 折线图的绘制
+
+++ 初始化
+
+ 建立绘图对象：
+
+[[code]]
+ Dim LineChartPlotter As New LineSeries
+ [[/code]]
+
+建立数据容器：
+
+[[code]]
+ Dim LineChartDataSeries As OxyPlot.Series.LineSeries
+ [[/code]]
+
+关联数据容器和绘图对象：
+
+[[code]]
+ LineChartDataSeries = LineChartPlotter.CreateModel()
+ [[/code]]
+
+初始化数据：
+
+[[code]]
+ For i As Integer = 1 To LineChartDataPointCount
+     LineChartDataSeries.Points.Add(New DataPoint(i - 1, 0))
+ Next
+ [[/code]]
+
+初始化XY坐标轴：
+
+[[code]]
+ Dim LineChartXAxis As Axis
+ Dim LineChartYAxis As Axis
+
+ 'X-Axis
+ LineChartXAxis = New LinearAxis
+ LineChartXAxis.IsAxisVisible = True
+ LineChartXAxis.Layer = Axes.AxisLayer.AboveSeries
+ LineChartXAxis.AxislineStyle = LineStyle.Solid
+ LineChartXAxis.AxislineThickness = 1
+ LineChartXAxis.AxislineColor = Color.FromRgb(0, 0, 0)
+ LineChartXAxis.MajorGridlineStyle = LineStyle.Dash
+ LineChartXAxis.MajorGridlineThickness = 1
+ LineChartXAxis.MajorGridlineColor = Color.FromRgb(125, 125, 125)
+ LineChartXAxis.MajorStep = LineChartDataPointCount / 4
+ LineChartXAxis.TextColor = Color.FromRgb(0, 0, 0)
+ 'LineChartXAxis.Font = "Consolas"
+ LineChartXAxis.LabelFormatter = Function(Val As Double) ""
+ LineChartXAxis.Position = Axes.AxisPosition.Bottom
+ LineChartXAxis.Maximum = LineChartDataPointCount - 1
+ LineChartXAxis.Minimum = 0
+ LineChartXAxis.IsZoomEnabled = False
+ LineChartXAxis.IsPanEnabled = False
+ 'Y-Axis
+ LineChartYAxis = New LinearAxis
+ LineChartYAxis.IsAxisVisible = True
+ LineChartYAxis.Layer = Axes.AxisLayer.AboveSeries
+ LineChartYAxis.AxislineStyle = LineStyle.Solid
+ LineChartYAxis.AxislineThickness = 1
+ LineChartYAxis.AxislineColor = Color.FromRgb(0, 0, 0)
+ LineChartYAxis.MajorGridlineStyle = LineStyle.Dash
+ LineChartYAxis.MajorGridlineThickness = 1
+ LineChartYAxis.MajorGridlineColor = Color.FromRgb(125, 125, 125)
+ LineChartYAxis.MajorStep = (LineChartDataMax - LineChartDataMin + 1) / 4
+ LineChartYAxis.TextColor = Color.FromRgb(0, 0, 0)
+ 'LineChartYAxis.Font = "Consolas"
+ LineChartYAxis.LabelFormatter = Function(Val As Double) ""
+ LineChartYAxis.Position = Axes.AxisPosition.Left
+ LineChartYAxis.Maximum = LineChartDataMax + 2
+ LineChartYAxis.Minimum = LineChartDataMin - 2
+ LineChartYAxis.IsZoomEnabled = False
+ LineChartYAxis.IsPanEnabled = False
+ [[/code]]
+
+更新绘图控件：
+
+[[code]]
+ pltLineChart.IsLegendVisible = False
+ pltLineChart.TitlePadding = 0
+ pltLineChart.Axes.Add(LineChartXAxis)
+ pltLineChart.Axes.Add(LineChartYAxis)
+ pltLineChart.Series.Add(LineChartPlotter)
+ [[/code]]
+
+更新数据容器
+
+[[code]]
+ For i = 0 To LineChartDataPointCount - 1
+     LineChartDataSeries.Points(i) = New DataPoint(i, NewData)
+ Next
+ [[/code]]
+
+重绘绘图控件：
+
+[[code]]
+ LineChartDataSeries.PlotModel.InvalidatePlot(True)
+ [[/code]]
+
+ + 颜色图绘制
+
+ 建立绘图对象：
+
+[[code]]
+ Dim ColorMapPlotter As New HeatMapSeries
+ [[/code]]
+
+建立数据容器：
+
+[[code]]
+ Dim ColorMapDataSeries As OxyPlot.Series.HeatMapSeries
+ Dim ColorMapBuffer(ColorMapColCount - 1, ColorMapRowCount / 2 - 1) As Double
+ [[/code]]
+
+关联数据容器和绘图对象：
+
+[[code]]
+ ColorMapDataSeries = ColorMapPlotter.CreateModel()
+ [[/code]]
+
+初始化数据：
+
+[[code]]
+ For col As Integer = 0 To ColorMapColCount - 1
+     For row As Integer = 0 To ColorMapRowCount / 2 - 1
+         ColorMapBuffer(col, row) = ColorMapDataMin - 1
+     Next
+ Next
+ ColorMapPlotter.Data = ColorMapBuffer
+ [[/code]]
+
+初始化XY坐标轴：
+
+[[code]]
+ Dim ColorMapXAxis As Axis
+ Dim ColorMapYAxis As Axis
+
+ 'X-Axis
+ ColorMapXAxis = New LinearAxis
+ ColorMapXAxis.IsAxisVisible = True
+ ColorMapXAxis.Layer = Axes.AxisLayer.AboveSeries
+ ColorMapXAxis.AxislineStyle = LineStyle.Solid
+ ColorMapXAxis.AxislineThickness = 1
+ ColorMapXAxis.AxislineColor = Color.FromRgb(0, 0, 0)
+ ColorMapXAxis.MajorGridlineStyle = LineStyle.Dash
+ ColorMapXAxis.MajorGridlineThickness = 1
+ ColorMapXAxis.MajorGridlineColor = Color.FromArgb(0, 125, 125, 125)
+ ColorMapXAxis.MajorStep = ColorMapColCount / 4
+ ColorMapXAxis.TextColor = Color.FromRgb(0, 0, 0)
+ 'ColorMapXAxis.Font = "Consolas"
+ ColorMapXAxis.LabelFormatter = Function(Val As Double) ""
+ ColorMapXAxis.Position = Axes.AxisPosition.Bottom
+ ColorMapXAxis.Maximum = ColorMapColCount - 1
+ ColorMapXAxis.Minimum = 0
+ ColorMapXAxis.IsZoomEnabled = False
+ ColorMapXAxis.IsPanEnabled = False
+ 'Y-Axis
+ ColorMapYAxis = New LinearAxis
+ ColorMapYAxis.IsAxisVisible = True
+ ColorMapYAxis.Layer = Axes.AxisLayer.AboveSeries
+ ColorMapYAxis.AxislineStyle = LineStyle.Solid
+ ColorMapYAxis.AxislineThickness = 1
+ ColorMapYAxis.AxislineColor = Color.FromRgb(0, 0, 0)
+ ColorMapYAxis.MajorGridlineStyle = LineStyle.Dash
+ ColorMapYAxis.MajorGridlineThickness = 1
+ ColorMapYAxis.MajorGridlineColor = Color.FromArgb(0, 125, 125, 125)
+ ColorMapYAxis.MajorStep = ColorMapRowCount / 2 / 4
+ ColorMapYAxis.TextColor = Color.FromRgb(0, 0, 0)
+ 'ColorMapYAxis.Font = "Consolas"
+ ColorMapYAxis.LabelFormatter = Function(Val As Double) ""
+ ColorMapYAxis.Position = Axes.AxisPosition.Left
+ ColorMapYAxis.Maximum = ColorMapRowCount / 2 - 1
+ ColorMapYAxis.Minimum = 0
+ ColorMapYAxis.IsZoomEnabled = False
+ ColorMapYAxis.IsPanEnabled = False
+ [[/code]]
+
+初始化颜色轴（Z轴）：
+
+[[code]]
+ Dim ColorMapZAxis As LinearColorAxis
+
+ 'Z-Axis (Color Axis)
+ ColorMapZAxis = New LinearColorAxis
+ ColorMapZAxis.IsAxisVisible = True
+ ColorMapZAxis.TickStyle = Axes.TickStyle.None
+ ColorMapZAxis.HighColor = Colors.White
+ ColorMapZAxis.LowColor = Colors.Black
+ ColorMapZAxis.GradientStops = OxyPaletteToGradientStops(OxyPalettes.Jet(10))
+ ColorMapZAxis.PaletteSize = ColorMapDataMax - ColorMapDataMin + 1
+ ColorMapZAxis.LabelFormatter = Function(Val As Double) ""
+ ColorMapZAxis.Position = Axes.AxisPosition.Right
+ ColorMapZAxis.Maximum = ColorMapDataMax
+ ColorMapZAxis.Minimum = ColorMapDataMin
+ ColorMapZAxis.AxisDistance = 10
+ ColorMapZAxis.AxisTickToLabelDistance = 10
+ [[/code]]
+
+初始化Z轴时，引入了将OxyPlot内置颜色轴配置转化为WPF的渐变序列的函数{{OxyPaletteToGradientStops()}}：
+
+[[code]]
+ Private Function OxyPaletteToGradientStops(Palette As OxyPalette) As GradientStopCollection
+     Dim PaletteGradient As New GradientStopCollection
+     Dim ColorCount As Integer = Palette.Colors.Count
+     Dim StopInterval As Double = 1 / (ColorCount - 1)
+
+     'Special cases
+     If ColorCount = 0 Then
+         Return PaletteGradient
+     ElseIf ColorCount = 1 Then
+         PaletteGradient.Add(New GradientStop(Palette.Colors(0).ToColor(), 0))
+         PaletteGradient.Add(New GradientStop(Palette.Colors(0).ToColor(), 1))
+         Return PaletteGradient
+     End If
+
+     For i = 0 To ColorCount - 1
+         PaletteGradient.Add(New GradientStop(Palette.Colors(i).ToColor(), i * StopInterval))
+     Next
+     Return PaletteGradient
+ End Function
+ [[/code]]
+
+更新绘图控件：
+
+[[code]]
+ ColorMapPlotter.X0 = 0
+ ColorMapPlotter.X1 = ColorMapColCount - 1
+ ColorMapPlotter.Y0 = 0
+ ColorMapPlotter.Y1 = ColorMapRowCount / 2 - 1
+ ColorMapDataSeries.Interpolate = True
+ ColorMapDataSeries.RenderMethod = OxyPlot.Series.HeatMapRenderMethod.Bitmap
+ pltColorMap.IsLegendVisible = False
+ pltColorMap.TitlePadding = 0
+ pltColorMap.Axes.Add(ColorMapXAxis)
+ pltColorMap.Axes.Add(ColorMapYAxis)
+ pltColorMap.Axes.Add(ColorMapZAxis)
+ pltColorMap.Series.Add(ColorMapPlotter)
+ [[/code]]
+
+更新数据容器
+
+[[code]]
+ For col As Integer = 0 To ColorMapColCount - 1
+     For row As Integer = 0 To ColorMapRowCount / 2 - 1
+         ColorMapBuffer(col, row) = NewData
+     Next
+ Next
+ ColorMapPlotter.Data = ColorMapBuffer
+ [[/code]]
+
+重绘绘图控件：
+
+[[code]]
+ ColorMapDataSeries.PlotModel.InvalidatePlot(True)
+ [[/code]] 
