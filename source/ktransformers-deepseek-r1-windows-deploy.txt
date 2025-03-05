@@ -26,6 +26,18 @@ conda create --name ktransformers python=3.11
 conda activate ktransformers
 [[/code]]
 
+激活后，需要安装Conda-Forge：
+
+[[code]]
+conda install -c conda-forge
+[[/code]]
+
+如果您在前一步没有安装CMake，也可以在这一步中一并安装：
+
+[[code]]
+conda install -c conda-forge cmake
+[[/code]]
+
 ++ Python库
 
 +++ PyTorch
@@ -128,7 +140,7 @@ python -m ktransformers.local_chat --model_path E:/LLM-Models/DeepSeek-AI/DeepSe
 ktransformers --model_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b --gguf_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b/DeepSeek-R1-671b-Q4_K_M/ --cpu_infer 190 --host 0.0.0.0 --web True --port 2453 --cache_lens 16384
 [[/code]]
 
-启动后，通过浏览器访问 *http://localhost:2453/web/index.html#/chat 即可与模型交互。
+启动后，通过浏览器访问 *http://localhost:2453/web/index.html#/chat 即可与模型交互。将{{--web}}参数的值改为{{False}}可以只启用RestfulAPI，您可以将其以OpenAI API的形式添加到Open WebUI等前端程序中。默认情况下API地址类似“{{@@http://10.245.245.45:2453/v1@@}}”（地址和端口请参考您的具体实现），API Key可任意填写。
 
 + 参考资料
 
@@ -137,6 +149,8 @@ ktransformers --model_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b --gguf_pat
 *https://kvcache-ai.github.io/ktransformers/en/api/server/website.html
 
 *https://zhuanlan.zhihu.com/p/25811017239
+
+*https://blog.csdn.net/cnsjd/article/details/145707983
 
 *https://blog.csdn.net/sanqima/article/details/132635898
 
