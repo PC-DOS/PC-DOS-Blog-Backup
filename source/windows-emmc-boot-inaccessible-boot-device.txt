@@ -17,8 +17,8 @@
 # 定位到{{HKEY_LOCAL_MACHINE\MAINOS_SYSTEM\ControlSet001\Control\}}
 # 将{{PortableOperatingSystem}}值改为{{@@0@@}}。
 
-重新引导系统，故障解决。
+卸载注册表项，重新引导系统，故障解决。
 
 **参考资料：**
 
-*http://bbs.wuyou.net/forum.php?mod=viewthread&tid=257296 
+*http://bbs.wuyou.net/forum.php?mod=viewthread&tid=257296
