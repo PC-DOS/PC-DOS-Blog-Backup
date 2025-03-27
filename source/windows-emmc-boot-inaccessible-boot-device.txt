@@ -1,0 +1,24 @@
+**故障描述：**一台技森TJ-101ED02平板电脑，系统盘为128 GB eMMC，从Windows PE部署Windows Server 2022，启动时出现INACCESSIBLE_BOOT_DEVICE蓝屏。
+
+**故障处理：**重新启动到Windows PE，假设Windows Server 2022系统盘为{{C:}}，则在注册表编辑器中向{{HKEY_LOCAL_MACHINE}}主键挂载{{C:\Windows\System32\Config\SYSTEM}}注册表储巢，假设挂载到{{HKEY_LOCAL_MACHINE\MAINOS_SYSTEM}}。
+
+配置{{sdbus}}自启动：
+
+# 定位到{{HKEY_LOCAL_MACHINE\MAINOS_SYSTEM\ControlSet001\Services\sdbus\}}
+# 将{{Start}}值改为{{@@0@@}}。
+
+配置{{sdstor}}自启动：
+
+# 定位到{{HKEY_LOCAL_MACHINE\MAINOS_SYSTEM\ControlSet001\Services\sdstor\}}
+# 将{{Start}}值改为{{@@0@@}}。
+
+确保系统没有处于Windows ToGo状态：
+
+# 定位到{{HKEY_LOCAL_MACHINE\MAINOS_SYSTEM\ControlSet001\Control\}}
+# 将{{PortableOperatingSystem}}值改为{{@@0@@}}。
+
+重新引导系统，故障解决。
+
+**参考资料：**
+
+*http://bbs.wuyou.net/forum.php?mod=viewthread&tid=257296 
