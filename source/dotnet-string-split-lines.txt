@@ -1,17 +1,23 @@
 此处使用Windows模式换行符（{{vbCrLf}}）。
 
- 错误用法：
+错误用法：
 
 [[code]]
- Dim SplittedLines() As String = MergedString.Split(vbCrLf)
- [[/code]]
+Dim SplittedLines() As String = MergedString.Split(vbCrLf)
+[[/code]]
 
 此用法会导致拆分得到的字符串序列不正确。
 
- 正确用法：
+正确用法：
 
 [[code]]
- Dim SplittedLines() As String = MergedString.Split(New Char(){vbCr, vbLf}, StringSplitOptions.RemoveEmptyEntries)
- [[/code]]
+Dim SplittedLines() As String = MergedString.Split(New Char(){vbCr, vbLf}, StringSplitOptions.RemoveEmptyEntries)
+[[/code]]
 
-参考资料：*https://learn.microsoft.com/zh-cn/dotnet/api/system.string.split?view=netframework-4.5 
+需要注意的是，此方法会在所有{{vbCr}}和{{vbLf}}字符处拆分字符串，如果字符串中含有不需要被断开的孤立{{vbCr}}或{{vbLf}}字符，或者需要保留字符串中的空行，会导致拆分结果不正确。此时的一种处理方式是将字符串中的连续分隔符替换为单一不常见字符：
+
+[[code]]
+Dim SplittedLines() As String = MergedString.Replace(vbCrLf, vbBack).Split(vbBack)
+[[/code]]
+
+参考资料：*https://learn.microsoft.com/zh-cn/dotnet/api/system.string.split?view=netframework-4.5
