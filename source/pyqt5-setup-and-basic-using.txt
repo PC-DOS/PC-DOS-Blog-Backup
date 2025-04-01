@@ -1,0 +1,269 @@
+[*https://pypi.org/project/PyQt5/ PyQt5]是基于Qt5设计思路的Python图形用户界面工具包，可以协助用户创建图形界面。
+
+PyQt5文档：
+* *https://www.riverbankcomputing.com/static/Docs/PyQt5/
+* *https://doc.qt.io/qtforpython-5/
+
++ 安装
+
+++ PyQt5主程序包
+
+在控制台中执行：
+
+[[code]]
+pip install PyQt5
+[[/code]]
+
+++ PyQt5工具包
+
+如果您的计算机上已安装Qt环境或QtCreator等工具，可以跳过此步骤。
+
+在控制台中执行：
+
+[[code]]
+pip install PyQt5-Tools
+[[/code]]
+
+++ 第三方控件
+
+此处以[*https://www.qcustomplot.com/ QCustomPlot]绘图控件的[*https://pypi.org/project/QCustomPlot-PyQt5/ PyQt5版本]为例。
+
+[[code]]
+pip install QCustomPlot_PyQt5
+[[/code]]
+
++ 建立窗体
+
+推荐采用窗体逻辑和业务代码分离的设计，以保证程序的可维护性。
+
+++ 绘制窗体
+
+您可以使用QtCreator、Qt Designer等工具可视化地绘制窗体。如果您已经安装了Qt开发环境或QtCreator，您可以直接启动这些工具。如果您使用{{PyQt5-Tools}}，您可以在Qt包根目录的{{site-packages\qt5_applications\Qt\bin\}}目录中找到{{designer.exe}}界面设计器。
+
+请注意：如果您使用了“提升控件”功能将控件提升为第三方控件，请确保“头文件”一项使用包含该第三方控件的包的名称（同时添加{{.h}}扩展名）。例如，若您将{{QWidget}}提升为{{QCustomPlot}}，则应配置“提升的类名”为{{QCustomPlot}}，“头文件”为{{QCustomPlot_PyQt5.h}}。
+
+这里假设您将窗体文件保存为{{MainWindow.ui}}。
+
+++ 将窗体文件转换为Python文件
+
+PyQt无法直接识别UI格式的窗体文件，因此您需要将其转换为可执行的Python文件。
+
+在控制台中执行：
+
+[[code]]
+python -m PyQt5.uic.pyuic MainWindow.ui -o ui_MainWindow.py
+[[/code]]
+
+此时，得到的{{ui_MainWindow.py}}文件即为窗体代码文件，该文件定义了窗体UI基类{{Ui_MainWindow}}，包含了用于初始化窗体上的控件的{{setupUi()}}函数。
+
+++ 建立窗口代码文件
+
+由于此时窗体界面信息和业务逻辑是分离的，因此需要创建名为{{MainWindow.py}}的业务代码文件，定义名为{{MainWindow}}的、同时继承{{QMainWindow}}和{{Ui_MainWindow}}基类的业务代码类：
+
+[[code type="python"]]
+# PyQt5 modules
+from PyQt5.QtCore import *
+from PyQt5.QtWidgets import *
+
+# QCustomPlot for PyQt5
+from QCustomPlot_PyQt5 import *
+
+# UI File
+from ui_MainWindow import Ui_MainWindow
+
+# MainWindow implementation
+class MainWindow(QMainWindow, Ui_MainWindow) :
+
+    # MainWindow constructor
+    def __init__(self) :
+        # Initialize base classes
+        super().__init__()
+
+        # Initialize widgets
+        self.setupUi(self)
+
+        # Application init
+        pass
+    #End Sub
+
+#End Class
+[[/code]]
+
++ 建立程序入口点
+
+和基于C++的Qt一样，PyQt需要先建立{{QApplication}}对象启动事件循环，随后执行主窗口显示等任务，最后将执行结果返回给操作系统。此处将程序入口写入{{Main.py}}文件中：
+
+[[code type="python"]]
+# Public libraries
+import sys
+
+# PyQt5 modules
+from PyQt5.QtWidgets import QApplication
+
+# MainWindow classes
+from MainWindow import MainWindow
+
+# Main entry point
+if __name__ == "__main__" : 
+    # Create QApplication object and start main event loop
+    appCurrent = PyQt5.QtWidgets.QApplication(sys.argv)
+
+    # Show main window
+    frmMainWindow = MainWindow()
+    frmMainWindow.show()
+
+    # Wait until main event loop exits
+    sys.exit(appCurrent.exec_())
+#End If
+[[/code]]
+
+运行{{Main.py}}脚本，即可启动并展示主窗口。
+
++ 使用信号与槽
+
+PyQt的[*https://doc.qt.io/qtforpython-5/overviews/signalsandslots.html 信号（Signal）与槽（Slot）]思路与C++版本的Qt是一致的。但是在定义和使用时存在略微差异。
+
+++ 定义信号
+
+任何继承自{{PyQt5.QtCore.QObject}}或其派生类的类均可定义类型为{{[*https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html#PyQt5.QtCore.pyqtSignal PyQt5.QtCore.pyqtSignal]}}的对象实例，并将该对象实例作为信号使用：
+
+[[code type="python"]]
+SampleSignalWithNoParameters = pyqtSignal()
+[[/code]]
+
+{{PyQt5.QtCore.pyqtSignal}}的构造函数可以输入一个列表，表示该信号可以传递的参数的类型。将多个数据类型使用方括号“{{@@[]@@}}”括起表示该参数可以传递多种类型的信号。例如，若一个信号的第一个参数必须为整数，而第二个参数可以为整数或字符串，则可以使用下面的方式定义：
+
+[[code type="python"]]
+SampleSignalWith2Parameters = pyqtSignal(int, [int,str])
+[[/code]]
+
+++ 定义槽
+
+槽函数的定义与常规成员函数一致。
+
+++ 连接信号与槽
+
+信号对象提供的{{[*https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html#connect PyQt5.QtCore.pyqtSignal.connect()]}}函数可用于将信号与槽连接：
+
+[[code type="python"]]
+objEmitter.SampleSignal.connect(objReceiver.SampleSlot)
+[[/code]]
+
+信号对象提供的{{[*https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html#disconnect PyQt5.QtCore.pyqtSignal.disconnect()]}}函数可用断开信号与槽的连接：
+
+[[code type="python"]]
+objEmitter.SampleSignal.disconnect(objReceiver.SampleSlot)
+[[/code]]
+
+++ 发射信号
+
+信号对象提供的{{[*https://www.riverbankcomputing.com/static/Docs/PyQt5/signals_slots.html#emit PyQt5.QtCore.pyqtSignal.emit()]}}函数可用于发射信号并传递参数：
+
+[[code type="python"]]
+self.SampleSignal.emit(objParam1, objParam2, ...)
+[[/code]]
+
+++ 示例程序
+
+{{SignalSlotTest.py}}：定义信号发生器类{{SignalEmitter}}和接收器类{{SignalReceiver}}。
+
+[[code type="python"]]
+# PyQt5 modules
+from PyQt5.QtCore import *
+
+# Sample signal emitter
+class SignalEmitter(QObject) :
+    # Sample signal with no parameters
+    SampleSignalWithNoParameters = pyqtSignal()
+
+    # Sample signal with 1 string parameter
+    SampleSignalWith1Parameter = pyqtSignal(str)
+
+    # Sample signal with 2 parameters, both can be Integer or String
+    SampleSignalWith2Parameters = pyqtSignal([int,str], [int,str])
+
+    # Signal emitting test
+    def TestEmittingSignals(self) :
+        # Emit signal with no parameters
+        self.SampleSignalWithNoParameters.emit()
+
+        # Emit signal with 1 parameter
+        self.SampleSignalWith1Parameter.emit("Picsell Dois")
+
+        # Emit signal with 2 parameters
+        self.SampleSignalWith2Parameters.emit(245, "Suicune")
+    #End Sub
+#End Class
+
+# Sample signal receiver
+class SignalReceiver(QObject) :
+    # Slot with no parameters
+    def SampleSlotWithNoParameters(self) :
+        print("SampleSlotWithNoParameters: Executed with no parameters received.")
+    #End Sub
+    
+    # Slot with 1 parameter
+    def SampleSlotWith1Parameter(self, sData : str) :
+        print(f"SampleSlotWithWith1Parameter: Received {sData}")
+    #End Sub
+    
+    # Slot with 2 parameters
+    def SampleSlotWith2Parameters(self, iData1 : int, sData2 : str) :
+        print(f"SampleSlotWithWith1Parameter: Received {iData1} and {sData2}")
+    #End Sub
+#End Class
+[[/code]]
+
+{{Main.py}}：程序主入口。
+
+[[code type="python"]]
+# Public libraries
+import sys
+
+# PyQt5 modules
+from PyQt5.QtWidgets import QApplication
+
+# Signal emitter and receiver classes
+from SignalSlotTest import SignalEmitter,SignalReceiver
+
+# Main entry point
+if __name__ == "__main__" : 
+    # Create QApplication object and start main event loop
+    appCurrent = QApplication(sys.argv)
+
+    # Create signal emitter and receiver objects
+    objEmitter = SignalEmitter()
+    objReceiver = SignalReceiver()
+
+    # Connect signals and slots
+    objEmitter.SampleSignalWithNoParameters.connect(objReceiver.SampleSlotWithNoParameters)
+    objEmitter.SampleSignalWith1Parameter.connect(objReceiver.SampleSlotWith1Parameter)
+    objEmitter.SampleSignalWith2Parameters.connect(objReceiver.SampleSlotWith2Parameters)
+
+    # Test emitting signals
+    objEmitter.TestEmittingSignals()
+
+    # Wait until main event loop exits
+    #sys.exit(appCurrent.exec_())
+#End If
+[[/code]]
+
++ 参考资料
+
+*https://www.riverbankcomputing.com/static/Docs/PyQt5/
+
+*https://pypi.org/project/PyQt5/
+
+*https://pypi.org/project/QCustomPlot-PyQt5/
+
+*https://blog.csdn.net/weixin_42475060/article/details/130327901
+
+*https://www.nixgnauhcuy.cn/8d34424033d0/
+
+*https://blog.csdn.net/yg2496194392/article/details/129944809
+
+*https://blog.csdn.net/qq_62095154/article/details/122947262
+
+*https://www.cnblogs.com/chenhaiming/p/9930628.html
+
+*https://blog.csdn.net/huayunhualuo/article/details/102718509
