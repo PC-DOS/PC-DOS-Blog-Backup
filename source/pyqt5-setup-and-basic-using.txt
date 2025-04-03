@@ -86,6 +86,19 @@ class MainWindow(QMainWindow, Ui_MainWindow) :
         pass
     #End Sub
 
+    # MainWindow destructor
+    def __del__(self) :
+        pass
+    #End Sub
+    
+    # Do cleaning works when closing
+    def closeEvent(self, evtEvent) :
+        # Generally you don't need to delete an object manually
+        #self.__del__()
+        
+        evtEvent.accept()
+    #End Sub
+
 #End Class
 [[/code]]
 
