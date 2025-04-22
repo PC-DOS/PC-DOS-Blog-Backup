@@ -1,0 +1,31 @@
+**故障描述：**一台服务器运行Windows Server 2022操作系统，硬件使用2颗AMD EPYC 9654处理器（共192个物理处理器和384个逻辑处理器）和512 GB内存，正常启用Windows Subsystem for Linux 2（WSL2）后，尝试使用`wsl --install ubuntu`命令安装Ubuntu时，出现“参数错误”失败，错误代码为：
+
+[[code]]
+Wsl/InstallDistro/Service/RegisterDistro/CreateVm/HCS/E_INVALIDARG
+[[/code]]
+
+该故障同样导致使用WSL2后端的Docker Desktop for Windows无法启动。
+
+**故障处理：**该故障是由于WSL2尝试将过多的CPU核心全部分配给虚拟机导致的。创建WSL2配置文件：
+
+[[code]]
+%USERPROFILE%/.wslconfig
+[[/code]]
+
+并写入：
+
+[[code]]
+[wsl2]
+processors=64
+[[/code]]
+
+重新启动WSL2并安装Ubuntu：
+
+[[code]]
+wsl --shutdown
+wsl --install ubuntu
+[[/code]]
+
+**参考资料：**
+
+*https://github.com/microsoft/WSL/issues/12694#issuecomment-2741380963 
