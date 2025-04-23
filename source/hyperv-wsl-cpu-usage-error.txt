@@ -1,0 +1,25 @@
+**故障描述：**一台运行Windows Server 2022的工作站出于测试目的启用了Hyper-V虚拟机平台、安装了Windows Subsystem for Linux 2（WSL2）和基于WSL2后端的Docker Desktop。测试完毕后，依次卸载了Docker和WSL2，并使用服务器管理器移除了Hyper-V和WSL2功能。
+
+重新启动计算机后，发现系统无负载时任务管理器对CPU使用率的统计异常维持在17%附近。但查看“系统空闲进程”的处理器占用正常显示99%。同时系统托盘中的CPU使用率图标正常显示为0%。
+
+删除WSL2配置文件{{%USERPROFILE%/.wslconfig}}、禁用Hyper-V相关服务等无法解决问题。
+
+**故障处理：**在命令提示符运行：
+
+[[code]]
+bcdedit /enum all
+[[/code]]
+
+发现默认启动项{{@@{current}@@}}的{{hypervisorlaunchtype}}属性为{{Auto}}。将其设为禁用：
+
+[[code]]
+bcdedit /set {current} hypervisorlaunchtype Off
+[[/code]]
+
+重新启动计算机后，故障解决。
+
+若需要重新启用HyperVisor，则执行：
+
+[[code]]
+bcdedit /set {current} hypervisorlaunchtype Auto
+[[/code]]
