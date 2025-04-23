@@ -29,3 +29,5 @@ wsl --install ubuntu
 **参考资料：**
 
 *https://github.com/microsoft/WSL/issues/12694#issuecomment-2741380963 
+
+*https://learn.microsoft.com/en-us/windows/wsl/wsl-config
