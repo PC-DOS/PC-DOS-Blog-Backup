@@ -23,3 +23,11 @@ bcdedit /set {current} hypervisorlaunchtype Off
 [[code]]
 bcdedit /set {current} hypervisorlaunchtype Auto
 [[/code]]
+
+**备注：**该问题可能是由Hyper-V对根分区最大320个逻辑处理器的限制引发的（工作站具有384个逻辑处理器，(384-320)/384=64/384=16.67%）。请参考：
+
+*https://learn.microsoft.com/zh-cn/windows-server/virtualization/hyper-v/plan/plan-hyper-v-scalability-in-windows-server
+
+*https://learn.microsoft.com/zh-cn/troubleshoot/windows-server/virtualization/support-and-installation-instructions-for-amd-epyc-9004-series-server-processors
+
+*https://learn.microsoft.com/zh-cn/windows-server/virtualization/hyper-v/manage/manage-hyper-v-minroot-2016 
