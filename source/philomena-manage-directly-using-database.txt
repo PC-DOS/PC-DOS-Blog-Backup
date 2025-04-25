@@ -121,6 +121,12 @@ UPDATE images SET comments_count=0 WHERE id=1;
 DELETE FROM topics WHERE id=1;
 [[/code]]
 
+更新论坛板块统计数目：
+
+[[code]]
+UPDATE forums SET topic_count=0, post_count=0 WHERE id=1;
+[[/code]]
+
 + 参考资料
 
 *https://github.com/derpibooru/philomena/issues/269
