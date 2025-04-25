@@ -113,6 +113,14 @@ DELETE FROM comments WHERE id>=1;
 UPDATE images SET comments_count=0 WHERE id=1;
 [[/code]]
 
++ 删除特定讨论串
+
+此处以删除{{id}}为{{1}}的讨论串为例：
+
+[[code]]
+DELETE FROM topics WHERE id=1;
+[[/code]]
+
 + 参考资料
 
 *https://github.com/derpibooru/philomena/issues/269
