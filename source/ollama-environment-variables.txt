@@ -22,6 +22,8 @@
 "OLLAMA_SCHED_SPREAD":      "Always schedule model across all GPUs"
 "OLLAMA_TMPDIR":            "Location for temporary files"
 "OLLAMA_MULTIUSER_CACHE":   "Optimize prompt caching for multi-user scenarios"
+"OLLAMA_CONTEXT_LENGTH":    "Context length to use unless otherwise specified (default: 4096)"
+"OLLAMA_NEW_ENGINE":        "Enable the new Ollama engine"
 
 // Proxy Options
 "HTTP_PROXY":  "HTTP proxy"
@@ -38,6 +40,8 @@
 [[/code]]
 
 参考资料：
+
+*https://github.com/ollama/ollama/blob/main/envconfig/config.go
 
 *https://github.com/ollama/ollama/blob/main/docs/faq.md
 
