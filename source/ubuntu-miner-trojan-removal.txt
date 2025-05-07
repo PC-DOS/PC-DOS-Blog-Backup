@@ -1,0 +1,35 @@
+﻿**故障描述：**一台运行Ubuntu 20.04 LTS的戴尔R740服务器，发现运行计算密集型业务时频繁出现程序被Kill的现象。通过固件提供的硬件自检工具排除了内存、系统分区、CPU等存在故障的可能性。
+
+使用{{htop}}查看资源占用，发现一半的处理器核心始终处于100%占用状态，推测为挖矿型木马病毒。
+
+**故障处理：**使用安装有Ventoy的可引导磁盘引导到Ubuntu 22.04 LTS LiveCD。离线挂载系统分区，此处假设系统分区位于{{/dev/sdg4}}中：
+
+[[code]]
+cd /mnt
+sudo mkdir sysroot
+sudo mount /dev/sdg4 ./sysroot
+cd sysroot
+[[/code]]
+
+随后，开始进行排查处理。
+
+检查{{etc/cron.d/}}目录，发现文件名为随机字母和数字的任务计划文件（类似“{{5o3UNlCh}}”和“{{RGOnbupV}}”）。在{{etc/cron.daily/}}、{{etc/cron.hourly/}}、{{etc/cron.monthly/}}、{{etc/cron.weekly/}}目录中发现了具有相似命名风格和内容的文件。这些文件指向以下可执行文件：
+
+[[code]]
+/bin/z7OB0ehG
+/bin/Dzidwe1X
+[[/code]]
+
+继续检查{{usr/lib/systemd/system/}}，发现文件名为随机字母和数字的服务文件（类似“{{799960ba.service}}”）。指向以下可执行文件：
+
+[[code]]
+/usr/bin/799960ba3e6dfece
+[[/code]]
+
+使用{{sudo rm}}命令删除以上所有可疑文件后，正常重新引导系统。使用{{htop}}查看资源占用发现已处于正常状态，计算密集型业务可以正常运行。
+
+**参考资料：**
+
+*https://cn-sec.com/archives/701783.html
+
+*https://cloud.tencent.com/developer/article/1523326
