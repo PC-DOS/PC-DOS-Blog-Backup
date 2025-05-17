@@ -1,9 +1,9 @@
 [*https://github.com/ClosedXML/ClosedXML ClosedXML库]提供了在.NET中操作XLSX格式的电子表的便捷接口。但是，使用{{New ClosedXML.Excel.XLWorkbook(XLSXFilePath)}}方法打开XLSX电子表时，可能抛出“文件包含损坏的数据”错误。
 
-此时，请使用Office将存在问题的XLSX文件另存为“Strict Open XML 电子表格（.xlsx）”格式，即可保证得到的XLSX表格符合OpenXML规范。
+ 此时，请使用Office将存在问题的XLSX文件另存为“Strict Open XML 电子表格（.xlsx）”格式，即可保证得到的XLSX表格符合OpenXML规范。
 
-参考资料：
+ 参考资料：
 
 *https://github.com/ClosedXML/ClosedXML/wiki/Does-it-support-Excel-2003-and-prior-formats-(.xls)
 
-*https://learn.microsoft.com/zh-cn/office/compatibility/xml-file-name-extension-reference-for-office 
+ *https://learn.microsoft.com/zh-cn/office/compatibility/xml-file-name-extension-reference-for-office 

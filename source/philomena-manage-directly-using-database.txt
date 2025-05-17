@@ -1,136 +1,136 @@
 [[toc]]
 
-[*https://github.com/derpibooru/philomena Philomena]是一个优秀的Booru式图像管理Web服务平台。但是，部分管理功能无法直接在Web页面中完成。此时，可以使用数据库操作完成这些任务。
+ [*https://github.com/derpibooru/philomena Philomena]是一个优秀的Booru式图像管理Web服务平台。但是，部分管理功能无法直接在Web页面中完成。此时，可以使用数据库操作完成这些任务。
 
-此处假设Philomena运行于Dev模式下。
+ 此处假设Philomena运行于Dev模式下。
 
 + 登录数据库
 
 Philomena默认使用宿主于Docker容器内的PostgreSQL数据库承载业务数据。可以使用{{docker}}命令切入数据库容器：
 
 [[code]]
-docker exec -it CONTAINER_ID /bin/bash
-[[/code]]
+ docker exec -it CONTAINER_ID /bin/bash
+ [[/code]]
 
 其中{{CONTAINER_ID}}为Docker容器的Container ID，格式形如“{{1fa5a1c22fbc}}”，可以使用{{docker ps}}命令获取名字（{{NAMES}}字段）类似{{philomena-postgres-1}}或映像（{{IMAGE}}字段）类似{{postgres:17.4-alpine}}的容器的ID。
 
-进入容器终端后，通过{{psql}}调用PostgreSQL控制台，使用默认用户名{{postgres}}登录：
+ 进入容器终端后，通过{{psql}}调用PostgreSQL控制台，使用默认用户名{{postgres}}登录：
 
 [[code]]
-psql -U postgres
-[[/code]]
+ psql -U postgres
+ [[/code]]
 
 列出数据库：
 
 [[code]]
-\l
-[[/code]]
+ \l
+ [[/code]]
 
 连接到{{philomena_dev}}数据库：
 
 [[code]]
-\c philomena_dev
-[[/code]]
+ \c philomena_dev
+ [[/code]]
 
 列出数据表：
 
 [[code]]
-\dt
-[[/code]]
+ \dt
+ [[/code]]
 
-+ 核准新用户
+ + 核准新用户
 
 Philomena的Web管理无法直接核准新注册用户的注册（需注册用户通过电子邮件确认），但是可以通过数据库操作实现。用户信息储存于{{users}}表中。
 
-列出所有用户的ID信息：
+ 列出所有用户的ID信息：
 
 [[code]]
-SELECT id,email,confirmed_at FROM users;
-[[/code]]
+ SELECT id,email,confirmed_at FROM users;
+ [[/code]]
 
-{{confirmed_at}}字段为空的用户处于未确认（未核准）状态。
+ {{confirmed_at}}字段为空的用户处于未确认（未核准）状态。
 
-直接核准特定用户，此处以核准{{id}}字段为{{5}}的用户为例：
-
-[[code]]
-UPDATE users SET confirmed_at='2025-04-23 07:28:05' WHERE id=5;
-[[/code]]
-
-+ 删除用户
-
-此处以删除{{id}}大于等于2的所有用户为例：
+ 直接核准特定用户，此处以核准{{id}}字段为{{5}}的用户为例：
 
 [[code]]
-DELETE FROM users WHERE id>=2;
-[[/code]]
+ UPDATE users SET confirmed_at='2025-04-23 07:28:05' WHERE id=5;
+ [[/code]]
 
-+ 清除所有没有关联图像的标签
+ + 删除用户
 
-该操作将删除所有关联图像个数为0的标签：
-
-[[code]]
-DELETE FROM tags WHERE images_count=0;
-[[/code]]
-
-+ 清除特定图像下所有的标签
-
-此操作完成后，需要在Philomena的Web页面中对涉及的标签进行重新索引（计数）。
-
-此处以清除{{image_id}}为{{1}}的图像下所有的标签为例：
+ 此处以删除{{id}}大于等于2的所有用户为例：
 
 [[code]]
-DELETE FROM image_taggings WHERE image_id=1;
-[[/code]]
+ DELETE FROM users WHERE id>=2;
+ [[/code]]
 
-+ 清除特定图像下特定的标签
+ + 清除所有没有关联图像的标签
 
-此操作完成后，需要在Philomena的Web页面中对涉及的标签进行重新索引（计数）：
-
-此处以清除{{image_id}}为{{1}}的图像下所有{{tag_id}}大于{{40}}小于{{70}}的标签为例：
+ 该操作将删除所有关联图像个数为0的标签：
 
 [[code]]
-DELETE FROM image_taggings WHERE image_id=1 AND tag_id>40 AND tag_id<70;
-[[/code]]
+ DELETE FROM tags WHERE images_count=0;
+ [[/code]]
 
-+ 修改特定图像下特定的标签
+ + 清除特定图像下所有的标签
 
-此操作完成后，需要在Philomena的Web页面中对涉及的标签进行重新索引（计数）：
+ 此操作完成后，需要在Philomena的Web页面中对涉及的标签进行重新索引（计数）。
 
-此处以清除{{image_id}}为{{1}}的图像下{{tag_id}}为{{1}}的标签改为{{tag_id}}为{{4}}的标签为例：
-
-[[code]]
-UPDATE image_taggings SET tag_id=4 WHERE image_id=1 AND tag_id=1;
-[[/code]]
-
-+ 清除特定图片下所有的评论
-
-清除评论需要同时更新{{comments}}和{{comments_count}}等2个表。
-
-此处以清除{{image_id}}为{{1}}的图像下所有的评论为例：
+ 此处以清除{{image_id}}为{{1}}的图像下所有的标签为例：
 
 [[code]]
-DELETE FROM comments WHERE id>=1;
-UPDATE images SET comments_count=0 WHERE id=1;
-[[/code]]
+ DELETE FROM image_taggings WHERE image_id=1;
+ [[/code]]
 
-+ 删除特定讨论串
+ + 清除特定图像下特定的标签
 
-此处以删除{{id}}为{{1}}的讨论串为例：
+ 此操作完成后，需要在Philomena的Web页面中对涉及的标签进行重新索引（计数）：
+
+ 此处以清除{{image_id}}为{{1}}的图像下所有{{tag_id}}大于{{40}}小于{{70}}的标签为例：
 
 [[code]]
-DELETE FROM topics WHERE id=1;
-[[/code]]
+ DELETE FROM image_taggings WHERE image_id=1 AND tag_id>40 AND tag_id<70;
+ [[/code]]
+
+ + 修改特定图像下特定的标签
+
+ 此操作完成后，需要在Philomena的Web页面中对涉及的标签进行重新索引（计数）：
+
+ 此处以清除{{image_id}}为{{1}}的图像下{{tag_id}}为{{1}}的标签改为{{tag_id}}为{{4}}的标签为例：
+
+[[code]]
+ UPDATE image_taggings SET tag_id=4 WHERE image_id=1 AND tag_id=1;
+ [[/code]]
+
+ + 清除特定图片下所有的评论
+
+ 清除评论需要同时更新{{comments}}和{{comments_count}}等2个表。
+
+ 此处以清除{{image_id}}为{{1}}的图像下所有的评论为例：
+
+[[code]]
+ DELETE FROM comments WHERE id>=1;
+ UPDATE images SET comments_count=0 WHERE id=1;
+ [[/code]]
+
+ + 删除特定讨论串
+
+ 此处以删除{{id}}为{{1}}的讨论串为例：
+
+[[code]]
+ DELETE FROM topics WHERE id=1;
+ [[/code]]
 
 更新论坛板块统计数目：
 
 [[code]]
-UPDATE forums SET topic_count=0, post_count=0 WHERE id=1;
-[[/code]]
+ UPDATE forums SET topic_count=0, post_count=0 WHERE id=1;
+ [[/code]]
 
-+ 参考资料
+ + 参考资料
 
 *https://github.com/derpibooru/philomena/issues/269
 
-*https://github.com/philomena-dev/philomena/issues/198
+ *https://github.com/philomena-dev/philomena/issues/198
 
-*https://blog.csdn.net/stt12345678/article/details/135772865
+ *https://blog.csdn.net/stt12345678/article/details/135772865 

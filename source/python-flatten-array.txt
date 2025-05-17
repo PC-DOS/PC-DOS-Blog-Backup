@@ -1,41 +1,41 @@
 Python的[*https://numpy.org/doc/stable/index.html NumPy]库提供了将多维数组对象{{[*https://numpy.org/doc/stable/reference/arrays.ndarray.html numpy.ndarray]}}扁平化为一维数组的{{[*https://numpy.org/doc/stable/reference/generated/numpy.ndarray.flatten.html numpy.ndarray.flatten()]}}函数。
 
-对于一般的多维数组，可以使用Python的[*https://docs.python.org/3/library/itertools.html IterTools]库进行扁平化。需要注意的是，{{[*https://docs.python.org/3/library/itertools.html#itertools.chain.from_iterable itertools.chain.from_iterable()]}}只会将数组的维度降低1维（例如，若输入的数组有3个元素，每个元素是由2个1维数组构成的数组，那么执行后将得到1个包含6个元素、每个元素为1维数组的数组）。如果需要进行嵌套的扁平化，或需要处理包含异质元素的数组（例如，数组中的元素可能是数组、也可能是数值），则需要进行递归调用。
+ 对于一般的多维数组，可以使用Python的[*https://docs.python.org/3/library/itertools.html IterTools]库进行扁平化。需要注意的是，{{[*https://docs.python.org/3/library/itertools.html#itertools.chain.from_iterable itertools.chain.from_iterable()]}}只会将数组的维度降低1维（例如，若输入的数组有3个元素，每个元素是由2个1维数组构成的数组，那么执行后将得到1个包含6个元素、每个元素为1维数组的数组）。如果需要进行嵌套的扁平化，或需要处理包含异质元素的数组（例如，数组中的元素可能是数组、也可能是数值），则需要进行递归调用。
 
 [[code type="python"]]
-import itertools
+ import itertools
 
-# Checks if a given object is iterable
-def IsIterable(objTest) -> bool :
-    return hasattr(objTest, "__iter__")
-#End Function
+ # Checks if a given object is iterable
+ def IsIterable(objTest) -> bool :
+     return hasattr(objTest, "__iter__")
+ #End Function
 
-# Flatten arrays with over 1 dimensions to 1D-array
-# If UseNestedFlattening is set, will flatten all child elements
-def FlattenArray(arrOrig : array, UseNestedFlattening : bool = False) -> array :
-    if UseNestedFlattening :
-        arrResult = []
-        # Flatten all child elements
-        for DataElement in arrOrig :
-            if IsIterable(DataElement) :
-                # If current element is iterable, flatten it and add all child elements to flattened array
-                for FlattenedDataElement in FlattenArray(DataElement, True) :
-                    arrResult.append(FlattenedDataElement)
-                #Next
-            else :
-                # If current element is not iterable, all it to flattened array directly
-                arrResult.append(DataElement)
-            #End If
-        #Next
-        return arrResult
-    else :
-        return list(itertools.chain.from_iterable(arrOrig))
-    #End If
-#End Function
-[[/code]]
+ # Flatten arrays with over 1 dimensions to 1D-array
+ # If UseNestedFlattening is set, will flatten all child elements
+ def FlattenArray(arrOrig : array, UseNestedFlattening : bool = False) -> array :
+     if UseNestedFlattening :
+         arrResult = []
+         # Flatten all child elements
+         for DataElement in arrOrig :
+             if IsIterable(DataElement) :
+                 # If current element is iterable, flatten it and add all child elements to flattened array
+                 for FlattenedDataElement in FlattenArray(DataElement, True) :
+                     arrResult.append(FlattenedDataElement)
+                 #Next
+             else :
+                 # If current element is not iterable, all it to flattened array directly
+                 arrResult.append(DataElement)
+             #End If
+         #Next
+         return arrResult
+     else :
+         return list(itertools.chain.from_iterable(arrOrig))
+     #End If
+ #End Function
+ [[/code]]
 
 参考资料：
 
 *https://blog.csdn.net/qq_36853469/article/details/106928360
 
-*https://geek-docs.com/python/python-ask-answer/132_python_in_python_how_do_i_determine_if_an_object_is_iterable.html
+ *https://geek-docs.com/python/python-ask-answer/132_python_in_python_how_do_i_determine_if_an_object_is_iterable.html 

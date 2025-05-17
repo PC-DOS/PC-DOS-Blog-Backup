@@ -1,56 +1,56 @@
 [*https://ollama.com/ Ollama]提供了一个管理大语言模型的便捷接口，其部分配置参数是通过环境变量指定的。
 
-请注意，修改环境变量后需要重新启动Ollama以使改动生效。
+ 请注意，修改环境变量后需要重新启动Ollama以使改动生效。
 
 [[code]]
-// Global Options
-"OLLAMA_DEBUG":             "Show additional debug information (e.g. OLLAMA_DEBUG=1)"
-"OLLAMA_FLASH_ATTENTION":   "Enabled flash attention"
-"OLLAMA_GPU_OVERHEAD":      "Reserve a portion of VRAM per GPU (bytes)"
-"OLLAMA_HOST":              "IP Address for the ollama server (default 127.0.0.1:11434)"
-"OLLAMA_KEEP_ALIVE":        "The duration that models stay loaded in memory (default \"5m\")"
-"OLLAMA_KV_CACHE_TYPE":     "The quantization type for the K/V cache (default is \"f16\")"
-"OLLAMA_LLM_LIBRARY":       "Set LLM library to bypass autodetection"
-"OLLAMA_LOAD_TIMEOUT":      "How long to allow model loads to stall before giving up (default \"5m\")"
-"OLLAMA_MAX_LOADED_MODELS": "Maximum number of loaded models per GPU"
-"OLLAMA_MAX_QUEUE":         "Maximum number of queued requests"
-"OLLAMA_MODELS":            "The path to the models directory"
-"OLLAMA_NOHISTORY":         "Do not preserve readline history"
-"OLLAMA_NOPRUNE":           "Do not prune model blobs on startup"
-"OLLAMA_NUM_PARALLEL":      "Maximum number of parallel requests"
-"OLLAMA_ORIGINS":           "A comma separated list of allowed origins"
-"OLLAMA_SCHED_SPREAD":      "Always schedule model across all GPUs"
-"OLLAMA_TMPDIR":            "Location for temporary files"
-"OLLAMA_MULTIUSER_CACHE":   "Optimize prompt caching for multi-user scenarios"
-"OLLAMA_CONTEXT_LENGTH":    "Context length to use unless otherwise specified (default: 4096)"
-"OLLAMA_NEW_ENGINE":        "Enable the new Ollama engine"
+ // Global Options
+ "OLLAMA_DEBUG":             "Show additional debug information (e.g. OLLAMA_DEBUG=1)"
+ "OLLAMA_FLASH_ATTENTION":   "Enabled flash attention"
+ "OLLAMA_GPU_OVERHEAD":      "Reserve a portion of VRAM per GPU (bytes)"
+ "OLLAMA_HOST":              "IP Address for the ollama server (default 127.0.0.1:11434)"
+ "OLLAMA_KEEP_ALIVE":        "The duration that models stay loaded in memory (default \"5m\")"
+ "OLLAMA_KV_CACHE_TYPE":     "The quantization type for the K/V cache (default is \"f16\")"
+ "OLLAMA_LLM_LIBRARY":       "Set LLM library to bypass autodetection"
+ "OLLAMA_LOAD_TIMEOUT":      "How long to allow model loads to stall before giving up (default \"5m\")"
+ "OLLAMA_MAX_LOADED_MODELS": "Maximum number of loaded models per GPU"
+ "OLLAMA_MAX_QUEUE":         "Maximum number of queued requests"
+ "OLLAMA_MODELS":            "The path to the models directory"
+ "OLLAMA_NOHISTORY":         "Do not preserve readline history"
+ "OLLAMA_NOPRUNE":           "Do not prune model blobs on startup"
+ "OLLAMA_NUM_PARALLEL":      "Maximum number of parallel requests"
+ "OLLAMA_ORIGINS":           "A comma separated list of allowed origins"
+ "OLLAMA_SCHED_SPREAD":      "Always schedule model across all GPUs"
+ "OLLAMA_TMPDIR":            "Location for temporary files"
+ "OLLAMA_MULTIUSER_CACHE":   "Optimize prompt caching for multi-user scenarios"
+ "OLLAMA_CONTEXT_LENGTH":    "Context length to use unless otherwise specified (default: 4096)"
+ "OLLAMA_NEW_ENGINE":        "Enable the new Ollama engine"
 
-// Proxy Options
-"HTTP_PROXY":  "HTTP proxy"
-"HTTPS_PROXY": "HTTPS proxy"
-"NO_PROXY":    "No proxy"
+ // Proxy Options
+ "HTTP_PROXY":  "HTTP proxy"
+ "HTTPS_PROXY": "HTTPS proxy"
+ "NO_PROXY":    "No proxy"
 
-// GPU Detection Options
-"CUDA_VISIBLE_DEVICES":		"Set which NVIDIA devices are visible"
-"HIP_VISIBLE_DEVICES":		"Set which AMD devices are visible by numeric ID"
-"ROCR_VISIBLE_DEVICES":		"Set which AMD devices are visible by UUID or numeric ID"
-"GPU_DEVICE_ORDINAL":		"Set which AMD devices are visible by numeric ID"
-"HSA_OVERRIDE_GFX_VERSION":	"Override the gfx used for all detected AMD GPUs"
-"OLLAMA_INTEL_GPU":			"Enable experimental Intel GPU detection"
-[[/code]]
+ // GPU Detection Options
+ "CUDA_VISIBLE_DEVICES": "Set which NVIDIA devices are visible"
+ "HIP_VISIBLE_DEVICES": "Set which AMD devices are visible by numeric ID"
+ "ROCR_VISIBLE_DEVICES": "Set which AMD devices are visible by UUID or numeric ID"
+ "GPU_DEVICE_ORDINAL": "Set which AMD devices are visible by numeric ID"
+ "HSA_OVERRIDE_GFX_VERSION": "Override the gfx used for all detected AMD GPUs"
+ "OLLAMA_INTEL_GPU": "Enable experimental Intel GPU detection"
+ [[/code]]
 
 参考资料：
 
 *https://github.com/ollama/ollama/blob/main/envconfig/config.go
 
-*https://github.com/ollama/ollama/blob/main/docs/faq.md
+ *https://github.com/ollama/ollama/blob/main/docs/faq.md
 
-*https://github.com/ollama/ollama/issues/2941
+ *https://github.com/ollama/ollama/issues/2941
 
-*https://www.whuanle.cn/archives/21668
+ *https://www.whuanle.cn/archives/21668
 
-*https://zhuanlan.zhihu.com/p/7766226260
+ *https://zhuanlan.zhihu.com/p/7766226260
 
-*https://www.lvtao.net/tool/ollama-parallel-max-models.html
+ *https://www.lvtao.net/tool/ollama-parallel-max-models.html
 
-*https://zhuanlan.zhihu.com/p/719540154
+ *https://zhuanlan.zhihu.com/p/719540154 

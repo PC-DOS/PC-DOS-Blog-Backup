@@ -1,14 +1,14 @@
 **错误描述：**尝试升级[*https://github.com/kvcache-ai/ktransformers KTransformers]，使用Visual Studio 2022（版本17.11.3）的MSVC C/C++编译器编译{{ktransformers\third_party\llamafile\iqk_mul_mat.inc}}文件时出现[*https://learn.microsoft.com/zh-cn/cpp/error-messages/compiler-errors-1/fatal-error-c1070?view=msvc-170 C1070错误]（文件中的{{#if/#endif}}对不匹配）：
 
 [[code]]
-8>E:\ktransformers\third_party\llamafile\iqk_mul_mat.inc(4921,1): error C1070: 文件“E:\ktransformers\third_party\llamafile\iqk_mul_mat.inc”中的 #if/#endif 对不匹配
+ 8>E:\ktransformers\third_party\llamafile\iqk_mul_mat.inc(4921,1): error C1070: 文件“E:\ktransformers\third_party\llamafile\iqk_mul_mat.inc”中的 #if/#endif 对不匹配
 8>(编译源文件“../../../third_party/llamafile/iqk_mul_mat_amd_avx2.cpp”)
 8>E:\ktransformers\third_party\llamafile\iqk_mul_mat.inc(4921,1): error C1070: 文件“E:\ktransformers\third_party\llamafile\iqk_mul_mat.inc”中的 #if/#endif 对不匹配
 8>(编译源文件“../../../third_party/llamafile/iqk_mul_mat_amd_zen4.cpp”)
-[[/code]]
+ [[/code]]
 
-**错误处理：**手动检查{{ktransformers\third_party\llamafile\iqk_mul_mat.inc}}文件以及Git提交记录未发现导致{{#if/#endif}}对的匹配关系损坏的问题。后发现该文件中包含中文注释，将中文注释改为英文后再次编译，问题解决。
+ **错误处理：**手动检查{{ktransformers\third_party\llamafile\iqk_mul_mat.inc}}文件以及Git提交记录未发现导致{{#if/#endif}}对的匹配关系损坏的问题。后发现该文件中包含中文注释，将中文注释改为英文后再次编译，问题解决。
 
 **参考资料：**
 
-*https://blog.csdn.net/weixin_42892101/article/details/120791797 
+ *https://blog.csdn.net/weixin_42892101/article/details/120791797 

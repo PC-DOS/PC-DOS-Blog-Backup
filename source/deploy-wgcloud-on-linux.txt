@@ -1,0 +1,168 @@
+[*https://www.wgstart.com/ WGCloud]是一款轻量化的服务器监控工具，提供Windows、Linux等多种平台和硬件架构的支援。
+
++ 部署WGCloud服务器端
+
+++ 建立存放目录、下载和解压WGCloud文件
+
+ 建立存放目录：
+
+[[code]]
+ cd ~
+ mkdir WGCloud
+ cd WGCloud
+ mkdir Server
+ cd Server
+ [[/code]]
+
+下载和解压WGCloud文件：
+
+[[code]]
+ wget https://www.wgstart.com/download/3.5.8/wgcloud-v3.5.8.tar.gz
+ tar -vxf wgcloud-v3.5.8.tar.gz
+ [[/code]]
+
+ ++ 安装JDK
+
+ WGCloud服务端使用JDK作为运行环境。
+
+[[code]]
+ sudo apt install default-jdk
+ sudo apt install openjdk-8-jdk
+ [[/code]]
+
+ ++ 安装MySQL并建立数据库
+
+ 安装MySQL：
+
+[[code]]
+ sudo apt-get install mysql-server
+ sudo mysql_secure_installation
+ sudo systemctl start mysql
+ sudo systemctl enable mysql
+ [[/code]]
+
+修改MySQL的root用户密码：
+
+[[code]]
+ sudo mysql
+ ALTER USER 'root'@'localhost' IDENTIFIED BY 'New-Root-Password';
+ \q
+ [[/code]]
+
+登录MySQL并建立数据库：
+
+[[code]]
+ mysql -u root -p
+ CREATE DATABASE wgcloud;
+ \q
+ [[/code]]
+
+导入WGCloud数据库定义文件：
+
+[[code]]
+ cd ~/WGCloud/Server/wgcloud-v3.5.8/sql/
+ mysql -u root -p
+ USE wgcloud;
+ SOURCE wgcloud-MySQL.sql;
+ \q
+ [[/code]]
+
+ ++ 配置WGCloud
+
+编辑WGCloud配置文件：
+
+[[code]]
+ cd ~/WGCloud/Server/wgcloud-v3.5.8/server/config
+ vi application.yml
+ [[/code]]
+
+其中：
+
+* 修改{{datasource}}一节的{{driver-class-name}}为{{com.mysql.cj.jdbc.Driver}}。
+* 修改{{datasource}}一节的{{password}}为MySQL的root用户密码。
+
+ 完成后，按键盘{{Esc}}键，输入{{:wq}}保存并退出。
+
+++ 启动WGCloud
+
+ WGCloud提供了用于启动和停止WGCloud的脚本文件：
+
+[[code]]
+ ~/WGCloud/Server/wgcloud-v3.5.8/server
+ ./start.sh
+ [[/code]]
+
+ ++ 停止WGCloud
+
+ WGCloud提供了用于启动和停止WGCloud的脚本文件：
+
+[[code]]
+ ~/WGCloud/Server/wgcloud-v3.5.8/server
+ ./stop.sh
+ [[/code]]
+
+ + 部署WGCloud监控程序
+
+++ 建立存放目录、下载和解压WGCloud监控程序文件
+
+ 建立存放目录：
+
+[[code]]
+ cd ~
+ mkdir WGCloud
+ cd WGCloud
+ mkdir Agent
+ cd Agent
+ [[/code]]
+
+下载和解压WGCloud监控程序文件：
+
+[[code]]
+ wget https://www.wgstart.com/download/3.5.8/agent-linux-amd64-v3.5.8.tar.gz
+ tar -vxf agent-linux-amd64-v3.5.8.tar.gz
+ [[/code]]
+
+ ++ 配置WGCloud监控程序
+
+ 编辑WGCloud监控程序配置文件：
+
+[[code]]
+ cd ~/WGCloud/Agent/agent-linux-amd64-v3.5.8/config
+ vi application.properties
+ [[/code]]
+
+其中：
+
+* 修改{{serverUrl}}为WGCloud主控服务器的IP地址或域名，以及相应的端口号，例如“{{http://srv-test-1.scp-eq.org:9999}}”或“{{http://10.245.245.244:9999}}”。
+
+ 完成后，按键盘{{Esc}}键，输入{{:wq}}保存并退出。
+
+++ 启动WGCloud监控程序
+
+WGCloud提供了用于启动和停止WGCloud监控程序的脚本文件：
+
+[[code]]
+ cd ~/WGCloud/Agent/agent-linux-amd64-v3.5.8/
+ ./start.sh
+ [[/code]]
+
+ ++ 停止WGCloud监控程序
+
+WGCloud提供了用于启动和停止WGCloud监控程序的脚本文件：
+
+[[code]]
+ cd ~/WGCloud/Agent/agent-linux-amd64-v3.5.8/
+ ./stop.sh
+ [[/code]]
+
+ + 参考资料
+
+*https://www.wgstart.com/menus/docs1.html
+
+ *https://cn.linux-console.net/?p=29733
+
+ *https://blog.csdn.net/weixin_53459689/article/details/136199813
+
+ *https://blog.csdn.net/Elliseaon/article/details/118275142
+
+ *https://cloud.tencent.com/developer/article/2337586 

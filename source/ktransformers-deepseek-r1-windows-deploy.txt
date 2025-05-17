@@ -4,11 +4,11 @@
 
 ++ 基本环境
 
-开始前，请确保显卡驱动程序和CUDA Toolkit已正确安装。此处使用561.09版本的驱动程序，和CUDA Toolkit 12.6。
+ 开始前，请确保显卡驱动程序和CUDA Toolkit已正确安装。此处使用561.09版本的驱动程序，和CUDA Toolkit 12.6。
 
 ++ 编译工具
 
-开始前，需要安装下列编译工具，并将它们的可执行文件路径添加到Windows的{{Path}}环境变量中：
+ 开始前，需要安装下列编译工具，并将它们的可执行文件路径添加到Windows的{{Path}}环境变量中：
 
 * [*https://git-scm.com/downloads/win Git]：用于克隆和管理代码仓库。
 * [*https://nodejs.org/en Node.JS]：用于编译KTransformers的Web界面，此处使用的版本为v22.14.0。
@@ -17,128 +17,128 @@
 
 ++ 虚拟环境
 
-本文使用[*https://www.anaconda.com/ Anaconda]管理虚拟环境，此处使用的具体版本为2024.06-1。
+ 本文使用[*https://www.anaconda.com/ Anaconda]管理虚拟环境，此处使用的具体版本为2024.06-1。
 
-启动Anaconda Prompt，建立并激活虚拟环境：
+ 启动Anaconda Prompt，建立并激活虚拟环境：
 
 [[code]]
-conda create --name ktransformers python=3.11
-conda activate ktransformers
-[[/code]]
+ conda create --name ktransformers python=3.11
+ conda activate ktransformers
+ [[/code]]
 
 激活后，需要安装Conda-Forge：
 
 [[code]]
-conda install -c conda-forge
-[[/code]]
+ conda install -c conda-forge
+ [[/code]]
 
 如果您在前一步没有安装CMake，也可以在这一步中一并安装：
 
 [[code]]
-conda install -c conda-forge cmake
-[[/code]]
+ conda install -c conda-forge cmake
+ [[/code]]
 
-++ Python库
+ ++ Python库
 
 +++ PyTorch
 
 您可能需要根据您的CUDA Toolkit版本选择不同的PyTorch：
 
 [[code]]
-pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
-pip3 install packaging ninja cpufeature numpy
-[[/code]]
+ pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+ pip3 install packaging ninja cpufeature numpy
+ [[/code]]
 
-+++ Triton
+ +++ Triton
 
-KTransformers需要[*https://github.com/triton-lang/triton Triton库]，该库的Windows版本可以从 *https://huggingface.co/madbuda/triton-windows-builds 下载。下载时，需要对应具体的Python版本。由于此处使用Python 3.11，因此下载了[*https://huggingface.co/madbuda/triton-windows-builds/resolve/main/triton-3.0.0-cp311-cp311-win_amd64.whl triton-3.0.0-cp311-cp311-win_amd64.whl]。
+ KTransformers需要[*https://github.com/triton-lang/triton Triton库]，该库的Windows版本可以从 *https://huggingface.co/madbuda/triton-windows-builds 下载。下载时，需要对应具体的Python版本。由于此处使用Python 3.11，因此下载了[*https://huggingface.co/madbuda/triton-windows-builds/resolve/main/triton-3.0.0-cp311-cp311-win_amd64.whl triton-3.0.0-cp311-cp311-win_amd64.whl]。
 
-定位到下载得到的whl文件所在的路径，执行：
-
-[[code]]
-pip install triton-3.0.0-cp311-cp311-win_amd64.whl
-[[/code]]
-
-+++ Flash-Attention
-
-KTransformers需要[*https://github.com/Dao-AILab/flash-attention/releases Flash-Attention（Flash-Attn）库]，该库的官方仓库只有Linux版本，您可以在 *https://github.com/bdashore3/flash-attention/releases 找到适用于Windows的预编译版本。
-
-下载前，请使用{{pip debug --verbose}}命令，检查{{Compatible tags}}以确保兼容，您应当选择文件名中包含{{Compatible tags}}中列出的行的版本。此处下载了flash_attn-2.7.4.post1+cu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl。
-
-定位到下载得到的whl文件所在的路径，执行：
+ 定位到下载得到的whl文件所在的路径，执行：
 
 [[code]]
-pip install flash_attn-2.7.4.post1+cu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl
-[[/code]]
+ pip install triton-3.0.0-cp311-cp311-win_amd64.whl
+ [[/code]]
 
-+ 克隆KTransformers代码仓库
+ +++ Flash-Attention
 
-首先请通过终端程序，切换到希望保存KTransformer的目录下，克隆KTransformers代码库：
+ KTransformers需要[*https://github.com/Dao-AILab/flash-attention/releases Flash-Attention（Flash-Attn）库]，该库的官方仓库只有Linux版本，您可以在 *https://github.com/bdashore3/flash-attention/releases 找到适用于Windows的预编译版本。
 
-[[code]]
-git clone https://github.com/kvcache-ai/ktransformers.git
-cd ktransformers
-git submodule init
-git submodule update
-[[/code]]
+ 下载前，请使用{{pip debug --verbose}}命令，检查{{Compatible tags}}以确保兼容，您应当选择文件名中包含{{Compatible tags}}中列出的行的版本。此处下载了flash_attn-2.7.4.post1+cu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl。
 
-+ 编译KTransformers的Web界面
-
-这一步是可选的，如果您不需要Web界面，请跳过：
+ 定位到下载得到的whl文件所在的路径，执行：
 
 [[code]]
-cd ktransformers/website
-npm install @vue/cli
-npm run build
-cd ../../
-[[/code]]
+ pip install flash_attn-2.7.4.post1+cu124torch2.6.0cxx11abiFALSE-cp311-cp311-win_amd64.whl
+ [[/code]]
 
-+ 编译KTransformers
+ + 克隆KTransformers代码仓库
 
-KTransformers提供了快速编译脚本：
+ 首先请通过终端程序，切换到希望保存KTransformer的目录下，克隆KTransformers代码库：
 
 [[code]]
-install.bat
-[[/code]]
+ git clone https://github.com/kvcache-ai/ktransformers.git
+ cd ktransformers
+ git submodule init
+ git submodule update
+ [[/code]]
 
-+ 下载模型
+ + 编译KTransformers的Web界面
 
-此处以[*https://huggingface.co/deepseek-ai/DeepSeek-R1 DeepSeek-R1]举例。
-
-首先，从 *https://huggingface.co/deepseek-ai/DeepSeek-R1/tree/main 下载下列配置文件，假设这些文件被保存到{{E:\LLM-Models\DeepSeek-AI\DeepSeek-R1-671b\}}目录下：
+ 这一步是可选的，如果您不需要Web界面，请跳过：
 
 [[code]]
-config.json
-configuration_deepseek.py
-generation_config.json
-modeling_deepseek.py
-tokenizer.json
-tokenizer_config.json
-[[/code]]
+ cd ktransformers/website
+ npm install @vue/cli
+ npm run build
+ cd ../../
+ [[/code]]
+
+ + 编译KTransformers
+
+ KTransformers提供了快速编译脚本：
+
+[[code]]
+ install.bat
+ [[/code]]
+
+ + 下载模型
+
+ 此处以[*https://huggingface.co/deepseek-ai/DeepSeek-R1 DeepSeek-R1]举例。
+
+ 首先，从 *https://huggingface.co/deepseek-ai/DeepSeek-R1/tree/main 下载下列配置文件，假设这些文件被保存到{{E:\LLM-Models\DeepSeek-AI\DeepSeek-R1-671b\}}目录下：
+
+[[code]]
+ config.json
+ configuration_deepseek.py
+ generation_config.json
+ modeling_deepseek.py
+ tokenizer.json
+ tokenizer_config.json
+ [[/code]]
 
 随后，从 *https://huggingface.co/unsloth/DeepSeek-R1-GGUF/tree/main/DeepSeek-R1-Q4_K_M 或其它渠道获取Q4_K_M量化的模型权重文件，这些文件的扩展名为“.gguf”。这里假设这些文件被保存到{{E:\LLM-Models\DeepSeek-AI\DeepSeek-R1-671b\DeepSeek-R1-671b-Q4_K_M\}}目录下。
 
-至此，模型准备就绪。
+ 至此，模型准备就绪。
 
 + 启动KTransformers
 
-++ 命令行模式
+ ++ 命令行模式
 
-此模式通过命令行交互：
+ 此模式通过命令行交互：
 
 [[code]]
-python -m ktransformers.local_chat --model_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b --gguf_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b/DeepSeek-R1-671b-Q4_K_M/ --max_new_tokens 16384 --cpu_infer 190
-[[/code]]
+ python -m ktransformers.local_chat --model_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b --gguf_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b/DeepSeek-R1-671b-Q4_K_M/ --max_new_tokens 16384 --cpu_infer 190
+ [[/code]]
 
-{{cpu_infer}}参数为CPU推理时的线程数，推荐设为CPU总核心数减去2得到的值。
+ {{cpu_infer}}参数为CPU推理时的线程数，推荐设为CPU总核心数减去2得到的值。
 
 ++ Web模式
 
-此模式提供Web交互界面：
+ 此模式提供Web交互界面：
 
 [[code]]
-ktransformers --model_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b --gguf_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b/DeepSeek-R1-671b-Q4_K_M/ --cpu_infer 190 --host 0.0.0.0 --web True --port 2453 --cache_lens 16384
-[[/code]]
+ ktransformers --model_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b --gguf_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b/DeepSeek-R1-671b-Q4_K_M/ --cpu_infer 190 --host 0.0.0.0 --web True --port 2453 --cache_lens 16384
+ [[/code]]
 
 启动后，通过浏览器访问 *http://localhost:2453/web/index.html#/chat 即可与模型交互。将{{--web}}参数的值改为{{False}}可以只启用RestfulAPI，您可以将其以OpenAI API的形式添加到Open WebUI等前端程序中。默认情况下API地址类似“{{@@http://10.245.245.45:2453/v1@@}}”（地址和端口请参考您的具体实现），API Key可任意填写。
 
@@ -146,14 +146,14 @@ ktransformers --model_path E:/LLM-Models/DeepSeek-AI/DeepSeek-R1-671b --gguf_pat
 
 *https://kvcache-ai.github.io/ktransformers/en/install.html
 
-*https://kvcache-ai.github.io/ktransformers/en/api/server/website.html
+ *https://kvcache-ai.github.io/ktransformers/en/api/server/website.html
 
-*https://zhuanlan.zhihu.com/p/25811017239
+ *https://zhuanlan.zhihu.com/p/25811017239
 
-*https://blog.csdn.net/cnsjd/article/details/145707983
+ *https://blog.csdn.net/cnsjd/article/details/145707983
 
-*https://blog.csdn.net/sanqima/article/details/132635898
+ *https://blog.csdn.net/sanqima/article/details/132635898
 
-*https://blog.csdn.net/Changxing_J/article/details/139785954
+ *https://blog.csdn.net/Changxing_J/article/details/139785954
 
-*https://blog.csdn.net/2301_77818837/article/details/135642828
+ *https://blog.csdn.net/2301_77818837/article/details/135642828 

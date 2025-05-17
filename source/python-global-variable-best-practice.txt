@@ -1,72 +1,72 @@
 Python支持在py文件中定义全局变量，但是在不同文件中对全局变量的修改只会在本文件中生效。例如：
 
-在{{GlobalVarSource.py}}中定义：
+ 在{{GlobalVarSource.py}}中定义：
 
 [[code type="python"]]
-arrGlobalArray = []
+ arrGlobalArray = []
 
-def UpdateGlobalArray() :
-    arrGlobalArray = [2,4,5]
-    print(f"In GlobalVarSource, arrGlobalArray={arrGlobalArray}")
-#End Sub
-[[/code]]
+ def UpdateGlobalArray() :
+     arrGlobalArray = [2,4,5]
+     print(f"In GlobalVarSource, arrGlobalArray={arrGlobalArray}")
+ #End Sub
+ [[/code]]
 
 在{{GlobalVarUser.py}}中定义：
 
 [[code type="python"]]
-from GlobalVarSource import *
+ from GlobalVarSource import *
 
-# Main entry point
-if __name__ == "__main__" : 
-    UpdateGlobalArray()
-    print(f"In GlobalVarUser, arrGlobalArray={arrGlobalArray}")
-#End Sub
-[[/code]]
+ # Main entry point
+ if __name__ == "__main__" : 
+     UpdateGlobalArray()
+     print(f"In GlobalVarUser, arrGlobalArray={arrGlobalArray}")
+ #End Sub
+ [[/code]]
 
 运行{{GlobalVarUser.py}}，得到输出：
 
 [[code]]
-In GlobalVarSource, arrGlobalArray=[2, 4, 5]
-In GlobalVarUser, arrGlobalArray=[]
-[[/code]]
+ In GlobalVarSource, arrGlobalArray=[2, 4, 5]
+ In GlobalVarUser, arrGlobalArray=[]
+ [[/code]]
 
 为了在多个文件之间同步对全局变量的更改，可以将全局变量封装到对象实例中。例如：
 
-在{{GlobalVarSource.py}}中定义：
+ 在{{GlobalVarSource.py}}中定义：
 
 [[code type="python"]]
-class GlobalVarContainer :
-    arrGlobalArray = []
-#End Class
-objGlobalVarContainer = GlobalVarContainer()
+ class GlobalVarContainer :
+     arrGlobalArray = []
+ #End Class
+ objGlobalVarContainer = GlobalVarContainer()
 
-def UpdateGlobalArray() :
-    objGlobalVarContainer.arrGlobalArray = [2,4,5]
-    print(f"In GlobalVarSource, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
-#End Sub
-[[/code]]
+ def UpdateGlobalArray() :
+     objGlobalVarContainer.arrGlobalArray = [2,4,5]
+     print(f"In GlobalVarSource, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
+ #End Sub
+ [[/code]]
 
 在{{GlobalVarUser.py}}中定义：
 
 [[code type="python"]]
-from GlobalVarSource import *
+ from GlobalVarSource import *
 
-# Main entry point
-if __name__ == "__main__" : 
-    UpdateGlobalArray()
-    print(f"In GlobalVarUser, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
-#End Sub
-[[/code]]
+ # Main entry point
+ if __name__ == "__main__" : 
+     UpdateGlobalArray()
+     print(f"In GlobalVarUser, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
+ #End Sub
+ [[/code]]
 
 运行{{GlobalVarUser.py}}，得到输出：
 
 [[code]]
-In GlobalVarSource, arrGlobalArray=[2, 4, 5]
-In GlobalVarUser, arrGlobalArray=[2, 4, 5]
-[[/code]]
+ In GlobalVarSource, arrGlobalArray=[2, 4, 5]
+ In GlobalVarUser, arrGlobalArray=[2, 4, 5]
+ [[/code]]
 
 参考资料：
 
 *https://geek-docs.com/python/python-ask-answer/197_python_using_global_variables_between_files.html
 
-*https://blog.csdn.net/liao392781/article/details/80067867
+ *https://blog.csdn.net/liao392781/article/details/80067867 
