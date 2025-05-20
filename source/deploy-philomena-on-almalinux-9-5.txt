@@ -134,7 +134,7 @@ sudo systemctl disable firewalld
 如果使用{{sudo philomena up}}出现“找不到指令”问题，可能是由于{{sudo}}命令重设了{{PATH}}环境变量。此时，可以考虑先使用{{su}}命令进入Root操作环境，再执行{{philomena}}命令。也可以禁止{{sudo}}重设环境变量：
 
 # 编辑{{/etc/sudoers}}文件，将{{Defaults env_reset}}行的内容改为{{Defaults !env_reset}}。
-# 编辑{{~/.bashrc}}，加入新行：{{alias sudo='sudo env PATH=$PATH'}}。
+# 编辑{{~/.bashrc}}，加入新行：{{alias sudo="sudo env PATH=$PATH"}}。
 
 + 停止Philomena
 
