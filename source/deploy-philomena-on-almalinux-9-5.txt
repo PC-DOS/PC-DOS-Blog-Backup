@@ -1,190 +1,197 @@
 [[toc]]
 
- [*https://github.com/derpibooru/philomena Philomena]是一个优秀的Booru式图像管理Web服务平台。该平台使用Docker部署。
+[*https://github.com/derpibooru/philomena Philomena]是一个优秀的Booru式图像管理Web服务平台。该平台使用Docker部署。
 
 + 安装Docker
 
 添加DNF/YUM软件源（此处使用南大源）：
 
 [[code]]
- sudo cp -r /etc/yum.repos.d/ /etc/yum.repos.d_bak
- sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' -e 's|^# baseurl=https://repo.almalinux.org|baseurl=https://mirrors.nju.edu.cn|g' -i.bak /etc/yum.repos.d/almalinux*.repo
- dnf clean all && dnf makecache
- [[/code]]
+sudo cp -r /etc/yum.repos.d/ /etc/yum.repos.d_bak
+sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' -e 's|^# baseurl=https://repo.almalinux.org|baseurl=https://mirrors.nju.edu.cn|g' -i.bak /etc/yum.repos.d/almalinux*.repo
+dnf clean all && dnf makecache
+[[/code]]
 
 安装企业版 Linux 附加软件包（EPEL）：
 
 [[code]]
- sudo yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-9.noarch.rpm
- [[/code]]
+sudo yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-9.noarch.rpm
+[[/code]]
 
 或：
 
 [[code]]
- sudo dnf install epel-release epel-next-release
- [[/code]]
+sudo dnf install epel-release epel-next-release
+[[/code]]
 
 替换为阿里源：
 
 [[code]]
- sudo sed -i 's|^#baseurl=https://download.example/pub|baseurl=https://mirrors.aliyun.com|' /etc/yum.repos.d/epel*
- dnf clean all && dnf makecache
- [[/code]]
+sudo sed -i 's|^#baseurl=https://download.example/pub|baseurl=https://mirrors.aliyun.com|' /etc/yum.repos.d/epel*
+dnf clean all && dnf makecache
+[[/code]]
 
 安装Docker和Docker-Compose：
 
 [[code]]
- sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
- sudo dnf -y install docker-ce --nobest
- [[/code]]
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf -y install docker-ce --nobest
+[[/code]]
 
 启用Docker服务：
 
 [[code]]
- sudo systemctl enable --now docker
- [[/code]]
+sudo systemctl enable --now docker
+[[/code]]
 
 确认Docker状态：
 
 [[code]]
- sudo systemctl status docker
- [[/code]]
+sudo systemctl status docker
+[[/code]]
 
- + 安装加速器
++ 安装加速器
 
- 用于解决访问GitHub和DockerHub受限的问题。
+用于解决访问GitHub和DockerHub受限的问题。
 
- 此处使用[*https://github.com/clash-verge-rev/clash-verge-rev Clash Verge 1.7.5]。开始前，请确认EPEL安装正确，否则无法安装{{libayatana-appindicator-gtk3}}依赖项。
+此处使用[*https://github.com/clash-verge-rev/clash-verge-rev Clash Verge 1.7.5]。开始前，请确认EPEL安装正确，否则无法安装{{libayatana-appindicator-gtk3}}依赖项。
 
- 假设Clash Verge软件包位于{{~/Clash/clash-verge-1.7.5-1.x86_64.rpm}}：
+假设Clash Verge软件包位于{{~/Clash/clash-verge-1.7.5-1.x86_64.rpm}}：
 
 [[code]]
- sudo dnf install libayatana-appindicator-gtk3
- sudo dnf install ~/Clash/clash-verge-1.7.5-1.x86_64.rpm
- sudo clash-verge &
- [[/code]]
+sudo dnf install libayatana-appindicator-gtk3
+sudo dnf install ~/Clash/clash-verge-1.7.5-1.x86_64.rpm
+sudo clash-verge &
+[[/code]]
 
 启动并配置好Clash Verge后，请开启“系统代理”、“服务模式”和“Tun模式”。
 
- 若Clash Verge运行时出现无法读写配置文件的问题，请删除{{/tmp/clash-verge-check.yaml}}文件后重新配置Clash Verge：
+若Clash Verge运行时出现无法读写配置文件的问题，请删除{{/tmp/clash-verge-check.yaml}}文件后重新配置Clash Verge：
 
 [[code]]
- sudo rm /tmp/clash-verge-check.yaml
- [[/code]]
+sudo rm /tmp/clash-verge-check.yaml
+[[/code]]
 
- + 克隆Philomena
++ 克隆Philomena
 
 此处假设将Philomena克隆到用户主目录（{{~}}）的{{philomena}}目录中：
 
- 安装Git：
+安装Git：
 
 [[code]]
- sudo dnf install git
- [[/code]]
+sudo dnf install git
+[[/code]]
 
 克隆Philomena代码库：
 
 [[code]]
- git clone https://github.com/derpibooru/philomena.git
- [[/code]]
+git clone https://github.com/derpibooru/philomena.git
+[[/code]]
 
- + 将Philomena脚本加入环境变量
++ 将Philomena脚本加入环境变量
 
- 编辑{{~/.bashrc}}：
+编辑{{~/.bashrc}}：
 
 [[code]]
- gedit ~/.bashrc
- [[/code]]
+gedit ~/.bashrc
+[[/code]]
 
 在文件末尾加入：
 
 [[code]]
- # Philomena
- export PATH="$PATH:$HOME/philomena/scripts/path"
- [[/code]]
+# Philomena
+export PATH="$PATH:$HOME/philomena/scripts/path"
+[[/code]]
 
 保存后执行：
 
 [[code]]
- source ~/.bashrc
- [[/code]]
+source ~/.bashrc
+[[/code]]
 
- + 启动Philomena
++ 启动Philomena
 
 定位到Philomena代码库目录：
 
 [[code]]
- cd ~/philomena
- [[/code]]
+cd ~/philomena
+[[/code]]
 
 启动Philomena：
 
 [[code]]
- sudo philomena up
- [[/code]]
+sudo philomena up
+[[/code]]
 
 启动时可能因网络连接等问题失败，可能需要多次重试。Docker配置位于{{docker-compose.yml}}文件中。
 
- 测试时，可考虑临时禁用AlmaLinux防火墙：
+测试时，可考虑临时禁用AlmaLinux防火墙：
 
 [[code]]
- sudo systemctl disable firewalld
- [[/code]]
+sudo systemctl disable firewalld
+[[/code]]
 
- + 停止Philomena
+如果使用{{sudo philomena up}}出现“找不到指令”问题，可能是由于{{sudo}}命令重设了{{PATH}}环境变量。此时，可以考虑先使用{{su}}命令进入Root操作环境，再执行{{philomena}}命令。也可以禁止{{sudo}}重设环境变量：
+
+# 编辑{{/etc/sudoers}}文件，将{{Defaults env_reset}}行的内容改为{{Defaults !env_reset}}。
+# 编辑{{~/.bashrc}}，加入新行：{{alias sudo='sudo env PATH=$PATH'}}。
+
++ 停止Philomena
 
 定位到Philomena代码库目录：
 
 [[code]]
- cd ~/philomena
- [[/code]]
+cd ~/philomena
+[[/code]]
 
 停止Philomena：
 
 [[code]]
- sudo philomena down
- [[/code]]
+sudo philomena down
+[[/code]]
 
- + 故障排除
++ 故障排除
 
 ++ 通过域名访问时上传图片等页面异常
 
- 若您将Philomena绑定到您的域名，您可能需要允许通过域名访问Philomena依赖的Vite服务。此处假设将Philomena绑定到{{srv1-booru.scp-eq.org}}域名，Philomena暴露于本机{{2451}}端口。
+若您将Philomena绑定到您的域名，您可能需要允许通过域名访问Philomena依赖的Vite服务。此处假设将Philomena绑定到{{srv1-booru.scp-eq.org}}域名，Philomena暴露于本机{{2451}}端口。
 
- 请编辑{{docker-compose.yml}}文件，在{{app}}映像的{{environment}}中加入或修改：
+请编辑{{docker-compose.yml}}文件，在{{app}}映像的{{environment}}中加入或修改：
 
 [[code]]
-       - SITE_DOMAINS=srv1-booru.scp-eq.org
-       - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=srv1-booru.scp-eq.org
- [[/code]]
+      - SITE_DOMAINS=srv1-booru.scp-eq.org
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=srv1-booru.scp-eq.org
+[[/code]]
 
 同时，若您使用Nginx等进行{{proxy_pass}}代理，请不要在{{nginx.conf}}中将目标设为{{localhost}}，而是直接使用带端口号的域名，例如：
 
 [[code]]
- http {
-     # Philomena
-     server {
-      listen 80;
-      server_name srv1-booru.scp-eq.org;
-      
-      location / {
-      # proxy_pass http://localhost:2451;
-      proxy_pass http://srv1-booru.scp-eq.org:2451;
-      }
-     }
- }
- [[/code]]
+http {
+	# Philomena
+	server {
+		listen 80;
+		server_name srv1-booru.scp-eq.org;
+		
+		location / {
+			# proxy_pass http://localhost:2451;
+			proxy_pass http://srv1-booru.scp-eq.org:2451;
+		}
+	}
+}
+[[/code]]
 
- + 参考资料
++ 参考资料
 
 *https://github.com/derpibooru/philomena
 
- *https://rhel.pkgs.org/9/epel-x86_64/libayatana-appindicator-gtk3-0.5.93-4.el9.x86_64.rpm.html
+*https://rhel.pkgs.org/9/epel-x86_64/libayatana-appindicator-gtk3-0.5.93-4.el9.x86_64.rpm.html
 
- *https://developer.aliyun.com/mirror/epel
+*https://developer.aliyun.com/mirror/epel
 
- *https://cn.linux-console.net/?p=10667
+*https://cn.linux-console.net/?p=10667
 
- *https://geekscircuit.com/how-to-install-docker-and-docker-compose-in-alma-linux/
+*https://geekscircuit.com/how-to-install-docker-and-docker-compose-in-alma-linux/
 
- *https://cn.linux-console.net/?p=10667 
+*https://cn.linux-console.net/?p=10667
+
+*https://blog.csdn.net/weixin_30600503/article/details/99908209
