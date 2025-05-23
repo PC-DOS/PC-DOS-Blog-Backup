@@ -112,3 +112,60 @@ sudo systemctl restart rc-local
 *https://www.cnblogs.com/liuhanxu/p/17555594.html
 
 *https://blog.csdn.net/qz652219228/article/details/125107694
+
+++ 重装Firefox
+
+由于桌面环境发生变化，需要卸载Ubuntu原生提供的Snap版Firefox，并重新安装官方版本的Firefox。
+
+卸载Snap版Firefox：
+
+[[code]]
+sudo snap remove firefox
+[[/code]]
+
+从[*http://ftp.mozilla.org/pub/firefox/releases Mozilla官方FTP]下载Firefox包：
+
+[[code]]
+cd ~
+mkdir Firefox
+cd Firefox
+wget http://ftp.mozilla.org/pub/firefox/releases/128.10.1esr/linux-x86_64/zh-CN/firefox-128.10.1esr.tar.bz2
+tar -vxf firefox-128.10.1esr.tar.bz2
+[[/code]]
+
+安装Firefox：
+
+[[code]]
+sudo mv firefox /opt
+sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
+[[/code]]
+
+建立快捷方式：
+
+[[code]]
+sudo mkdir /usr/local/share/applications
+sudo vi /usr/local/share/applications/firefox.desktop
+[[/code]]
+
+输入：
+
+[[code]]
+[Desktop Entry]
+Version=1.0
+Name=Firefox Web Browser
+Comment=Browse the World Wide Web
+GenericName=Web Browser
+Keywords=Internet;WWW;Browser;Web;Explorer
+Exec=firefox %u
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=/opt/firefox/browser/chrome/icons/default/default128.png
+Categories=GNOME;GTK;Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
+StartupNotify=true
+[[/code]]
+
+参考：
+
+*https://ubuntu-mate.community/t/firefox-installation-guide-non-snap/25299
