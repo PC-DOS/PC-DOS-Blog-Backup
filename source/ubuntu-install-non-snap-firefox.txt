@@ -26,7 +26,7 @@ sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
 建立快捷方式：
 
 [[code]]
-sudo vi /usr/share/applications/firefox.desktop
+sudo vi /usr/share/applications/firefox-browser.desktop
 [[/code]]
 
 输入：
@@ -50,4 +50,6 @@ StartupNotify=true
 
 参考：
 
-*https://ubuntu-mate.community/t/firefox-installation-guide-non-snap/25299 
+*https://ubuntu-mate.community/t/firefox-installation-guide-non-snap/25299
+
+*https://github.com/mozilla/sumo-kb/blob/main/install-firefox-linux/firefox.desktop
