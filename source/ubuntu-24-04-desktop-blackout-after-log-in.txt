@@ -1,0 +1,19 @@
+**故障描述：**一台运行Ubuntu 24.04 LTS的华硕RS720A-E12-RS12服务器。一次因内存耗尽导致死机并重启后，无法进入桌面。具体表现为：
+
+# 启动时，可以正常显示登录画面，但输入密码登录后黑屏，只显示鼠标指针。使用XRDP远程桌面登录故障相同。
+# 从控制台登录并使用{{sudo systemctl status gdm}}命令检查GDM状态，显示正常工作。
+
+**故障处理：**使用{{Ctrl+Alt+F1}}组合键，切换到文字模式控制台并登录（也可以使用PuTTY等SSH工具进行远程控制台登录），执行：
+
+[[code]]
+dconf reset -f /org/gnome/
+sudo systemctl restart gdm
+[[/code]]
+
+故障解决。
+
+**参考资料：**
+
+*https://www.cnblogs.com/wutou/p/18577012
+
+*https://blog.csdn.net/phillihp/article/details/140203053 
