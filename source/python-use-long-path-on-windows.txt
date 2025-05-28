@@ -14,12 +14,20 @@ Windows Registry Editor Version 5.00
 [[code type="python"]]
 import sys
 
-sOutputPath = GetFullPath("Path/To/Output/Dir/")
-if sys.platform.startswith("win") :
-    # Windows long path fix
-    sOutputPath = sOutputPath.replace("/", "\\")
-    sOutputPath = "\\\\?\\" + sOutputPath
-#End If
+# Convert full path to Windows Unicode path
+# Inorder to by pass Windows long path limitation
+# Ref. https://learn.microsoft.com/zh-cn/windows/win32/fileio/maximum-file-path-limitation
+def ConvertPathToWindowsUncodePath(sPathString : str, IsPlatformCheckingsBypassed : bool = False) -> str :
+    # By default, this function only works on Windows
+    # Only when IsPlatformCheckingsBypassed is set to True explicitly
+    # On other platforms, will return the given path string with no modification
+    sProcessedPath = sPathString
+    if sys.platform.lower().startswith("win") or IsPlatformCheckingsBypassed :
+        sProcessedPath = sProcessedPath.replace("/", "\\")
+        sProcessedPath = "\\\\?\\" + sProcessedPath
+    #End If
+    return sProcessedPath
+#End Function
 [[/code]]
 
 参考资料：
