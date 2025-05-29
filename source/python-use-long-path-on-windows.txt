@@ -15,16 +15,33 @@ Windows Registry Editor Version 5.00
 import sys
 
 # Convert full path to Windows Unicode path
-# Inorder to by pass Windows long path limitation
+# In order to bypass Windows long path limitation
 # Ref. https://learn.microsoft.com/zh-cn/windows/win32/fileio/maximum-file-path-limitation
-def ConvertPathToWindowsUncodePath(sPathString : str, IsPlatformCheckingsBypassed : bool = False) -> str :
+def ConvertPathToWindowsUnicodePath(sPathString : str, IsPlatformCheckingsBypassed : bool = False) -> str :
     # By default, this function only works on Windows
     # Only when IsPlatformCheckingsBypassed is set to True explicitly
     # On other platforms, will return the given path string with no modification
     sProcessedPath = sPathString
     if sys.platform.lower().startswith("win") or IsPlatformCheckingsBypassed :
+        # Replace all "/" with "\"
         sProcessedPath = sProcessedPath.replace("/", "\\")
-        sProcessedPath = "\\\\?\\" + sProcessedPath
+        
+        # Check if current path could be converted to Unicode form safely
+        # Only FULL path (starts with drive letters like "C:\") or UNC path (starts with \UNC\) could be processed safely
+        if ((sProcessedPath[1] == ":" and sProcessedPath[2] == "\\")) or (sProcessedPath.startswith("\\UNC\\")) :
+            # Add "\\?\" prefix
+            if not sProcessedPath.startswith("\\\\?\\") :
+                if sProcessedPath.startswith("\\?\\") :
+                    sProcessedPath = "\\" + sProcessedPath
+                elif sProcessedPath.startswith("?\\") :
+                    sProcessedPath = "\\\\" + sProcessedPath
+                elif sProcessedPath.startswith("\\") :
+                    sProcessedPath = "\\\\?" + sProcessedPath
+                else :
+                    sProcessedPath = "\\\\?\\" + sProcessedPath
+                #End If
+            #End If
+        #End If
     #End If
     return sProcessedPath
 #End Function
