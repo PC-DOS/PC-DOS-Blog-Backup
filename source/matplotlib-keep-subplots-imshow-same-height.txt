@@ -1,53 +1,53 @@
 在MatPlotLib中使用{{[*https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots matplotlib.pyplot.subplots()]}}函数建立子图，并在子图中使用{{[*https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html matplotlib.axes.Axes.imshow()]}}函数绘制颜色图时，可能出现绘制的子图高度不一致的现象，影响绘图结果：
 
 [[code type="python"]]
- import matplotlib
- import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as plt
 
- from numpy import random
+from numpy import random
 
- # Generate random matrixes
- arrRandomMatrix1 = random.random(size=(25,45))
- arrRandomMatrix2 = random.random(size=(45,45))
+# Generate random matrixes
+mtxRandomMatrix1 = random.random(size=(25,45))
+mtxRandomMatrix2 = random.random(size=(45,45))
 
- # Creating subplots
- figAxesToPlot, arrAxesToPlot = plt.subplots(nrows=1, ncols=2, sharey=False, squeeze=False)
+# Creating subplots
+figAxesToPlot, arrAxesToPlot = plt.subplots(nrows=1, ncols=2, sharey=False, squeeze=False)
 
- # Plotting
- imPlot1=arrAxesToPlot[0][0].imshow(X=arrRandomMatrix1)
- imPlot2=arrAxesToPlot[0][1].imshow(X=arrRandomMatrix2)
- plt.colorbar(imPlot1, ax=arrAxesToPlot[0][0])
- plt.colorbar(imPlot2, ax=arrAxesToPlot[0][1])
- plt.show()
- [[/code]]
+# Plotting
+imPlot1=arrAxesToPlot[0][0].imshow(X=mtxRandomMatrix1)
+imPlot2=arrAxesToPlot[0][1].imshow(X=mtxRandomMatrix2)
+plt.colorbar(imPlot1, ax=arrAxesToPlot[0][0])
+plt.colorbar(imPlot2, ax=arrAxesToPlot[0][1])
+plt.show()
+[[/code]]
 
 这是因为MatPlotLib在处理{{imshow()}}绘图时，默认将保证图中的每个像素点为正方形。当子图数据矩阵具有不同的尺度时，MatPlotLib会缩放子图，以保证每张子图中的像素点均为正方形。
 
- 调用{{imshow()}}绘图时，传入{{aspect="auto"}}参数，可以覆盖该默认设置，此时，MatPlotLib不会再尝试保证子图中的像素点为正方形：
+调用{{imshow()}}绘图时，传入{{aspect="auto"}}参数，可以覆盖该默认设置，此时，MatPlotLib不会再尝试保证子图中的像素点为正方形：
 
 [[code type="python"]]
- import matplotlib
- import matplotlib.pyplot as plt
+import matplotlib
+import matplotlib.pyplot as plt
 
- from numpy import random
+from numpy import random
 
- # Generate random matrixes
- arrRandomMatrix1 = random.random(size=(25,45))
- arrRandomMatrix2 = random.random(size=(45,45))
+# Generate random matrixes
+mtxRandomMatrix1 = random.random(size=(25,45))
+mtxRandomMatrix2 = random.random(size=(45,45))
 
- # Creating subplots
- figAxesToPlot, arrAxesToPlot = plt.subplots(nrows=1, ncols=2, sharey=False, squeeze=False)
+# Creating subplots
+figAxesToPlot, arrAxesToPlot = plt.subplots(nrows=1, ncols=2, sharey=False, squeeze=False)
 
- # Plotting
- imPlot1=arrAxesToPlot[0][0].imshow(X=arrRandomMatrix1, aspect="auto")
- imPlot2=arrAxesToPlot[0][1].imshow(X=arrRandomMatrix2, aspect="auto")
- plt.colorbar(imPlot1, ax=arrAxesToPlot[0][0])
- plt.colorbar(imPlot2, ax=arrAxesToPlot[0][1])
- plt.show()
- [[/code]]
+# Plotting
+imPlot1=arrAxesToPlot[0][0].imshow(X=mtxRandomMatrix1, aspect="auto")
+imPlot2=arrAxesToPlot[0][1].imshow(X=mtxRandomMatrix2, aspect="auto")
+plt.colorbar(imPlot1, ax=arrAxesToPlot[0][0])
+plt.colorbar(imPlot2, ax=arrAxesToPlot[0][1])
+plt.show()
+[[/code]]
 
 您可以通过覆盖{{rcParams["image.aspect"]}}全局设置改变MatPlotLib的默认子图缩放行为：
 
 [[code type="python"]]
- plt.rc("image", aspect="auto")
- [[/code]] 
+plt.rc("image", aspect="auto")
+[[/code]]
