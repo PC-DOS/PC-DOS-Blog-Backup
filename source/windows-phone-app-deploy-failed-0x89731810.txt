@@ -1,0 +1,7 @@
+**故障描述：**使用Windows Phone App Deployment (8.1)向Windows 10 Mobile目标部署应用时，提示错误{{0x89731810}}，重新启动主机或设备均无效。
+
+**故障处理：**在设备管理器中，卸载所有与当前连接的设备有关的设备（通常显示为该设备的型号或名称，如类似“{{RM-XXX}}”的设备型号等）后，重新扫描硬件变更。
+
+**参考资料：**
+
+*https://cloud.tencent.com/developer/ask/sof/102170943
