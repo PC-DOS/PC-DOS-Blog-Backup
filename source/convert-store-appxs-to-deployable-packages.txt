@@ -1,80 +1,88 @@
 [[=]]
- [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
- ##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
- ----
- [[size larger]] **请尊重应用程序作者的知识产权，请勿反编译通过本文提供的方式得到的APPX包。**[[/size]]
- [[size larger]] **请勿将通过本文提供的方式得到的APPX包用于商业及盈利目的。**[[/size]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+----
+[[size larger]] **请尊重应用程序作者的知识产权，请勿反编译通过本文提供的方式得到的APPX包。**[[/size]]
+[[size larger]] **请勿将通过本文提供的方式得到的APPX包用于商业及盈利目的。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
- [[/=]]
+[[/=]]
 
 本文指导您将从Windows应用商店获取的APPX包重新打包为可通过Application Deployment (8.1)部署的APPX包。
 
- 您需要事先安装Windows Phone SDK 8.1。此处假设该工具包被安装到C分区。
+您需要事先安装Windows Phone SDK 8.1。此处假设该工具包被安装到C分区。
 
- 您可以通过[*http://store.rg-adguard.net/ Microsoft Store Generation Project]或FFU固件包获取应用商店型APPX包。
+您可以通过[*http://store.rg-adguard.net/ Microsoft Store Generation Project]或FFU固件包获取应用商店型APPX包。
 
- 接下来，您可以通过常用的压缩文件包管理工具解压缩APPX包。需要注意的是：来自Microsoft Store Generation Project的商店型APPX应用包中的文件的文件名中的空格、半角圆括号、半角井号等符号可能被Microsoft Store替换为[*https://blog.csdn.net/superit401/article/details/78052965 URL转义字符]，从而引发打包错误，开始前需将这些转义字符进行替换。
+接下来，您可以通过常用的压缩文件包管理工具解压缩APPX包。需要注意的是：来自Microsoft Store Generation Project的商店型APPX应用包中的文件的文件名中的空格、半角圆括号、半角井号等符号可能被Microsoft Store替换为[*https://blog.csdn.net/superit401/article/details/78052965 URL转义字符]，从而引发打包错误，开始前需将这些转义字符进行替换。
 
- 完成解压后，请删除得到的解压缩目录中的以下文件及目录：
+您也可以从已经安装了相应应用的设备中直接提取应用的安装目录和对应的资产目录，此时您可以直接得到已经解包的应用目录，但是可能丢失一部分的资产包（包括语言资产和面向不同DPI缩放比率的图像资产）。应用程序位于下列目录中：
 
 [[code]]
- MDILFileList.xml
- AppxSignature.p7x
- AppxMetadata
- [[/code]]
+MainOS\Data\PROGRAMS\WINDOWSAPPS\
+[[/code]]
+
+其中，{{MainOS}}在固件文件和大容量存储器模式下均指代MainOS分区，在MTP模式下通常显示为“Phone”。
+
+完成解压后，请删除得到的解压缩目录中的以下文件及目录：
+
+[[code]]
+MDILFileList.xml
+AppxSignature.p7x
+AppxMetadata
+[[/code]]
 
 随后，请导览到{{C:\Program Files (x86)\Windows Kits\8.1\bin\x86}}目录，在该路径下启动命令提示符（或PowerShell），并输入以下指令：
 
 [[code]]
- MakeAppx pack /v /d APPX_INPUT_DIRECTORY /p APPX_OUTPUT_PATH /l 
- [[/code]]
+MakeAppx pack /v /d APPX_INPUT_DIRECTORY /p APPX_OUTPUT_PATH /l 
+[[/code]]
 
 请将{{APPX_INPUT_DIRECTORY}}替换为解压缩得到的APPX文件目录，将{{APPX_OUTPUT_PATH}}替换为重新打包的APPX文件的输出路径。为了避免部署过程中出现错误，建议将APPX输出到一个空目录中。
 
- 例如，您将商店APPX包解压缩到{{D:\Appx\ContosoApp}}目录，希望将APPX包输出到{{D:\Appx\Repack\ContosoApp.appx}}，请执行：
+例如，您将商店APPX包解压缩到{{D:\Appx\ContosoApp}}目录，希望将APPX包输出到{{D:\Appx\Repack\ContosoApp.appx}}，请执行：
 
 [[code]]
- MakeAppx pack /v /d D:\Appx\ContosoApp /p D:\Appx\Repack\ContosoApp.appx /l 
- [[/code]]
+MakeAppx pack /v /d D:\Appx\ContosoApp /p D:\Appx\Repack\ContosoApp.appx /l 
+[[/code]]
 
 如果调整对象为AppxBundle捆绑包，则对每个内含的APPX包进行重打包后，请将所有完成重打包的APPX包置于同一目录下（建议新建一个目录），并在命令提示符（或PowerShell）中运行APPX捆绑指令：
 
 [[code]]
- MakeAppx bundle /v /d APPX_INPUT_DIRECTORY /p APPXBUNDLE_OUTPUT_PATH
- [[/code]]
+MakeAppx bundle /v /d APPX_INPUT_DIRECTORY /p APPXBUNDLE_OUTPUT_PATH
+[[/code]]
 
 请将{{APPX_INPUT_DIRECTORY}}替换为存放已完成重打包的APPX文件所在的目录，将{{APPXBUNDLE_OUTPUT_PATH}}替换为重新打包的APPXBUNDLE文件的输出路径。为了避免部署过程中出现错误，建议将APPXBUNDLE输出到一个空目录中。
 
- 如果APPX部署时出现“部署优化失败（Deployment optimization failed）”错误提示，说明包中部分程序集因被强签名导致无法被部署工具优化，此时应进行强签名的移除的替换。
+如果APPX部署时出现“部署优化失败（Deployment optimization failed）”错误提示，说明包中部分程序集因被强签名导致无法被部署工具优化，此时应进行强签名的移除的替换。
 
- 首先，请[*http://www.nirsoft.net/dot_net_tools/snremove.zip 下载SNRemove命令行工具]，并解压缩。
+首先，请[*http://www.nirsoft.net/dot_net_tools/snremove.zip 下载SNRemove命令行工具]，并解压缩。
 
- 请打开SNRemove工具所在的目录，在该路径下启动命令提示符（或PowerShell），并输入以下指令：
+请打开SNRemove工具所在的目录，在该路径下启动命令提示符（或PowerShell），并输入以下指令：
 
 [[code]]
- SNRemove -d APPX_INPUT_DIRECTORY\*.dll
- SNRemove -d APPX_INPUT_DIRECTORY\*.winmd
- [[/code]]
+SNRemove -d APPX_INPUT_DIRECTORY\*.dll
+SNRemove -d APPX_INPUT_DIRECTORY\*.winmd
+[[/code]]
 
 请将{{APPX_INPUT_DIRECTORY}}替换为解压缩APPX得到的目录。
 
- 存在强签名的程序集会在命令窗口中显示其文件名及以十六进制方式显示的信息，请记录这些程序集及其版本号。
+存在强签名的程序集会在命令窗口中显示其文件名及以十六进制方式显示的信息，请记录这些程序集及其版本号。
 
- 随后，请运行下列命令，移除强签名：
+随后，请运行下列命令，移除强签名：
 
 [[code]]
- SNRemove -r APPX_INPUT_DIRECTORY\*.dll
- SNRemove -r APPX_INPUT_DIRECTORY\*.winmd
- [[/code]]
+SNRemove -r APPX_INPUT_DIRECTORY\*.dll
+SNRemove -r APPX_INPUT_DIRECTORY\*.winmd
+[[/code]]
 
 请将{{APPX_INPUT_DIRECTORY}}替换为解压缩APPX得到的目录。
 
- 完成这些操作后，请通过NuGet或其他方式获取这些程序集的同版本文件，并替换原始文件。
+完成这些操作后，请通过NuGet或其他方式获取这些程序集的同版本文件，并替换原始文件。
 
- 完成所有工作后，请重新打包APPX。
+完成所有工作后，请重新打包APPX。
 
- 参考资料：
+参考资料：
 *https://forum.xda-developers.com/windows-phone-8/development/wp8-1-creating-deploying-appx-packages-t2807743
- *https://docs.microsoft.com/zh-cn/windows/msix/package/create-app-package-with-makeappx-tool 
+*https://docs.microsoft.com/zh-cn/windows/msix/package/create-app-package-with-makeappx-tool
