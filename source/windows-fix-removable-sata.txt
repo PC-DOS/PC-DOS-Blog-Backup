@@ -2,25 +2,25 @@
 
 **故障处理：**打开设备管理器，展开“磁盘驱动器”，双击显示为可移除设备的磁盘，记录“位置”一栏中“Bus Number”后的数字（例如“{{@@0@@}}”或“{{@@1@@}}”）。
 
-启动注册表编辑器，定位到：
+ 启动注册表编辑器，定位到：
 
 [[code]]
-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device
-[[/code]]
+ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device
+ [[/code]]
 
 建立名为“{{TreatAsInternalPort}}”的多字符串（{{REG_MULTI_SZ}}）值。双击进行编辑，并输入先前记录的Bus Number数字编号，一行一个数字，例如：
 
 [[code]]
-0
-1
-[[/code]]
+ 0
+ 1
+ [[/code]]
 
 完成后，点击“确定”按钮，保存更改。
 
-重新启动系统，故障解决。
+ 重新启动系统，故障解决。
 
 **参考资料：**
 
-*https://support.microsoft.com/en-us/topic/internal-sata-drives-show-up-as-removeable-media-1f806a64-8661-95a6-adc7-ce65a976c8dd
+ *https://support.microsoft.com/en-us/topic/internal-sata-drives-show-up-as-removeable-media-1f806a64-8661-95a6-adc7-ce65a976c8dd
 
-*https://www.zhihu.com/question/399860545
+ *https://www.zhihu.com/question/399860545 

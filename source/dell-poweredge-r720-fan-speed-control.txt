@@ -1,4 +1,4 @@
-﻿+ 修改System Profile
++ 修改System Profile
 
  # 开机自检时按下{{F2}}键，进入系统设置，导航到 [System BIOS] > [System Profile Settings]。
 # 将 [System Profile] 改为 [Performance Per Watt (OS)]。

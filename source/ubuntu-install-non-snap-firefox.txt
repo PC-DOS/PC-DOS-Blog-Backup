@@ -1,55 +1,55 @@
 部分情况下，Ubuntu原生提供的Snap版Firefox可能无法正常运作，此时，可以使用Mozilla官方版本分Firefox。
 
-卸载Snap版Firefox：
+ 卸载Snap版Firefox：
 
 [[code]]
-sudo snap remove firefox
-[[/code]]
+ sudo snap remove firefox
+ [[/code]]
 
 从[*http://ftp.mozilla.org/pub/firefox/releases Mozilla官方FTP]下载Firefox包：
 
 [[code]]
-cd ~
-mkdir Firefox
-cd Firefox
-wget http://ftp.mozilla.org/pub/firefox/releases/128.10.1esr/linux-x86_64/zh-CN/firefox-128.10.1esr.tar.bz2
-tar -vxf firefox-128.10.1esr.tar.bz2
-[[/code]]
+ cd ~
+ mkdir Firefox
+ cd Firefox
+ wget http://ftp.mozilla.org/pub/firefox/releases/128.10.1esr/linux-x86_64/zh-CN/firefox-128.10.1esr.tar.bz2
+ tar -vxf firefox-128.10.1esr.tar.bz2
+ [[/code]]
 
 安装Firefox：
 
 [[code]]
-sudo mv firefox /opt
-sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-[[/code]]
+ sudo mv firefox /opt
+ sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
+ [[/code]]
 
 建立快捷方式：
 
 [[code]]
-sudo vi /usr/share/applications/firefox-browser.desktop
-[[/code]]
+ sudo vi /usr/share/applications/firefox-browser.desktop
+ [[/code]]
 
 输入：
 
 [[code]]
-[Desktop Entry]
-Version=1.0
-Name=Firefox Web Browser
-Comment=Browse the World Wide Web
-GenericName=Web Browser
-Keywords=Internet;WWW;Browser;Web;Explorer
-Exec=firefox %u
-Terminal=false
-X-MultipleArgs=false
-Type=Application
-Icon=/opt/firefox/browser/chrome/icons/default/default128.png
-Categories=GNOME;GTK;Network;WebBrowser;
-MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
-StartupNotify=true
-[[/code]]
+ [Desktop Entry]
+ Version=1.0
+ Name=Firefox Web Browser
+ Comment=Browse the World Wide Web
+ GenericName=Web Browser
+ Keywords=Internet;WWW;Browser;Web;Explorer
+ Exec=firefox %u
+ Terminal=false
+ X-MultipleArgs=false
+ Type=Application
+ Icon=/opt/firefox/browser/chrome/icons/default/default128.png
+ Categories=GNOME;GTK;Network;WebBrowser;
+ MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
+ StartupNotify=true
+ [[/code]]
 
 参考：
 
 *https://ubuntu-mate.community/t/firefox-installation-guide-non-snap/25299
 
-*https://github.com/mozilla/sumo-kb/blob/main/install-firefox-linux/firefox.desktop
+ *https://github.com/mozilla/sumo-kb/blob/main/install-firefox-linux/firefox.desktop 
