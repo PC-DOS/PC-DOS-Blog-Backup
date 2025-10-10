@@ -1,0 +1,11 @@
+﻿**故障描述：**一台运行Ubuntu 20.04 LTS的戴尔PowerEdge R740服务器，一日发现无法使用Windows远程桌面连接登入XRDP，使用SSH登录后执行{{sudo systemctl status xrdp}}发现XRDP服务正常，使用iDRAC远程控制台进行本地图形登录正常。
+
+**故障处理：**检查管理员用户命令日志，发现曾使用{{sudo apt install iptables}}命令重新安装过防火墙。使用UFW防火墙放行3389端口：
+
+[[code]]
+sudo ufw allow 3389
+[[/code]]
+
+再次尝试连接XRDP，工作正常
+
+**参考资料：** *https://developer.aliyun.com/article/762186
