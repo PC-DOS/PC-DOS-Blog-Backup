@@ -1,0 +1,69 @@
+**故障描述：**一台Web服务器使用Docker宿主NGINX和GitLab服务。其中NGINX、GitLab分别位于两个不同的Docker容器内。某次更新后，客户端克隆一个体积较大的Git仓库时，服务器在Compressing objects时返回“curl 18 transfer closed with outstanding read data remaining”错误。
+
+**故障排查：**
+
+在不同的网络环境中复现错误后，首先使用Web确定GitLab可以正常访问，同时使用管理员登录，检查GitLab Web管理面板中对项目及文件大小的限制参数，均远大于用户试图提交的仓库的尺寸。
+
+使用SSH登录远程服务器，尝试在服务器上直接克隆，发现直接使用{{@@git clone http://ServerIP:Port/UserName/RepoName.git@@}}克隆时，不会出现错误。而使用GitLab服务的域名克隆时，错误依旧。且固定在约60秒时出错。因此怀疑是NGINX配置存在问题。
+
+使用{{htop}}检查服务器运行状态，发现GitLab的Gitaly在对大型仓库进行{{pack-objects}}任务时，会很长一段时间不像客户端发送回应，推测该故障系NGINX的某些超时配置引发的。
+
+检查容器状态：
+
+[[code]]
+docker ps
+[[/code]]
+
+进入NGINX容器的Shell：
+
+[[code]]
+docker exec -it ID_OF_NGINX_CONTAINER /bin/sh
+[[/code]]
+
+检查NGINX配置文件{{/etc/nginx/nginx.conf}}：
+
+[[code]]
+vi /etc/nginx/nginx.conf
+[[/code]]
+
+在{{@@http {}@@}}结点中，添加下列行，修改超时配置：
+
+[[code]]
+    keepalive_timeout  245h;
+    send_timeout 245h;
+    client_body_timeout 245h;
+    client_header_timeout 245h;
+[[/code]]
+
+再编辑具体子域名的配置文件{{/etc/nginx/conf.d/GitLabDomainName.conf}}：
+
+[[code]]
+vi /etc/nginx/conf.d/GitLabDomainName.conf
+[[/code]]
+
+在{{@@server{}@@}}结点中的{{@@location{}@@}}节点，添加下列行，修改超时配置：
+
+[[code]]
+    proxy_buffering off;
+    proxy_send_timeout 245h;
+    proxy_read_timeout 245h;
+    proxy_connect_timeout 245h;
+[[/code]]
+
+按{{ESC}}键并输入“{{:wq}}”指令，按回车保存并退出VI，重新配置NGINX：
+
+[[code]]
+nginx -s reload
+[[/code]]
+
+要求客户再次尝试克隆，问题解决。
+
+**参考资料：**
+
+*http://nginx.org/en/docs/http/ngx_http_core_module.html
+
+*http://nginx.org/en/docs/http/ngx_http_proxy_module.html
+
+*https://www.cnblogs.com/youcong/p/14619013.html
+
+*http://blog.chinaunix.net/uid-20332519-id-5755724.html
