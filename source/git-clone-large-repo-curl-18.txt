@@ -26,25 +26,17 @@ docker exec -it ID_OF_NGINX_CONTAINER /bin/sh
 vi /etc/nginx/nginx.conf
 [[/code]]
 
-在{{@@http {}@@}}结点中，添加下列行，修改超时配置：
+在{{@@http {}@@}}结点中，添加下列行，修改超时和代理缓存配置：
 
 [[code]]
     keepalive_time  245h;
-    keepalive_timeout  245h;
+    keepalive_timeout 245h;
     send_timeout 245h;
     client_body_timeout 245h;
     client_header_timeout 245h;
-[[/code]]
-
-再编辑具体子域名的配置文件{{/etc/nginx/conf.d/GitLabDomainName.conf}}：
-
-[[code]]
-vi /etc/nginx/conf.d/GitLabDomainName.conf
-[[/code]]
-
-在{{@@server{}@@}}结点中的{{@@location{}@@}}节点，添加下列行，修改超时配置：
-
-[[code]]
+    client_max_body_size 0;
+    
+    proxy_max_temp_file_size 0;
     proxy_buffering off;
     proxy_send_timeout 245h;
     proxy_read_timeout 245h;
