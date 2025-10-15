@@ -1,0 +1,43 @@
+在进行某些调试时，可能希望让Git现实详细的操作信息，此时，可以通过将{{GIT_TRACE}}、{{GIT_TRACE_PACKET}}、{{GIT_CURL_VERBOSE}}三个变量设为{{@@1@@}}实现：
+
+Windows上：
+
+[[code]]
+set GIT_TRACE=1
+set GIT_TRACE_PACKET=1
+set GIT_CURL_VERBOSE=1
+[[/code]]
+
+Linux上：
+
+[[code]]
+export GIT_TRACE_PACKET=1
+export GIT_TRACE=1
+export GIT_CURL_VERBOSE=1
+[[/code]]
+
+例如，在Windows上追踪一次克隆操作：
+
+[[code]]
+@echo off
+
+REM Start time
+echo Started at
+date /T
+time /T
+echo=
+
+REM Real work here
+set GIT_TRACE=1
+set GIT_TRACE_PACKET=1
+set GIT_CURL_VERBOSE=1
+git clone http://GitServer/UserName/RepoName.git
+
+REM End time
+echo Ended at
+date /T
+time /T
+echo=
+
+pause > NUL
+[[/code]]
