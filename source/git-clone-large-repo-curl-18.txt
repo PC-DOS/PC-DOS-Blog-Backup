@@ -29,7 +29,7 @@ vi /etc/nginx/nginx.conf
 在{{@@http {}@@}}结点中，添加下列行，修改超时和代理缓存配置：
 
 [[code]]
-    keepalive_time  245h;
+    keepalive_time 245h;
     keepalive_timeout 245h;
     send_timeout 245h;
     client_body_timeout 245h;
