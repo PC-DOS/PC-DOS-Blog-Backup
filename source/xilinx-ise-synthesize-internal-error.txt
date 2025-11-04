@@ -1,0 +1,27 @@
+**故障描述：**用户使用运行于Windows 10 x64上的ISE编译一个使用Verilog编写的项目，在综合（Synthesize - XST）阶段失败并报错：
+
+[[code]]
+INTERNAL_ERROR:Xst:cmain.c:3464:1.56 - Process will terminate. For technical support on this issue, please open a WebCase with this project attached at http://www.xilinx.com/support.
+[[/code]]
+
+该错误无前置错误消息，检查设备内存使用正常
+
+**故障排除：**首先尝试执行“Project -> Cleanup Project Files”命令，无效。
+
+随后，右键单击“Synthesize - XST”过程，打开综合器属性设置，将右下角的“Property display level”设为“Advanced”，在“Other XST command line options”中加入：
+
+[[code]]
+-use_new_parser yes
+[[/code]]
+
+保存设置，再次执行综合，故障解决。
+
+**参考资料：**
+
+*https://adaptivesupport.amd.com/s/article/51670?language=en_US
+
+*https://adaptivesupport.amd.com/s/question/0D52E00006hpV2ASAU/internalerrorxstcmainc3464156-process-will-terminate?language=en_US
+
+*https://www.edaboard.com/threads/error-in-synthesis-in-xilinx-ise-14-7-internal_error.324092/
+
+*https://www.edaboard.com/threads/internal_error-xst-cmain-c-3464-1-56-process-will-terminate.338451/ 
