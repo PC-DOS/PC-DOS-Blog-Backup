@@ -95,13 +95,13 @@ proTemplate = OperatorTemplate(name="PRO", path=None,
 [[code type="python"]]
 import copy
 
-sCurrentNodeName = "orbitofrontal cortex (OFC)"
+sCurrentNodeName = "Demo Jansen-Rit Circuit (DemoJRC)"
 # Operators
-rpeOFC = copy.deepcopy(rpeTemplate).update_template(name="RPO_e", path=None,
+rpeDemoJRC = copy.deepcopy(rpeTemplate).update_template(name="RPO_e", path=None,
     description=f"{sRPEDescTemplate} of {sCurrentNodeName}")
-rpiOFC = copy.deepcopy(rpiTemplate).update_template(name="RPO_i", path=None,
+rpiDemoJRC = copy.deepcopy(rpiTemplate).update_template(name="RPO_i", path=None,
     description=f"{sRPIDescTemplate} of {sCurrentNodeName}")
-proOFC = copy.deepcopy(proTemplate).update_template(name="PRO", path=None, 
+proDemoJRC = copy.deepcopy(proTemplate).update_template(name="PRO", path=None, 
     description=f"{sPRODescTemplate} of {sCurrentNodeName}")
 [[/code]]
 
@@ -111,11 +111,11 @@ PyRates将子节点描述为{{pyrates.frontend.NodeTemplate}}对象的实例，�
 
 [[code type="python"]]
 # Sub nodes
-einOFC = NodeTemplate(name="EIN", path=None, operators=[rpeOFC, proOFC],
+einDemoJRC = NodeTemplate(name="EIN", path=None, operators=[rpeDemoJRC, proDemoJRC],
     description=f"{sEINDescTemplate} of {sCurrentNodeName}")
-iinOFC = NodeTemplate(name="IIN", path=None, operators=[rpeOFC, proOFC],
+iinDemoJRC = NodeTemplate(name="IIN", path=None, operators=[rpeDemoJRC, proDemoJRC],
     description=f"{sIINDescTemplate} of {sCurrentNodeName}")
-pmcOFC = NodeTemplate(name="PC", path=None, operators=[rpeOFC, rpiOFC, proOFC],
+pmcDemoJRC = NodeTemplate(name="PC", path=None, operators=[rpeDemoJRC, rpiDemoJRC, proDemoJRC],
     description=f"{sPMCDescTemplate} of {sCurrentNodeName}")
 [[/code]]
 
@@ -127,11 +127,11 @@ PyRates将环路节点描述为{{pyrates.frontend.CircuitTemplate}}对象的实�
 
 [[code type="python"]]
 # Sub node interconnections in Jansen-Rit Model
-jrcOFC = CircuitTemplate(name="JRC_OFC", path=None,
+jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
     nodes={
-        "EIN" : einOFC,
-        "IIN" : iinOFC,
-        "PC" : pmcOFC
+        "EIN" : einDemoJRC,
+        "IIN" : iinDemoJRC,
+        "PC" : pmcDemoJRC
     },
     edges=[
         ("EIN/PRO/m_out", "PC/RPO_e/m_in", None, {"weight" : 108}),
