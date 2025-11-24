@@ -1,0 +1,54 @@
+Python的[*https://umap.org.cn/en/latest/ UMap库（umap-learn）]提供了一种特征降维的新方法，但是将其与[*https://scikit-learn.org/ SkLearn(scikit-learn)]等机器学习库结合使用时，可能出现数据类型问题，例如下面的代码：
+
+[[code type="python"]]
+import numpy as np
+import sklearn
+import umap
+
+# Generate features
+arrFeatures = GenerateFeatures()
+
+# Run dimensionality reduction with UMap
+umpDimReductionFitter = umap.umap_.UMAP(n_components=nComponentCount)
+umpDimReductionFitter.fit(arrFeatures)
+arrFeaturesTransformed = umpDimReductionFitter.transform(arrFeatures)
+
+# Other preprocessing
+arrFeaturesTransformed = np.array(PreprocessData(arrFeaturesTransformed))
+
+# Clustering with K-Means
+# Fitting
+clsCluster = sklearn.cluster.KMeans(n_clusters=nClusterCount)
+clsCluster.fit(arrFeaturesTransformed)
+# Clustering
+arrFeaturesForPredicting = GenerateFeaturesForPredicting()
+arrFeaturesForPredictingTransformed = umpDimReductionFitter.transform(arrFeaturesForPredicting)
+arrFeaturesForPredictingTransformed = np.array(PreprocessData(arrFeaturesForPredictingTransformed))
+arrResults = clsCluster.predict(arrFeaturesForPredictingTransformed)
+[[/code]]
+
+此时，可能在执行{{clsCluster.predict}}时出现下面的错误：
+
+[[code]]
+ValueError: Buffer dtype mismatch, expected 'const float' but got 'double'
+[[/code]]
+
+这表明先前执行的数据存在数据类型问题，将{{umap.umap_.UMAP}}替换为{{sklearn.decomposition.PCA}}则可以正常工作。因此在调用{{np.array()}}后使用下面的代码检查{{arrFeaturesTransformed}}的数据类型：
+
+[[code type="python"]]
+print(arrFeaturesTransformed.dtype.name)
+[[/code]]
+
+发现输出为{{float64}}，故修改两处{{np.array()}}调用为：
+
+[[code type="python"]]
+arrFeaturesTransformed = np.array(PreprocessData(arrFeaturesTransformed), dtype=np.float64)
+# ...
+arrFeaturesForPredictingTransformed = np.array(PreprocessData(arrFeaturesForPredictingTransformed), dtype=np.float64)
+[[/code]]
+
+此时脚本运行正常。
+
+参考资料：
+* https://numpy.org/doc/stable/reference/arrays.dtypes.html
+* https://blog.csdn.net/li4692625/article/details/127192533
