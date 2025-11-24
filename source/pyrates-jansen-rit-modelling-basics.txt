@@ -1,0 +1,149 @@
+[*https://pyrates.readthedocs.io/en/latest/basic_info.html PyRates]是一个基于神经元放电率的神经动力学仿真库，使用该库可以实现基于[*https://link.springer.com/article/10.1007/BF00199471 Jansen-Rit模型]的神经动力学模型建模。
+
++ PyRates的安装
+
+PyRates可以使用`pip`命令进行安装：
+
+[[code]]
+pip install pyrates
+[[/code]]
+
+在Python代码文件中，引入{{pyrates}}包即可使用PyRates：
+
+[[code type="python"]]
+import pyrates
+[[/code]]
+
++ 基本结构
+
+Jansen-Rit模型环路（Circuit）中的每个环路节点包含3个子节点：
+* 兴奋性神经元（excitatory interneurons, EIN）
+* 抑制性神经元（inhibitory interneurons, IIN）
+* 金字塔细胞（Pyramidal cells, PC）
+
+在PyRates中，每个子节点被描述为一系列“算子（Operator）”的集合，包括：
+* 放电率-电位算子（Rate-to-potential operator, RPO）：将放电率转化为可测量的组织电位
+* 电位-放电率算子（Potential-to-rate operator, PRO）：将组织电位转换为放电率
+
+通常，EIN和IIN只包含RPO和PRO各一个，而PC则包含2个RPO（分别接受来自EIN和IIN的输出）和1个PRO。
+
+EIN、IIN和PC构成一个环路节点，环路节点之间通过“边（Edge）”连接。
+
++ 定义算子
+
+PyRates将算子描述为{{pyrates.frontend.OperatorTemplate}}对象的实例，该对象通过{{equations}}属性定义其内部的数学方程组，并使用{{variables}}属性定义方程组中变量或常量的含义（如输入量{{@@"input"@@}}、输出量{{@@"output"@@}}、临时变量{{@@"variable"@@}}或具有固定数值的常量等）。
+
+下面的方法可以用来定义兴奋性RPO（RPO_e）、抑制性RPO（RPO_i）和PRO的模板对象，从而避免反复定义算子方程组和变量：
+
+[[code type="python"]]
+from pyrates.frontend import OperatorTemplate, NodeTemplate, EdgeTemplate, CircuitTemplate
+
+# String constants
+# Operators
+sRPEDescTemplate = "Excitatory rate-to-potential operator"
+sRPIDescTemplate = "Inhibitory rate-to-potential operator"
+sPRODescTemplate = "Sigmoidal potential-to-rate operator"
+# Sub nodes
+sEINDescTemplate = "Excitatory interneurons (EIN)"
+sIINDescTemplate = "Inhibitory interneurons (IIN)"
+sPMCDescTemplate = "Pyramidal cells (PC)"
+# Jansen-Rit circuits
+sJRCDescTemplate = "Jansen-Rit circuit model"
+
+# Operator templates
+# Use copy.deepcopy() to create replica of these operator templates for your own nodes
+rpeTemplate = OperatorTemplate(name="RPO_e", path=None,
+    equations=[
+        "d/dt * V = I",
+        "d/dt * I = H/tau * m_in - 2 * I/tau - V/(tau^2)"
+        ],
+    variables={
+        "V" : "output",
+        "I" : "variable",
+        "m_in" : "input",
+        "tau" : 0.01,
+        "H" : 0.00325,
+    },
+    description=f"{sRPEDescTemplate} template")
+rpiTemplate = OperatorTemplate(name="RPO_i", path=None,
+    equations=[
+        "d/dt * V = I",
+        "d/dt * I = H/tau * m_in - 2 * I/tau - V/(tau^2)"
+        ],
+    variables={
+        "V" : "output",
+        "I" : "variable",
+        "m_in" : "input",
+        "tau" : 0.02,
+        "H" : -0.022,
+    },
+    description=f"{sRPIDescTemplate} template")
+proTemplate = OperatorTemplate(name="PRO", path=None, 
+    equations=["m_out = 2.*m_max / (1 + exp(r * (V_th - V)))"],
+    variables={
+        "m_out" : "output",
+        "V" : "input",
+        "V_thr" : 6e-3,
+        "m_max" : 2.5,
+        "r" : 560.0
+    },
+    description=f"{sPRODescTemplate} template")
+[[/code]]
+
+使用{{copy.deepcopy()}}建立算子实例的深拷贝对象，PyRates的{{Template}}类提供了用于修改对象参数的{{update_template()}}接口：
+
+[[code type="python"]]
+import copy
+
+sCurrentNodeName = "orbitofrontal cortex (OFC)"
+# Operators
+rpeOFC = copy.deepcopy(rpeTemplate).update_template(name="RPO_e", path=None,
+    description=f"{sRPEDescTemplate} of {sCurrentNodeName}")
+rpiOFC = copy.deepcopy(rpiTemplate).update_template(name="RPO_i", path=None,
+    description=f"{sRPIDescTemplate} of {sCurrentNodeName}")
+proOFC = copy.deepcopy(proTemplate).update_template(name="PRO", path=None, 
+    description=f"{sPRODescTemplate} of {sCurrentNodeName}")
+[[/code]]
+
++ 定义子节点
+
+PyRates将子节点描述为{{pyrates.frontend.NodeTemplate}}对象的实例，该对象通过{{operators}}属性定义其使用的算子列表）。
+
+[[code type="python"]]
+# Sub nodes
+einOFC = NodeTemplate(name="EIN", path=None, operators=[rpeOFC, proOFC],
+    description=f"{sEINDescTemplate} of {sCurrentNodeName}")
+iinOFC = NodeTemplate(name="IIN", path=None, operators=[rpeOFC, proOFC],
+    description=f"{sIINDescTemplate} of {sCurrentNodeName}")
+pmcOFC = NodeTemplate(name="PC", path=None, operators=[rpeOFC, rpiOFC, proOFC],
+    description=f"{sPMCDescTemplate} of {sCurrentNodeName}")
+[[/code]]
+
++ 定义环路节点
+
+PyRates将环路节点描述为{{pyrates.frontend.CircuitTemplate}}对象的实例，该对象使用{{nodes}}属性定义节点中的子节点，使用{{circuits}}属性定义子环路，并使用{{edges}}属性定义环路中各边的起止点和权重等参数。
+
+其中，{{nodes}}和{{circuits}}属性使用键值对的形式，定义子节点名称和对象实例之间的对应关系。{{edges}}属性使用{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性，确定该边从何输出变量获取数据，并传送到何输入变量。
+
+[[code type="python"]]
+# Sub node interconnections in Jansen-Rit Model
+jrcOFC = CircuitTemplate(name="JRC_OFC", path=None,
+    nodes={
+        "EIN" : einOFC,
+        "IIN" : iinOFC,
+        "PC" : pmcOFC
+    },
+    edges=[
+        ("EIN/PRO/m_out", "PC/RPO_e/m_in", None, {"weight" : 108}),
+        ("IIN/PRO/m_out", "PC/RPO_i/m_in", None, {"weight" : 33.75}),
+        ("PC/PRO/m_out", "EIN/RPO_e/m_in", None, {"weight" : 135}),
+        ("PC/PRO/m_out", "IIN/RPO_e/m_in", None, {"weight" : 33.75}),
+    ],
+    description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
+[[/code]]
+
++ 参考资料
+
+*https://pyrates.readthedocs.io/en/latest/auto_implementations/python_definitions.html
+
+*https://pyrates.readthedocs.io/en/latest/auto_introductions/jansenrit.html
