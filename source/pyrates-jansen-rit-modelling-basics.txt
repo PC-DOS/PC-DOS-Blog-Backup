@@ -146,6 +146,49 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
     description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
 [[/code]]
 
++ 开始仿真
+
+使用{{pyrates.frontend.CircuitTemplate}}对象的{{run()}}函数开始仿真，该函数的常用参数包括：
+* {{simulation_time}}：仿真时长，单位为秒。
+* {{step_size}}：仿真步长，单位为秒。
+* {{sapling_step_size}}：采样步长，单位为秒。
+* {{outputs}}：仿真输出键值对，键名为仿真输出（虚拟采样通道）的索引名称，值为{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性确定的变量或输出名称，表示记录来自哪个变量的数据。
+
+[[code type="python"]]
+dSimulationDuration = 5.0
+dSimulationStep = 1e-4
+dSamplingStep = 1.0 / 500.0
+
+# Run simulation
+# Results is an instance of pandas.DataFrame
+# Use the "outputs" parameter to specify output channels, you can access them with [ChannelName] index
+dctSimResults = jrcDemoJRC.run(
+    simulation_time=dSimulationDuration,
+    step_size=dSimulationStep,
+    sampling_step_size=dSamplingStep,
+    outputs={
+        # Record from subnode PC, operator PRO, variable V
+        "PC_V" : "PC/PRO/V"
+    }
+)
+[[/code]]
+
+仿真结果被存储为{{[*https://pandas.pydata.org/pandas-docs/stable/reference/frame.html pandas.Dataframe]}}对象的实例，您可以通过{{run()}}函数的{{outputs}}中指定的键名访问仿真过程中获得的采样数据
+
+[[code type="python"]]
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Plotting data
+for CurrentChannel in dctSimResults.keys() :
+    plt.plot(dctSimResults["PC_V"])
+    plt.title(CurrentChannel)
+#Next
+
+# Exporting data
+dctSimResults.to_csv("SimResults.csv", index=False)
+[[/code]]
+
 + 参考资料
 
 *https://pyrates.readthedocs.io/en/latest/auto_implementations/python_definitions.html
