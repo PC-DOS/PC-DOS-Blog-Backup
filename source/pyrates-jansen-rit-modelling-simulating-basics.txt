@@ -31,7 +31,7 @@ EIN、IIN和PC构成一个环路节点，环路节点之间通过“边（Edge�
 
 + 定义算子
 
-PyRates将算子描述为{{pyrates.frontend.OperatorTemplate}}对象的实例，该对象通过{{equations}}属性定义其内部的数学方程组，并使用{{variables}}属性定义方程组中变量或常量的含义（如输入量{{@@"input"@@}}、输出量{{@@"output"@@}}、临时变量{{@@"variable"@@}}或具有固定数值的常量等）。
+PyRates将算子描述为{{pyrates.frontend.OperatorTemplate}}对象的实例，该对象通过{{equations}}属性定义其内部的数学方程组，并使用{{variables}}属性定义方程组中变量或常量的含义（如输入量{{@@"input"@@}}、输出量{{@@"output"@@}}、临时变量{{@@"variable"@@}}或具有固定数值的常量等，其中输出量有且仅能有1个）。
 
 定义变量时，不能使用某些名称或后缀，因为它们为PyRates内部保留或预定义的符号，该非法符号列表由{{pyrates.frontend.OperatorTemplate.check_vname()}}函数定义：
 
@@ -159,7 +159,7 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
 * {{simulation_time}}：仿真时长，单位为秒。
 * {{step_size}}：仿真步长，单位为秒。
 * {{sapling_step_size}}：采样步长，单位为秒。
-* {{outputs}}：仿真输出键值对，键名为仿真输出（虚拟采样通道）的索引名称，值为{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性确定的变量或输出名称，表示记录来自哪个变量的数据。注意：输入变量（类型为“{{input}}”的变量不可被测量）
+* {{outputs}}：仿真输出键值对，键名为仿真输出（虚拟采样通道）的索引名称，值为{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性确定的变量或输出名称，表示记录来自哪个变量的数据。注意：只有输出变量（类型为“{{output}}”的变量）可被测量
 
 [[code type="python"]]
 dSimulationDuration = 5.0
@@ -169,15 +169,57 @@ dSamplingStep = 1.0 / 500.0
 # Run simulation
 # Results is an instance of pandas.DataFrame
 # Use the "outputs" parameter to specify output channels, you can access them with [ChannelName] index
+#     Only "output" variables defined in OperatorTemplate can be measured
 dctSimResults = jrcDemoJRC.run(
     simulation_time=dSimulationDuration,
     step_size=dSimulationStep,
     sampling_step_size=dSamplingStep,
     outputs={
-        # Record from subnode PC, operator PRO, variable V
-        "PC_V" : "PC/PRO/V"
+        # Record from subnode PC, operator RPO_e (EIN output), variable V
+        "PC_e" : "PC/RPO_e/V"
+        # Record from subnode PC, operator RPO_i (IIN output), variable V
+        "PC_i" : "PC/RPO_i/V"
     }
 )
+[[/code]]
+
+由于来自同一环路的EIN和IIN的电位被分开测量，因此可以使用加法对其进行合并：
+
+[[code type="python"]]
+# Merging results from EIN and IIN
+dctSimResultsMerged = pd.DataFrame()
+for CurrentKey in dctSimResults.keys() :
+    # Check if current key is from a "XXX_e" and "XXX_i" pair
+    if str(CurrentKey).endswith("_e") :
+        # If curren key is an EIN output
+        sCurrentKeyBase = str(CurrentKey).removesuffix("_e") 
+        # Dertermin key of paired IIN output
+        sCurrentKeyPaired = sCurrentKeyBase + "_i"
+        if sCurrentKeyPaired in dctSimResults.keys() :
+            # Merging key pairs, a simple "plus" operator is used
+            # See https://pyrates.readthedocs.io/en/latest/auto_implementations/python_definitions.html
+            dctSimResultsMerged[sCurrentKeyBase] = dctSimResults[sCurrentKeyBase + "_e"] + dctSimResults[sCurrentKeyBase + "_i"]
+        else :
+            # If we can't find a paired IIN output, log this entry directly
+            dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
+        #End If 
+    elif str(CurrentKey).endswith("_i") :
+        # If curren key is an IIN output
+        sCurrentKeyBase = str(CurrentKey).removesuffix("_i") 
+        # Dertermin key of paired EIN output
+        sCurrentKeyPaired = sCurrentKeyBase + "_e"
+        if sCurrentKeyPaired in dctSimResults.keys() :
+            # Since EIN output is handled in previous If branch, simply continuing the loop
+            continue
+        else :
+            # If we can't find a paired EIN output, log this entry directly
+            dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
+        #End If
+    else :
+        # For entries with other suffixes, log this entry directly
+        dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
+    #End If
+#Next
 [[/code]]
 
 仿真结果被存储为{{[*https://pandas.pydata.org/pandas-docs/stable/reference/frame.html pandas.Dataframe]}}对象的实例，您可以通过{{run()}}函数的{{outputs}}中指定的键名访问仿真过程中获得的采样数据
@@ -187,13 +229,13 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Plotting data
-for CurrentChannel in dctSimResults.keys() :
-    plt.plot(dctSimResults["PC_V"])
+for CurrentChannel in dctSimResultsMerged.keys() :
+    plt.plot(dctSimResultsMerged[CurrentChannel])
     plt.title(CurrentChannel)
 #Next
 
 # Exporting data
-dctSimResults.to_csv("SimResults.csv", index=False)
+dctSimResultsMerged.to_csv("SimResults.csv", index=False)
 [[/code]]
 
 + 参考资料
