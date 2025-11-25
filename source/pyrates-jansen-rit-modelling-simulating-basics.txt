@@ -33,6 +33,13 @@ EIN、IIN和PC构成一个环路节点，环路节点之间通过“边（Edge�
 
 PyRates将算子描述为{{pyrates.frontend.OperatorTemplate}}对象的实例，该对象通过{{equations}}属性定义其内部的数学方程组，并使用{{variables}}属性定义方程组中变量或常量的含义（如输入量{{@@"input"@@}}、输出量{{@@"output"@@}}、临时变量{{@@"variable"@@}}或具有固定数值的常量等）。
 
+定义变量时，不能使用某些名称或后缀，因为它们为PyRates内部，该非法符号列表由{{pyrates.frontend.OperatorTemplate.check_vname()}}函数定义：
+
+[[code type="python"]]
+disallowed_names = ['y', 'dy', 'source_idx', 'target_idx', 'pi', 'I', 'E']
+disallowed_name_parts = ['_buffer', '_delays', '_maxdelay', '_idx', '_hist']
+[[/code]]
+
 下面的方法可以用来定义兴奋性RPO（RPO_e）、抑制性RPO（RPO_i）和PRO的模板对象，从而避免反复定义算子方程组和变量：
 
 [[code type="python"]]
@@ -54,12 +61,15 @@ sJRCDescTemplate = "Jansen-Rit circuit model"
 # Use copy.deepcopy() to create replica of these operator templates for your own nodes
 rpeTemplate = OperatorTemplate(name="RPO_e", path=None,
     equations=[
-        "d/dt * V = I",
+        # This is defined by PyRates automatically
+        #"d/dt * V = I",
         "d/dt * I = H/tau * m_in - 2 * I/tau - V/(tau^2)"
         ],
     variables={
         "V" : "output",
-        "I" : "variable",
+        # The document says you need this, but this will cause an exception in PyRates
+        # Saying "The variable name I is reserved for internal variables created by PyRates. Please choose a different variable name."
+        #"I" : "variable",
         "m_in" : "input",
         "tau" : 0.01,
         "H" : 0.00325,
@@ -67,12 +77,15 @@ rpeTemplate = OperatorTemplate(name="RPO_e", path=None,
     description=f"{sRPEDescTemplate} template")
 rpiTemplate = OperatorTemplate(name="RPO_i", path=None,
     equations=[
-        "d/dt * V = I",
+        # This is defined by PyRates automatically
+        #"d/dt * V = I",
         "d/dt * I = H/tau * m_in - 2 * I/tau - V/(tau^2)"
         ],
     variables={
         "V" : "output",
-        "I" : "variable",
+        # The document says you need this, but this will cause an exception in PyRates
+        # Saying "The variable name I is reserved for internal variables created by PyRates. Please choose a different variable name."
+        #"I" : "variable",
         "m_in" : "input",
         "tau" : 0.02,
         "H" : -0.022,
