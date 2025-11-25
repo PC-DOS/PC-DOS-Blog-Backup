@@ -134,9 +134,13 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
         "PC" : pmcDemoJRC
     },
     edges=[
+        # EIN -> PC
         ("EIN/PRO/m_out", "PC/RPO_e/m_in", None, {"weight" : 108}),
+        # IIN -> PC
         ("IIN/PRO/m_out", "PC/RPO_i/m_in", None, {"weight" : 33.75}),
+        # PC -> EIN
         ("PC/PRO/m_out", "EIN/RPO_e/m_in", None, {"weight" : 135}),
+        # PC -> IIN
         ("PC/PRO/m_out", "IIN/RPO_e/m_in", None, {"weight" : 33.75}),
     ],
     description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
