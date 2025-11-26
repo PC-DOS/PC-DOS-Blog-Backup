@@ -183,8 +183,10 @@ arrInputSignalY = dInputSignalAmplitude * arrInputSignalY + dInputSignalOffset
 
 # Run simulation
 # Results is an instance of pandas.DataFrame
+# Use the "inputs" parameter to specify input signal
 # Use the "outputs" parameter to specify output channels, you can access them with [ChannelName] index
 #     Only "output" variables defined in OperatorTemplate can be measured
+# See https://pyrates.readthedocs.io/en/latest/frontend.template.html#pyrates.frontend.template.circuit.CircuitTemplate.run
 dctSimResults = jrcDemoJRC.run(
     simulation_time=dSimulationDuration,
     step_size=dSimulationStep,
@@ -198,7 +200,8 @@ dctSimResults = jrcDemoJRC.run(
         "PC_e" : "PC/RPO_e/V"
         # Record from subnode PC, operator RPO_i (IIN output), variable V
         "PC_i" : "PC/RPO_i/V"
-    }
+    },
+    clear=True
 )
 [[/code]]
 
