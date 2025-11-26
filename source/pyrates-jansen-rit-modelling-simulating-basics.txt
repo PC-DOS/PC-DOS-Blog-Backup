@@ -159,7 +159,8 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
 * {{simulation_time}}：仿真时长，单位为秒。
 * {{step_size}}：仿真步长，单位为秒。
 * {{sapling_step_size}}：采样步长，单位为秒。
-* {{outputs}}：仿真输出键值对，键名为仿真输出（虚拟采样通道）的索引名称，值为{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性确定的变量或输出名称，表示记录来自哪个变量的数据。注意：只有输出变量（类型为“{{output}}”的变量）可被测量。
+* {{outputs}}：仿真输出键值对，键名为仿真输出（虚拟采样通道）的索引名称，值为{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性确定的输出名称，表示记录来自哪个变量的数据。注意：只有输出变量（类型为“{{output}}”的变量）可被测量。
+* {{inputs}}：输入键值对，键名为{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性确定的输入名称，表示向哪个变量输入数据。值为预先生成的输入信号（一维数组），输入信号的采样率应与仿真步长一致。
 
 [[code type="python"]]
 dSimulationDuration = 5.0
