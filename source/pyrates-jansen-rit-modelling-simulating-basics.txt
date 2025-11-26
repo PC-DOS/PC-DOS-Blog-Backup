@@ -167,6 +167,20 @@ dSimulationDuration = 5.0
 dSimulationStep = 1e-4
 dSamplingStep = 1.0 / 500.0
 
+# Generate input signal (square wave)
+# Square wave is generated using scipy.signal.square()
+# Note that scipy.signal.square() generates a square wave with a period of 2*pi and a range of [-1, 1]
+# See https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.square.html#scipy.signal.square
+# In this demo, we generated a signal with 130 Hz frequency and 10% cycle duty, in the range of [0, 5]
+dInputSignalAmplitude=2.5
+dInputSignalFreq=130
+dInputSignalPhase=0.0
+dInputSignalDuty=0.1
+dInputSignalOffset=2.5
+arrInputSignalX = np.linspace(0, dSimulationDuration, round(dSimulationDuration/dSimulationStep), endpoint=False)
+arrInputSignalY = scipy.signal.square((2 * np.pi * dInputSignalFreq * arrInputSignalX + dInputSignalPhase), duty=dInputSignalDuty)
+arrInputSignalY = dInputSignalAmplitude * arrInputSignalY + dInputSignalOffset
+
 # Run simulation
 # Results is an instance of pandas.DataFrame
 # Use the "outputs" parameter to specify output channels, you can access them with [ChannelName] index
@@ -175,6 +189,10 @@ dctSimResults = jrcDemoJRC.run(
     simulation_time=dSimulationDuration,
     step_size=dSimulationStep,
     sampling_step_size=dSamplingStep,
+    inputs={
+        # Stimulating PC, input to operator PRO, variable V
+        "PC/PRO/V" : arrInputSignalY
+    }
     outputs={
         # Record from subnode PC, operator RPO_e (EIN output), variable V
         "PC_e" : "PC/RPO_e/V"
