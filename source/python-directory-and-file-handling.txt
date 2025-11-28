@@ -1,26 +1,42 @@
-+ 建立嵌套的目录
++ 建立和删除嵌套的目录
 
-Python的{{[*https://docs.python.org/3/library/os.html#os.makedirs os.makedirs()]}}函数提供了嵌套建立目录的能力。将该函数的{{exist_ok}}参数设为{{True}}可以避免在目录已存在时发生错误：
+Python的{{[*https://docs.python.org/3/library/os.html#os.makedirs os.makedirs()]}}函数提供了嵌套建立目录的能力。将该函数的{{exist_ok}}参数设为{{True}}可以避免在目录已存在时发生错误。
+
+若需要删除嵌套的（包含文件和子目录的）目录，请使用{{[*https://docs.python.org/3/library/shutil.html#shutil.rmtree shutil.rmtree()]}}函数，将该函数的{{ignore_errors}}参数设为{{True}}可以忽略错误。
 
 [[code type="python"]]
- import os
+import os
+import shutil
 
- # Check existence of file or directory
- def IsFileOrDirectoryExists(sPath : str) :
-     return os.path.exists(sPath)
- #End Function
+# Check existence of file or directory
+def IsFileOrDirectoryExists(sPath : str) :
+    return os.path.exists(sPath)
+#End Function
 
- # Create nested directories
- def CreateDirectory(sPath : str) :
-     if not IsFileOrDirectoryExists(sPath) :
-         os.makedirs(sPath, exist_ok=True)
-     #End If
- #End Sub
- [[/code]]
+# Create nested directories
+def CreateDirectory(sPath : str) :
+    if not IsFileOrDirectoryExists(sPath) :
+        os.makedirs(sPath, exist_ok=True)
+    #End If
+#End Sub
 
-参考资料：*https://blog.csdn.net/zdc1305/article/details/106138491
+# Remove nested directories
+def RemoveDirectory(sPath : str) :
+    if IsFileOrDirectoryExists(sPath) :
+        shutil.rmtree(sPath, ignore_errors=True)
+    #End If
+#End Sub
+[[/code]]
 
- + 获取当前脚本的执行路径
+参考资料：
+
+*https://blog.csdn.net/zdc1305/article/details/106138491
+
+*https://blog.csdn.net/JohinieLi/article/details/80450164
+
+*https://geek-blogs.com/blog/python-delete-all-files-in-a-directory/
+
++ 获取当前脚本的执行路径
 
 Python提供了不同的方案获取脚本执行路径，不同方案的获取目标（返回值）存在差异：
 
@@ -29,35 +45,35 @@ Python提供了不同的方案获取脚本执行路径，不同方案的获取�
 * {{@@os.path.split(os.path.realpath(__file__))[0]@@}}：获取该行指令所在的脚本文件的路径。其中，{{[*https://docs.python.org/3/library/os.path.html#os.path.realpath os.path.realpath()]}}调用会将路径中的所有潜在符号链接和重解析点替换为真实路径，{{[*https://docs.python.org/3/library/os.path.html#os.path.split os.path.split()]}}调用将指向文件的路径拆分为路径和文件名2个元素。
 
 [[code type="python"]]
- # Get current script's working directory
- def GetCurrentScriptWorkingDir(sTarget : str = "") -> str :
-     sTarget = sTarget.upper()
+# Get current script's working directory
+def GetCurrentScriptWorkingDir(sTarget : str = "") -> str :
+    sTarget = sTarget.upper()
 
-     if sTarget == "CMDLINE" :
-         sPath = os.getcwd()
-     elif sTarget == "ROOTSCRIPT" :
-         sPath = sys.path[0]
-     elif sTarget == "THISSCRIPT" :
-         sPath = os.path.split(os.path.realpath(__file__))[0]
-     else :
-         sPath = os.getcwd()
-     #End If
+    if sTarget == "CMDLINE" :
+        sPath = os.getcwd()
+    elif sTarget == "ROOTSCRIPT" :
+        sPath = sys.path[0]
+    elif sTarget == "THISSCRIPT" :
+        sPath = os.path.split(os.path.realpath(__file__))[0]
+    else :
+        sPath = os.getcwd()
+    #End If
 
-     return sPath
- #End Function
- [[/code]]
+    return sPath
+#End Function
+[[/code]]
 
 参考资料：*https://blog.csdn.net/nixiang_888/article/details/109174340
 
- + 根据搜索条件枚举文件和目录
++ 根据搜索条件枚举文件和目录
 
 Python的{{[*https://docs.python.org/3/library/glob.html#glob.glob glob.glob()]}}函数提供了根据给定的搜索条件（支持通配符）枚举文件和目录的能力：
 
 [[code type="python"]]
- # Enumerate files and directories under specified directory
- def EnumerateFilesAndDirectories(sEnumerateTerm : str, sRootPath : str = None, DoRecursiveEnumerate : bool = False, IncludeHiddenItems : bool = False) -> array :
-     return glob.glob(sEnumerateTerm, root_dir=sRootPath, recursive=DoRecursiveEnumerate, include_hidden=IncludeHiddenItems)
- #End Function
- [[/code]]
+# Enumerate files and directories under specified directory
+def EnumerateFilesAndDirectories(sEnumerateTerm : str, sRootPath : str = None, DoRecursiveEnumerate : bool = False, IncludeHiddenItems : bool = False) -> array :
+    return glob.glob(sEnumerateTerm, root_dir=sRootPath, recursive=DoRecursiveEnumerate, include_hidden=IncludeHiddenItems)
+#End Function
+[[/code]]
 
-参考资料：*https://blog.csdn.net/GeorgeAI/article/details/81035422 
+参考资料：*https://blog.csdn.net/GeorgeAI/article/details/81035422

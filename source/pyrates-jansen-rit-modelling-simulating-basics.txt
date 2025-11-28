@@ -260,6 +260,31 @@ for CurrentChannel in dctSimResultsMerged.keys() :
 dctSimResultsMerged.to_csv("SimResults.csv", index=False)
 [[/code]]
 
++ 杂项
+
+++ 缓存文件问题
+
+PyRates默认会在当前工作目录（通过{{os.getcwd()}}获取）下建立缓存文件（如{{pyrates_run.py}}），若需要并行执行多个PyRates仿真，可能需要动态调整工作目录，例如：
+
+[[code type="python"]]
+# Change working directory to avoid pyrates_run.py confliction
+import os
+import shutil
+import uuid
+sSimulatorCacheDir = "temp/sim/"
+sPreviousWorkDir = os.getcwd()
+sCurrentSimulatorCacheDir = sSimulatorCacheDir + str(uuid.uuid4()) + "/"
+os.makedirs(sCurrentSimulatorCacheDir, exist_ok=True)
+os.chdir(sCurrentSimulatorCacheDir)
+
+# Running simulation
+jrcModel.run(...)
+
+# Revert working directory
+os.chdir(sPreviousWorkDir)
+shutil.rmtree(sCurrentSimulatorCacheDir, ignore_errors=True)
+[[/code]]
+
 + 参考资料
 
 *https://pyrates.readthedocs.io/en/latest/auto_implementations/python_definitions.html
