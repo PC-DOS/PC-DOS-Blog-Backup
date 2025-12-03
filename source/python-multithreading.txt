@@ -176,7 +176,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
     if nWorkers is None :
         IsChildWorkersNeeded = True
     elif nWorkers > 1 :
-        IsChildWorkersNeeded
+        IsChildWorkersNeeded = True
     #End If
 
     # Run jobs
@@ -213,7 +213,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
         for i in range(0, len(arrFunctions)) :
             # Get function object and arguments
             fncFunction = arrFunctions[i]
-            tplArgs = arrArgs[i] if (i < len(arrArgs)) else tuple()
+            tplArgs = arrArgs[i] if (i < len(arrArgs)) else ()
             dctKwArgs = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
 
             # Run job
