@@ -30,9 +30,9 @@ Jansen-Rit模型环路（Circuit）中的每个环路节点包含3个子节点�
 EIN、IIN和PC构成一个环路节点，环路节点之间通过“边（Edge）”连接。
 
 因此，在一个Jansen-Rit模型中，存在以下信息流（假设输入到PC的外部输入为Vi）：
-    * EIN：(前级输出+PC输出) → EIN兴奋性RPO → 电压 → PRO → PC兴奋性RPO → V1
-    * IIN：(前级输出+PC输出) → IIN兴奋性RPO → 电压 → PRO → PC抑制性RPO → V2
-    * PC：(V1+V2+Vi) → 电压 → PRO → PC输出（后级输入）
+* EIN：(前级输出+PC输出) → EIN兴奋性RPO → 电压 → PRO → PC兴奋性RPO → V1
+* IIN：(前级输出+PC输出) → IIN兴奋性RPO → 电压 → PRO → PC抑制性RPO → V2
+* PC：(V1+V2+Vi) → 电压 → PRO → PC输出（后级输入）
 
 + 定义算子
 
