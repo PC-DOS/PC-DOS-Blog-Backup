@@ -195,7 +195,7 @@ arrInputSignalY = scipy.signal.square((2 * np.pi * dInputSignalFreq * arrInputSi
 arrInputSignalY = dInputSignalAmplitude * arrInputSignalY + dInputSignalOffset
 
 # Run simulation
-# Results is an instance of pandas.DataFrame
+# Results is an instance of pandas.DataFrame, whose columns are output channels, indexes are time points
 # Use the "inputs" parameter to specify input signal
 # Use the "outputs" parameter to specify output channels, you can access them with [ChannelName] index
 #     Only "output" variables defined in OperatorTemplate can be measured
@@ -225,8 +225,13 @@ dctSimResults = jrcDemoJRC.run(
 [[code type="python"]]
 # Remove simulation padding segment
 iSimulationValidDataStartIndex = dSimulationPaddingAtStart / dSamplingStep
-dctSimResults = dctSimResults.drop(labels=list(range(0, iSimulationPaddingAtStartEndIndex)))
+iSimulationValidDataStartIndex = round(dSimulationPaddingAtStart / dSamplingStep)
+arrSimulationDataIndexesToDrop = list(range(0, iSimulationValidDataStartIndex))
+arrSimulationDataTimePointsToDrop = [i*dSamplingStep for i in arrSimulationDataIndexesToDrop]
+dctSimResults = dctSimResults.drop(labels=arrSimulationDataTimePointsToDrop, axis=0)
 dctSimResults = dctSimResults.reset_index(drop=True)
+arrSimualtionDataNewIndex = [i*dSamplingStep for i in dctSimResults.index]
+dctSimResults.index = arrSimualtionDataNewIndex
 [[/code]]
 
 由于来自同一环路的EIN和IIN的电位被分开测量，因此可以使用加法对其进行合并：
@@ -268,7 +273,7 @@ for CurrentKey in dctSimResults.keys() :
 #Next
 [[/code]]
 
-仿真结果被存储为{{[*https://pandas.pydata.org/pandas-docs/stable/reference/frame.html pandas.Dataframe]}}对象的实例，您可以通过{{run()}}函数的{{outputs}}中指定的键名访问仿真过程中获得的采样数据
+仿真结果被存储为{{[*https://pandas.pydata.org/pandas-docs/stable/reference/frame.html pandas.Dataframe]}}对象的实例，其数据列（Columns）为输出键名，数据索引（Indexes）为数据对应的时间点。您可以通过{{run()}}函数的{{outputs}}中指定的键名访问仿真过程中获得的采样数据。
 
 [[code type="python"]]
 import matplotlib.pyplot as plt
