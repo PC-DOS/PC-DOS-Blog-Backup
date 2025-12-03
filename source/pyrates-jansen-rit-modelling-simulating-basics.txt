@@ -221,7 +221,7 @@ dctSimResults = jrcDemoJRC.run(
 
 [[code type="python"]]
 # Remove simulation padding segment
-iSimulationPaddingAtStartEndIndex = dSimulationPaddingAtStart / dSamplingStep
+iSimulationValidDataStartIndex = dSimulationPaddingAtStart / dSamplingStep
 dctSimResults = dctSimResults.drop(labels=list(range(0, iSimulationPaddingAtStartEndIndex)), axis=0)
 dctSimResults = dctSimResults.reset_index(drop=True)
 [[/code]]
