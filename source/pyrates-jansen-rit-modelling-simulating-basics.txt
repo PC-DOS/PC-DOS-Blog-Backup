@@ -171,6 +171,7 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
 dSimulationDuration = 5.0
 dSimulationStep = 1e-4
 dSamplingStep = 1.0 / 500.0
+dSimulationPaddingAtStart = 0.0
 
 # Generate input signal (square wave)
 # Square wave is generated using scipy.signal.square()
@@ -192,8 +193,12 @@ arrInputSignalY = dInputSignalAmplitude * arrInputSignalY + dInputSignalOffset
 # Use the "outputs" parameter to specify output channels, you can access them with [ChannelName] index
 #     Only "output" variables defined in OperatorTemplate can be measured
 # See https://pyrates.readthedocs.io/en/latest/frontend.template.html#pyrates.frontend.template.circuit.CircuitTemplate.run
+# PyRates outputs simulation_time*(1.0/sampling_step_size) points after simulation
+# Thus the real timespan (MNE algorithm) is simulation_time-dSamplingStep seconds
+# To fix this, you can add 1 sampling_step_size to simulation_time.
+# dSimulationPaddingAtStart is adopted to contain unstable leading segment
 dctSimResults = jrcDemoJRC.run(
-    simulation_time=dSimulationDuration,
+    simulation_time=dSimulationPaddingAtStart + dSimulationDuration + dSamplingStep,
     step_size=dSimulationStep,
     sampling_step_size=dSamplingStep,
     inputs={
@@ -211,6 +216,15 @@ dctSimResults = jrcDemoJRC.run(
 [[/code]]
 
 需要注意的是，PyRates生成的仿真结果中，共包含{{nPoint = simulation_time * (1.0 / sampling_step_size)}}个测量点。因此，部分算法（例如MNE工具包采用的算法：{{dTime = (nPoint - 1) * sampling_step_size}}）会导致测得的时长略小于{{simulation_time}}的设置值。此时，可以通过将{{simulation_time}}设为期望的仿真时长与1个{{sampling_step_size}}的和进行处理，即设置{{simulation_time=dSimulationDuration+dSamplingStep}}。
+
+为了获得较为稳定的仿真结果，可以考虑在{{simulation_time}}中设置一个5 s左右的引导段，并在处理时剔除这个引导段：
+
+[[code type="python"]]
+# Remove simulation padding segment
+iSimulationPaddingAtStartEndIndex = dSimulationPaddingAtStart / dSamplingStep
+dctSimResults = dctSimResults.drop(labels=list(range(0, iSimulationPaddingAtStartEndIndex)), axis=0)
+dctSimResults = dctSimResults.reset_index(drop=True)
+[[/code]]
 
 由于来自同一环路的EIN和IIN的电位被分开测量，因此可以使用加法对其进行合并：
 
