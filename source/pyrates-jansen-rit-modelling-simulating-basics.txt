@@ -210,6 +210,8 @@ dctSimResults = jrcDemoJRC.run(
 )
 [[/code]]
 
+需要注意的是，PyRates生成的仿真结果中，共包含{{nPoint = simulation_time * (1.0 / sampling_step_size)}}个测量点。因此，部分算法（例如MNE工具包采用的算法：{{dTime = (nPoint - 1) * sampling_step_size}}）会导致测得的时长略小于{{simulation_time}}的设置值。此时，可以通过将{{simulation_time}}设为期望的仿真时长与1个{{sampling_step_size}}的和进行处理，即设置{{simulation_time=dSimulationDuration+dSamplingStep}}。
+
 由于来自同一环路的EIN和IIN的电位被分开测量，因此可以使用加法对其进行合并：
 
 [[code type="python"]]
