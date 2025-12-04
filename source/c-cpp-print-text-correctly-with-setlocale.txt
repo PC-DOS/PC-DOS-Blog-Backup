@@ -1,0 +1,20 @@
+在C/C++编程时，常存在调用{{printf()}}/{{wprintf()}}打印中文等文本时出现乱码或空白的问题。此时，可以通过调用{{setlocale()}}函数设置代码页的方法处理。
+
+[[code type="Cpp"]]
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int main() {
+    // Fix text print
+    setlocale(LC_CTYPE, "");
+
+    // Coding here
+
+    return 0;
+}
+[[/code]]
+
+{{setlocale(LC_TYPE,"")}}将程序进程的区域设置为系统默认值。此时{{printf}}和{{wprintf}}都将字符串的多字节编码（ANSI）字节流先转为Unicode编码，再获取控制台的代码页信息，随后调用{{WideCharToMultiByte}}，将Unicode编码的字符串转换到输出终端对应代码页的多字节编码，将字节流输出到标准流。
+
+参考：*https://blog.csdn.net/qq_42679415/article/details/147113191
