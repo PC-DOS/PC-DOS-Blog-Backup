@@ -1,0 +1,49 @@
+参考：
+
+*https://blog.csdn.net/jeanphorn/article/details/45745739
+
+*https://stackoverflow.com/questions/10028750
+
+[[code type="Cpp"]]
+#include <stdlib.h>
+#include <stdio.h>
+#include <locale.h>
+#include <fcntl.h>
+#include <io.h>
+
+int main(int argc, char *argv[]) {
+    //Open output file as UTF-8
+    bool bIsOutputFileReady = false;
+    FILE * fpOutputFile = NULL;
+    if (argc > 1) {
+        //Convert argument in char* to wchar_t*
+        //https://blog.csdn.net/jeanphorn/article/details/45745739
+        int iOutputPathLen = strlen(argv[1]) + 1;
+        wchar_t * spszOutputFile = new wchar_t[iOutputPathLen];
+        swprintf(spszOutputFile, iOutputPathLen, L"%hs", argv[1]);
+
+        //Open file as UTF-8
+        //https://stackoverflow.com/questions/10028750
+        fpOutputFile = _wfopen(spszOutputFile, L"w");
+        if (!(fpOutputFile == NULL)) {
+            _setmode(_fileno(fpOutputFile), _O_U8TEXT);
+            bIsOutputFileReady = true;
+        }
+    }
+
+    //Write wchat_t string to file
+    wchar_t spszTestData = L"测试文本";
+    int iNum = 245;
+    if (bIsOutputFileReady) {
+        fwprintf(fpOutputFile, L"[General]\n");
+        fwprintf(fpOutputFile, L"Number=%d\n", iNum);
+        fwprintf(fpOutputFile, L"Text=%ls\n", spszTestData);
+        fwprintf(fpOutputFile, L"\n");
+    }
+
+    //Close output file
+    fclose(fpOutputFile);
+    
+    return 0;
+}
+[[/code]]

@@ -6,10 +6,10 @@
 #include <locale.h>
 
 int main() {
-    // Fix text print
+    //Fix text print
     setlocale(LC_CTYPE, "");
 
-    // Coding here
+    //Coding here
 
     return 0;
 }

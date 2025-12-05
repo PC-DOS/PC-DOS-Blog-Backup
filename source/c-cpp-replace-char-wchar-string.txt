@@ -1,0 +1,70 @@
+参考：
+
+*https://zhuanlan.zhihu.com/p/364035600
+
+*https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/strcpy-wcscpy-mbscpy?view=msvc-170
+
++ {{char *}}字符串版本
+
+[[code type="Cpp"]]
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+//Replace specified string in a char string
+char * strreplace(char * str, char * oldstr, char * newstr) {
+    char * bstr = new char[strlen(str)];
+    memset(bstr, 0, sizeof(bstr));
+
+    for (int i = 0; i < strlen(str); ++i) {
+        if (!strncmp(str + i, oldstr, strlen(oldstr))) {
+            strcat(bstr, newstr);
+            i += strlen(oldstr) - 1;
+        }
+        else {
+            strncat(bstr, str + i, 1);
+        }
+    }
+
+    strcpy(str, bstr);
+    delete bstr;
+
+    return str;
+}
+[[/code]]
+
++ {{wchar_t *}}字符串版本
+
+适用于{{wchar_t *}}字符串的字符串操作函数开头的“{{str}}”全部被“{{wcs}}”代替。
+
+[[code type="Cpp"]]
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+//Replace specified string in a char string
+//https://zhuanlan.zhihu.com/p/364035600
+wchar_t * wcsreplace(wchar_t * str, wchar_t * oldstr, wchar_t * newstr) {
+    wchar_t * bstr = new wchar_t[wcslen(str)];
+    memset(bstr, 0, sizeof(bstr));
+
+    for (int i = 0; i < wcslen(str); ++i) {
+        if (!wcsncmp(str + i, oldstr, wcslen(oldstr))) {
+            wcscat(bstr, newstr);
+            i += wcslen(oldstr) - 1;
+        }
+        else {
+            wcsncat(bstr, str + i, 1);
+        }
+    }
+
+    wcscpy(str, bstr);
+    delete bstr;
+
+    return str;
+}
+[[/code]]
