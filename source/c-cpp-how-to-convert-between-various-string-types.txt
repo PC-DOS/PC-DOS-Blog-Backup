@@ -372,7 +372,7 @@ int main() {
 }
 [[/code]]
 
-+ 从 CString 转换
++ 从{{CString}}转换
 
 此示例演示了如何从{{CString}}转换为其他字符串类型。{{CString}}基于{{TCHAR}}数据类型，而该数据类型又取决于是否定义了符号{{_UNICODE}}。 如果未定义{{_UNICODE}}，则将{{TCHAR}}定义为{{char}}，并且{{CString}}包含一个多字节字符串；如果定义了{{_UNICODE}}，则将{{TCHAR}}定义为{{wchar_t}}，并且{{CString}}包含一个宽字符串。
 
