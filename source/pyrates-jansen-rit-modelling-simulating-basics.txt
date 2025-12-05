@@ -191,7 +191,7 @@ dInputSignalPhase=0.0
 dInputSignalDuty=0.1
 dInputSignalOffset=2.5
 arrInputSignalX = np.linspace(0, dSimulationDurationReal, round(dSimulationDurationReal/dSimulationStep), endpoint=False)
-arrInputSignalY = scipy.signal.square((2 * np.pi * dInputSignalFreq * arrInputSignalX + dInputSignalPhase), duty=dInputSignalDuty)
+arrInputSignalY = scipy.signal.square((2 * np.pi * dInputSignalFreq * arrInputSignalX + dInputSignalPhase - dSimulationPaddingAtStart), duty=dInputSignalDuty)
 arrInputSignalY = dInputSignalAmplitude * arrInputSignalY + dInputSignalOffset
 
 # Run simulation
