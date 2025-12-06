@@ -19,7 +19,7 @@ import pyrates
 Jansen-Rit模型环路（Circuit）中的每个环路节点包含3个子节点：
 * 兴奋性神经元（excitatory interneurons, EIN）
 * 抑制性神经元（inhibitory interneurons, IIN）
-* 金字塔细胞（Pyramidal cells, PC）
+* 锥体细胞（Pyramidal cells, PC）
 
 在PyRates中，每个子节点被描述为一系列“算子（Operator）”的集合，包括：
 * 放电率-电位算子（Rate-to-potential operator, RPO）：将放电率转化为可测量的组织电位
