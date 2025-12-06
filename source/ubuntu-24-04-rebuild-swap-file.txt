@@ -1,0 +1,25 @@
+**故障描述：**一台运行Ubuntu 24.04 LTS的华硕RS720A-E12-RS12服务器，因磁盘损坏导致交换文件丢失。
+
+**故障处理：**：检查有无活动中的swap文件：
+
+[[code]]
+sudo swapon -s
+[[/code]]
+
+禁用当前活动的{{/swap.img}}文件：
+
+[[code]]
+sudo swapoff -v /swap.img
+sudo rm -rf /swap.img
+[[/code]]
+
+重建并启用{{/swap.img}}文件：
+
+[[code]]
+sudo fallocate -l 256G /swap.img
+sudo chmod 600 /swap.img
+sudo mkswap /swap.img
+sudo swapon /swap.img
+[[/code]]
+
+**参考：** *https://zhuanlan.zhihu.com/p/619787094
