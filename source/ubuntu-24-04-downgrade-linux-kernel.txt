@@ -1,0 +1,29 @@
+**故障描述：**一台运行Ubuntu 24.04 LTS的华硕RS720A-E12-RS12服务器，更新6.14内核后出现反复重启问题，检查{{/var/log/dmesg}}日志发现可能为与NVIDIA驱动程序的兼容性问题。
+
+**故障处理：**从GRUB菜单进入高级选项，启动6.11版本内核。
+
+确定当前内核版本：
+
+[[code]]
+uname -r
+[[/code]]
+
+列出当前安装的内核版本：
+
+[[code]]
+dpkg --list | grep -E 'linux-(headers|image|modules)-[0-9]' | awk '{print $2}'
+[[/code]]
+
+卸载所有6.14版本的内核：
+
+[[code]]
+sudo apt purge linux-headers-6.14.0-36-generic linux-image-6.14.0-32-generic linux-image-6.14.0-36-generic linux-modules-6.14.0-32-generic linux-modules-6.14.0-33-generic linux-modules-6.14.0-36-generic
+[[/code]]
+
+更新GRUB：
+
+[[code]]
+sudo update-grub
+[[/code]]
+
+**参考资料：** *https://sulao.cn/post/1124
