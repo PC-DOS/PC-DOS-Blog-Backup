@@ -60,6 +60,12 @@ if __name__ == "__main__" :
             arrWorkerResults.append(WorkerResult.result())
         #Next
     #End With
+    
+    # Collect worker results
+    for CurrentResult in arrWorkerResults :
+        # Do post processting
+        print(CurrentResult)
+    #Next
 #End If
 [[/code]]
 
@@ -139,6 +145,12 @@ if __name__ == "__main__" :
             arrWorkerResults.append(WorkerResult.result())
         #Next
     #End With
+    
+    # Collect worker results
+    for CurrentResult in arrWorkerResults :
+        # Do post processting
+        print(CurrentResult)
+    #Next
 #End If
 [[/code]]
 
@@ -192,6 +204,12 @@ if __name__ == "__main__" :
             arrWorkerResults.append(WorkerResult.get()[0])
         #Next
     #End With
+    
+    # Collect worker results
+    for CurrentResult in arrWorkerResults :
+        # Do post processting
+        print(CurrentResult)
+    #Next
 #End If
 [[/code]]
 
@@ -351,7 +369,7 @@ if __name__ == "__main__" :
     # Collect worker results
     for CurrentResult in arrWorkerResults :
         # Do post processting
-        pass
+        print(CurrentResult)
     #Next
 #End If
 [[/code]]
