@@ -319,7 +319,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
             #End With
         #End If
     else :
-        # Run jobs in main process directly
+        # Run jobs in current process directly
         for i in range(0, len(arrFunctions)) :
             # Get function object and arguments
             fncFunction = arrFunctions[i]
