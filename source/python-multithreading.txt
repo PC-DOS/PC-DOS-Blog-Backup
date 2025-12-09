@@ -215,7 +215,7 @@ if __name__ == "__main__" :
 
 ++ 优化进程池
 
-`concurrent.futures.ProcessPoolExecutor`即使在`max_workers`为{{@@1@@}}时也会创建子进程，这可能造成严重的性能下降，或在嵌套调用可以创建子进程的函数时产生问题。
+{{concurrent.futures.ProcessPoolExecutor}}即使在{{max_workers}}为{{@@1@@}}时也会创建子进程，{{multiprocessing.Pool}}亦同，这可能造成严重的性能下降，或在嵌套调用可以创建子进程的函数时产生问题。
 
 因此，可以考虑建立一个包裹函数，在指定子进程个数为{{@@1@@}}时，不创建子进程：
 
@@ -293,7 +293,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
                 #Next
             #End With
         elif iPoolBackend == 1 :
-            # Using concurrent.futures.ProcessPoolExecutor
+            # Using multiprocessing.Pool
             # Multithread workers
             arrWorkers = []
             
@@ -317,6 +317,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
                     arrResults.append(WorkerResult.get()[0])
                 #Next
             #End With
+        #End If
     else :
         # Run jobs in main process directly
         for i in range(0, len(arrFunctions)) :
