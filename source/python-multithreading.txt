@@ -9,6 +9,7 @@ import multiprocessing
 # Worker function
 def DoWork(Param1, Param2, Param3) :
     # Do some work
+    WorkResult = f"Pokemon#{Param1}{Param2}{Param3}"
     
     return WorkResult
 #End Function
@@ -87,6 +88,7 @@ import multiprocessing
 # Worker function
 def DoWork(Param1, Param2, Param3) :
     # Do some work
+    WorkResult = f"Pokemon#{Param1}{Param2}{Param3}"
     
     return WorkResult
 #End Function
@@ -150,6 +152,7 @@ import multiprocessing
 # Worker function
 def DoWork(Param1, Param2, Param3) :
     # Do some work
+    WorkResult = f"Pokemon#{Param1}{Param2}{Param3}"
     
     return WorkResult
 #End Function
@@ -318,6 +321,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
 # Worker function
 def DoWork(Param1, Param2, Param3) :
     # Do some work
+    WorkResult = f"Pokemon#{Param1}{Param2}{Param3}"
     
     return WorkResult
 #End Function
