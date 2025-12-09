@@ -1,54 +1,86 @@
 在Windows中，默认存在长度为260字符的{{MAX_PATH}}限制，这会导致较长的路径无法正常操作。产生如“找不到文件”等错误。
 
- 对于Windows 10版本1607及以上，可以通过将注册表键{{HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem}}中的DWORD值{{LongPathsEnabled}}设为{{@@1@@}}的方式，直接支持NTFS长路径：
+对于Windows 10版本1607及以上，可以通过将注册表键{{HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem}}中的DWORD值{{LongPathsEnabled}}设为{{@@1@@}}的方式，直接支持NTFS长路径：
 
 [[code]]
- Windows Registry Editor Version 5.00
+Windows Registry Editor Version 5.00
 
- [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
- "LongPathsEnabled"=dword:00000001
- [[/code]]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
+"LongPathsEnabled"=dword:00000001
+[[/code]]
 
 对于较低版本的Windows，可以通过将路径替换为完整路径的Unicode版本实现。Unicode版本的路径以“{{\\?\}}”开头，后方所有的目录或文件项之间必须使用反斜杠（“{{\}}”）分隔。类似“{{\\?\D:\Python Projects\LongPathDemo\Output\}}”可以使用{{sys.platform}}属性确定当前系统是否为Windows：
 
 [[code type="python"]]
- import sys
+import sys
 
- # Convert full path to Windows Unicode path
- # In order to bypass Windows long path limitation
- # Ref. https://learn.microsoft.com/zh-cn/windows/win32/fileio/maximum-file-path-limitation
- def ConvertPathToWindowsUnicodePath(sPathString : str, IsPlatformCheckingsBypassed : bool = False) -> str :
-     # By default, this function only works on Windows
-     # Only when IsPlatformCheckingsBypassed is set to True explicitly
-     # On other platforms, will return the given path string with no modification
-     sProcessedPath = sPathString
-     if sys.platform.lower().startswith("win") or IsPlatformCheckingsBypassed :
-         # Replace all "/" with "\"
-         sProcessedPath = sProcessedPath.replace("/", "\\")
-         
-         # Check if current path could be converted to Unicode form safely
-         # Only FULL path (starts with drive letters like "C:\") or UNC path (starts with \UNC\) could be processed safely
-         if ((sProcessedPath[1] == ":" and sProcessedPath[2] == "\\")) or (sProcessedPath.startswith("\\UNC\\")) :
-             # Add "\\?\" prefix
-             if not sProcessedPath.startswith("\\\\?\\") :
-                 if sProcessedPath.startswith("\\?\\") :
-                     sProcessedPath = "\\" + sProcessedPath
-                 elif sProcessedPath.startswith("?\\") :
-                     sProcessedPath = "\\\\" + sProcessedPath
-                 elif sProcessedPath.startswith("\\") :
-                     sProcessedPath = "\\\\?" + sProcessedPath
-                 else :
-                     sProcessedPath = "\\\\?\\" + sProcessedPath
-                 #End If
-             #End If
-         #End If
-     #End If
-     return sProcessedPath
- #End Function
- [[/code]]
+# Checks if current platform is Windows
+def IsRunningOnWindows() -> bool :
+    return sys.platform.lower().startswith("win")
+#End Function
+
+# Uniforming path strings
+def UniformPathString(sPathString : str, IsPathToDirectory : bool = False, IsPlatformCheckingsSkipped : bool = False) -> str :
+    # Replace backslashes ("\") with slashes ("/") for compatibility with UNIX-like systems
+    sUniformedPath = sPathString.replace("\\", "/")
+
+    # Remove potential leading "\\?\" mark in Windows Unicode path
+    if sUniformedPath.startswith("//?/UNC") :
+        sUniformedPath = sUniformedPath.removeprefix("//?")
+    elif sUniformedPath.startswith("//?/") :
+        sUniformedPath = sUniformedPath.removeprefix("//?/")
+    #End If
+
+    # add a slash if it's path to a directory
+    if IsPathToDirectory :
+        if not sUniformedPath.endswith("/") :
+            sUniformedPath = sUniformedPath + "/"
+        #End If
+    #End If
+    
+    # Convert path to platform-dependent form
+    if not IsPlatformCheckingsSkipped :
+        sUniformedPath = ConvertPathToWindowsUnicodePath(sUniformedPath)
+    #End If
+
+    return sUniformedPath
+#End Function
+
+# Convert full path to Windows Unicode path
+# In order to bypass Windows long path limitation
+# Ref. https://learn.microsoft.com/zh-cn/windows/win32/fileio/maximum-file-path-limitation
+def ConvertPathToWindowsUnicodePath(sPathString : str, IsPlatformCheckingsBypassed : bool = False) -> str :
+    # By default, this function only works on Windows
+    # Only when IsPlatformCheckingsBypassed is set to True explicitly
+    # On other platforms, will return the given path string with no modification
+    sProcessedPath = sPathString
+    if IsRunningOnWindows() or IsPlatformCheckingsBypassed :
+        # Replace all "/" with "\"
+        sProcessedPath = sProcessedPath.replace("/", "\\")
+        
+        # Check if current path could be converted to Unicode form safely
+        # Only FULL path (starts with drive letters like "C:\") or UNC path (starts with \UNC\) could be processed safely
+        if ((sProcessedPath[1] == ":" and sProcessedPath[2] == "\\")) or (sProcessedPath.startswith("\\UNC\\")) :
+            # Add "\\?\" prefix
+            if not sProcessedPath.startswith("\\\\?\\") :
+                if sProcessedPath.startswith("\\?\\") :
+                    sProcessedPath = "\\" + sProcessedPath
+                elif sProcessedPath.startswith("?\\") :
+                    sProcessedPath = "\\\\" + sProcessedPath
+                elif sProcessedPath.startswith("\\") :
+                    sProcessedPath = "\\\\?" + sProcessedPath
+                else :
+                    sProcessedPath = "\\\\?\\" + sProcessedPath
+                #End If
+            #End If
+        #End If
+    #End If
+    return sProcessedPath
+#End Function
+[[/code]]
 
 参考资料：
 
 *https://learn.microsoft.com/zh-cn/windows/win32/fileio/maximum-file-path-limitation
 
- *https://www.cnblogs.com/babashi9527/p/17474480.html 
+*https://www.cnblogs.com/babashi9527/p/17474480.html
