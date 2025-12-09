@@ -32,7 +32,7 @@ if __name__ == "__main__" :
     arrWorkers = []
     
     # Create thread pool object
-    with concurrent.futures.ThreadPoolExecutor(max_workers=nProcessorCount/2) as polWorkers :
+    with concurrent.futures.ThreadPoolExecutor(max_workers=int(nProcessorCount/2)) as polWorkers :
         for Params in arrWorkerParams :
             # Assign parameter values
             Param1Value = Params[0]
@@ -56,7 +56,7 @@ if __name__ == "__main__" :
         arrWorkerResults = []
         for WorkerResult in arrCompletedTasks :
             # Do post processting
-            arrWorkerResults.append(WorkResult)
+            arrWorkerResults.append(WorkerResult.result())
         #Next
     #End With
 #End If
@@ -110,7 +110,7 @@ if __name__ == "__main__" :
     arrWorkers = []
     
     # Create process pool object
-    with concurrent.futures.ProcessPoolExecutor(max_workers=nProcessorCount/2) as polWorkers :
+    with concurrent.futures.ProcessPoolExecutor(max_workers=int(nProcessorCount/2)) as polWorkers :
         for Params in arrWorkerParams :
             # Assign parameter values
             Param1Value = Params[0]
@@ -134,7 +134,59 @@ if __name__ == "__main__" :
         arrWorkerResults = []
         for WorkerResult in arrCompletedTasks :
             # Do post processting
-            arrWorkerResults.append(WorkResult)
+            arrWorkerResults.append(WorkerResult.result())
+        #Next
+    #End With
+#End If
+[[/code]]
+
+{{concurrent.futures.ProcessPoolExecutor}}在Windows上可能存在性能和处理器数限制问题，因此，可以考虑使用{{[*https://docs.python.org/3/library/multiprocessing.html#module-multiprocessing.pool multiprocessing.Pool]}}。
+
+{{multiprocessing.Pool}}进程池使用{{[*https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.Pool.starmap_async multiprocessing.Pool.starmap_async()]}}提交异步任务，该函数的第一个参数指定目标函数，第二个参数使用包含元组的列表（{{list}}）表示需要依次提交的参数组。请注意，即使目标函数只有1个参数，也应将参数置于元组中。即使目标函数只被调用一次，也要将参数元组置于列表（{{list}}）结构中。提交的任务返回一个{{[*https://docs.python.org/3/library/multiprocessing.html#multiprocessing.pool.AsyncResult multiprocessing.AsyncResult]}}对象。调用该对象的{{get()}}函数将等待对应线程（组）结束，并返回一个结果列表（请注意，即使目标函数只被调用一次，{{get()}}函数也将结果封装在列表中）。
+
+[[code type="python"]]
+import multiprocessing
+
+# Worker function
+def DoWork(Param1, Param2, Param3) :
+    # Do some work
+    
+    return WorkResult
+#End Function
+
+# Script entry
+if __name__ == "__main__" :
+    # Get processor count
+    nProcessorCount = multiprocessing.cpu_count()
+
+    # Preprocessing
+    # Do some pre processing here
+    # arrWorkerParams is an example of worker's parameters
+    arrWorkerParams = [
+        (2,4,5),
+        (2,5,0),
+        (3,8,0),
+        (3,8,1)
+    ]
+    
+    # Array of workers
+    arrWorkers = []
+    
+    # Create process pool object
+    with multiprocessing.Pool(processes=int(nProcessorCount/2)) as polWorkers :
+        for Params in arrWorkerParams :
+            # Submit works
+            resCurrentWorker = polWorkers.starmap_async(DoWork, [Params])
+            
+            # Cache async results current worker
+            arrWorkers.append(resCurrentWorker)
+        #Next
+        
+        # Collect results
+        arrWorkerResults = []
+        for WorkerResult in arrWorkers :
+            # Do post processting
+            arrWorkerResults.append(WorkerResult.get()[0])
         #Next
     #End With
 #End If
@@ -156,9 +208,12 @@ import multiprocessing
 #     arrFunctions is list of functions
 #     arrArgs is list of tuple, with arguments (*args)
 #     arrKwArgs is list of dict, with keyed arguments (**kwargs)
+#     iPoolBackend selects which backend is used:
+#         0 - Uses concurrent.futures.ProcessPoolExecutor
+#         1 - Uses multiprocessing.Pool (warning: in this case, arrKwArgs will be ignored)
 # Returns list of results
 def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs : list = None,
-    nWorkers : int = None) -> list :
+    nWorkers : int = None, iPoolBackend : int = 0) -> list :
 
     # Handling null-references
     if arrArgs is None :
@@ -166,6 +221,11 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
     #End If
     if arrKwArgs is None :
         arrKwArgs = []
+    #End If
+    if iPoolBackend < 0 :
+        iPoolBackend = 0
+    elif iPoolBackend > 1 :
+        iPoolBackend = 1
     #End If
 
     # Initialize result buffer
@@ -181,33 +241,61 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
 
     # Run jobs
     if IsChildWorkersNeeded :
-        # Multithread workers
-        arrWorkers = []
-        
-        # Create thread pool object
-        with concurrent.futures.ProcessPoolExecutor(max_workers=nWorkers) as polWorkers :
-            # Create and submit job package
-            for i in range(0, len(arrFunctions)) :
-                # Get function object and arguments
-                fncFunction = arrFunctions[i]
-                tplArgs = arrArgs[i] if (i < len(arrArgs)) else tuple()
-                dctKwArgs = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
+        # Use backend selected by iPoolBackend to run works
+        if iPoolBackend == 0 :
+            # Using concurrent.futures.ProcessPoolExecutor
+            # Multithread workers
+            arrWorkers = []
+            
+            # Create thread pool object
+            with concurrent.futures.ProcessPoolExecutor(max_workers=nWorkers) as polWorkers :
+                # Create and submit job package
+                for i in range(0, len(arrFunctions)) :
+                    # Get function object and arguments
+                    fncFunction = arrFunctions[i]
+                    tplArgs = arrArgs[i] if (i < len(arrArgs)) else tuple()
+                    dctKwArgs = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
 
-                # Submit a job
-                ftrCurrentWorker = polWorkers.submit(fncFunction, *tplArgs, **dctKwArgs)
+                    # Submit a job
+                    ftrCurrentWorker = polWorkers.submit(fncFunction, *tplArgs, **dctKwArgs)
 
-                # Cache current worker
-                arrWorkers.append(ftrCurrentWorker)
-            #Next
+                    # Cache current worker
+                    arrWorkers.append(ftrCurrentWorker)
+                #Next
 
-            # Register completion list
-            arrCompletedTasks = concurrent.futures.as_completed(arrWorkers)
+                # Register completion list
+                arrCompletedTasks = concurrent.futures.as_completed(arrWorkers)
 
-            # Collect results
-            for WorkerResult in arrCompletedTasks :
-                arrResults.append(WorkerResult.result())
-            #Next
-        #End With
+                # Collect results
+                for WorkerResult in arrCompletedTasks :
+                    arrResults.append(WorkerResult.result())
+                #Next
+            #End With
+        elif iPoolBackend == 1 :
+            # Using concurrent.futures.ProcessPoolExecutor
+            # Multithread workers
+            arrWorkers = []
+            
+            # Create thread pool object
+            with multiprocessing.Pool(processes=nWorkers) as polWorkers :
+                # Create and submit job package
+                for i in range(0, len(arrFunctions)) :
+                    # Get function object and arguments
+                    fncFunction = arrFunctions[i]
+                    tplArgs = arrArgs[i] if (i < len(arrArgs)) else tuple()
+
+                    # Submit a job
+                    resCurrentWorker = polWorkers.starmap_async(fncFunction, [tplArgs])
+
+                    # Cache async results current worker
+                    arrWorkers.append(resCurrentWorker)
+                #Next
+
+                # Collect results
+                for WorkerResult in arrWorkers :
+                    arrResults.append(WorkerResult.get()[0])
+                #Next
+            #End With
     else :
         # Run jobs in main process directly
         for i in range(0, len(arrFunctions)) :
@@ -253,13 +341,15 @@ if __name__ == "__main__" :
     arrWorkerFuncs.append(DoWork)
     arrWorkerArgs.append((3,8,1))
     # Run jobs
-    arrWorkerResults = SharedUtil.RunJobsWithProcessPool(arrWorkerFuncs, arrWorkerArgs,
+    nParallelCPUJobCount = int(multiprocessing.cpu_count() / 2)
+    arrWorkerResults = RunJobsWithProcessPool(arrWorkerFuncs, arrWorkerArgs,
         nWorkers=nParallelCPUJobCount)
     # Collect worker results
     for CurrentResult in arrWorkerResults :
         # Do post processting
         pass
     #Next
+#End If
 [[/code]]
 
 参考资料：
@@ -269,3 +359,9 @@ if __name__ == "__main__" :
 *https://gairuo.com/p/python-multiprocessing-pool
 
 *https://www.cnblogs.com/piperliu/articles/18615898
+
+*https://superfastpython.com/multiprocessing-pool-starmap_async/
+
+*https://martinlwx.github.io/en/data-parallel-with-two-different-api/
+
+*https://www.cnblogs.com/midworld/p/14614634.html
