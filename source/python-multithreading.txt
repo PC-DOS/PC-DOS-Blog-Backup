@@ -274,7 +274,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
     # Backend auto selecting
     if IsBackendAutoSelectingEnabled :
         # Check if we are using Windows
-        if IsRunningOnWindows()
+        if IsRunningOnWindows() :
             # Check if we need a lot of processor cores
             IsProcessorCoreCountLarge = False
             if nWorkers is None :
