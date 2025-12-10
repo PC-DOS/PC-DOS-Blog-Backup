@@ -1,0 +1,38 @@
+通过.Net的MSHTML库，可以快速操作HTML文档树。但是，使用{{IHTMLElement.innerText}}获取元素的渲染后文本时，可能存在多余的段首空格。此时，可以使用{{IHTMLElement.innerHTML}}属性，先获取HTML格式的文本，再进行后续的解析。
+
+下面的示例代码需要参考COM组件{{Microsoft HTML Object Library}}和程序集{{System.Web}}：
+
+[[code]]
+Imports mshtml
+Imports System.Text
+Imports System.IO
+Imports System.Net
+Imports System.Web
+
+Private Function GetInnerTextFromTextContainer() As String
+    'Create HTML document object and elements collection
+    Dim CurrentHTMLDocument As HTMLDocument = Nothing
+    Dim PossibleElements As IHTMLElementCollection = Nothing
+    Dim CurrentElement As IHTMLElement = Nothing
+    
+    'Get HTML document from WebBrowser control
+    CurrentHTMLDocument = wbbWebContainer.Document
+    
+    'Find div elements with class "text-container"
+    PossibleElements = CurrentHTMLDocument.getElementsByTagName("div")
+    For Each CurrentElement In PossibleElements
+        If CurrentElement.className = "text-container" Then
+            'Using CurrentElement.innerText may cause problems (unneeded leading white spaces)
+            Dim PageSourceHTML As String = CurrentElement.innerHTML.Replace("<br>", "").Trim()
+            Dim PageSourceText As String = HttpUtility.HtmlDecode(PageSourceHTML)
+            Return PageSourceText
+        End If
+    Next
+    
+    Return ""
+End Function
+[[/code]]
+
+参考资料：
+
+*https://learn.microsoft.com/zh-tw/dotnet/api/system.web.httputility.htmldecode?view=net-8.0
