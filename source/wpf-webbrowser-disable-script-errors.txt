@@ -1,0 +1,56 @@
+由于WPF的WebBrower控件基于Internet Explorer，因此很容易出现脚本错误。可以通过下面的方法禁用脚本错误提示：
+
+1. 确保使用最新版本的Internet Explorer后端，导入下面的注册表文件，{{AppName.exe}}为应用程序可执行文件的名称。
+
+参考：*https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/general-info/ee330730(v=vs.85)
+
+适用于IE11，32位操作系统：
+
+[[code]]
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION]
+"AppName.exe"=dword:00002af8
+[[/code]]
+
+适用于IE11，64位操作系统：
+
+[[code]]
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION]
+"AppName.exe"=dword:00002af8
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION]
+"AppName.exe"=dword:00002af8
+[[/code]]
+
+适用于IE10，32位操作系统：
+
+[[code]]
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION]
+"AppName.exe"=dword:00002710
+[[/code]]
+
+适用于IE10，64位操作系统：
+
+[[code]]
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION]
+"AppName.exe"=dword:00002710
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION]
+"AppName.exe"=dword:00002710
+[[/code]]
+
+2. 假设WebBrowser控件名为{{wbbWebContainer}}，程序初始化时执行：
+
+[[code]]
+Dim ActiveX = wbbWebContainer.GetType().InvokeMember("ActiveXInstance", Reflection.BindingFlags.GetProperty Or Reflection.BindingFlags.Instance Or Reflection.BindingFlags.NonPublic, Nothing, wbbWikidotSiteContainer, Nothing)
+ActiveX.Silent = True
+[[/code]]
+
+参考：*https://www.cnblogs.com/zhaotianff/p/18471549
