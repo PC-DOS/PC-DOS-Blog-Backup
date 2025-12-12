@@ -34,6 +34,8 @@ EIN、IIN和PC构成一个环路节点，环路节点之间通过“边（Edge�
 * IIN：(前级输出+PC输出) → IIN兴奋性RPO → 电压 → PRO → PC抑制性RPO → V2
 * PC：(V1+V2+Vi) → 电压 → PRO → PC输出（后级输入）
 
+PyRates也支持通过YAML描述文件定义模型。可以参考随PyRates一同安装的{{model_templates}}包的{{neural_mass_models/jansenrit.yaml}}文件。
+
 + 定义算子
 
 PyRates将算子描述为{{pyrates.frontend.OperatorTemplate}}对象的实例，该对象通过{{equations}}属性定义其内部的数学方程组，并使用{{variables}}属性定义方程组中变量或常量的含义（如输入量{{@@"input"@@}}、输出量{{@@"output"@@}}、临时变量{{@@"variable"@@}}或具有固定数值的常量等，其中输出量有且仅能有1个）。
@@ -91,7 +93,7 @@ rpiTemplate = OperatorTemplate(name="RPO_i", path=None,
     },
     description=f"{sRPIDescTemplate} template")
 proTemplate = OperatorTemplate(name="PRO", path=None, 
-    equations=["m_out = 2.*m_max / (1 + exp(r * (V_thr - V)))"],
+    equations=["m_out = 2*m_max / (1 + exp(r * (V_thr - V)))"],
     variables={
         "m_out" : "output",
         "V" : "input",
@@ -101,6 +103,102 @@ proTemplate = OperatorTemplate(name="PRO", path=None,
     },
     description=f"{sPRODescTemplate} template")
 [[/code]]
+
+[[collapsible show="+ 展开扩充参数定义" hide="- 收起扩充参数定义"]]
+随PyRates一同安装的{{model_templates}}包的{{neural_mass_models/jansenrit.yaml}}文件中提供了一种更为复杂的Jansen-Rits团块定义（{{jrc_op}}）：
+
+[[code]]
+jrc_op:
+  base: OperatorTemplate
+  equations:
+    # EIN RPO
+    - 'd/dt * V_ein = X_ein'
+    - 'd/dt * X_ein =  h_e*c/tau_e * m - V_ein/tau_e^2 - 2.*X_ein/tau_e'
+    # IIN RPO
+    - 'd/dt * V_iin = X_iin'
+    - 'd/dt * X_iin =  h_e*c/(ei_ratio*tau_e) * m - V_iin/tau_e^2 - 2.*X_iin/tau_e'
+    # EIN PRO & PC RPO_e
+    - 'd/dt * V_e = X_e'
+    - 'd/dt * X_e =  h_e/tau_e * (c*0.8*m_max*sigmoid(r*(V_ein-V_thr)) + c*m_in/io_ratio + u) - V_e/tau_e^2 - 2.*X_e/tau_e'
+    # IIN PRO & PC RPO_i
+    - 'd/dt * V_i = X_i'
+    - 'd/dt * X_i =  h_i*c/(ei_ratio*tau_i) * m_max*sigmoid(r*(V_iin-V_thr)) - V_i/tau_i^2 - 2.*X_i/tau_i'
+    # PC PRO
+    - 'm = m_max*sigmoid(r*(V_e - V_i - V_thr))'
+  variables:
+    m: output
+    h_e: 3.25e-3
+    tau_e: 10e-3
+    h_i: 22e-3
+    tau_i: 20e-3
+    V_ein: variable
+    X_ein: variable
+    V_iin: variable
+    X_iin: variable
+    V_e: variable
+    X_e: variable
+    V_i: variable
+    X_i: variable
+    m_in: input
+    m_max: 5.
+    r: 560.
+    V_thr: 6e-3
+    c: 135.0
+    ei_ratio: 4.0
+    io_ratio: 3.0
+    u: input(220.0)
+[[/code]]
+
+该定义引入了“{{c}}”、“{{ei_ratio}}”、“{{io_ratio}}”等新参数。此处将其复杂形式拆分为单独的RPO和PRO定义，以提供更高的测量自由度。为了保持抑制性，这些扩展参数被固定为{{@@1@@}}。
+
+[[code type="python"]]
+# Operator templates 
+# Use copy.deepcopy() to create replica of these operator templates for your own nodes
+# Added extended parameters from model_templates.neural_mass_models.jansenrit.jrc_op
+rpeTemplate = OperatorTemplate(name="RPO_e", path=None,
+    equations=[
+        "d/dt * V = I_c",
+        "d/dt * I_c = H*c/tau * m_in/io_ratio - 2 * I_c/tau - V/(tau^2)"
+        ],
+    variables={
+        "V" : "output",
+        "I_c" : "variable",
+        "m_in" : "input",
+        "tau" : 0.01,
+        "H" : 0.00325,
+        "c" : 1.0,
+        "io_ratio" : 1.0,
+    },
+    description=f"{sRPEDescTemplate} template")
+rpiTemplate = OperatorTemplate(name="RPO_i", path=None,
+    equations=[
+        "d/dt * V = I_c",
+        "d/dt * I_c = H*c/(tau*ei_ratio) * m_in/io_ratio - 2 * I_c/tau - V/(tau^2)"
+        ],
+    variables={
+        "V" : "output",
+        "I_c" : "variable",
+        "m_in" : "input",
+        "tau" : 0.02,
+        "H" : -0.022,
+        "c" : 1.0,
+        "ei_ratio" : 1.0,
+        "io_ratio" : 1.0,
+    },
+    description=f"{sRPIDescTemplate} template")
+proTemplate = OperatorTemplate(name="PRO", path=None, 
+    equations=["m_out = 2*m_max*c / (1 + exp(r * (V_thr - V)))"],
+    variables={
+        "m_out" : "output",
+        "V" : "input",
+        "V_thr" : 6e-3,
+        "m_max" : 2.5,
+        "r" : 560.0,
+        "c" : 1.0,
+    },
+    description=f"{sPRODescTemplate} template")
+[[/code]]
+[[/collapsible]]
 
 使用{{copy.deepcopy()}}建立算子实例的深拷贝对象，PyRates的{{Template}}类提供了用于修改对象参数的{{update_template()}}接口：
 
@@ -135,11 +233,11 @@ pmcDemoJRC = NodeTemplate(name="PC", path=None, operators=[rpeDemoJRC, rpiDemoJR
 
 PyRates将环路节点描述为{{pyrates.frontend.CircuitTemplate}}对象的实例，该对象使用{{nodes}}属性定义节点中的子节点，使用{{circuits}}属性定义子环路，并使用{{edges}}属性定义环路中各边的起止点和权重等参数。
 
-其中，{{nodes}}和{{circuits}}属性使用键值对的形式，定义子节点名称和对象实例之间的对应关系。{{edges}}属性使用{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性，确定该边从何输出变量获取数据，并传送到何输入变量。{{edges}}属性的最后一个字段描述了该边的性质，包括{{weight}}（权重）、{{delay}}（时延）、{{spread}}（扩散）等。
+其中，{{nodes}}和{{circuits}}属性使用键值对的形式，定义子节点名称和对象实例之间的对应关系。{{edges}}属性使用{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性，确定该边从何输出变量获取数据，并传送到何输入变量，使用“环路/节点/算子/变量”格式定义。{{edges}}属性的最后一个字段描述了该边的性质，包括{{weight}}（权重）、{{delay}}（时延）、{{spread}}（扩散）等。
 
 [[code type="python"]]
 # Sub node interconnections in Jansen-Rit Model
-jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
+jrcDemoJRCNode1 = CircuitTemplate(name="JRC_DemoJRCNode", path=None,
     nodes={
         "EIN" : einDemoJRC,
         "IIN" : iinDemoJRC,
@@ -156,7 +254,26 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
         ("PC/PRO/m_out", "IIN/RPO_e/m_in", None, {"weight" : 33.75}),
     ],
     description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
+jrcDemoJRCNode2 = copy.deepcopy(jrcDemoJRCNode1)
+
+# Circuit with 2 Jansen-Rit circuits
+jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
+    circuits={
+        "JRC1" : jrcDemoJRCNode1,
+        "JRC2" : jrcDemoJRCNode2
+    },
+    edges=[
+        # JRC1 -> JRC2, excitatory
+        ("JRC1/PC/PRO/m_out", "JRC2/EIN/RPO_e/m_in", None, {"weight" : 20.0, "delay" : 0.004, "spread" : 0.001}),
+        # JRC2 -> JRC1, excitatory
+        ("JRC2/PC/PRO/m_out", "JRC1/EIN/RPO_e/m_in", None, {"weight" : 40.0, "delay" : 0.004, "spread" : 0.001}),
+    ],
+    description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
 [[/code]]
+
+已经定义的{{pyrates.frontend.CircuitTemplate}}对象实例可以通过{{pyrates.frontend.CircuitTemplate.update_var()}}函数更新参数。该函数接收{{node_vars}}和{{edge_vars}}等2个参数，描述对节点内部变量和边信息的更新：
+* {{node_vars}}为字典（键值对），其键名使用“环路/节点/算子/变量”格式指明目标，值为目标变量的新值。
+* {{edge_vars}}为一个由三元组组成的列表，每个三元组的第一个元素使用“环路/节点/算子/变量”格式指明该边起点，第二个元素使用“环路/节点/算子/变量”格式指明该边终点，第三个元素为描述该边参数的键值对。
 
 + 开始仿真
 
@@ -208,17 +325,19 @@ dctSimResults = jrcDemoJRC.run(
     step_size=dSimulationStep,
     sampling_step_size=dSamplingStep,
     inputs={
-        # Stimulating PC, input to operator PRO, variable V
-        "PC/PRO/V" : arrInputSignalY
+        # Stimulating PC of JRC2, input to operator PRO, variable V
+        "JRC2/PC/PRO/V" : arrInputSignalY
     },
     outputs={
         # Record from subnode PC, operator RPO_e (EIN output), variable V
-        "PC_e" : "PC/RPO_e/V",
+        "JRC1_PC_e" : "JRC1/PC/RPO_e/V",
         # Record from subnode PC, operator RPO_i (IIN output), variable V
-        "PC_i" : "PC/RPO_i/V"
+        "JRC1_PC_i" : "JRC1/PC/RPO_i/V"
     },
     clear=True
 )
+# Clear PyRates global caches
+pyrates.utility.clear_frontend_caches()
 [[/code]]
 
 需要注意的是，PyRates生成的仿真结果中，共包含{{nPoint = simulation_time * (1.0 / sampling_step_size)}}个测量点。因此，部分算法（例如MNE工具包采用的算法：{{dTime = (nPoint - 1) * sampling_step_size}}）会导致测得的时长略小于{{simulation_time}}的设置值。此时，可以通过将{{simulation_time}}设为期望的仿真时长与1个{{sampling_step_size}}的和进行处理，即设置{{simulation_time=dSimulationDuration+dSamplingStep}}。
@@ -285,8 +404,15 @@ import matplotlib.pyplot as plt
 
 # Plotting data
 for CurrentChannel in dctSimResultsMerged.keys() :
-    plt.plot(dctSimResultsMerged[CurrentChannel])
+    if (CurrentChannel+"_e") in dctSimResults.keys() :
+        plt.plot(dctSimResultsMerged[CurrentChannel+"_e"], label=CurrentChannel+"_e")
+    #End If
+    if (CurrentChannel+"_i") in dctSimResults.keys() :
+        plt.plot(dctSimResultsMerged[CurrentChannel+"_i"], label=CurrentChannel+"_i")
+    #End If
+    plt.plot(dctSimResultsMerged[CurrentChannel], label=CurrentChannel)
     plt.title(CurrentChannel)
+    plt.legend()
     plt.show()
 #Next
 
