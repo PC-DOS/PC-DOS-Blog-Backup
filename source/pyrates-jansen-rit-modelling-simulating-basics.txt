@@ -135,7 +135,7 @@ pmcDemoJRC = NodeTemplate(name="PC", path=None, operators=[rpeDemoJRC, rpiDemoJR
 
 PyRates将环路节点描述为{{pyrates.frontend.CircuitTemplate}}对象的实例，该对象使用{{nodes}}属性定义节点中的子节点，使用{{circuits}}属性定义子环路，并使用{{edges}}属性定义环路中各边的起止点和权重等参数。
 
-其中，{{nodes}}和{{circuits}}属性使用键值对的形式，定义子节点名称和对象实例之间的对应关系。{{edges}}属性使用{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性，确定该边从何输出变量获取数据，并传送到何输入变量。
+其中，{{nodes}}和{{circuits}}属性使用键值对的形式，定义子节点名称和对象实例之间的对应关系。{{edges}}属性使用{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性，确定该边从何输出变量获取数据，并传送到何输入变量。{{edges}}属性的最后一个字段描述了该边的性质，包括{{weight}}（权重）、{{delay}}（时延）、{{spread}}（扩散）等。
 
 [[code type="python"]]
 # Sub node interconnections in Jansen-Rit Model
@@ -168,6 +168,9 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
 * {{inputs}}：输入键值对，键名为{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性确定的输入名称，表示向哪个变量输入数据。值为预先生成的输入信号（一维数组），输入信号的采样间隔应与仿真步长一致（即输入信号数组的长度应为仿真时长除以仿真步长）。
 
 [[code type="python"]]
+import numpy as np
+import scipy
+
 dSimulationDuration = 5.0
 dSimulationStep = 1e-4
 dSamplingStep = 1.0 / 500.0
@@ -207,10 +210,10 @@ dctSimResults = jrcDemoJRC.run(
     inputs={
         # Stimulating PC, input to operator PRO, variable V
         "PC/PRO/V" : arrInputSignalY
-    }
+    },
     outputs={
         # Record from subnode PC, operator RPO_e (EIN output), variable V
-        "PC_e" : "PC/RPO_e/V"
+        "PC_e" : "PC/RPO_e/V",
         # Record from subnode PC, operator RPO_i (IIN output), variable V
         "PC_i" : "PC/RPO_i/V"
     },
@@ -237,6 +240,8 @@ dctSimResults.index = arrSimualtionDataNewIndex
 由于来自同一环路的EIN和IIN的电位被分开测量，因此可以使用加法对其进行合并：
 
 [[code type="python"]]
+import pandas as pd
+
 # Merging results from EIN and IIN
 dctSimResultsMerged = pd.DataFrame()
 for CurrentKey in dctSimResults.keys() :
@@ -277,12 +282,12 @@ for CurrentKey in dctSimResults.keys() :
 
 [[code type="python"]]
 import matplotlib.pyplot as plt
-import pandas as pd
 
 # Plotting data
 for CurrentChannel in dctSimResultsMerged.keys() :
     plt.plot(dctSimResultsMerged[CurrentChannel])
     plt.title(CurrentChannel)
+    plt.show()
 #Next
 
 # Exporting data
