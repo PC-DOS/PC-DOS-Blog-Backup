@@ -149,13 +149,13 @@ jrcDemoJRCNode1 = CircuitTemplate(name="JRC_DemoJRCNode", path=None,
     },
     edges=[
         # EIN -> PC
-        ("EIN/PRO/m_out", "PC/RPO_e/m_in", None, {"weight" : 108}),
+        ("EIN/PRO/m_out", "PC/RPO_e/m_in", None, {"weight" : 108, "delay" : 0.0, "spread" : 0.0}),
         # IIN -> PC
-        ("IIN/PRO/m_out", "PC/RPO_i/m_in", None, {"weight" : 33.75}),
+        ("IIN/PRO/m_out", "PC/RPO_i/m_in", None, {"weight" : 33.75, "delay" : 0.0, "spread" : 0.0}),
         # PC -> EIN
-        ("PC/PRO/m_out", "EIN/RPO_e/m_in", None, {"weight" : 135}),
+        ("PC/PRO/m_out", "EIN/RPO_e/m_in", None, {"weight" : 135, "delay" : 0.0, "spread" : 0.0}),
         # PC -> IIN
-        ("PC/PRO/m_out", "IIN/RPO_e/m_in", None, {"weight" : 33.75}),
+        ("PC/PRO/m_out", "IIN/RPO_e/m_in", None, {"weight" : 33.75, "delay" : 0.0, "spread" : 0.0}),
     ],
     description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
 jrcDemoJRCNode2 = copy.deepcopy(jrcDemoJRCNode1)
