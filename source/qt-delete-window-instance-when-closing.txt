@@ -1,0 +1,9 @@
+该方法用于实现在关闭{{QDialog}}等窗口对象时，自动删除对象实例。
+
+在构造函数中加入：
+
+[[code type="cpp"]]
+setAttribute(Qt::WA_DeleteOnClose);
+[[/code]]
+
+参考：https://blog.csdn.net/xie__jin__cheng/article/details/147439617
