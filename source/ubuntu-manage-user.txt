@@ -1,0 +1,80 @@
++ 创建用户
+
+++ 简化方法
+
+以下示例创建一个名为{{newuser}}的账户，home目录位于{{/home/newuser}}中：
+
+[[code]]
+sudo adduser newuser
+[[/code]]
+
+++ 高级方法
+
+以下示例创建一个名为{{newuser}}的账户，home目录位于{{/mnt/hdd2/newuser}}中：
+
+[[code]]
+sudo useradd -d /mnt/hdd2/user0 -m -s /bin/bash newuser
+[[/code]]
+
++ {{sudo}}授权与解除授权
+
+++ 授权
+
+允许{{newuser}}调用{{sudo}}：
+
+[[code]]
+sudo gpasswd –a newuser sudo
+[[/code]]
+
+++ 解除授权
+
+禁止{{newuser}}调用{{sudo}}：
+
+[[code]]
+sudo gpasswd –d newuser sudo
+[[/code]]
+
++ 删除用户
+
+只删除{{newuser}}用户信息：
+
+[[code]]
+sudo userdel newuser
+[[/code]]
+
+删除{{newuser}}用户信息和目录：
+
+[[code]]
+sudo userdel -r newuser
+[[/code]]
+
+强制删除{{newuser}}用户信息和目录：
+
+[[code]]
+sudo userdel -r -f newuser
+[[/code]]
+
++ 相关文件
+
+用户信息：
+* 路径：{{/etc/passwd}}
+* 格式：{{用户名:密码:UID:GID:用户信息:HOME目录路径:用户SHELL}}
+ * UID为{{@@0@@}}则是用户{{root}}，{{@@1@@}}～{{@@499@@}}为系统用户，{{@@500@@}}以上为普通用户
+
+用户密码信息：
+* 路径：{{/etc/shadow}}
+
+用户组信息：
+* 路径：{{/etc/group}}
+* 格式：{{用户组名:组密码:GID:组内帐号（多个帐号用半角逗号分隔）}}
+
+{{sudo}}授权信息：
+* 路径：{{/etc/sudoers}}
+
++ 参考资料
+
+*https://blog.csdn.net/baidu_35679960/article/details/78752591
+
+*https://blog.csdn.net/qfyh_djh/article/details/143633620
+
+*https://zhuanlan.zhihu.com/p/635391817
