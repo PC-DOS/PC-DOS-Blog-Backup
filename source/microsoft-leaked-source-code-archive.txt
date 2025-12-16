@@ -1,25 +1,25 @@
 [[=]]
- [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
- ##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
- ----
- [[size larger]] **严禁用于商业及盈利目的。**[[/size]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+----
+[[size larger]] **严禁用于商业及盈利目的。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
- [[/=]]
+[[/=]]
 
- -----
+-----
 
- //Microsoft Leaked Source Code Archive_2020-09-20//
+//Microsoft Leaked Source Code Archive_2020-09-20//
 
- [[code]]
- magnet:?xt=urn:btih:CEC41D87D329822EA9B05C4F6C0DFF7D29514D59
- [[/code]]
+[[code]]
+magnet:?xt=urn:btih:CEC41D87D329822EA9B05C4F6C0DFF7D29514D59
+[[/code]]
 
- -----
+-----
 
- //Microsoft Leaked Source Code Archive_2020-09-24//
+//Microsoft Leaked Source Code Archive_2020-09-24//
 
- [[code]]
- magnet:?xt=urn:btih:3D8B16242B56A3AAFB8DA7B5FC83EF993EBCF35B&dn=Microsoft leaked source code archive_2020-09-24
- [[/code]] 
+[[code]]
+magnet:?xt=urn:btih:3D8B16242B56A3AAFB8DA7B5FC83EF993EBCF35B&dn=Microsoft leaked source code archive_2020-09-24
+[[/code]]

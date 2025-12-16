@@ -4,124 +4,124 @@
 
 ++ USB磁盘
 
- 对于USB磁盘，将设备插入开发板的USB接口，超级终端回显{{[sda] Attached SCSI removable disk}}等提示，在超级终端按回车键进入命令行模式，执行：
+对于USB磁盘，将设备插入开发板的USB接口，超级终端回显{{[sda] Attached SCSI removable disk}}等提示，在超级终端按回车键进入命令行模式，执行：
 
 [[code]]
- mkdir /mnt/usb1
- mount /dev/udisk /mnt/usb1/
- [[/code]]
+mkdir /mnt/usb1
+mount /dev/udisk /mnt/usb1/
+[[/code]]
 
 即可挂载USB磁盘。
 
 ++ TF卡
 
- 对于TF卡，将设备插入开发板的TF卡槽，在超级终端按回车键进入命令行模式，执行：
+对于TF卡，将设备插入开发板的TF卡槽，在超级终端按回车键进入命令行模式，执行：
 
 [[code]]
- mkdir /mnt/sdcard/
- mount /dev/mmcblk1p1 /mnt/sdcard/
- [[/code]]
+mkdir /mnt/sdcard/
+mount /dev/mmcblk1p1 /mnt/sdcard/
+[[/code]]
 
 即可挂载TF卡。
 
 + 执行程序
 
- 在超级终端通过{{cp}}指令将自编程序复制到开发板本地，例如：
+在超级终端通过{{cp}}指令将自编程序复制到开发板本地，例如：
 
 [[code]]
- cd /mnt/usb1
- cp Demo /bin/
- [[/code]]
+cd /mnt/usb1
+cp Demo /bin/
+[[/code]]
 
 进入{{/bin}}文件夹，建立{{qt4}}脚本的副本并编辑：
 
 [[code]]
- cd /bin
- cp qt4 qt-main
- vi qt-main
- [[/code]]
+cd /bin
+cp qt4 qt-main
+vi qt-main
+[[/code]]
 
 通过在行首添加井号（“{{#}}”）的方式，注释掉{{qt-main}}文件中的以下行（通常位于文件末尾）：
 
 [[code]]
- cd /opt/qt-4.7.1/demos/embedded/fluidlauncher
- ./fluidlauncher -qws 
- [[/code]]
+cd /opt/qt-4.7.1/demos/embedded/fluidlauncher
+./fluidlauncher -qws 
+[[/code]]
 
 并在文件末尾添加下列行：
 
 [[code]]
- cd /bin
- ./Demo -qws
- [[/code]]
+cd /bin
+./Demo -qws
+[[/code]]
 
 此处{{/bin/Demo}}是示例程序所在的位置，请根据实际情况改动。这样，{{qt-main}}文件的末尾看起来类似这样：
 
 [[code]]
- #cd /opt/qt-4.7.1/demos/textedit
- #./textedit -qws 
+#cd /opt/qt-4.7.1/demos/textedit
+#./textedit -qws 
 
- cd /bin
- ./Demo -qws
- [[/code]]
+cd /bin
+./Demo -qws
+[[/code]]
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作。
 
- 退出当前正在执行的Qt程序，并在超级终端中执行：
+退出当前正在执行的Qt程序，并在超级终端中执行：
 
 [[code]]
- /bin/qt-main &
- [[/code]]
+/bin/qt-main &
+[[/code]]
 
 即可开始运行自编程序。
 
 + 配置开机自启动
 
- 初始化配置文件位于：
+初始化配置文件位于：
 
 [[code]]
- /etc/init.d/rcS
- [[/code]]
+/etc/init.d/rcS
+[[/code]]
 
 在超级终端输入：
 
 [[code]]
- vi /etc/init.d/rcS
- [[/code]]
+vi /etc/init.d/rcS
+[[/code]]
 
 编辑该文件，文件末尾有以下行：
 
 [[code]]
- #/bin/qtopia &
- /bin/qt4 & 
- [[/code]]
+#/bin/qtopia &
+/bin/qt4 & 
+[[/code]]
 
 通过在行首添加井号（“{{#}}”）的方式，将这两行全部设为注释状态，并在这两行后新建一行，输入：
 
 [[code]]
- /bin/qt-main &
- [[/code]]
+/bin/qt-main &
+[[/code]]
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可。
 
 + 固化更改到设备固件
 
- 如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑相关文件：
+如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑相关文件：
 
 [[code]]
- sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/etc/init.d/rcS'
- sudo cp '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4' '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt-main'
- sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt-main'
- [[/code]]
+sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/etc/init.d/rcS'
+sudo cp '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt4' '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt-main'
+sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/bin/qt-main'
+[[/code]]
 
 随后，将自编程序复制到{{/home/picsell-dois/iTop4412/Qtopia/root/}}目录中的相应位置。
 
- 完成后，回到终端执行：
+完成后，回到终端执行：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/
- rm system.img
- make_ext4fs -s -l 314572800 -a root -L linux system.img root
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+rm system.img
+make_ext4fs -s -l 314572800 -a root -L linux system.img root
+[[/code]]
 
-重建{{system.img}}并执行刷写流程即可。 
+重建{{system.img}}并执行刷写流程即可。

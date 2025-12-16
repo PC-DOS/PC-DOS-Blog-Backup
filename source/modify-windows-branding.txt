@@ -1,11 +1,11 @@
 Resource Hacker工具可用于修改Windows版本信息，主要涉及以下文件：
 
 [[code]]
- %WinDir%\Branding\Branding\Basebrd\{{Lang}}\basebrd.dll.mui
- %WinDir%\Branding\Branding\basebrd.dll
- %WinDir%\Branding\Shellbrd\shellbrd.dll
- [[/code]]
+%WinDir%\Branding\Branding\Basebrd\{{Lang}}\basebrd.dll.mui
+%WinDir%\Branding\Branding\basebrd.dll
+%WinDir%\Branding\Shellbrd\shellbrd.dll
+[[/code]]
 
 其中，{{basebrd.dll.mui}}定义了字符串文件，{{basebrd.dll}}和{{shellbrd.dll}}定义了图像资源。
 
- 修改图像资源时，需使用Resource Hacker的导出功能到处需要修改的图像位图，并使用Adobe PhotoShop等工具另存为32位Windows格式的位图（BMP）文件，同时需要将文件的{{Alpha1}}通道（另存为32位Windows格式的位图后，可以在Adobe PhotoShop的 [通道] 选项卡中找到该通道）填充为白色。 
+修改图像资源时，需使用Resource Hacker的导出功能到处需要修改的图像位图，并使用Adobe PhotoShop等工具另存为32位Windows格式的位图（BMP）文件，同时需要将文件的{{Alpha1}}通道（另存为32位Windows格式的位图后，可以在Adobe PhotoShop的 [通道] 选项卡中找到该通道）填充为白色。

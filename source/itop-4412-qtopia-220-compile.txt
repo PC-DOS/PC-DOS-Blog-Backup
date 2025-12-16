@@ -1,116 +1,116 @@
 [[toc]]
 
- + 设备和软件基本信息
++ 设备和软件基本信息
 
- 开发板为迅为iTop-4412精英版（Elite），核心板采用SCP封装，1 GB内存。
+开发板为迅为iTop-4412精英版（Elite），核心板采用SCP封装，1 GB内存。
 
- 开发计算机操作系统为Windows 8 Enterprise x64，在VMware Workstation Pro 15.5中运行64位Ubuntu 12.04.5 LTS系统。Ubuntu登录用户名为{{picsell-dois}}。
+开发计算机操作系统为Windows 8 Enterprise x64，在VMware Workstation Pro 15.5中运行64位Ubuntu 12.04.5 LTS系统。Ubuntu登录用户名为{{picsell-dois}}。
 
- 为便于操作，已将iTop-4412随附光盘内的文件挂载共享目录到Ubuntu的{{/mnt/hgfs/Shared/}}目录内的“iTOP-4412精英版光盘资料”文件夹。
+为便于操作，已将iTop-4412随附光盘内的文件挂载共享目录到Ubuntu的{{/mnt/hgfs/Shared/}}目录内的“iTOP-4412精英版光盘资料”文件夹。
 
 + 进入Root操作环境
 
- 为便于操作，进入Root操作环境。首先在Ubuntu终端中输入指令：
+为便于操作，进入Root操作环境。首先在Ubuntu终端中输入指令：
 
 [[code]]
- sudo passwd
- [[/code]]
+sudo passwd
+[[/code]]
 
 指定Root密码，随后输入指令：
 
 [[code]]
- su
- [[/code]]
+su
+[[/code]]
 
 进入Root操作环境。
 
- 若无特殊说明，以下操作均在Root操作环境下进行。
+若无特殊说明，以下操作均在Root操作环境下进行。
 
 + 配置所需的ARM编译器及环境变量
 
 Qtopia 2.2.0源代码使用arm-linux-4.4.1编译器编译，因此需要进行编译器配置：
 
 [[code]]
- cd /usr/local/arm/
- cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/arm-linux-4.4.1.tar.gz' ./
- tar -vxf arm-linux-4.4.1.tar.gz
- [[/code]]
+cd /usr/local/arm/
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/arm-linux-4.4.1.tar.gz' ./
+tar -vxf arm-linux-4.4.1.tar.gz
+[[/code]]
 
 配置环境变量：
 
 [[code]]
- sudo gedit /root/.bashrc
- [[/code]]
+sudo gedit /root/.bashrc
+[[/code]]
 
 通过在行首添加井号（“{{#}}”）的方式注释掉先前添加的其他编译器环境变量行（即{{export PATH=$PATH:/usr/local/arm/...}}这样的行），并在文件末尾添加：
 
 [[code]]
- #Compiler path for Qtopia 2.2.0
- export PATH=$PATH:/usr/local/arm/4.4.1/bin
- [[/code]]
+#Compiler path for Qtopia 2.2.0
+export PATH=$PATH:/usr/local/arm/4.4.1/bin
+[[/code]]
 
 保存并退出，回到终端并更新环境变量：
 
 [[code]]
- source /root/.bashrc
- [[/code]]
+source /root/.bashrc
+[[/code]]
 
 随后安装X11 SDK：
 
 [[code]]
- apt-get install libx11-dev libxext-dev libxtst-dev
- [[/code]]
+apt-get install libx11-dev libxext-dev libxtst-dev
+[[/code]]
 
 可以通过在终端键入{{arm-none-linux-gnueabi-gcc -v}}指令并按回车键执行的方式，检查编译器版本。
 
- 同时，为了便于今后的操作，也可以使用{{exit}}命令临时退出Root环境、返回当前登录用户的操作环境，并采用和上面一致的方法更新当前用户的环境变量：
+同时，为了便于今后的操作，也可以使用{{exit}}命令临时退出Root环境、返回当前登录用户的操作环境，并采用和上面一致的方法更新当前用户的环境变量：
 
 [[code]]
- gedit ~/.bashrc
- source ~/.bashrc
- [[/code]]
+gedit ~/.bashrc
+source ~/.bashrc
+[[/code]]
 
- + 配置Qtopia 2.2.0编译环境
++ 配置Qtopia 2.2.0编译环境
 
 ++ 先导工作
 
- 前期工作需要借用Android 4.0.3的配置编译环境中的安装脚本，安装大量的程序包，和Android 4.0.3编译环境不同，可以不执行安装Java的脚本：
+前期工作需要借用Android 4.0.3的配置编译环境中的安装脚本，安装大量的程序包，和Android 4.0.3编译环境不同，可以不执行安装Java的脚本：
 
 [[code]]
- cd /home/picsell-dois/
- mkdir iTop4412
- cd iTop4412
- cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器及烧写工具/tools/Android_JDK.tar.bz2' ./
- tar -vxf Android_JDK.tar.bz2
- cd Android_JDK
- ./install-devel-packages.sh
- [[/code]]
+cd /home/picsell-dois/
+mkdir iTop4412
+cd iTop4412
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器及烧写工具/tools/Android_JDK.tar.bz2' ./
+tar -vxf Android_JDK.tar.bz2
+cd Android_JDK
+./install-devel-packages.sh
+[[/code]]
 
 可以再次执行{{./install-devel-packages.sh}}来确保程序包安装完整。
 
- 对于笔者使用的Ubuntu 12.04.5 LTS系统，须重新安装xorg以及libgl1-mesa库，否则重启虚拟机后可能无法进入图形界面：
+对于笔者使用的Ubuntu 12.04.5 LTS系统，须重新安装xorg以及libgl1-mesa库，否则重启虚拟机后可能无法进入图形界面：
 
 [[code]]
- apt-get install xorg
- apt-get install libgl1-mesa-glx:i386
- apt-get install libgl1-mesa-dev
- [[/code]]
+apt-get install xorg
+apt-get install libgl1-mesa-glx:i386
+apt-get install libgl1-mesa-dev
+[[/code]]
 
 请注意，以上代码块中提供的三行{{apt-get install}}指令是针对笔者使用的Ubuntu 12.04.5 LTS系统的，目的是修复执行{{./install-devel-packages.sh}}（这个脚本是针对Ubuntu 12.04.2 LTS编写的）时由于程序包冲突而被破坏的图形环境，并安装编译所需的正确的库。
 
- 如果您使用的是Ubuntu 12.04.2 LTS系统，那么只需要执行{{./install-devel-packages.sh}}安装随iTop-4412光盘提供的脚本即可，千万不要执行上代码块中提供的三行{{apt-get install}}指令，否则您的操作系统将无法启动到图形界面。
+如果您使用的是Ubuntu 12.04.2 LTS系统，那么只需要执行{{./install-devel-packages.sh}}安装随iTop-4412光盘提供的脚本即可，千万不要执行上代码块中提供的三行{{apt-get install}}指令，否则您的操作系统将无法启动到图形界面。
 
- 最后，依次执行：
+最后，依次执行：
 
 [[code]]
- apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
- update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100
- update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50
- update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
- update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
- update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
- update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.6 50
- [[/code]]
+apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
+update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
+update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.6 50
+[[/code]]
 
 降低Ubuntu系统自带的GCC版本到4.4.7，在终端输入{{gcc -v}}指令并按回车键执行，即可检查GCC版本。
 
@@ -118,203 +118,203 @@ Qtopia 2.2.0源代码使用arm-linux-4.4.1编译器编译，因此需要进行�
 随iTop-4412光盘提供的{{install-devel-packages.sh}}的文件内容如下：
 
 [[code]]
- #!/bin/bash
+#!/bin/bash
 
- ####################################################################
- # Warning:
- # Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
- # with the old glx packages.
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
 
- # ------------------------------------------------------------------
- # 12.04                --> 12.04.2 (*-lts-quantal)
- # ------------------------------------------------------------------
- # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
- # libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
- # ------------------------------------------------------------------
- #
- # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
- # your system.
- ####################################################################
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+####################################################################
 
- # Execute an action
- FA_DoExec() {
-     echo "==> Executing: '${@}'"
-     eval $@ || exit $?
- }
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
 
- # Ubuntu 12.04.2 LTS
- FA_DoExec apt-get install \
-     git gnupg flex bison gperf build-essential \
-     zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-     libx11-dev:i386 libreadline6-dev:i386 \
-     libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
-     g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-     python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+# Ubuntu 12.04.2 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
 
- if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-     FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-         /usr/lib/i386-linux-gnu/libGL.so
- fi
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
+fi
 
- # Development support
- FA_DoExec apt-get install \
-     vim dos2unix minicom gawk
- [[/code]]
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
 
 由此可知，由于Ubuntu 12.04.2 LTS修改了用于图形界面的X程序堆栈，因此{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库需要使用等价的{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}进行替换。
 
- 但是，实验显示，在Ubuntu 12.04.5 LTS中，试图安装{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}两个库会导致图形环境遭到破坏，反而需要使用{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库。
+但是，实验显示，在Ubuntu 12.04.5 LTS中，试图安装{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}两个库会导致图形环境遭到破坏，反而需要使用{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库。
 
- 因此，在Ubuntu 12.04.5 LTS上执行时，可以用以下内容替换{{install-devel-packages.sh}}文件的原始内容，以安装正确的程序包：
-
-[[code]]
- #!/bin/bash
-
- ####################################################################
- # Warning:
- # Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
- # with the old glx packages.
-
- # ------------------------------------------------------------------
- # 12.04                --> 12.04.2 (*-lts-quantal)
- # ------------------------------------------------------------------
- # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
- # libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
- # ------------------------------------------------------------------
- #
- # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
- # your system.
- #
- # In Ubuntu 12.04.5 LTS, please use libgl1-mesa-glx:i386 and libgl1-
- # mesa-dev.
- ####################################################################
-
- # Execute an action
- FA_DoExec() {
-     echo "==> Executing: '${@}'"
-     eval $@ || exit $?
- }
-
- # Ubuntu 12.04.5 LTS
- FA_DoExec apt-get install \
-     git gnupg flex bison gperf build-essential \
-     zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-     libx11-dev:i386 libreadline6-dev:i386 \
-     libgl1-mesa-glx:i386 libgl1-mesa-dev \
-     g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-     python-markdown libxml2-utils xsltproc zlib1g-dev:i386
-
- if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-     FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-         /usr/lib/i386-linux-gnu/libGL.so
- fi
-
- # Development support
- FA_DoExec apt-get install \
-     vim dos2unix minicom gawk
- [[/code]]
- [[/collapsible]]
-
- ++ 补充库文件
-
- 通过以下指令序列，配置Qtoptia 2.2.0所需的库文件：
+因此，在Ubuntu 12.04.5 LTS上执行时，可以用以下内容替换{{install-devel-packages.sh}}文件的原始内容，以安装正确的程序包：
 
 [[code]]
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
- cp ./tslib.tar.gz /usr/local/
- cd /usr/local/
- tar -vxf tslib.tar.gz
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
- cp ./libXext.so.6.4.0 /usr/lib32/
- cp ./libXmu.so.6.2.0 /usr/lib32/
- cp ./libSM.so.6.0.1 /usr/lib32/
- cp ./libICE.so.6.3.0 /usr/lib32/
- cp ./libXt.so.6.0.0 /usr/lib32/
- cd /usr/lib32/
- ln -s libXext.so.6.4.0 libXext.so.6
- ln -s libXext.so.6 libXext.so
- ln -s libXmu.so.6.2.0 libXmu.so.6
- ln -s libXmu.so.6 libXmu.so
- ln -s libSM.so.6.0.1 libSM.so.6
- ln -s libSM.so.6 libSM.so
- ln -s libICE.so.6.3.0 libICE.so.6
- ln -s libICE.so.6 libICE.so
- ln -s libXt.so.6.0.0 libXt.so.6
- ln -s libXt.so.6 libXt.so
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
- cp ./libuuid.so.1.3.0 /lib32/
- cd /lib32/
- ln -s libuuid.so.1.3.0 libuuid.so.1
- ln -s libuuid.so.1 libuuid.so
- [[/code]]
+#!/bin/bash
 
- ++ 安装生成系统镜像文件所需的工具
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
 
- 为了生成系统镜像{{system.img}}，需要安装mkimage工具：
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+#
+# In Ubuntu 12.04.5 LTS, please use libgl1-mesa-glx:i386 and libgl1-
+# mesa-dev.
+####################################################################
+
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
+
+# Ubuntu 12.04.5 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx:i386 libgl1-mesa-dev \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
+fi
+
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
+[[/collapsible]]
+
+++ 补充库文件
+
+通过以下指令序列，配置Qtoptia 2.2.0所需的库文件：
 
 [[code]]
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器以及烧写工具/tools/'
- cp ./linux_tools.tgz /
- cd /
- tar -vxf linux_tools.tgz
- [[/code]]
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./tslib.tar.gz /usr/local/
+cd /usr/local/
+tar -vxf tslib.tar.gz
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./libXext.so.6.4.0 /usr/lib32/
+cp ./libXmu.so.6.2.0 /usr/lib32/
+cp ./libSM.so.6.0.1 /usr/lib32/
+cp ./libICE.so.6.3.0 /usr/lib32/
+cp ./libXt.so.6.0.0 /usr/lib32/
+cd /usr/lib32/
+ln -s libXext.so.6.4.0 libXext.so.6
+ln -s libXext.so.6 libXext.so
+ln -s libXmu.so.6.2.0 libXmu.so.6
+ln -s libXmu.so.6 libXmu.so
+ln -s libSM.so.6.0.1 libSM.so.6
+ln -s libSM.so.6 libSM.so
+ln -s libICE.so.6.3.0 libICE.so.6
+ln -s libICE.so.6 libICE.so
+ln -s libXt.so.6.0.0 libXt.so.6
+ln -s libXt.so.6 libXt.so
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./libuuid.so.1.3.0 /lib32/
+cd /lib32/
+ln -s libuuid.so.1.3.0 libuuid.so.1
+ln -s libuuid.so.1 libuuid.so
+[[/code]]
+
+++ 安装生成系统镜像文件所需的工具
+
+为了生成系统镜像{{system.img}}，需要安装mkimage工具：
+
+[[code]]
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器以及烧写工具/tools/'
+cp ./linux_tools.tgz /
+cd /
+tar -vxf linux_tools.tgz
+[[/code]]
 
 至此，Qtopia 2.2.0编译和镜像构建环境搭建完毕。
 
 + 复制和展开Qtopia 2.2.0源代码
 
- 继续使用Root身份操作，在{{/root/}}目录下建立{{yizhi}}目录，请注意，建议不要使用别的目录名称。
+继续使用Root身份操作，在{{/root/}}目录下建立{{yizhi}}目录，请注意，建议不要使用别的目录名称。
 
- 随后，复制ARM版本的Qtopia源码文件并展开：
-
-[[code]]
- cd /root/
- mkdir yizhi
- cd yizhi
- cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/ARM-qtopia-free-src-2.2.0.tar.gz' ./
- tar -vxf ARM-qtopia-free-src-2.2.0.tar.gz
- [[/code]]
-
- + 编译Qtopia 2.2.0源代码
-
- 建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/}}目录内，运行编译脚本：
+随后，复制ARM版本的Qtopia源码文件并展开：
 
 [[code]]
- cd /root/yizhi/
- ./build
- [[/code]]
+cd /root/
+mkdir yizhi
+cd yizhi
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/ARM-qtopia-free-src-2.2.0.tar.gz' ./
+tar -vxf ARM-qtopia-free-src-2.2.0.tar.gz
+[[/code]]
+
++ 编译Qtopia 2.2.0源代码
+
+建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/}}目录内，运行编译脚本：
+
+[[code]]
+cd /root/yizhi/
+./build
+[[/code]]
 
 编译时间可能较长。
 
 + 处理字库
 
- 之后，需要处理字库文件，将字库复制到编译输出目录内：
+之后，需要处理字库文件，将字库复制到编译输出目录内：
 
 [[code]]
- cp -r /root/yizhi/qtopia-free-2.2.0/qt2/lib/fonts/helvetica* /root/yizhi/qtopia-free-2.2.0/qtopia/image/opt/Qtopia/lib/fonts/
- [[/code]]
+cp -r /root/yizhi/qtopia-free-2.2.0/qt2/lib/fonts/helvetica* /root/yizhi/qtopia-free-2.2.0/qtopia/image/opt/Qtopia/lib/fonts/
+[[/code]]
 
- + 生成系统映像文件
++ 生成系统映像文件
 
- 从这里开始可以退出Root操作环境，亦可继续留在Root操作环境。为便于操作以及后续代码修改，此处选择退出Root操作环境，并在登录用户目录内进行处理：
+从这里开始可以退出Root操作环境，亦可继续留在Root操作环境。为便于操作以及后续代码修改，此处选择退出Root操作环境，并在登录用户目录内进行处理：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/
- mkdir Qtopia
- cd Qtopia
- cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/root_2020115.tar.gz' ./
- tar -vxf root_2020115.tar.gz
- [[/code]]
+cd /home/picsell-dois/iTop4412/
+mkdir Qtopia
+cd Qtopia
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/root_2020115.tar.gz' ./
+tar -vxf root_2020115.tar.gz
+[[/code]]
 
 请注意：不同的版本的“{{root_@@********@@.tar.gz}}”中的日期项的值可能不同。
 
- 随后，导出编译得到的文件，并生成镜像文件：
+随后，导出编译得到的文件，并生成镜像文件：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/
- cp -r /root/yizhi/qtopia-free-2.2.0/qtopia/image/opt/Qtopia /opt
- cp -r /root/yizhi/qtopia-free-2.2.0/qtopia/image/opt/Qtopia /home/picsell-dois/iTop4412/Qtopia/root/opt
- make_ext4fs -s -l 314572800 -a root -L linux system.img root
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+cp -r /root/yizhi/qtopia-free-2.2.0/qtopia/image/opt/Qtopia /opt
+cp -r /root/yizhi/qtopia-free-2.2.0/qtopia/image/opt/Qtopia /home/picsell-dois/iTop4412/Qtopia/root/opt
+make_ext4fs -s -l 314572800 -a root -L linux system.img root
+[[/code]]
 
-执行完毕后，在{{/home/picsell-dois/iTop4412/Qtopia/}}目录下即可得到{{system.img}}镜像文件。 
+执行完毕后，在{{/home/picsell-dois/iTop4412/Qtopia/}}目录下即可得到{{system.img}}镜像文件。

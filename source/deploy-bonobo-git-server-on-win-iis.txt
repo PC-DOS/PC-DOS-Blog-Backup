@@ -8,14 +8,14 @@ Bonobo Git Server官方网站：*https://bonobogitserver.com/
 # 您已经安装了[*https://www.microsoft.com/en-gb/download/details.aspx?id=48130 .NET Framework 4.6]。
 # 您已经启用了IIS上的ASP.NET支持。
 
- 开始前，请先从 *https://bonobogitserver.com/ 上下载Bonobo Git Server程序包，并将程序包中的文件复制到您IIS站点所在的目录下。
+开始前，请先从 *https://bonobogitserver.com/ 上下载Bonobo Git Server程序包，并将程序包中的文件复制到您IIS站点所在的目录下。
 
- 随后，请检查权限配置，授予IIS登录用户对Bonobo Git Server程序包目录的至少读写权限，以及对程序包目录内{{App_Data}}目录的完全控制权限。
+随后，请检查权限配置，授予IIS登录用户对Bonobo Git Server程序包目录的至少读写权限，以及对程序包目录内{{App_Data}}目录的完全控制权限。
 
- 打开IIS管理控制台，找到Bonobo Git Server程序包目录，并右键单击该目录，点击“转换为应用程序”。目标应用程序池应支持.NET CLR版本4.0，并在“连接身份”对话框中配置使用IIS用户登录。
+打开IIS管理控制台，找到Bonobo Git Server程序包目录，并右键单击该目录，点击“转换为应用程序”。目标应用程序池应支持.NET CLR版本4.0，并在“连接身份”对话框中配置使用IIS用户登录。
 
- 最后，配置Bonobo Git Server应用程序的身份认证模式，启用匿名身份验证（Anonymous Authentication）。
+最后，配置Bonobo Git Server应用程序的身份认证模式，启用匿名身份验证（Anonymous Authentication）。
 
- 从浏览器访问先前指定的Web路径，应该已经可以启动Bonobo Git Server，默认的管理员用户名和密码均为{{admin}}。
+从浏览器访问先前指定的Web路径，应该已经可以启动Bonobo Git Server，默认的管理员用户名和密码均为{{admin}}。
 
- 参考资料：*https://bonobogitserver.com/install/ 
+参考资料：*https://bonobogitserver.com/install/

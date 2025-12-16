@@ -3,39 +3,39 @@ Qt/E 4.7.1自带的libstdc++库的版本为6.0.10（位于{{/lib/libstdc++.so.6.
 arm-linux-4.4.1编译器的库文件{{libstdc++.so.6.0.12}}位于：
 
 [[code]]
- /usr/local/arm/4.4.1/arm-none-linux-gnueabi/libc/usr/lib/libstdc++.so.6.0.12
- [[/code]]
+/usr/local/arm/4.4.1/arm-none-linux-gnueabi/libc/usr/lib/libstdc++.so.6.0.12
+[[/code]]
 
 将该文件复制到USB磁盘或TF卡，并将该设备插入开发板的相应接口并通过在超级终端中执行{{mount}}命令挂载，假设挂载点位于{{/mnt/disk}}，在超级终端中执行：
 
 [[code]]
- cd /lib
- cp /mnt/disk/libstdc++.so.6.0.12 ./
- rm libstdc++.so
- rm libstdc++.so.6
- ln -s libstdc++.so.6.0.12 libstdc++.so.6
- ln -s libstdc++.so.6 libstdc++.so
- [[/code]]
+cd /lib
+cp /mnt/disk/libstdc++.so.6.0.12 ./
+rm libstdc++.so
+rm libstdc++.so.6
+ln -s libstdc++.so.6.0.12 libstdc++.so.6
+ln -s libstdc++.so.6 libstdc++.so
+[[/code]]
 
 完成后，重新启动设备即可。
 
- 如果需要重建{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中处理{{/lib/stdc++.so}}、{{/lib/stdc++.so.6}}等相关文件：
+如果需要重建{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中处理{{/lib/stdc++.so}}、{{/lib/stdc++.so.6}}等相关文件：
 
 [[code]]
- cp '/usr/local/arm/4.4.1/arm-none-linux-gnueabi/libc/usr/lib/libstdc++.so.6.0.12' '/home/picsell-dois/iTop4412/Qtopia/root/lib' 
- cd '/home/picsell-dois/iTop4412/Qtopia/root/lib' 
- rm libstdc++.so
- rm libstdc++.so.6
- ln -s libstdc++.so.6.0.12 libstdc++.so.6
- ln -s libstdc++.so.6 libstdc++.so
- [[/code]]
+cp '/usr/local/arm/4.4.1/arm-none-linux-gnueabi/libc/usr/lib/libstdc++.so.6.0.12' '/home/picsell-dois/iTop4412/Qtopia/root/lib' 
+cd '/home/picsell-dois/iTop4412/Qtopia/root/lib' 
+rm libstdc++.so
+rm libstdc++.so.6
+ln -s libstdc++.so.6.0.12 libstdc++.so.6
+ln -s libstdc++.so.6 libstdc++.so
+[[/code]]
 
 完成后，回到终端执行：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/
- rm system.img
- make_ext4fs -s -l 314572800 -a root -L linux system.img root
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+rm system.img
+make_ext4fs -s -l 314572800 -a root -L linux system.img root
+[[/code]]
 
-重建{{system.img}}并执行刷写流程即可。 
+重建{{system.img}}并执行刷写流程即可。

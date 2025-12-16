@@ -2,4 +2,4 @@
 
 [[f=image http://pc-dos.wdfiles.com/local--files/prevent-thunder-from-update-to-thunder-x/Illust.png link="*http://pc-dos.wdfiles.com/local--files/prevent-thunder-from-update-to-thunder-x/Illust.png" width="100%"]]
 
-操作前删除{{ThunderPush}}目录中的{{thunderupgradetips.xar}}文件可移除版本太旧提示。 
+操作前删除{{ThunderPush}}目录中的{{thunderupgradetips.xar}}文件可移除版本太旧提示。

@@ -2,170 +2,170 @@
 
 *https://www.runoob.com/manual/git-guide/
 
- *https://www.cnblogs.com/shenxiaolin/p/7896489.html
+*https://www.cnblogs.com/shenxiaolin/p/7896489.html
 
 本文预设默认分支名称为{{@@master@@}}。
 
 [[toc]]
 
- + 修改提交者信息
++ 修改提交者信息
 
 ++ 全局修改
 
 [[code]]
- git config --global user.name YourName
- git config --global user.email YouEmail@Address
- [[/code]]
+git config --global user.name YourName
+git config --global user.email YouEmail@Address
+[[/code]]
 
- ++ 仅修改当前仓库
-
-[[code]]
- git config user.name YourName
- git config user.email YouEmail@Address
- [[/code]]
-
- + 切换到工作目录并初始化
-
- 执行：
+++ 仅修改当前仓库
 
 [[code]]
- cd /PATH/TO/YOUR/PROJECT
- git init
- [[/code]]
+git config user.name YourName
+git config user.email YouEmail@Address
+[[/code]]
+
++ 切换到工作目录并初始化
+
+执行：
+
+[[code]]
+cd /PATH/TO/YOUR/PROJECT
+git init
+[[/code]]
 
 如需指定默认分支名称，请使用：
 
 [[code]]
- git init --initial-branch=master
- [[/code]]
+git init --initial-branch=master
+[[/code]]
 
 您也可以使用下面的指令，修改全局默认分支名称：
 
 [[code]]
- git config --global init.defaultBranch master
- [[/code]]
+git config --global init.defaultBranch master
+[[/code]]
 
- + 克隆仓库
++ 克隆仓库
 
- 执行如下命令以创建一个本地仓库的克隆版本：
+执行如下命令以创建一个本地仓库的克隆版本：
 
 [[code]]
- git clone /PATH/TO/REPOSITORY
- [[/code]]
+git clone /PATH/TO/REPOSITORY
+[[/code]]
 
 如果是远端服务器上的仓库：
 
 [[code]]
- git clone username@host:/path/to/repository.git
- [[/code]]
+git clone username@host:/path/to/repository.git
+[[/code]]
 
- + 添加和提交
++ 添加和提交
 
- 使用如下命令提出更改（把它们添加到暂存区）：
+使用如下命令提出更改（把它们添加到暂存区）：
 
 [[code]]
- git add *
- git add .
- git add -A
- [[/code]]
+git add *
+git add .
+git add -A
+[[/code]]
 
 使用如下命令以实际提交改动：
 
 [[code]]
- git commit -m "INFO"
- [[/code]]
+git commit -m "INFO"
+[[/code]]
 
- + 添加上游或远程服务器
++ 添加上游或远程服务器
 
- 使用如下命令将仓库连接到某个远程服务器上的对应仓库：
-
-[[code]]
- git remote add origin host/path/to/repository.git
- [[/code]]
-
- + 推送改动
-
- 执行如下命令以将这些改动提交到远端仓库：
+使用如下命令将仓库连接到某个远程服务器上的对应仓库：
 
 [[code]]
- git push origin master
- [[/code]]
+git remote add origin host/path/to/repository.git
+[[/code]]
 
- + 与上游同步
++ 推送改动
 
- 执行如下命令使本地仓库与上游同步：
+执行如下命令以将这些改动提交到远端仓库：
 
 [[code]]
- git fetch origin master
- git pull origin master
- [[/code]]
+git push origin master
+[[/code]]
 
- + 移除文件追踪
++ 与上游同步
+
+执行如下命令使本地仓库与上游同步：
+
+[[code]]
+git fetch origin master
+git pull origin master
+[[/code]]
+
++ 移除文件追踪
 
 ++ 仅移除文件追踪
 
 [[code]]
- git rm --cache /PATH/TO/YOUR/FILE
- [[/code]]
+git rm --cache /PATH/TO/YOUR/FILE
+[[/code]]
 
- ++ 移除文件追踪的同时删除文件
+++ 移除文件追踪的同时删除文件
 
 [[code]]
- git rm /PATH/TO/YOUR/FILE
- [[/code]]
+git rm /PATH/TO/YOUR/FILE
+[[/code]]
 
- + 分支管理
++ 分支管理
 
 ++ 建立分支
 
 [[code]]
- git branch BRANCH-NAME
- [[/code]]
+git branch BRANCH-NAME
+[[/code]]
 
- ++ 切换到分支
-
-[[code]]
- git checkout BRANCH-NAME
- [[/code]]
-
- + 其它
-
- 内建的图形化 git：
+++ 切换到分支
 
 [[code]]
- gitk
- [[/code]]
+git checkout BRANCH-NAME
+[[/code]]
+
++ 其它
+
+内建的图形化 git：
+
+[[code]]
+gitk
+[[/code]]
 
 彩色的 git 输出：
 
 [[code]]
- git config color.ui true
- [[/code]]
+git config color.ui true
+[[/code]]
 
 显示历史记录时，每个提交的信息只显示一行：
 
 [[code]]
- git config format.pretty oneline
- [[/code]]
+git config format.pretty oneline
+[[/code]]
 
 交互式添加文件到暂存区：
 
 [[code]]
- git add -i
- [[/code]]
+git add -i
+[[/code]]
 
 要求Git在一段时间内保留用户名和密码，数据被存放在系统内存中：
 
 [[code]]
- git config --global credential.helper 'cache --timeout=3600'
- [[/code]]
+git config --global credential.helper 'cache --timeout=3600'
+[[/code]]
 
 其中，{{@@--timeout@@}}参数为用户名和密码保留的时间，单位为秒。
 
- 要求Git无限期保留用户名和密码，数据被存放在当前用户的主目录下的`.git-credentials`文件中：
+要求Git无限期保留用户名和密码，数据被存放在当前用户的主目录下的`.git-credentials`文件中：
 
 [[code]]
- git config --global credential.helper 'store'
- [[/code]]
+git config --global credential.helper 'store'
+[[/code]]
 
-请注意，{{@@.git-credentials@@}}文件中的用户名和密码为明文。 
+请注意，{{@@.git-credentials@@}}文件中的用户名和密码为明文。

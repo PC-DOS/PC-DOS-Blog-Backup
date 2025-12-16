@@ -1,126 +1,126 @@
 在Verilog中，可以通过关键字{{inout}}定义双向端口。双向端口既可用于输出数据，亦可用于接收数据的输入。从而可以实现一种半双工的通信模式，解约设计资源。
 
- 使用双向端口时，可以视为实现了输入-输出两个三态门组成的三态门对。将端口用于输出数据时，输出门使能、输入门禁止；从端口读取数据时，输出门禁止、输入门使能。因此，在Verilog中实现双向端口时，应同时包含一个寄存器或引脚，用于指示双向端口的输入/输出状态。
+使用双向端口时，可以视为实现了输入-输出两个三态门组成的三态门对。将端口用于输出数据时，输出门使能、输入门禁止；从端口读取数据时，输出门禁止、输入门使能。因此，在Verilog中实现双向端口时，应同时包含一个寄存器或引脚，用于指示双向端口的输入/输出状态。
 
- 使用双向端口时，可以定义两个与双向端口具有相同宽度的{{wire}}型线网变量，分别用于承载需要输出到双向端口的数据，以及从双向端口读取的输入数据。并使用下面的组合逻辑决定双向端口的状态：
+使用双向端口时，可以定义两个与双向端口具有相同宽度的{{wire}}型线网变量，分别用于承载需要输出到双向端口的数据，以及从双向端口读取的输入数据。并使用下面的组合逻辑决定双向端口的状态：
 
 * 使用{{assign}}关键字，直接将双向端口线网赋值给数据读取线网，实现输入数据的接收。
 * 若双向端口的状态寄存器指示需要将双向端口置于输出状态，则将承载了输出数据的线网赋给双向端口线网。否则，将高阻态（“{{Z}}”）赋给双向端口，标志双向端口处于输入状态。
 
- 对于连接了双向端口的模块的外部模块或测试模块，该外部模块应使用相反的逻辑控制自身引出的对应的双向端口，即：
+对于连接了双向端口的模块的外部模块或测试模块，该外部模块应使用相反的逻辑控制自身引出的对应的双向端口，即：
 
 * 若双向端口的状态引脚指示需要将双向端口置于输出状态，则外部模块将高阻态（“{{Z}}”）赋给自己的双向端口，标志自己的双向端口处于输入状态。否则，将承载了输出数据的线网赋给双向端口线网，进行外部模块自身的数据输出。
 * 即：连接到双向端口的外部模块，应当保证对方模块要求进行数据输出时，将自己的双向端口线网赋值为高阻态。
 
- 在对具有双向端口的模块进行测试（编写Testbench时），应将双向端口连接到{{wire}}型线网变量，并通过前述逻辑进行双向端口工作模式的控制，即：
+在对具有双向端口的模块进行测试（编写Testbench时），应将双向端口连接到{{wire}}型线网变量，并通过前述逻辑进行双向端口工作模式的控制，即：
 
 * 若双向端口的状态引脚指示需要将双向端口置于输出状态，则测试模块将高阻态（“{{Z}}”）赋给连接到双向端口的线网，并从线网读取被测测模块输出的数据。否则，将承载了作为测试输入数据的变量/寄存器/线网赋给双向端口线网，对被测模块进行数据输入测试。
 
- 主要注意的是，在设计上，仅建议在最顶层模块使用双向端口，而在内部模块仍然使用明确定义的输入/输出端口。
+主要注意的是，在设计上，仅建议在最顶层模块使用双向端口，而在内部模块仍然使用明确定义的输入/输出端口。
 
- 示例代码：一个具有4位双向端口的模块，使用{{iWriteEnable}}决定双向端口{{ioData}}的工作状态。{{iWriteEnable}}为低电平时，{{ioData}}固定输出二进制数值{{0101}}；{{iWriteEnable}}为高电平时，从{{ioData}}读取输入数据，并赋值给单一输出端口{{oDataRead}}。
+示例代码：一个具有4位双向端口的模块，使用{{iWriteEnable}}决定双向端口{{ioData}}的工作状态。{{iWriteEnable}}为低电平时，{{ioData}}固定输出二进制数值{{0101}}；{{iWriteEnable}}为高电平时，从{{ioData}}读取输入数据，并赋值给单一输出端口{{oDataRead}}。
 
 [[code]]
- `timescale 1ns / 1ps
- //////////////////////////////////////////////////////////////////////////////////
- // Company: SCP Foundation Equestria Branch
- // Engineer: Picsell Dois
- // 
- // Create Date: 2023/03/09 17:18:12
- // Design Name: 
- // Module Name: ModuleWithBidirectionPort
- // Project Name: 
- // Target Devices: 
- // Tool Versions: 
- // Description: Sample implementation of a module with a 4-bit bidirection port ioData[3:0]
- //              when iWriteEnable is asserted, the module reads data from ioData.
- //              Otherwise, a constant is sent to ioData as an output.
- // 
- // Dependencies: 
- // 
- // Revision:
- // Revision 0.01 - File Created
- // Additional Comments:
- // 
- //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: SCP Foundation Equestria Branch
+// Engineer: Picsell Dois
+// 
+// Create Date: 2023/03/09 17:18:12
+// Design Name: 
+// Module Name: ModuleWithBidirectionPort
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: Sample implementation of a module with a 4-bit bidirection port ioData[3:0]
+//              when iWriteEnable is asserted, the module reads data from ioData.
+//              Otherwise, a constant is sent to ioData as an output.
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
- module ModuleWithBidirectionPort(
-     input iWriteEnable,
-     inout [3:0] ioData,
-     output reg [3:0] oDataRead
-     );
-     
-     //In-Out bi-direction pin arbitration
-     wire [3:0] wDataToRead, wDataToOutput;
-     //Allow wDataToRead to read data from ioData
-     assign wDataToRead = ioData;
-     //If iWriteEnable is asserted, set all pins of ioData to high-impedance state inorder to receive data
-     //Otherwise, send output data to ioData
-     assign ioData = iWriteEnable ? 4'bZZZZ : wDataToOutput;
-     
-     //Output registers
-     reg [3:0] rDataToOutput;
-     assign wDataToOutput = rDataToOutput;
-     
-     //Combo logic: output logic to set values of oDataRead
-     always @ (*) begin
-         //When iWriteEnable is unasserted, send 4'b0101 to ioData as output
-         rDataToOutput = 4'b0101;
-         //When iWriteEnable is asserted, read data from ioData and send it to oDataRead
-         if (iWriteEnable) begin
-             oDataRead = wDataToRead;
-         end
-         else begin
-             oDataRead = 0;
-         end
-     end
-     
- endmodule
- [[/code]]
+module ModuleWithBidirectionPort(
+    input iWriteEnable,
+    inout [3:0] ioData,
+    output reg [3:0] oDataRead
+    );
+    
+    //In-Out bi-direction pin arbitration
+    wire [3:0] wDataToRead, wDataToOutput;
+    //Allow wDataToRead to read data from ioData
+    assign wDataToRead = ioData;
+    //If iWriteEnable is asserted, set all pins of ioData to high-impedance state inorder to receive data
+    //Otherwise, send output data to ioData
+    assign ioData = iWriteEnable ? 4'bZZZZ : wDataToOutput;
+    
+    //Output registers
+    reg [3:0] rDataToOutput;
+    assign wDataToOutput = rDataToOutput;
+    
+    //Combo logic: output logic to set values of oDataRead
+    always @ (*) begin
+        //When iWriteEnable is unasserted, send 4'b0101 to ioData as output
+        rDataToOutput = 4'b0101;
+        //When iWriteEnable is asserted, read data from ioData and send it to oDataRead
+        if (iWriteEnable) begin
+            oDataRead = wDataToRead;
+        end
+        else begin
+            oDataRead = 0;
+        end
+    end
+    
+endmodule
+[[/code]]
 
 测试模块：
 
 [[code]]
- `timescale 1ns / 1ps
+`timescale 1ns / 1ps
 
- module Testbench_ModuleWithBidirectionPort(
+module Testbench_ModuleWithBidirectionPort(
 
-     );
-     
-     reg rWriteEnable;
-     reg [3:0] rDataToWrite;
-     wire [3:0] wData; //INOUT-typed bidirection port must be connected to a WIRE-typed net
-     wire [3:0] wDataRead;
-     
-     //In-Out bi-direction pin arbitration
-     //This arbitration is the inversion of the arbitration logic in the module which defines the bidirection port
-     assign wData = rWriteEnable ? rDataToWrite : 4'bZZZZ;
-     
-     //Test module
-     ModuleWithBidirectionPort modInOutPort(.iWriteEnable(rWriteEnable),
-                                            .ioData(wData),
-                                            .oDataRead(wDataRead)
-                                            );
-     
-     //Simulation
-     initial begin
-         rWriteEnable = 0;
-         rDataToWrite = 0;
-         
-         #200 rWriteEnable = 1'b1;
-         #0   rDataToWrite = 4'b1111;
-         #100 rWriteEnable = 1'b0;
-         
-         #200 rWriteEnable = 1'b1;
-         #0   rDataToWrite = 4'b1010;
-         #100 rWriteEnable = 1'b0;
-     end
-     
- endmodule
- [[/code]]
+    );
+    
+    reg rWriteEnable;
+    reg [3:0] rDataToWrite;
+    wire [3:0] wData; //INOUT-typed bidirection port must be connected to a WIRE-typed net
+    wire [3:0] wDataRead;
+    
+    //In-Out bi-direction pin arbitration
+    //This arbitration is the inversion of the arbitration logic in the module which defines the bidirection port
+    assign wData = rWriteEnable ? rDataToWrite : 4'bZZZZ;
+    
+    //Test module
+    ModuleWithBidirectionPort modInOutPort(.iWriteEnable(rWriteEnable),
+                                           .ioData(wData),
+                                           .oDataRead(wDataRead)
+                                           );
+    
+    //Simulation
+    initial begin
+        rWriteEnable = 0;
+        rDataToWrite = 0;
+        
+        #200 rWriteEnable = 1'b1;
+        #0   rDataToWrite = 4'b1111;
+        #100 rWriteEnable = 1'b0;
+        
+        #200 rWriteEnable = 1'b1;
+        #0   rDataToWrite = 4'b1010;
+        #100 rWriteEnable = 1'b0;
+    end
+    
+endmodule
+[[/code]]
 
 参考资料：
 
 *https://blog.csdn.net/wordwarwordwar/article/details/78076120
 
- *https://blog.csdn.net/qq_34686440/article/details/116225349 
+*https://blog.csdn.net/qq_34686440/article/details/116225349

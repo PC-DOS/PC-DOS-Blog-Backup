@@ -1,35 +1,35 @@
 若需要在VMWare ESXi中将物理磁盘直通到虚拟机，则应当使用SSH等工具，远程连接到ESXi控制台，并使用vmkfstools工具配置：
 
 [[code]]
- vmkfstools -z /vmfs/devices/disks/DISK_DEVICE_ID /vmfs/volumes/ESXI_SYSDISK_UUID/VIRTUAL_DISK_NAME.vmdk
- [[/code]]
+vmkfstools -z /vmfs/devices/disks/DISK_DEVICE_ID /vmfs/volumes/ESXI_SYSDISK_UUID/VIRTUAL_DISK_NAME.vmdk
+[[/code]]
 
 其中，{{DISK_DEVICE_ID}}为目标磁盘驱动器的设备ID，您可以在ESXi Web管理控制台的 [存储区] > [设备] 页的 [名称] 栏位中获取，它被一对括号括起，并具有如下的格式：
 
 [[code]]
- t10.ATA_____ST2000NX0253________________________________________W460P6KD
- [[/code]]
+t10.ATA_____ST2000NX0253________________________________________W460P6KD
+[[/code]]
 
 您也可以在ESXi控制台中使用下面的命令枚举本机所有的磁盘驱动器：
 
 [[code]]
- esxcli storage core device list
- [[/code]]
+esxcli storage core device list
+[[/code]]
 
- {{ESXI_SYSDISK_UUID}}为VMWare ESXi系统卷的卷UUID，您可以在ESXi Web管理控制台的 [存储区] > [数据存储] 页中点击VMWare ESXi的安装分区，在打开的页面的 [VMFS详细信息] > [UUID] 栏位中获取，它具有如下的格式：
+{{ESXI_SYSDISK_UUID}}为VMWare ESXi系统卷的卷UUID，您可以在ESXi Web管理控制台的 [存储区] > [数据存储] 页中点击VMWare ESXi的安装分区，在打开的页面的 [VMFS详细信息] > [UUID] 栏位中获取，它具有如下的格式：
 
 [[code]]
- 5f9941d0-aa736290-9c22-ac1f6b26d818
- [[/code]]
+5f9941d0-aa736290-9c22-ac1f6b26d818
+[[/code]]
 
- {{VIRTUAL_DISK_NAME}}为自定义的用于RDM直通存根的虚拟硬盘文件的名字。
+{{VIRTUAL_DISK_NAME}}为自定义的用于RDM直通存根的虚拟硬盘文件的名字。
 
- 完成后，编辑需要直通到硬盘的虚拟机的配置，将{{VIRTUAL_DISK_NAME.vmdk}}添加为虚拟磁盘即可。
+完成后，编辑需要直通到硬盘的虚拟机的配置，将{{VIRTUAL_DISK_NAME.vmdk}}添加为虚拟磁盘即可。
 
- 推荐为完全空（没有任何分区）的磁盘配置RDM直通。若您的服务器支持硬盘热插拔，则新加入的磁盘可能需要一段时间才能被VMWare ESXi识别，您可以在{{/vmfs/devices/disks/}}目录下执行{{ls}}指令来检查磁盘是否已被识别。
+推荐为完全空（没有任何分区）的磁盘配置RDM直通。若您的服务器支持硬盘热插拔，则新加入的磁盘可能需要一段时间才能被VMWare ESXi识别，您可以在{{/vmfs/devices/disks/}}目录下执行{{ls}}指令来检查磁盘是否已被识别。
 
- 参考资料：
+参考资料：
 
 *https://www.hao0564.com/1642.html
 
- *https://blog.csdn.net/i12344/article/details/103638899 
+*https://blog.csdn.net/i12344/article/details/103638899

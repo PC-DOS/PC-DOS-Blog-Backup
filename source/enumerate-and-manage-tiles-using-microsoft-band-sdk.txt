@@ -3,36 +3,36 @@
 Visual Basic.NET代码：
 
 [[code]]
- Imports Microsoft.Band
- Imports Microsoft.Band.Tiles
- Imports Microsoft.Band.Admin
- Imports Microsoft.Band.Personalization
- [[/code]]
+Imports Microsoft.Band
+Imports Microsoft.Band.Tiles
+Imports Microsoft.Band.Admin
+Imports Microsoft.Band.Personalization
+[[/code]]
 
- + 通用变量
++ 通用变量
 
- 通过{{Microsoft.Band.Admin.ICargoClient}}类型的变量{{BandClient}}，表示一个已经连接的Microsoft Band对象。
+通过{{Microsoft.Band.Admin.ICargoClient}}类型的变量{{BandClient}}，表示一个已经连接的Microsoft Band对象。
 
- 该对象通过{{BandConnectionManager}}模块封装。
-
-[[code]]
- Imports Microsoft.Band
- Imports Microsoft.Band.Tiles
- Imports Microsoft.Band.Admin
- Imports Microsoft.Band.Personalization
- Module BandConnectionManager
-     Public BandClient As ICargoClient
-     Public BandClientLimited As IBandClient
-     Public CurrentBandClass As BandClass = BandClass.Unknown
- End Module
- [[/code]]
-
- + 全局变量
-
- 全局变量定义如下：
+该对象通过{{BandConnectionManager}}模块封装。
 
 [[code]]
- Public BandDefaultTiles As New List(Of AdminBandTile) '默认磁贴池（即设备所有可用的磁贴）的列表
+Imports Microsoft.Band
+Imports Microsoft.Band.Tiles
+Imports Microsoft.Band.Admin
+Imports Microsoft.Band.Personalization
+Module BandConnectionManager
+    Public BandClient As ICargoClient
+    Public BandClientLimited As IBandClient
+    Public CurrentBandClass As BandClass = BandClass.Unknown
+End Module
+[[/code]]
+
++ 全局变量
+
+全局变量定义如下：
+
+[[code]]
+Public BandDefaultTiles As New List(Of AdminBandTile) '默认磁贴池（即设备所有可用的磁贴）的列表
 Public BandDefaultTilesNameList As New List(Of String) '默认磁贴池（即设备所有可用的磁贴）的名字的列表
 
 Public BandAvailableTiles As New List(Of AdminBandTile) '可添加到设备主界面的磁贴的列表
@@ -44,142 +44,142 @@ Public UserEditedTilesNameList As New List(Of String) '设备主界面的磁贴�
 Public BandCurrentStartStrip As StartStrip '表示设备当前的主界面磁贴布局
 [[/code]]
 
- + 获取设备已钉选和可用的磁贴
++ 获取设备已钉选和可用的磁贴
 
 {{GetBandTileInfo()}}方法计算已位于主界面的磁贴和可用的磁贴。{{GetBandTileInfo()}}方法会调用{{GenerateAvailableTiles()}}和{{IsTilePinned()}}函数来计算一些参数。
 
- 其中，{{BandClient.GetStartStripNoImages()}}用于获取设备已钉选的磁贴，{{BandClient.GetDefaultTilesNoImages()}}用于获取默认磁贴池。
+其中，{{BandClient.GetStartStripNoImages()}}用于获取设备已钉选的磁贴，{{BandClient.GetDefaultTilesNoImages()}}用于获取默认磁贴池。
 
 [[code]]
- Public Function IsTilePinned(TileToTest As AdminBandTile) As Boolean
-     For Each TileItem In UserEditedTiles
-      If TileToTest.Id.ToString = TileItem.Id.ToString Then
-      Return True
-      End If
-     Next
-     Return False
- End Function
+Public Function IsTilePinned(TileToTest As AdminBandTile) As Boolean
+    For Each TileItem In UserEditedTiles
+    	If TileToTest.Id.ToString = TileItem.Id.ToString Then
+    		Return True
+    	End If
+    Next
+    Return False
+End Function
 
- Public Sub GetBandTileInfo()
-     BandDefaultTiles.Clear()
-     BandDefaultTilesNameList.Clear()
-     BandAvailableTiles.Clear()
-     BandAvailableTilesNameList.Clear()
-     UserEditedTiles.Clear()
-     UserEditedTilesNameList.Clear()
+Public Sub GetBandTileInfo()
+    BandDefaultTiles.Clear()
+    BandDefaultTilesNameList.Clear()
+    BandAvailableTiles.Clear()
+    BandAvailableTilesNameList.Clear()
+    UserEditedTiles.Clear()
+    UserEditedTilesNameList.Clear()
 
-     BandDefaultTiles = BandClient.GetDefaultTilesNoImages()
-     For Each BandTileItem In BandDefaultTiles
-      BandDefaultTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-     Next
+    BandDefaultTiles = BandClient.GetDefaultTilesNoImages()
+    For Each BandTileItem In BandDefaultTiles
+    	BandDefaultTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+    Next
 
-     BandCurrentStartStrip = BandClient.GetStartStripNoImages()
-     For Each BandTileItem In BandCurrentStartStrip
-      UserEditedTiles.Add(BandTileItem)
-      UserEditedTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-     Next
+    BandCurrentStartStrip = BandClient.GetStartStripNoImages()
+    For Each BandTileItem In BandCurrentStartStrip
+    	UserEditedTiles.Add(BandTileItem)
+    	UserEditedTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+    Next
 
-     GenerateAvailableTiles()
+    GenerateAvailableTiles()
 
- End Sub
+End Sub
 
- Public Sub GenerateAvailableTiles()
-     BandAvailableTiles.Clear()
-     BandAvailableTilesNameList.Clear()
+Public Sub GenerateAvailableTiles()
+    BandAvailableTiles.Clear()
+    BandAvailableTilesNameList.Clear()
 
-     For Each BandTileItem In BandDefaultTiles
-      If Not IsTilePinned(BandTileItem) Then
-      BandAvailableTiles.Add(BandTileItem)
-      BandAvailableTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-      End If
-     Next
- End Sub
- [[/code]]
+    For Each BandTileItem In BandDefaultTiles
+    	If Not IsTilePinned(BandTileItem) Then
+    		BandAvailableTiles.Add(BandTileItem)
+    		BandAvailableTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+    	End If
+    Next
+End Sub
+[[/code]]
 
- + 保存磁贴布局
++ 保存磁贴布局
 
 {{SetBandTileInfo()}}方法调用{{BandClient.SetStartStrip()}}方法，同步地保存磁贴布局。本方法接受一个{{StartStrip}}类型的参数，表示要设置的主界面磁贴布局。{{StartStrip}}可以从{{List(Of AdminBandTile)}}进行构造。
 
 {{BandClient.SetStartStrip()}}方法提供异步版本{{BandClient.SetStartStripAsync()}}。
 
 [[code]]
- Public Sub SetBandTileInfo()
-     BandCurrentStartStrip = New StartStrip(UserEditedTiles)
-     BandClient.SetStartStrip(BandCurrentStartStrip)
- End Sub
- [[/code]]
+Public Sub SetBandTileInfo()
+    BandCurrentStartStrip = New StartStrip(UserEditedTiles)
+    BandClient.SetStartStrip(BandCurrentStartStrip)
+End Sub
+[[/code]]
 
- + 模块代码
++ 模块代码
 
- 使用模块{{BandTileManager}}封装上述变量与方法。
+使用模块{{BandTileManager}}封装上述变量与方法。
 
 [[code]]
- Imports Microsoft.Band
- Imports Microsoft.Band.Tiles
- Imports Microsoft.Band.Admin
- Imports Microsoft.Band.Personalization
- Module BandTileManager
-     Public BandDefaultTiles As New List(Of AdminBandTile)
-     Public BandDefaultTilesNameList As New List(Of String)
+Imports Microsoft.Band
+Imports Microsoft.Band.Tiles
+Imports Microsoft.Band.Admin
+Imports Microsoft.Band.Personalization
+Module BandTileManager
+    Public BandDefaultTiles As New List(Of AdminBandTile)
+    Public BandDefaultTilesNameList As New List(Of String)
 
-     Public BandAvailableTiles As New List(Of AdminBandTile)
-     Public BandAvailableTilesNameList As New List(Of String)
+    Public BandAvailableTiles As New List(Of AdminBandTile)
+    Public BandAvailableTilesNameList As New List(Of String)
 
-     Public UserEditedTiles As New List(Of AdminBandTile)
-     Public UserEditedTilesNameList As New List(Of String)
+    Public UserEditedTiles As New List(Of AdminBandTile)
+    Public UserEditedTilesNameList As New List(Of String)
 
-     Public BandCurrentStartStrip As StartStrip
+    Public BandCurrentStartStrip As StartStrip
 
-     Public Function IsTilePinned(TileToTest As AdminBandTile) As Boolean
-         For Each TileItem In UserEditedTiles
-             If TileToTest.Id.ToString = TileItem.Id.ToString Then
-                 Return True
-             End If
-         Next
-         Return False
-     End Function
+    Public Function IsTilePinned(TileToTest As AdminBandTile) As Boolean
+        For Each TileItem In UserEditedTiles
+            If TileToTest.Id.ToString = TileItem.Id.ToString Then
+                Return True
+            End If
+        Next
+        Return False
+    End Function
 
-     Public Sub GetBandTileInfo()
-         BandDefaultTiles.Clear()
-         BandDefaultTilesNameList.Clear()
-         BandAvailableTiles.Clear()
-         BandAvailableTilesNameList.Clear()
-         UserEditedTiles.Clear()
-         UserEditedTilesNameList.Clear()
+    Public Sub GetBandTileInfo()
+        BandDefaultTiles.Clear()
+        BandDefaultTilesNameList.Clear()
+        BandAvailableTiles.Clear()
+        BandAvailableTilesNameList.Clear()
+        UserEditedTiles.Clear()
+        UserEditedTilesNameList.Clear()
 
-         BandDefaultTiles = BandClient.GetDefaultTilesNoImages()
-         For Each BandTileItem In BandDefaultTiles
-             BandDefaultTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-         Next
+        BandDefaultTiles = BandClient.GetDefaultTilesNoImages()
+        For Each BandTileItem In BandDefaultTiles
+            BandDefaultTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+        Next
 
-         BandCurrentStartStrip = BandClient.GetStartStripNoImages()
-         For Each BandTileItem In BandCurrentStartStrip
-             UserEditedTiles.Add(BandTileItem)
-             UserEditedTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-         Next
+        BandCurrentStartStrip = BandClient.GetStartStripNoImages()
+        For Each BandTileItem In BandCurrentStartStrip
+            UserEditedTiles.Add(BandTileItem)
+            UserEditedTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+        Next
 
-         GenerateAvailableTiles()
+        GenerateAvailableTiles()
 
-     End Sub
+    End Sub
 
-     Public Sub GenerateAvailableTiles()
-         BandAvailableTiles.Clear()
-         BandAvailableTilesNameList.Clear()
+    Public Sub GenerateAvailableTiles()
+        BandAvailableTiles.Clear()
+        BandAvailableTilesNameList.Clear()
 
-         For Each BandTileItem In BandDefaultTiles
-             If Not IsTilePinned(BandTileItem) Then
-                 BandAvailableTiles.Add(BandTileItem)
-                 BandAvailableTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
-             End If
-         Next
-     End Sub
-     Public Sub SetBandTileInfo()
-         BandCurrentStartStrip = New StartStrip(UserEditedTiles)
-         BandClient.SetStartStrip(BandCurrentStartStrip)
-     End Sub
- End Module
- [[/code]]
+        For Each BandTileItem In BandDefaultTiles
+            If Not IsTilePinned(BandTileItem) Then
+                BandAvailableTiles.Add(BandTileItem)
+                BandAvailableTilesNameList.Add(BandTileItem.Name & " [GUID=" & BandTileItem.Id.ToString & "]")
+            End If
+        Next
+    End Sub
+    Public Sub SetBandTileInfo()
+        BandCurrentStartStrip = New StartStrip(UserEditedTiles)
+        BandClient.SetStartStrip(BandCurrentStartStrip)
+    End Sub
+End Module
+[[/code]]
 
- + 附注
++ 附注
 
- 一些特殊的磁贴，例如Starbucks、Facebook Messenger等，不会被包括在默认磁贴池中，但是它们拥有特定的GUID（通过{{System.Guid}}对象表示），可以通过硬编码的方法指定这些磁贴。本文没有实现这个方法。 
+一些特殊的磁贴，例如Starbucks、Facebook Messenger等，不会被包括在默认磁贴池中，但是它们拥有特定的GUID（通过{{System.Guid}}对象表示），可以通过硬编码的方法指定这些磁贴。本文没有实现这个方法。

@@ -6,14 +6,14 @@
 **故障处理：**使用{{Ctrl+Alt+F1}}组合键，切换到文字模式控制台并登录（也可以使用PuTTY等SSH工具进行远程控制台登录），执行：
 
 [[code]]
- dconf reset -f /org/gnome/
- sudo systemctl restart gdm
- [[/code]]
+dconf reset -f /org/gnome/
+sudo systemctl restart gdm
+[[/code]]
 
 故障解决。
 
 **参考资料：**
 
- *https://www.cnblogs.com/wutou/p/18577012
+*https://www.cnblogs.com/wutou/p/18577012
 
- *https://blog.csdn.net/phillihp/article/details/140203053 
+*https://blog.csdn.net/phillihp/article/details/140203053

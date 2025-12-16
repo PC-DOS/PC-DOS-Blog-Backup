@@ -1,22 +1,22 @@
 开始前，请先确认您的设备具有物理相机按键。
 
- 请以大容量存储器模式连接设备到计算机，并导航到{{%EFIESP%\EFI\Microsft\Boot}}目录，依次执行下列命令：
+请以大容量存储器模式连接设备到计算机，并导航到{{%EFIESP%\EFI\Microsft\Boot}}目录，依次执行下列命令：
 
 [[code]]
- bcdedit /store BCD /set "{bootmgr}" displaybootmenu on
- bcdedit /store BCD /set "{bootmgr}" timeout 25
- bcdedit /store BCD /deletevalue "{bootmgr}" customactions
- bcdedit /store BCD /deletevalue "{bootmgr}" custom:54000001
- bcdedit /store BCD /deletevalue "{bootmgr}" custom:54000002
- bcdedit /store BCD /displayorder "{default}" "{0ff5f24a-3785-4aeb-b8fe-4226215b88c4}" "{bd8951c4-eabd-4c6f-aafb-4ddb4eb0469b}" 
- [[/code]]
+bcdedit /store BCD /set "{bootmgr}" displaybootmenu on
+bcdedit /store BCD /set "{bootmgr}" timeout 25
+bcdedit /store BCD /deletevalue "{bootmgr}" customactions
+bcdedit /store BCD /deletevalue "{bootmgr}" custom:54000001
+bcdedit /store BCD /deletevalue "{bootmgr}" custom:54000002
+bcdedit /store BCD /displayorder "{default}" "{0ff5f24a-3785-4aeb-b8fe-4226215b88c4}" "{bd8951c4-eabd-4c6f-aafb-4ddb4eb0469b}" 
+[[/code]]
 
 再次启动系统时，将显示引导菜单。您可以通过音量键指定引导目标，并按相机键确认。
 
- 您也可以通过BOOTICE等工具，编辑BCD文件。
+您也可以通过BOOTICE等工具，编辑BCD文件。
 
- 在显示顺序中，有以下固定的GUID：
+在显示顺序中，有以下固定的GUID：
 
 * {{@@{default}@@}} - 默认的引导目标，即Windows操作系统。
 * {{@@{0ff5f24a-3785-4aeb-b8fe-4226215b88c4}@@}} - “FFU Loader”EFI程序，该程序位于EFIESP分区的{{\Windows\System32\Boot\ffuloader.efi}}文件中。该程序显示经典的“闪电齿轮”标志，并且可以与Windows Phone或Windows 10 Mobile OEM工具包随附的“FFUTool”小程序交互。
-* {{@@{bd8951c4-eabd-4c6f-aafb-4ddb4eb0469b}@@}} - “Reset My Phone”EFI程序，该程序位于EFIESP分区的{{\Windows\System32\Boot\resetmyphoneapp.efi}}文件中。该程序显示“感叹号”标志，用户可以通过固定按键顺序“音量增加，音量减少，电源，音量减少”执行强制重置。 
+* {{@@{bd8951c4-eabd-4c6f-aafb-4ddb4eb0469b}@@}} - “Reset My Phone”EFI程序，该程序位于EFIESP分区的{{\Windows\System32\Boot\resetmyphoneapp.efi}}文件中。该程序显示“感叹号”标志，用户可以通过固定按键顺序“音量增加，音量减少，电源，音量减少”执行强制重置。

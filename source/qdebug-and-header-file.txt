@@ -7,24 +7,24 @@ Qt的{{qDebug()}}提供了函数式用法与流式用法两种用法，流式用
 {{qDebug()}}的函数式用法类似{{printf()}}函数，该方法不需要引入头文件{{<qdebug.h>}}。
 
 [[code]]
- qDebug("Some text.");
- [[/code]]
+qDebug("Some text.");
+[[/code]]
 
- + 流式用法
++ 流式用法
 
 {{qDebug()}}的流式用法类似C++的标准输出流，需要引入头文件{{<qdebug.h>}}。
 
 [[code]]
- qDebug<<"iData="<<QString::number(iData);
- [[/code]]
+qDebug<<"iData="<<QString::number(iData);
+[[/code]]
 
- + 关闭输出
++ 关闭输出
 
- 在项目的pro文件中加入如下定义：
+在项目的pro文件中加入如下定义：
 
 [[code]]
- DEFINES += QT_NO_DEBUG_OUTPUT
- [[/code]]
+DEFINES += QT_NO_DEBUG_OUTPUT
+[[/code]]
 
 可以关闭{{qDebug()}}向控制台的显式输出。
 
@@ -32,4 +32,4 @@ Qt的{{qDebug()}}提供了函数式用法与流式用法两种用法，流式用
 
 *https://blog.csdn.net/u012151242/article/details/79814909
 
- *https://www.cnblogs.com/grandyang/p/4741544.html 
+*https://www.cnblogs.com/grandyang/p/4741544.html

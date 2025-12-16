@@ -3,17 +3,17 @@
 **故障处理：**观察安装时要求提供安装来源的错误提示，可以找到一个GUID：
 
 [[code]]
- C:\ProgramData\Package Cache\{B96F6FA1-530F-42F1-9F71-33C583716340}v14.20.27508\packages\vcRuntimeMinimum_x86\
- [[/code]]
+C:\ProgramData\Package Cache\{B96F6FA1-530F-42F1-9F71-33C583716340}v14.20.27508\packages\vcRuntimeMinimum_x86\
+[[/code]]
 
 在注册表编辑器中搜索该GUID（“{{@@{B96F6FA1-530F-42F1-9F71-33C583716340}@@}}”），并删除所有记录了该GUID的键，重新安装新版本，问题解决。
 
- 这些键可能位于：
+这些键可能位于：
 
 [[code]]
- HKEY_CLASSES_ROOT\Installer\Dependencies
- HKEY_CLASSES_ROOT\Installer\Products\
- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Products\
- HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\
- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\
- [[/code]] 
+HKEY_CLASSES_ROOT\Installer\Dependencies
+HKEY_CLASSES_ROOT\Installer\Products\
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Products\
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\
+[[/code]]

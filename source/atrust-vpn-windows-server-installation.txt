@@ -2,10 +2,10 @@
 
 **故障处理：**在安装文件文件名末尾添加“{{@@[WinServer]@@}}”字符串，故障解决。
 
- 例如，若原始安装文件文件名为“{{@@aTrustInstaller.exe@@}}”，则将安装文件改名为“{{@@aTrustInstaller[WinServer].exe@@}}”。
+例如，若原始安装文件文件名为“{{@@aTrustInstaller.exe@@}}”，则将安装文件改名为“{{@@aTrustInstaller[WinServer].exe@@}}”。
 
 **参考资料：** 
 
- *https://support.sangfor.com.cn/cases/read?product_id=19&category_id=3596
+*https://support.sangfor.com.cn/cases/read?product_id=19&category_id=3596
 
- *https://www.micoder.cc/blog/2761.html 
+*https://www.micoder.cc/blog/2761.html

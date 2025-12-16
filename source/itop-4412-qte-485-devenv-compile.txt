@@ -1,110 +1,110 @@
 [[toc]]
 
- + 设备和软件基本信息
++ 设备和软件基本信息
 
- 开发板为迅为iTop-4412精英版（Elite），核心板采用SCP封装，1 GB内存。
+开发板为迅为iTop-4412精英版（Elite），核心板采用SCP封装，1 GB内存。
 
- 开发计算机操作系统为Windows Server 2012 R2 Datacenter x64，在VMware Workstation Pro 15.5中运行64位Ubuntu 12.04.5 LTS系统。Ubuntu登录用户名为{{picsell-dois}}。
+开发计算机操作系统为Windows Server 2012 R2 Datacenter x64，在VMware Workstation Pro 15.5中运行64位Ubuntu 12.04.5 LTS系统。Ubuntu登录用户名为{{picsell-dois}}。
 
- 为便于操作，已将iTop-4412随附光盘内的文件挂载共享目录到Ubuntu的{{/mnt/hgfs/Shared/}}目录内的“iTOP-4412精英版光盘资料”文件夹。
+为便于操作，已将iTop-4412随附光盘内的文件挂载共享目录到Ubuntu的{{/mnt/hgfs/Shared/}}目录内的“iTOP-4412精英版光盘资料”文件夹。
 
 + 进入Root操作环境
 
- 为便于操作，进入Root操作环境。首先在Ubuntu终端中输入指令：
+为便于操作，进入Root操作环境。首先在Ubuntu终端中输入指令：
 
 [[code]]
- sudo passwd
- [[/code]]
+sudo passwd
+[[/code]]
 
 指定Root密码，随后输入指令：
 
 [[code]]
- su
- [[/code]]
+su
+[[/code]]
 
 进入Root操作环境。
 
- 若无特殊说明，以下操作均在Root操作环境下进行。
+若无特殊说明，以下操作均在Root操作环境下进行。
 
 + 配置所需的ARM编译器及环境变量
 
 Qt/E 4.8.5源代码使用arm-linux-gcc-4.3.2编译器编译，因此需要进行编译器配置：
 
 [[code]]
- cd /usr/local/arm/
- cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统arm-linux-gcc-4.3.2.tar.gz' ./
- tar -vxf arm-linux-gcc-4.3.2.tar.gz
- [[/code]]
+cd /usr/local/arm/
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统arm-linux-gcc-4.3.2.tar.gz' ./
+tar -vxf arm-linux-gcc-4.3.2.tar.gz
+[[/code]]
 
 配置环境变量：
 
 [[code]]
- sudo gedit /root/.bashrc
- [[/code]]
+sudo gedit /root/.bashrc
+[[/code]]
 
 通过在行首添加井号（“{{#}}”）的方式注释掉先前添加的其他编译器环境变量行（即{{export PATH=$PATH:/usr/local/arm/...}}这样的行），并在文件末尾添加：
 
 [[code]]
- #Compiler path for Qt/E 4.8.5
- export PATH=$PATH:/usr/local/arm/4.3.2/bin
- [[/code]]
+#Compiler path for Qt/E 4.8.5
+export PATH=$PATH:/usr/local/arm/4.3.2/bin
+[[/code]]
 
 保存并退出，回到终端并更新环境变量：
 
 [[code]]
- source /root/.bashrc
- [[/code]]
+source /root/.bashrc
+[[/code]]
 
 若需检查是否变更成功，可在终端输入{{arm}}并多次按键盘的{{TAB}}键触发系统的命令提示，如果提示列表中出现{{arm-none-linux-gnueabi-gcc-4.3.2}}命令，则可以认为操作成功。
 
- 同时，为了便于今后的操作，也可以使用{{exit}}命令临时退出Root环境、返回当前登录用户的操作环境，并采用和上面一致的方法更新当前用户的环境变量：
+同时，为了便于今后的操作，也可以使用{{exit}}命令临时退出Root环境、返回当前登录用户的操作环境，并采用和上面一致的方法更新当前用户的环境变量：
 
 [[code]]
- gedit ~/.bashrc
- source ~/.bashrc
- [[/code]]
+gedit ~/.bashrc
+source ~/.bashrc
+[[/code]]
 
- + 配置Qt/E 4.8.5编译环境
++ 配置Qt/E 4.8.5编译环境
 
 ++ 先导工作
 
- 前期工作需要借用Android 4.0.3的配置编译环境中的安装脚本，安装大量的程序包，和Android 4.0.3编译环境不同，可以不执行安装Java的脚本：
+前期工作需要借用Android 4.0.3的配置编译环境中的安装脚本，安装大量的程序包，和Android 4.0.3编译环境不同，可以不执行安装Java的脚本：
 
 [[code]]
- cd /home/picsell-dois/
- mkdir iTop4412
- cd iTop4412
- cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器及烧写工具/tools/Android_JDK.tar.bz2' ./
- tar -vxf Android_JDK.tar.bz2
- cd Android_JDK
- ./install-devel-packages.sh
- [[/code]]
+cd /home/picsell-dois/
+mkdir iTop4412
+cd iTop4412
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器及烧写工具/tools/Android_JDK.tar.bz2' ./
+tar -vxf Android_JDK.tar.bz2
+cd Android_JDK
+./install-devel-packages.sh
+[[/code]]
 
 可以再次执行{{./install-devel-packages.sh}}来确保程序包安装完整。
 
- 对于笔者使用的Ubuntu 12.04.5 LTS系统，须重新安装xorg以及libgl1-mesa库，否则重启虚拟机后可能无法进入图形界面：
+对于笔者使用的Ubuntu 12.04.5 LTS系统，须重新安装xorg以及libgl1-mesa库，否则重启虚拟机后可能无法进入图形界面：
 
 [[code]]
- apt-get install xorg
- apt-get install libgl1-mesa-glx:i386
- apt-get install libgl1-mesa-dev
- [[/code]]
+apt-get install xorg
+apt-get install libgl1-mesa-glx:i386
+apt-get install libgl1-mesa-dev
+[[/code]]
 
 请注意，以上代码块中提供的三行{{apt-get install}}指令是针对笔者使用的Ubuntu 12.04.5 LTS系统的，目的是修复执行{{./install-devel-packages.sh}}（这个脚本是针对Ubuntu 12.04.2 LTS编写的）时由于程序包冲突而被破坏的图形环境，并安装编译所需的正确的库。
 
- 如果您使用的是Ubuntu 12.04.2 LTS系统，那么只需要执行{{./install-devel-packages.sh}}安装随iTop-4412光盘提供的脚本即可，千万不要执行上代码块中提供的三行{{apt-get install}}指令，否则您的操作系统将无法启动到图形界面。
+如果您使用的是Ubuntu 12.04.2 LTS系统，那么只需要执行{{./install-devel-packages.sh}}安装随iTop-4412光盘提供的脚本即可，千万不要执行上代码块中提供的三行{{apt-get install}}指令，否则您的操作系统将无法启动到图形界面。
 
- 最后，依次执行：
+最后，依次执行：
 
 [[code]]
- apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
- update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100
- update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50
- update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
- update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
- update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
- update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.6 50
- [[/code]]
+apt-get install gcc-4.4 g++-4.4 g++-4.4-multilib gcc-4.4-multilib
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.4 100
+update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.6 50
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.4 100
+update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.6 50
+update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.4 100
+update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.6 50
+[[/code]]
 
 降低Ubuntu系统自带的GCC版本到4.4.7，在终端输入{{gcc -v}}指令并按回车键执行，即可检查GCC版本。
 
@@ -112,146 +112,146 @@ Qt/E 4.8.5源代码使用arm-linux-gcc-4.3.2编译器编译，因此需要进行
 随iTop-4412光盘提供的{{install-devel-packages.sh}}的文件内容如下：
 
 [[code]]
- #!/bin/bash
+#!/bin/bash
 
- ####################################################################
- # Warning:
- # Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
- # with the old glx packages.
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
 
- # ------------------------------------------------------------------
- # 12.04                --> 12.04.2 (*-lts-quantal)
- # ------------------------------------------------------------------
- # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
- # libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
- # ------------------------------------------------------------------
- #
- # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
- # your system.
- ####################################################################
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+####################################################################
 
- # Execute an action
- FA_DoExec() {
-     echo "==> Executing: '${@}'"
-     eval $@ || exit $?
- }
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
 
- # Ubuntu 12.04.2 LTS
- FA_DoExec apt-get install \
-     git gnupg flex bison gperf build-essential \
-     zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-     libx11-dev:i386 libreadline6-dev:i386 \
-     libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
-     g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-     python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+# Ubuntu 12.04.2 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
 
- if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-     FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-         /usr/lib/i386-linux-gnu/libGL.so
- fi
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
+fi
 
- # Development support
- FA_DoExec apt-get install \
-     vim dos2unix minicom gawk
- [[/code]]
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
 
 由此可知，由于Ubuntu 12.04.2 LTS修改了用于图形界面的X程序堆栈，因此{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库需要使用等价的{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}进行替换。
 
- 但是，实验显示，在Ubuntu 12.04.5 LTS中，试图安装{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}两个库会导致图形环境遭到破坏，反而需要使用{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库。
+但是，实验显示，在Ubuntu 12.04.5 LTS中，试图安装{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}两个库会导致图形环境遭到破坏，反而需要使用{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库。
 
- 因此，在Ubuntu 12.04.5 LTS上执行时，可以用以下内容替换{{install-devel-packages.sh}}文件的原始内容，以安装正确的程序包：
-
-[[code]]
- #!/bin/bash
-
- ####################################################################
- # Warning:
- # Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
- # with the old glx packages.
-
- # ------------------------------------------------------------------
- # 12.04                --> 12.04.2 (*-lts-quantal)
- # ------------------------------------------------------------------
- # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
- # libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
- # ------------------------------------------------------------------
- #
- # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
- # your system.
- #
- # In Ubuntu 12.04.5 LTS, please use libgl1-mesa-glx:i386 and libgl1-
- # mesa-dev.
- ####################################################################
-
- # Execute an action
- FA_DoExec() {
-     echo "==> Executing: '${@}'"
-     eval $@ || exit $?
- }
-
- # Ubuntu 12.04.5 LTS
- FA_DoExec apt-get install \
-     git gnupg flex bison gperf build-essential \
-     zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-     libx11-dev:i386 libreadline6-dev:i386 \
-     libgl1-mesa-glx:i386 libgl1-mesa-dev \
-     g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-     python-markdown libxml2-utils xsltproc zlib1g-dev:i386
-
- if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-     FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-         /usr/lib/i386-linux-gnu/libGL.so
- fi
-
- # Development support
- FA_DoExec apt-get install \
-     vim dos2unix minicom gawk
- [[/code]]
- [[/collapsible]]
-
- ++ 补充库文件
-
- 通过以下指令序列，配置Qt/E 4.8.5所需的库文件：
+因此，在Ubuntu 12.04.5 LTS上执行时，可以用以下内容替换{{install-devel-packages.sh}}文件的原始内容，以安装正确的程序包：
 
 [[code]]
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
- cp ./tslib.tar.gz /usr/local/
- cd /usr/local/
- tar -vxf tslib.tar.gz
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
- cp ./libXext.so.6.4.0 /usr/lib32/
- cp ./libXmu.so.6.2.0 /usr/lib32/
- cp ./libSM.so.6.0.1 /usr/lib32/
- cp ./libICE.so.6.3.0 /usr/lib32/
- cp ./libXt.so.6.0.0 /usr/lib32/
- cd /usr/lib32/
- ln -s libXext.so.6.4.0 libXext.so.6
- ln -s libXext.so.6 libXext.so
- ln -s libXmu.so.6.2.0 libXmu.so.6
- ln -s libXmu.so.6 libXmu.so
- ln -s libSM.so.6.0.1 libSM.so.6
- ln -s libSM.so.6 libSM.so
- ln -s libICE.so.6.3.0 libICE.so.6
- ln -s libICE.so.6 libICE.so
- ln -s libXt.so.6.0.0 libXt.so.6
- ln -s libXt.so.6 libXt.so
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
- cp ./libuuid.so.1.3.0 /lib32/
- cd /lib32/
- ln -s libuuid.so.1.3.0 libuuid.so.1
- ln -s libuuid.so.1 libuuid.so
- [[/code]]
+#!/bin/bash
 
- ++ 安装生成系统镜像文件所需的工具
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
 
- 为了生成系统镜像{{system.img}}，需要安装mkimage工具：
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+#
+# In Ubuntu 12.04.5 LTS, please use libgl1-mesa-glx:i386 and libgl1-
+# mesa-dev.
+####################################################################
+
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
+
+# Ubuntu 12.04.5 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx:i386 libgl1-mesa-dev \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
+fi
+
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
+[[/collapsible]]
+
+++ 补充库文件
+
+通过以下指令序列，配置Qt/E 4.8.5所需的库文件：
 
 [[code]]
- cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器以及烧写工具/tools/'
- cp ./linux_tools.tgz /
- cd /
- tar -vxf linux_tools.tgz
- [[/code]]
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./tslib.tar.gz /usr/local/
+cd /usr/local/
+tar -vxf tslib.tar.gz
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./libXext.so.6.4.0 /usr/lib32/
+cp ./libXmu.so.6.2.0 /usr/lib32/
+cp ./libSM.so.6.0.1 /usr/lib32/
+cp ./libICE.so.6.3.0 /usr/lib32/
+cp ./libXt.so.6.0.0 /usr/lib32/
+cd /usr/lib32/
+ln -s libXext.so.6.4.0 libXext.so.6
+ln -s libXext.so.6 libXext.so
+ln -s libXmu.so.6.2.0 libXmu.so.6
+ln -s libXmu.so.6 libXmu.so
+ln -s libSM.so.6.0.1 libSM.so.6
+ln -s libSM.so.6 libSM.so
+ln -s libICE.so.6.3.0 libICE.so.6
+ln -s libICE.so.6 libICE.so
+ln -s libXt.so.6.0.0 libXt.so.6
+ln -s libXt.so.6 libXt.so
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/patch/'
+cp ./libuuid.so.1.3.0 /lib32/
+cd /lib32/
+ln -s libuuid.so.1.3.0 libuuid.so.1
+ln -s libuuid.so.1 libuuid.so
+[[/code]]
+
+++ 安装生成系统镜像文件所需的工具
+
+为了生成系统镜像{{system.img}}，需要安装mkimage工具：
+
+[[code]]
+cd '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/02_编译器以及烧写工具/tools/'
+cp ./linux_tools.tgz /
+cd /
+tar -vxf linux_tools.tgz
+[[/code]]
 
 至此，Qt/E 4.8.5编译和镜像构建环境搭建完毕。
 
@@ -259,153 +259,153 @@ Qt/E 4.8.5源代码使用arm-linux-gcc-4.3.2编译器编译，因此需要进行
 
 Qt/E 4.8.5的源代码可以在[*https://download.qt.io/archive/qt/ Qt官方下载页面]找到。
 
- 下载地址：*https://download.qt.io/archive/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.tar.gz
+下载地址：*https://download.qt.io/archive/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.tar.gz
 
 下载的文件放置在虚拟机与宿主机共享的目录的根目录下，即文件在Ubuntu中的位置为：
 
 [[code]]
- /mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz
- [[/code]]
+/mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz
+[[/code]]
 
- + 复制Qt/E 4.8.5源代码
++ 复制Qt/E 4.8.5源代码
 
- 继续使用Root身份操作，在{{/root/}}目录下建立{{yizhi}}目录，请注意，建议不要使用别的目录名称。
+继续使用Root身份操作，在{{/root/}}目录下建立{{yizhi}}目录，请注意，建议不要使用别的目录名称。
 
- 随后，创建一个{{qt-everywhere-opensource-src-4.8.5}}目录，并复制Qt/E 4.8.5源码文件到该目录中：
+随后，创建一个{{qt-everywhere-opensource-src-4.8.5}}目录，并复制Qt/E 4.8.5源码文件到该目录中：
 
 [[code]]
- cd /root/
- mkdir yizhi
- cd yizhi
- mkdir qt-everywhere-opensource-src-4.8.5
- cd qt-everywhere-opensource-src-4.8.5
- cp '/mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz' ./
- [[/code]]
+cd /root/
+mkdir yizhi
+cd yizhi
+mkdir qt-everywhere-opensource-src-4.8.5
+cd qt-everywhere-opensource-src-4.8.5
+cp '/mnt/hgfs/Shared/qt-everywhere-opensource-src-4.8.5.tar.gz' ./
+[[/code]]
 
- + 向ARM开发板编译Qt/E 4.8.5源代码
++ 向ARM开发板编译Qt/E 4.8.5源代码
 
 ++ 建立编译脚本
 
- 这里的编译脚本基于迅为提供的Qt/E 4.7.1编译脚本修改而来。
+这里的编译脚本基于迅为提供的Qt/E 4.7.1编译脚本修改而来。
 
- 在{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录中创建一个{{build-all}}脚本并打开：
+在{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录中创建一个{{build-all}}脚本并打开：
 
 [[code]]
- cd /root/yizhi/qt-everywhere-opensource-src-4.8.5
- sudo gedit build-all
- [[/code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5
+sudo gedit build-all
+[[/code]]
 
 输入以下内容，保存并退出编辑器：
 
 [[code]]
- #/bin/bash
+#/bin/bash
 
- export PATH=/usr/local/arm/4.3.2/bin:$PATH
- export PKG_CONFIG_PREFIX=$TOOLCHAIN/arm-none-linux-gnueabi
- export TB_CC_PREFIX=arm-linux-
- export TOOLCHAIN=/usr/local/arm/4.3.2
-
-
- rm -fr qt-everywhere-opensource-src-4.8.5
- rm -fr /opt/qt-4.8.5
-
- tar xfvz qt-everywhere-opensource-src-4.8.5.tar.gz
-
- cd qt-everywhere-opensource-src-4.8.5
-
- echo yes | ./configure -opensource -embedded arm -xplatform qws/linux-arm-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-tslib -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.5   -I /usr/local/tslib/include -L /usr/local/tslib/lib
+export PATH=/usr/local/arm/4.3.2/bin:$PATH
+export PKG_CONFIG_PREFIX=$TOOLCHAIN/arm-none-linux-gnueabi
+export TB_CC_PREFIX=arm-linux-
+export TOOLCHAIN=/usr/local/arm/4.3.2
 
 
- make 2>&1 | tee ../qte4.8.5Makelog && make install
- [[/code]]
+rm -fr qt-everywhere-opensource-src-4.8.5
+rm -fr /opt/qt-4.8.5
 
- ++ 修改编译脚本的权限
+tar xfvz qt-everywhere-opensource-src-4.8.5.tar.gz
 
- 新创建的编译脚本没有执行权限，因此需要授权：
+cd qt-everywhere-opensource-src-4.8.5
 
-[[code]]
- cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
- chmod 777 build-all
- [[/code]]
+echo yes | ./configure -opensource -embedded arm -xplatform qws/linux-arm-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-tslib -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.5   -I /usr/local/tslib/include -L /usr/local/tslib/lib
 
- ++ 编译Qt/E 4.8.5源代码
 
- 建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录内，运行编译脚本：
+make 2>&1 | tee ../qte4.8.5Makelog && make install
+[[/code]]
+
+++ 修改编译脚本的权限
+
+新创建的编译脚本没有执行权限，因此需要授权：
 
 [[code]]
- cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
- chmod 777 build-all
- ./build-all
- [[/code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
+chmod 777 build-all
+[[/code]]
+
+++ 编译Qt/E 4.8.5源代码
+
+建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录内，运行编译脚本：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
+chmod 777 build-all
+./build-all
+[[/code]]
 
 编译时间可能较长。编译得到的文件位于{{/opt}}目录中。
 
 ++ 生成系统映像文件
 
- 从这里开始可以退出Root操作环境，亦可继续留在Root操作环境。为便于操作以及后续代码修改，此处选择退出Root操作环境，并在登录用户目录内进行处理：
+从这里开始可以退出Root操作环境，亦可继续留在Root操作环境。为便于操作以及后续代码修改，此处选择退出Root操作环境，并在登录用户目录内进行处理：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/
- mkdir Qtopia
- cd Qtopia
- cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/root_2020115.tar.gz' ./
- tar -vxf root_2020115.tar.gz
- [[/code]]
+cd /home/picsell-dois/iTop4412/
+mkdir Qtopia
+cd Qtopia
+cp '/mnt/hgfs/Shared/iTOP-4412精英版光盘资料/08_源码_QtE以及qtopia2.2.0文件系统/root_2020115.tar.gz' ./
+tar -vxf root_2020115.tar.gz
+[[/code]]
 
 请注意：不同的版本的“{{root_@@********@@.tar.gz}}”中的日期项的值可能不同。
 
- 随后，导出编译得到的文件：
+随后，导出编译得到的文件：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/
- cp -r /opt/qt-4.8.5 /home/picsell-dois/iTop4412/Qtopia/root/opt
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+cp -r /opt/qt-4.8.5 /home/picsell-dois/iTop4412/Qtopia/root/opt
+[[/code]]
 
 创建一个是用于Qt/E 4.8.5的配置文件：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/root/bin
- cp qt4 qt4.8.5
- sudo gedit qt4.8.5
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/root/bin
+cp qt4 qt4.8.5
+sudo gedit qt4.8.5
+[[/code]]
 
 在打开的编辑器中，将{{export QTDIR=}}行的内容修改为：
 
 [[code]]
- export QTDIR=/opt/qt-4.8.5/
- [[/code]]
+export QTDIR=/opt/qt-4.8.5/
+[[/code]]
 
 并检查其它含有类似“{{qt-4.7.1}}”字样的内容替换为“{{qt-4.8.5}}，保存并退出编辑器。
 
- 配置自动运行：
+配置自动运行：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/root/etc/init.d
- sudo gedit rcS
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/root/etc/init.d
+sudo gedit rcS
+[[/code]]
 
 编辑该文件，文件末尾有以下行：
 
 [[code]]
- #/bin/qtopia &
- /bin/qt4 &
- [[/code]]
+#/bin/qtopia &
+/bin/qt4 &
+[[/code]]
 
 通过在行首添加井号（“{{#}}”）的方式，将这两行全部设为注释状态，并在这两行后新建一行，输入：
 
 [[code]]
- /bin/qt4.8.5 &
- [[/code]]
+/bin/qt4.8.5 &
+[[/code]]
 
 保存并退出编辑器。
 
- 一切确认无误后，在终端中执行：
+一切确认无误后，在终端中执行：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/
- rm system.img
- make_ext4fs -s -l 512M -a root -L linux system.img root
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+rm system.img
+make_ext4fs -s -l 512M -a root -L linux system.img root
+[[/code]]
 
 执行完毕后，在{{/home/picsell-dois/iTop4412/Qtopia/}}目录下即可得到{{system.img}}镜像文件。
 
@@ -413,115 +413,115 @@ Qt/E 4.8.5的源代码可以在[*https://download.qt.io/archive/qt/ Qt官方下�
 
 ++ 建立主机端编译脚本
 
- 这里的编译脚本基于迅为提供的Qt/E 4.7.1编译脚本修改而来。
+这里的编译脚本基于迅为提供的Qt/E 4.7.1编译脚本修改而来。
 
- 在{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录中创建一个{{build-intel}}脚本并打开：
+在{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录中创建一个{{build-intel}}脚本并打开：
 
 [[code]]
- cd /root/yizhi/qt-everywhere-opensource-src-4.8.5
- sudo gedit build-intel
- [[/code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5
+sudo gedit build-intel
+[[/code]]
 
 输入以下内容，保存并退出编辑器：
 
 [[code]]
- #/bin/bash
+#/bin/bash
 
- export PATH=/usr/bin:$PATH
- export PKG_CONFIG_PREFIX=$TOOLCHAIN
- export TOOLCHAIN=/usr/bin/
+export PATH=/usr/bin:$PATH
+export PKG_CONFIG_PREFIX=$TOOLCHAIN
+export TOOLCHAIN=/usr/bin/
 
- rm -fr qt-everywhere-opensource-src-4.8.5
- rm -fr /opt/qt-4.8.5-intel
+rm -fr qt-everywhere-opensource-src-4.8.5
+rm -fr /opt/qt-4.8.5-intel
 
- tar xfvz qt-everywhere-opensource-src-4.8.5.tar.gz
+tar xfvz qt-everywhere-opensource-src-4.8.5.tar.gz
 
- cd qt-everywhere-opensource-src-4.8.5
+cd qt-everywhere-opensource-src-4.8.5
 
- echo yes | ./configure -opensource -xplatform linux-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.5-intel
+echo yes | ./configure -opensource -xplatform linux-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.5-intel
 
- make 2>&1 | tee ../qte4.8.5Makelog && make install
- [[/code]]
+make 2>&1 | tee ../qte4.8.5Makelog && make install
+[[/code]]
 
- ++ 修改主机端编译脚本的权限
+++ 修改主机端编译脚本的权限
 
- 新创建的编译脚本没有执行权限，因此需要授权：
-
-[[code]]
- cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
- chmod 777 build-intel
- [[/code]]
-
- ++ 编译Qt/E 4.8.5源代码
-
- 建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录内，运行编译脚本：
+新创建的编译脚本没有执行权限，因此需要授权：
 
 [[code]]
- cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
- chmod 777 build-intel
- ./build-intel
- [[/code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
+chmod 777 build-intel
+[[/code]]
+
+++ 编译Qt/E 4.8.5源代码
+
+建议再次检查各环环境配是否正确，并确保当前位于{{/root/yizhi/qt-everywhere-opensource-src-4.8.5}}目录内，运行编译脚本：
+
+[[code]]
+cd /root/yizhi/qt-everywhere-opensource-src-4.8.5/
+chmod 777 build-intel
+./build-intel
+[[/code]]
 
 编译时间可能较长。编译得到的文件位于{{/opt}}目录中。
 
 + 安装和配置QtCreator
 
- ++ 安装Qt Creator 5.3.2
+++ 安装Qt Creator 5.3.2
 
 从 *http://download.qt.io/new_archive/qt/5.3/5.3.2/ 下载[*http://download.qt.io/new_archive/qt/5.3/5.3.2/qt-opensource-linux-x64-android-5.3.2.run qt-opensource-linux-x64-android-5.3.2.run]。在终端中定位到该文件所在目录并执行：
 
 [[code]]
- ./qt-opensource-linux-x64-android-5.3.2.run
- [[/code]]
+./qt-opensource-linux-x64-android-5.3.2.run
+[[/code]]
 
 开始安装（是否用{{sudo}}指令以Root身份运行可随意）。
 
 ++ 配置Qt/E 4.8.5主机端编译套件
 
- 从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
+从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
 
- 切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中用于主机的Qt/E 4.8.5的{{qmake}}文件，由于已经向主机编译过Qt/E 4.8.5，因此{{qmake}}文件位于：
+切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中用于主机的Qt/E 4.8.5的{{qmake}}文件，由于已经向主机编译过Qt/E 4.8.5，因此{{qmake}}文件位于：
 
 [[code]]
- /opt/qt-4.8.5-intel/bin/qmake
- [[/code]]
+/opt/qt-4.8.5-intel/bin/qmake
+[[/code]]
 
 点击 [Apply] 按钮。
 
- 切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 根据主机的实际情况选择QtCreator自带的GCC编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.8.5。
+切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 根据主机的实际情况选择QtCreator自带的GCC编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.8.5。
 
- 点击 [OK] 按钮，保存退出。
+点击 [OK] 按钮，保存退出。
 
 ++ 配置Qt/E 4.8.5开发板端编译套件
 
- 从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
+从Ubuntu程序启动器启动Qt Creator，点击菜单栏的 [工具(Tools)] > [选项(Options)] > [构建和运行(Build & Run)]。
 
- 首先，切换到 [编译器(Compilers)] 选项卡，点击 [添加(Add)] > [GCC]，[名称(Name)]可自由填写，[编译器路径(Compiler path)] 填写为：
+首先，切换到 [编译器(Compilers)] 选项卡，点击 [添加(Add)] > [GCC]，[名称(Name)]可自由填写，[编译器路径(Compiler path)] 填写为：
 
 [[code]]
- /usr/local/arm/4.4.1/bin/arm-none-linux-gnueabi-gcc
- [[/code]]
+/usr/local/arm/4.4.1/bin/arm-none-linux-gnueabi-gcc
+[[/code]]
 
 点击 [Apply] 按钮。
 
- 随后，切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中Qt/E 4.8.5的{{qmake}}文件，由于已经向开发板编译过Qt/E 4.8.5，因此{{qmake}}文件位于：
+随后，切换到 [Qt Versions] 选项卡，点击 [添加...(Add...)] 按钮，导航并选中Qt/E 4.8.5的{{qmake}}文件，由于已经向开发板编译过Qt/E 4.8.5，因此{{qmake}}文件位于：
 
 [[code]]
- /opt/qt-4.8.5/bin/qmake
- [[/code]]
+/opt/qt-4.8.5/bin/qmake
+[[/code]]
 
 点击 [Apply] 按钮。
 
- 最后，切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 为之前添加的ARM编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.8.5。
+最后，切换到 [构建套件(Kit)] 选项卡，点击 [添加(Add)]按钮，建立一个套件，[编译器(Compiler)] 为之前添加的ARM编译器，[Qt 版本(Qt version)] 为之前添加的Qt 4.8.5。
 
- 点击 [OK] 按钮，保存退出。
+点击 [OK] 按钮，保存退出。
 
 ++ 使用Qt/E 4.8.5编译套件
 
- 对于新建的项目，在 [Kit Selection] 界面，勾选之前添加的Qt 4.8.5套件即可。
+对于新建的项目，在 [Kit Selection] 界面，勾选之前添加的Qt 4.8.5套件即可。
 
- 对于已有的项目，打开项目后切换到左侧栏的 [项目(Projects)] 选项卡，点击 [添加构建套件(Add kit)]按钮，添加先前配置的Qt 4.8.5套件即可。
+对于已有的项目，打开项目后切换到左侧栏的 [项目(Projects)] 选项卡，点击 [添加构建套件(Add kit)]按钮，添加先前配置的Qt 4.8.5套件即可。
 
 ++ 故障排除
 
- 如果向Qt 4.8.5编译时出现“ui_MainWindow.h Error 1”等错误，可能由兼容性问题引发，建议右键点击错误窗格并切换到详细信息模式，检查出错原因。 
+如果向Qt 4.8.5编译时出现“ui_MainWindow.h Error 1”等错误，可能由兼容性问题引发，建议右键点击错误窗格并切换到详细信息模式，检查出错原因。

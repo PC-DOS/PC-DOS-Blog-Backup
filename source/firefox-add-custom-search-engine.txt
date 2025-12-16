@@ -1,5 +1,5 @@
 [*https://mycroftproject.com/ Mycroft Project]为Firefox提供了添加用户自定义搜索引擎的方案。
 
- 对于未收录的搜索引擎，可以使用[*https://mycroftproject.com/submitos.html Submission Utility]提交自定义的搜索引擎信息。
+对于未收录的搜索引擎，可以使用[*https://mycroftproject.com/submitos.html Submission Utility]提交自定义的搜索引擎信息。
 
- 参考资料：*https://blog.csdn.net/VcHcia/article/details/121329063 
+参考资料：*https://blog.csdn.net/VcHcia/article/details/121329063

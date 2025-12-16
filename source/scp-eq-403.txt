@@ -1,17 +1,17 @@
 [[>]]
- [[module Rate]]
- [[/>]]
+[[module Rate]]
+[[/>]]
 
- [[module ListPages category="fragment" parent="." limit="1" order="name" offset="@URL|0"]]
- %%content%%
- [[/module]]
+[[module ListPages category="fragment" parent="." limit="1" order="name" offset="@URL|0"]]
+%%content%%
+[[/module]]
 
- [[div style="display:none"]]
+[[div style="display:none"]]
 段落页面地址如下：
 /fragment:scp-eq-403-01
- /fragment:scp-eq-403-02
- [[/div]]
+/fragment:scp-eq-403-02
+[[/div]]
 
- [[=]]
- << [[[SCP-EQ-402]]] | SCP-EQ-403 | [[[SCP-EQ-404]]] >>
- [[/=]] 
+[[=]]
+<< [[[SCP-EQ-402]]] | SCP-EQ-403 | [[[SCP-EQ-404]]] >>
+[[/=]]

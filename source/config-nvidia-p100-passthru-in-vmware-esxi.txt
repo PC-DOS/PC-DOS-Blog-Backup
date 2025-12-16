@@ -1,78 +1,78 @@
 + 宿主机设备环境
 
 **制造商：**Supermicro
- **型号：**SYS-4028GR-TR
- **CPU：**20 CPUs x Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz
- **内存：**：256 GB
- **硬盘：**512 GB SSD + 2 TB + 2 TB
- **VMWare ESXi版本：**6.7.0
- **GPU：**3 x NVIDIA Tesla P100 [16GB]
+**型号：**SYS-4028GR-TR
+**CPU：**20 CPUs x Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz
+**内存：**：256 GB
+**硬盘：**512 GB SSD + 2 TB + 2 TB
+**VMWare ESXi版本：**6.7.0
+**GPU：**3 x NVIDIA Tesla P100 [16GB]
 
- + 虚拟机配置
++ 虚拟机配置
 
 ++ 虚拟机1
 
- **操作系统：**Windows Server 2016 DataCenter
- **虚拟CPU核心数：**16
- **虚拟CPU插槽数：**1
- **直通GPU数量：**1
- **显存总数：**16 GB
- **内存大小：**64 GB
+**操作系统：**Windows Server 2016 DataCenter
+**虚拟CPU核心数：**16
+**虚拟CPU插槽数：**1
+**直通GPU数量：**1
+**显存总数：**16 GB
+**内存大小：**64 GB
 
- ++ 虚拟机2
+++ 虚拟机2
 
- **操作系统：**CentOS 8
- **虚拟CPU核心数：**20
- **虚拟CPU插槽数：**2
- **直通GPU数量：**2
- **显存总数：**32 GB
- **内存大小：**64 GB
+**操作系统：**CentOS 8
+**虚拟CPU核心数：**20
+**虚拟CPU插槽数：**2
+**直通GPU数量：**2
+**显存总数：**32 GB
+**内存大小：**64 GB
 
- + GPU直通配置
++ GPU直通配置
 
 ++ 宿主机BIOS层面
 
- 在宿主机BIOS层面，应保证“Above 4G Decoding”、“Memory Mapped I/O Above 4GB”或“PCI 64 bit Resource Handing Above 4G”设定项处于启用（Enable）状态，您通常可以在BIOS的PCI选项中找到它们。
+在宿主机BIOS层面，应保证“Above 4G Decoding”、“Memory Mapped I/O Above 4GB”或“PCI 64 bit Resource Handing Above 4G”设定项处于启用（Enable）状态，您通常可以在BIOS的PCI选项中找到它们。
 
 ++ VMWare ESXi系统层面
 
- 在VMWare ESXi Web管理界面，导航到 [主机] > [管理] > [硬件] > [PCI设备] 页面，勾选需要使用直通功能的设备，点击 [切换直通] 按钮，启用直通功能，并重启宿主机。
+在VMWare ESXi Web管理界面，导航到 [主机] > [管理] > [硬件] > [PCI设备] 页面，勾选需要使用直通功能的设备，点击 [切换直通] 按钮，启用直通功能，并重启宿主机。
 
 ++ 虚拟机配置层面
 
- 在VMWare ESXi Web管理界面，导航到 [虚拟机] 页面，点击需要加入直通设备的虚拟机，进入其详细信息页面，点击 [编辑] 按钮，打开 [编辑设置] 窗格。
+在VMWare ESXi Web管理界面，导航到 [虚拟机] 页面，点击需要加入直通设备的虚拟机，进入其详细信息页面，点击 [编辑] 按钮，打开 [编辑设置] 窗格。
 
- 开始添加直通的PCI设备前，应确保以下复选框处于未勾选状态，且设置变更已保存：
+开始添加直通的PCI设备前，应确保以下复选框处于未勾选状态，且设置变更已保存：
 
 * [虚拟硬件] > [CPU] > [硬件虚拟化] > [向客户机操作系统公开硬件辅助的虚拟化]
- * [虚拟硬件] > [CPU] > [IOMMU] > [向客户机操作系统公开IOMMU]
- * [虚拟机选项] > [VBS] > [启用基于虚拟化的安全性]
+* [虚拟硬件] > [CPU] > [IOMMU] > [向客户机操作系统公开IOMMU]
+* [虚拟机选项] > [VBS] > [启用基于虚拟化的安全性]
 
 若不关闭这些项目，则无法保存添加的PCI设备，并提示“启用了嵌套硬件辅助的虚拟化时，无法添加 PCI 直通设备”错误。
 
- 同时，需要勾选[虚拟硬件] > [内存] > [预留所有客户机内存（全部锁定）]。
+同时，需要勾选[虚拟硬件] > [内存] > [预留所有客户机内存（全部锁定）]。
 
- 然后，请导航到 [虚拟机选项] > [高级] > [配置参数]，点击 [编辑配置...] 按钮，在弹出的 [配置参数] 窗格中，点击 [添加参数] 添加下列键值对：
+然后，请导航到 [虚拟机选项] > [高级] > [配置参数]，点击 [编辑配置...] 按钮，在弹出的 [配置参数] 窗格中，点击 [添加参数] 添加下列键值对：
 
 ||~ 键 ||~ 值 ||
- ||= {{pciPassthru.use64bitMMIO}} ||= TRUE ||
- ||= {{pciPassthru.64bitMMIOSizeGB}} ||= 大于欲添加的GPU直通设备的显存以GB为单位计算之和的第一个2的整数幂[[footnote]]例如，假设您希望添加2块计算卡，其显存之和为32GB，则此处应填写64。[[/footnote]] ||
- ||= {{hypervisor.cpuid.v0}} ||= FALSE ||
+||= {{pciPassthru.use64bitMMIO}} ||= TRUE ||
+||= {{pciPassthru.64bitMMIOSizeGB}} ||= 大于欲添加的GPU直通设备的显存以GB为单位计算之和的第一个2的整数幂[[footnote]]例如，假设您希望添加2块计算卡，其显存之和为32GB，则此处应填写64。[[/footnote]] ||
+||= {{hypervisor.cpuid.v0}} ||= FALSE ||
 
 确认无误后，请点击 [确定] 按钮，保存参数设置。
 
- 最后，点击 [保存] 按钮，存储虚拟机配置信息。
+最后，点击 [保存] 按钮，存储虚拟机配置信息。
 
 ++ 虚拟机操作系统层面
 
- 虚拟机操作系统层面，仅需按照标准流程安装NVIDIA Tesla P100驱动程序即可。
+虚拟机操作系统层面，仅需按照标准流程安装NVIDIA Tesla P100驱动程序即可。
 
- 请注意，配置了PCI直通的虚拟机仅能在关机状态下建立快照，且不能勾选 [生成虚拟机内存的快照] 复选框。
+请注意，配置了PCI直通的虚拟机仅能在关机状态下建立快照，且不能勾选 [生成虚拟机内存的快照] 复选框。
 
 + 参考资料
 
 *https://blogs.vmware.com/apps/2018/10/how-to-enable-nvidia-v100-gpu-in-passthrough-mode-on-vsphere-for-machine-learning-and-other-hpc-workloads.html
 
- *https://www.chiphell.com/thread-2184432-1-1.html
+*https://www.chiphell.com/thread-2184432-1-1.html
 
- *https://blog.csdn.net/Splend520/article/details/108412670 
+*https://blog.csdn.net/Splend520/article/details/108412670

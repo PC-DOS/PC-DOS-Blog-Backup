@@ -2,4 +2,4 @@
 
 **故障排查：**起初使用SysInternals Suite的Boot Log功能分析开机日志，发现系统在完成对{{HKLM\System\CurrentControlSet\Control\PnP}}注册表项的操作后暂停了约1分钟，但未发现明显的阻塞。所有系统磁盘状态正常。
 
- 随后检查系统新安装的驱动程序，并卸载Fresco Logic PCI-E转USB3.0卡驱动程序（版本3.8.33514.0，2019年版），并将其回滚到Windows Server 2012 R2自带的驱动程序版本后，Windows启动时间恢复正常。 
+随后检查系统新安装的驱动程序，并卸载Fresco Logic PCI-E转USB3.0卡驱动程序（版本3.8.33514.0，2019年版），并将其回滚到Windows Server 2012 R2自带的驱动程序版本后，Windows启动时间恢复正常。

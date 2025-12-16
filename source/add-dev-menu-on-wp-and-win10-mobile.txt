@@ -1,39 +1,39 @@
 [[module css]]
- .win10-link-button {
-     margin-top: 1em;
-     margin-bottom: 1em;
-     color: #fff;
-     background-color: #004b91;
-     padding: 0.75em;
-     font-size: 105%;
-     text-decoration:none;
- }
+.win10-link-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #004b91;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
 
- .win10-link-button:hover {
-     margin-top: 1em;
-     margin-bottom: 1em;
-     color: #fff;
-     background-color: #0073d7;
-     padding: 0.75em;
-     font-size: 105%;
-     text-decoration:none;
- }
- [[/module]]
+.win10-link-button:hover {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #0073d7;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
+[[/module]]
 
 开始前，请先确认您的设备具有物理相机按键。本版本的开发者菜单为ARM32版本。
 
- 对于Secure Boot处于启用状态的设备（例如通过Windows Phone Internals解锁的设备），请下载这个版本：
+对于Secure Boot处于启用状态的设备（例如通过Windows Phone Internals解锁的设备），请下载这个版本：
 
 *http://pc-dos.scp-eq.org/local--files/add-dev-menu-on-wp-and-win10-mobile/AddDevMenu_Production.zip
 
- [[a href="*http://pc-dos.scp-eq.org/local--files/add-dev-menu-on-wp-and-win10-mobile/AddDevMenu_Production.zip" class="win10-link-button"]]下载文件[[/a]]
+[[a href="*http://pc-dos.scp-eq.org/local--files/add-dev-menu-on-wp-and-win10-mobile/AddDevMenu_Production.zip" class="win10-link-button"]]下载文件[[/a]]
 
 对于已停用Secure Boot的设备（例如大部分工程测试设备），请下载这个版本：
 
 *http://pc-dos.scp-eq.org/local--files/add-dev-menu-on-wp-and-win10-mobile/AddDevMenu.zip
 
- [[a href="*http://pc-dos.scp-eq.org/local--files/add-dev-menu-on-wp-and-win10-mobile/AddDevMenu.zip" class="win10-link-button"]]下载文件[[/a]]
+[[a href="*http://pc-dos.scp-eq.org/local--files/add-dev-menu-on-wp-and-win10-mobile/AddDevMenu.zip" class="win10-link-button"]]下载文件[[/a]]
 
 请以大容量存储器模式连接设备到计算机。解压缩下载的得到的ZIP文件，并执行“AddDevMenu”批处理文件，输入设备存储器的驱动器号（需要以半角冒号结尾，例如“E:”）后回车，程序会自动为您处理。
 
- 重新启动设备后，在显示的启动菜单上通过音量键导航到“Developer Menu”选项，并按相机键确认，即可进入开发者菜单。 
+重新启动设备后，在显示的启动菜单上通过音量键导航到“Developer Menu”选项，并按相机键确认，即可进入开发者菜单。

@@ -1,16 +1,16 @@
 **故障现象：**使用Lattice Diamond 3.12联合自带的ModelSim 2020仿真Lattice XP2项目时，出现类似下面的提示，仿真无法继续：
 
 [[code]]
- Unresolved reference to 'GSR_INST'.
- Unresolved reference to 'PUR_INST'.
- [[/code]]
+Unresolved reference to 'GSR_INST'.
+Unresolved reference to 'PUR_INST'.
+[[/code]]
 
- **故障处理：**该故障是由于全局复位（Global System Reset，GSR）和上电复位（Power Up Reset，PUR）信号仅在ECP3器件库{{cae_library/simulation/verilog/ecp3/}}下定义，而未在XP2器件库下定义，却又被BRAM、FIFO等IP实例实例化导致的。可以在Testbench中加入下列实例化引用以解决：
+**故障处理：**该故障是由于全局复位（Global System Reset，GSR）和上电复位（Power Up Reset，PUR）信号仅在ECP3器件库{{cae_library/simulation/verilog/ecp3/}}下定义，而未在XP2器件库下定义，却又被BRAM、FIFO等IP实例实例化导致的。可以在Testbench中加入下列实例化引用以解决：
 
 [[code]]
- //Instance of GSR & PUR, ref https://mbb.eet-china.com/blog/1396350-247769.html
- GSR GSR_INST (.GSR(1'b1));  
- PUR PUR_INST (.PUR(1'b1)); 
- [[/code]]
+//Instance of GSR & PUR, ref https://mbb.eet-china.com/blog/1396350-247769.html
+GSR GSR_INST (.GSR(1'b1));  
+PUR PUR_INST (.PUR(1'b1)); 
+[[/code]]
 
- **参考资料：***https://mbb.eet-china.com/blog/1396350-247769.html 
+**参考资料：***https://mbb.eet-china.com/blog/1396350-247769.html

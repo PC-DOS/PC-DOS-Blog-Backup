@@ -1,35 +1,35 @@
 Windows 10 Mobile提供了变更屏幕缩放比例（DPI）的方式，但是只能使用一个特定范围内的值。但是您可以使用注册表修改这个缩放比例，以使用更高或更低的DPI。
 
- 在开始前，您的设备需要完成解锁，并部署Interop Tools、CustomPFD等注册表编辑工具。如果您的设备支持大容量存储器模式，则您也可以通过在PC上使用注册表编辑器挂载{{%MainOS%\Windows\System32\Config\SYSTEM}}文件来修改。
+在开始前，您的设备需要完成解锁，并部署Interop Tools、CustomPFD等注册表编辑工具。如果您的设备支持大容量存储器模式，则您也可以通过在PC上使用注册表编辑器挂载{{%MainOS%\Windows\System32\Config\SYSTEM}}文件来修改。
 
- 启动注册表编辑工具，并定位到注册表键：
+启动注册表编辑工具，并定位到注册表键：
 
 [[code]]
- HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\ScaleFactors\%MonitorID%\
- [[/code]]
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\ScaleFactors\%MonitorID%\
+[[/code]]
 
 其中，{{@@%MonitorID%@@}}为与设备相关的可变值。如果您通过大容量存储器模式编辑，则需要在PC的注册表编辑器中定位到：
 
 [[code]]
- %TargetSystemMountPoint%\CurrentControlSet\Control\GraphicsDrivers\ScaleFactors\%MonitorID%\
- [[/code]]
+%TargetSystemMountPoint%\CurrentControlSet\Control\GraphicsDrivers\ScaleFactors\%MonitorID%\
+[[/code]]
 
- {{%TargetSystemMountPoint%}}为目标设备上{{%MainOS%\Windows\System32\Config\SYSTEM}}文件在PC注册表编辑器内的挂载点。
+{{%TargetSystemMountPoint%}}为目标设备上{{%MainOS%\Windows\System32\Config\SYSTEM}}文件在PC注册表编辑器内的挂载点。
 
- 随后，编辑DWORD值{{DpiValue}}，将该值设为{{@@0@@}}表示使用默认缩放比例；若设为正数，则数值越高表示使用更高百分比的缩放比例；若设为负数，则数值越小表示使用更低百分比的缩放比例。每两个相邻数值通常代表25%的缩放比例变化量。
+随后，编辑DWORD值{{DpiValue}}，将该值设为{{@@0@@}}表示使用默认缩放比例；若设为正数，则数值越高表示使用更高百分比的缩放比例；若设为负数，则数值越小表示使用更低百分比的缩放比例。每两个相邻数值通常代表25%的缩放比例变化量。
 
- 保存变更（并在使用PC时解除注册表挂载）后，重新启动设备，此时变更应该已生效。
+保存变更（并在使用PC时解除注册表挂载）后，重新启动设备，此时变更应该已生效。
 
- 对于桌面版Windows，另请参考注册表键：
+对于桌面版Windows，另请参考注册表键：
 
 [[code]]
- HKEY_CURRENT_USER\Control Panel\Desktop\PerMonitorSettings\%MonitorID%
- [[/code]]
+HKEY_CURRENT_USER\Control Panel\Desktop\PerMonitorSettings\%MonitorID%
+[[/code]]
 
 另请参考：
 
 *https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/dpi-related-apis-and-registry-settings
 
- *https://learn.microsoft.com/en-us/answers/questions/65033/command-line-for-scaling-in-windows-settings-for-d
+*https://learn.microsoft.com/en-us/answers/questions/65033/command-line-for-scaling-in-windows-settings-for-d
 
- *https://serverfault.com/questions/858994/dpi-settings-never-survive-sysprep-windows-10 
+*https://serverfault.com/questions/858994/dpi-settings-never-survive-sysprep-windows-10

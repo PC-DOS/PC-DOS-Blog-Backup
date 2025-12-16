@@ -1,16 +1,16 @@
 iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet/include/cfg_gpio.h}}，每个GPIO脚通过5组在头文件{{kernel/arch/arm/plat-s5p4418/topeet/include/cfg_type.h}}中的宏定义的或运算组合实现配置。
 
- 同时，在uBoot代码仓库{{u-boot/board/s5p4418/drone2/include/cfg_gpio.h}}中，也有格式相同的、用于GPIO配置的头文件。
+同时，在uBoot代码仓库{{u-boot/board/s5p4418/drone2/include/cfg_gpio.h}}中，也有格式相同的、用于GPIO配置的头文件。
 
- 第一组：{{PAD_MODE_XXX}}，用于设置GPIO为对应模式（复用功能/输入/输出/中断）。
+第一组：{{PAD_MODE_XXX}}，用于设置GPIO为对应模式（复用功能/输入/输出/中断）。
 
- 第二组：{{PAD_FUNC_ALT[0:3]}}，用于配置GPIO的复用功能。
+第二组：{{PAD_FUNC_ALT[0:3]}}，用于配置GPIO的复用功能。
 
- 第三组：{{PAD_LEVEL_XXX}}，用于配置GPIO输出电平或中断条件。
+第三组：{{PAD_LEVEL_XXX}}，用于配置GPIO输出电平或中断条件。
 
- 第四组：{{PAD_PULL_XX}}，用于配置输入模式的内部上拉或者下拉。
+第四组：{{PAD_PULL_XX}}，用于配置输入模式的内部上拉或者下拉。
 
- 第五组：{{PAD_STRENGTH_[0..3]}}，用于设置GPIO的驱动能力。
+第五组：{{PAD_STRENGTH_[0..3]}}，用于设置GPIO的驱动能力。
 
 + 第一组：{{PAD_MODE_XXX}}
 
@@ -25,16 +25,16 @@ iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet
 {{PAD_MODE_INT}}配置GPIO引脚为中断模式。
 
 [[code type="cpp"]]
- /* gpio mode, altfunction, gpio in/out or interrput */
- enum {
-     PAD_MODE_ALT    = (0 << PAD_MODE_SHIFT),
-     PAD_MODE_IN     = (1 << PAD_MODE_SHIFT),
-     PAD_MODE_OUT    = (2 << PAD_MODE_SHIFT),
-     PAD_MODE_INT    = (3 << PAD_MODE_SHIFT),
- };
- [[/code]]
+/* gpio mode, altfunction, gpio in/out or interrput */
+enum {
+    PAD_MODE_ALT    = (0 << PAD_MODE_SHIFT),
+    PAD_MODE_IN     = (1 << PAD_MODE_SHIFT),
+    PAD_MODE_OUT    = (2 << PAD_MODE_SHIFT),
+    PAD_MODE_INT    = (3 << PAD_MODE_SHIFT),
+};
+[[/code]]
 
- + 第二组：{{PAD_FUNC_ALT[0:3]}}
++ 第二组：{{PAD_FUNC_ALT[0:3]}}
 
 用于配置GPIO的复用功能。这些复用功能由S5P4418手册{{I/O Function Description}}一节定义。可选参数包括：
 
@@ -47,16 +47,16 @@ iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet
 {{PAD_FUNC_ALT3}}配置引脚使用手册定义的{{Alternate Function 3}}。
 
 [[code type="cpp"]]
- /* gpio altfunction, refer to NX_GPIO_PADFUNC in nx_gpio.h */
- enum {
-     PAD_FUNC_ALT0   = (0 << PAD_FUNC_SHIFT),
-     PAD_FUNC_ALT1   = (1 << PAD_FUNC_SHIFT),
-     PAD_FUNC_ALT2   = (2 << PAD_FUNC_SHIFT),
-     PAD_FUNC_ALT3   = (3 << PAD_FUNC_SHIFT),
- };
- [[/code]]
+/* gpio altfunction, refer to NX_GPIO_PADFUNC in nx_gpio.h */
+enum {
+    PAD_FUNC_ALT0   = (0 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT1   = (1 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT2   = (2 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT3   = (3 << PAD_FUNC_SHIFT),
+};
+[[/code]]
 
- + 第三组：{{PAD_LEVEL_XXX}}
++ 第三组：{{PAD_LEVEL_XXX}}
 
 用于配置GPIO输出电平或中断条件。可选参数包括：
 
@@ -77,20 +77,20 @@ iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet
 {{PAD_LEVEL_ALT}}GPIO使用复用功能。
 
 [[code type="cpp"]]
- /* ouput level or interrupt detect mode, refer to NX_GPIO_INTMODE in nx_gpio.h */
- enum {
-     PAD_LEVEL_LOW         = (0 << PAD_LEVEL_SHIFT),     /* if alive, async lowlevel */
-     PAD_LEVEL_HIGH        = (1 << PAD_LEVEL_SHIFT),     /* if alive, async highlevel */
-     PAD_LEVEL_FALLINGEDGE = (2 << PAD_LEVEL_SHIFT),     /* if alive, async fallingedge */
-     PAD_LEVEL_RISINGEDGE  = (3 << PAD_LEVEL_SHIFT),     /* if alive, async eisingedge */
-     PAD_LEVEL_LOW_SYNC    = (4 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
-     PAD_LEVEL_HIGH_SYNC   = (5 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
-     PAD_LEVEL_BOTHEDGE    = (4 << PAD_LEVEL_SHIFT),     /* if alive, not support */
-     PAD_LEVEL_ALT         = (6 << PAD_LEVEL_SHIFT),     /* if pad function is alt, not set */
- };
- [[/code]]
+/* ouput level or interrupt detect mode, refer to NX_GPIO_INTMODE in nx_gpio.h */
+enum {
+    PAD_LEVEL_LOW         = (0 << PAD_LEVEL_SHIFT),     /* if alive, async lowlevel */
+    PAD_LEVEL_HIGH        = (1 << PAD_LEVEL_SHIFT),     /* if alive, async highlevel */
+    PAD_LEVEL_FALLINGEDGE = (2 << PAD_LEVEL_SHIFT),     /* if alive, async fallingedge */
+    PAD_LEVEL_RISINGEDGE  = (3 << PAD_LEVEL_SHIFT),     /* if alive, async eisingedge */
+    PAD_LEVEL_LOW_SYNC    = (4 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
+    PAD_LEVEL_HIGH_SYNC   = (5 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
+    PAD_LEVEL_BOTHEDGE    = (4 << PAD_LEVEL_SHIFT),     /* if alive, not support */
+    PAD_LEVEL_ALT         = (6 << PAD_LEVEL_SHIFT),     /* if pad function is alt, not set */
+};
+[[/code]]
 
- + 第四组：{{PAD_PULL_XX}}
++ 第四组：{{PAD_PULL_XX}}
 
 用于配置输入模式的内部上拉或者下拉。可选参数包括：
 
@@ -101,22 +101,22 @@ iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet
 {{PAD_PULL_OFF}}无。
 
 [[code type="cpp"]]
- enum {
-     PAD_PULL_DN     = (0 << PAD_PULLUP_SHIFT),          /* Do not support Alive-GPIO */
-     PAD_PULL_UP     = (1 << PAD_PULLUP_SHIFT),
-     PAD_PULL_OFF    = (2 << PAD_PULLUP_SHIFT),
- };
- [[/code]]
+enum {
+    PAD_PULL_DN     = (0 << PAD_PULLUP_SHIFT),          /* Do not support Alive-GPIO */
+    PAD_PULL_UP     = (1 << PAD_PULLUP_SHIFT),
+    PAD_PULL_OFF    = (2 << PAD_PULLUP_SHIFT),
+};
+[[/code]]
 
- + 第五组：{{PAD_STRENGTH_[0..3]}}
++ 第五组：{{PAD_STRENGTH_[0..3]}}
 
 用于设置GPIO的驱动能力。可选参数为{{PAD_STRENGTH_0}}到{{PAD_STRENGTH_3}}四个等级。
 
 [[code type="cpp"]]
- enum {
-     PAD_STRENGTH_0 = (0 << PAD_STRENGTH_SHIFT),
-     PAD_STRENGTH_1 = (1 << PAD_STRENGTH_SHIFT),
-     PAD_STRENGTH_2 = (2 << PAD_STRENGTH_SHIFT),
-     PAD_STRENGTH_3 = (3 << PAD_STRENGTH_SHIFT),
- };
- [[/code]] 
+enum {
+    PAD_STRENGTH_0 = (0 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_1 = (1 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_2 = (2 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_3 = (3 << PAD_STRENGTH_SHIFT),
+};
+[[/code]]

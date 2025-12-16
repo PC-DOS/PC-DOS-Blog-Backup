@@ -1,19 +1,19 @@
 文件路径：
 
 [[code]]
- %DPP%\MMO\product.dat
- [[/code]]
+%DPP%\MMO\product.dat
+[[/code]]
 
 部分机型为
 
 [[code]]
- %DPP%\Nokia\product.dat
- [[/code]]
+%DPP%\Nokia\product.dat
+[[/code]]
 
 记事本打开该文件后，可以修改“HWID:”一节的数值，例如
 
 [[code]]
- HWID:2450
- [[/code]]
+HWID:2450
+[[/code]]
 
-表示将HWID改为2.4.5.0。 
+表示将HWID改为2.4.5.0。

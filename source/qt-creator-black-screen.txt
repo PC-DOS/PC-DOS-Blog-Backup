@@ -3,25 +3,25 @@
 **处理方案：**修改QtCreator的启动器配置文件即可，这个文件位于{{/usr/share/applications/DigiaQt-qtcreator-community.desktop}}，在终端中输入：
 
 [[code]]
- sudo gedit /usr/share/applications/DigiaQt-qtcreator-community.desktop
- [[/code]]
+sudo gedit /usr/share/applications/DigiaQt-qtcreator-community.desktop
+[[/code]]
 
 找到{{Exec=}}行，在该行末尾添加：
 
 [[code]]
-  -noload Welcome
- [[/code]]
+ -noload Welcome
+[[/code]]
 
 使其看起来像：
 
 [[code]]
- Exec=/opt/Qt5.7.1/Tools/QtCreator/bin/qtcreator -noload Welcome
- [[/code]]
+Exec=/opt/Qt5.7.1/Tools/QtCreator/bin/qtcreator -noload Welcome
+[[/code]]
 
 保存该文件，重新启动QtCreator，问题解决。
 
 **参考资料：**
 
- *https://www.jianshu.com/p/0290c3d3a695
+*https://www.jianshu.com/p/0290c3d3a695
 
- *https://blog.csdn.net/bukehaha/article/details/85336023 
+*https://blog.csdn.net/bukehaha/article/details/85336023

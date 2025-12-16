@@ -1,14 +1,14 @@
 {{QListWidget}}控件提供了{{sizeHintForColumn()}}函数，该函数返回指定列的宽度提示信息，可以结合使用{{setMinimumWidth()}}方法，使{{QListWidget}}控件自适应到内容宽度。
 
 [[code type="Cpp"]]
- //AddItems
- //AddItems
+//AddItems
+//AddItems
 
- ui->lstDataList->setMinimumWidth(ui->lstDataList->sizeHintForColumn(0)); //Adjust QListWidget to content size
- [[/code]]
+ui->lstDataList->setMinimumWidth(ui->lstDataList->sizeHintForColumn(0)); //Adjust QListWidget to content size
+[[/code]]
 
 参考资料：
 
 *https://www.generacodice.com/en/articolo/1287379/QListWidget-adjust-size-to-content
 
- *https://doc.qt.io/archives/qt-4.8/qabstractitemview.html 
+*https://doc.qt.io/archives/qt-4.8/qabstractitemview.html

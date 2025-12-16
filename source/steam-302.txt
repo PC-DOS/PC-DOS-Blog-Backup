@@ -1,5 +1,5 @@
 这个程序用于解决访问Steam商店、Steam社区时的“连接被重置”、乱码报文等错误。
 
- 开发者：Dogfight360
+开发者：Dogfight360
 
-下载地址（分发地址）：*https://www.dogfight360.com/blog/686/ 
+下载地址（分发地址）：*https://www.dogfight360.com/blog/686/

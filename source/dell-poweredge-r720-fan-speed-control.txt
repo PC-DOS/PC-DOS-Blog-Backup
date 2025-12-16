@@ -1,13 +1,13 @@
 + 修改System Profile
 
- # 开机自检时按下{{F2}}键，进入系统设置，导航到 [System BIOS] > [System Profile Settings]。
+# 开机自检时按下{{F2}}键，进入系统设置，导航到 [System BIOS] > [System Profile Settings]。
 # 将 [System Profile] 改为 [Performance Per Watt (OS)]。
 # 保存并退出BIOS设置，重启系统。
 # 如果系统风扇的噪音依然无法忍受，请进入下一步骤。
 
 + 启用IPMI
 
- # 开机自检时按下{{F2}}键，进入系统设置，导航到 [iDRAC Settings] > [Network]。
+# 开机自检时按下{{F2}}键，进入系统设置，导航到 [iDRAC Settings] > [Network]。
 # 确保 [Enable NIC] 选项处于 [Enabled] 状态，并将网络电缆插入 [NIC Selection] 指定的网络接口（默认为 [LOM1]，即机箱背板标有数字“1”的网络接口）。
 # 在 [IPv4 Settings] 中，确保 [Enable IPv4] 选项处于 [Enabled] 状态，并根据网络的实际情况选择是否开启DHCP。
 # 在 [IPMI Settings] 中，确保 [Enable IPMI Over LAN] 选项处于 [Enabled] 状态。
@@ -20,19 +20,19 @@
 + 调整风扇转速
 
 # 下载Dell Fans Controller工具：*https://github.com/cw1997/dell_fans_controller/releases
- # 启动该工具，输入先前记录的IPMI地址以及登录凭据（默认用户名为{{root}}，密码为{{calvin}}）。随后即可获取和编辑当前的风扇转速信息。
+# 启动该工具，输入先前记录的IPMI地址以及登录凭据（默认用户名为{{root}}，密码为{{calvin}}）。随后即可获取和编辑当前的风扇转速信息。
 
 + 关于自动风扇转速
 
- 在测试过程中，笔者将iDRAC升级到最新版本后，发现该版本的iDRAC固件在自动转速模式下风扇转速较高，故降级到iDRAC版本1.30。具体版本信息：
+在测试过程中，笔者将iDRAC升级到最新版本后，发现该版本的iDRAC固件在自动转速模式下风扇转速较高，故降级到iDRAC版本1.30。具体版本信息：
 
 > **BIOS 版本：**{{@@2.0.19@@}}
- > 
- > **固件版本：**{{@@1.30.30 (Build 43)@@}}
- > 
- > **Lifecycle Controller 固件：**{{@@2.65.65.65@@}}
+> 
+> **固件版本：**{{@@1.30.30 (Build 43)@@}}
+> 
+> **Lifecycle Controller 固件：**{{@@2.65.65.65@@}}
 
- + 参考资料
++ 参考资料
 
 *https://zhuanlan.zhihu.com/p/157796567
- *https://blog.csdn.net/qq_37272728/article/details/115793770 
+*https://blog.csdn.net/qq_37272728/article/details/115793770

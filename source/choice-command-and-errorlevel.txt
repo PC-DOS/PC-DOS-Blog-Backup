@@ -7,188 +7,188 @@ Choice命令常用/C、/D、/M三个开关，其中，/C指定选项列表，限
 Choice命令在Windows 8中的描述如下所示：
 
 [[code]]
- CHOICE [/C choices] [/N] [/CS] [/T timeout /D choice] [/M text]
+CHOICE [/C choices] [/N] [/CS] [/T timeout /D choice] [/M text]
 
 描述:
-     该工具允许用户从选择列表选择一个项目并返回所选项目的索引。
+    该工具允许用户从选择列表选择一个项目并返回所选项目的索引。
 
- 参数列表:
-    /C    choices       指定要创建的选项列表。默认列表是 "YN"。
+参数列表:
+   /C    choices       指定要创建的选项列表。默认列表是 "YN"。
 
-   /N                  在提示符中隐藏选项列表。提示前面的消息得到显示，
-                       选项依旧处于启用状态。
+   /N                  在提示符中隐藏选项列表。提示前面的消息得到显示，
+                       选项依旧处于启用状态。
 
-   /CS                 允许选择分大小写的选项。在默认情况下，这个工具
-                       是不分大小写的。
+   /CS                 允许选择分大小写的选项。在默认情况下，这个工具
+                       是不分大小写的。
 
-   /T    timeout       做出默认选择之前，暂停的秒数。可接受的值是从 0 
-                        到 9999。如果指定了 0，就不会有暂停，默认选项
-                       会得到选择。
+   /T    timeout       做出默认选择之前，暂停的秒数。可接受的值是从 0 
+                       到 9999。如果指定了 0，就不会有暂停，默认选项
+                       会得到选择。
 
-   /D    choice        在 nnnn 秒之后指定默认选项。字符必须在用 /C 选
-                       项指定的一组选择中; 同时，必须用 /T 指定 nnnn。
+   /D    choice        在 nnnn 秒之后指定默认选项。字符必须在用 /C 选
+                       项指定的一组选择中; 同时，必须用 /T 指定 nnnn。
 
-   /M    text          指定提示之前要显示的消息。如果没有指定，工具只
-                       显示提示。
+   /M    text          指定提示之前要显示的消息。如果没有指定，工具只
+                       显示提示。
 
-   /?                  显示此帮助消息。
+   /?                  显示此帮助消息。
 
-   注意:
-    ERRORLEVEL 环境变量被设置为从选择集选择的键索引。列出的第一个选
-   择返回 1，第二个选择返回 2，等等。如果用户按的键不是有效的选择，
-   该工具会发出警告响声。如果该工具检测到错误状态，它会返回 255 的
-   ERRORLEVEL 值。如果用户按 Ctrl+Break 或 Ctrl+C 键，该工具会返回 0 
-    的 ERRORLEVEL 值。在一个批程序中使用 ERRORLEVEL 参数时，将参数降
-   序排列。
+   注意:
+   ERRORLEVEL 环境变量被设置为从选择集选择的键索引。列出的第一个选
+   择返回 1，第二个选择返回 2，等等。如果用户按的键不是有效的选择，
+   该工具会发出警告响声。如果该工具检测到错误状态，它会返回 255 的
+   ERRORLEVEL 值。如果用户按 Ctrl+Break 或 Ctrl+C 键，该工具会返回 0 
+   的 ERRORLEVEL 值。在一个批程序中使用 ERRORLEVEL 参数时，将参数降
+   序排列。
 
- 示例:
-    CHOICE /?
-    CHOICE /C YNC /M "确认请按 Y，否请按 N，或者取消请按 C。"
-    CHOICE /T 10 /C ync /CS /D y 
-    CHOICE /C ab /M "选项 1 请选择 a，选项 2 请选择 b。"
-    CHOICE /C ab /N /M "选项 1 请选择 a，选项 2 请选择 b。"
- [[/code]]
+示例:
+   CHOICE /?
+   CHOICE /C YNC /M "确认请按 Y，否请按 N，或者取消请按 C。"
+   CHOICE /T 10 /C ync /CS /D y 
+   CHOICE /C ab /M "选项 1 请选择 a，选项 2 请选择 b。"
+   CHOICE /C ab /N /M "选项 1 请选择 a，选项 2 请选择 b。"
+[[/code]]
 
- + ERRORLEVEL变量
++ ERRORLEVEL变量
 
 ERRORLEVEL变量指示了上一条指令的返回值，用户可以使用{{IF ERRORLEVEL x}}语句对其进行判断。其语法如下所示：
 
 [[code]]
- IF ERRORLEVEL [iMinValue] [Code]
+IF ERRORLEVEL [iMinValue] [Code]
 
-    iMinValue    指示使该IF语句成立的最小ERRORLEVEL值，可用的值从0到255。
-   Code         指示IF语句成立时执行的语句。
+   iMinValue    指示使该IF语句成立的最小ERRORLEVEL值，可用的值从0到255。
+   Code         指示IF语句成立时执行的语句。
 [[/code]]
 
 请注意，使用多条IF ERRORLEVEL语句进行情况判断时，需将ERRORLEVEL的值从大到小排列，因为IF ERRORLEVEL x语句的判定在ERRORLEVEL >= x时成立，即该语句在ERRORLEVEL的值大于等于其所指定的最小ERRORLEVEL值时将执行用户定义的命令。
 
- 如果不想从大到小排列IF语句，请使用 {{IF %ERRORLEVEL% == x}}（未使用{{setlocal EnableDelayedExpansion}}，即延迟环境变量扩展语句时），或 IF !ERRORLEVEL! == x（使用{{setlocal EnableDelayedExpansion}}，即延迟环境变量扩展语句时）语句组。
+如果不想从大到小排列IF语句，请使用 {{IF %ERRORLEVEL% == x}}（未使用{{setlocal EnableDelayedExpansion}}，即延迟环境变量扩展语句时），或 IF !ERRORLEVEL! == x（使用{{setlocal EnableDelayedExpansion}}，即延迟环境变量扩展语句时）语句组。
 
 + 一个综合使用范例
 
- 这是一个综合使用了Choice指令与ERRORLEVEL的范例批处理文件。
+这是一个综合使用了Choice指令与ERRORLEVEL的范例批处理文件。
 
 [[code]]
- @echo off
+@echo off
 
- :Main
- cls
- color 0a
- title ChoiceDemo
- echo Choice范例脚本
+:Main
+cls
+color 0a
+title ChoiceDemo
+echo Choice范例脚本
 echo 功能菜单，默认的选项为'0'。超时为5秒。
 echo [0] 安装系统并套用驱动程序
 echo [1] 仅安装系统
 echo [2] 仅套用驱动程序
 echo [3] Func3
- echo [4] Func4
- echo [5] Func5
- echo [6] Func6
- echo [7] Func7
- echo [8] Func8
- echo [9] Func9
- REM 关键代码，请参考“choice /?”，/C指定选项列表，限a~z、A~Z、0~9的字符组合，/D指定默认项，/T指定以秒为单位的超时时间，/M指定显示的消息。
+echo [4] Func4
+echo [5] Func5
+echo [6] Func6
+echo [7] Func7
+echo [8] Func8
+echo [9] Func9
+REM 关键代码，请参考“choice /?”，/C指定选项列表，限a~z、A~Z、0~9的字符组合，/D指定默认项，/T指定以秒为单位的超时时间，/M指定显示的消息。
 choice /C 0123456789 /D 0 /T 5 /M 请选择需要执行的操作。
 REM 请注意，Choice返回的值体现在ERRORLEVEL变量中，ERRORLEVEL的值被设置为选择的项目在/C提供的选项列表中的索引号，从1开始。ERRORLEVEL为0表示用户取消了操作。
 REM 请注意，使用IF ERRORLEVEL语句时，需将ERRORLEVEL的值从大到小排列，因为IF ERRORLEVEL x语句的判定在ERRORLEVEL >= x时成立。
 REM 如果不想从大到小排列IF语句，请使用 IF %ERRORLEVEL% == x（未使用setlocal EnableDelayedExpansion，即延迟环境变量扩展语句时），或 IF !ERRORLEVEL! == x（使用setlocal EnableDelayedExpansion，即延迟环境变量扩展语句时）语句组。
 IF ERRORLEVEL 10 goto Func9
- IF ERRORLEVEL 9 goto Func8
- IF ERRORLEVEL 8 goto Func7
- IF ERRORLEVEL 7 goto Func6
- IF ERRORLEVEL 6 goto Func5
- IF ERRORLEVEL 5 goto Func4
- IF ERRORLEVEL 4 goto Func3
- IF ERRORLEVEL 3 goto Func2
- IF ERRORLEVEL 2 goto Func1
- IF ERRORLEVEL 1 goto Default
- IF ERRORLEVEL 0 goto Main
+IF ERRORLEVEL 9 goto Func8
+IF ERRORLEVEL 8 goto Func7
+IF ERRORLEVEL 7 goto Func6
+IF ERRORLEVEL 6 goto Func5
+IF ERRORLEVEL 5 goto Func4
+IF ERRORLEVEL 4 goto Func3
+IF ERRORLEVEL 3 goto Func2
+IF ERRORLEVEL 2 goto Func1
+IF ERRORLEVEL 1 goto Default
+IF ERRORLEVEL 0 goto Main
 
- :Default
- cls
- echo 您执行了默认操作！
+:Default
+cls
+echo 您执行了默认操作！
 echo=
- echo 请按任意键退出。
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func1
- cls
- echo 操作系统安装已完成。
+:Func1
+cls
+echo 操作系统安装已完成。
 echo=
- echo 请按任意键退出。
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func2
- cls
- echo 驱动程序套用已完成。
+:Func2
+cls
+echo 驱动程序套用已完成。
 echo=
- echo 请按任意键退出。
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func3
- cls
- echo Func3
- echo=
- echo 请按任意键退出。
+:Func3
+cls
+echo Func3
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func4
- cls
- echo Func4
- echo=
- echo 请按任意键退出。
+:Func4
+cls
+echo Func4
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func5
- cls
- echo Func5
- echo=
- echo 请按任意键退出。
+:Func5
+cls
+echo Func5
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func6
- cls
- echo Func6
- echo=
- echo 请按任意键退出。
+:Func6
+cls
+echo Func6
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func6
- cls
- echo Func6
- echo=
- echo 请按任意键退出。
+:Func6
+cls
+echo Func6
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func7
- cls
- echo Func7
- echo=
- echo 请按任意键退出。
+:Func7
+cls
+echo Func7
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func8
- cls
- echo Func8
- echo=
- echo 请按任意键退出。
+:Func8
+cls
+echo Func8
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
+exit
 
- :Func9
- cls
- echo Func9
- echo=
- echo 请按任意键退出。
+:Func9
+cls
+echo Func9
+echo=
+echo 请按任意键退出。
 pause > nul
- exit
- [[/code]] 
+exit
+[[/code]]

@@ -1,7 +1,7 @@
 [[>]]
- [[module Rate]]
- [[/>]]
+[[module Rate]]
+[[/>]]
 
 
 
- [[footnoteblock title="蹄注"]] 
+[[footnoteblock title="蹄注"]]

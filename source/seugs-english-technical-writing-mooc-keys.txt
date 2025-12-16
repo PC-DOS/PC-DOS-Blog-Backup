@@ -1,62 +1,62 @@
 [[toc]]
 
- + Unit1 Definition of technical writing Test 1
++ Unit1 Definition of technical writing Test 1
 
- 1、 问题:Which of the following is not one of the features of technical documents?
+1、 问题:Which of the following is not one of the features of technical documents?
 选项：
 A:Clear organization
-  B:Readable style
-  C:Effective visuals
-  D:Writer-centeredness
+ B:Readable style
+ C:Effective visuals
+ D:Writer-centeredness
 答案: 【Writer-centeredness】
 
 
 2、 问题:One of the purposes of technical writing is to enable people to perform a task or follow a procedure, that is, to ____ your readers.
 选项：
 A:inform
-  B:instruct
-  C:persuade
-  D:suggest
+ B:instruct
+ C:persuade
+ D:suggest
 答案: 【instruct】
 
 3、 问题:When writing a technical document, keep two audiences in mind. Most documents are geared to an immediate audience of readers. This is your ____ audience.
 选项：
 A:primary
-  B:secondary
-  C:nontechnical
-  D:semitechnical
+ B:secondary
+ C:nontechnical
+ D:semitechnical
 答案: 【primary】
 
 4、 问题:____ are those with no specialized training, who look for the big picture instead of complex details. They expect technical data to be translated into words most people understand.
 选项：
 A:Experts
-  B:Informed persons
-  C:Laypersons
-  D:Audiences
+ B:Informed persons
+ C:Laypersons
+ D:Audiences
 答案: 【Laypersons】
 
 5、 问题:The most emphatic location in a paragraph is the ____ sentence in a paragraph.
 选项：
 A:first
-  B:second
-  C:last
-  D:middle
+ B:second
+ C:last
+ D:middle
 答案: 【first】
 
 6、 问题:____ is like trying new paint: you do not know whether you like the color until you see it on the wall.
 选项：
 A:Planning
-  B:Revising
-  C:Editing
-  D:Drafting
+ B:Revising
+ C:Editing
+ D:Drafting
 答案: 【Drafting】
 
 7、 问题:The purpose of my document is to _ company employees of the new absentee policy and to _ them on how to follow the procedures properly.
 选项：
 A:inform; instruct
-  B:instruct; persuade
-  C:persuade; suggest
-  D:suggest; inform
+ B:instruct; persuade
+ C:persuade; suggest
+ D:suggest; inform
 答案: 【inform; instruct 】
 
 8、 问题:In most of your writing, you will carry out the task in a process consisting of five steps: planning, drafting, revising, editing and ____.
@@ -64,11 +64,11 @@ A:inform; instruct
 
 9、 问题:Assessing your audience’s technical background is essential before deciding whether your document should be highly technical, ____, or nontechnical.
 答案: 【(以下答案任选其一都对)semitechnical;
-  semi-technical】
+ semi-technical】
 
 10、 问题:Clear writing means that the sentences can be understood in ____ reading.
 答案: 【(以下答案任选其一都对)one;
-  1】
+ 1】
 
 11、 问题:Actually almost every day, we make decisions or take actions that depend on ______ information.
 答案: 【technical】
@@ -78,20 +78,20 @@ A:inform; instruct
 
 + Unit 2 Technical document design Test 2
 
- 1、 问题:Which of the following is serif typeface?
+1、 问题:Which of the following is serif typeface?
 选项：
 A:Arial
-  B:Helvetica
-  C:Tahoma
-  D:Times New Roman
+ B:Helvetica
+ C:Tahoma
+ D:Times New Roman
 答案: 【Times New Roman 】
 
 2、 问题:We often use ____ tables to compare exact values.
 选项：
 A:prose
-  B:numerical
-  C:appendix
-  D:summary
+ B:numerical
+ C:appendix
+ D:summary
 答案: 【numerical】
 
 3、 问题:Headers and ____ appear in the top and bottom page margins, respectively to provide chapter or article titles, authors’ names, dates, or other publication information.
@@ -102,7 +102,7 @@ A:prose
 
 5、 问题:The four basic principles of ____ are proximity, alignment, repetition and contrast.
 答案: 【(以下答案任选其一都对)design;
-  designing】
+ designing】
 
 6、 问题:____ charts are used to depict how the phases of a project relate.
 答案: 【Gantt】
@@ -121,68 +121,68 @@ A:prose
 
 + Unit 3 Correspondence Test 3
 
- 1、 问题:Which of the following is the most suitable way for communication between people within an organization?
+1、 问题:Which of the following is the most suitable way for communication between people within an organization?
 选项：
 A:Messaging
-  B:Memos
-  C:Emails
-  D:Microblogs
+ B:Memos
+ C:Emails
+ D:Microblogs
 答案: 【Memos】
 
 2、 问题:Which of the following is NOT a reason for using moderately formal tone for workplace communication?
 选项：
 A:Your documents may be read by your boss.
-  B:Your documents may appear in a court of law.
-  C:Your documents are legally the property of the organization for which you work.
-  D:Your documents will be read by people on the move.
+ B:Your documents may appear in a court of law.
+ C:Your documents are legally the property of the organization for which you work.
+ D:Your documents will be read by people on the move.
 答案: 【Your documents will be read by people on the move. 】
 
 3、 问题:Which of the following may hinder goodwill and communicate ineffectively?
 选项：
 A:Logical organization.
-  B:Conventional format.
-  C:Sloppy appearance.
-  D:Concise language.
+ B:Conventional format.
+ C:Sloppy appearance.
+ D:Concise language.
 答案: 【Sloppy appearance.】
 
 4、 问题:Text messages can .
 选项：
 A:allow the writer to deal with more than one task
-  B:increase intimidation
-  C:save more time compared with telephone call
-  D:attach other files
+ B:increase intimidation
+ C:save more time compared with telephone call
+ D:attach other files
 答案: 【allow the writer to deal with more than one task】
 
 5、 问题:Text messages may have some potential problems EXCEPT .
 选项：
 A:security issues
-  B:lost productivity
-  C:employee misuse
-  D:easy documentation
+ B:lost productivity
+ C:employee misuse
+ D:easy documentation
 答案: 【easy documentation】
 
 6、 问题:Which of the following statements is FALSE?
 选项：
 A:Abbreviations can be used when the readers can understand such abbreviations.
-  B:Abbreviations can be used to avoid misunderstanding.
-  C:Abbreviations can help people exchange information quickly.
-  D:Abbreviations can help build rapport among colleagues.
+ B:Abbreviations can be used to avoid misunderstanding.
+ C:Abbreviations can help people exchange information quickly.
+ D:Abbreviations can help build rapport among colleagues.
 答案: 【Abbreviations can be used to avoid misunderstanding.】
 
 7、 问题:Which of the following is NOT an advantage of email?
 选项：
 A:Email can be easily stored and forwarded.
-  B:Email is useful when people are in different time zones.
-  C:Email is very formal, including detailed attachments for professionals.
-  D:Email provides a company with extensive records for future reference.
+ B:Email is useful when people are in different time zones.
+ C:Email is very formal, including detailed attachments for professionals.
+ D:Email provides a company with extensive records for future reference.
 答案: 【Email is very formal, including detailed attachments for professionals. 】
 
 8、 问题:Which of the following is the best subject line?
 选项：
 A:Hello
-  B:IT’S IMPORTANT
-  C:Inquiry about Sunday Training
-  D:How are you?
+ B:IT’S IMPORTANT
+ C:Inquiry about Sunday Training
+ D:How are you?
 答案: 【Inquiry about Sunday Training】
 
 
@@ -191,370 +191,370 @@ A:Hello
 9、 问题:If you want to convey your messages effectively, you should .
 选项：
 A:establish friendship with your readers in advance
-  B:put the readers’ levels of knowledge into consideration
-  C:follow the email policy of the company your reader is working with
-  D:communicate more with high-tech readers
+ B:put the readers’ levels of knowledge into consideration
+ C:follow the email policy of the company your reader is working with
+ D:communicate more with high-tech readers
 答案: 【put the readers’ levels of knowledge into consideration】
 
 10、 问题:Which of the following is NOT a key point in memos?
 选项：
 A:Identification lines.
-  B:Introduction.
-  C:Discussion.
-  D:Complimentary closing.
+ B:Introduction.
+ C:Discussion.
+ D:Complimentary closing.
 答案: 【Complimentary closing.】
 
 11、 问题:Which of the following can make the memo more reader-friendly?
 选项：
 A:Headings.
-  B:Graphics.
-  C:Boldfacing.
-  D:All of the above.
+ B:Graphics.
+ C:Boldfacing.
+ D:All of the above.
 答案: 【All of the above.】
 
 12、 问题:If you want to write an effective memo, you should NOT .
 选项：
 A:address more than one topic
-  B:keep it brief and to the point
-  C:provide sufficient information
-  D:use visuals to display information
+ B:keep it brief and to the point
+ C:provide sufficient information
+ D:use visuals to display information
 答案: 【address more than one topic】
 
 + Unit 4 Employment Communication Test 4
 
- 1、 问题:In a chronological résumé, what is most recent should be listed last.
+1、 问题:In a chronological résumé, what is most recent should be listed last.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 2、 问题:In a functional resume, sections are presented in priority order—from least important to most important.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 3、 问题:Skills summary should be placed early in the resume to make your major qualifications stand out.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 4、 问题:A person with limited work experience should write his/her resume in the following order: Contact information – Objectives – Experience – Education – Professional memberships and affiliations – Certifications – Skills – Awards and honors.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 5、 问题:A chronological resume clearly shows an applicant’s education and career development over time.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 6、 问题:One of the purposes of a cover letter is to provide more details for the information in your resume.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 7、 问题:A recent graduate might want to present his/her education before the work experience in the cover letter.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 8、 问题:In the education paragraph of a cover letter, an applicant should discuss all the skills and knowledge he/she has gained from the university or college.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 9、 问题:In the employment paragraph of a cover letter, an applicant should explain how the special skills gained from his/her previous work experience make him/her well-suited for the position he/she is applying for.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 10、 问题:In the Objective section of a resume, you only need to state in which field you’d like to work.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 11、 问题:Passive voice is usually used in describing positions or responsibilities in a resume.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 12、 问题:The line spacing between items is important because it can make your resume appear clearly organized.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 13、 问题:Sentence fragments are not allowed in a resume.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 14、 问题:You use perfect present tense for jobs you held and present tense for jobs you currently hold.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 15、 问题:Some applicants write a summary in the beginning of a resume to summarize all that he is writing in the following sections.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 + Unit 5 Instructions Test 5
 
- 1、 问题:Instructions spell out the steps required for completing a task or a series of tasks.
+1、 问题:Instructions spell out the steps required for completing a task or a series of tasks.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 2、 问题:If the instructions are for the technicians, plain language and a glossary for specialized terms are really necessary.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 3、 问题:Leaving out some articles, some pronouns and some verbs can make the instructions short and brief, but somewhat difficult for readers to understand.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 4、 问题:A title page must consist of the topic, contact information, warranties and a graphic.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 5、 问题:Compared with numbers, bullet points and letters are better choices for helping readers locate steps.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 6、 问题:Positive words, such as “Thank you” and “pleasure” may help achieve positive customer contact.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 7、 问题:The imperative mood is often used in writing instructions, because it is more direct and economical.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 8、 问题:It is necessary to ask someone to test the accuracy of the instructions and clarity of the steps.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 9、 问题:The best policy to deal with potential dangers in writing instructions is to state disclaimers clearly.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 10、 问题:“Caution” is used to alert readers about serious injury or serious damage to equipment.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 11、 问题:Put safety information wherever you think the reader is likely to see it; sometimes a reasonable amount of repetition is effective.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 12、 问题:Compound-complex sentences can keep readers focused on one step at a time, while short words, short sentences, and short paragraphs may create confusion.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 + Unit 6 Proposals Test 6
 
- 1、 问题:A(n)_____ is a persuasive document that offers a solution to an identified problem or need.
+1、 问题:A(n)_____ is a persuasive document that offers a solution to an identified problem or need.
 选项：
 A:email
-  B:resume
-  C:proposal
-  D:instruction
+ B:resume
+ C:proposal
+ D:instruction
 答案: 【proposal】
 
 2、 问题:In the ____ of proposals, you should demonstrate the need for the project, your qualifications for tackling the project, and your clear understanding of what needs to be done and how to proceed.
 选项：
 A:introduction
-  B:body
-  C:conclusion
-  D:appendix
+ B:body
+ C:conclusion
+ D:appendix
 答案: 【introduction】
 
 3、 问题:In the ____ of proposals, you should reemphasize need and feasibility and encourage action.
 选项：
 A:introduction
-  B:body
-  C:conclusion
-  D:appendix
+ B:body
+ C:conclusion
+ D:appendix
 答案: 【conclusion 】
 
 4、 问题:The ____ proposal seeks money from a government agency, foundation, or other funding source for a specified project.
 选项：
 A:sales
-  B:grant
-  C:research
-  D:planning
+ B:grant
+ C:research
+ D:planning
 答案: 【grant】
 
 5、 问题:RFP is the short form of ____ for a Proposal. It outlines the proposal requirements and represents the first stage of creating a proposal, that is, analyzing the RFP.
 选项：
 A:Request
-  B:Requisition
-  C:Recruitment
-  D:Requirement
+ B:Requisition
+ C:Recruitment
+ D:Requirement
 答案: 【Request】
 
 6、 问题:The ____ proposal asks for approval to begin a study or an investigation.
 选项：
 A:sales
-  B:grant
-  C:research
-  D:planning
+ B:grant
+ C:research
+ D:planning
 答案: 【research】
 
 7、 问题:Unsolicited proposals are those that have been requested by the audience.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
- 分析：【Solicited proposals are those that have been requested by the audience.】
+ 答案: 【错误】
+ 分析：【Solicited proposals are those that have been requested by the audience.】
 
 8、 问题:Persuasiveness is the sole of a proposal.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 9、 问题:Proposals often follow an introduction/body/conclusion structure.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 10、 问题:A persuasive proposal might not be a readable one.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
- 分析：【A persuasive proposal must first be a readable one.】
+ 答案: 【错误】
+ 分析：【A persuasive proposal must first be a readable one.】
 
 11、 问题:Exaggerated promises in persuasive proposals will not damage reputations.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
- 分析：【False or exaggerated promises not only damage reputations, but also invite lawsuits.】
+ 答案: 【错误】
+ 分析：【False or exaggerated promises not only damage reputations, but also invite lawsuits.】
 
 12、 问题:The benefit list should show that you understand what readers will gain by adopting your plan.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 + Unit 7 Reports Test 7
 
- 1、 问题:A(n) ____ report is a written answer to a problem or a need that arises in the workplace.
+1、 问题:A(n) ____ report is a written answer to a problem or a need that arises in the workplace.
 选项：
 A:recommendation
-  B:progress
-  C:feasibility
-  D:activity
+ B:progress
+ C:feasibility
+ D:activity
 答案: 【recommendation】
 
 2、 问题:____ section is the most important part of a report where the writer clarifies and explains the significance of the results.
 选项：
 A:Scope
-  B:Discussion
-  C:Options
-  D:Introduction
+ B:Discussion
+ C:Options
+ D:Introduction
 答案: 【Discussion】
 
 3、 问题:The writer explains why each criterion was chosen and why they are ranked as they are in the ____ section.
 选项：
 A:introduction
-  B:options
-  C:scope
-  D:discussion
+ B:options
+ C:scope
+ D:discussion
 答案: 【scope】
 
 4、 问题:Which of the following is an analytical report?
 选项：
 A:Progress report
-  B:Trip report
-  C:Feasibility report
-  D:Activity report
+ B:Trip report
+ C:Feasibility report
+ D:Activity report
 答案: 【Feasibility report】
 
 5、 问题:____ reports answer the question “Here’s what we should do and why”.
 选项：
 A:Recommendation
-  B:Feasibility
-  C:Progress
-  D:Informational
+ B:Feasibility
+ C:Progress
+ D:Informational
 答案: 【Recommendation】
 
 6、 问题:Which of the following is NOT included in the front matter of a report?
 选项：
 A:Letter of transmittal
-  B:Abstract
-  C:Glossary
-  D:Table of contents
+ B:Abstract
+ C:Glossary
+ D:Table of contents
 答案: 【Glossary】
 
 7、 问题:If you don’t have time to read an entire formal report, you can consult its ____ for a general picture of the report.
 选项：
 A:introduction
-  B:conclusion
-  C:abstract
-  D:letter of transmittal
+ B:conclusion
+ C:abstract
+ D:letter of transmittal
 答案: 【abstract】
 
 8、 问题:Which of the following should be included in the table of contents?
 选项：
 A:title page
-  B:letter of transmittal
-  C:the table of contents itself
-  D:works cited
+ B:letter of transmittal
+ C:the table of contents itself
+ D:works cited
 答案: 【works cited】
 
 9、 问题:Which of the following pages are NOT numbered except ____?
 选项：
 A:the back of the abstract
-  B:the title page
-  C:the back of the title page
-  D:the table of contents
+ B:the title page
+ C:the back of the title page
+ D:the table of contents
 答案: 【the table of contents】
 
 10、 问题:The ____ refers to all the material and information preceding the text of the report.
 选项：
 A:front matter
-  B:back matter
-  C:executive summary
-  D:abstract
+ B:back matter
+ C:executive summary
+ D:abstract
 答案: 【front matter】
 
 11、 问题:A ____ report is a document that describes what has been done and what is left to do on only one project.
@@ -574,82 +574,82 @@ A:front matter
 
 + Unit 8 Research skills Test 8
 
- 1、 问题: is considered primary data.
+1、 问题: is considered primary data.
 选项：
 A:Your firsthand experience with a project
-  B:An existing brochure stored in the company’s content management system
-  C:A printed copy of ISO standards for medical devices
-  D:Statistics about social media used in a published article
+ B:An existing brochure stored in the company’s content management system
+ C:A printed copy of ISO standards for medical devices
+ D:Statistics about social media used in a published article
 答案: 【Your firsthand experience with a project】
 
 2、 问题: is NOT considered secondary resource.
 选项：
 A:An online discussion forum
-  B:Your interview transcript
-  C:A published white paper
-  D:An operating manual
+ B:Your interview transcript
+ C:A published white paper
+ D:An operating manual
 答案: 【Your interview transcript】
 
 3、 问题:Which statement about citation is correct?
 选项：
 A:Citation styles vary in different disciplines and fields.
-  B:Technical writers can use up to three citation styles in one document.
-  C: We should never cite a whole paragraph.
-  D:Both direct and indirect quotations require the use of quotation marks.
+ B:Technical writers can use up to three citation styles in one document.
+ C: We should never cite a whole paragraph.
+ D:Both direct and indirect quotations require the use of quotation marks.
 答案: 【Citation styles vary in different disciplines and fields.】
 
 4、 问题:While conducting an observation, which of the followings is NOT recommended?
 选项：
 A:Informing everyone onsite about your presence.
-  B:Getting permission before the observation.
-  C:Taking notes while on site.
-  D:Keeping records of date, time of day, and duration of the observation.
+ B:Getting permission before the observation.
+ C:Taking notes while on site.
+ D:Keeping records of date, time of day, and duration of the observation.
 答案: 【Informing everyone onsite about your presence.】
 
 5、 问题:While conducting an interview, which of the followings is NOT recommended？
- 选项：
+ 选项：
 A:Arriving the interview site a bit earlier than the appointment time.
-  B:Chatting informally with the interviewee prior to the interview.
-  C:Making comments and judgment when taking notes during the interview.
-  D:Sending a thank-you email to the interviewee after your meeting.
+ B:Chatting informally with the interviewee prior to the interview.
+ C:Making comments and judgment when taking notes during the interview.
+ D:Sending a thank-you email to the interviewee after your meeting.
 答案: 【Making comments and judgment when taking notes during the interview.】
 
 6、 问题:Repurposing is a strategy used in content management while dealing with an ongoing project. Repurposing refers to the process of _______ when it is suitable to the current project. Repurposing can save time and resource.
 选项：
 A:lanning and developing new content
-  B:researching and selecting materials
-  C:receiving and storing information
-  D:copying and converting existing content
+ B:researching and selecting materials
+ C:receiving and storing information
+ D:copying and converting existing content
 答案: 【copying and converting existing content】
 
 7、 问题:Why is it important to document sources correctly
 选项：
 A:To avoid ethical issues.
-  B: To avoid legal problems.
-  C:To give credits to the original author.
-  D:All of the choices.
+ B: To avoid legal problems.
+ C:To give credits to the original author.
+ D:All of the choices.
 答案: 【All of the choices.】
 
 8、 问题:While creating technical documents, we should get permission or pay for the use of copyrighted sources except for ____.
 选项：
 A:educational purpose.
-  B:non-commercial use
-  C:international audience
-  D:internal use
+ B:non-commercial use
+ C:international audience
+ D:internal use
 答案: 【educational purpose.】
 
 9、 问题:An engineering paper is most likely to follow ____.
 选项：
 A:APA style
-  B:MLA style
-  C:IEEE citation style
-  D: the Bluebook
+ B:MLA style
+ C:IEEE citation style
+ D: the Bluebook
 答案: 【IEEE citation style】
 
 10、 问题:Which statement about plagiarism is NOT true?
 选项：
 A:Plagiarism is not acceptable in business, science, academia, or journalism.
-  B:Plagiarism is the theft of someone else’s intellectual property.
-  C:Using a Weibo post without citation is generally acceptable because it is hard to trace the original source.
-  D:Technical writers don’t need to document common knowledge such as information that is widely known in the field.
-答案: 【Using a Weibo post without citation is generally acceptable because it is hard to trace the original source.】 
+ B:Plagiarism is the theft of someone else’s intellectual property.
+ C:Using a Weibo post without citation is generally acceptable because it is hard to trace the original source.
+ D:Technical writers don’t need to document common knowledge such as information that is widely known in the field.
+答案: 【Using a Weibo post without citation is generally acceptable because it is hard to trace the original source.】

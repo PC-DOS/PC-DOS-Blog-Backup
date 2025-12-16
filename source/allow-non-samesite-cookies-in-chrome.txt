@@ -1,25 +1,25 @@
 从Chromium 80版本开始，一项SameSite Cookie限制被启用，该限制阻止了未显式设置{{SameSite=None}}的Cookie的跨域行为。
 
- 在无法停用此设置的情况下，可能需要修改Chrome（或基于Chromium的浏览器）的{{flags}}旗标设置。
+在无法停用此设置的情况下，可能需要修改Chrome（或基于Chromium的浏览器）的{{flags}}旗标设置。
 
- 请访问下列地址：
+请访问下列地址：
 
 [[code]]
- chrome://flags/
- [[/code]]
+chrome://flags/
+[[/code]]
 
 备注：对于部分基于Chromium的浏览器，可能需要将“{{chromium}}”协议替换为浏览器自定的协议，如“{{edge}}”（基于Chromium的Microsoft Edge）、“{{lb}}”（龙芯浏览器3）等。
 
- 开启该页面后，请搜索下列字段（或设定项名称），并将所有下列字段的状态改为“禁用（Disabled）”。随后，请重新启动浏览器。
+开启该页面后，请搜索下列字段（或设定项名称），并将所有下列字段的状态改为“禁用（Disabled）”。随后，请重新启动浏览器。
 
- 需要禁用的设定项：
+需要禁用的设定项：
 
 ||~ 字段名 ||~ 设定项名称 ||
- || {{same-site-by-default-cookies}} || SameSite by default cookies ||
- || {{cookies-without-same-site-must-be-secure}} || Cookies without SameSite must be secure ||
+|| {{same-site-by-default-cookies}} || SameSite by default cookies ||
+|| {{cookies-without-same-site-must-be-secure}} || Cookies without SameSite must be secure ||
 
 参考资料：
 
 *http://scp-wiki-cn.wikidot.com/third-party-cookies
 
- *https://blog.csdn.net/sinat_36521655/article/details/104844667 
+*https://blog.csdn.net/sinat_36521655/article/details/104844667

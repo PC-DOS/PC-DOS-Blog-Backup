@@ -1,18 +1,18 @@
 [*https://github.com/AlDanial/cloc cloc]是一个实用的Linux下的代码量统计工具。
 
- 安装：
+安装：
 
 [[code]]
- sudo apt-get install cloc
- [[/code]]
+sudo apt-get install cloc
+[[/code]]
 
 使用：
 
 [[code]]
- cd path/to/your/source/code
- cloc .
- [[/code]]
+cd path/to/your/source/code
+cloc .
+[[/code]]
 
- cloc同时也支持跨平台使用，请参阅发布页面 *https://github.com/AlDanial/cloc/releases/ 。
+cloc同时也支持跨平台使用，请参阅发布页面 *https://github.com/AlDanial/cloc/releases/ 。
 
- 另请参考：[*https://github.com/XAMPPRocky/tokei tokei] 
+另请参考：[*https://github.com/XAMPPRocky/tokei tokei]

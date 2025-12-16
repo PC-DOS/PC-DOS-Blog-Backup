@@ -1,19 +1,19 @@
 若需要在VMWare ESXi中查看磁盘的S.M.A.R.T.信息，则应当使用SSH等工具，远程连接到ESXi控制台，并使用{{esxcli}}工具查看：
 
 [[code]]
- esxcli storage core device smart get -d DISK_DEVICE_ID
- [[/code]]
+esxcli storage core device smart get -d DISK_DEVICE_ID
+[[/code]]
 
 其中，{{DISK_DEVICE_ID}}为目标磁盘驱动器的设备ID，您可以在ESXi Web管理控制台的 [存储区] > [设备] 页的 [名称] 栏位中获取，它被一对括号括起，并具有如下的格式：
 
 [[code]]
- t10.ATA_____ST2000NX0253________________________________________W460P6KD
- [[/code]]
+t10.ATA_____ST2000NX0253________________________________________W460P6KD
+[[/code]]
 
 您也可以在ESXi控制台中使用下面的命令枚举本机所有的磁盘驱动器：
 
 [[code]]
- esxcli storage core device list
- [[/code]]
+esxcli storage core device list
+[[/code]]
 
-参考资料：*https://kb.vmware.com/s/article/2040405 
+参考资料：*https://kb.vmware.com/s/article/2040405

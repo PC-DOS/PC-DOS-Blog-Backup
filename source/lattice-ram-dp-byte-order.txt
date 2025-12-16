@@ -1,31 +1,31 @@
 LatticeXP2提供了{{RAM_DP}}和{{RAM_DP_TRUE}}等双端口RAM的IP模块。这些IP模块可以配置为具有不同的位宽。此时，需要处理不同位宽下的读/写差异问题。
 
- 在LatticeXP2的RAM模块手册（ *https://www.latticesemi.com/view_document?document_id=23976 ）中，对于该问题作如下描述：
+在LatticeXP2的RAM模块手册（ *https://www.latticesemi.com/view_document?document_id=23976 ）中，对于该问题作如下描述：
 
 [[code]]
- 3.2. Byte Order with Different Port Widths
+3.2. Byte Order with Different Port Widths
 
- When instantiating memories that have different port widths, the following examples show the byte order as it relates to endian of the memory input and output.
+When instantiating memories that have different port widths, the following examples show the byte order as it relates to endian of the memory input and output.
 
- Example 1: 8-bit Write, 32-bit Read
-     Big Endian Write Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
-     Big Endian Read Order – Word[31:0]
-     Little Endian Write Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
-     Little Endian Read Order – Word[0:31]
+Example 1: 8-bit Write, 32-bit Read
+    Big Endian Write Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
+    Big Endian Read Order – Word[31:0]
+    Little Endian Write Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
+    Little Endian Read Order – Word[0:31]
 
- Example 2: 32-bit Write, 8-bit Read
-     Big Endian Write Order – Word[31:0]
-     Big Endian Read Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
-     Little Endian Write Order – Word[0:31]
-     Little Endian Read Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
- [[/code]]
+Example 2: 32-bit Write, 8-bit Read
+    Big Endian Write Order – Word[31:0]
+    Big Endian Read Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
+    Little Endian Write Order – Word[0:31]
+    Little Endian Read Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
+[[/code]]
 
 需要注意的是，这里使用逗号（“,”）分隔的顺序是需要从右往左阅读的。
 
- 下面是一个实例：一个16位读、32位写的大端序（Big Endian）{{RAM_DP}}模块，输入端{{Data}}固定为{{@@{16'd245, 16'd250}@@}}（{{@@0x00F500FA@@}}），并测试输出端{{Q}}的输出。可以发现，仿真结果中最先输出的是{{@@16'd250@@}}（{{@@0x00FA@@}}）（低16位），随后是{{@@16'd245@@}}（{{@@0x00F5@@}}）（高16位）。
+下面是一个实例：一个16位读、32位写的大端序（Big Endian）{{RAM_DP}}模块，输入端{{Data}}固定为{{@@{16'd245, 16'd250}@@}}（{{@@0x00F500FA@@}}），并测试输出端{{Q}}的输出。可以发现，仿真结果中最先输出的是{{@@16'd250@@}}（{{@@0x00FA@@}}）（低16位），随后是{{@@16'd245@@}}（{{@@0x00F5@@}}）（高16位）。
 
 [[image SimBE32W16R.png link="*http://pc-dos.wdfiles.com/local--files/lattice-rad-dp-byte-order/SimBE32W16R.png"]]
 
 下面是一个实例：一个32位读、16位写的大端序（Big Endian）{{RAM_DP}}模块，两次写入的输入端{{Data}}分别为{{@@16'd245@@}}（{{@@0x00F5@@}}）和{{@@16'd250@@}}（{{@@0x00FA@@}}），并测试输出端{{Q}}的输出。可以发现，仿真结果中的输出为{{@@0x00FA00F5@@}}。
 
-[[image SimBE16W32R.png link="*http://pc-dos.wdfiles.com/local--files/lattice-rad-dp-byte-order/SimBE16W32R.png"]] 
+[[image SimBE16W32R.png link="*http://pc-dos.wdfiles.com/local--files/lattice-rad-dp-byte-order/SimBE16W32R.png"]]

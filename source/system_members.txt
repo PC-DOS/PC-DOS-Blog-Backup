@@ -2,10 +2,10 @@
 
 [[module Members]]
 
- + 版主
++ 版主
 
 [[module Members group="moderators"]]
 
- + 管理员
++ 管理员
 
-[[module Members group="admins"]] 
+[[module Members group="admins"]]

@@ -1,100 +1,100 @@
 [[module CSS]]
- /* 將標題列變更為繁體中文 */
- /* 如果您需要載入其他佈景主題，請刪除此段。 */
- #header {
-     height: 140px;
-     position: relative;
-     z-index: 10;
-     padding-bottom: 22px; /* FOR MENU */
- }
+/* 將標題列變更為繁體中文 */
+/* 如果您需要載入其他佈景主題，請刪除此段。 */
+#header {
+    height: 140px;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 22px; /* FOR MENU */
+}
 
- #header h1 {
-     margin: 0;
-     padding: 0;
-     float: left;
-     max-height: 105px;
- }
-  
- #header h2 {
-     margin: 0;
-     padding: 0;
-     clear: left;
-     float: left;
-     font-size: 105%;
-     max-height: 38px;
- }
+#header h1 {
+    margin: 0;
+    padding: 0;
+    float: left;
+    max-height: 105px;
+}
+ 
+#header h2 {
+    margin: 0;
+    padding: 0;
+    clear: left;
+    float: left;
+    font-size: 105%;
+    max-height: 38px;
+}
 
- #header h1 {
-     margin-left: 120px;
-     padding: 0;
-     float: left;
-     max-height: 95px;
- }
- #header h2 {
-     margin-left: 120px;
-     padding: 0;
-     clear: left;
-     float: left;
-     font-size: 105%;
-     max-height: 38px;
- }
-  
- #header h1 a {
-     display: block;
-     content: "SCP基金會小馬國分部";
-     margin: 0;
-     padding: 80px 0 25px;
-     line-height: 0px;
-     max-height: 0px;
-     color: #eee;
-     background: transparent;
-     font-size: 180%;
-     text-decoration: none;
- }
+#header h1 {
+    margin-left: 120px;
+    padding: 0;
+    float: left;
+    max-height: 95px;
+}
+#header h2 {
+    margin-left: 120px;
+    padding: 0;
+    clear: left;
+    float: left;
+    font-size: 105%;
+    max-height: 38px;
+}
+ 
+#header h1 a {
+    display: block;
+    content: "SCP基金會小馬國分部";
+    margin: 0;
+    padding: 80px 0 25px;
+    line-height: 0px;
+    max-height: 0px;
+    color: #eee;
+    background: transparent;
+    font-size: 180%;
+    text-decoration: none;
+}
 
- #header h1 a::before{
-     display: block;
-     content: "SCP基金會小馬國分部";
- }
+#header h1 a::before{
+    display: block;
+    content: "SCP基金會小馬國分部";
+}
 
- #header h1 a span{
-     display: block;
-     content: "SCP基金會小馬國分部";
-     visibility: hidden;
- }
-  
- #header h2 span {
-     display: block;
-     margin: 0;
-     padding: 0px 0;
-     line-height: 0px;
-     max-height: 0px;
-     font-weight: bold;
-     color: transparent;
-     text-shadow: none;
- }
+#header h1 a span{
+    display: block;
+    content: "SCP基金會小馬國分部";
+    visibility: hidden;
+}
+ 
+#header h2 span {
+    display: block;
+    margin: 0;
+    padding: 0px 0;
+    line-height: 0px;
+    max-height: 0px;
+    font-weight: bold;
+    color: transparent;
+    text-shadow: none;
+}
 
- #header h2 span::before {
-     content: "控制 • 收容 • 保護";
-     display: block;
-     margin: 0;
-     padding: 19px 0;
-     line-height: 0px;
-     max-height: 0px;
-     font-weight: bold;
-     color: #f0f0c0;
-     text-shadow: 1px 1px 1px #000;
-     text-shadow: 1px 1px 1px rgba(0,0,0,.8);
- }
- [[/module]]
+#header h2 span::before {
+    content: "控制 • 收容 • 保護";
+    display: block;
+    margin: 0;
+    padding: 19px 0;
+    line-height: 0px;
+    max-height: 0px;
+    font-weight: bold;
+    color: #f0f0c0;
+    text-shadow: 1px 1px 1px #000;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+}
+[[/module]]
 
- [!-- * 多語言模塊 * --]
- [[module ListPages name="="]]
- [[include component:multi-language pagename=%%name%% | align=left]]
- [[/module]]
+[!-- * 多語言模塊 * --]
+[[module ListPages name="="]]
+[[include <a href="/component:multi-language">component:multi-language</a> pagename=%%name%% | align=left]]
+[[/module]]
 
- -----
- [!-- * 請在此處撰寫正文 * --]
+-----
+[!-- * 請在此處撰寫正文 * --]
 
- [!-- * 註釋文字顯示模塊 * --]
- [[footnoteblock title="蹄註"]] 
+[!-- * 註釋文字顯示模塊 * --]
+[[footnoteblock title="蹄註"]]

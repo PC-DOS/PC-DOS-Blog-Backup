@@ -3,9 +3,9 @@
 **故障处理：**正常启动进入Windows，在命令提示符界面中执行：
 
 [[code]]
- bcdedit /set {bootmgr} path \EFI\ubuntu\shimx64.efi
- [[/code]]
+bcdedit /set {bootmgr} path \EFI\ubuntu\shimx64.efi
+[[/code]]
 
 重新启动PC，正常进入Grub选单。
 
-**参考资料：***https://blog.csdn.net/chekongfu/article/details/84872841 
+**参考资料：***https://blog.csdn.net/chekongfu/article/details/84872841

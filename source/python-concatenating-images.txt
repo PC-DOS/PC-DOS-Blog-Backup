@@ -1,173 +1,173 @@
 Python的[*https://pillow.readthedocs.io/en/stable/reference/Image.html PIL]库提供了操作图像文件的接口。通过该接口提供的函数，可以实现多张分散图像的拼合。
 
- 该算法总体流程如下：
+该算法总体流程如下：
 
 # 构建需要拼合的图像文件路径列表。
 # 计算拼合后图像的尺寸，并调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.new PIL.Image.new()]}}函数构建拼合后的目标图像对象。
 # 初始化定位指针等辅助变量。
 # 遍历待拼合的图像文件路径列表，并：
- # 调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.open PIL.Image.open()]}}函数，打开源图像。
- # 使用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.crop PIL.Image.crop()]}}、{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.resize PIL.Image.resize()]}}等函数，对源图像进行预处理。
- # 在目标图像对象上调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.paste PIL.Image.paste()]}}方法，将源图像粘贴到目标图像上。该方法的{{im}}参数为源图像对象，{{box}}参数为一个四元组或二元组，描述了源图像粘贴到目标图像时左上角相对于目标图像左上角的坐标位置。
- # 在源图像上调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.close PIL.Image.close()]}}方法，关闭源图像并释放资源。
- # 更新定位指针等辅助变量。
+ # 调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.open PIL.Image.open()]}}函数，打开源图像。
+ # 使用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.crop PIL.Image.crop()]}}、{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.resize PIL.Image.resize()]}}等函数，对源图像进行预处理。
+ # 在目标图像对象上调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.paste PIL.Image.paste()]}}方法，将源图像粘贴到目标图像上。该方法的{{im}}参数为源图像对象，{{box}}参数为一个四元组或二元组，描述了源图像粘贴到目标图像时左上角相对于目标图像左上角的坐标位置。
+ # 在源图像上调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.close PIL.Image.close()]}}方法，关闭源图像并释放资源。
+ # 更新定位指针等辅助变量。
 # 在完成拼合的目标图像上调用{{[*https://pillow.readthedocs.io/en/stable/reference/Image.html#PIL.Image.Image.save PIL.Image.save()]}}方法，将拼合后的图像保存到文件中。
 # 关闭目标图像以释放资源，或传递目标图像给上层调用者。
 
- 示例代码：该代码以平铺方式拼合具有相同尺寸的图像：
+示例代码：该代码以平铺方式拼合具有相同尺寸的图像：
 
 [[code type="python"]]
- import PIL
+import PIL
 
- # Concatenating images into one large image
- def ConcatenateImages(arrImagePaths : array, nRowCount : int = 1, nColCount : int = 1,
-     UseVerticalArrangement : bool = False, sOriginPoint : str = "TopLeft",
-     SaveConcatenatedImage : bool = False, sSaveDirectory : str = "./", sFileNamePrefix : str = "",
-     CloseConcatenatedImagesWhenReturning : bool = False) -> array :
+# Concatenating images into one large image
+def ConcatenateImages(arrImagePaths : array, nRowCount : int = 1, nColCount : int = 1,
+    UseVerticalArrangement : bool = False, sOriginPoint : str = "TopLeft",
+    SaveConcatenatedImage : bool = False, sSaveDirectory : str = "./", sFileNamePrefix : str = "",
+    CloseConcatenatedImagesWhenReturning : bool = False) -> array :
 
-     # Calculate count of concatenated images
-     nImagesPerFrame = nRowCount * nColCount
-     nConcatenatedImage = math.ceil(len(arrImagePaths) / nImagesPerFrame)
+    # Calculate count of concatenated images
+    nImagesPerFrame = nRowCount * nColCount
+    nConcatenatedImage = math.ceil(len(arrImagePaths) / nImagesPerFrame)
 
-     # Create result buffer
-     arrConcatenatedImages = []
+    # Create result buffer
+    arrConcatenatedImages = []
 
-     # Creating concatenated images
-     for ImgID in range(0, nConcatenatedImage) :
-         # Create image buffer
-         imgCurrentImage = PIL.Image.new("RGBA", (100,100))
-         if sOriginPoint.upper() == "TOPRIGHT" :
-             iCurrentRowPointer = 0
-             iCurrentColPointer = nColCount - 1
-         elif sOriginPoint.upper() == "BOTTOMLEFT" :
-             iCurrentRowPointer = nRowCount - 1
-             iCurrentColPointer = 0
-         elif sOriginPoint.upper() == "BOTTOMRIGHT" :
-             iCurrentRowPointer = nRowCount - 1
-             iCurrentColPointer = nColCount - 1
-         else :
-             iCurrentRowPointer = 0
-             iCurrentColPointer = 0
-         #End If
+    # Creating concatenated images
+    for ImgID in range(0, nConcatenatedImage) :
+        # Create image buffer
+        imgCurrentImage = PIL.Image.new("RGBA", (100,100))
+        if sOriginPoint.upper() == "TOPRIGHT" :
+            iCurrentRowPointer = 0
+            iCurrentColPointer = nColCount - 1
+        elif sOriginPoint.upper() == "BOTTOMLEFT" :
+            iCurrentRowPointer = nRowCount - 1
+            iCurrentColPointer = 0
+        elif sOriginPoint.upper() == "BOTTOMRIGHT" :
+            iCurrentRowPointer = nRowCount - 1
+            iCurrentColPointer = nColCount - 1
+        else :
+            iCurrentRowPointer = 0
+            iCurrentColPointer = 0
+        #End If
 
-         # Size information
-         tplSourceSize = (0,0)
-         tplTargetSize = (0,0)
-         sSourceMode = "Unknown"
+        # Size information
+        tplSourceSize = (0,0)
+        tplTargetSize = (0,0)
+        sSourceMode = "Unknown"
 
-         # Concatenating images
-         for ChildImgID in range(ImgID * nImagesPerFrame, (ImgID + 1) * nImagesPerFrame) :
-             # Check if image is listed
-             if ChildImgID >= len(arrImagePaths) :
-                 # If current index is out of range, create a dummy image
-                 imgChildImageToAdd = PIL.Image.new(sSourceMode, tplSourceSize)
-             else :
-                 # Open image
-                 imgChildImageToAdd = PIL.Image.open(arrImagePaths[ChildImgID])
-             #End If
+        # Concatenating images
+        for ChildImgID in range(ImgID * nImagesPerFrame, (ImgID + 1) * nImagesPerFrame) :
+            # Check if image is listed
+            if ChildImgID >= len(arrImagePaths) :
+                # If current index is out of range, create a dummy image
+                imgChildImageToAdd = PIL.Image.new(sSourceMode, tplSourceSize)
+            else :
+                # Open image
+                imgChildImageToAdd = PIL.Image.open(arrImagePaths[ChildImgID])
+            #End If
 
-             # Update size info or resize image
-             if tplSourceSize == (0,0) :
-                 # If size is not set, use the first image's attribute as base size
-                 tplSourceSize = imgChildImageToAdd.size
-                 tplTargetSize = (tplSourceSize[0] * nColCount, tplSourceSize[1] * nRowCount)
-                 sSourceMode = imgChildImageToAdd.mode
-                 print(f"Source size is {tplSourceSize[0]} x {tplSourceSize[1]}, target size is {tplTargetSize[0]} x {tplTargetSize[1]}, using {sSourceMode} mode.")
+            # Update size info or resize image
+            if tplSourceSize == (0,0) :
+                # If size is not set, use the first image's attribute as base size
+                tplSourceSize = imgChildImageToAdd.size
+                tplTargetSize = (tplSourceSize[0] * nColCount, tplSourceSize[1] * nRowCount)
+                sSourceMode = imgChildImageToAdd.mode
+                print(f"Source size is {tplSourceSize[0]} x {tplSourceSize[1]}, target size is {tplTargetSize[0]} x {tplTargetSize[1]}, using {sSourceMode} mode.")
 
-                 # Re-create target image
-                 imgCurrentImage.close()
-                 imgCurrentImage = PIL.Image.new(sSourceMode, tplTargetSize)
-             else :
-                 # Resize image if needed
-                 if imgChildImageToAdd.size != tplSourceSize :
-                     imgChildImageToAdd = imgChildImageToAdd.resize(size=tplSourceSize)
-                 #End If
-             #End if
+                # Re-create target image
+                imgCurrentImage.close()
+                imgCurrentImage = PIL.Image.new(sSourceMode, tplTargetSize)
+            else :
+                # Resize image if needed
+                if imgChildImageToAdd.size != tplSourceSize :
+                    imgChildImageToAdd = imgChildImageToAdd.resize(size=tplSourceSize)
+                #End If
+            #End if
 
-             # Paste current image to target
-             tplPastePos = (iCurrentColPointer * tplSourceSize[0], iCurrentRowPointer * tplSourceSize[1])
-             imgCurrentImage.paste(imgChildImageToAdd, tplPastePos)
+            # Paste current image to target
+            tplPastePos = (iCurrentColPointer * tplSourceSize[0], iCurrentRowPointer * tplSourceSize[1])
+            imgCurrentImage.paste(imgChildImageToAdd, tplPastePos)
 
-             # Close opened source image
-             imgChildImageToAdd.close()
+            # Close opened source image
+            imgChildImageToAdd.close()
 
-             # Update pointers
-             if sOriginPoint.upper() == "TOPRIGHT" :
-                 if UseVerticalArrangement :
-                     iCurrentRowPointer = iCurrentRowPointer + 1
-                     if iCurrentRowPointer >= nRowCount :
-                         iCurrentRowPointer = 0
-                         iCurrentColPointer = iCurrentColPointer - 1
-                 else :
-                     iCurrentColPointer = iCurrentColPointer - 1
-                     if iCurrentColPointer < 0 :
-                         iCurrentRowPointer = iCurrentRowPointer + 1
-                         iCurrentColPointer = nColCount - 1
-                     #End If
-                 #End If
-             elif sOriginPoint.upper() == "BOTTOMLEFT" :
-                 if UseVerticalArrangement :
-                     iCurrentRowPointer = iCurrentRowPointer - 1
-                     if iCurrentRowPointer < 0 :
-                         iCurrentRowPointer = nRowCount - 1
-                         iCurrentColPointer = iCurrentColPointer + 1
-                 else :
-                     iCurrentColPointer = iCurrentColPointer + 1
-                     if iCurrentColPointer >= nColCount :
-                         iCurrentRowPointer = iCurrentRowPointer - 1
-                         iCurrentColPointer = 0
-                     #End If
-                 #End If
-             elif sOriginPoint.upper() == "BOTTOMRIGHT" :
-                 if UseVerticalArrangement :
-                     iCurrentRowPointer = iCurrentRowPointer - 1
-                     if iCurrentRowPointer < 0 :
-                         iCurrentRowPointer = nRowCount - 1
-                         iCurrentColPointer = iCurrentColPointer - 1
-                 else :
-                     iCurrentColPointer = iCurrentColPointer - 1
-                     if iCurrentColPointer < 0 :
-                         iCurrentRowPointer = iCurrentRowPointer - 1
-                         iCurrentColPointer = nColCount - 1
-                     #End If
-                 #End If
-             else :
-                 if UseVerticalArrangement :
-                     iCurrentRowPointer = iCurrentRowPointer + 1
-                     if iCurrentRowPointer >= nRowCount :
-                         iCurrentRowPointer = 0
-                         iCurrentColPointer = iCurrentColPointer + 1
-                 else :
-                     iCurrentColPointer = iCurrentColPointer + 1
-                     if iCurrentColPointer >= nColCount :
-                         iCurrentRowPointer = iCurrentRowPointer + 1
-                         iCurrentColPointer = 0
-                     #End If
-                 #End If
-             #End If
-         #Next
+            # Update pointers
+            if sOriginPoint.upper() == "TOPRIGHT" :
+                if UseVerticalArrangement :
+                    iCurrentRowPointer = iCurrentRowPointer + 1
+                    if iCurrentRowPointer >= nRowCount :
+                        iCurrentRowPointer = 0
+                        iCurrentColPointer = iCurrentColPointer - 1
+                else :
+                    iCurrentColPointer = iCurrentColPointer - 1
+                    if iCurrentColPointer < 0 :
+                        iCurrentRowPointer = iCurrentRowPointer + 1
+                        iCurrentColPointer = nColCount - 1
+                    #End If
+                #End If
+            elif sOriginPoint.upper() == "BOTTOMLEFT" :
+                if UseVerticalArrangement :
+                    iCurrentRowPointer = iCurrentRowPointer - 1
+                    if iCurrentRowPointer < 0 :
+                        iCurrentRowPointer = nRowCount - 1
+                        iCurrentColPointer = iCurrentColPointer + 1
+                else :
+                    iCurrentColPointer = iCurrentColPointer + 1
+                    if iCurrentColPointer >= nColCount :
+                        iCurrentRowPointer = iCurrentRowPointer - 1
+                        iCurrentColPointer = 0
+                    #End If
+                #End If
+            elif sOriginPoint.upper() == "BOTTOMRIGHT" :
+                if UseVerticalArrangement :
+                    iCurrentRowPointer = iCurrentRowPointer - 1
+                    if iCurrentRowPointer < 0 :
+                        iCurrentRowPointer = nRowCount - 1
+                        iCurrentColPointer = iCurrentColPointer - 1
+                else :
+                    iCurrentColPointer = iCurrentColPointer - 1
+                    if iCurrentColPointer < 0 :
+                        iCurrentRowPointer = iCurrentRowPointer - 1
+                        iCurrentColPointer = nColCount - 1
+                    #End If
+                #End If
+            else :
+                if UseVerticalArrangement :
+                    iCurrentRowPointer = iCurrentRowPointer + 1
+                    if iCurrentRowPointer >= nRowCount :
+                        iCurrentRowPointer = 0
+                        iCurrentColPointer = iCurrentColPointer + 1
+                else :
+                    iCurrentColPointer = iCurrentColPointer + 1
+                    if iCurrentColPointer >= nColCount :
+                        iCurrentRowPointer = iCurrentRowPointer + 1
+                        iCurrentColPointer = 0
+                    #End If
+                #End If
+            #End If
+        #Next
 
-         # Save concatenated image if necessary
-         if SaveConcatenatedImage :
-             sSavePath = f"{sSaveDirectory}{sFileNamePrefix}{ImgID}.png"
-             print(f"Exporting concatenated image to {sSavePath}...")
-             imgCurrentImage.save(sSavePath)
-         #End If
+        # Save concatenated image if necessary
+        if SaveConcatenatedImage :
+            sSavePath = f"{sSaveDirectory}{sFileNamePrefix}{ImgID}.png"
+            print(f"Exporting concatenated image to {sSavePath}...")
+            imgCurrentImage.save(sSavePath)
+        #End If
 
-         # Buffer concatenated image for caller if necessary
-         if CloseConcatenatedImagesWhenReturning :
-             imgCurrentImage.close()
-         else :
-             arrConcatenatedImages.append(imgCurrentImage)
-         #End If
-     #Next
+        # Buffer concatenated image for caller if necessary
+        if CloseConcatenatedImagesWhenReturning :
+            imgCurrentImage.close()
+        else :
+            arrConcatenatedImages.append(imgCurrentImage)
+        #End If
+    #Next
 
-     return arrConcatenatedImages
- #End Function
- [[/code]]
+    return arrConcatenatedImages
+#End Function
+[[/code]]
 
 参考资料：
 
 *https://zhuanlan.zhihu.com/p/270669498
 
- *https://blog.csdn.net/weixin_43789195/article/details/105783414 
+*https://blog.csdn.net/weixin_43789195/article/details/105783414

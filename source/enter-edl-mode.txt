@@ -1,35 +1,35 @@
 +++ 通过Thor2命令行进入EDL模式
 
- 如果您的设备可以在启动时响应Thor2工具（该工具随附在WDRT，即Windows Device Recovery Tool，中）的指令，则可以尝试通过Thor2命令行进入EDL模式。
+如果您的设备可以在启动时响应Thor2工具（该工具随附在WDRT，即Windows Device Recovery Tool，中）的指令，则可以尝试通过Thor2命令行进入EDL模式。
 
- 请将设备关机，打开命令提示符定位到Thor2.exe所在的目录下，执行如下指令：
+请将设备关机，打开命令提示符定位到Thor2.exe所在的目录下，执行如下指令：
 
 [[code]]
- thor2 -mode rnd -boot_edmode
- [[/code]]
+thor2 -mode rnd -boot_edmode
+[[/code]]
 
 此时Thor2程序开始等待设备，请将设备连接到计算机。
 
- 注意，如果Thor2提示设备的GPT存在问题进而操作失败，您可能需要尝试附加“-skip_gpt_check”以跳过GPT检查：
+注意，如果Thor2提示设备的GPT存在问题进而操作失败，您可能需要尝试附加“-skip_gpt_check”以跳过GPT检查：
 
 [[code]]
- thor2 -mode rnd -boot_edmode -skip_gpt_check
- [[/code]]
+thor2 -mode rnd -boot_edmode -skip_gpt_check
+[[/code]]
 
- +++ 通过BDS菜单进入EDL模式
++++ 通过BDS菜单进入EDL模式
 
- 您可以尝试通过BDS菜单进入EDL模式。
+您可以尝试通过BDS菜单进入EDL模式。
 
- 进入BDS菜单的通常方法是：同时按住[音量增加] 键和[电源] 键开机并保持按住这两个键，直到屏幕上出现“BDS Menu”字样为止。
+进入BDS菜单的通常方法是：同时按住[音量增加] 键和[电源] 键开机并保持按住这两个键，直到屏幕上出现“BDS Menu”字样为止。
 
- 进入BDS菜单后，请通过按音量键的方法，将游标“->”定位到“EDL Mode”一项上，并按电源键确认，若设备黑屏，则已成功进入EDL模式。
+进入BDS菜单后，请通过按音量键的方法，将游标“->”定位到“EDL Mode”一项上，并按电源键确认，若设备黑屏，则已成功进入EDL模式。
 
- 需要注意的是，某些版本的BDS菜单可能不会提供EDL模式选项。
+需要注意的是，某些版本的BDS菜单可能不会提供EDL模式选项。
 
 +++ 通过删除必要分区进入EDL模式
 
- 您可以进入大容量存储器模式，并用DiskGenius等工具删除某些必要分区（例如SBL1分区）后重新启动设备，此时设备会自动进入EDL模式。
+您可以进入大容量存储器模式，并用DiskGenius等工具删除某些必要分区（例如SBL1分区）后重新启动设备，此时设备会自动进入EDL模式。
 
 +++ 通过工程线进入EDL模式
 
- 如果您拥有自制或购买的“9008工程线”，请根据相关使用说明，强制设备进入应急下载模式。 
+如果您拥有自制或购买的“9008工程线”，请根据相关使用说明，强制设备进入应急下载模式。

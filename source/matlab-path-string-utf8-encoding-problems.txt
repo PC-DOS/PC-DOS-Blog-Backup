@@ -3,29 +3,29 @@
 **故障处理：**检查MATLAB安装路径（{{C:\Program Files\MATLAB\R2018b\bin}}）中的{{lcdata.xml}}文件，发现Big5已被正确地定义为UTF-8的别名：
 
 [[code]]
- <encoding name="UTF-8">
-     <encoding_alias name="utf8"/>
-     <encoding_alias name="Big5"/>
- </encoding>
- [[/code]]
+<encoding name="UTF-8">
+    <encoding_alias name="utf8"/>
+    <encoding_alias name="Big5"/>
+</encoding>
+[[/code]]
 
 在MATLAB脚本文件头部加入：
 
 [[code]]
- feature('DefaultCharacterSet', 'UTF-8');
- [[/code]]
+feature('DefaultCharacterSet', 'UTF-8');
+[[/code]]
 
 再次尝试运行脚本，故障解决。
 
- 为了固化更改，可以将该{{feature()}}函数调用放置到MATLAB自动执行脚本{{startup.m}}中，该脚本可自行创建并放置于任一MATLAB可搜索到的路径中（可以在MATLAB主界面 [Home] > [Set Path] 中定义）：
+为了固化更改，可以将该{{feature()}}函数调用放置到MATLAB自动执行脚本{{startup.m}}中，该脚本可自行创建并放置于任一MATLAB可搜索到的路径中（可以在MATLAB主界面 [Home] > [Set Path] 中定义）：
 
 [[code]]
- % Use UTF-8
- feature('DefaultCharacterSet', 'UTF-8');
- [[/code]]
+% Use UTF-8
+feature('DefaultCharacterSet', 'UTF-8');
+[[/code]]
 
- **参考资料：** 
+**参考资料：** 
 
- *https://blog.csdn.net/happyangry/article/details/86237693
+*https://blog.csdn.net/happyangry/article/details/86237693
 
- *https://blog.csdn.net/RobertChenGuangzhi/article/details/50604602 
+*https://blog.csdn.net/RobertChenGuangzhi/article/details/50604602

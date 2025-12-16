@@ -1,53 +1,53 @@
 对于具有多个子窗口，且多个子窗口需要同时进行数据更新、界面重绘等业务的程序来说，将绘图业务放置在一个UI线程中可能导致性能问题，因此，可以考虑将窗口分散在新的线程中。
 
- 在新线程打开窗口的代码如下所示：
+在新线程打开窗口的代码如下所示：
 
 [[code type="vb"]]
- Imports System.Threading
- Imports System.Threading.Tasks
+Imports System.Threading
+Imports System.Threading.Tasks
 
- Private Function OpenWindowAsync(Of TWindow As {System.Windows.Window, New})() As Task
-     Dim TaskComp As New TaskCompletionSource(Of Object)
+Private Function OpenWindowAsync(Of TWindow As {System.Windows.Window, New})() As Task
+    Dim TaskComp As New TaskCompletionSource(Of Object)
 
-     'Create child window container
-     Dim WinThread As New Thread(Sub()
-                                     Dim WindowInstance As New TWindow
-                                     'Close target window's event loop when closed
-                                     AddHandler WindowInstance.Closed, Sub()
-                                                                           System.Windows.Threading.Dispatcher.ExitAllFrames()
-                                                                       End Sub
-                                     'Show window in separated thread
-                                     WindowInstance.Show()
-                                     'Start window's event loop
-                                     System.Windows.Threading.Dispatcher.Run()
-                                     'Set task's result
-                                     TaskComp.SetResult(Nothing)
-                                 End Sub)
+    'Create child window container
+    Dim WinThread As New Thread(Sub()
+                                    Dim WindowInstance As New TWindow
+                                    'Close target window's event loop when closed
+                                    AddHandler WindowInstance.Closed, Sub()
+                                                                          System.Windows.Threading.Dispatcher.ExitAllFrames()
+                                                                      End Sub
+                                    'Show window in separated thread
+                                    WindowInstance.Show()
+                                    'Start window's event loop
+                                    System.Windows.Threading.Dispatcher.Run()
+                                    'Set task's result
+                                    TaskComp.SetResult(Nothing)
+                                End Sub)
 
-     'Allow sub thread to be exited when calling Application.Current.Shutdown()
-     WinThread.IsBackground = True
-     'Allow UI dispatching
-     WinThread.SetApartmentState(ApartmentState.STA)
-     'Start sub thread
-     WinThread.Start()
+    'Allow sub thread to be exited when calling Application.Current.Shutdown()
+    WinThread.IsBackground = True
+    'Allow UI dispatching
+    WinThread.SetApartmentState(ApartmentState.STA)
+    'Start sub thread
+    WinThread.Start()
 
-     'Returns task object
-     Return TaskComp.Task
- End Function
- [[/code]]
+    'Returns task object
+    Return TaskComp.Task
+End Function
+[[/code]]
 
 其中，如果需要调用{{Application.Current.Shutdown()}}方法从代码显式退出应用程序，需要将子窗口线程的{{IsBackground}}属性设为{{True}}。
 
- 需要在新线程打开新窗口时，使用以下调用即可：
+需要在新线程打开新窗口时，使用以下调用即可：
 
 [[code type="vb"]]
- OpenWindowAsync(Of ChildWindow)()
- [[/code]]
+OpenWindowAsync(Of ChildWindow)()
+[[/code]]
 
 其中，{{ChildWindow}}为子窗口类型。
 
- 参考资料：
+参考资料：
 
 *https://www.cnblogs.com/tcjiaan/p/7105361.html
 
- *https://blog.csdn.net/u010659789/article/details/102937771 
+*https://blog.csdn.net/u010659789/article/details/102937771

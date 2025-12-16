@@ -1,37 +1,37 @@
 [[module css]]
- .win10-link-button {
-     margin-top: 1em;
-     margin-bottom: 1em;
-     color: #fff;
-     background-color: #004b91;
-     padding: 0.75em;
-     font-size: 105%;
-     text-decoration:none;
- }
+.win10-link-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #004b91;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
 
- .win10-link-button:hover {
-     margin-top: 1em;
-     margin-bottom: 1em;
-     color: #fff;
-     background-color: #0073d7;
-     padding: 0.75em;
-     font-size: 105%;
-     text-decoration:none;
- }
- [[/module]]
+.win10-link-button:hover {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #0073d7;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
+[[/module]]
 
- [[=]]
- [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
- ##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
- ----
- [[size larger]] **严禁将通过本文提供的PDF及爬虫用于商业及盈利目的。**[[/size]]
- [[size larger]]**谨在此对机械工业出版社、电子工业出版社、清华大学出版社及其全体工作人员致以最诚挚的谢意。**[[/size]]
+[[=]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+----
+[[size larger]] **严禁将通过本文提供的PDF及爬虫用于商业及盈利目的。**[[/size]]
+[[size larger]]**谨在此对机械工业出版社、电子工业出版社、清华大学出版社及其全体工作人员致以最诚挚的谢意。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
- [[/=]]
+[[/=]]
 
- + 所用爬虫
++ 所用爬虫
 
 GitHub地址：*https://github.com/Echowxsy/CMPEDUDownload
 
@@ -43,84 +43,84 @@ GitHub地址：*https://github.com/Echowxsy/CMPEDUDownload
 
 [*/local--files/cmpedu-download-link/CMPEDUDownload-master-new.zip 请在此处下载新版本爬虫]
 
- [[a href="*/local--files/cmpedu-download-link/CMPEDUDownload-master-new.zip" class="win10-link-button"]]下载新版本爬虫[[/a]] 
+[[a href="*/local--files/cmpedu-download-link/CMPEDUDownload-master-new.zip" class="win10-link-button"]]下载新版本爬虫[[/a]] 
 
- +++ 旧版本爬虫
++++ 旧版本爬虫
 
 [*/local--files/cmpedu-download-link/CMPEDUDownload-master.zip 请在此处下载旧版本爬虫]
 
- [[a href="*/local--files/cmpedu-download-link/CMPEDUDownload-master.zip" class="win10-link-button"]]下载旧版本爬虫[[/a]] 
+[[a href="*/local--files/cmpedu-download-link/CMPEDUDownload-master.zip" class="win10-link-button"]]下载旧版本爬虫[[/a]] 
 
- + Windows下使用方法
++ Windows下使用方法
 
 ++ 新版本爬虫
 
- 安装Python3环境后，定位到下载的文件的解压目录，在命令提示符或PowerShell中，依次执行：
+安装Python3环境后，定位到下载的文件的解压目录，在命令提示符或PowerShell中，依次执行：
 
 [[code]]
- pip3 install requests
- REM 获得 aria2 input file
- python download.py > downloads.txt
- REM 使用 aria2 进行下载
+pip3 install requests
+REM 获得 aria2 input file
+python download.py > downloads.txt
+REM 使用 aria2 进行下载
 aria2c -i downloads.txt
- [[/code]]
+[[/code]]
 
 可以编辑{{categories.json}}文件来选择需要下载的目类。
 
- 如果Python运行过程中卡死，导致下载列表不全，您可以考虑编辑{{categories.json}}文后，重新执行Python指令并追加下载列表：
+如果Python运行过程中卡死，导致下载列表不全，您可以考虑编辑{{categories.json}}文后，重新执行Python指令并追加下载列表：
 
 [[code]]
- python download.py >> downloads.txt
- [[/code]]
+python download.py >> downloads.txt
+[[/code]]
 
- +++ 已爬取的下载链接
++++ 已爬取的下载链接
 
- 本文件编码格式为UTF-8。
+本文件编码格式为UTF-8。
 
 [*/local--files/cmpedu-download-link/downloads.txt 请在此处下载已爬取的完整下载链接]
 
- [[a href="*/local--files/cmpedu-download-link/downloads.txt" class="win10-link-button"]]下载已爬取的完整下载链接[[/a]] 
+[[a href="*/local--files/cmpedu-download-link/downloads.txt" class="win10-link-button"]]下载已爬取的完整下载链接[[/a]] 
 
- ++ 老版本爬虫
+++ 老版本爬虫
 
- 安装Python3环境后，定位到下载的文件的解压目录，在命令提示符或PowerShell中，依次执行：
+安装Python3环境后，定位到下载的文件的解压目录，在命令提示符或PowerShell中，依次执行：
 
 [[code]]
- pip3 install requests --user
- python Download.py
- [[/code]]
+pip3 install requests --user
+python Download.py
+[[/code]]
 
 可以编辑{{Category.txt}}文件来选择需要下载的目类。
 
- 您可以使用下面的批处理文件来实现自动重试，请将{{if exist}}语句后的目录指定为{{Category.txt}}中的最后一行目录：
+您可以使用下面的批处理文件来实现自动重试，请将{{if exist}}语句后的目录指定为{{Category.txt}}中的最后一行目录：
 
 [[code]]
- @echo off
+@echo off
 
- :StartDownload
- cd %~dp0
+:StartDownload
+cd %~dp0
 
- REM Insert main code here.
- python Download.py
+REM Insert main code here.
+python Download.py
 
- REM Wait for about 5 seconds.
- ping 127.0.0.1 -n 5 > nul
+REM Wait for about 5 seconds.
+ping 127.0.0.1 -n 5 > nul
 
- REM Set semaphore folder path here.
- if exist "downloads\ZC08汽车技术创新与研发系列丛书" (
-     goto End
- )
- echo=
- echo Script finished, but semaphore folder not detected, retry after 30 minutes.
+REM Set semaphore folder path here.
+if exist "downloads\ZC08汽车技术创新与研发系列丛书" (
+    goto End
+)
+echo=
+echo Script finished, but semaphore folder not detected, retry after 30 minutes.
 
- REM Wait for about 30 minutes.
- ping 127.0.0.1 -n 1800 > nul
+REM Wait for about 30 minutes.
+ping 127.0.0.1 -n 1800 > nul
 
- goto StartDownload
+goto StartDownload
 
- :End
- echo=
- echo Semaphore folder detected, press any key to exit.
- pause > nul
- Exit
- [[/code]] 
+:End
+echo=
+echo Semaphore folder detected, press any key to exit.
+pause > nul
+Exit
+[[/code]]

@@ -3,5 +3,5 @@
 **处理：**该问题由于64位系统运行32位的程序需要32位兼容环境导致的。因此安装兼容环境即可：
 
 [[code]]
- sudo apt-get install lsb-core
- [[/code]] 
+sudo apt-get install lsb-core
+[[/code]]

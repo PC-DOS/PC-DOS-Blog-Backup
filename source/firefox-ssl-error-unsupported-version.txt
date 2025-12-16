@@ -1,5 +1,5 @@
 Firefox在访问部分仅支持TLS 1.0或TLS 1.1的网站时，会提示“SSL_ERROR_UNSUPPORTED_VERSION”错误，阻止连接。
 
- 此时，请访问{{about:config}}，将{{@@security.tls.version.enable-deprecated@@}}参数的值设为{{true}}。尝试重新打开被阻止的网站，应该可以恢复正常访问。
+此时，请访问{{about:config}}，将{{@@security.tls.version.enable-deprecated@@}}参数的值设为{{true}}。尝试重新打开被阻止的网站，应该可以恢复正常访问。
 
- 参考资料：*https://blog.csdn.net/weixin_54575440/article/details/125717847 
+参考资料：*https://blog.csdn.net/weixin_54575440/article/details/125717847

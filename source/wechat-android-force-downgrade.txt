@@ -1,33 +1,33 @@
 该方法可将安卓端的微信（WeChat）强制降级到已不能登录的旧版本，本例中以[*https://wwi.lanzoui.com/iRy2yq50t2h 微信6.7.3-GooglePlay版]为例。
 
- 开始前，请安装最新版微信并完成登录流程。并将旧版微信的APK安装文件复制到设备中，并记住该文件所在的位置。为了保证兼容性，建议将该文件置入{{/data/local/tmp/}}目录中，并命名为{{wechat.apk}}。并需要使用{{chmod}}指令设置该目录的权限：
+开始前，请安装最新版微信并完成登录流程。并将旧版微信的APK安装文件复制到设备中，并记住该文件所在的位置。为了保证兼容性，建议将该文件置入{{/data/local/tmp/}}目录中，并命名为{{wechat.apk}}。并需要使用{{chmod}}指令设置该目录的权限：
 
 [[code]]
- chmod 777 /data/local/tmp
- [[/code]]
+chmod 777 /data/local/tmp
+[[/code]]
 
 首先，请允许手机的ADB调试功能（USB调试）并通过USB调试方式连接到计算机。计算机端需要安装ADB工具包和相应的驱动程序。然后，请在ADB工具主程序adb.exe所在目录启动命令提示符，并执行：
 
 [[code]]
- adb shell
- [[/code]]
+adb shell
+[[/code]]
 
 进入Android终端。
 
- 随后执行：
+随后执行：
 
 [[code]]
- pm uninstall -k com.tencent.mm
- [[/code]]
+pm uninstall -k com.tencent.mm
+[[/code]]
 
 卸载微信，但保留用户数据。
 
- 随后执行：
+随后执行：
 
 [[code]]
- pm install -d /data/local/tmp/wechat.apk
- [[/code]]
+pm install -d /data/local/tmp/wechat.apk
+[[/code]]
 
 重新安装微信。
 
- 参考资料：*https://blog.csdn.net/u012852597/article/details/108814434 
+参考资料：*https://blog.csdn.net/u012852597/article/details/108814434

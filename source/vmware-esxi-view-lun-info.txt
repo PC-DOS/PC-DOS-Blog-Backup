@@ -1,7 +1,7 @@
 若需要在VMWare ESXi中查看磁盘的LUN路径信息，则应当使用SSH等工具，远程连接到ESXi控制台，并使用{{esxcli}}工具查看：
 
 [[code]]
- esxcli storage core path list
- [[/code]]
+esxcli storage core path list
+[[/code]]
 
-参考资料：*https://kb.vmware.com/s/article/1003973?lang=zh_CN 
+参考资料：*https://kb.vmware.com/s/article/1003973?lang=zh_CN

@@ -1,46 +1,46 @@
 在部分情况下，Ubuntu提供的NetworkManager可能失效，此时，可以配置开机自动执行{{dhclient}}进行缓解。
 
- 建立{{/etc/rc.local}}：
+建立{{/etc/rc.local}}：
 
 [[code]]
- sudo vi /etc/rc.local
- [[/code]]
+sudo vi /etc/rc.local
+[[/code]]
 
 写入：
 
 [[code]]
- #!/bin/bash
- dhclient
- [[/code]]
+#!/bin/bash
+dhclient
+[[/code]]
 
 设置权限并启动服务：
 
 [[code]]
- sudo chmod 755 /etc/rc.local
- [[/code]]
+sudo chmod 755 /etc/rc.local
+[[/code]]
 
 编辑{{rc-local}}服务：
 
 [[code]]
- sudo vi /lib/systemd/system/rc-local.service
- [[/code]]
+sudo vi /lib/systemd/system/rc-local.service
+[[/code]]
 
 在文件末尾加入：
 
 [[code]]
- [Install]
- WantedBy=multi-user.target
- [[/code]]
+[Install]
+WantedBy=multi-user.target
+[[/code]]
 
 启动服务：
 
 [[code]]
- sudo systemctl enable rc-local
- sudo systemctl restart rc-local
- [[/code]]
+sudo systemctl enable rc-local
+sudo systemctl restart rc-local
+[[/code]]
 
 参考：
 
 *https://www.cnblogs.com/liuhanxu/p/17555594.html
 
- *https://blog.csdn.net/qz652219228/article/details/125107694 
+*https://blog.csdn.net/qz652219228/article/details/125107694

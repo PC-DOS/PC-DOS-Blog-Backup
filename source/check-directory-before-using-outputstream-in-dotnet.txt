@@ -1,18 +1,18 @@
 在使用.NET的FileStream文件流进行输出时，应先检查目标目录是否存在，FileStream可以自行建立目标文件，但目标目录不存在时将引发{{System.IO.DirectoryNotFoundException}}异常。
 
- 建立目录的代码：
+建立目录的代码：
 
 [[code]]
- Dim OutputDirectory As String = ""
- OutputFilePath = OutputFilePath.Replace("/", "\")
- If OutputFilePath.Contains("\") Or OutputFilePath.Contains("/") Then
-     OutputDirectory = OutputFilePath.Substring(0, OutputFilePath.LastIndexOf("\"))
-         If OutputDirectory.Trim().Length > 0 Then
-             If Not Directory.Exists(OutputDirectory) Then
-             Directory.CreateDirectory(OutputDirectory)
-         End If
-     End If
- End If
- [[/code]]
+Dim OutputDirectory As String = ""
+OutputFilePath = OutputFilePath.Replace("/", "\")
+If OutputFilePath.Contains("\") Or OutputFilePath.Contains("/") Then
+    OutputDirectory = OutputFilePath.Substring(0, OutputFilePath.LastIndexOf("\"))
+        If OutputDirectory.Trim().Length > 0 Then
+            If Not Directory.Exists(OutputDirectory) Then
+            Directory.CreateDirectory(OutputDirectory)
+        End If
+    End If
+End If
+[[/code]]
 
-需要注意的是：在CommonDialog中，通过特定的操作顺序仍然可以指定不存在的目录为输出目标，故不应跳过该检查流程。 
+需要注意的是：在CommonDialog中，通过特定的操作顺序仍然可以指定不存在的目录为输出目标，故不应跳过该检查流程。

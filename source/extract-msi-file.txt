@@ -1,9 +1,9 @@
 您可以在Windows命令提示符中使用下面的指令提取{{msi}}格式的安装文件中的档案：
 
 [[code]]
- msiexec /a "PATH\TO\MSI\FILE" /qb TARGETDIR="OUTPUT\DIRECTORY\"
- [[/code]]
+msiexec /a "PATH\TO\MSI\FILE" /qb TARGETDIR="OUTPUT\DIRECTORY\"
+[[/code]]
 
 其中，{{PATH\TO\MSI\FILE}}是msi文件的路径，{{OUTPUT\DIRECTORY\}}为提取的文件的输出目录。
 
- 参考资料：*https://www.cnblogs.com/top5/archive/2012/10/29/2744639.html 
+参考资料：*https://www.cnblogs.com/top5/archive/2012/10/29/2744639.html

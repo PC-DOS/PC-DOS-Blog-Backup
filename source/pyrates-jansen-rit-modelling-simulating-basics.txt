@@ -67,41 +67,41 @@ sJRCDescTemplate = "Jansen-Rit circuit model"
 # Operator templates
 # Use copy.deepcopy() to create replica of these operator templates for your own nodes
 rpeTemplate = OperatorTemplate(name="RPO_e", path=None,
-    equations=[
-        "d/dt * V = I_c",
-        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)"
-        ],
-    variables={
-        "V" : "output",
-        "I_c" : "variable",
-        "m_in" : "input",
-        "tau" : 0.01,
-        "H" : 0.00325,
-    },
-    description=f"{sRPEDescTemplate} template")
+    equations=[
+        "d/dt * V = I_c",
+        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)"
+        ],
+    variables={
+        "V" : "output",
+        "I_c" : "variable",
+        "m_in" : "input",
+        "tau" : 0.01,
+        "H" : 0.00325,
+    },
+    description=f"{sRPEDescTemplate} template")
 rpiTemplate = OperatorTemplate(name="RPO_i", path=None,
-    equations=[
-        "d/dt * V = I_c",
-        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)"
-        ],
-    variables={
-        "V" : "output",
-        "I_c" : "variable",
-        "m_in" : "input",
-        "tau" : 0.02,
-        "H" : -0.022,
-    },
-    description=f"{sRPIDescTemplate} template")
+    equations=[
+        "d/dt * V = I_c",
+        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)"
+        ],
+    variables={
+        "V" : "output",
+        "I_c" : "variable",
+        "m_in" : "input",
+        "tau" : 0.02,
+        "H" : -0.022,
+    },
+    description=f"{sRPIDescTemplate} template")
 proTemplate = OperatorTemplate(name="PRO", path=None, 
-    equations=["m_out = 2*m_max / (1 + exp(r * (V_thr - V)))"],
-    variables={
-        "m_out" : "output",
-        "V" : "input",
-        "V_thr" : 6e-3,
-        "m_max" : 2.5,
-        "r" : 560.0
-    },
-    description=f"{sPRODescTemplate} template")
+    equations=["m_out = 2*m_max / (1 + exp(r * (V_thr - V)))"],
+    variables={
+        "m_out" : "output",
+        "V" : "input",
+        "V_thr" : 6e-3,
+        "m_max" : 2.5,
+        "r" : 560.0
+    },
+    description=f"{sPRODescTemplate} template")
 [[/code]]
 
 使用{{copy.deepcopy()}}建立算子实例的深拷贝对象，PyRates的{{Template}}类提供了用于修改对象参数的{{update_template()}}接口：
@@ -112,11 +112,11 @@ import copy
 sCurrentNodeName = "Demo Jansen-Rit Circuit (DemoJRC)"
 # Operators
 rpeDemoJRC = copy.deepcopy(rpeTemplate).update_template(name="RPO_e", path=None,
-    description=f"{sRPEDescTemplate} of {sCurrentNodeName}")
+    description=f"{sRPEDescTemplate} of {sCurrentNodeName}")
 rpiDemoJRC = copy.deepcopy(rpiTemplate).update_template(name="RPO_i", path=None,
-    description=f"{sRPIDescTemplate} of {sCurrentNodeName}")
+    description=f"{sRPIDescTemplate} of {sCurrentNodeName}")
 proDemoJRC = copy.deepcopy(proTemplate).update_template(name="PRO", path=None, 
-    description=f"{sPRODescTemplate} of {sCurrentNodeName}")
+    description=f"{sPRODescTemplate} of {sCurrentNodeName}")
 [[/code]]
 
 + 定义子节点
@@ -126,11 +126,11 @@ PyRates将子节点描述为{{pyrates.frontend.NodeTemplate}}对象的实例，�
 [[code type="python"]]
 # Sub nodes
 einDemoJRC = NodeTemplate(name="EIN", path=None, operators=[rpeDemoJRC, proDemoJRC],
-    description=f"{sEINDescTemplate} of {sCurrentNodeName}")
+    description=f"{sEINDescTemplate} of {sCurrentNodeName}")
 iinDemoJRC = NodeTemplate(name="IIN", path=None, operators=[rpeDemoJRC, proDemoJRC],
-    description=f"{sIINDescTemplate} of {sCurrentNodeName}")
+    description=f"{sIINDescTemplate} of {sCurrentNodeName}")
 pmcDemoJRC = NodeTemplate(name="PC", path=None, operators=[rpeDemoJRC, rpiDemoJRC, proDemoJRC],
-    description=f"{sPMCDescTemplate} of {sCurrentNodeName}")
+    description=f"{sPMCDescTemplate} of {sCurrentNodeName}")
 [[/code]]
 
 + 定义环路节点
@@ -142,37 +142,37 @@ PyRates将环路节点描述为{{pyrates.frontend.CircuitTemplate}}对象的实�
 [[code type="python"]]
 # Sub node interconnections in Jansen-Rit Model
 jrcDemoJRCNode1 = CircuitTemplate(name="JRC_DemoJRCNode", path=None,
-    nodes={
-        "EIN" : einDemoJRC,
-        "IIN" : iinDemoJRC,
-        "PC" : pmcDemoJRC
-    },
-    edges=[
-        # EIN -> PC
-        ("EIN/PRO/m_out", "PC/RPO_e/m_in", None, {"weight" : 108, "delay" : 0.0, "spread" : 0.0}),
-        # IIN -> PC
-        ("IIN/PRO/m_out", "PC/RPO_i/m_in", None, {"weight" : 33.75, "delay" : 0.0, "spread" : 0.0}),
-        # PC -> EIN
-        ("PC/PRO/m_out", "EIN/RPO_e/m_in", None, {"weight" : 135, "delay" : 0.0, "spread" : 0.0}),
-        # PC -> IIN
-        ("PC/PRO/m_out", "IIN/RPO_e/m_in", None, {"weight" : 33.75, "delay" : 0.0, "spread" : 0.0}),
-    ],
-    description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
+    nodes={
+        "EIN" : einDemoJRC,
+        "IIN" : iinDemoJRC,
+        "PC" : pmcDemoJRC
+    },
+    edges=[
+        # EIN -> PC
+        ("EIN/PRO/m_out", "PC/RPO_e/m_in", None, {"weight" : 108, "delay" : 0.0, "spread" : 0.0}),
+        # IIN -> PC
+        ("IIN/PRO/m_out", "PC/RPO_i/m_in", None, {"weight" : 33.75, "delay" : 0.0, "spread" : 0.0}),
+        # PC -> EIN
+        ("PC/PRO/m_out", "EIN/RPO_e/m_in", None, {"weight" : 135, "delay" : 0.0, "spread" : 0.0}),
+        # PC -> IIN
+        ("PC/PRO/m_out", "IIN/RPO_e/m_in", None, {"weight" : 33.75, "delay" : 0.0, "spread" : 0.0}),
+    ],
+    description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
 jrcDemoJRCNode2 = copy.deepcopy(jrcDemoJRCNode1)
 
 # Circuit with 2 Jansen-Rit circuits
 jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
-    circuits={
-        "JRC1" : jrcDemoJRCNode1,
-        "JRC2" : jrcDemoJRCNode2
-    },
-    edges=[
-        # JRC1 -> JRC2, excitatory
-        ("JRC1/PC/PRO/m_out", "JRC2/EIN/RPO_e/m_in", None, {"weight" : 20.0, "delay" : 0.004, "spread" : 0.001}),
-        # JRC2 -> JRC1, excitatory
-        ("JRC2/PC/PRO/m_out", "JRC1/EIN/RPO_e/m_in", None, {"weight" : 40.0, "delay" : 0.004, "spread" : 0.001}),
-    ],
-    description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
+    circuits={
+        "JRC1" : jrcDemoJRCNode1,
+        "JRC2" : jrcDemoJRCNode2
+    },
+    edges=[
+        # JRC1 -> JRC2, excitatory
+        ("JRC1/PC/PRO/m_out", "JRC2/EIN/RPO_e/m_in", None, {"weight" : 20.0, "delay" : 0.004, "spread" : 0.001}),
+        # JRC2 -> JRC1, excitatory
+        ("JRC2/PC/PRO/m_out", "JRC1/EIN/RPO_e/m_in", None, {"weight" : 40.0, "delay" : 0.004, "spread" : 0.001}),
+    ],
+    description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
 [[/code]]
 
 已经定义的{{pyrates.frontend.CircuitTemplate}}对象实例可以通过{{pyrates.frontend.CircuitTemplate.update_var()}}函数更新参数。该函数接收{{node_vars}}和{{edge_vars}}等2个参数，描述对节点内部变量和边信息的更新：
@@ -223,26 +223,26 @@ arrInputSignalY = dInputSignalAmplitude * arrInputSignalY + dInputSignalOffset
 # Results is an instance of pandas.DataFrame, whose columns are output channels, indexes are time points
 # Use the "inputs" parameter to specify input signal
 # Use the "outputs" parameter to specify output channels, you can access them with [ChannelName] index
-#     Only "output" variables defined in OperatorTemplate can be measured
+#     Only "output" variables defined in OperatorTemplate can be measured
 # See https://pyrates.readthedocs.io/en/latest/frontend.template.html#pyrates.frontend.template.circuit.CircuitTemplate.run
 dctSimResults = jrcDemoJRC.run(
-    simulation_time=dSimulationDurationReal,
-    step_size=dSimulationStep,
-    sampling_step_size=dSamplingStep,
-    inputs={
-        # Stimulating PC of JRC2, input to operator PRO, variable V
-        "JRC2/PC/PRO/V" : arrInputSignalY,
-        # Spontaneous electrical activities (spontaneous firing rate) are inputted to m_in port of PC's RPO_e operator
-        "JRC1/PC/RPO_e/m_in" : np.array([220 for i in range(0,nInputSignalPointCount)]),
-        "JRC2/PC/RPO_e/m_in" : np.array([220 for i in range(0,nInputSignalPointCount)]),
-    },
-    outputs={
-        # Record from subnode PC, operator RPO_e (EIN output), variable V
-        "JRC1_PC_e" : "JRC1/PC/RPO_e/V",
-        # Record from subnode PC, operator RPO_i (IIN output), variable V
-        "JRC1_PC_i" : "JRC1/PC/RPO_i/V"
-    },
-    clear=True
+    simulation_time=dSimulationDurationReal,
+    step_size=dSimulationStep,
+    sampling_step_size=dSamplingStep,
+    inputs={
+        # Stimulating PC of JRC2, input to operator PRO, variable V
+        "JRC2/PC/PRO/V" : arrInputSignalY,
+        # Spontaneous electrical activities (spontaneous firing rate) are inputted to m_in port of PC's RPO_e operator
+        "JRC1/PC/RPO_e/m_in" : np.array([220 for i in range(0,nInputSignalPointCount)]),
+        "JRC2/PC/RPO_e/m_in" : np.array([220 for i in range(0,nInputSignalPointCount)]),
+    },
+    outputs={
+        # Record from subnode PC, operator RPO_e (EIN output), variable V
+        "JRC1_PC_e" : "JRC1/PC/RPO_e/V",
+        # Record from subnode PC, operator RPO_i (IIN output), variable V
+        "JRC1_PC_i" : "JRC1/PC/RPO_i/V"
+    },
+    clear=True
 )
 # Clear PyRates global caches
 pyrates.utility.clear_frontend_caches()
@@ -272,36 +272,36 @@ import pandas as pd
 # Merging results from EIN and IIN
 dctSimResultsMerged = pd.DataFrame()
 for CurrentKey in dctSimResults.keys() :
-    # Check if current key is from a "XXX_e" and "XXX_i" pair
-    if str(CurrentKey).endswith("_e") :
-        # If curren key is an EIN output
-        sCurrentKeyBase = str(CurrentKey).removesuffix("_e") 
-        # Dertermin key of paired IIN output
-        sCurrentKeyPaired = sCurrentKeyBase + "_i"
-        if sCurrentKeyPaired in dctSimResults.keys() :
-            # Merging key pairs, a simple "plus" operator is used
-            # See https://pyrates.readthedocs.io/en/latest/auto_implementations/python_definitions.html
-            dctSimResultsMerged[sCurrentKeyBase] = dctSimResults[sCurrentKeyBase + "_e"] + dctSimResults[sCurrentKeyBase + "_i"]
-        else :
-            # If we can't find a paired IIN output, log this entry directly
-            dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
-        #End If 
-    elif str(CurrentKey).endswith("_i") :
-        # If curren key is an IIN output
-        sCurrentKeyBase = str(CurrentKey).removesuffix("_i") 
-        # Dertermin key of paired EIN output
-        sCurrentKeyPaired = sCurrentKeyBase + "_e"
-        if sCurrentKeyPaired in dctSimResults.keys() :
-            # Since EIN output is handled in previous If branch, simply continuing the loop
-            continue
-        else :
-            # If we can't find a paired EIN output, log this entry directly
-            dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
-        #End If
-    else :
-        # For entries with other suffixes, log this entry directly
-        dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
-    #End If
+    # Check if current key is from a "XXX_e" and "XXX_i" pair
+    if str(CurrentKey).endswith("_e") :
+        # If curren key is an EIN output
+        sCurrentKeyBase = str(CurrentKey).removesuffix("_e") 
+        # Dertermin key of paired IIN output
+        sCurrentKeyPaired = sCurrentKeyBase + "_i"
+        if sCurrentKeyPaired in dctSimResults.keys() :
+            # Merging key pairs, a simple "plus" operator is used
+            # See https://pyrates.readthedocs.io/en/latest/auto_implementations/python_definitions.html
+            dctSimResultsMerged[sCurrentKeyBase] = dctSimResults[sCurrentKeyBase + "_e"] + dctSimResults[sCurrentKeyBase + "_i"]
+        else :
+            # If we can't find a paired IIN output, log this entry directly
+            dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
+        #End If 
+    elif str(CurrentKey).endswith("_i") :
+        # If curren key is an IIN output
+        sCurrentKeyBase = str(CurrentKey).removesuffix("_i") 
+        # Dertermin key of paired EIN output
+        sCurrentKeyPaired = sCurrentKeyBase + "_e"
+        if sCurrentKeyPaired in dctSimResults.keys() :
+            # Since EIN output is handled in previous If branch, simply continuing the loop
+            continue
+        else :
+            # If we can't find a paired EIN output, log this entry directly
+            dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
+        #End If
+    else :
+        # For entries with other suffixes, log this entry directly
+        dctSimResultsMerged[CurrentKey] = dctSimResults[CurrentKey]
+    #End If
 #Next
 [[/code]]
 
@@ -312,16 +312,16 @@ import matplotlib.pyplot as plt
 
 # Plotting data
 for CurrentChannel in dctSimResultsMerged.keys() :
-    if (CurrentChannel+"_e") in dctSimResults.keys() :
-        plt.plot(dctSimResultsMerged[CurrentChannel+"_e"], label=CurrentChannel+"_e")
-    #End If
-    if (CurrentChannel+"_i") in dctSimResults.keys() :
-        plt.plot(dctSimResultsMerged[CurrentChannel+"_i"], label=CurrentChannel+"_i")
-    #End If
-    plt.plot(dctSimResultsMerged[CurrentChannel], label=CurrentChannel)
-    plt.title(CurrentChannel)
-    plt.legend()
-    plt.show()
+    if (CurrentChannel+"_e") in dctSimResults.keys() :
+        plt.plot(dctSimResultsMerged[CurrentChannel+"_e"], label=CurrentChannel+"_e")
+    #End If
+    if (CurrentChannel+"_i") in dctSimResults.keys() :
+        plt.plot(dctSimResultsMerged[CurrentChannel+"_i"], label=CurrentChannel+"_i")
+    #End If
+    plt.plot(dctSimResultsMerged[CurrentChannel], label=CurrentChannel)
+    plt.title(CurrentChannel)
+    plt.legend()
+    plt.show()
 #Next
 
 # Exporting data

@@ -4,69 +4,69 @@
 
 在不同的网络环境中复现错误后，首先使用Web确定GitLab可以正常访问，同时使用管理员登录，检查GitLab Web管理面板中对项目及文件大小的限制参数，均远大于用户试图提交的仓库的尺寸。
 
- 使用SSH登录远程服务器，检查容器状态：
+使用SSH登录远程服务器，检查容器状态：
 
 [[code]]
- docker ps
- [[/code]]
+docker ps
+[[/code]]
 
 所有容器正确运行，使用{{docker ps}}给出的GitLab容器ID进入GitLab容器的Shell：
 
 [[code]]
- docker exec -it ID_OF_GITLAB_CONTAINER /bin/sh
- [[/code]]
+docker exec -it ID_OF_GITLAB_CONTAINER /bin/sh
+[[/code]]
 
 检查位于{{/etc/gitlab/gitlab.rb}}中的{{nginx['client_max_body_size']}}属性的值：
 
 [[code]]
- vi /etc/gitlab/gitlab.rb
- [[/code]]
+vi /etc/gitlab/gitlab.rb
+[[/code]]
 
 并修改为{{@@0@@}}（无限制）
 
 [[code]]
- nginx['client_max_body_size'] = 0
- [[/code]]
+nginx['client_max_body_size'] = 0
+[[/code]]
 
 按{{ESC}}键并输入“{{:wq}}”指令，按回车保存并退出VI，重新配置GitLab：
 
 [[code]]
- gitlab-ctl reconfigure
- gitlab-ctl hup nginx
- [[/code]]
+gitlab-ctl reconfigure
+gitlab-ctl hup nginx
+[[/code]]
 
 发现故障继续，故使用{{exit}}指令退到远程服务器Shell，进入NGINX容器的Shell：
 
 [[code]]
- docker exec -it ID_OF_NGINX_CONTAINER /bin/sh
- [[/code]]
+docker exec -it ID_OF_NGINX_CONTAINER /bin/sh
+[[/code]]
 
 检查NGINX配置文件{{/etc/nginx/nginx.conf}}：
 
 [[code]]
- vi /etc/nginx/nginx.conf
- [[/code]]
+vi /etc/nginx/nginx.conf
+[[/code]]
 
 在{{@@http {}@@}}结点中，添加下列行，修改{{client_max_body_size}}为{{@@0@@}}（无限制）：
 
 [[code]]
-     client_max_body_size 0;
- [[/code]]
+    client_max_body_size 0;
+[[/code]]
 
 按{{ESC}}键并输入“{{:wq}}”指令，按回车保存并退出VI，重新配置NGINX：
 
 [[code]]
- nginx -s reload
- [[/code]]
+nginx -s reload
+[[/code]]
 
 要求客户再次尝试提交，问题解决。
 
 **参考资料：**
 
- *https://docs.gitlab.com/omnibus/settings/nginx.html
+*https://docs.gitlab.com/omnibus/settings/nginx.html
 
- *https://developer.aliyun.com/article/1306791
+*https://developer.aliyun.com/article/1306791
 
- *https://www.cnblogs.com/Fooo/p/17515709.html
+*https://www.cnblogs.com/Fooo/p/17515709.html
 
- *https://blog.csdn.net/fendoudebb/article/details/107705474 
+*https://blog.csdn.net/fendoudebb/article/details/107705474

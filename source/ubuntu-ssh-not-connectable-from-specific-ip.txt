@@ -1,13 +1,13 @@
 **故障描述：**用户服务器安装了Ubuntu 22.04 LTS系统，某次网络波动后，用户无法使用任何SSH或SCP客户端连接到该服务器。从用户PC可以Ping通服务器。
 
- 使用其它PC测试发现，其它PC可以正常使用SSH连接到该服务器，同时，若将用户PC的IP地址变更，则可以恢复SSH的正常连接。
+使用其它PC测试发现，其它PC可以正常使用SSH连接到该服务器，同时，若将用户PC的IP地址变更，则可以恢复SSH的正常连接。
 
- 用户PC的Windows防火墙未启用，无第三方安全工具，服务器的UFW防火墙处于禁用状态。
+用户PC的Windows防火墙未启用，无第三方安全工具，服务器的UFW防火墙处于禁用状态。
 
- 登录到服务器检查{{/etc/hosts.deny}}发现该文件无实质性内容，卸载并重新安装OpenSSH-Server程序包无法解决问题。
+登录到服务器检查{{/etc/hosts.deny}}发现该文件无实质性内容，卸载并重新安装OpenSSH-Server程序包无法解决问题。
 
 **故障处理：**登录到服务器，使用{{sudo iptables --list}}检查，发现在{{Chain f2b-sshd}}字段下存在用户IP地址的记录，且{{target}}为{{REJECT}}。
 
- 考虑该字段名称，发现用户服务器上安装了Fail2Ban安全性工具。使用{{sudo fail2ban-client status sshd}}检查发现该工具阻止了来自用户PC的IP地址。
+考虑该字段名称，发现用户服务器上安装了Fail2Ban安全性工具。使用{{sudo fail2ban-client status sshd}}检查发现该工具阻止了来自用户PC的IP地址。
 
- 使用{{sudo fail2ban-client unban X.X.X.X}}命令（{{X.X.X.X}}为被阻止的IP地址）解除阻止，故障解决。 
+使用{{sudo fail2ban-client unban X.X.X.X}}命令（{{X.X.X.X}}为被阻止的IP地址）解除阻止，故障解决。

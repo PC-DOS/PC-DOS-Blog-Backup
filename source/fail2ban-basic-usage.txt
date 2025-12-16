@@ -5,78 +5,78 @@ Fail2Ban通过监视SSH等服务的日志文件，对短时间内多次认证失
 可以通过{{Apt}}、{{Yum}}、{{PacMan}}等包管理器安装软件包{{fail2ban}}：
 
 [[code]]
- sudo apt-get install fail2ban
- [[/code]]
+sudo apt-get install fail2ban
+[[/code]]
 
 配置Fail2Ban自动启动：
 
 [[code]]
- sudo systemctl enable fail2ban.service
- [[/code]]
+sudo systemctl enable fail2ban.service
+[[/code]]
 
- + 配置Fail2Ban
++ 配置Fail2Ban
 
- Fail2Ban的配置文件模板位于{{/etc/fail2ban/jail.conf}}，由于软件更新可能修改此文件，因此直接修改此文件是不推荐的。您可以在{{/etc/fail2ban/}}中创建{{jail.local}}文件，在{{/etc/fail2ban/jail.conf}}的基础上进行增量修改：
+Fail2Ban的配置文件模板位于{{/etc/fail2ban/jail.conf}}，由于软件更新可能修改此文件，因此直接修改此文件是不推荐的。您可以在{{/etc/fail2ban/}}中创建{{jail.local}}文件，在{{/etc/fail2ban/jail.conf}}的基础上进行增量修改：
 
 [[code]]
- cd /etc/fail2ban/
- sudo vi jail.local
- [[/code]]
+cd /etc/fail2ban/
+sudo vi jail.local
+[[/code]]
 
 通常来说，您可能希望修改的选项包括启用特定的“监狱”（即要求Fail2Ban侦听面对特定服务的暴力破解攻击）以及对试图暴力攻击您的计算机的IP的封禁时间等。
 
- 如果您需要修改封禁时间等参数，可以在{{jail.local}}中新建{{@@[DEFAULT]@@}}结点，并覆盖如{{bantime}}（封禁时间）、{{bantime.increment}}（该选项可以使攻击者IP的封禁时长随着失败次数的增加而递增）等选项。有关更多信息，请参考{{jail.conf}}中的注释，或使用{{man 5 jail.conf}}命令查看Fail2Ban手册。
+如果您需要修改封禁时间等参数，可以在{{jail.local}}中新建{{@@[DEFAULT]@@}}结点，并覆盖如{{bantime}}（封禁时间）、{{bantime.increment}}（该选项可以使攻击者IP的封禁时长随着失败次数的增加而递增）等选项。有关更多信息，请参考{{jail.conf}}中的注释，或使用{{man 5 jail.conf}}命令查看Fail2Ban手册。
 
- 如果您需要启用特定“监狱”，请在{{jail.local}}中新建与{{jail.conf}}中相应服务结点同名的结点，并在下一行写入：
+如果您需要启用特定“监狱”，请在{{jail.local}}中新建与{{jail.conf}}中相应服务结点同名的结点，并在下一行写入：
 
 [[code]]
- enabled = true
- [[/code]]
+enabled = true
+[[/code]]
 
 一个{{jail.local}}文件可能具有下面的样式：
 
 [[code]]
- # Fail2Ban Local Config File
- # Modified by Picsell Dois
+# Fail2Ban Local Config File
+# Modified by Picsell Dois
 
- [DEFAULT]
- bantime.increment = true
- bantime = 25h
- bantime.factor = 5
- bantime.formula = (ban.Time * (1<<(ban.Count if ban.Count<20 else 20)) * banFactor) if ban.Count<3 else -1
+[DEFAULT]
+bantime.increment = true
+bantime = 25h
+bantime.factor = 5
+bantime.formula = (ban.Time * (1<<(ban.Count if ban.Count<20 else 20)) * banFactor) if ban.Count<3 else -1
 
- [sshd]
- enabled = true
- [[/code]]
+[sshd]
+enabled = true
+[[/code]]
 
 保存{{jail.local}}后，您需要重新启动Fail2Ban，来使配置更改生效：
 
 [[code]]
- sudo systemctl restart fail2ban.service
- [[/code]]
+sudo systemctl restart fail2ban.service
+[[/code]]
 
 或：
 
 [[code]]
- sudo fail2ban-client reload
- [[/code]]
+sudo fail2ban-client reload
+[[/code]]
 
- + 检查Fail2Ban状态
++ 检查Fail2Ban状态
 
- 您可以使用下面的命令检查Fail2Ban的当前状态：
+您可以使用下面的命令检查Fail2Ban的当前状态：
 
 [[code]]
- sudo fail2ban-client status
- [[/code]]
+sudo fail2ban-client status
+[[/code]]
 
- Fail2Ban的日志文件位于{{/var/log/fail2ban.log}}。
+Fail2Ban的日志文件位于{{/var/log/fail2ban.log}}。
 
 + 参考资料
 
 *https://github.com/fail2ban/fail2ban
 
- *https://www.cnblogs.com/xiaobo0602/p/15256131.html
+*https://www.cnblogs.com/xiaobo0602/p/15256131.html
 
- *https://zhuanlan.zhihu.com/p/33546122
+*https://zhuanlan.zhihu.com/p/33546122
 
- *https://linux.cn/article-5067-1.html 
+*https://linux.cn/article-5067-1.html

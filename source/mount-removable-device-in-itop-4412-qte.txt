@@ -2,22 +2,22 @@ iTop-4412的Qt/E 4.7.1支持挂载FAT32或FAT文件系统的USB磁盘或TF卡。
 
 + USB磁盘
 
- 对于USB磁盘，将设备插入开发板的USB接口，超级终端回显{{[sda] Attached SCSI removable disk}}等提示，在超级终端按回车键进入命令行模式，执行：
+对于USB磁盘，将设备插入开发板的USB接口，超级终端回显{{[sda] Attached SCSI removable disk}}等提示，在超级终端按回车键进入命令行模式，执行：
 
 [[code]]
- mkdir /mnt/usb1
- mount /dev/udisk /mnt/usb1/
- [[/code]]
+mkdir /mnt/usb1
+mount /dev/udisk /mnt/usb1/
+[[/code]]
 
 即可挂载USB磁盘。
 
 + TF卡
 
- 对于TF卡，将设备插入开发板的TF卡槽，在超级终端按回车键进入命令行模式，执行：
+对于TF卡，将设备插入开发板的TF卡槽，在超级终端按回车键进入命令行模式，执行：
 
 [[code]]
- mkdir /mnt/sdcard/
- mount /dev/mmcblk1p1 /mnt/sdcard/
- [[/code]]
+mkdir /mnt/sdcard/
+mount /dev/mmcblk1p1 /mnt/sdcard/
+[[/code]]
 
-即可挂载TF卡。 
+即可挂载TF卡。

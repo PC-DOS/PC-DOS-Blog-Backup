@@ -1,67 +1,67 @@
 在.Net中，类的对象实例在拷贝时执行的是浅拷贝（影拷贝），即只复制对象实例的地址，而不拷贝对象实例的内容。在部分情况下，需要进行深拷贝。
 
- 常用的深拷贝策略是将对象实例序列化后拷贝，这时要求对象被声明为可序列化的（{{Serializable}}）：
+常用的深拷贝策略是将对象实例序列化后拷贝，这时要求对象被声明为可序列化的（{{Serializable}}）：
 
 [[code]]
- using System;
- using System.IO;
- using System.Runtime.Serialization;
- using System.Runtime.Serialization.Formatters.Binary;
-  
- /// <summary>
- /// 参考 http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
- /// </summary>
- public static class ObjectCopier
- {
-     public static T Clone<T>(T source)
-     {
-         if (!typeof(T).IsSerializable)
-         {
-             throw new ArgumentException("The type must be serializable.", "source");
-         }
-  
-         if (Object.ReferenceEquals(source, null))
-         {
-             return default(T);
-         }
-  
-         IFormatter formatter = new BinaryFormatter();
-         Stream stream = new MemoryStream();
-         using (stream)
-         {
-             formatter.Serialize(stream, source);
-             stream.Seek(0, SeekOrigin.Begin);
-             return (T)formatter.Deserialize(stream);
-         }
-     }
- }
- [[/code]]
+using System;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+ 
+/// <summary>
+/// 参考 http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
+/// </summary>
+public static class ObjectCopier
+{
+    public static T Clone<T>(T source)
+    {
+        if (!typeof(T).IsSerializable)
+        {
+            throw new ArgumentException("The type must be serializable.", "source");
+        }
+ 
+        if (Object.ReferenceEquals(source, null))
+        {
+            return default(T);
+        }
+ 
+        IFormatter formatter = new BinaryFormatter();
+        Stream stream = new MemoryStream();
+        using (stream)
+        {
+            formatter.Serialize(stream, source);
+            stream.Seek(0, SeekOrigin.Begin);
+            return (T)formatter.Deserialize(stream);
+        }
+    }
+}
+[[/code]]
 
 亦可通过反射实现：
 
 [[code]]
- private static TOut TransReflection<TIn, TOut>(TIn tIn)
- {
-     TOut tOut = Activator.CreateInstance<TOut>();
-     var tInType = tIn.GetType();
-     foreach (var itemOut in tOut.GetType().GetProperties())
-     {
-         var itemIn = tInType.GetProperty(itemOut.Name); ;
-         if (itemIn != null)
-         {
-             itemOut.SetValue(tOut, itemIn.GetValue(tIn));
-         }
-     }
-     return tOut;
- }
- [[/code]]
+private static TOut TransReflection<TIn, TOut>(TIn tIn)
+{
+    TOut tOut = Activator.CreateInstance<TOut>();
+    var tInType = tIn.GetType();
+    foreach (var itemOut in tOut.GetType().GetProperties())
+    {
+        var itemIn = tInType.GetProperty(itemOut.Name); ;
+        if (itemIn != null)
+        {
+            itemOut.SetValue(tOut, itemIn.GetValue(tIn));
+        }
+    }
+    return tOut;
+}
+[[/code]]
 
 其他的思路包括XML/JSON序列化/反序列化、AutoMapper等。
 
- 此外，对于仅存放了一些数据字段，且需要频繁拷贝的类，可以考虑将其声明为结构体。
+此外，对于仅存放了一些数据字段，且需要频繁拷贝的类，可以考虑将其声明为结构体。
 
- 参考：
+参考：
 
 *https://www.quarkbook.com/?p=1210
 
- *https://blog.csdn.net/u012110480/article/details/84189611 
+*https://blog.csdn.net/u012110480/article/details/84189611

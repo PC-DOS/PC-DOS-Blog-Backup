@@ -1,8 +1,8 @@
 注册表路径：
 
 [[code]]
- HKLM\BCD00000001\Objects\{7ea2e1ac-2e61-4728-aaa3-896d9d0a9f0e}\Elements\26000512
- [[/code]]
+HKLM\BCD00000001\Objects\{7ea2e1ac-2e61-4728-aaa3-896d9d0a9f0e}\Elements\26000512
+[[/code]]
 
 将二进制值{{Element}}的值改为{{01}}。
 
@@ -12,14 +12,14 @@
 
 您也可以在大容量存储器模式下开启关机充电功能。
 
- 命令提示符启动路径：
+命令提示符启动路径：
 
 [[code]]
- %EFIESP%\EFI\Microsft\Boot
- [[/code]]
+%EFIESP%\EFI\Microsft\Boot
+[[/code]]
 
 命令语句：
 
 [[code]]
- bcdedit -store bcd -set {globalsettings} offmodecharging on
- [[/code]] 
+bcdedit -store bcd -set {globalsettings} offmodecharging on
+[[/code]]

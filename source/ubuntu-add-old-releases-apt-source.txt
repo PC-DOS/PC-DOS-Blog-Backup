@@ -1,17 +1,17 @@
 旧版Ubuntu软件的归档位于 *http://old-releases.ubuntu.com/ 服务器上，若需要添加这些源，可通过以下方式进行。本例以Ubuntu 12.04.5 (Precise)进行：
 
- 在终端中输入并执行：
+在终端中输入并执行：
 
 [[code]]
- sudo gedit /etc/apt/sources.list
- [[/code]]
+sudo gedit /etc/apt/sources.list
+[[/code]]
 
 编辑apt源列表文件。在文件头加入：
 
 [[code]]
- deb http://old-releases.ubuntu.com/ubuntu precise main restricted universe multiverse
- [[/code]]
+deb http://old-releases.ubuntu.com/ubuntu precise main restricted universe multiverse
+[[/code]]
 
 其中，“{{precise}}”为您的Ubuntu版本的代号，您可以在 *http://old-releases.ubuntu.com/releases/ 处进行确认。
 
- 参考文献：*https://blog.csdn.net/in_the_shadow/article/details/51510392 
+参考文献：*https://blog.csdn.net/in_the_shadow/article/details/51510392

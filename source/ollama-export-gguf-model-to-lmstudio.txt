@@ -2,17 +2,17 @@
 
 + 在Ollama中下载模型
 
- 您可以从 *https://ollama.com/models 获取您需要的模型的名称（以下表示为“{{MODEL_NAME}}”），然后使用{{ollama pull}}命令下载模型到本地计算机：
+您可以从 *https://ollama.com/models 获取您需要的模型的名称（以下表示为“{{MODEL_NAME}}”），然后使用{{ollama pull}}命令下载模型到本地计算机：
 
 [[code]]
- ollama pull MODEL_NAME
- [[/code]]
+ollama pull MODEL_NAME
+[[/code]]
 
 您也可以使用{{ollama run}}命令下载模型并运行：
 
 [[code]]
- ollama run MODEL_NAME
- [[/code]]
+ollama run MODEL_NAME
+[[/code]]
 
 通过在启动Ollama前配置{{OLLAMA_MODELS}}环境变量，您可以指定Ollama模型文件的存储路径。
 
@@ -21,8 +21,8 @@
 Ollama下载的模型文件可能以类似“{{sha256-xxxxxxxxxxx}}”的形式命名，且不具备扩展名。为了快速获取模型GGUF文件的路径，除了检查文件的尺寸（模型文件通常占用较多磁盘空间，且Ollama模型页面会给出模型的文件尺寸）外，可以使用下面的命令：
 
 [[code]]
- ollama show --modelfile MODEL_NAME
- [[/code]]
+ollama show --modelfile MODEL_NAME
+[[/code]]
 
 该命令的输出中有一个以“{{FROM}}”起始的行，该行表示模型文件的路径。复制该文件到目标路径，修改文件名为更便于阅读的形式，并将扩展名改为{{.gguf}}，即可将GGUF格式的模型文件导出。
 
@@ -30,16 +30,16 @@ Ollama下载的模型文件可能以类似“{{sha256-xxxxxxxxxxx}}”的形式�
 
 您可以在LM Studio模型存储目录中，新建具有“{{PublisherName\ModelName\}}”结构的子目录树，并将先前导出的GGUF文件移动到{{ModelName}}目录中，LM Studio即可识别到模型。
 
- 其中，“{{PublisherName}}”为模型发布者的名称，“{{ModelName}}”为模型名称，您可以根据模型的实际情况自行填写。
+其中，“{{PublisherName}}”为模型发布者的名称，“{{ModelName}}”为模型名称，您可以根据模型的实际情况自行填写。
 
- 此外，您也可以使用LM Studio的{{lms}}命令行工具导入GGUF格式的模型：
+此外，您也可以使用LM Studio的{{lms}}命令行工具导入GGUF格式的模型：
 
 [[code]]
- lms import <path/to/model.gguf>
- [[/code]]
+lms import <path/to/model.gguf>
+[[/code]]
 
- + 参考资料
++ 参考资料
 
 *https://lmstudio.ai/docs/basics/import-model
 
- *https://blog.csdn.net/weixin_37841024/article/details/138183851 
+*https://blog.csdn.net/weixin_37841024/article/details/138183851

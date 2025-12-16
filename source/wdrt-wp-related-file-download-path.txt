@@ -2,58 +2,58 @@
 
 [[toc]]
 
- + Lumia应急下载文件
++ Lumia应急下载文件
 
- 用于在EDMode/9008模式下恢复设备
+用于在EDMode/9008模式下恢复设备
 
- 提取自函数{{Microsoft.WindowsDeviceRecoveryTool.LumiaAdaptation.Services.DataPackageService.TryDownloadEmergencyPackage(string, string, CancellationToken)}}。
+提取自函数{{Microsoft.WindowsDeviceRecoveryTool.LumiaAdaptation.Services.DataPackageService.TryDownloadEmergencyPackage(string, string, CancellationToken)}}。
 
- 资料文件{{emergency_flash_config.xml}}查询：
+资料文件{{emergency_flash_config.xml}}查询：
 
 [[code]]
- https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/%Model%/emergency_flash_config.xml
- [[/code]]
+https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/%Model%/emergency_flash_config.xml
+[[/code]]
 
- {{%Model%}}通常为设备的RM号，例如“{{RM-984}}”，需要大写。
+{{%Model%}}通常为设备的RM号，例如“{{RM-984}}”，需要大写。
 
- 该文件给出了设备恢复需要的EDE/EDP/HEX/MBN等文件的名称（下简记为{{%FileName%}}），逐个将上面的地址中的{{emergency_flash_config.xml}}替换为{{%FileName%}}即可下载对应的文件。
+该文件给出了设备恢复需要的EDE/EDP/HEX/MBN等文件的名称（下简记为{{%FileName%}}），逐个将上面的地址中的{{emergency_flash_config.xml}}替换为{{%FileName%}}即可下载对应的文件。
 
- 例如，RM-984（Lumia 830）的查询（ *https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-984/emergency_flash_config.xml ）返回：
+例如，RM-984（Lumia 830）的查询（ *https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-984/emergency_flash_config.xml ）返回：
 
 [[code type="xml"]]
- <emergency_flash_config>
-     <first_boot_images>
-         <first_boot_image image_id="13" image_path="MPRG8x26_fh.ede" programmer="true" safe="false" signed="true" boot_rom_proto="sahara" emergency_dl_proto="firehose_single_image"/>
-     </first_boot_images>
-     <second_boot_firehose_single_image>
-         <firehose_image image_partition="EMERGENCY" image_path="RM984_fh.edp" signed="true"/>
-     </second_boot_firehose_single_image>
- </emergency_flash_config>
- [[/code]]
+<emergency_flash_config>
+    <first_boot_images>
+        <first_boot_image image_id="13" image_path="MPRG8x26_fh.ede" programmer="true" safe="false" signed="true" boot_rom_proto="sahara" emergency_dl_proto="firehose_single_image"/>
+    </first_boot_images>
+    <second_boot_firehose_single_image>
+        <firehose_image image_partition="EMERGENCY" image_path="RM984_fh.edp" signed="true"/>
+    </second_boot_firehose_single_image>
+</emergency_flash_config>
+[[/code]]
 
 则需要下载：
 
 [[code]]
- https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-984/MPRG8x26_fh.ede
- https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-984/RM984_fh.edp
- [[/code]]
+https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-984/MPRG8x26_fh.ede
+https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-984/RM984_fh.edp
+[[/code]]
 
- RM-821（Lumia 920）的查询（ *https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-821/emergency_flash_config.xml ）返回：
+RM-821（Lumia 920）的查询（ *https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-821/emergency_flash_config.xml ）返回：
 
 [[code type="xml"]]
- <emergency_flash_config>
-     <hex_flasher image_path="FAST8960_PHI.hex"/>
-     <mbn_image image_path="RM821_msimage_v1.0.mbn"/>
- </emergency_flash_config>
- [[/code]]
+<emergency_flash_config>
+    <hex_flasher image_path="FAST8960_PHI.hex"/>
+    <mbn_image image_path="RM821_msimage_v1.0.mbn"/>
+</emergency_flash_config>
+[[/code]]
 
 则需要下载：
 
 [[code]]
- https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-821/FAST8960_PHI.hex
- https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-821/RM821_msimage_v1.0.mbn
- [[/code]]
+https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-821/FAST8960_PHI.hex
+https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/RM-821/RM821_msimage_v1.0.mbn
+[[/code]]
 
- + Lumia固件下载工具
++ Lumia固件下载工具
 
-*https://github.com/gus33000/SoReFetch 
+*https://github.com/gus33000/SoReFetch

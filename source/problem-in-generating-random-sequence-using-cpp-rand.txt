@@ -1,53 +1,53 @@
 **现象：**使用Qt开发时，因需要生成一个随机序列用于调试，故编写如下生成代码：
 
 [[code]]
- const QVector<double> & DataSourceProvider::GeneratePlotForTesting(){
-     srand(time(0));
-     _arrData.clear();
-     for (int i=1; i<=_iPointsPerPlot;++i){
-         _arrData.push_back((double(rand())/double(__INT_MAX__)*_dCurrentGain));
-     }
-     return _arrData;
- }
- [[/code]]
+const QVector<double> & DataSourceProvider::GeneratePlotForTesting(){
+    srand(time(0));
+    _arrData.clear();
+    for (int i=1; i<=_iPointsPerPlot;++i){
+        _arrData.push_back((double(rand())/double(__INT_MAX__)*_dCurrentGain));
+    }
+    return _arrData;
+}
+[[/code]]
 
 使用[*https://www.qcustomplot.com QCustomPlot]绘图，通过一个定时器触发，定时器嘀嗒事件处理函数如下：
 
 [[code]]
- void MainWindow::tmrDataGenerationTimer_Tick(){
-     QVector<double> arrData=datUltrasoud->GeneratePlotForTesting();
-     QVector<QCPGraphData> *mData;
-     mData = ui->chrtData->graph(0)->data()->coreData(); //此处对qcustomplot.h文件进行过修改
-    mData->clear();
-     QCPGraphData gpdDataPoint;
-     for (int i=0; i<datUltrasoud->GetCurrentPointsPerPlot(); ++i){
-         gpdDataPoint.key=arrXAxis[i];
-         gpdDataPoint.value=arrData[i];
-         mData->append(gpdDataPoint);
-     }
-     ui->chrtData->xAxis->setRange(0,datUltrasoud->GetCurrentDisplayTimespan());
-     ui->chrtData->yAxis->setRange(0,50);
-     ui->chrtData->replot(QCustomPlot::rpQueuedReplot);
-     qApp->processEvents();
-     QApplication::processEvents();
-     return;
- }
- [[/code]]
+void MainWindow::tmrDataGenerationTimer_Tick(){
+    QVector<double> arrData=datUltrasoud->GeneratePlotForTesting();
+    QVector<QCPGraphData> *mData;
+    mData = ui->chrtData->graph(0)->data()->coreData(); //此处对qcustomplot.h文件进行过修改
+    mData->clear();
+    QCPGraphData gpdDataPoint;
+    for (int i=0; i<datUltrasoud->GetCurrentPointsPerPlot(); ++i){
+        gpdDataPoint.key=arrXAxis[i];
+        gpdDataPoint.value=arrData[i];
+        mData->append(gpdDataPoint);
+    }
+    ui->chrtData->xAxis->setRange(0,datUltrasoud->GetCurrentDisplayTimespan());
+    ui->chrtData->yAxis->setRange(0,50);
+    ui->chrtData->replot(QCustomPlot::rpQueuedReplot);
+    qApp->processEvents();
+    QApplication::processEvents();
+    return;
+}
+[[/code]]
 
 发现运行时图表内容一秒钟跳变一次，反复调试无效。
 
- 最初怀疑与Qt的界面更新策略有关，但调试定时器嘀嗒事件处理函数、强制调用update()和repaint()方法等均无效。
+最初怀疑与Qt的界面更新策略有关，但调试定时器嘀嗒事件处理函数、强制调用update()和repaint()方法等均无效。
 
 **问题解决：**检查数据生成器函数，发现使用了{{srand(time(0));}}函数初始化随机数生成器种子，但是{{time(0)}}函数的精度仅能维持到秒级精度，使得每秒内给出的随机数序列不变。
 
- 注释该行调试，程序恢复正常。
+注释该行调试，程序恢复正常。
 
 **参考资料：**
 
- *https://stackoverflow.com/questions/64489118/why-qcustomplot-is-too-slow-in-ploting-large-data
+*https://stackoverflow.com/questions/64489118/why-qcustomplot-is-too-slow-in-ploting-large-data
 
- *https://www.cnblogs.com/Vince-Wu/p/10395370.html
+*https://www.cnblogs.com/Vince-Wu/p/10395370.html
 
- *https://www.cnblogs.com/pied/p/5164000.html
+*https://www.cnblogs.com/pied/p/5164000.html
 
- *https://blog.csdn.net/qing666888/article/details/104015959 
+*https://blog.csdn.net/qing666888/article/details/104015959

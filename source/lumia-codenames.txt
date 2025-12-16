@@ -28,21 +28,21 @@ Nokia Lumia 930 (Codename: nokia-martini)
 
 *https://betawiki.net/wiki/List_of_Microsoft_codenames
 Astro
-    Canceled Lumia model, this model uses Qualcomm Snapdragon 820 (MSM8996) SoC.
+    Canceled Lumia model, this model uses Qualcomm Snapdragon 820 (MSM8996) SoC.
 Cityman
-    Lumia 950 XL
+    Lumia 950 XL
 Guilin
-    Canceled Microsoft Lumia phone model. Utilized a Qualcomm Snapdragon 210 (MSM8909) SoC.
+    Canceled Microsoft Lumia phone model. Utilized a Qualcomm Snapdragon 210 (MSM8909) SoC.
 Honjo
-    Canceled Lumia model, this model uses Qualcomm Snapdragon 210 (MSM8909) SoC.
+    Canceled Lumia model, this model uses Qualcomm Snapdragon 210 (MSM8909) SoC.
 Northstar
-    Canceled Lumia model, this model uses Qualcomm Snapdragon 820 (MSM8996) SoC.
+    Canceled Lumia model, this model uses Qualcomm Snapdragon 820 (MSM8996) SoC.
 Saana
-    Lumia 650
+    Lumia 650
 Saimaa
-    Lumia 550
+    Lumia 550
 Talkman
-    Lumia 950
+    Lumia 950
 
 *https://github.com/Android4Lumia/android_device_nokia_fame
 ||~ Device Type ||~ Codename ||~ Device Model ||

@@ -1,170 +1,170 @@
 [[module css]]
- .win10-link-button {
-     margin-top: 1em;
-     margin-bottom: 1em;
-     color: #fff;
-     background-color: #004b91;
-     padding: 0.75em;
-     font-size: 105%;
-     text-decoration:none;
- }
+.win10-link-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #004b91;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
 
- .win10-link-button:hover {
-     margin-top: 1em;
-     margin-bottom: 1em;
-     color: #fff;
-     background-color: #0073d7;
-     padding: 0.75em;
-     font-size: 105%;
-     text-decoration:none;
- }
- [[/module]]
+.win10-link-button:hover {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #0073d7;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
+}
+[[/module]]
 
- **作者：**天魔小新（TMSIX）
+**作者：**天魔小新（TMSIX）
 
- 开始前，请将设备以大容量存储器模式（Mass Storage Mode）连接到计算机，并将{{MainOS}}分区的{{\Windows\System32\Config\SYSTEM}}注册表储巢挂载在本机的{{HKEY_LOCAL_MACHINE}}主键下，并命名为“0”。并将{{MainOS}}分区的{{\Windows\System32\Config\SOFTWARE}}注册表储巢挂载在本机的{{HKEY_LOCAL_MACHINE}}主键下，并命名为“1”。
+开始前，请将设备以大容量存储器模式（Mass Storage Mode）连接到计算机，并将{{MainOS}}分区的{{\Windows\System32\Config\SYSTEM}}注册表储巢挂载在本机的{{HKEY_LOCAL_MACHINE}}主键下，并命名为“0”。并将{{MainOS}}分区的{{\Windows\System32\Config\SOFTWARE}}注册表储巢挂载在本机的{{HKEY_LOCAL_MACHINE}}主键下，并命名为“1”。
 
- 然后，请导入下述REG文件：
+然后，请导入下述REG文件：
 
 [[code]]
- Windows Registry Editor Version 5.00
+Windows Registry Editor Version 5.00
 
- [HKEY_LOCAL_MACHINE\0\TOUCH]
+[HKEY_LOCAL_MACHINE\0\TOUCH]
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS]
- "Vibrate"=dword:00000001
- "Duration"=dword:00000032
- "Intensity"=dword:00000064
- "Count"=dword:00000003
+[HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS]
+"Vibrate"=dword:00000001
+"Duration"=dword:00000032
+"Intensity"=dword:00000064
+"Count"=dword:00000003
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\0]
- "Name"="Back"
- "VKey"=dword:0000001b
+[HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\0]
+"Name"="Back"
+"VKey"=dword:0000001b
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\1]
- "Name"="Start"
- "VKey"=dword:00000071
+[HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\1]
+"Name"="Start"
+"VKey"=dword:00000071
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\2]
- "Name"="Search"
- "VKey"=dword:00000072
+[HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\2]
+"Name"="Search"
+"VKey"=dword:00000072
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\BACKLIGHT]
- "LedCount"=dword:00000003
- "LedIndexList"=hex(7):30,00,00,00,31,00,00,00,32,00,00,00,00,00
- "InactivityTimeout"=dword:00000000
- "MilliLuxRanges"=hex(7):31,00,30,00,30,00,30,00,30,00,30,00,00,00,34,00,32,00,\
-   39,00,34,00,39,00,36,00,37,00,32,00,39,00,35,00,00,00,00,00
- "IntensityMappings0"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
- "IntensityMappings1"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
- "IntensityMappings2"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
+[HKEY_LOCAL_MACHINE\0\TOUCH\BUTTONS\BACKLIGHT]
+"LedCount"=dword:00000003
+"LedIndexList"=hex(7):30,00,00,00,31,00,00,00,32,00,00,00,00,00
+"InactivityTimeout"=dword:00000000
+"MilliLuxRanges"=hex(7):31,00,30,00,30,00,30,00,30,00,30,00,00,00,34,00,32,00,\
+  39,00,34,00,39,00,36,00,37,00,32,00,39,00,35,00,00,00,00,00
+"IntensityMappings0"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
+"IntensityMappings1"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
+"IntensityMappings2"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\DISPLAYPROPERTIES]
- "DisplayHeight10um"=dword:000033f4
- "DisplayWidth10um"=dword:00001d1a
+[HKEY_LOCAL_MACHINE\0\TOUCH\DISPLAYPROPERTIES]
+"DisplayHeight10um"=dword:000033f4
+"DisplayWidth10um"=dword:00001d1a
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\SCREENPROPERTIES]
- "DisplayViewableWidth"=dword:00000438
- "DisplayViewableHeight"=dword:00000780
- "TouchSwapAxes"=dword:00000000
- "TouchInvertXAxis"=dword:00000000
- "TouchInvertYAxis"=dword:00000000
- "TouchPhysicalWidth"=dword:00000438
- "TouchPhysicalHeight"=dword:00000780
- "TouchPhysicalButtonHeight"=dword:00000000
- "TouchPillarBoxWidthLeft"=dword:00000000
- "TouchPillarBoxWidthRight"=dword:00000000
- "TouchPillarBoxHeightTop"=dword:00000000
- "TouchPillarBoxHeightBottom"=dword:00000000
- "DisplayPhysicalWidth"=dword:00000438
- "DisplayPhysicalHeight"=dword:00000780
- "DisplayPillarBoxWidthLeft"=dword:00000000
- "DisplayPillarBoxWidthRight"=dword:00000000
- "DisplayLetterBoxHeightTop"=dword:00000000
- "DisplayLetterBoxHeightBottom"=dword:00000000
- "DisplayHeight10um"=dword:000033f4
- "DisplayWidth10um"=dword:00001d1a
+[HKEY_LOCAL_MACHINE\0\TOUCH\SCREENPROPERTIES]
+"DisplayViewableWidth"=dword:00000438
+"DisplayViewableHeight"=dword:00000780
+"TouchSwapAxes"=dword:00000000
+"TouchInvertXAxis"=dword:00000000
+"TouchInvertYAxis"=dword:00000000
+"TouchPhysicalWidth"=dword:00000438
+"TouchPhysicalHeight"=dword:00000780
+"TouchPhysicalButtonHeight"=dword:00000000
+"TouchPillarBoxWidthLeft"=dword:00000000
+"TouchPillarBoxWidthRight"=dword:00000000
+"TouchPillarBoxHeightTop"=dword:00000000
+"TouchPillarBoxHeightBottom"=dword:00000000
+"DisplayPhysicalWidth"=dword:00000438
+"DisplayPhysicalHeight"=dword:00000780
+"DisplayPillarBoxWidthLeft"=dword:00000000
+"DisplayPillarBoxWidthRight"=dword:00000000
+"DisplayLetterBoxHeightTop"=dword:00000000
+"DisplayLetterBoxHeightBottom"=dword:00000000
+"DisplayHeight10um"=dword:000033f4
+"DisplayWidth10um"=dword:00001d1a
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\Settings]
- "DeviceId"=dword:00000000
- "ControllerType"=dword:00000d4a
- "WakeupGestureSupported"=dword:00000001
- "DoubleTapMaxTapTime10ms"=dword:00000023
- "DoubleTapMaxTapDistance100um"=dword:0000001e
- "DoubleTapDeadZoneWidth100um"=dword:00000032
- "DoubleTapDeadZoneHeight100um"=dword:00000032
- "VendorCount"=dword:00000002
- "Vendor00"=dword:00000004
- "Vendor01"=dword:00000008
- "Revision00"=dword:000000ff
- "Revision01"=dword:000000ff
- "ReprogramFw00"=dword:00000064
- "ReprogramFw01"=dword:000000a0
- "ForceFlash"=dword:00000001
- "Vendor00ProductId0"=dword:00000050
- "Vendor00ProductId1"=dword:0000004c
- "Vendor00ProductId2"=dword:00000047
- "Vendor00ProductId3"=dword:0000002d
- "Vendor00ProductId4"=dword:00000030
- "Vendor00ProductId5"=dword:00000030
- "Vendor00ProductId6"=dword:00000031
- "Vendor00ProductId7"=dword:00000027
- "Vendor00ProductId8"=dword:00000035
- "Vendor01ProductId0"=dword:00000050
- "Vendor01ProductId1"=dword:0000004c
- "Vendor01ProductId2"=dword:00000047
- "Vendor01ProductId3"=dword:00000030
- "Vendor01ProductId4"=dword:00000031
- "Vendor01ProductId5"=dword:00000037
- "Vendor01ProductId6"=dword:00000035
- "Vendor01ProductId7"=dword:0000002d
- "Vendor01ProductId8"=dword:00000030
- "Vendor01ProductId9"=dword:00000032
- "Vendor00IncludeHighResTest"=dword:00000001
- "Vendor00HighResMaxRxLimit"=dword:00000226
- "Vendor00HighResMaxTxLimit"=dword:000001c2
- "Vendor00HighResMinImageLimit"=dword:fffffe70
- "Vendor00IncludeBaselineMinMaxTest"=dword:00000001
- "Vendor00BaselineMinMaxMinPixelLimit"=dword:000001f4
- "Vendor00BaselineMinMaxMaxPixelLimit"=dword:00001004
- "Vendor00IncludeFullBaselineTest"=dword:00000000
- "Vendor00IncludeShortTest"=dword:00000001
- "Vendor01IncludeHighResTest"=dword:00000001
- "Vendor01HighResMaxRxLimit"=dword:00000226
- "Vendor01HighResMaxTxLimit"=dword:000001c2
- "Vendor01HighResMinImageLimit"=dword:fffffe70
- "Vendor01IncludeBaselineMinMaxTest"=dword:00000001
- "Vendor01BaselineMinMaxMinPixelLimit"=dword:000004d9
- "Vendor01BaselineMinMaxMaxPixelLimit"=dword:00000ce4
- "Vendor01IncludeFullBaselineTest"=dword:00000000
- "Vendor01IncludeShortTest"=dword:00000001
+[HKEY_LOCAL_MACHINE\0\TOUCH\Settings]
+"DeviceId"=dword:00000000
+"ControllerType"=dword:00000d4a
+"WakeupGestureSupported"=dword:00000001
+"DoubleTapMaxTapTime10ms"=dword:00000023
+"DoubleTapMaxTapDistance100um"=dword:0000001e
+"DoubleTapDeadZoneWidth100um"=dword:00000032
+"DoubleTapDeadZoneHeight100um"=dword:00000032
+"VendorCount"=dword:00000002
+"Vendor00"=dword:00000004
+"Vendor01"=dword:00000008
+"Revision00"=dword:000000ff
+"Revision01"=dword:000000ff
+"ReprogramFw00"=dword:00000064
+"ReprogramFw01"=dword:000000a0
+"ForceFlash"=dword:00000001
+"Vendor00ProductId0"=dword:00000050
+"Vendor00ProductId1"=dword:0000004c
+"Vendor00ProductId2"=dword:00000047
+"Vendor00ProductId3"=dword:0000002d
+"Vendor00ProductId4"=dword:00000030
+"Vendor00ProductId5"=dword:00000030
+"Vendor00ProductId6"=dword:00000031
+"Vendor00ProductId7"=dword:00000027
+"Vendor00ProductId8"=dword:00000035
+"Vendor01ProductId0"=dword:00000050
+"Vendor01ProductId1"=dword:0000004c
+"Vendor01ProductId2"=dword:00000047
+"Vendor01ProductId3"=dword:00000030
+"Vendor01ProductId4"=dword:00000031
+"Vendor01ProductId5"=dword:00000037
+"Vendor01ProductId6"=dword:00000035
+"Vendor01ProductId7"=dword:0000002d
+"Vendor01ProductId8"=dword:00000030
+"Vendor01ProductId9"=dword:00000032
+"Vendor00IncludeHighResTest"=dword:00000001
+"Vendor00HighResMaxRxLimit"=dword:00000226
+"Vendor00HighResMaxTxLimit"=dword:000001c2
+"Vendor00HighResMinImageLimit"=dword:fffffe70
+"Vendor00IncludeBaselineMinMaxTest"=dword:00000001
+"Vendor00BaselineMinMaxMinPixelLimit"=dword:000001f4
+"Vendor00BaselineMinMaxMaxPixelLimit"=dword:00001004
+"Vendor00IncludeFullBaselineTest"=dword:00000000
+"Vendor00IncludeShortTest"=dword:00000001
+"Vendor01IncludeHighResTest"=dword:00000001
+"Vendor01HighResMaxRxLimit"=dword:00000226
+"Vendor01HighResMaxTxLimit"=dword:000001c2
+"Vendor01HighResMinImageLimit"=dword:fffffe70
+"Vendor01IncludeBaselineMinMaxTest"=dword:00000001
+"Vendor01BaselineMinMaxMinPixelLimit"=dword:000004d9
+"Vendor01BaselineMinMaxMaxPixelLimit"=dword:00000ce4
+"Vendor01IncludeFullBaselineTest"=dword:00000000
+"Vendor01IncludeShortTest"=dword:00000001
 
- [HKEY_LOCAL_MACHINE\0\TOUCH\Settings\FF]
- "WriteF01FullConfig"=dword:00000000
- "WriteF11FullConfig"=dword:00000000
- "WriteClippingValues"=dword:00000000
- "WriteButtonThresholds"=dword:00000000
- "WriteF51Config"=dword:00000000
- "WriteF54Config"=dword:00000000
- "WriteButtonDozeThreshold"=dword:00000000
- "DisableDozeMode"=dword:00000000
- "EnableWakeupGesture"=dword:00000001
- "BackButton"=dword:00000001
- "StartButton"=dword:00000000
- "SearchButton"=dword:00000002
+[HKEY_LOCAL_MACHINE\0\TOUCH\Settings\FF]
+"WriteF01FullConfig"=dword:00000000
+"WriteF11FullConfig"=dword:00000000
+"WriteClippingValues"=dword:00000000
+"WriteButtonThresholds"=dword:00000000
+"WriteF51Config"=dword:00000000
+"WriteF54Config"=dword:00000000
+"WriteButtonDozeThreshold"=dword:00000000
+"DisableDozeMode"=dword:00000000
+"EnableWakeupGesture"=dword:00000001
+"BackButton"=dword:00000001
+"StartButton"=dword:00000000
+"SearchButton"=dword:00000002
 
- [HKEY_LOCAL_MACHINE\1]
+[HKEY_LOCAL_MACHINE\1]
 
- [HKEY_LOCAL_MACHINE\1\Microsoft]
+[HKEY_LOCAL_MACHINE\1\Microsoft]
 
- [HKEY_LOCAL_MACHINE\1\Microsoft\Shell]
+[HKEY_LOCAL_MACHINE\1\Microsoft\Shell]
 
- [HKEY_LOCAL_MACHINE\1\Microsoft\Shell\NavigationBar]
- "SoftwareModeEnabled"=dword:00000000
- [[/code]]
+[HKEY_LOCAL_MACHINE\1\Microsoft\Shell\NavigationBar]
+"SoftwareModeEnabled"=dword:00000000
+[[/code]]
 
 您可以从以下链接下载这个REG文件：
 
 *http://pc-dos.wdfiles.com/local--files/enable-physical-keys-in-rx-130/RX-130%E6%81%A2%E5%A4%8D%E5%AE%9E%E4%BD%93%E6%8C%89%E9%94%AE.reg
 
- [[a href="*http://pc-dos.wdfiles.com/local--files/enable-physical-keys-in-rx-130/RX-130%E6%81%A2%E5%A4%8D%E5%AE%9E%E4%BD%93%E6%8C%89%E9%94%AE.reg" class="win10-link-button"]]下载文件[[/a]] 
+[[a href="*http://pc-dos.wdfiles.com/local--files/enable-physical-keys-in-rx-130/RX-130%E6%81%A2%E5%A4%8D%E5%AE%9E%E4%BD%93%E6%8C%89%E9%94%AE.reg" class="win10-link-button"]]下载文件[[/a]]

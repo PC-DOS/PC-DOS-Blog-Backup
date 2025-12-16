@@ -3,17 +3,17 @@
 Windows 10 IoT LTSC 2021 GVLK：
 
 [[code]]
- QPM6N-7J2WJ-P88HH-P3YRH-YY74H
- [[/code]]
+QPM6N-7J2WJ-P88HH-P3YRH-YY74H
+[[/code]]
 
 您可以执行下面的指令：
 
 [[code]]
- slmgr.vbs /ipk QPM6N-7J2WJ-P88HH-P3YRH-YY74H
- [[/code]]
+slmgr.vbs /ipk QPM6N-7J2WJ-P88HH-P3YRH-YY74H
+[[/code]]
 
- Ref.
+Ref.
 
- *https://bbs.pcbeta.com/viewthread-1912430-1-1.html
+*https://bbs.pcbeta.com/viewthread-1912430-1-1.html
 
- *https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys 
+*https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys

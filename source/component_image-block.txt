@@ -1,1 +1,1 @@
-[[include component:image-block-base name={$name}|caption={$caption}|width={$width}|width=300px|link={$link}|link=#|align={$align}|align=right]] 
+[[include <a href="/component:image-block-base">component:image-block-base</a> name={$name}|caption={$caption}|width={$width}|width=300px|link={$link}|link=#|align={$align}|align=right]]

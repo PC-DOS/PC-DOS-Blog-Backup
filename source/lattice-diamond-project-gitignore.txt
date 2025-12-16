@@ -1,20 +1,20 @@
 参考自：*https://electronics.stackexchange.com/questions/170563/lattice-diamond-gitignore
 
- [[code]]
- *.html
- impl*/
- *.xml
- .build_status
- .run_manager.ini
- .recovery
- .spread_sheet.ini
- .spreadsheet_view.ini
- *.dir/
- *.log
- *.tcl
- *.ccl
- *.srp
- *.dmp
- ._Real_._Math_.vhd
- transcript
- [[/code]] 
+[[code]]
+*.html
+impl*/
+*.xml
+.build_status
+.run_manager.ini
+.recovery
+.spread_sheet.ini
+.spreadsheet_view.ini
+*.dir/
+*.log
+*.tcl
+*.ccl
+*.srp
+*.dmp
+._Real_._Math_.vhd
+transcript
+[[/code]]

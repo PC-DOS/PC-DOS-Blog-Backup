@@ -4,7 +4,7 @@ Qt为{{QThread}}线程对象提供了2种退出方法：{{QThread::quit()}}和{{
 
 {{QThread}}线程对象可以持有自己的事件循环，可以通过Protected成员函数{{QThread::exec()}}启动这个事件循环。从Qt 4.4开始，Protected成员函数{{QThread::run()}}不再是一个纯虚函数，其默认实现会调用{{QThread::exec()}}函数启动线程内的事件循环。因此，在Qt 4.4之后直接对一个{{QThread}}对象的实例调用{{QThread::start()}}函数即可启动{{QThread}}线程对象内的事件循环。
 
- 需要注意的是，对于继承了{{QThread}}类并重载了{{QThread::run()}}函数的对象中，如果没有在{{run()}}函数内调用{{QThread::exec()}}函数，在对该对象的实例调用{{QThread::start()}}函数时，不会启动{{QThread}}线程对象内的事件循环。
+需要注意的是，对于继承了{{QThread}}类并重载了{{QThread::run()}}函数的对象中，如果没有在{{run()}}函数内调用{{QThread::exec()}}函数，在对该对象的实例调用{{QThread::start()}}函数时，不会启动{{QThread}}线程对象内的事件循环。
 
 + {{QThread::quit()}}函数
 
@@ -12,34 +12,34 @@ Qt为{{QThread}}线程对象提供了2种退出方法：{{QThread::quit()}}和{{
 
 {{QThread::quit()}}函数的主要应用情景是线程对象具有事件循环、并持有一个或多个通过{{QObject::moveToThread()}}函数移动到该线程对象内的对象的情况。
 
- 对于简单地继承了{{QThread}}类并重载{{QThread::run()}}函数的应用情况，除非在{{run()}}函数内调用了{{QThread::exec()}}函数，{{QThread::quit()}}函数的使用没有效果。
+对于简单地继承了{{QThread}}类并重载{{QThread::run()}}函数的应用情况，除非在{{run()}}函数内调用了{{QThread::exec()}}函数，{{QThread::quit()}}函数的使用没有效果。
 
- 调用{{QThread::quit()}}函数后，可以调用{{QThread::wait()}}函数等待线程退出。
+调用{{QThread::quit()}}函数后，可以调用{{QThread::wait()}}函数等待线程退出。
 
 + {{QThread::terminate()}}函数
 
 {{QThread::terminate()}}函数会向操作系统发送要求来直接终止目标线程，目标线程可能在任意时点被操作系统终止。
 
- 可以调用Protected成员函数{{QThread::setTerminationEnabled()}}来控制线程当前是否可被{{QThread::terminate()}}函数终止。{{QThread::setTerminationEnabled(true)}}调用会允许线程被{{QThread::terminate()}}函数终止。而{{QThread::setTerminationEnabled(false)}}调用将阻止当前线程被{{QThread::terminate()}}函数终止，对{{QThread::terminate()}}函数的调用将立即返回，而实际的终止操作将被延后到{{QThread::setTerminationEnabled(true)}}调用之后。
+可以调用Protected成员函数{{QThread::setTerminationEnabled()}}来控制线程当前是否可被{{QThread::terminate()}}函数终止。{{QThread::setTerminationEnabled(true)}}调用会允许线程被{{QThread::terminate()}}函数终止。而{{QThread::setTerminationEnabled(false)}}调用将阻止当前线程被{{QThread::terminate()}}函数终止，对{{QThread::terminate()}}函数的调用将立即返回，而实际的终止操作将被延后到{{QThread::setTerminationEnabled(true)}}调用之后。
 
 {{QThread::terminate()}}函数执行的是一个非常不安全的终止操作。线程被终止的时点无法确认，且可能在执行到任意代码时被终止。同时，线程在被终止时，可能没有机会释放资源、清理垃圾并释放持有的锁和同步对象。
 
- 调用{{QThread::terminate()}}函数后，可以调用{{QThread::wait()}}函数等待线程终止，或侦听{{QThread::terminated()}}事件。
+调用{{QThread::terminate()}}函数后，可以调用{{QThread::wait()}}函数等待线程终止，或侦听{{QThread::terminated()}}事件。
 
 + 使用建议
 
 ++ 具有事件循环的线程对象
 
- 对于具有事件循环的线程对象，通常可以通过调用{{QThread::quit()}}函数使线程退出。
+对于具有事件循环的线程对象，通常可以通过调用{{QThread::quit()}}函数使线程退出。
 
 {{QThread::quit()}}函数的主要应用情景是线程对象具有事件循环、并持有一个或多个通过{{QObject::moveToThread()}}函数移动到该线程对象内的对象的情况。
 
- 调用{{QThread::quit()}}函数后，可以调用{{QThread::wait()}}函数等待线程退出。{{QThread::wait()}}函数会在线程结束后（或本未运行时）返回{{true}}值。若等待超时（等待时间可通过{{QThread::wait()}}函数的参数指定，单位为毫秒），则{{QThread::wait()}}函数返回{{false}}。在{{QThread::wait()}}函数返回{{false}}的情况下，可以考虑使用{{QThread::terminate()}}函数强制终止目标线程，但需要进行安全性方面的考虑。
+调用{{QThread::quit()}}函数后，可以调用{{QThread::wait()}}函数等待线程退出。{{QThread::wait()}}函数会在线程结束后（或本未运行时）返回{{true}}值。若等待超时（等待时间可通过{{QThread::wait()}}函数的参数指定，单位为毫秒），则{{QThread::wait()}}函数返回{{false}}。在{{QThread::wait()}}函数返回{{false}}的情况下，可以考虑使用{{QThread::terminate()}}函数强制终止目标线程，但需要进行安全性方面的考虑。
 
 [[code type="Cpp"]]
- QThread * trdThread = new QThread;
+QThread * trdThread = new QThread;
 
- /* 调用QObject::moveToThread(trdThread)函数将一些对象置入trdThread线程对象 */
+/* 调用QObject::moveToThread(trdThread)函数将一些对象置入trdThread线程对象 */
 
 trdThread->start(); //由于没有重载QThread::run()，调用了QThread::exec()启动事件循环；您也可以考虑重载QThread::run()并在重载函数中调用QThread::exec()启动事件循环
 
@@ -47,81 +47,81 @@ trdThread->start(); //由于没有重载QThread::run()，调用了QThread::exec(
 
 trdThread->quit(); //关闭事件循环
 if (!trdThread->wait(1000)){ //等待线程退出，给予1000毫秒的等待时间
-    trdThread->terminate(); //如果等待超时，可以考虑删除
+    trdThread->terminate(); //如果等待超时，可以考虑删除
 }
 trdThread->deleteLater(); //删除线程对象
 [[/code]]
 
- ++ 没有事件循环的线程对象
+++ 没有事件循环的线程对象
 
- 对于没有事件循环的线程对象（通常是重载了{{QThread::run()}}函数的线程对象），调用{{QThread::quit()}}函数是无效的。这时，需要针对线程的{{run()}}函数的具体情况进行考虑：
+对于没有事件循环的线程对象（通常是重载了{{QThread::run()}}函数的线程对象），调用{{QThread::quit()}}函数是无效的。这时，需要针对线程的{{run()}}函数的具体情况进行考虑：
 
 * 对于执行时长有限或有退出条件的{{run()}}函数，可以考虑直接调用{{QThread::wait()}}函数等待线程自动、安全地退出，在{{QThread::wait()}}函数返回{{false}}的情况下，可以考虑使用{{QThread::terminate()}}函数强制终止目标线程，但需要进行安全性方面的考虑。
 * 对于执行时长无限的{{run()}}函数（例如：具有{{while (true){}}}无线循环的{{run()}}函数），可以考虑添加一个或数个运行状态标志进行控制。在线程正常运行时，这些标志全部处于“继续运行”状态；而在需要终止线程时，则将这些标志设置到“停止运行”状态，从而可以调用{{QThread::wait()}}函数等待线程自动、安全地退出，在{{QThread::wait()}}函数返回{{false}}的情况下，可以考虑使用{{QThread::terminate()}}函数强制终止目标线程，但需要进行安全性方面的考虑。
 
 [[code type="Cpp"]]
- /* 头文件ChildThread.h */
- #ifndef CHILDTHREAD_H
- #define CHILDTHREAD_H
-  
- #include <QThread>
-  
- class ChildThread : public QObject {
-     Q_OBJECT
-  
- public:
-     ChildThread();
-     virtual ~ChildThread();
+/* 头文件ChildThread.h */
+#ifndef CHILDTHREAD_H
+#define CHILDTHREAD_H
+ 
+#include <QThread>
+ 
+class ChildThread : public QObject {
+    Q_OBJECT
+ 
+public:
+    ChildThread();
+    virtual ~ChildThread();
 
-     void StartThread(Priority prtPriority=InheritPriority); //启动线程
-    bool StopThread(unsigned long iMaxWaitTime = ULONG_MAX); //要求退出线程并返回等待结果（线程是否在指定的等待时间内退出），您也可以考虑重载QThread::quit()函数
- 
+    void StartThread(Priority prtPriority=InheritPriority); //启动线程
+    bool StopThread(unsigned long iMaxWaitTime = ULONG_MAX); //要求退出线程并返回等待结果（线程是否在指定的等待时间内退出），您也可以考虑重载QThread::quit()函数
+ 
 protected:
-     void run(); //重载执行函数
+    void run(); //重载执行函数
 
 private:
-     bool _IsRunning; //继续执行标志位
+    bool _IsRunning; //继续执行标志位
 };
-  
- #endif // CHILDTHREAD_H
+ 
+#endif // CHILDTHREAD_H
 
- /* 代码文件ChildThread.cpp */
- #include "ChildThread.h"
+/* 代码文件ChildThread.cpp */
+#include "ChildThread.h"
 
- ChildThread::ChildThread(){
-     _IsRunning=false;
- }
+ChildThread::ChildThread(){
+    _IsRunning=false;
+}
 
- void ChildThread::StartThread(Priority prtPriority=InheritPriority){
-     _IsRunning=true; //设置执行标志位为开
-    start(prtPriority); //启动线程
-    return;
- }
+void ChildThread::StartThread(Priority prtPriority=InheritPriority){
+    _IsRunning=true; //设置执行标志位为开
+    start(prtPriority); //启动线程
+    return;
+}
 
- bool ChildThread::StopThread(unsigned long iMaxWaitTime){
-     _IsRunning=false; //设置执行标志位为关
-    return wait(iMaxWaitTime); //等待线程退出，并返回线程是否在给定的时间内安全退出
+bool ChildThread::StopThread(unsigned long iMaxWaitTime){
+    _IsRunning=false; //设置执行标志位为关
+    return wait(iMaxWaitTime); //等待线程退出，并返回线程是否在给定的时间内安全退出
 }
 
 void ChildThread::run(){
-     while (_IsRunning){
-         /* 在这里编写异步工作 */
-     }
-     return;
- }
+    while (_IsRunning){
+        /* 在这里编写异步工作 */
+    }
+    return;
+}
 
- /* 主程序代码 */
+/* 主程序代码 */
 ChildThread * trdThread = new ChildThread();
- trdThread->StartThread(); //启动线程
+trdThread->StartThread(); //启动线程
 
 /* …… */
 
 if (!trdThread->StopThread(1000)){ //要求等待线程退出，给予1000毫秒的等待时间
-    trdThread->terminate(); //如果等待超时，可以考虑终止
+    trdThread->terminate(); //如果等待超时，可以考虑终止
 }
 trdThread->deleteLater(); //删除线程对象
 [[/code]]
 
- + 参考资料
++ 参考资料
 
-*https://doc.qt.io/archives/qt-4.8/qthread.html 
+*https://doc.qt.io/archives/qt-4.8/qthread.html

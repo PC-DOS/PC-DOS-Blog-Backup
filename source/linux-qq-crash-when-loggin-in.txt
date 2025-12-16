@@ -2,11 +2,11 @@
 
 **处理方案：**参考[*https://im.qq.com/linuxqq/download.html LinuxQQ故障处理页面]，删除账号配置文件即可。
 
- 打开终端并定位到{{~/.config/tencent-qq/}}目录，删除以您的QQ号命名的目录即可：
+打开终端并定位到{{~/.config/tencent-qq/}}目录，删除以您的QQ号命名的目录即可：
 
 [[code]]
- cd ~/.config/tencent-qq/
- rm -rf ./QQID
- [[/code]]
+cd ~/.config/tencent-qq/
+rm -rf ./QQID
+[[/code]]
 
-其中，将“{{QQID}}”替换为您的数字QQ号（可使用{{ls}}指令列出目录来确定）。 
+其中，将“{{QQID}}”替换为您的数字QQ号（可使用{{ls}}指令列出目录来确定）。

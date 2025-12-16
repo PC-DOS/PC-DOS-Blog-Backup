@@ -1,30 +1,30 @@
 Android开机动画被存储为zip格式的压缩文件，通常位于：
 
 [[code]]
- /system/media/bootanimation.zip
- [[/code]]
+/system/media/bootanimation.zip
+[[/code]]
 
 这个ZIP文件的压缩方式必须是“存储”。
 
- 该文件的组成如下：
+该文件的组成如下：
 
 [[code]]
- desc.txt
- part0
- part1
- part...
- partn
- [[/code]]
+desc.txt
+part0
+part1
+part...
+partn
+[[/code]]
 
 文件夹{{part0}}、{{part1}}、{{...}}、{{partn}}中存储了png格式的逐帧影像。文本文件{{desc.txt}}描述了动画资源的参数：
 
 [[code]]
- iWidth iHight iFreamRate
- p iLoopTime iDelay sFilePath
- p iLoopTime iDelay sFilePath
- ...
- p iLoopTime iDelay sFilePath
- [[/code]]
+iWidth iHight iFreamRate
+p iLoopTime iDelay sFilePath
+p iLoopTime iDelay sFilePath
+...
+p iLoopTime iDelay sFilePath
+[[/code]]
 
 其中：
 
@@ -38,4 +38,4 @@ Android开机动画被存储为zip格式的压缩文件，通常位于：
 
 {{sFilePath}}为存放帧数据的目录名称。
 
- 参考：*https://jingyan.baidu.com/article/2d5afd69d33c9b85a2e28e09.html 
+参考：*https://jingyan.baidu.com/article/2d5afd69d33c9b85a2e28e09.html

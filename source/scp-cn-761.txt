@@ -1,44 +1,44 @@
 [[module css]]
- .page {
-     display: block;
-     overflow: hidden;
-     font-family: DFKai-SB,Kaiti,SimSun,"Microsoft YaHei UI Light";
-     [!-- *font-family: "Monotype Corsiva", "Bradley Hand ITC", sans-serif;* --]
-     font-style: normal;
-     background-attachment: scroll;
-     background-clip: border-box;
-     background-color: transparent;
-     background-image: linear-gradient(to top ,rgb(202, 219, 228) 0%, rgb(231, 233, 220) 8%);
-     background-origin: padding-box;
-     background-position: 0px 8px;
-     background-repeat: repeat;
-     background-size: 100% 20px;
-     border: 1px solid #CCC;
-     border-radius: 10px;
-     padding: 10px 10px;
-     margin-bottom: 10px;
-     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2)
-     }
+.page {
+    display: block;
+    overflow: hidden;
+    font-family: DFKai-SB,Kaiti,SimSun,"Microsoft YaHei UI Light";
+    [!-- *font-family: "Monotype Corsiva", "Bradley Hand ITC", sans-serif;* --]
+    font-style: normal;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: linear-gradient(to top ,rgb(202, 219, 228) 0%, rgb(231, 233, 220) 8%);
+    background-origin: padding-box;
+    background-position: 0px 8px;
+    background-repeat: repeat;
+    background-size: 100% 20px;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2)
+    }
 
- .page p {
-     line-height: 20px;
-     margin: 0;
- }
- [[/module]]
+.page p {
+    line-height: 20px;
+    margin: 0;
+}
+[[/module]]
 
- [[>]]
- [[module rate]]
- [[/>]]
+[[>]]
+[[module rate]]
+[[/>]]
 
- **项目编号：**SCP-CN-761
+**项目编号：**SCP-CN-761
 
- **项目等级：**Safe
+**项目等级：**Safe
 
- **特殊收容措施：**SCP-CN-761目前被存放在Site-CN-02贵重物品收容区的一个经加固处理的保险柜中，其有刻画的一面应当被以不透光的遮盖物完全遮盖。除以实验为目的派遣的D级人员外，接触SCP-CN-761需要二级及以上权限或经三级及以上人员授权并接种AIS-761模因疫苗。转移SCP-CN-761时应当确保其有刻画的一面处于被完全遮盖状态以防止未接种AIS-761模因疫苗的人员对SCP-CN-761的直接目视。应对所有直接目视了SCP-CN-761且未接种AIS-761模因疫苗的人员执行B级记忆消除。
+**特殊收容措施：**SCP-CN-761目前被存放在Site-CN-02贵重物品收容区的一个经加固处理的保险柜中，其有刻画的一面应当被以不透光的遮盖物完全遮盖。除以实验为目的派遣的D级人员外，接触SCP-CN-761需要二级及以上权限或经三级及以上人员授权并接种AIS-761模因疫苗。转移SCP-CN-761时应当确保其有刻画的一面处于被完全遮盖状态以防止未接种AIS-761模因疫苗的人员对SCP-CN-761的直接目视。应对所有直接目视了SCP-CN-761且未接种AIS-761模因疫苗的人员执行B级记忆消除。
 
 **描述：**SCP-CN-761为一块战国时期的画像砖，以模印方式刻画了一组人形实体。任何人类对象直接目视[[footnote]]仅指直接观看SCP-CN-761本身，通过摄录设备、照片、视频、电子成像的目镜、电子望远镜等观察目前被认为属于间接目视。通过眼镜、光学望远镜、非电子成像的目镜等观察属于直接目视。[[/footnote]]SCP-CN-761时，对象将认为SCP-CN-761刻画的内容为“一种姿势优美而独特的行走方式”[[footnote]]需要注意的是，若长期以SCP-CN-761所刻画人形实体的方式行走将使对象的肢体受到伤害。[[/footnote]]并受到SCP-CN-761的模因影响。间接目视SCP-CN-761、阅读描述SCP-CN-761刻画内容的文字资料或收听描述SCP-CN-761刻画内容的音频资料的人类对象倾向于认为SCP-CN-761刻画的内容为一种舞蹈艺术形式或声称因“不具备相关知识”而无法为SCP-CN-761刻画的内容定性，这些人类对象将不会受到SCP-CN-761的模因影响。亦可通过接种AIS-761模因疫苗避免受到SCP-CN-761的模因影响，已受到SCP-CN-761模因影响的对象在--任何时刻均--进入第三阶段前可通过接受B级及以上的记忆消除以消除影响。
 
- 当一名人类对象直接目视SCP-CN-761并受其影响后，其行为方式将随时间推移发生一系列改变。这些改变依照其表观行为的变化分为三个阶段。
+当一名人类对象直接目视SCP-CN-761并受其影响后，其行为方式将随时间推移发生一系列改变。这些改变依照其表观行为的变化分为三个阶段。
 
 * **第一阶段：**对象直接目视SCP-CN-761并受其影响后即进入第一阶段。在此阶段中，对象将不定期地尝试以类似SCP-CN-761所刻画人形实体的运动方式行走。对象认为这是一种对于“优美的走路姿势”的模仿行为。模仿行为的时长将随时间逐步增加，最终对象将始终尝试使用SCP-CN-761刻画的人形实体的运动方式行走从并进入第二阶段。这种模仿行为将使对象感到艰难而痛苦，但是对象将认为这是一种必要的练习并拒绝放弃模仿的行为。在此阶段接受B级记忆消除可以消除项目造成的影响。
 * **第二阶段：**对象通常在进入第一阶段十五天至二十天后进入第二阶段。处于此阶段时，对象在任何环境下均将以类似SCP-CN-761所刻画的方式行走。对象将会拒绝任何以正常人类的行走方式行走的要求。当被强迫配合此类要求时，对象将声称其已忘记了原先的行走方式。同时，对象将尝试劝告其他人类对象在行走时模仿此方式。根据目前已有的资料，这种劝告是非强迫性的，亦不会对被劝告的对象造成模因影响。对对象进行B级记忆消除可以消除影响，但是记忆消除结束后对象将仅能以类似匍匐前进或爬行的方式移动，对象对于“行走”的概念亦将丢失。向对象描述“行走”的定义、要求其模仿正常人类的行走方式以试图消除这一现象的尝试被证明是无效的。进行了记忆备份的对象可通过恢复记忆的方式恢复正常的行走方式。
@@ -49,23 +49,23 @@ SCP-CN-761最初于20██年█月██日发现于河北省██市██�
 **附录：**20██年██月██日，由于墓葬将被破坏以供建设之用，基金会派遣人员对发现项目的墓葬进行了再次调查，调查中发现一张写有如下文字的字条，推测是从普通记事本中撕下的一页：
 
 [[div class="page"]]
- @@____年__月__日 星期__ 天气_____@@
- @@___________________________________________________________________________@@
- @@ @@
- [脏话删除]到底谁那么缺德，连这么块破砖头都偷？我不过就是想弄个████主题的仿古画像砖而已啊。
- 不会又是那个S什么P基金会吧……
+@@____年__月__日 星期__ 天气_____@@
+@@___________________________________________________________________________@@
+@@ @@
+[脏话删除]到底谁那么缺德，连这么块破砖头都偷？我不过就是想弄个████主题的仿古画像砖而已啊。
+不会又是那个S什么P基金会吧……
 算了算了不管你是谁，如果你看到这个字条，请尽快把东西还到这个地方来，做一个仿古的画像砖很累的。
 @@ @@
 幸好我留了一手，那块砖头看多了会出事的，我可不负责哦 ;) 。
 @@ @@
- ##transparent|**人啊，看了好东西就是喜欢据为己有，拿不到就想着去模仿。真是不知天高地厚。**##
- @@ @@
- [[/div]]
+##transparent|**人啊，看了好东西就是喜欢据为己有，拿不到就想着去模仿。真是不知天高地厚。**##
+@@ @@
+[[/div]]
 
- [[footnoteblock]]
+[[footnoteblock]]
 
- [[=]]
- [[div class="footer-wikiwalk-nav"]]
- << [[[SCP-CN-760]]] | SCP-CN-761 | [[[SCP-CN-762]]] >>
- [[/div]]
- [[/=]] 
+[[=]]
+[[div class="footer-wikiwalk-nav"]]
+<< [[[SCP-CN-760]]] | SCP-CN-761 | [[[SCP-CN-762]]] >>
+[[/div]]
+[[/=]]

@@ -1,312 +1,312 @@
 [[code]]
- Imports CellNative
- Imports System
- Imports System.Globalization
- Imports System.Runtime.InteropServices
+Imports CellNative
+Imports System
+Imports System.Globalization
+Imports System.Runtime.InteropServices
 
- Namespace Microsoft.TrialAgent
-     Public Class DeviceRegistry
-         ' Methods
-         Private Function CryptGuid(ByVal id As String) As String
-             If String.IsNullOrEmpty(id) Then
-                 Return ""
-             End If
-             Dim str As String = ""
-             Try 
-                 Dim b As Byte() = New Guid(id).ToByteArray
-                 Dim i As Integer
-                 For i = 0 To b.Length - 1
-                     b(i) = CByte((b(i) Xor &H95))
-                 Next i
-                 Dim guid2 As New Guid(b)
-                 str = guid2.ToString.ToUpper(CultureInfo.InvariantCulture)
-             Catch obj1 As Object
-             End Try
-             Return str
-         End Function
+Namespace Microsoft.TrialAgent
+    Public Class DeviceRegistry
+        ' Methods
+        Private Function CryptGuid(ByVal id As String) As String
+            If String.IsNullOrEmpty(id) Then
+                Return ""
+            End If
+            Dim str As String = ""
+            Try 
+                Dim b As Byte() = New Guid(id).ToByteArray
+                Dim i As Integer
+                For i = 0 To b.Length - 1
+                    b(i) = CByte((b(i) Xor &H95))
+                Next i
+                Dim guid2 As New Guid(b)
+                str = guid2.ToString.ToUpper(CultureInfo.InvariantCulture)
+            Catch obj1 As Object
+            End Try
+            Return str
+        End Function
 
-         Public Function GetCurrentDeviceVersions() As Versions
-             Return New Versions With { _
-                 .buildNumber = Me.GetStringFromRegistry("SYSTEM\Versions", "BuildNumber"), _
-                 .majorVersion = Me.GetStringFromRegistry("SYSTEM\Versions", "MajorVersion"), _
-                 .minorVersion = Me.GetStringFromRegistry("SYSTEM\Versions", "MinorVersion"), _
-                 .parentBranchBuild = Me.GetStringFromRegistry("SYSTEM\Versions", "ParentBranchBuild"), _
-                 .qfeLevel = Me.GetStringFromRegistry("SYSTEM\Versions", "QFELevel"), _
-                 .label = Me.GetStringFromRegistry("SYSTEM\Versions", "Label") _
-             }
-         End Function
+        Public Function GetCurrentDeviceVersions() As Versions
+            Return New Versions With { _
+                .buildNumber = Me.GetStringFromRegistry("SYSTEM\Versions", "BuildNumber"), _
+                .majorVersion = Me.GetStringFromRegistry("SYSTEM\Versions", "MajorVersion"), _
+                .minorVersion = Me.GetStringFromRegistry("SYSTEM\Versions", "MinorVersion"), _
+                .parentBranchBuild = Me.GetStringFromRegistry("SYSTEM\Versions", "ParentBranchBuild"), _
+                .qfeLevel = Me.GetStringFromRegistry("SYSTEM\Versions", "QFELevel"), _
+                .label = Me.GetStringFromRegistry("SYSTEM\Versions", "Label") _
+            }
+        End Function
 
-         Public Function GetDeviceFeedbackId() As String
-             Return Me.CryptGuid(Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackId"))
-         End Function
+        Public Function GetDeviceFeedbackId() As String
+            Return Me.CryptGuid(Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackId"))
+        End Function
 
-         Public Function GetFeedbackId() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Telemetry", "OverrideFeedbackId")
-         End Function
+        Public Function GetFeedbackId() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Telemetry", "OverrideFeedbackId")
+        End Function
 
-         Public Function GetFirmwareVersion() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "FirmwareVersion")
-         End Function
+        Public Function GetFirmwareVersion() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "FirmwareVersion")
+        End Function
 
-         Public Function GetFlashImageType() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\NokiaDeviceReg\Data", "ImageType")
-         End Function
+        Public Function GetFlashImageType() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\NokiaDeviceReg\Data", "ImageType")
+        End Function
 
-         Private Function GetInt64FromRegistry(ByVal key As String, ByVal value As String) As Long
-             Return Cellcore.Factory.GetInt64RegistryValue(key, value)
-         End Function
+        Private Function GetInt64FromRegistry(ByVal key As String, ByVal value As String) As Long
+            Return Cellcore.Factory.GetInt64RegistryValue(key, value)
+        End Function
 
-         Private Function GetIntFromRegistry(ByVal key As String, ByVal value As String, ByVal Optional defaultValue As Integer = 0) As Integer
-             Return Cellcore.Factory.GetIntRegistryValue(key, value, defaultValue)
-         End Function
+        Private Function GetIntFromRegistry(ByVal key As String, ByVal value As String, ByVal Optional defaultValue As Integer = 0) As Integer
+            Return Cellcore.Factory.GetIntRegistryValue(key, value, defaultValue)
+        End Function
 
-         Public Function GetPreviousDeviceVersions() As Versions
-             Return New Versions With { _
-                 .buildNumber = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "BuildNumber"), _
-                 .majorVersion = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MajorVersion"), _
-                 .minorVersion = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MinorVersion"), _
-                 .parentBranchBuild = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "ParentBranchBuild"), _
-                 .qfeLevel = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "QFELevel"), _
-                 .label = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "Label") _
-             }
-         End Function
+        Public Function GetPreviousDeviceVersions() As Versions
+            Return New Versions With { _
+                .buildNumber = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "BuildNumber"), _
+                .majorVersion = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MajorVersion"), _
+                .minorVersion = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MinorVersion"), _
+                .parentBranchBuild = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "ParentBranchBuild"), _
+                .qfeLevel = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "QFELevel"), _
+                .label = Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg\Versions", "Label") _
+            }
+        End Function
 
-         Public Function GetPreviousImsi() As Byte()
-             Return Me.GetRawDataFromRegistry("Software\OEM\Nokia\ProtoReg", "IMSI")
-         End Function
+        Public Function GetPreviousImsi() As Byte()
+            Return Me.GetRawDataFromRegistry("Software\OEM\Nokia\ProtoReg", "IMSI")
+        End Function
 
-         Public Function GetProtoRegistrationEmail() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegEmail")
-         End Function
+        Public Function GetProtoRegistrationEmail() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegEmail")
+        End Function
 
-         Private Function GetRawDataFromRegistry(ByVal key As String, ByVal value As String) As Byte()
-             Dim cellcore As Cellcore = Cellcore.Factory
-             Dim src As Byte() = New Byte(&H3E8  - 1) {}
-             Dim num As UInt32 = 0
-             If cellcore.GetRawRegistryValue(key, value, src, num) Then
-                 Dim dst As Byte() = New Byte(num  - 1) {}
-                 Buffer.BlockCopy(src, 0, dst, 0, CInt(num))
-                 Return dst
-             End If
-             Return New Byte(0  - 1) {}
-         End Function
+        Private Function GetRawDataFromRegistry(ByVal key As String, ByVal value As String) As Byte()
+            Dim cellcore As Cellcore = Cellcore.Factory
+            Dim src As Byte() = New Byte(&H3E8  - 1) {}
+            Dim num As UInt32 = 0
+            If cellcore.GetRawRegistryValue(key, value, src, num) Then
+                Dim dst As Byte() = New Byte(num  - 1) {}
+                Buffer.BlockCopy(src, 0, dst, 0, CInt(num))
+                Return dst
+            End If
+            Return New Byte(0  - 1) {}
+        End Function
 
-         Public Function GetRMCode() As String
-             Return Me.GetStringFromRegistry("SYSTEM\Platform\DeviceTargetingInfo", "PhoneHardwareVariant")
-         End Function
+        Public Function GetRMCode() As String
+            Return Me.GetStringFromRegistry("SYSTEM\Platform\DeviceTargetingInfo", "PhoneHardwareVariant")
+        End Function
 
-         Public Function GetServerPingOffset() As Long
-             Return Me.GetInt64FromRegistry("Software\OEM\Nokia\ProtoReg", "ServerTimeOffset")
-         End Function
+        Public Function GetServerPingOffset() As Long
+            Return Me.GetInt64FromRegistry("Software\OEM\Nokia\ProtoReg", "ServerTimeOffset")
+        End Function
 
-         Public Function GetServerPingTimestamp() As Long
-             Return Me.GetInt64FromRegistry("Software\OEM\Nokia\ProtoReg", "PingToServer")
-         End Function
+        Public Function GetServerPingTimestamp() As Long
+            Return Me.GetInt64FromRegistry("Software\OEM\Nokia\ProtoReg", "PingToServer")
+        End Function
 
-         Public Function GetServerUrl() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ServerUrl")
-         End Function
+        Public Function GetServerUrl() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ServerUrl")
+        End Function
 
-         Public Function GetServiceLibVersion() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ServiceLibVersion")
-         End Function
+        Public Function GetServiceLibVersion() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ServiceLibVersion")
+        End Function
 
-         Public Function GetServiceVersion() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ServiceVersion")
-         End Function
+        Public Function GetServiceVersion() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "ServiceVersion")
+        End Function
 
-         Public Function GetSkipImageTypeCheck() As Boolean
-             Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "SkipImageTypeCheck", 0) <> 0)
-         End Function
+        Public Function GetSkipImageTypeCheck() As Boolean
+            Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "SkipImageTypeCheck", 0) <> 0)
+        End Function
 
-         Private Function GetStringFromRegistry(ByVal key As String, ByVal value As String) As String
-             Return Cellcore.Factory.GetStringRegistryValue(key, value)
-         End Function
+        Private Function GetStringFromRegistry(ByVal key As String, ByVal value As String) As String
+            Return Cellcore.Factory.GetStringRegistryValue(key, value)
+        End Function
 
-         Public Function GetTestingTypeDescription() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeDescription")
-         End Function
+        Public Function GetTestingTypeDescription() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeDescription")
+        End Function
 
-         Public Function GetTestingTypeId() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeId")
-         End Function
+        Public Function GetTestingTypeId() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeId")
+        End Function
 
-         Public Function GetTestingTypeLocalizationName() As String
-             Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeName")
-         End Function
+        Public Function GetTestingTypeLocalizationName() As String
+            Return Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeName")
+        End Function
 
-         Public Function GetTimeStamp() As Long
-             Return Me.GetInt64FromRegistry("Software\OEM\Nokia\ProtoReg", "NavigatedTimeStamp")
-         End Function
+        Public Function GetTimeStamp() As Long
+            Return Me.GetInt64FromRegistry("Software\OEM\Nokia\ProtoReg", "NavigatedTimeStamp")
+        End Function
 
-         Public Function IsDeviceRegistered() As Boolean
-             Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackRegistered", 0) = 1)
-         End Function
+        Public Function IsDeviceRegistered() As Boolean
+            Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackRegistered", 0) = 1)
+        End Function
 
-         Public Function IsMemoryInfoFlag() As Boolean
-             Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "ShowAppMemoryData", 0) = 1)
-         End Function
+        Public Function IsMemoryInfoFlag() As Boolean
+            Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "ShowAppMemoryData", 0) = 1)
+        End Function
 
-         Public Function IsProtoRegistered() As Boolean
-             Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegistered", 0) = 1)
-         End Function
+        Public Function IsProtoRegistered() As Boolean
+            Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegistered", 0) = 1)
+        End Function
 
-         Public Function IsRebootFlag() As Boolean
-             Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "RebootPending", 0) = 1)
-         End Function
+        Public Function IsRebootFlag() As Boolean
+            Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "RebootPending", 0) = 1)
+        End Function
 
-         Public Function IsServiceInDevice() As Boolean
-             Return Not String.IsNullOrEmpty(Me.GetServiceVersion)
-         End Function
+        Public Function IsServiceInDevice() As Boolean
+            Return Not String.IsNullOrEmpty(Me.GetServiceVersion)
+        End Function
 
-         Public Function IsSurveyVisibleFlag() As Boolean
-             Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "SurveyWasVisible", 0) = 1)
-         End Function
+        Public Function IsSurveyVisibleFlag() As Boolean
+            Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "SurveyWasVisible", 0) = 1)
+        End Function
 
-         Public Function IsSWUpdateVisibleFlag() As Boolean
-             Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "SWUpdateWasVisible", 0) = 1)
-         End Function
+        Public Function IsSWUpdateVisibleFlag() As Boolean
+            Return (Me.GetIntFromRegistry("Software\OEM\Nokia\ProtoReg", "SWUpdateWasVisible", 0) = 1)
+        End Function
 
-         Public Sub SetCurrentAppUIVersion(ByVal currentUiVersion As String)
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "AppUIVersion", currentUiVersion)
-         End Sub
+        Public Sub SetCurrentAppUIVersion(ByVal currentUiVersion As String)
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "AppUIVersion", currentUiVersion)
+        End Sub
 
-         Public Sub SetDeviceFeedbackId(ByVal feedbackId As String)
-             feedbackId = Me.CryptGuid(Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackId"))
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackId", feedbackId)
-         End Sub
+        Public Sub SetDeviceFeedbackId(ByVal feedbackId As String)
+            feedbackId = Me.CryptGuid(Me.GetStringFromRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackId"))
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackId", feedbackId)
+        End Sub
 
-         Public Sub SetDeviceRegistered(ByVal registered As Boolean)
-             Dim flag As Boolean = False
-             If registered Then
-                 flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackRegistered", 1)
-             Else
-                 flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackRegistered", 0)
-             End If
-         End Sub
+        Public Sub SetDeviceRegistered(ByVal registered As Boolean)
+            Dim flag As Boolean = False
+            If registered Then
+                flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackRegistered", 1)
+            Else
+                flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "FeedbackRegistered", 0)
+            End If
+        End Sub
 
-         Public Sub SetFeedbackId(ByVal feedbackId As String)
-             Me.StoreStringToRegistry("Software\OEM\Telemetry", "OverrideFeedbackId", feedbackId)
-         End Sub
+        Public Sub SetFeedbackId(ByVal feedbackId As String)
+            Me.StoreStringToRegistry("Software\OEM\Telemetry", "OverrideFeedbackId", feedbackId)
+        End Sub
 
-         Public Sub SetFirmwareVersion(ByVal fwVersion As String)
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "FirmwareVersion", fwVersion)
-         End Sub
+        Public Sub SetFirmwareVersion(ByVal fwVersion As String)
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "FirmwareVersion", fwVersion)
+        End Sub
 
-         Public Sub SetPreviousDeviceVersions(ByVal currentVersions As Versions)
-             If (Not currentVersions Is Nothing) Then
-                 Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "BuildNumber", currentVersions.buildNumber)
-                 Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MajorVersion", currentVersions.majorVersion)
-                 Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MinorVersion", currentVersions.minorVersion)
-                 Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "ParentBranchBuild", currentVersions.parentBranchBuild)
-                 Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "QFELevel", currentVersions.qfeLevel)
-                 Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "Label", currentVersions.label)
-             End If
-         End Sub
+        Public Sub SetPreviousDeviceVersions(ByVal currentVersions As Versions)
+            If (Not currentVersions Is Nothing) Then
+                Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "BuildNumber", currentVersions.buildNumber)
+                Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MajorVersion", currentVersions.majorVersion)
+                Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "MinorVersion", currentVersions.minorVersion)
+                Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "ParentBranchBuild", currentVersions.parentBranchBuild)
+                Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "QFELevel", currentVersions.qfeLevel)
+                Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg\Versions", "Label", currentVersions.label)
+            End If
+        End Sub
 
-         Public Sub SetProtoRegistered(ByVal registered As Boolean)
-             Dim flag As Boolean = False
-             If registered Then
-                 flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegistered", 1)
-             Else
-                 flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegistered", 0)
-             End If
-         End Sub
+        Public Sub SetProtoRegistered(ByVal registered As Boolean)
+            Dim flag As Boolean = False
+            If registered Then
+                flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegistered", 1)
+            Else
+                flag = Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegistered", 0)
+            End If
+        End Sub
 
-         Public Sub SetProtoRegistrationEmail(ByVal email As String)
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegEmail", email)
-         End Sub
+        Public Sub SetProtoRegistrationEmail(ByVal email As String)
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "ProtoRegEmail", email)
+        End Sub
 
-         Public Sub SetServerUrl(ByVal redirectionUrl As String)
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "ServerUrl", redirectionUrl)
-         End Sub
+        Public Sub SetServerUrl(ByVal redirectionUrl As String)
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "ServerUrl", redirectionUrl)
+        End Sub
 
-         Public Function SetSkipImageTypeCheck(ByVal enabled As Boolean) As Boolean
-             Dim valueData As Integer = If(enabled, 1, 0)
-             Return Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SkipImageTypeCheck", valueData)
-         End Function
+        Public Function SetSkipImageTypeCheck(ByVal enabled As Boolean) As Boolean
+            Dim valueData As Integer = If(enabled, 1, 0)
+            Return Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SkipImageTypeCheck", valueData)
+        End Function
 
-         Public Sub SetStartSurveySnoozeTime(ByVal snoozeStarted As Long)
-             Me.StoreInt64ToRegistry("Software\OEM\Nokia\ProtoReg\Snooze", "SurveySnoozeStartTimeStamp", snoozeStarted)
-         End Sub
+        Public Sub SetStartSurveySnoozeTime(ByVal snoozeStarted As Long)
+            Me.StoreInt64ToRegistry("Software\OEM\Nokia\ProtoReg\Snooze", "SurveySnoozeStartTimeStamp", snoozeStarted)
+        End Sub
 
-         Public Sub SetSurveySnoozeTime(ByVal snoozeTime As Integer)
-             Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SurveySnoozeTimeInSeconds", snoozeTime)
-         End Sub
+        Public Sub SetSurveySnoozeTime(ByVal snoozeTime As Integer)
+            Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SurveySnoozeTimeInSeconds", snoozeTime)
+        End Sub
 
-         Public Sub SetSurveyVisibleFlag(ByVal visible As Boolean)
-             Dim valueData As Integer = If(visible, 1, 0)
-             Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SurveyWasVisible", valueData)
-         End Sub
+        Public Sub SetSurveyVisibleFlag(ByVal visible As Boolean)
+            Dim valueData As Integer = If(visible, 1, 0)
+            Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SurveyWasVisible", valueData)
+        End Sub
 
-         Public Sub SetSWUpdateVisibleFlag(ByVal visible As Boolean)
-             Dim valueData As Integer = If(visible, 1, 0)
-             Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SWUpdateWasVisible", valueData)
-         End Sub
+        Public Sub SetSWUpdateVisibleFlag(ByVal visible As Boolean)
+            Dim valueData As Integer = If(visible, 1, 0)
+            Me.StoreIntToRegistry("Software\OEM\Nokia\ProtoReg", "SWUpdateWasVisible", valueData)
+        End Sub
 
-         Public Sub SetTestingTypeData(ByVal id As String, ByVal description As String, ByVal localizedName As String)
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeId", id)
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeDescription", description)
-             Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeName", localizedName)
-         End Sub
+        Public Sub SetTestingTypeData(ByVal id As String, ByVal description As String, ByVal localizedName As String)
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeId", id)
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeDescription", description)
+            Me.StoreStringToRegistry("Software\OEM\Nokia\ProtoReg", "TestingTypeName", localizedName)
+        End Sub
 
-         Public Sub SetTimeStamp(ByVal timestamp As Long)
-             Me.StoreInt64ToRegistry("Software\OEM\Nokia\ProtoReg", "NavigatedTimeStamp", timestamp)
-         End Sub
+        Public Sub SetTimeStamp(ByVal timestamp As Long)
+            Me.StoreInt64ToRegistry("Software\OEM\Nokia\ProtoReg", "NavigatedTimeStamp", timestamp)
+        End Sub
 
-         Private Function StoreInt64ToRegistry(ByVal key As String, ByVal value As String, ByVal valueData As Long) As Boolean
-             Return (Cellcore.Factory.SetInt64RegistryValue(key, value, valueData) = 0)
-         End Function
+        Private Function StoreInt64ToRegistry(ByVal key As String, ByVal value As String, ByVal valueData As Long) As Boolean
+            Return (Cellcore.Factory.SetInt64RegistryValue(key, value, valueData) = 0)
+        End Function
 
-         Private Function StoreIntToRegistry(ByVal key As String, ByVal value As String, ByVal valueData As Integer) As Boolean
-             Return (Cellcore.Factory.SetIntRegistryValue(key, value, valueData) = 0)
-         End Function
+        Private Function StoreIntToRegistry(ByVal key As String, ByVal value As String, ByVal valueData As Integer) As Boolean
+            Return (Cellcore.Factory.SetIntRegistryValue(key, value, valueData) = 0)
+        End Function
 
-         Private Function StoreStringToRegistry(ByVal key As String, ByVal value As String, ByVal valueData As String) As Boolean
-             Return (Cellcore.Factory.SetStringRegistryValue(key, value, valueData) = 0)
-         End Function
+        Private Function StoreStringToRegistry(ByVal key As String, ByVal value As String, ByVal valueData As String) As Boolean
+            Return (Cellcore.Factory.SetStringRegistryValue(key, value, valueData) = 0)
+        End Function
 
 
-         ' Fields
-         Private Const rootServicePath As String = "Software\OEM\Nokia\ProtoReg"
-         Private Const rootServiceVersionPath As String = "Software\OEM\Nokia\ProtoReg\Versions"
-         Private Const rootSnoozePath As String = "Software\OEM\Nokia\ProtoReg\Snooze"
-         Private Const rootFeedbackIdPath As String = "Software\OEM\Telemetry"
-         Private Const rootVersionPath As String = "SYSTEM\Versions"
-         Private Const rootLegacyDevRegDataPath As String = "Software\OEM\Nokia\NokiaDeviceReg\Data"
-         Private Const rootDeviceInfo As String = "SYSTEM\Platform\DeviceTargetingInfo"
-         Private Const rmCode As String = "PhoneHardwareVariant"
-         Private Const overrideFeedbackId As String = "OverrideFeedbackId"
-         Private Const deviceFeedbackId As String = "FeedbackId"
-         Private Const protoRegisteredValue As String = "ProtoRegistered"
-         Private Const feedbackRegisteredValue As String = "FeedbackRegistered"
-         Private Const navigatedTimestamp As String = "NavigatedTimeStamp"
-         Private Const firmwareVersionKey As String = "FirmwareVersion"
-         Private Const imsiKey As String = "IMSI"
-         Private Const serverUrl As String = "ServerUrl"
-         Private Const settingsProtoEmailKey As String = "ProtoRegEmail"
-         Private Const serverPingOffset As String = "ServerTimeOffset"
-         Private Const serverPingTimestamp As String = "PingToServer"
-         Private Const settingsServiceVersion As String = "ServiceVersion"
-         Private Const settingsServiceLibVersion As String = "ServiceLibVersion"
-         Private Const settingsUIAppVersion As String = "AppUIVersion"
-         Private Const buildNumberKey As String = "BuildNumber"
-         Private Const majorVersionKey As String = "MajorVersion"
-         Private Const minorVersionKey As String = "MinorVersion"
-         Private Const parentBranchBuildKey As String = "ParentBranchBuild"
-         Private Const qfeLevelKey As String = "QFELevel"
-         Private Const versionLabelKey As String = "Label"
-         Private Const flashImageTypeKey As String = "ImageType"
-         Private Const skipImageTypeCheck As String = "SkipImageTypeCheck"
-         Private Const snoozeTimeAsSecond As String = "SurveySnoozeTimeInSeconds"
-         Private Const snoozeStartTimeStamp As String = "SurveySnoozeStartTimeStamp"
-         Private Const surveyWasVisible As String = "SurveyWasVisible"
-         Private Const swUpdateWasVisible As String = "SWUpdateWasVisible"
-         Private Const RebootPending As String = "RebootPending"
-         Private Const ShowMemoryData As String = "ShowAppMemoryData"
-         Private Const testingTypeLocalizedName As String = "TestingTypeName"
-         Private Const testingTypeDescription As String = "TestingTypeDescription"
-         Private Const testingTypeId As String = "TestingTypeId"
-     End Class
- End Namespace
- [[/code]] 
+        ' Fields
+        Private Const rootServicePath As String = "Software\OEM\Nokia\ProtoReg"
+        Private Const rootServiceVersionPath As String = "Software\OEM\Nokia\ProtoReg\Versions"
+        Private Const rootSnoozePath As String = "Software\OEM\Nokia\ProtoReg\Snooze"
+        Private Const rootFeedbackIdPath As String = "Software\OEM\Telemetry"
+        Private Const rootVersionPath As String = "SYSTEM\Versions"
+        Private Const rootLegacyDevRegDataPath As String = "Software\OEM\Nokia\NokiaDeviceReg\Data"
+        Private Const rootDeviceInfo As String = "SYSTEM\Platform\DeviceTargetingInfo"
+        Private Const rmCode As String = "PhoneHardwareVariant"
+        Private Const overrideFeedbackId As String = "OverrideFeedbackId"
+        Private Const deviceFeedbackId As String = "FeedbackId"
+        Private Const protoRegisteredValue As String = "ProtoRegistered"
+        Private Const feedbackRegisteredValue As String = "FeedbackRegistered"
+        Private Const navigatedTimestamp As String = "NavigatedTimeStamp"
+        Private Const firmwareVersionKey As String = "FirmwareVersion"
+        Private Const imsiKey As String = "IMSI"
+        Private Const serverUrl As String = "ServerUrl"
+        Private Const settingsProtoEmailKey As String = "ProtoRegEmail"
+        Private Const serverPingOffset As String = "ServerTimeOffset"
+        Private Const serverPingTimestamp As String = "PingToServer"
+        Private Const settingsServiceVersion As String = "ServiceVersion"
+        Private Const settingsServiceLibVersion As String = "ServiceLibVersion"
+        Private Const settingsUIAppVersion As String = "AppUIVersion"
+        Private Const buildNumberKey As String = "BuildNumber"
+        Private Const majorVersionKey As String = "MajorVersion"
+        Private Const minorVersionKey As String = "MinorVersion"
+        Private Const parentBranchBuildKey As String = "ParentBranchBuild"
+        Private Const qfeLevelKey As String = "QFELevel"
+        Private Const versionLabelKey As String = "Label"
+        Private Const flashImageTypeKey As String = "ImageType"
+        Private Const skipImageTypeCheck As String = "SkipImageTypeCheck"
+        Private Const snoozeTimeAsSecond As String = "SurveySnoozeTimeInSeconds"
+        Private Const snoozeStartTimeStamp As String = "SurveySnoozeStartTimeStamp"
+        Private Const surveyWasVisible As String = "SurveyWasVisible"
+        Private Const swUpdateWasVisible As String = "SWUpdateWasVisible"
+        Private Const RebootPending As String = "RebootPending"
+        Private Const ShowMemoryData As String = "ShowAppMemoryData"
+        Private Const testingTypeLocalizedName As String = "TestingTypeName"
+        Private Const testingTypeDescription As String = "TestingTypeDescription"
+        Private Const testingTypeId As String = "TestingTypeId"
+    End Class
+End Namespace
+[[/code]]

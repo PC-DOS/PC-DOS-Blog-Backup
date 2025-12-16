@@ -5,6 +5,6 @@
 
 **问题处理：**针对USB即插即用键盘的问题，将设备插入正常工作的计算机上，在设备管理器中查看出现的“USB输入设备”对应的inf名称，查询到需要{{input.inf}}文件，将该文件从Windows XP安装盘中解包并复制到{{%SystemRoot%\inf}}目录，重新插拔键盘，问题解决。
 
- 针对AMD显示卡的问题，根据加载的驱动名“hdaudbus”在Windows安装盘中搜索，将搜索得到的“hdaudbus.in_”文件解包并提取到{{%SystemRoot%\inf}}目录，对出现问题的设备执行一次“更新驱动程序”即可。
+针对AMD显示卡的问题，根据加载的驱动名“hdaudbus”在Windows安装盘中搜索，将搜索得到的“hdaudbus.in_”文件解包并提取到{{%SystemRoot%\inf}}目录，对出现问题的设备执行一次“更新驱动程序”即可。
 
- 实际上，精简时不应当精简{{%SystemRoot%\inf}}目录，从正常安装的同版本Windows副本中提取{{%SystemRoot%\inf}}目录到本机亦可解决问题。 
+实际上，精简时不应当精简{{%SystemRoot%\inf}}目录，从正常安装的同版本Windows副本中提取{{%SystemRoot%\inf}}目录到本机亦可解决问题。

@@ -1,51 +1,51 @@
 [[toc]]
 
- + 格式
++ 格式
 
 [[code]]
- + 《노래》：曲名
++ 《노래》：曲名
 
 ++ 谚文
 
 [[code]]
 
- [[/code]]
+[[/code]]
 
- ++ 汉谚混写
+++ 汉谚混写
 
 [[code]]
 
- [[/code]]
- [[/code]]
+[[/code]]
+[[/code]]
 
- + Fonts
++ Fonts
 
- *https://blog.codingcat.kr/37
+*https://blog.codingcat.kr/37
 
- + 《우리는 당신밖에 모른다》：我们除了他谁都不认
++ 《우리는 당신밖에 모른다》：我们除了他谁都不认
 
 *https://www.bilibili.com/video/av25963075
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:我们除了星光熠熠谁都不认
+[Script Info]
+Title:我们除了星光熠熠谁都不认
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:720
- PlayResY:400
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:720
+PlayResY:400
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,32.5,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,1,0,2,5,5,15,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,32.5,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,1,0,2,5,5,15,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:20.82,0:00:24.50,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(1440,385,360,385,0,245)}이 조선 이끄는 힘 억세다
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:20.82,0:00:24.50,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(1440,385,360,385,0,245)}이 조선 이끄는 힘 억세다
 Dialogue: 0,0:00:24.50,0:00:29.00,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(1440,385,360,385,0,245)}인민의 운명을 한몸에 안고
 Dialogue: 0,0:00:29.00,0:00:33.25,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(1440,385,360,385,0,245)}우리가 바라는 꿈과 리상
 Dialogue: 0,0:00:33.25,0:00:38.20,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(1440,385,360,385,0,245)}모두다 꽃펴주실 분
@@ -68,31 +68,31 @@ Dialogue: 0,0:02:38.12,0:02:47.70,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an
 Dialogue: 0,0:02:49.80,0:02:54.50,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(1440,385,360,385,0,245)}아 -
 [[/code]]
 
- + 《통일렬차 달린다》：统一列车在奔驰
++ 《통일렬차 달린다》：统一列车在奔驰
 
 *https://www.bilibili.com/video/av882659140
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:统一列车在奔驰
+[Script Info]
+Title:统一列车在奔驰
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,붓글,100,&H000000FF,&HFF000000,&H00FFFFFF,&H00FF0000,-1,0,0,0,100,100,0,0.00,1,2.5,5,2,5,5,15,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,붓글,100,&H000000FF,&HFF000000,&H00FFFFFF,&H00FF0000,-1,0,0,0,100,100,0,0.00,1,2.5,5,2,5,5,15,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:24.33,0:00:30.37,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}통일렬차 달린다 부산행 렬차 달린다
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:24.33,0:00:30.37,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}통일렬차 달린다 부산행 렬차 달린다
 Dialogue: 0,0:00:30.37,0:00:36.66,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}통일렬차 달린다 호남행 렬차 달린다
 Dialogue: 0,0:00:36.66,0:00:43.25,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}칠백리 락동강반 생명수 끌어주고
 Dialogue: 0,0:00:43.25,0:00:49.53,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}새 보습 우렁우렁 호남벌을 번져주세
@@ -114,27 +114,27 @@ Dialogue: 0,0:02:16.46,0:02:29.52,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an
 Dialogue: 0,0:02:29.52,0:02:32.75,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}아
 [[/code]]
 
- ++ 汉谚混写
+++ 汉谚混写
 
 [[code]]
- [Script Info]
- Title:统一列车在奔驰
+[Script Info]
+Title:统一列车在奔驰
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,붓글,150,&H000000FF,&HFF000000,&H00FFFFFF,&H00FF0000,-1,0,0,0,100,100,0,0.00,1,2.5,5,2,5,5,15,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,붓글,150,&H000000FF,&HFF000000,&H00FFFFFF,&H00FF0000,-1,0,0,0,100,100,0,0.00,1,2.5,5,2,5,5,15,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:04.00,0:00:17.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\an2}{\move(-960,800,960,800,0,490)}{\fn楷体}統一列車{\fn} 달린다
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:04.00,0:00:17.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\an2}{\move(-960,800,960,800,0,490)}{\fn楷体}統一列車{\fn} 달린다
 Dialogue: 0,0:00:24.33,0:00:30.37,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}統一列車{\fn} 달린다 {\fn楷体}釜山行{\fn} {\fn楷体}列車{\fn} 달린다
 Dialogue: 0,0:00:30.37,0:00:36.66,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}統一列車{\fn} 달린다 {\fn楷体}湖南行{\fn} {\fn楷体}列車{\fn} 달린다
 Dialogue: 0,0:00:36.66,0:00:43.25,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}七百里{\fn} {\fn楷体}洛東江畔{\fn} {\fn楷体}生命水{\fn} 끌어주고
@@ -142,7 +142,7 @@ Dialogue: 0,0:00:43.25,0:00:49.53,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an
 Dialogue: 0,0:00:49.53,0:00:52.97,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}千里馬{\fn} 뜨락또르 {\fn楷体}起重機{\fn}도 달린다
 Dialogue: 0,0:00:52.97,0:00:56.06,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}千里馬{\fn} 뜨락또르 {\fn楷体}起重機{\fn}도 달린다
 Dialogue: 0,0:00:56.06,0:01:02.09,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}疾風{\fn}같이 몰고가세 {\fn楷体}統一{\fn}의 무쇠{\fn楷体}鐵馬{\fn}
- Dialogue: 0,0:01:02.09,0:01:07.06,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}車窓{\fn}밖에 어뜩어뜩 어뜩 어뜩어뜩 어뜩어뜩
+Dialogue: 0,0:01:02.09,0:01:07.06,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}車窓{\fn}밖에 어뜩어뜩 어뜩 어뜩어뜩 어뜩어뜩
 Dialogue: 0,0:01:07.06,0:01:11.07,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}南{\fn}녘{\fn楷体}兄弟{\fn} 반겨온다
 Dialogue: 0,0:01:30.00,0:01:36.20,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}統一列車{\fn} 달린다 {\fn楷体}釜山行{\fn} {\fn楷体}列車{\fn} 달린다
 Dialogue: 0,0:01:36.20,0:01:42.41,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}直通列車{\fn} 달린다 {\fn楷体}平壤驛{\fn} 떠나간다
@@ -151,38 +151,38 @@ Dialogue: 0,0:01:49.25,0:01:55.44,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an
 Dialogue: 0,0:01:55.44,0:01:58.51,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}우리의 {\fn楷体}同胞愛{\fn}를 {\fn楷体}車{\fn}판마다 싣고서
 Dialogue: 0,0:01:58.51,0:02:01.90,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}우리의 {\fn楷体}同胞愛{\fn}를 {\fn楷体}車{\fn}판마다 싣고서
 Dialogue: 0,0:02:01.90,0:02:07.81,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}疾風{\fn}같이 몰고가세 {\fn楷体}統一{\fn}의 무쇠{\fn楷体}鐵馬{\fn}
- Dialogue: 0,0:02:07.81,0:02:13.15,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}車窓{\fn}밖에 번쩍번쩍 번쩍 번쩍번쩍 번쩍번쩍
+Dialogue: 0,0:02:07.81,0:02:13.15,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}車窓{\fn}밖에 번쩍번쩍 번쩍 번쩍번쩍 번쩍번쩍
 Dialogue: 0,0:02:13.15,0:02:16.46,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}南{\fn}녘땅이 달려온다
 Dialogue: 0,0:02:16.46,0:02:29.52,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}{\fn楷体}統一列車{\fn} 달린다 {\fn楷体}釜山行{\fn} {\fn楷体}列車{\fn} 달린다
 Dialogue: 0,0:02:29.52,0:02:32.75,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\an2}{\move(2880,1010,960,1010,0,245)}아
 [[/code]]
 
- + 《간호원의 노래》：护士之歌
++ 《간호원의 노래》：护士之歌
 
 *https://www.bilibili.com/video/av285311703
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:护士之歌
+[Script Info]
+Title:护士之歌
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:01.00,0:00:06.00,*Title,NTP,0000,0000,0000,,{\fad(980,980)}간호원의 노래
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.00,0:00:06.00,*Title,NTP,0000,0000,0000,,{\fad(980,980)}간호원의 노래
 Dialogue: 0,0:00:07.14,0:00:10.78,*Default,NTP,0000,0000,0000,,{\fad(490,490)}포성이 울부짖는 전선길에서
 Dialogue: 0,0:00:10.78,0:00:14.32,*Default,NTP,0000,0000,0000,,{\fad(490,490)}우리의 청춘은 피여난다네
 Dialogue: 0,0:00:14.32,0:00:17.70,*Default,NTP,0000,0000,0000,,{\fad(490,490)}수령님의 녀전사로 자라는 영예
@@ -204,32 +204,32 @@ Dialogue: 0,0:01:44.58,0:01:51.35,*Default,NTP,0000,0000,0000,,{\fad(490,490)}�
 Dialogue: 0,0:01:55.59,0:01:59.55,*Default,NTP,0000,0000,0000,,{\fad(490,490)}높이뛴다오
 [[/code]]
 
- ++ 汉谚混写
+++ 汉谚混写
 
 [[code]]
- [Script Info]
- Title:护士之歌
+[Script Info]
+Title:护士之歌
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:01.00,0:00:06.00,*Title,NTP,0000,0000,0000,,{\fad(980,980)}{\fs300}{\b-1}{\fn方正行楷繁体}看护员{\fn}{\fs}{\b0}의 노래
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.00,0:00:06.00,*Title,NTP,0000,0000,0000,,{\fad(980,980)}{\fs300}{\b-1}{\fn方正行楷繁体}看护员{\fn}{\fs}{\b0}의 노래
 Dialogue: 0,0:00:07.14,0:00:10.78,*Default,NTP,0000,0000,0000,,{\fad(490,490)}{\fn楷体}砲聲{\fn}이 울부짖는 {\fn楷体}前線{\fn}길에서
 Dialogue: 0,0:00:10.78,0:00:14.32,*Default,NTP,0000,0000,0000,,{\fad(490,490)}우리의 {\fn楷体}靑春{\fn}은 피여난다네
 Dialogue: 0,0:00:14.32,0:00:17.70,*Default,NTP,0000,0000,0000,,{\fad(490,490)}{\fn楷体}首領{\fn}님의 {\fn楷体}女戰士{\fn}로 자라는 {\fn楷体}榮譽{\fn}
- Dialogue: 0,0:00:17.70,0:00:21.48,*Default,NTP,0000,0000,0000,,{\fad(490,490)}언제나 {\fn楷体}勇猛{\fn}을 떨쳐간다네
+Dialogue: 0,0:00:17.70,0:00:21.48,*Default,NTP,0000,0000,0000,,{\fad(490,490)}언제나 {\fn楷体}勇猛{\fn}을 떨쳐간다네
 Dialogue: 0,0:00:21.48,0:00:28.74,*Default,NTP,0000,0000,0000,,{\fad(490,490)}아 불타오르는 가슴을 안고
 Dialogue: 0,0:00:28.74,0:00:35.78,*Default,NTP,0000,0000,0000,,{\fad(490,490)}{\fn楷体}怨讐米帝{\fn} 무찔러 달려간다네
 Dialogue: 0,0:00:35.78,0:00:39.61,*Default,NTP,0000,0000,0000,,{\fad(490,490)}별들이 반짝이는 깊은 밤에도
@@ -239,40 +239,40 @@ Dialogue: 0,0:00:46.73,0:00:50.40,*Default,NTP,0000,0000,0000,,{\fad(490,490)}�
 Dialogue: 0,0:00:50.40,0:00:57.33,*Default,NTP,0000,0000,0000,,{\fad(490,490)}아 우리의 가슴 설레인다오
 Dialogue: 0,0:00:57.33,0:01:04.54,*Default,NTP,0000,0000,0000,,{\fad(490,490)}{\fn楷体}看護員{\fn}의 자랑은 끝이없다오
 Dialogue: 0,0:01:23.10,0:01:26.59,*Default,NTP,0000,0000,0000,,{\fad(490,490)}불길속에 자라난 {\fn楷体}戰士{\fn}의 {\fn楷体}榮譽{\fn}
- Dialogue: 0,0:01:26.59,0:01:30.13,*Default,NTP,0000,0000,0000,,{\fad(490,490)}해님도 반기여 웃어주누나
+Dialogue: 0,0:01:26.59,0:01:30.13,*Default,NTP,0000,0000,0000,,{\fad(490,490)}해님도 반기여 웃어주누나
 Dialogue: 0,0:01:30.13,0:01:33.98,*Default,NTP,0000,0000,0000,,{\fad(490,490)}{\fn楷体}勝利{\fn}를 앞당기는 싸움의 길에
 Dialogue: 0,0:01:33.98,0:01:37.35,*Default,NTP,0000,0000,0000,,{\fad(490,490)}언제나 {\fn楷体}偉勳{\fn}을 {\fn楷体}繡{\fn}놓아 가네
 Dialogue: 0,0:01:37.35,0:01:44.58,*Default,NTP,0000,0000,0000,,{\fad(490,490)}아 {\fn楷体}祖國{\fn}을 {\fn楷体}爲{\fn}해 불타는 {\fn楷体}心臟{\fn}
- Dialogue: 0,0:01:44.58,0:01:51.35,*Default,NTP,0000,0000,0000,,{\fad(490,490)}그 언제나 {\fn楷体}忠誠{\fn}으로 높이뛴다오
+Dialogue: 0,0:01:44.58,0:01:51.35,*Default,NTP,0000,0000,0000,,{\fad(490,490)}그 언제나 {\fn楷体}忠誠{\fn}으로 높이뛴다오
 Dialogue: 0,0:01:55.59,0:01:59.55,*Default,NTP,0000,0000,0000,,{\fad(490,490)}높이뛴다오
 [[/code]]
 
- + 《간호원의 노래》：护士之歌（金曼演唱版本）
++ 《간호원의 노래》：护士之歌（金曼演唱版本）
 
 *https://www.bilibili.com/video/av667910814
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:护士之歌 (金曼演唱版本)
+[Script Info]
+Title:护士之歌 (金曼演唱版本)
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:02.50,0:00:11.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\t(0,245,1,\fs245)}간호원의 노래
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:02.50,0:00:11.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\t(0,245,1,\fs245)}간호원의 노래
 Dialogue: 0,0:00:11.80,0:00:15.00,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}포성이 울부짖는 전선길에서
 Dialogue: 0,0:00:15.00,0:00:18.66,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}우리의 청춘은 피여난다네
 Dialogue: 0,0:00:18.66,0:00:22.46,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}수령님의 녀전사로 자라는 영예
@@ -297,28 +297,28 @@ Dialogue: 0,0:01:58.88,0:02:05.70,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\mo
 Dialogue: 0,0:02:05.70,0:02:10.23,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}아
 [[/code]]
 
- ++ 原始歌词
+++ 原始歌词
 
 [[code]]
- [Script Info]
- Title:护士之歌 (金曼演唱版本)
+[Script Info]
+Title:护士之歌 (金曼演唱版本)
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,245,&H000000FF,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:02.50,0:00:11.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\t(0,245,1,\fs245)}간호원의 노래
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:02.50,0:00:11.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\t(0,245,1,\fs245)}간호원의 노래
 Dialogue: 0,0:00:11.80,0:00:15.00,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}포성이 울부짖는 전선길에서
 Dialogue: 0,0:00:15.00,0:00:18.66,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}우리의 청춘은 피여난다네
 Dialogue: 0,0:00:18.66,0:00:22.46,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}수령님의 녀전사로 자라는 영예
@@ -343,32 +343,32 @@ Dialogue: 0,0:01:58.88,0:02:05.70,*SimplifiedChinese,NTP,0000,0000,0000,,{\fad(0
 Dialogue: 0,0:02:05.70,0:02:10.23,*SimplifiedChinese,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}啊
 [[/code]]
 
- + 《사과풍년》：苹果丰收（金曼演唱版本）
++ 《사과풍년》：苹果丰收（金曼演唱版本）
 
 *https://www.bilibili.com/video/av327984355
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:苹果丰收 (金曼演唱版本)
+[Script Info]
+Title:苹果丰收 (金曼演唱版本)
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,붓글,245,&H0063C3FD,&HFF000000,&H00B2F8FB,&H003524F3,-1,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,붓글,245,&H0063C3FD,&HFF000000,&H00B2F8FB,&H003524F3,-1,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:04.50,0:00:10.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fscy1\t(0,245,1,\fscy100)}사과풍년
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:04.50,0:00:10.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fscy1\t(0,245,1,\fscy100)}사과풍년
 Dialogue: 0,0:00:11.30,0:00:14.81,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}아름다운 무지개 빛이 어렸나
 Dialogue: 0,0:00:14.81,0:00:18.44,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}빨갛고 노랗고 푸르기 도해
 Dialogue: 0,0:00:18.44,0:00:21.98,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}알알이 눈부신 사과 알마다
@@ -385,28 +385,28 @@ Dialogue: 0,0:01:12.76,0:01:19.99,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fs
 Dialogue: 0,0:01:19.99,0:01:23.46,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}농촌테제 해마다 꽃피여가요
 [[/code]]
 
- ++ 原版歌词
+++ 原版歌词
 
 [[code]]
- [Script Info]
- Title:苹果丰收 (金曼演唱版本)
+[Script Info]
+Title:苹果丰收 (金曼演唱版本)
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,붓글,245,&H0063C3FD,&HFF000000,&H00B2F8FB,&H003524F3,-1,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,붓글,245,&H0063C3FD,&HFF000000,&H00B2F8FB,&H003524F3,-1,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:04.50,0:00:10.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fscy1\t(0,245,1,\fscy100)}사과풍년
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:04.50,0:00:10.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fscy1\t(0,245,1,\fscy100)}사과풍년
 Dialogue: 0,0:00:11.30,0:00:14.81,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}아름다운 무지개 빛이 어렸나
 Dialogue: 0,0:00:14.81,0:00:18.44,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}빨갛고 노랗고 푸르기 도해
 Dialogue: 0,0:00:18.44,0:00:21.98,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}알알이 눈부신 사과 알마다
@@ -423,32 +423,32 @@ Dialogue: 0,0:01:12.76,0:01:19.99,*SimplifiedChinese,NTP,0000,0000,0000,,{\fad(0
 Dialogue: 0,0:01:19.99,0:01:23.46,*SimplifiedChinese,NTP,0000,0000,0000,,{\fad(0,490)}{\fscx1\t(0,125,1,\fscx100)}我们的生活就像盛开的花朵
 [[/code]]
 
- + 《우리는 당신밖에 모른다》：我们除了他谁都不认
++ 《우리는 당신밖에 모른다》：我们除了他谁都不认
 
 *https://www.bilibili.com/video/av795444198
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:我们除了星光熠熠谁都不认
+[Script Info]
+Title:我们除了星光熠熠谁都不认
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,175,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,10,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,175,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,10,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:10.00,0:00:20.00,*Title,NTP,0000,0000,0000,,{\fad(0,245)}{\fs1\t(0,245,1,\fs175)}우리는 당신밖에 모른다
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:10.00,0:00:20.00,*Title,NTP,0000,0000,0000,,{\fad(0,245)}{\fs1\t(0,245,1,\fs175)}우리는 당신밖에 모른다
 Dialogue: 0,0:00:20.82,0:00:24.50,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,245)}이 조선 이끄는 힘 억세다
 Dialogue: 0,0:00:24.50,0:00:29.00,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,245)}인민의 운명을 한몸에 안고
 Dialogue: 0,0:00:29.00,0:00:33.25,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,245)}우리가 바라는 꿈과 리상
@@ -471,32 +471,32 @@ Dialogue: 0,0:02:29.70,0:02:38.12,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\mo
 Dialogue: 0,0:02:38.12,0:02:47.70,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,245)}위대한 {\fs100}김정은{\fs}동지 당신께 충실하리라
 [[/code]]
 
- + 《당신이 없으면 조국도 없다》：没有您就没有祖国
++ 《당신이 없으면 조국도 없다》：没有您就没有祖国
 
 *https://www.bilibili.com/video/av412910324
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:没有您就没有祖国
+[Script Info]
+Title:没有您就没有祖国
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,150,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:00.00,0:00:09.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,840,960,540,0,4900)}{\clip(0,390,1920,690)}당신이 없으면 조국도 없다
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:09.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(960,840,960,540,0,4900)}{\clip(0,390,1920,690)}당신이 없으면 조국도 없다
 Dialogue: 0,0:00:10.00,0:00:17.37,*Default,NTP,0000,0000,0000,,{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}{\clip(0,885,1920,1035)\t(7000,7370,1,\clip(0,1030,1920,1035))}사나운 폭풍도 쳐몰아내고
 Dialogue: 0,0:00:17.37,0:00:26.04,*Default,NTP,0000,0000,0000,,{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}{\clip(0,885,1920,1035)\t(8300,8670,1,\clip(0,1030,1920,1035))}신념을 안겨준 {\fs100}김정일{\fs}동지
 Dialogue: 0,0:00:26.04,0:00:33.82,*Default,NTP,0000,0000,0000,,{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}{\clip(0,885,1920,1035)\t(7410,7780,1,\clip(0,1030,1920,1035))}당신이 없으면 우리도 없고
@@ -511,32 +511,32 @@ Dialogue: 0,0:01:46.75,0:01:54.85,*Default,NTP,0000,0000,0000,,{\fscx1\fscy1\t(0
 Dialogue: 0,0:01:54.85,0:02:05.09,*Default,NTP,0000,0000,0000,,{\fscx1\fscy1\t(0,245,1,\fscx100\fscy100)}{\clip(0,885,1920,1035)\t(9870,10240,1,\clip(0,1030,1920,1035))}당신이 없으면 조국도 없다
 [[/code]]
 
- + 《공격전이다》：攻击战
++ 《공격전이다》：攻击战
 
 *https://www.bilibili.com/video/av370482279
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:攻击战
+[Script Info]
+Title:攻击战
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,245,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,10,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,245,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,10,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:02.50,0:00:12.50,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\bord0.1\t(0,2450,1,\fs245\bord10)}공격전이다
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:02.50,0:00:12.50,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\bord0.1\t(0,2450,1,\fs245\bord10)}공격전이다
 Dialogue: 0,0:00:15.00,0:00:18.09,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}붉은기 추켜들고 진격해간다
 Dialogue: 0,0:00:18.09,0:00:21.42,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}총대를 앞세우고 돌격해간다
 Dialogue: 0,0:00:21.42,0:00:24.35,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}일심의 천만대오 이끌고가는
@@ -569,34 +569,34 @@ Dialogue: 0,0:02:28.09,0:02:31.31,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\mo
 Dialogue: 0,0:02:31.31,0:02:37.88,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}공격 공격 공격전이다
 [[/code]]
 
- + 《단숨에》：一鼓作气
++ 《단숨에》：一鼓作气
 
 *https://www.bilibili.com/video/av455498058
 
- *https://www.bilibili.com/video/av710483070
+*https://www.bilibili.com/video/av710483070
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:一鼓作气（弹死你）
+[Script Info]
+Title:一鼓作气（弹死你）
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS Hulim Black,245,&H000000FF,&HFF000000,&H00FFFFFF,&H00FF0000,0,0,0,0,100,100,100,0.00,1,10,10,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS Hulim Black,245,&H000000FF,&HFF000000,&H00FFFFFF,&H00FF0000,0,0,0,0,100,100,100,0.00,1,10,10,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:02.50,0:00:12.50,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\bord0.1\shad0.1\fsp1\t(0,490,1,\fs245\bord10\shad10\fsp100)}단숨에
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:02.50,0:00:12.50,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\bord0.1\shad0.1\fsp1\t(0,490,1,\fs245\bord10\shad10\fsp100)}단숨에
 Dialogue: 0,0:00:15.00,0:00:18.80,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\clip(0,885,1,1035)\t(0,735,1,\clip(0,885,1920,1035))}훈련장에 나선 병사는
 Dialogue: 0,0:00:18.80,0:00:22.51,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\clip(0,885,1,1035)\t(0,735,1,\clip(0,885,1920,1035))}단숨에란 말을 사랑해
 Dialogue: 0,0:00:22.51,0:00:26.22,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\clip(0,885,1,1035)\t(0,735,1,\clip(0,885,1920,1035))}걸음마다 그 말 울리며
@@ -626,32 +626,32 @@ Dialogue: 0,0:02:07.96,0:02:11.15,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\cl
 Dialogue: 0,0:02:11.15,0:02:14.07,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\clip(0,885,1,1035)\t(0,735,1,\clip(0,885,1920,1035))}단숨에
 [[/code]]
 
- + 《장군님은 승리의 기치》：将军是胜利的旗帜
++ 《장군님은 승리의 기치》：将军是胜利的旗帜
 
 *https://www.bilibili.com/video/av625391138
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:将军是胜利的旗帜
+[Script Info]
+Title:将军是胜利的旗帜
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS Hulim Black,175,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS Hulim Black,175,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:04.50,0:00:14.50,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\fs1\bord0.1\t(0,245,1,\fs175\bord5)}장군님은 승리의 기치
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:04.50,0:00:14.50,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\fs1\bord0.1\t(0,245,1,\fs175\bord5)}장군님은 승리의 기치
 Dialogue: 0,0:00:18.01,0:00:22.80,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}강철의 우리 대오 키워주시고
 Dialogue: 0,0:00:22.80,0:00:27.01,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}승리의 밝은 길로 이끄는 령장
 Dialogue: 0,0:00:27.01,0:00:32.18,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}그 이름 노래되여 울리는 곳에
@@ -673,32 +673,32 @@ Dialogue: 0,0:02:24.56,0:02:34.66,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\mo
 Dialogue: 0,0:02:34.66,0:02:51.02,*Default,NTP,0000,0000,0000,,{\fad(0,150)}{\move(-960,1010,960,1010,0,150)}승리 승리의 기치
 [[/code]]
 
- + 《최고사령관동지 건강을 축하함》：敬祝最高司令官同志身体健康
++ 《최고사령관동지 건강을 축하함》：敬祝最高司令官同志身体健康
 
 *https://www.bilibili.com/video/av413091876
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:敬祝最高司令官同志身体健康
+[Script Info]
+Title:敬祝最高司令官同志身体健康
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,175,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,175,&H00F00000,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:00.00,0:00:05.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(-960,540,960,540,0,490)}최고사령관동지\N건강을 축하함
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:05.00,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\move(-960,540,960,540,0,490)}최고사령관동지\N건강을 축하함
 Dialogue: 0,0:00:05.79,0:00:12.98,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1025)}{\move(960,1125,960,1010,0,490)}내 나라 위하여 내 조국을 위하여
 Dialogue: 0,0:00:12.98,0:00:19.57,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1025)}{\move(960,1125,960,1010,0,490)}우리의 최고사령관동지 건강을 축하함
 Dialogue: 0,0:00:22.43,0:00:25.87,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1025)}{\move(960,1125,960,1010,0,490)}우리의 장군님 초소를 찾아
@@ -721,32 +721,32 @@ Dialogue: 0,0:01:50.86,0:01:58.27,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\cl
 Dialogue: 0,0:01:58.27,0:02:06.08,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1025)}{\move(960,1125,960,1010,0,490)}우리의 최고사령관동지 건강을 축하함
 [[/code]]
 
- + 《장군님 축지법 쓰신다》：将军使用缩地法
++ 《장군님 축지법 쓰신다》：将军使用缩地法
 
 https://www.bilibili.com/video/av668032101
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:将军使用缩地法
+[Script Info]
+Title:将军使用缩地法
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,175,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,175,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:04.50,0:00:14.50,*Title,NTP,0000,0000,0000,,{\fs1\bord0.1\t(0,490,1,\fs175\bord5)}{\move(960,540,-960,540,9265,10000)}장군님 축지법 쓰신다
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:04.50,0:00:14.50,*Title,NTP,0000,0000,0000,,{\fs1\bord0.1\t(0,490,1,\fs175\bord5)}{\move(960,540,-960,540,9265,10000)}장군님 축지법 쓰신다
 Dialogue: 0,0:00:15.25,0:00:25.50,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\fscy1\t(0,245,1,\fscy100)}축지법 축지법 장군님 쓰신다
 Dialogue: 0,0:00:28.84,0:00:35.26,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\fscy1\t(0,245,1,\fscy100)}동에 번쩍 서에 번쩍 천하를 쥐락펴락
 Dialogue: 0,0:00:35.26,0:00:42.18,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\fscy1\t(0,245,1,\fscy100)}방선천리 주름잡아 장군님 가신다
@@ -766,32 +766,32 @@ Dialogue: 0,0:02:19.00,0:02:26.20,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\fs
 Dialogue: 0,0:02:26.20,0:02:38.60,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\fscy1\t(0,245,1,\fscy100)}축지법 축지법 장군님 쓰신다
 [[/code]]
 
- + 《배우자》：学习吧
++ 《배우자》：学习吧
 
 *https://www.bilibili.com/video/av330303557
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:学习吧
+[Script Info]
+Title:学习吧
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,245,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,10,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,245,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,100,100,0,0.00,1,10,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:16.50,0:00:32.00,*Title,NTP,0000,0000,0000,,{\fad(0,2450)}{\fs1\bord0.1\t(0,2450,1,\fs245\bord10)}배 우 자
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:16.50,0:00:32.00,*Title,NTP,0000,0000,0000,,{\fad(0,2450)}{\fs1\bord0.1\t(0,2450,1,\fs245\bord10)}배 우 자
 Dialogue: 0,0:00:32.95,0:00:35.84,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}시간은 쉼없이 흐르네
 Dialogue: 0,0:00:35.84,0:00:39.98,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}그러니 돌아보지 마시고
 Dialogue: 0,0:00:39.98,0:00:43.27,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\move(2880,1010,960,1010,0,245)}금같이 귀중한 분초를
@@ -822,32 +822,32 @@ Dialogue: 0,0:02:58.70,0:03:00.78,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\mo
 Dialogue: 0,0:03:03.55,0:03:07.73,*Title,NTP,0000,0000,0000,,{\fs1\bord0.1\t(0,125,1,\fs245\bord10)}{\c&HF00000}배 우 자
 [[/code]]
 
- + 《우리 엄마 기쁘게 한번 웃으면》：只要妈妈露笑脸
++ 《우리 엄마 기쁘게 한번 웃으면》：只要妈妈露笑脸
 
 *https://www.bilibili.com/video/av800315215
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:只要妈妈露笑脸
+[Script Info]
+Title:只要妈妈露笑脸
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS Hulim Black,125,&H00E12DE1,&HFF000000,&H00FFFFFF,&HFF000000,-1,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS Hulim Black,125,&H00E12DE1,&HFF000000,&H00FFFFFF,&HFF000000,-1,0,0,0,100,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:04.10,0:00:15.50,*Default,NTP,0000,0000,0000,,{\fad(980,980)}{\pos(960,300)}{\fs65}혁명가극《피바다》중에서 
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:04.10,0:00:15.50,*Default,NTP,0000,0000,0000,,{\fad(980,980)}{\pos(960,300)}{\fs65}혁명가극《피바다》중에서 
 Dialogue: 0,0:00:05.10,0:00:15.50,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fscx1\t(0,980,1,\fscx100)}우리 엄마 기쁘게 한번 웃으면
 Dialogue: 0,0:00:17.30,0:00:20.62,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscy1\t(0,245,1,\fscy100)}우리 엄마 기쁘게 한번 웃으면
 Dialogue: 0,0:00:20.62,0:00:24.51,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscy1\t(0,245,1,\fscy100)}구름속의 해님도 방긋 웃고요
@@ -866,32 +866,32 @@ Dialogue: 0,0:01:44.06,0:01:51.36,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fs
 Dialogue: 0,0:01:51.36,0:02:03.24,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\fscy1\t(0,245,1,\fscy100)}웃으시면 온 집안에 꽃이 핍니다
 [[/code]]
 
- + 《조국보위의 노래》：保卫祖国之歌
++ 《조국보위의 노래》：保卫祖国之歌
 
 *https://www.bilibili.com/video/av797767209/
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:保卫祖国之歌
+[Script Info]
+Title:保卫祖国之歌
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,붓글,200,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,-1,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
- Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,광명 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,0,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,붓글,200,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,-1,0,0,0,90,100,0,0.00,1,5,5,5,5,5,15,1
+Style: SimplifiedChinese,宋体,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:05.00,0:00:13.50,*Title,NTP,0000,0000,0000,,{\fad(980,980)}조국보위의 노래
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:05.00,0:00:13.50,*Title,NTP,0000,0000,0000,,{\fad(980,980)}조국보위의 노래
 Dialogue: 0,0:00:06.00,0:00:13.50,*Default,NTP,0000,0000,0000,,{\fad(490,980)}{\pos(1375,810)}{\fs75}(1950년 창작)
 Dialogue: 0,0:00:31.44,0:00:38.99,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,885)\t(0,490,1,\clip(0,885,1920,1024))}가슴에 끓는 피를 조국에 바치니
 Dialogue: 0,0:00:38.99,0:00:46.57,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,885)\t(0,490,1,\clip(0,885,1920,1024))}영예로운 별빛이 머리우에 빛난다
@@ -909,32 +909,32 @@ Dialogue: 0,0:02:34.60,0:02:41.89,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\cl
 Dialogue: 0,0:02:41.89,0:02:49.32,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,885)\t(0,490,1,\clip(0,885,1920,1024))}인민의 조국을 지키자 목숨으로 지키자
 [[/code]]
 
- + 《더 좋은 래일로》：奔向美好的明天
++ 《더 좋은 래일로》：奔向美好的明天
 
 *https://www.bilibili.com/video/av287872685/
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:奔向美好的明天
+[Script Info]
+Title:奔向美好的明天
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PKS BG Galpil,200,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,10,5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PKS BG Galpil,200,&H000000F0,&HFF000000,&H00FFFFFF,&HFF000000,0,0,0,0,90,100,0,0.00,1,10,5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:03.95,0:00:14.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\bord0.1\t(0,3920,1,\fs200\bord10)}더 좋은 래일로
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:03.95,0:00:14.00,*Title,NTP,0000,0000,0000,,{\fad(0,980)}{\fs1\bord0.1\t(0,3920,1,\fs200\bord10)}더 좋은 래일로
 Dialogue: 0,0:00:27.32,0:00:34.47,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,125)}백두의 정일봉은 우뢰를 치며
 Dialogue: 0,0:00:34.47,0:00:41.62,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,125)}장엄한 대진군의 북을 울린다
 Dialogue: 0,0:00:41.62,0:00:45.09,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,125)}일심의 인민은 강성부흥의
@@ -959,32 +959,32 @@ Dialogue: 0,0:02:39.84,0:02:44.38,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\mo
 Dialogue: 0,0:02:44.38,0:02:52.24,*Default,NTP,0000,0000,0000,,{\fad(0,245)}{\move(2880,1010,960,1010,0,125)}더 좋은 래일로
 [[/code]]
 
- + 《태양의 위성이 되자》：去做太阳的卫星吧
++ 《태양의 위성이 되자》：去做太阳的卫星吧
 
 *https://www.bilibili.com/video/av627775939/
 
- ++ 谚文
+++ 谚文
 
 [[code]]
- [Script Info]
- Title:去做太阳的卫星吧
+[Script Info]
+Title:去做太阳的卫星吧
 Original Script:PC-DOS
- Synch Point:1
- ScriptType:v4.00+
- Collisions:Normal
- Timer:100.0000
- PlayResX:1920
- PlayResY:1080
+Synch Point:1
+ScriptType:v4.00+
+Collisions:Normal
+Timer:100.0000
+PlayResX:1920
+PlayResY:1080
 
- [V4+ Styles]
- Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
- Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
- Style: Title,PRK P Barun,175,&H002DB9FF,&HFF000000,&H008FFAF9,&H00F4D588,-1,0,0,0,100,100,0,0.00,1,10,7.5,5,5,5,15,1
- Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,청봉 굵은,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
+Style: Title,PRK P Barun,175,&H002DB9FF,&HFF000000,&H008FFAF9,&H00F4D588,-1,0,0,0,100,100,0,0.00,1,10,7.5,5,5,5,15,1
+Style: SimplifiedChinese,標楷體,90,&H00FFFFFF,&HFF000000,&H00000000,&HFF000000,-1,0,0,0,100,100,0,0.00,1,2,0,2,5,5,70,1
 
- [Events]
- Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
- Dialogue: 0,0:00:03.50,0:00:15.50,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,390,1,690)\t(0,4900,1,\clip(0,390,1920,690))}태양의 위성이 되자
+[Events]
+Format: Layer, Start, End, Style, Actor, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:03.50,0:00:15.50,*Title,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,390,1,690)\t(0,4900,1,\clip(0,390,1920,690))}태양의 위성이 되자
 Dialogue: 0,0:00:16.76,0:00:20.24,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1035)}{\move(960,1120,960,1010,0,735)}은혜로운 해빛 향도의 해빛 
 Dialogue: 0,0:00:20.24,0:00:24.38,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1035)}{\move(960,1120,960,1010,0,735)}한몸에 받아안고
 Dialogue: 0,0:00:24.38,0:00:28.04,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1035)}{\move(960,1120,960,1010,0,735)}태여나서 모두 삶의 위치를 
@@ -1006,4 +1006,4 @@ Dialogue: 0,0:02:02.35,0:02:05.86,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\cl
 Dialogue: 0,0:02:05.86,0:02:13.59,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1035)}{\move(960,1120,960,1010,0,735)}태양 태양 우리 태양 따르는 위성 되자
 Dialogue: 0,0:02:13.59,0:02:20.75,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1035)}{\move(960,1120,960,1010,0,735)}태양 태양 우리 태양 지키는 위성 되자
 Dialogue: 0,0:02:20.75,0:02:28.48,*Default,NTP,0000,0000,0000,,{\fad(0,490)}{\clip(0,885,1920,1035)}{\move(960,1120,960,1010,0,735)}위대한 장군님 받드는 위성 위성 되자
-[[/code]] 
+[[/code]]

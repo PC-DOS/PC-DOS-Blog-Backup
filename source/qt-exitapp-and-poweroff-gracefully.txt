@@ -1,17 +1,17 @@
 在Linux+Qt环境中，直接使用{{system("poweroff")}}调用进行重新启动可能导致程序来不及安全退出，此时，可以考虑结合{{poweroff}}或{{reboot}}指令的{{-d}}参数，与Qt的事件特性，使用下面的方式：
 
 [[code type="Cpp"]]
- void Shutdown() {
-     //Request the OS to shutdown after 1 sec, executes the command asynchronously
-     system("poweroff -d 1 &");
-     //Exit the app safely
-     QTimer::singleShot(245, qApp, SLOT(quit()));
- }
+void Shutdown() {
+    //Request the OS to shutdown after 1 sec, executes the command asynchronously
+    system("poweroff -d 1 &");
+    //Exit the app safely
+    QTimer::singleShot(245, qApp, SLOT(quit()));
+}
 
- void Reboot() {
-     //Request the OS to reboot after 1 sec, executes the command asynchronously
-     system("reboot -d 1 &");
-     //Exit the app safely
-     QTimer::singleShot(245, qApp, SLOT(quit()));
- }
- [[/code]] 
+void Reboot() {
+    //Request the OS to reboot after 1 sec, executes the command asynchronously
+    system("reboot -d 1 &");
+    //Exit the app safely
+    QTimer::singleShot(245, qApp, SLOT(quit()));
+}
+[[/code]]

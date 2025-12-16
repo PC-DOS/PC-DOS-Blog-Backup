@@ -1,31 +1,31 @@
 iTop-4412的Qtopia默认为中文，但因默认字库问题导致无法正常显示，故将其改为英文。
 
- 在超级终端输入：
+在超级终端输入：
 
 [[code]]
- vi /root/Settings/locale.conf
- [[/code]]
+vi /root/Settings/locale.conf
+[[/code]]
 
 按{{i}}键进入插入编辑模式，修改{{[LANGUAGE]}}一节下{{Language = }}一行的内容为：
 
 [[code]]
- Language = en_US
- [[/code]]
+Language = en_US
+[[/code]]
 
 按{{ESC}}键并输入{{:wq}}后按回车执行保存操作，重启设备即可将语言修改为英文，将该行设为{{Language = zh_CN}}即可将语言修改为简体中文。
 
- 如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/root/Settings/locale.conf}}文件：
+如果需要重建Qtopia的{{system.img}}镜像，也可以在先前解包{{root_@@********@@.tar.gz}}得到的{{root}}目录中编辑{{/root/Settings/locale.conf}}文件：
 
 [[code]]
- sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/root/Settings/locale.conf'
- [[/code]]
+sudo gedit '/home/picsell-dois/iTop4412/Qtopia/root/root/Settings/locale.conf'
+[[/code]]
 
 完成后，回到终端执行：
 
 [[code]]
- cd /home/picsell-dois/iTop4412/Qtopia/
- rm system.img
- make_ext4fs -s -l 314572800 -a root -L linux system.img root
- [[/code]]
+cd /home/picsell-dois/iTop4412/Qtopia/
+rm system.img
+make_ext4fs -s -l 314572800 -a root -L linux system.img root
+[[/code]]
 
-重建{{system.img}}并执行刷写流程即可。 
+重建{{system.img}}并执行刷写流程即可。

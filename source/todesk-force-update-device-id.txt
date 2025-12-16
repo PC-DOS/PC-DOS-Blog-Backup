@@ -5,9 +5,9 @@
 2. 打开注册表编辑器，定位到{{HKEY_LOCAL_MACHINE\SOFTWARE\ToDesk}}，并在下面三个注册表项中各随意修改一个数字或拉丁字母：
 
 * {{GUID}}
- * {{RandomID}}
- * {{UUID}}
+* {{RandomID}}
+* {{UUID}}
 
- 3. 删除{{%ProgramFiles%\ToDesk\config.ini}}。
+3. 删除{{%ProgramFiles%\ToDesk\config.ini}}。
 
-4. 重新启动ToDesk。 
+4. 重新启动ToDesk。

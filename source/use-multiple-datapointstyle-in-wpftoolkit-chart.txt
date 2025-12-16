@@ -1,97 +1,97 @@
 在WPFToolkit的Chart控件中，如果使用Blend直接建立一个{{DataPointStyle}}的副本并进行编辑，将导致图表中所有的数据点均为同一颜色。
 
- 这是因为，在Chart控件的源代码中，{{DataPointStyle}}是通过一个{{ResourceDictionaryCollection}}定义的{{ResourceDictionary}}的集合，而复写{{DataPointStyle}}会导致这一字典被破坏。
+这是因为，在Chart控件的源代码中，{{DataPointStyle}}是通过一个{{ResourceDictionaryCollection}}定义的{{ResourceDictionary}}的集合，而复写{{DataPointStyle}}会导致这一字典被破坏。
 
- 因此，在重写{{DataPointStyle}}时，如果希望使用多种颜色，可以通过定义一个{{ResourceDictionaryCollection}}实现，该{{ResourceDictionaryCollection}}由若干个{{ResourceDictionary}}组成，每个{{ResourceDictionary}}包含一个{{x:Key}}为{{DataPointStyle}}，{{TargetType}}为{{@@{x:Type chartingToolkit:PieDataPoint}@@}}的{{Style}}样式。
+因此，在重写{{DataPointStyle}}时，如果希望使用多种颜色，可以通过定义一个{{ResourceDictionaryCollection}}实现，该{{ResourceDictionaryCollection}}由若干个{{ResourceDictionary}}组成，每个{{ResourceDictionary}}包含一个{{x:Key}}为{{DataPointStyle}}，{{TargetType}}为{{@@{x:Type chartingToolkit:PieDataPoint}@@}}的{{Style}}样式。
 
- 完成该{{ResourceDictionaryCollection}}后，将相应控件的{{Palette}}属性设为指向该{{ResourceDictionaryCollection}}的{{x:Key}}的静态资源（{{StaticResource}}）即可。
+完成该{{ResourceDictionaryCollection}}后，将相应控件的{{Palette}}属性设为指向该{{ResourceDictionaryCollection}}的{{x:Key}}的静态资源（{{StaticResource}}）即可。
 
 -----
 
 范例代码：
 [[code]]
-      <visualizationToolkit:ResourceDictionaryCollection x:Key="PieACPalette">
-      <ResourceDictionary>
-                 <Style x:Key="DataPointStyle" TargetType="{x:Type chartingToolkit:PieDataPoint}">
-                     <Setter Property="Background" Value="#FF4BAF4B"/>
-                     <Setter Property="BorderBrush" Value="White"/>
-                     <Setter Property="BorderThickness" Value="5"/>
-                     <Setter Property="IsTabStop" Value="False"/>
-                     <Setter Property="RatioStringFormat" Value="{}{0:p2}"/>
-                     <Setter Property="Template">
-                         <Setter.Value>
-                             <ControlTemplate TargetType="{x:Type chartingToolkit:PieDataPoint}">
-                                 <Grid x:Name="Root" Opacity="1">
-                                     <Path x:Name="Slice" Data="{TemplateBinding Geometry}" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeMiterLimit="1">
-                                         <Path.ToolTip>
-                                             <StackPanel>
-                                                 <ContentControl Content="{TemplateBinding FormattedIndependentValue}"/>
-                                                 <StackPanel Orientation="Horizontal">
-                                                     <TextBlock Text="数量: "/>
-                                                     <ContentControl Content="{TemplateBinding FormattedDependentValue}"/>
-                                                 </StackPanel>
-                                                 <StackPanel Orientation="Horizontal">
-                                                     <TextBlock Text="占比: "/>
-                                                     <ContentControl Content="{TemplateBinding FormattedRatio}"/>
-                                                 </StackPanel>
-                                             </StackPanel>
-                                         </Path.ToolTip>
-                                     </Path>
-                                     <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Red" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
-                                     <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="White" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
-                                 </Grid>
-                             </ControlTemplate>
-                         </Setter.Value>
-                     </Setter>
-                 </Style>
-             </ResourceDictionary>
-      <ResourceDictionary>
-                 <Style x:Key="DataPointStyle" TargetType="{x:Type chartingToolkit:PieDataPoint}">
-                     <Setter Property="Background" Value="#FFF54B00"/>
-                     <Setter Property="BorderBrush" Value="White"/>
-                     <Setter Property="BorderThickness" Value="5"/>
-                     <Setter Property="IsTabStop" Value="False"/>
-                     <Setter Property="RatioStringFormat" Value="{}{0:p2}"/>
-                     <Setter Property="Template">
-                         <Setter.Value>
-                             <ControlTemplate TargetType="{x:Type chartingToolkit:PieDataPoint}">
-                                 <Grid x:Name="Root" Opacity="1">
-                                     <Path x:Name="Slice" Data="{TemplateBinding Geometry}" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeMiterLimit="1">
-                                         <Path.ToolTip>
-                                             <StackPanel>
-                                                 <ContentControl Content="{TemplateBinding FormattedIndependentValue}"/>
-                                                 <StackPanel Orientation="Horizontal">
-                                                     <TextBlock Text="数量: "/>
-                                                     <ContentControl Content="{TemplateBinding FormattedDependentValue}"/>
-                                                 </StackPanel>
-                                                 <StackPanel Orientation="Horizontal">
-                                                     <TextBlock Text="占比: "/>
-                                                     <ContentControl Content="{TemplateBinding FormattedRatio}"/>
-                                                 </StackPanel>
-                                             </StackPanel>
-                                         </Path.ToolTip>
-                                     </Path>
-                                     <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Red" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
-                                     <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="White" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
-                                 </Grid>
-                             </ControlTemplate>
-                         </Setter.Value>
-                     </Setter>
-                 </Style>
-      </ResourceDictionary>
-      </visualizationToolkit:ResourceDictionaryCollection>
- ......
-             <Grid>
-                 <chartingToolkit:Chart x:Name="chartStudentACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
-                     <chartingToolkit:Chart.Series>
-                         <chartingToolkit:PieSeries x:Name="pieStudentACRate"  DependentValuePath="Value" IndependentValuePath="Key" TransitionDuration="0"  Margin="0" Palette="{StaticResource PieACPalette}" />
-                     </chartingToolkit:Chart.Series>
-                 </chartingToolkit:Chart>
-             </Grid>
- [[/code]]
+    	<visualizationToolkit:ResourceDictionaryCollection x:Key="PieACPalette">
+    		<ResourceDictionary>
+                <Style x:Key="DataPointStyle" TargetType="{x:Type chartingToolkit:PieDataPoint}">
+                    <Setter Property="Background" Value="#FF4BAF4B"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Setter Property="IsTabStop" Value="False"/>
+                    <Setter Property="RatioStringFormat" Value="{}{0:p2}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type chartingToolkit:PieDataPoint}">
+                                <Grid x:Name="Root" Opacity="1">
+                                    <Path x:Name="Slice" Data="{TemplateBinding Geometry}" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeMiterLimit="1">
+                                        <Path.ToolTip>
+                                            <StackPanel>
+                                                <ContentControl Content="{TemplateBinding FormattedIndependentValue}"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="数量: "/>
+                                                    <ContentControl Content="{TemplateBinding FormattedDependentValue}"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="占比: "/>
+                                                    <ContentControl Content="{TemplateBinding FormattedRatio}"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Path.ToolTip>
+                                    </Path>
+                                    <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Red" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                    <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="White" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ResourceDictionary>
+    		<ResourceDictionary>
+                <Style x:Key="DataPointStyle" TargetType="{x:Type chartingToolkit:PieDataPoint}">
+                    <Setter Property="Background" Value="#FFF54B00"/>
+                    <Setter Property="BorderBrush" Value="White"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    <Setter Property="IsTabStop" Value="False"/>
+                    <Setter Property="RatioStringFormat" Value="{}{0:p2}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type chartingToolkit:PieDataPoint}">
+                                <Grid x:Name="Root" Opacity="1">
+                                    <Path x:Name="Slice" Data="{TemplateBinding Geometry}" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeMiterLimit="1">
+                                        <Path.ToolTip>
+                                            <StackPanel>
+                                                <ContentControl Content="{TemplateBinding FormattedIndependentValue}"/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="数量: "/>
+                                                    <ContentControl Content="{TemplateBinding FormattedDependentValue}"/>
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="占比: "/>
+                                                    <ContentControl Content="{TemplateBinding FormattedRatio}"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Path.ToolTip>
+                                    </Path>
+                                    <Path x:Name="SelectionHighlight" Data="{TemplateBinding GeometrySelection}" Fill="Red" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                    <Path x:Name="MouseOverHighlight" Data="{TemplateBinding GeometryHighlight}" Fill="White" IsHitTestVisible="False" Opacity="0" StrokeMiterLimit="1"/>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+    		</ResourceDictionary>
+    	</visualizationToolkit:ResourceDictionaryCollection>
+......
+            <Grid>
+                <chartingToolkit:Chart x:Name="chartStudentACRate" Style="{DynamicResource ChartStyleMetroNoTitle}" Visibility="Hidden">
+                    <chartingToolkit:Chart.Series>
+                        <chartingToolkit:PieSeries x:Name="pieStudentACRate"  DependentValuePath="Value" IndependentValuePath="Key" TransitionDuration="0"  Margin="0" Palette="{StaticResource PieACPalette}" />
+                    </chartingToolkit:Chart.Series>
+                </chartingToolkit:Chart>
+            </Grid>
+[[/code]]
 
- -----
+-----
 
 参考资料：
 
-*https://stackoverflow.com/questions/9191711/colour-selection-of-silverlight-toolkit-chart-line-series/9824096#9824096 
+*https://stackoverflow.com/questions/9191711/colour-selection-of-silverlight-toolkit-chart-line-series/9824096#9824096

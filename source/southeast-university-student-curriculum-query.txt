@@ -1,84 +1,84 @@
 [[=]]
- [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f5af00; float: center; border: solid 2px #f56400; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
- ##black|[[size 150%]] **此处所用的技术可能已过时** [[/size]]##
- ----
- [[size larger]] **此处所提供的查询方法仅适用于2017级及以前的学生。**[[/size]]
- [[size larger]] **2018级及之后的学生可能无法看到课表。**[[/size]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f5af00; float: center; border: solid 2px #f56400; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **此处所用的技术可能已过时** [[/size]]##
+----
+[[size larger]] **此处所提供的查询方法仅适用于2017级及以前的学生。**[[/size]]
+[[size larger]] **2018级及之后的学生可能无法看到课表。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
- [[/=]]
+[[/=]]
 
 查询地址
 
 [[code]]
- http://xk.urp.seu.edu.cn/jw_service/service/stuCurriculum.action?queryStudentId={一卡通号或学号}&queryAcademicYear={学期}
- [[/code]]
+http://xk.urp.seu.edu.cn/jw_service/service/stuCurriculum.action?queryStudentId={一卡通号或学号}&queryAcademicYear={学期}
+[[/code]]
 
 请将{一卡通号或学号}替换为您的一卡通号或者学号（形如“213170000”或“00112123”），{学期}替换为学期号（形如“17-18-1”）。
 
- 或者您也可以使用下面的便捷工具。
+或者您也可以使用下面的便捷工具。
 
 ----
 
 [[html]]
- <form id="stuCurriculum" name="stuCurriculum" action="http://xk.urp.seu.edu.cn/jw_service/service/stuCurriculum.action" method="get" target="_blank">
-      <input type="hidden" name="returnStr" value="" id="returnStr"/>
-      <table height="100%" width="100%">
-      <tr align="center">
-      <td align="center">
-      <table width="100%" height="100" border="0" bordercolor="#FFFFFF" cellpadding="0" cellspacing="0" >
-      <tr>
-      <td align="center">
-      <br>
-      <table width="98%" border="0" align="center" cellpadding="0"
-      cellspacing="0">
-      <tr>
-      <td align="center" nowrap="nowrap">
-      <font size=5>东南大学学生课表查询</font>
-      <br>
-      <font size=2>支持查询课程数据库内存在的任意学期课程，PC-DOS基于东南大学教务处课表查询工具修改</font>
-      </td>
-      </tr>
-      </table>
-      <br>
-      <table width="300" border="1" bgcolor="transparent" bordercolor="#FFFFFF"
-      cellpadding="0" cellspacing="0">
-      <tr>
-      <td align="center" nowrap="nowrap">
-      一卡通号或学号：
-     </td>
-      <td nowrap="nowrap">
-      <input type="text" name="queryStudentId" size="15" maxlength="15" value="" id="queryStudentId" type="text"/>
-      <font color="red">*</font>
-      </td>
-      </tr>
-      <tr>
-      <td align="center" nowrap="nowrap">
-      学年学期：
-     </td>
-      <td nowrap="nowrap">
-                                                <input type="text" name="queryAcademicYear" size="15" maxlength="15" value="" id="stuCurriculum_queryAcademicYear" type="text"/>
-      <font color="red">*</font>
-      </td>
-      </tr>
-      <tr>
-      <td colspan="2" align="center" nowrap="nowrap">
-      <input type="submit" id="stuCurriculum_0" value="查询"/>
-      </td>
-      </tr>
-      </table>
-      <br>
-      </td>
-      </tr>
-      </table>
-      </td>
-      </tr>
+<form id="stuCurriculum" name="stuCurriculum" action="http://xk.urp.seu.edu.cn/jw_service/service/stuCurriculum.action" method="get" target="_blank">
+    		<input type="hidden" name="returnStr" value="" id="returnStr"/>
+    		<table height="100%" width="100%">
+    			<tr align="center">
+    				<td align="center">
+    					<table width="100%" height="100" border="0" bordercolor="#FFFFFF" cellpadding="0" cellspacing="0" >
+    						<tr>
+    							<td align="center">
+    								<br>
+    								<table width="98%" border="0" align="center" cellpadding="0"
+    									cellspacing="0">
+    									<tr>
+    										<td align="center" nowrap="nowrap">
+    											<font size=5>东南大学学生课表查询</font>
+    											<br>
+    											<font size=2>支持查询课程数据库内存在的任意学期课程，PC-DOS基于东南大学教务处课表查询工具修改</font>
+    										</td>
+    									</tr>
+    								</table>
+    								<br>
+    								<table width="300" border="1" bgcolor="transparent" bordercolor="#FFFFFF"
+    									cellpadding="0" cellspacing="0">
+    									<tr>
+    										<td align="center" nowrap="nowrap">
+    											一卡通号或学号：
+    										</td>
+    										<td nowrap="nowrap">
+    											<input type="text" name="queryStudentId" size="15" maxlength="15" value="" id="queryStudentId" type="text"/>
+    											<font color="red">*</font>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td align="center" nowrap="nowrap">
+    											学年学期：
+    										</td>
+    										<td nowrap="nowrap">
+                                              	<input type="text" name="queryAcademicYear" size="15" maxlength="15" value="" id="stuCurriculum_queryAcademicYear" type="text"/>
+    											<font color="red">*</font>
+    										</td>
+    									</tr>
+    									<tr>
+    										<td colspan="2" align="center" nowrap="nowrap">
+    											<input type="submit" id="stuCurriculum_0" value="查询"/>
+    										</td>
+    									</tr>
+    								</table>
+    								<br>
+    							</td>
+    						</tr>
+    					</table>
+    				</td>
+    			</tr>
 
-      </table>
-      </form>
- [[/html]]
+    		</table>
+    	</form>
+[[/html]]
 
- [[=]]
- [*http://pc-dos.wdfiles.com/local--files/southeast-university-student-curriculum-query/StuCrr.html 独立页面版本]
- [[/=]] 
+[[=]]
+[*http://pc-dos.wdfiles.com/local--files/southeast-university-student-curriculum-query/StuCrr.html 独立页面版本]
+[[/=]]

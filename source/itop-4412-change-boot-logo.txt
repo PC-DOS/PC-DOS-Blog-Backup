@@ -1,52 +1,52 @@
 开始前，请先确保已安装ARM-2009q3编译器，并根据手册指导配置了Linux内核编译环境以及Linux内核源文件。
 
- 首先，请先准备需要的开机画面图片，并将其保存为宽640像素、高480像素的bmp格式位图文件。
+首先，请先准备需要的开机画面图片，并将其保存为宽640像素、高480像素的bmp格式位图文件。
 
- 然后，在Windows上[*http://www.downxia.com/downinfo/223985.html 安装Image2Lcd程序]。随后，启动Image2Lcd（建议先前往界面底部的 [注册] 选项卡注册软件，激活密钥为{{0000-0000-0000-0000-6A3B}}）。
+然后，在Windows上[*http://www.downxia.com/downinfo/223985.html 安装Image2Lcd程序]。随后，启动Image2Lcd（建议先前往界面底部的 [注册] 选项卡注册软件，激活密钥为{{0000-0000-0000-0000-6A3B}}）。
 
- 在Image2Lcd内，点击工具栏的 [打开] 按钮，选择处理完毕的bmp文件，并确保配置选项为：
+在Image2Lcd内，点击工具栏的 [打开] 按钮，选择处理完毕的bmp文件，并确保配置选项为：
 
 > **输出数据类型：**C语言数组(*.c)
- > 
- > **扫描模式：**水平扫描
 > 
- > **输出灰度：**24位真彩色
+> **扫描模式：**水平扫描
 > 
- > **最大宽度和高度：**640, 480
- > 
- > 下拉列表下方的复选框区域全部不勾选。
+> **输出灰度：**24位真彩色
+> 
+> **最大宽度和高度：**640, 480
+> 
+> 下拉列表下方的复选框区域全部不勾选。
 
- 确认无误后，点击工具栏的 [保存] 按钮，导出代码文件，根据默认设置，Image2Lcd会自动打开导出的代码。转换工作结束。
+确认无误后，点击工具栏的 [保存] 按钮，导出代码文件，根据默认设置，Image2Lcd会自动打开导出的代码。转换工作结束。
 
- 在Linux内核编译所用的设备内，编辑下列文件：
+在Linux内核编译所用的设备内，编辑下列文件：
 
 [[code]]
- %LinuxKernelSrc%/drivers/video/samsung/iTop-4412.h
- [[/code]]
+%LinuxKernelSrc%/drivers/video/samsung/iTop-4412.h
+[[/code]]
 
 其中{{%LinuxKernelSrc%}}指解包Linux内核源码得到的目录。打开该文件后，将Image2Lcd中导出代码所得到的数组的内容覆盖{{iBitmapData_q[]}}数组的内容并保存。
 
- 在编译环境的终端中定位到Linux内核源码目录，检查配置无误后键入指令：
+在编译环境的终端中定位到Linux内核源码目录，检查配置无误后键入指令：
 
 [[code]]
- make zImage
- [[/code]]
+make zImage
+[[/code]]
 
 开始编译，随后刷写编译得到zImage文件即可。
 
- 如果开机画面显示偏位，那么需要修改以下文件：
+如果开机画面显示偏位，那么需要修改以下文件：
 
 [[code]]
- %LinuxKernelSrc%/drivers/video/samsung/s3cfb_ops.c
- [[/code]]
+%LinuxKernelSrc%/drivers/video/samsung/s3cfb_ops.c
+[[/code]]
 
 中的{{s3cfb_draw_logo()}}函数中{{left}}、{{top}}两个变量的值并重新编译内核。
 
- 为保证居中，{{left}}、{{top}}两个变量的计算方法是：
+为保证居中，{{left}}、{{top}}两个变量的计算方法是：
 
 [[code]]
- left=(Screen.Width-640)/2
- top=(Screen.Height-480)/2
- [[/code]]
+left=(Screen.Width-640)/2
+top=(Screen.Height-480)/2
+[[/code]]
 
-其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。 
+其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。

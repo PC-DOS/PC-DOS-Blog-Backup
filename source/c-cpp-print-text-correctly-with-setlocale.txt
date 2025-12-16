@@ -6,12 +6,12 @@
 #include <locale.h>
 
 int main() {
-    //Fix text print
-    setlocale(LC_CTYPE, "");
+    //Fix text print
+    setlocale(LC_CTYPE, "");
 
-    //Coding here
+    //Coding here
 
-    return 0;
+    return 0;
 }
 [[/code]]
 

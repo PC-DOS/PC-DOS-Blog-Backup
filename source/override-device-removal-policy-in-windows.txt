@@ -2,47 +2,47 @@
 
 **故障处理：**查阅资料可知，Windows上硬件设备的移除策略是由设备属性中的移除策略（{{RemovalPolicy}}）决定的，同时，用户可以复写这个设定。
 
- 首先，需要打开设备管理器，并打开目标设备的属性页面，切换到“详细资料”选项卡，在“属性”下拉菜单中选择“设备实例路径”，并记录硬件识别码的值。硬件识别码反映了设备物理上连接的拓扑关系，以及在系统内枚举的路径。本例中设备的硬件识别码为{{PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00
- }}，下面记为{{@@{{DevInstancePath}}@@}}。
+首先，需要打开设备管理器，并打开目标设备的属性页面，切换到“详细资料”选项卡，在“属性”下拉菜单中选择“设备实例路径”，并记录硬件识别码的值。硬件识别码反映了设备物理上连接的拓扑关系，以及在系统内枚举的路径。本例中设备的硬件识别码为{{PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00
+}}，下面记为{{@@{{DevInstancePath}}@@}}。
 
- 打开注册表编辑器，定位到：
+打开注册表编辑器，定位到：
 
 [[code]]
- HKLM\SYSTEM\CurrentControlSet\Enum\{{DevInstancePath}}\Device Parameters
- [[/code]]
+HKLM\SYSTEM\CurrentControlSet\Enum\{{DevInstancePath}}\Device Parameters
+[[/code]]
 
 建立一个名为{{ClassPNP}}的注册表键，并在该键中建立一个名为{{UserRemovalPolicy}}的{{DWORD}}值，将其设为{{1}}。
 
- 关闭注册表编辑器并重新启动系统，应该已经无法在“安全移除硬件”菜单中看到设备。
+关闭注册表编辑器并重新启动系统，应该已经无法在“安全移除硬件”菜单中看到设备。
 
- 若该方法无效，可以考虑从注册表编辑器中，导出注册表项：
+若该方法无效，可以考虑从注册表编辑器中，导出注册表项：
 
 [[code]]
- HKLM\SYSTEM\CurrentControlSet\Enum\{{DevInstancePath}}\
- [[/code]]
+HKLM\SYSTEM\CurrentControlSet\Enum\{{DevInstancePath}}\
+[[/code]]
 
 随后，删掉其他内容，仅保留类似如下结构：
 
 [[code]]
- Windows Registry Editor Version 5.00
+Windows Registry Editor Version 5.00
 
- [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00]
- "Capabilities"=dword:00000014
- [[/code]]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00]
+"Capabilities"=dword:00000014
+[[/code]]
 
 那之后，将{{dword:}}后的十六进制值减4，变为类似：
 
 [[code]]
- Windows Registry Editor Version 5.00
+Windows Registry Editor Version 5.00
 
- [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00]
- "Capabilities"=dword:00000010
- [[/code]]
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\PCI\VEN_8086&DEV_08B1&SUBSYS_C4708086&REV_BB\104A7DFFFF19A2BC00]
+"Capabilities"=dword:00000010
+[[/code]]
 
 建立一个以SYSTEM权限执行的任务计划项目，配置在开机时自动导入该注册表项即可。
 
 **参考资料：** 
 
- *https://www.tenforums.com/drivers-hardware/138212-change-removal-policy-defaults-current-all-future-drives.html
+*https://www.tenforums.com/drivers-hardware/138212-change-removal-policy-defaults-current-all-future-drives.html
 
- *https://tsmith.co/2011/vm%e2%80%99s-nic-shows-as-a-removable-device/ 
+*https://tsmith.co/2011/vm%e2%80%99s-nic-shows-as-a-removable-device/

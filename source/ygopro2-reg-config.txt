@@ -1,13 +1,13 @@
 YGOPro2的注册表数据存储在下列位置：
 
 [[code]]
- HKEY_CURRENT_USER\SOFTWARE\YGOPro2\YGOPro2
- [[/code]]
+HKEY_CURRENT_USER\SOFTWARE\YGOPro2\YGOPro2
+[[/code]]
 
 一些常用的键值：
 
 ||~ 键 ||~ 数据类型 ||~ 说明 ||
- || {{Screenmanager Resolution Height_h2627697771}} || {{REG_DWORD}} || 高度，单位是像素，目前测试的最大值为{{1525}} ||
- || {{Screenmanager Resolution Height_h2627697771}} || {{REG_DWORD}} || 宽度，单位是像素，目前测试的最大值为{{2598}} ||
+|| {{Screenmanager Resolution Height_h2627697771}} || {{REG_DWORD}} || 高度，单位是像素，目前测试的最大值为{{1525}} ||
+|| {{Screenmanager Resolution Height_h2627697771}} || {{REG_DWORD}} || 宽度，单位是像素，目前测试的最大值为{{2598}} ||
 
- YGOPro2下载：*http://ygocore.ys168.com/ 
+YGOPro2下载：*http://ygocore.ys168.com/

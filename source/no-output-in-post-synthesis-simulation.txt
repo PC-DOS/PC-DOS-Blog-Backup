@@ -4,4 +4,4 @@
 
 **说明：**查阅资料显示，全局复位脉冲GSR（Global Set/Reset）会在综合后仿真时被引入Testbench中，它会使得所有寄存器在仿真的前100ns保持在复位状态。
 
-**参考资料：** *https://zhuanlan.zhihu.com/p/362025389 
+**参考资料：** *https://zhuanlan.zhihu.com/p/362025389

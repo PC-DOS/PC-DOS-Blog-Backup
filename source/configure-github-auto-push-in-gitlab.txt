@@ -13,4 +13,4 @@ GitHub从2021年08月13日开始将不允许通过用户名和密码直接验证
 
 + 另请参考
 
-[[[configure-auto-push-in-gitlab | ]]] 
+[[[configure-auto-push-in-gitlab | ]]]

@@ -2,117 +2,117 @@
 
 **排查：**在终端输入指令{{sudo gedit /etc/default/grub}}，将{{GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"}}改为{{GRUB_CMDLINE_LINUX_DEFAULT=""}}并保存退出，回终端执行{{sudo update-grub}}更新GRUB配置并重启，成功以文本模式启动并进入命令行模式，登录后键入{{startx}}执行，回显报错，无法进入图形模式。
 
- 多次恢复快照并排查，发现问题出现在执行安装脚本{{install-devel-packages.sh}}后，检查该脚本内容：
+多次恢复快照并排查，发现问题出现在执行安装脚本{{install-devel-packages.sh}}后，检查该脚本内容：
 
 [[code]]
- #!/bin/bash
+#!/bin/bash
 
- ####################################################################
- # Warning:
- # Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
- # with the old glx packages.
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
 
- # ------------------------------------------------------------------
- # 12.04                --> 12.04.2 (*-lts-quantal)
- # ------------------------------------------------------------------
- # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
- # libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
- # ------------------------------------------------------------------
- #
- # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
- # your system.
- ####################################################################
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+####################################################################
 
- # Execute an action
- FA_DoExec() {
-     echo "==> Executing: '${@}'"
-     eval $@ || exit $?
- }
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
 
- # Ubuntu 12.04.2 LTS
- FA_DoExec apt-get install \
-     git gnupg flex bison gperf build-essential \
-     zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-     libx11-dev:i386 libreadline6-dev:i386 \
-     libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
-     g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-     python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+# Ubuntu 12.04.2 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
 
 
- if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-     FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-      /usr/lib/i386-linux-gnu/libGL.so
- fi
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+    	/usr/lib/i386-linux-gnu/libGL.so
+fi
 
- # Development support
- FA_DoExec apt-get install \
-     vim dos2unix minicom gawk
- [[/code]]
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
 
 推测可能与{{libgl1-mesa-glx-lts-quantal:i386}}、{{libgl1-mesa-dev-lts-quantal}}软件包与Ubuntu 12.04.5 LTS的冲突有关。尝试执行该脚本，出现提示显示将卸载xorg。
 
 **故障处理：**恢复快照到执行该脚本之前并重新执行脚本，执行脚本完毕后，继续在终端执行：
 
 [[code]]
- sudo apt-get install xorg 
- sudo apt-get install libgl1-mesa-glx:i386
- sudo apt-get install libgl1-mesa-dev
- [[/code]]
+sudo apt-get install xorg 
+sudo apt-get install libgl1-mesa-glx:i386
+sudo apt-get install libgl1-mesa-dev
+[[/code]]
 
 恢复xorg以及旧版libgl1-mesa库，重启系统，问题解决。
 
- 修改过的{{install-devel-packages.sh}}脚本：
+修改过的{{install-devel-packages.sh}}脚本：
 
 [[code]]
- #!/bin/bash
+#!/bin/bash
 
- ####################################################################
- # Warning:
- # Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
- # with the old glx packages.
+####################################################################
+# Warning:
+# Ubuntu 12.04.2 introduced a new X stack that isn't compatible with
+# with the old glx packages.
 
- # ------------------------------------------------------------------
- # 12.04                --> 12.04.2 (*-lts-quantal)
- # ------------------------------------------------------------------
- # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
- # libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
- # ------------------------------------------------------------------
- #
- # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
- # your system.
- #
- # In Ubuntu 12.04.5 LTS, please use libgl1-mesa-glx:i386 and libgl1-
- # mesa-dev.
- ####################################################################
+# ------------------------------------------------------------------
+# 12.04                --> 12.04.2 (*-lts-quantal)
+# ------------------------------------------------------------------
+# libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# ------------------------------------------------------------------
+#
+# DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
+# your system.
+#
+# In Ubuntu 12.04.5 LTS, please use libgl1-mesa-glx:i386 and libgl1-
+# mesa-dev.
+####################################################################
 
- # Execute an action
- FA_DoExec() {
-     echo "==> Executing: '${@}'"
-     eval $@ || exit $?
- }
+# Execute an action
+FA_DoExec() {
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
+}
 
- # Ubuntu 12.04.5 LTS
- FA_DoExec apt-get install \
-     git gnupg flex bison gperf build-essential \
-     zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-     libx11-dev:i386 libreadline6-dev:i386 \
-     libgl1-mesa-glx:i386 libgl1-mesa-dev \
-     g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-     python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+# Ubuntu 12.04.5 LTS
+FA_DoExec apt-get install \
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx:i386 libgl1-mesa-dev \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
 
 
- if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-     FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-      /usr/lib/i386-linux-gnu/libGL.so
- fi
+if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+    	/usr/lib/i386-linux-gnu/libGL.so
+fi
 
- # Development support
- FA_DoExec apt-get install \
-     vim dos2unix minicom gawk
- [[/code]]
+# Development support
+FA_DoExec apt-get install \
+    vim dos2unix minicom gawk
+[[/code]]
 
- **参考资料：**
+**参考资料：**
 
- *https://blog.csdn.net/weixin_41683971/article/details/107745609
+*https://blog.csdn.net/weixin_41683971/article/details/107745609
 
- *https://blog.csdn.net/ylf_18721347942/article/details/17378011 
+*https://blog.csdn.net/ylf_18721347942/article/details/17378011

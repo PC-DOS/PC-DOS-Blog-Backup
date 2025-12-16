@@ -1,19 +1,19 @@
 Microsoft为Intel的“熔断”和“幽灵”漏洞推出的修补程序可能影响Windows操作系统的性能，但可通过注册表编辑器停用该修补程序。
 
- 请打开注册表编辑器，定位到：
+请打开注册表编辑器，定位到：
 
 [[code]]
- HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
- [[/code]]
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management
+[[/code]]
 
 随后，将DWORD值{{FeatureSettingsOverride}}的值改为{{3}}。
 
- 然后，新建DWORD值{{FeatureSettingsOverrideMask}}并设为{{3}}。
+然后，新建DWORD值{{FeatureSettingsOverrideMask}}并设为{{3}}。
 
- 重新启动计算机即可。
+重新启动计算机即可。
 
- 参考：
+参考：
 
 *https://social.technet.microsoft.com/Forums/en-US/fd9f2f4f-2534-4d61-86cd-fa5f38ac1557/meltdown-and-spectre-must-registry-value-featuresettingsoverride-manually-set-after-patch
 
- *https://social.technet.microsoft.com/Forums/en-US/fd9f2f4f-2534-4d61-86cd-fa5f38ac1557/meltdown-and-spectre-must-registry-value-featuresettingsoverride-manually-set-after-patch 
+*https://social.technet.microsoft.com/Forums/en-US/fd9f2f4f-2534-4d61-86cd-fa5f38ac1557/meltdown-and-spectre-must-registry-value-featuresettingsoverride-manually-set-after-patch

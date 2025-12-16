@@ -1,17 +1,17 @@
 在终端中执行：
 
 [[code]]
- sudo vim /etc/default/grub
- [[/code]]
+sudo vim /etc/default/grub
+[[/code]]
 
 该文件中的{{GRUB_DEFAULT}}变量指示了默认启动项的索引，该索引值从{{0}}开始。即：Grub菜单中第一个启动项的索引值为0，第二个启动项的索引值为1，第三个启动项的索引值为2，以此类推。
 
- 修改{{GRUB_DEFAULT}}变量并保存后，在终端执行：
+修改{{GRUB_DEFAULT}}变量并保存后，在终端执行：
 
 [[code]]
- sudo update-grub
- [[/code]]
+sudo update-grub
+[[/code]]
 
 随后改动即可生效。
 
- 参考资料：*https://blog.csdn.net/sinat_36306474/article/details/78557630 
+参考资料：*https://blog.csdn.net/sinat_36306474/article/details/78557630

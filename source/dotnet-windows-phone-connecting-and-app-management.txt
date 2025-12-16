@@ -1,97 +1,97 @@
 Windows Phone SDK提供了使用编程方法访问Windows Phone设备的程序集，以Windows Phone 8.1 SDK为例，它们位于：
 
 [[code]]
- %ProgramFiles(x86)%\Microsoft SDKs\Windows Phone\v8.1\Tools\AppDeploy\Microsoft.Phone.Tools.Deploy.dll
- %WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.Connectivity\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.Connectivity.dll
- %WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.Connectivity.Interface\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.Connectivity.Interface.dll
- %WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.ConnectivityWrapper.10\v4.0_11.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.ConnectivityWrapper.10.dll
- %WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.ConnectivityWrapper.11\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.ConnectivityWrapper.11.dll
- %WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.ConnectivityWrapper.12\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.ConnectivityWrapper.12.dll
- %WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.MultiTargeting.Connectivity\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.MultiTargeting.Connectivity.dll
- [[/code]]
+%ProgramFiles(x86)%\Microsoft SDKs\Windows Phone\v8.1\Tools\AppDeploy\Microsoft.Phone.Tools.Deploy.dll
+%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.Connectivity\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.Connectivity.dll
+%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.Connectivity.Interface\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.Connectivity.Interface.dll
+%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.ConnectivityWrapper.10\v4.0_11.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.ConnectivityWrapper.10.dll
+%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.ConnectivityWrapper.11\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.ConnectivityWrapper.11.dll
+%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.ConnectivityWrapper.12\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.ConnectivityWrapper.12.dll
+%WinDir%\Microsoft.NET\assembly\GAC_MSIL\Microsoft.SmartDevice.MultiTargeting.Connectivity\v4.0_12.0.0.0__b03f5f7f11d50a3a\Microsoft.Smartdevice.MultiTargeting.Connectivity.dll
+[[/code]]
 
 为了便于操作，可以同时加入[*https://github.com/amoikevin/Windows-Phone-Power-Tools Windows Phone Power Tools]第三方工具的{{WindowsPhone.Tools.dll}}程序集，您可以在Windows Phone Power Tools的发行版本中找到它。
 
- 在项目中参考这些程序集后，引入下面的命名空间：
+在项目中参考这些程序集后，引入下面的命名空间：
 
 [[code]]
- Imports WindowsPhone.Tools
- Imports Microsoft.Phone.Tools.Deploy
- Imports Microsoft.SmartDevice.Connectivity
- Imports Microsoft.SmartDevice.Connectivity.Interface
- Imports Microsoft.SmartDevice.MultiTargeting.Connectivity
- [[/code]]
+Imports WindowsPhone.Tools
+Imports Microsoft.Phone.Tools.Deploy
+Imports Microsoft.SmartDevice.Connectivity
+Imports Microsoft.SmartDevice.Connectivity.Interface
+Imports Microsoft.SmartDevice.MultiTargeting.Connectivity
+[[/code]]
 
 随后，即可以编程的形式访问Windows Phone设备。
 
 + 枚举和连接设备
 
- 首先，初始化连接管理器：
+首先，初始化连接管理器：
 
 [[code]]
- Dim PhoneConnectionManager As New MultiTargetingConnectivity(System.Globalization.CultureInfo.CurrentCulture.LCID)
- [[/code]]
+Dim PhoneConnectionManager As New MultiTargetingConnectivity(System.Globalization.CultureInfo.CurrentCulture.LCID)
+[[/code]]
 
 使用{{MultiTargetingConnectivity.GetConnectableDevices()}}函数枚举可连接的设备，该函数返回由{{ConnectableDevice}}对象组成的集合，反映当前系统上可连接的设备对象：
 
 [[code]]
- Public Function EnumerateDevices() As List(Of ConnectableDevice)
-     Dim PhoneList As New List(Of ConnectableDevice)
-     For Each Phone As ConnectableDevice In PhoneConnectionManager.GetConnectableDevices()
-         PhoneList.Add(Phone)
-     Next
-     Return PhoneList
- End Function
- [[/code]]
+Public Function EnumerateDevices() As List(Of ConnectableDevice)
+    Dim PhoneList As New List(Of ConnectableDevice)
+    For Each Phone As ConnectableDevice In PhoneConnectionManager.GetConnectableDevices()
+        PhoneList.Add(Phone)
+    Next
+    Return PhoneList
+End Function
+[[/code]]
 
- {{ConnectableDevice}}对象提供了{{Connect()}}函数实现设备连接，该函数返回{{IDevice}}操作接口，表示已连接到的设备：
+{{ConnectableDevice}}对象提供了{{Connect()}}函数实现设备连接，该函数返回{{IDevice}}操作接口，表示已连接到的设备：
 
 [[code]]
- Dim CurrentConnectedDevice As IDevice = PhoneList(0).Connect()
- [[/code]]
+Dim CurrentConnectedDevice As IDevice = PhoneList(0).Connect()
+[[/code]]
 
 此时，应该已经成功连接到了目标设备。
 
 + 安装应用程序包
 
- 您可以通过编程方式向设备部署XAP、AppX或AppXBundle程序包。此处使用字符串变量{{AppPackagePath}}表示需要部署的程序包的路径。
+您可以通过编程方式向设备部署XAP、AppX或AppXBundle程序包。此处使用字符串变量{{AppPackagePath}}表示需要部署的程序包的路径。
 
- 安装程序包前，需要先获取该程序包的GUID等数据，可以通过{{Microsoft.Phone.Tools.Deploy}}命名空间下的{{Utils.ReadAppManifestInfoFromPackage()}}函数获取。对于XAP包，也可以使用Windows Phone Power Tools的{{WindowsPhone.Tools.dll}}程序集提供的{{Xap}}对象获取，通过该对象获取XAP包的GUID信息可以避免{{Utils.ReadAppManifestInfoFromPackage()}}函数在处理部分在包描述文件{{WMAppManifest.xml}}中声明了特殊权限的XAP包时遇到的XML错误。
+安装程序包前，需要先获取该程序包的GUID等数据，可以通过{{Microsoft.Phone.Tools.Deploy}}命名空间下的{{Utils.ReadAppManifestInfoFromPackage()}}函数获取。对于XAP包，也可以使用Windows Phone Power Tools的{{WindowsPhone.Tools.dll}}程序集提供的{{Xap}}对象获取，通过该对象获取XAP包的GUID信息可以避免{{Utils.ReadAppManifestInfoFromPackage()}}函数在处理部分在包描述文件{{WMAppManifest.xml}}中声明了特殊权限的XAP包时遇到的XML错误。
 
 [[code]]
- 'Parse package info
- Dim AppGuid As System.Guid
- Dim AppGenre As String
- Dim AppIconPath As String
- If AppPackagePath.ToUpper.EndsWith(".XAP") Then
-     Dim AppManifest As New Xap(AppPackagePath)
-     AppGuid = AppManifest.Guid
-     AppGenre = "32"
-     AppIconPath = AppManifest.Icon
- Else
-     Dim AppManifest As IAppManifestInfo = Utils.ReadAppManifestInfoFromPackage(AppPackagePath)
-     AppGuid = AppManifest.ProductId
-     AppGenre = "32"
-     AppIconPath = CInt(AppManifest.PackageType).ToString()
- End If
- [[/code]]
+'Parse package info
+Dim AppGuid As System.Guid
+Dim AppGenre As String
+Dim AppIconPath As String
+If AppPackagePath.ToUpper.EndsWith(".XAP") Then
+    Dim AppManifest As New Xap(AppPackagePath)
+    AppGuid = AppManifest.Guid
+    AppGenre = "32"
+    AppIconPath = AppManifest.Icon
+Else
+    Dim AppManifest As IAppManifestInfo = Utils.ReadAppManifestInfoFromPackage(AppPackagePath)
+    AppGuid = AppManifest.ProductId
+    AppGenre = "32"
+    AppIconPath = CInt(AppManifest.PackageType).ToString()
+End If
+[[/code]]
 
 若应用程序包在目标设备上已存在，则安装可能失败，因此可以在开始安装前使用{{IDevice.IsApplicationInstalled()}}函数，传入程序包的GUID检测应用程序是否存在，并在必要时通过{{IDevice.GetApplication()}}获取{{IRemoteApplication}}对象，调用{{Uninstall()}}方法卸载该应用程序：
 
 [[code]]
- 'Check if package is already installed
- If CurrentConnectedDevice.IsApplicationInstalled(AppGuid) Then
-     CurrentConnectedDevice.GetApplication(AppGuid).Uninstall()
- End If
- [[/code]]
+'Check if package is already installed
+If CurrentConnectedDevice.IsApplicationInstalled(AppGuid) Then
+    CurrentConnectedDevice.GetApplication(AppGuid).Uninstall()
+End If
+[[/code]]
 
 随后，即可开始安装应用程序：
 
 [[code]]
- 'Install package
- CurrentConnectedDevice.InstallApplication(AppGuid, _
-                                           AppGuid, _
-                                           AppGenre, _
-                                           AppIconPath, _
-                                           AppPackagePath)
- [[/code]] 
+'Install package
+CurrentConnectedDevice.InstallApplication(AppGuid, _
+                                          AppGuid, _
+                                          AppGenre, _
+                                          AppIconPath, _
+                                          AppPackagePath)
+[[/code]]

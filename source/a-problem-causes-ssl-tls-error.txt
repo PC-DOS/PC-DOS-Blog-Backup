@@ -5,41 +5,41 @@
 **处理方案1：**由于.NET Framework 4.0框架默认不支持高版本TLS，需将框架版本更新到.NET Framework 4.5。并在程序的初始化代码中添加如下配置代码：
 
 [[code]]
- System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 Or SecurityProtocolType.Tls Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12
- [[/code]]
+System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 Or SecurityProtocolType.Tls Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12
+[[/code]]
 
- **处理方案2：**此法不更新.NET Freamwork 4.0框架默认不支持高版本TLS，因此在应用程序初始化时使用{{SecurityProtocolType.Tls11}}和{{SecurityProtocolType.Tls12}}常数的硬编码值{{768}}与{{3072}}强制开启TLS 1.1和TLS 1.2支持：
-
-[[code]]
- System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 Or SecurityProtocolType.Tls Or 768 Or 3072
- [[/code]]
-
- **处理方案3：**此法为Microsoft推荐的方法，该方法将TLS版本的选择权交由操作系统，通过此方法，可使程序支持未来版本的TLS。此方法不需要改变程序代码或升级.NET框架版本，但是对于.NET Framework 3.5至.NET Framework 4.5.2框架，需导入下述注册表文件来启用TLS版本自动选择：
+**处理方案2：**此法不更新.NET Freamwork 4.0框架默认不支持高版本TLS，因此在应用程序初始化时使用{{SecurityProtocolType.Tls11}}和{{SecurityProtocolType.Tls12}}常数的硬编码值{{768}}与{{3072}}强制开启TLS 1.1和TLS 1.2支持：
 
 [[code]]
- Windows Registry Editor Version 5.00
+System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 Or SecurityProtocolType.Tls Or 768 Or 3072
+[[/code]]
 
- [HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v2.0.50727]
- "SystemDefaultTlsVersions"=dword:00000001
- "SchUseStrongCrypto"=dword:00000001
+**处理方案3：**此法为Microsoft推荐的方法，该方法将TLS版本的选择权交由操作系统，通过此方法，可使程序支持未来版本的TLS。此方法不需要改变程序代码或升级.NET框架版本，但是对于.NET Framework 3.5至.NET Framework 4.5.2框架，需导入下述注册表文件来启用TLS版本自动选择：
 
- [HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319]
- "SystemDefaultTlsVersions"=dword:00000001
- "SchUseStrongCrypto"=dword:00000001
+[[code]]
+Windows Registry Editor Version 5.00
 
- [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v2.0.50727]
- "SystemDefaultTlsVersions"=dword:00000001
- "SchUseStrongCrypto"=dword:00000001
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v2.0.50727]
+"SystemDefaultTlsVersions"=dword:00000001
+"SchUseStrongCrypto"=dword:00000001
 
- [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319]
- "SystemDefaultTlsVersions"=dword:00000001
- "SchUseStrongCrypto"=dword:00000001
- [[/code]]
+[HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319]
+"SystemDefaultTlsVersions"=dword:00000001
+"SchUseStrongCrypto"=dword:00000001
 
- **参考资料：**
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v2.0.50727]
+"SystemDefaultTlsVersions"=dword:00000001
+"SchUseStrongCrypto"=dword:00000001
 
- *https://www.cnblogs.com/ahdung/p/10489229.html
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319]
+"SystemDefaultTlsVersions"=dword:00000001
+"SchUseStrongCrypto"=dword:00000001
+[[/code]]
 
- *https://stackoverflow.com/questions/33761919/tls-1-2-in-net-framework-4-0
+**参考资料：**
 
- *https://docs.microsoft.com/zh-cn/dotnet/framework/network-programming/tls 
+*https://www.cnblogs.com/ahdung/p/10489229.html
+
+*https://stackoverflow.com/questions/33761919/tls-1-2-in-net-framework-4-0
+
+*https://docs.microsoft.com/zh-cn/dotnet/framework/network-programming/tls

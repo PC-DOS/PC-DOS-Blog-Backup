@@ -1,11 +1,11 @@
 如果您需要强制启动Internet Explorer，您可以建立一个文本文件，并在其中输入：
 
 [[code]]
- CreateObject("InternetExplorer.Application").Visible=true
- [[/code]]
+CreateObject("InternetExplorer.Application").Visible=true
+[[/code]]
 
 随后，将该文件的扩展名改为“{{VBS}}”。
 
- 双击这个文件，即可启动Internet Explorer。
+双击这个文件，即可启动Internet Explorer。
 
- 参考资料：*https://www.zhihu.com/question/493728044 
+参考资料：*https://www.zhihu.com/question/493728044

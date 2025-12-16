@@ -7,15 +7,15 @@
 2. 在Firefox中访问：
 
 [[code]]
- about:config
- [[/code]]
+about:config
+[[/code]]
 
 如果弹出“三思而后行：更改高级配置的首选项可能会影响 Firefox 的性能和安全性”提示信息，请取消勾选“当我尝试修改底层首选项时警示我”复选框，并点击 [接受并继续] 按钮。
 
- 通过搜索栏，定位以下设置项，并修改为相应的值：
+通过搜索栏，定位以下设置项，并修改为相应的值：
 
 ||~ 设置项 ||~ 值 ||
- || {{security.ssl.enable_ocsp_must_staple}} || {{false}} ||
- || {{security.ssl.enable_ocsp_stapling}} || {{false}} ||
+|| {{security.ssl.enable_ocsp_must_staple}} || {{false}} ||
+|| {{security.ssl.enable_ocsp_stapling}} || {{false}} ||
 
- **参考资料：** *https://interweb.acmerich.com/firefox%2fsecurity-connection-fails-ocsp-error/ 
+**参考资料：** *https://interweb.acmerich.com/firefox%2fsecurity-connection-fails-ocsp-error/

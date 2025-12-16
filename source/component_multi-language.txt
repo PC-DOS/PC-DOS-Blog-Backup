@@ -1,1 +1,1 @@
-[[include component:multi-language-base pagename={$pagename} | align={$align} | align=left]] 
+[[include <a href="/component:multi-language-base">component:multi-language-base</a> pagename={$pagename} | align={$align} | align=left]]

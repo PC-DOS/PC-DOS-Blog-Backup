@@ -1,3 +1,3 @@
 这些工具用于验证SSD固态磁盘的存储颗粒、主控芯片等的制造商和详细型号。
 
-*http://vlo.name:3000/ssdtool/ 
+*http://vlo.name:3000/ssdtool/

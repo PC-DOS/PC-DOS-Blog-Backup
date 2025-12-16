@@ -1,73 +1,73 @@
 在Linux内核编译所用的设备内，编辑下列文件：
 
 [[code]]
- %LinuxKernelSrc%/drivers/video/samsung/s3cfb_wa101s.c
- [[/code]]
+%LinuxKernelSrc%/drivers/video/samsung/s3cfb_wa101s.c
+[[/code]]
 
 其中{{%LinuxKernelSrc%}}指解包Linux内核源码得到的目录。打开该文件后，编辑{{s3cfb_setup_lcd()}}函数中对{{wa101}}变量（一个{{s3cfb_lcd}}类型的结构体）的赋值。该函数根据{{get_lcd_type()}}函数的返回值来确定屏幕类型，如果无法确定应修改哪个屏幕类型下的参数，可以解除注释该函数头部的{{printk()}}函数后重新编译内核并刷入，根据控制台输出来确定具体的值。
 
 {{s3cfb_lcd}}结构体的定义：
 
 [[code type="Cpp"]]
- struct s3cfb_lcd {
-     int width; //像素宽度
-    int height; //像素高度
-    int bpp; //像素深度
-    int freq; //刷新率
-    struct  s3cfb_lcd_timing timing;  //时序参数
-    struct  s3cfb_lcd_polarity polarity; //电平极性参数
-    void  (*init_ldi)(void);
-     void  (*deinit_ldi)(void);
-  };
- [[/code]]
+struct s3cfb_lcd {
+    int width; //像素宽度
+    int height; //像素高度
+    int bpp; //像素深度
+    int freq; //刷新率
+    struct  s3cfb_lcd_timing timing;  //时序参数
+    struct  s3cfb_lcd_polarity polarity; //电平极性参数
+    void  (*init_ldi)(void);
+    void  (*deinit_ldi)(void);
+ };
+[[/code]]
 
- {{s3cfb_lcd_timing}}结构体的定义：
-
-[[code type="Cpp"]]
- struct s3cfb_lcd_timing {
-     int h_fp;
-     int h_bp;
-     int h_sw;
-     int v_fp;
-     int v_fpe;
-     int v_bp;
-     int v_bpe;
-     int v_sw;
- };
- [[/code]]
-
- {{s3cfb_lcd_polarity}}结构体的定义：
+{{s3cfb_lcd_timing}}结构体的定义：
 
 [[code type="Cpp"]]
- struct s3cfb_lcd_polarity {
-     int rise_vclk;
-     int inv_hsync;
-     int inv_vsync;
-     int inv_vden;
- };
- [[/code]]
+struct s3cfb_lcd_timing {
+    int h_fp;
+    int h_bp;
+    int h_sw;
+    int v_fp;
+    int v_fpe;
+    int v_bp;
+    int v_bpe;
+    int v_sw;
+};
+[[/code]]
+
+{{s3cfb_lcd_polarity}}结构体的定义：
+
+[[code type="Cpp"]]
+struct s3cfb_lcd_polarity {
+    int rise_vclk;
+    int inv_hsync;
+    int inv_vsync;
+    int inv_vden;
+};
+[[/code]]
 
 在编译环境的终端中定位到Linux内核源码目录，检查配置无误后键入指令：
 
 [[code]]
- make zImage
- [[/code]]
+make zImage
+[[/code]]
 
 开始编译，随后刷写编译得到zImage文件即可。
 
- 如果开机画面显示偏位，那么需要修改以下文件：
+如果开机画面显示偏位，那么需要修改以下文件：
 
 [[code]]
- %LinuxKernelSrc%/drivers/video/samsung/s3cfb_ops.c
- [[/code]]
+%LinuxKernelSrc%/drivers/video/samsung/s3cfb_ops.c
+[[/code]]
 
 中的{{s3cfb_draw_logo()}}函数中{{left}}、{{top}}两个变量的值并重新编译内核。
 
- 为保证居中，{{left}}、{{top}}两个变量的计算方法是：
+为保证居中，{{left}}、{{top}}两个变量的计算方法是：
 
 [[code]]
- left=(Screen.Width-640)/2
- top=(Screen.Height-480)/2
- [[/code]]
+left=(Screen.Width-640)/2
+top=(Screen.Height-480)/2
+[[/code]]
 
-其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。 
+其中，{{Screen.Width}}和{{Screen.Height}}为您的开发板的屏幕的宽度和高度，单位为像素。

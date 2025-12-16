@@ -4,202 +4,202 @@ Visual Studio Code的C/C++扩展会为用户提供Clang-Format代码格式化工
 
 Clang-Format代码格式化工具附带于VSCode的C/C++扩展（{{ms-vscode.cpptools}}）中，可在扩展商店中安装，打开C/C++文件时亦会提示用户安装。
 
- 在VSCode中打开C/C++代码文件，按下{{Alt+Shift+F}}组合键即可调用CLang-Format对代码进行格式化。
+在VSCode中打开C/C++代码文件，按下{{Alt+Shift+F}}组合键即可调用CLang-Format对代码进行格式化。
 
- 若按下{{Alt+Shift+F}}组合键时提示“没有安装用于c/cpp文件的格式化程序”，请尝试重新安装C/C++扩展（{{ms-vscode.cpptools}}）。
+若按下{{Alt+Shift+F}}组合键时提示“没有安装用于c/cpp文件的格式化程序”，请尝试重新安装C/C++扩展（{{ms-vscode.cpptools}}）。
 
 + 配置CLang-Format
 
- Clang-Format会提供一些默认的配置模板，包括Visual Studio、LLVM、Google、Chromium、Mozilla、WebKit等。可以在VSCode的 [设置] 界面（可以使用{{Ctrl+,}}组合键打开）中，搜索“clang”并修改{{C_Cpp: Clang_format_fallback Style}}属性进行设置。
+Clang-Format会提供一些默认的配置模板，包括Visual Studio、LLVM、Google、Chromium、Mozilla、WebKit等。可以在VSCode的 [设置] 界面（可以使用{{Ctrl+,}}组合键打开）中，搜索“clang”并修改{{C_Cpp: Clang_format_fallback Style}}属性进行设置。
 
- 同时可以通过在文件所在目录下建立名为{{.clang-format}}的文件，并确保VSCode的{{C_Cpp: Clang_format_style}}选项的值为默认值{{file}}，为特定项目配置专用的Clang-Format格式参考。您可以在Clang-Format应用程序所在的目录中，通过下面的命令提取Clang-Format格式参考模板：
+同时可以通过在文件所在目录下建立名为{{.clang-format}}的文件，并确保VSCode的{{C_Cpp: Clang_format_style}}选项的值为默认值{{file}}，为特定项目配置专用的Clang-Format格式参考。您可以在Clang-Format应用程序所在的目录中，通过下面的命令提取Clang-Format格式参考模板：
 
 [[code]]
- clang-format -style=STYLE_NAME -dump-config > .clang-format
- [[/code]]
+clang-format -style=STYLE_NAME -dump-config > .clang-format
+[[/code]]
 
- {{STYLE_NAME}}为需要提取的样式名称，预置的选项包括{{LLVM, GNU, Google, Chromium, Microsoft, Mozilla, WebKit}}。Clang-Format应用程序通常位于C/C++扩展（{{ms-vscode.cpptools}}）安装目录的{{LLVM\bin\}}目录中，例如Windows上的{{%UserProfile%\.vscode\extensions\ms-vscode.cpptools-1.5.1\LLVM\bin}}。
+{{STYLE_NAME}}为需要提取的样式名称，预置的选项包括{{LLVM, GNU, Google, Chromium, Microsoft, Mozilla, WebKit}}。Clang-Format应用程序通常位于C/C++扩展（{{ms-vscode.cpptools}}）安装目录的{{LLVM\bin\}}目录中，例如Windows上的{{%UserProfile%\.vscode\extensions\ms-vscode.cpptools-1.5.1\LLVM\bin}}。
 
 + {{.clang-format}}文件示例
 
- 该示例基于LLVM模板，详细注释请参考[*https://clang.llvm.org/docs/ClangFormatStyleOptions.html .clang-format文件配置信息文档]。
+该示例基于LLVM模板，详细注释请参考[*https://clang.llvm.org/docs/ClangFormatStyleOptions.html .clang-format文件配置信息文档]。
 
 [[code]]
- ---
- Language:        Cpp
- # BasedOnStyle:  LLVM
- AccessModifierOffset: -4
- AlignAfterOpenBracket: Align
- AlignConsecutiveMacros: true
- AlignConsecutiveAssignments: None
- AlignConsecutiveBitFields: None
- AlignConsecutiveDeclarations: None
- AlignEscapedNewlines: Right
- AlignOperands:   Align
- AlignTrailingComments: false
- AllowAllArgumentsOnNextLine: true
- AllowAllConstructorInitializersOnNextLine: true
- AllowAllParametersOfDeclarationOnNextLine: true
- AllowShortEnumsOnASingleLine: true
- AllowShortBlocksOnASingleLine: Never
- AllowShortCaseLabelsOnASingleLine: false
- AllowShortFunctionsOnASingleLine: All
- AllowShortLambdasOnASingleLine: All
- AllowShortIfStatementsOnASingleLine: Never
- AllowShortLoopsOnASingleLine: false
- AlwaysBreakAfterDefinitionReturnType: None
- AlwaysBreakAfterReturnType: None
- AlwaysBreakBeforeMultilineStrings: false
- AlwaysBreakTemplateDeclarations: MultiLine
- AttributeMacros:
-   - __capability
- BinPackArguments: true
- BinPackParameters: true
- BraceWrapping:
-   AfterCaseLabel:  false
-   AfterClass:      false
-   AfterControlStatement: Never
-   AfterEnum:       false
-   AfterFunction:   false
-   AfterNamespace:  false
-   AfterObjCDeclaration: false
-   AfterStruct:     false
-   AfterUnion:      false
-   AfterExternBlock: false
-   BeforeCatch:     true
-   BeforeElse:      true
-   BeforeLambdaBody: false
-   BeforeWhile:     false
-   IndentBraces:    false
-   SplitEmptyFunction: true
-   SplitEmptyRecord: true
-   SplitEmptyNamespace: true
- BreakBeforeBinaryOperators: None
- BreakBeforeConceptDeclarations: true
- BreakBeforeBraces: Custom
- BreakBeforeInheritanceComma: false
- BreakInheritanceList: BeforeColon
- BreakBeforeTernaryOperators: false
- BreakConstructorInitializersBeforeComma: false
- BreakConstructorInitializers: BeforeColon
- BreakAfterJavaFieldAnnotations: false
- BreakStringLiterals: false
- ColumnLimit:     0
- CommentPragmas:  '^ IWYU pragma:'
- CompactNamespaces: false
- ConstructorInitializerAllOnOneLineOrOnePerLine: false
- ConstructorInitializerIndentWidth: 4
- ContinuationIndentWidth: 4
- Cpp11BracedListStyle: true
- DeriveLineEnding: true
- DerivePointerAlignment: false
- DisableFormat:   false
- EmptyLineBeforeAccessModifier: LogicalBlock
- ExperimentalAutoDetectBinPacking: false
- FixNamespaceComments: false
- ForEachMacros:
-   - foreach
-   - Q_FOREACH
-   - BOOST_FOREACH
- StatementAttributeLikeMacros:
-   - Q_EMIT
- IncludeBlocks:   Preserve
- IncludeCategories:
-   - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
-     Priority:        2
-     SortPriority:    0
-     CaseSensitive:   false
-   - Regex:           '^(<|"(gtest|gmock|isl|json)/)'
-     Priority:        3
-     SortPriority:    0
-     CaseSensitive:   false
-   - Regex:           '.*'
-     Priority:        1
-     SortPriority:    0
-     CaseSensitive:   false
- IncludeIsMainRegex: '(Test)?$'
- IncludeIsMainSourceRegex: ''
- IndentCaseLabels: false
- IndentCaseBlocks: true
- IndentGotoLabels: true
- IndentPPDirectives: None
- IndentExternBlock: AfterExternBlock
- IndentRequires:  false
- IndentWidth:     4
- IndentWrappedFunctionNames: false
- InsertTrailingCommas: None
- JavaScriptQuotes: Leave
- JavaScriptWrapImports: true
- KeepEmptyLinesAtTheStartOfBlocks: true
- MacroBlockBegin: ''
- MacroBlockEnd:   ''
- MaxEmptyLinesToKeep: 1
- NamespaceIndentation: All
- ObjCBinPackProtocolList: Auto
- ObjCBlockIndentWidth: 4
- ObjCBreakBeforeNestedBlockParam: true
- ObjCSpaceAfterProperty: false
- ObjCSpaceBeforeProtocolList: true
- PenaltyBreakAssignment: 4
- PenaltyBreakBeforeFirstCallParameter: 19
- PenaltyBreakComment: 300
- PenaltyBreakFirstLessLess: 120
- PenaltyBreakString: 1000
- PenaltyBreakTemplateDeclaration: 10
- PenaltyExcessCharacter: 1000000
- PenaltyReturnTypeOnItsOwnLine: 60
- PenaltyIndentedWhitespace: 0
- PointerAlignment: Middle
- ReflowComments:  true
- SortIncludes:    true
- SortJavaStaticImport: Before
- SortUsingDeclarations: true
- SpaceAfterCStyleCast: false
- SpaceAfterLogicalNot: false
- SpaceAfterTemplateKeyword: true
- SpaceBeforeAssignmentOperators: true
- SpaceBeforeCaseColon: false
- SpaceBeforeCpp11BracedList: false
- SpaceBeforeCtorInitializerColon: true
- SpaceBeforeInheritanceColon: true
- SpaceBeforeParens: ControlStatements
- SpaceAroundPointerQualifiers: Default
- SpaceBeforeRangeBasedForLoopColon: true
- SpaceInEmptyBlock: false
- SpaceInEmptyParentheses: false
- SpacesBeforeTrailingComments: 1
- SpacesInAngles:  false
- SpacesInConditionalStatement: false
- SpacesInContainerLiterals: true
- SpacesInCStyleCastParentheses: false
- SpacesInParentheses: false
- SpacesInSquareBrackets: false
- SpaceBeforeSquareBrackets: false
- BitFieldColonSpacing: Both
- Standard:        Latest
- StatementMacros:
-   - Q_UNUSED
-   - QT_REQUIRE_VERSION
- TabWidth:        4
- UseCRLF:         false
- UseTab:          Never
- WhitespaceSensitiveMacros:
-   - STRINGIZE
-   - PP_STRINGIZE
-   - BOOST_PP_STRINGIZE
-   - NS_SWIFT_NAME
-   - CF_SWIFT_NAME
- ...
- [[/code]]
+---
+Language:        Cpp
+# BasedOnStyle:  LLVM
+AccessModifierOffset: -4
+AlignAfterOpenBracket: Align
+AlignConsecutiveMacros: true
+AlignConsecutiveAssignments: None
+AlignConsecutiveBitFields: None
+AlignConsecutiveDeclarations: None
+AlignEscapedNewlines: Right
+AlignOperands:   Align
+AlignTrailingComments: false
+AllowAllArgumentsOnNextLine: true
+AllowAllConstructorInitializersOnNextLine: true
+AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortEnumsOnASingleLine: true
+AllowShortBlocksOnASingleLine: Never
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: All
+AllowShortLambdasOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+AlwaysBreakAfterDefinitionReturnType: None
+AlwaysBreakAfterReturnType: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: MultiLine
+AttributeMacros:
+  - __capability
+BinPackArguments: true
+BinPackParameters: true
+BraceWrapping:
+  AfterCaseLabel:  false
+  AfterClass:      false
+  AfterControlStatement: Never
+  AfterEnum:       false
+  AfterFunction:   false
+  AfterNamespace:  false
+  AfterObjCDeclaration: false
+  AfterStruct:     false
+  AfterUnion:      false
+  AfterExternBlock: false
+  BeforeCatch:     true
+  BeforeElse:      true
+  BeforeLambdaBody: false
+  BeforeWhile:     false
+  IndentBraces:    false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+BreakBeforeBinaryOperators: None
+BreakBeforeConceptDeclarations: true
+BreakBeforeBraces: Custom
+BreakBeforeInheritanceComma: false
+BreakInheritanceList: BeforeColon
+BreakBeforeTernaryOperators: false
+BreakConstructorInitializersBeforeComma: false
+BreakConstructorInitializers: BeforeColon
+BreakAfterJavaFieldAnnotations: false
+BreakStringLiterals: false
+ColumnLimit:     0
+CommentPragmas:  '^ IWYU pragma:'
+CompactNamespaces: false
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+ConstructorInitializerIndentWidth: 4
+ContinuationIndentWidth: 4
+Cpp11BracedListStyle: true
+DeriveLineEnding: true
+DerivePointerAlignment: false
+DisableFormat:   false
+EmptyLineBeforeAccessModifier: LogicalBlock
+ExperimentalAutoDetectBinPacking: false
+FixNamespaceComments: false
+ForEachMacros:
+  - foreach
+  - Q_FOREACH
+  - BOOST_FOREACH
+StatementAttributeLikeMacros:
+  - Q_EMIT
+IncludeBlocks:   Preserve
+IncludeCategories:
+  - Regex:           '^"(llvm|llvm-c|clang|clang-c)/'
+    Priority:        2
+    SortPriority:    0
+    CaseSensitive:   false
+  - Regex:           '^(<|"(gtest|gmock|isl|json)/)'
+    Priority:        3
+    SortPriority:    0
+    CaseSensitive:   false
+  - Regex:           '.*'
+    Priority:        1
+    SortPriority:    0
+    CaseSensitive:   false
+IncludeIsMainRegex: '(Test)?$'
+IncludeIsMainSourceRegex: ''
+IndentCaseLabels: false
+IndentCaseBlocks: true
+IndentGotoLabels: true
+IndentPPDirectives: None
+IndentExternBlock: AfterExternBlock
+IndentRequires:  false
+IndentWidth:     4
+IndentWrappedFunctionNames: false
+InsertTrailingCommas: None
+JavaScriptQuotes: Leave
+JavaScriptWrapImports: true
+KeepEmptyLinesAtTheStartOfBlocks: true
+MacroBlockBegin: ''
+MacroBlockEnd:   ''
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: All
+ObjCBinPackProtocolList: Auto
+ObjCBlockIndentWidth: 4
+ObjCBreakBeforeNestedBlockParam: true
+ObjCSpaceAfterProperty: false
+ObjCSpaceBeforeProtocolList: true
+PenaltyBreakAssignment: 4
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakComment: 300
+PenaltyBreakFirstLessLess: 120
+PenaltyBreakString: 1000
+PenaltyBreakTemplateDeclaration: 10
+PenaltyExcessCharacter: 1000000
+PenaltyReturnTypeOnItsOwnLine: 60
+PenaltyIndentedWhitespace: 0
+PointerAlignment: Middle
+ReflowComments:  true
+SortIncludes:    true
+SortJavaStaticImport: Before
+SortUsingDeclarations: true
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: true
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeParens: ControlStatements
+SpaceAroundPointerQualifiers: Default
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceInEmptyBlock: false
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 1
+SpacesInAngles:  false
+SpacesInConditionalStatement: false
+SpacesInContainerLiterals: true
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+SpacesInSquareBrackets: false
+SpaceBeforeSquareBrackets: false
+BitFieldColonSpacing: Both
+Standard:        Latest
+StatementMacros:
+  - Q_UNUSED
+  - QT_REQUIRE_VERSION
+TabWidth:        4
+UseCRLF:         false
+UseTab:          Never
+WhitespaceSensitiveMacros:
+  - STRINGIZE
+  - PP_STRINGIZE
+  - BOOST_PP_STRINGIZE
+  - NS_SWIFT_NAME
+  - CF_SWIFT_NAME
+...
+[[/code]]
 
- + 参考资料
++ 参考资料
 
 [*https://clang.llvm.org/docs/ClangFormat.html Clang-Format官方文档]
 
- [*https://clang.llvm.org/docs/ClangFormatStyleOptions.html .clang-format文件配置信息文档]
+[*https://clang.llvm.org/docs/ClangFormatStyleOptions.html .clang-format文件配置信息文档]
 
- [*https://blog.csdn.net/weixin_44222700/article/details/123156050 VSCode+Clang-Format基本配置]
+[*https://blog.csdn.net/weixin_44222700/article/details/123156050 VSCode+Clang-Format基本配置]
 
- [*https://blog.csdn.net/weixin_43717839/article/details/129382657 Clang-Format格式配置文件详解]
+[*https://blog.csdn.net/weixin_43717839/article/details/129382657 Clang-Format格式配置文件详解]
 
- [*https://blog.csdn.net/qq_35697978/article/details/117948646 “没有安装用于c/cpp文件的格式化程序”问题处理] 
+[*https://blog.csdn.net/qq_35697978/article/details/117948646 “没有安装用于c/cpp文件的格式化程序”问题处理]

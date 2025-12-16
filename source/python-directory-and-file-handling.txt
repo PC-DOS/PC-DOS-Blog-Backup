@@ -10,21 +10,21 @@ import shutil
 
 # Check existence of file or directory
 def IsFileOrDirectoryExists(sPath : str) :
-    return os.path.exists(sPath)
+    return os.path.exists(sPath)
 #End Function
 
 # Create nested directories
 def CreateDirectory(sPath : str) :
-    if not IsFileOrDirectoryExists(sPath) :
-        os.makedirs(sPath, exist_ok=True)
-    #End If
+    if not IsFileOrDirectoryExists(sPath) :
+        os.makedirs(sPath, exist_ok=True)
+    #End If
 #End Sub
 
 # Remove nested directories
 def RemoveDirectory(sPath : str) :
-    if IsFileOrDirectoryExists(sPath) :
-        shutil.rmtree(sPath, ignore_errors=True)
-    #End If
+    if IsFileOrDirectoryExists(sPath) :
+        shutil.rmtree(sPath, ignore_errors=True)
+    #End If
 #End Sub
 [[/code]]
 
@@ -47,19 +47,19 @@ Python提供了不同的方案获取脚本执行路径，不同方案的获取�
 [[code type="python"]]
 # Get current script's working directory
 def GetCurrentScriptWorkingDir(sTarget : str = "") -> str :
-    sTarget = sTarget.upper()
+    sTarget = sTarget.upper()
 
-    if sTarget == "CMDLINE" :
-        sPath = os.getcwd()
-    elif sTarget == "ROOTSCRIPT" :
-        sPath = sys.path[0]
-    elif sTarget == "THISSCRIPT" :
-        sPath = os.path.split(os.path.realpath(__file__))[0]
-    else :
-        sPath = os.getcwd()
-    #End If
+    if sTarget == "CMDLINE" :
+        sPath = os.getcwd()
+    elif sTarget == "ROOTSCRIPT" :
+        sPath = sys.path[0]
+    elif sTarget == "THISSCRIPT" :
+        sPath = os.path.split(os.path.realpath(__file__))[0]
+    else :
+        sPath = os.getcwd()
+    #End If
 
-    return sPath
+    return sPath
 #End Function
 [[/code]]
 
@@ -72,7 +72,7 @@ Python的{{[*https://docs.python.org/3/library/glob.html#glob.glob glob.glob()]}
 [[code type="python"]]
 # Enumerate files and directories under specified directory
 def EnumerateFilesAndDirectories(sEnumerateTerm : str, sRootPath : str = None, DoRecursiveEnumerate : bool = False, IncludeHiddenItems : bool = False) -> array :
-    return glob.glob(sEnumerateTerm, root_dir=sRootPath, recursive=DoRecursiveEnumerate, include_hidden=IncludeHiddenItems)
+    return glob.glob(sEnumerateTerm, root_dir=sRootPath, recursive=DoRecursiveEnumerate, include_hidden=IncludeHiddenItems)
 #End Function
 [[/code]]
 

@@ -40,6 +40,8 @@ time /T
 echo=
 
 pause > NUL
-[[/code]]参考资料：
+[[/code]]
 
-*https://stackoverflow.com/questions/38618885/error-rpc-failed-curl-transfer-closed-with-outstanding-read-data-remaining/39255923#39255923 
+参考资料：
+
+*https://stackoverflow.com/questions/38618885/error-rpc-failed-curl-transfer-closed-with-outstanding-read-data-remaining/39255923#39255923

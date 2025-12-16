@@ -3,8 +3,8 @@
 **处理方法：**在资源管理器中导航到{{C:\Qt\4.8.7\bin\}}，创建一个名为{{qt.conf}}的文件，输入以下内容并保存，随后在Qt Creator中重新添加{{C:\Qt\4.8.7\bin\qmake.exe}}即可。
 
 [[code]]
- [paths]
- Prefix = ..
- [[/code]]
+[paths]
+Prefix = ..
+[[/code]]
 
- **参考资料：***https://ask.csdn.net/questions/7635646 
+**参考资料：***https://ask.csdn.net/questions/7635646

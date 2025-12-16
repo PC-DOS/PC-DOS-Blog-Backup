@@ -1,115 +1,115 @@
 为了生成可综合的数字电路，在基于Verilog编写的时序逻辑电路中，通常只应将时钟信号和异步控制信号（如异步复位信号）作为{{always}}语句的触发信号。为此，对于如启动、数据准备完毕等触发型信号，需要进行边沿检测。
 
- 可以通过记录触发型信号在当前时钟周期的前两个周期内的状态，并进行逻辑运算的方式进行边沿检测。其逻辑关系为：
+可以通过记录触发型信号在当前时钟周期的前两个周期内的状态，并进行逻辑运算的方式进行边沿检测。其逻辑关系为：
 
- 对于输入信号{{iSig}}，使用寄存器{{rSig1ClockBefore}}、{{rSig2ClocksBefore}}表示{{iSig}}分别在1个、2个时钟前的状态，高电平有效输出{{oIsPosEdgeDetected}}、{{oIsNegEdgeDetected}}、{{oIsAnyEdgeDetected}}表述输入信号{{iSig}}的上升沿、下降沿、任意边沿检测状态，则有：
-
-[[code]]
- oIsPosEdgeDetected = ~rSig2ClocksBefore & rSig1ClockBefore;
- oIsNegEdgeDetected = rSig2ClocksBefore & ~rSig1ClockBefore;
- oIsAnyEdgeDetected = oIsPosEdgeDetected  | oIsNegEdgeDetected;
- [[/code]]
-
- Verilog代码：
+对于输入信号{{iSig}}，使用寄存器{{rSig1ClockBefore}}、{{rSig2ClocksBefore}}表示{{iSig}}分别在1个、2个时钟前的状态，高电平有效输出{{oIsPosEdgeDetected}}、{{oIsNegEdgeDetected}}、{{oIsAnyEdgeDetected}}表述输入信号{{iSig}}的上升沿、下降沿、任意边沿检测状态，则有：
 
 [[code]]
- `timescale 1ns / 1ps
- //////////////////////////////////////////////////////////////////////////////////
- // Company: SCP Foundation Equestria Branch
- // Engineer: Picsell Dois
- // 
- // Create Date: 2023/01/14 18:19:02
- // Design Name: 
- // Module Name: EdgeDetector
- // Project Name: 
- // Target Devices: 
- // Tool Versions: 
- // Description: Executes edge detection for signal iSignalToDetect.
- //              Outputs status:
- //              oIsPosEdgeDetected set to high: rising edge detected
- //              oIsNegEdgeDetected set to high: falling edge detected
- //              oIsAnyEdgeDetected set to high: edge detected
- // 
- // Dependencies: 
- // 
- // Revision:
- // Revision 0.01 - File Created
- // Additional Comments: Reference https://blog.csdn.net/qq_26652069/article/details/100555881
- // 
- //////////////////////////////////////////////////////////////////////////////////
+oIsPosEdgeDetected = ~rSig2ClocksBefore & rSig1ClockBefore;
+oIsNegEdgeDetected = rSig2ClocksBefore & ~rSig1ClockBefore;
+oIsAnyEdgeDetected = oIsPosEdgeDetected  | oIsNegEdgeDetected;
+[[/code]]
 
- module EdgeDetector(
-     input iClock,
-     input iReset,
-     input iSignalToDetect,
-     output reg oIsPosEdgeDetected,
-     output reg oIsNegEdgeDetected,
-     output reg oIsAnyEdgeDetected
-     );
-     
-     //Registers to storage the level of iSignalToDetect in 1 clock before (rSignalPrevStatus[0]) and 2 clocks before (rSignalPrevStatus[1])
-     reg [1:0] rSignalPrevStatus;
-     
-     //Use clock to synchronize status
-     always @ (posedge iClock) begin
-         //Check if reset requested
-         if (iReset) begin
-             rSignalPrevStatus <= 2'b00;
-             oIsPosEdgeDetected <= 1'b0;
-             oIsNegEdgeDetected <= 1'b0;
-             oIsAnyEdgeDetected <= 1'b0;
-         end
-         else begin
-             //Move level of iSignalToDetect 1 clock before to 2 clocks before, save current level of iSignalToDetect as 1 clock before
-             rSignalPrevStatus <= {rSignalPrevStatus[0], iSignalToDetect};
-             //Update output registers
-             oIsPosEdgeDetected <= ~rSignalPrevStatus[1] & rSignalPrevStatus[0];
-             oIsNegEdgeDetected <= rSignalPrevStatus[1] & ~rSignalPrevStatus[0];
-             oIsAnyEdgeDetected <= oIsPosEdgeDetected | oIsNegEdgeDetected;
-         end
-     end
-     
- endmodule
- [[/code]]
+Verilog代码：
+
+[[code]]
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: SCP Foundation Equestria Branch
+// Engineer: Picsell Dois
+// 
+// Create Date: 2023/01/14 18:19:02
+// Design Name: 
+// Module Name: EdgeDetector
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: Executes edge detection for signal iSignalToDetect.
+//              Outputs status:
+//              oIsPosEdgeDetected set to high: rising edge detected
+//              oIsNegEdgeDetected set to high: falling edge detected
+//              oIsAnyEdgeDetected set to high: edge detected
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments: Reference https://blog.csdn.net/qq_26652069/article/details/100555881
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+module EdgeDetector(
+    input iClock,
+    input iReset,
+    input iSignalToDetect,
+    output reg oIsPosEdgeDetected,
+    output reg oIsNegEdgeDetected,
+    output reg oIsAnyEdgeDetected
+    );
+    
+    //Registers to storage the level of iSignalToDetect in 1 clock before (rSignalPrevStatus[0]) and 2 clocks before (rSignalPrevStatus[1])
+    reg [1:0] rSignalPrevStatus;
+    
+    //Use clock to synchronize status
+    always @ (posedge iClock) begin
+        //Check if reset requested
+        if (iReset) begin
+            rSignalPrevStatus <= 2'b00;
+            oIsPosEdgeDetected <= 1'b0;
+            oIsNegEdgeDetected <= 1'b0;
+            oIsAnyEdgeDetected <= 1'b0;
+        end
+        else begin
+            //Move level of iSignalToDetect 1 clock before to 2 clocks before, save current level of iSignalToDetect as 1 clock before
+            rSignalPrevStatus <= {rSignalPrevStatus[0], iSignalToDetect};
+            //Update output registers
+            oIsPosEdgeDetected <= ~rSignalPrevStatus[1] & rSignalPrevStatus[0];
+            oIsNegEdgeDetected <= rSignalPrevStatus[1] & ~rSignalPrevStatus[0];
+            oIsAnyEdgeDetected <= oIsPosEdgeDetected | oIsNegEdgeDetected;
+        end
+    end
+    
+endmodule
+[[/code]]
 
 测试模块（Testbench）：
 
 [[code]]
- module Testbench_EdgeDetector(
+module Testbench_EdgeDetector(
 
-     );
-     reg rIsADCDoneN;
-     reg rClock;
-     reg rReset;
-     wire wPos, wNeg, wAny;
-     
-     EdgeDetector ed1(.iClock(rClock),
-                      .iReset(rReset),
-                      .iSignalToDetect(rIsADCDoneN),
-                      .oIsPosEdgeDetected(wPos),
-                      .oIsNegEdgeDetected(wNeg),
-                      .oIsAnyEdgeDetected(wAny)
-     );
-     
-     initial begin
-         rClock = 0;
-         rReset = 1;
-         rIsADCDoneN=1;
-         
-         #200 rReset = 0;
-         
-         #50 rIsADCDoneN = 0;
-         #50 rIsADCDoneN = 1;
-         #50 rIsADCDoneN = 0;
-         #50 rIsADCDoneN = 1;
-         #50 rIsADCDoneN = 0;
-         #50 rIsADCDoneN = 1;
-         
-     end
-     
-     always #1 rClock = ~rClock;
-     
- endmodule
- [[/code]]
+    );
+    reg rIsADCDoneN;
+    reg rClock;
+    reg rReset;
+    wire wPos, wNeg, wAny;
+    
+    EdgeDetector ed1(.iClock(rClock),
+                     .iReset(rReset),
+                     .iSignalToDetect(rIsADCDoneN),
+                     .oIsPosEdgeDetected(wPos),
+                     .oIsNegEdgeDetected(wNeg),
+                     .oIsAnyEdgeDetected(wAny)
+    );
+    
+    initial begin
+        rClock = 0;
+        rReset = 1;
+        rIsADCDoneN=1;
+        
+        #200 rReset = 0;
+        
+        #50 rIsADCDoneN = 0;
+        #50 rIsADCDoneN = 1;
+        #50 rIsADCDoneN = 0;
+        #50 rIsADCDoneN = 1;
+        #50 rIsADCDoneN = 0;
+        #50 rIsADCDoneN = 1;
+        
+    end
+    
+    always #1 rClock = ~rClock;
+    
+endmodule
+[[/code]]
 
-参考资料：https://blog.csdn.net/qq_26652069/article/details/100555881 
+参考资料：https://blog.csdn.net/qq_26652069/article/details/100555881

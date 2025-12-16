@@ -3,29 +3,29 @@
 **故障处理：**手动编辑{{/etc/X11/Xwrapper.config}}：
 
 [[code]]
- sudo gedit /etc/X11/Xwrapper.config 
- [[/code]]
+sudo gedit /etc/X11/Xwrapper.config 
+[[/code]]
 
 在文件内{{allowed_users=console}}行前添加一行：
 
 [[code]]
- needs_root_rights=yes
- [[/code]]
+needs_root_rights=yes
+[[/code]]
 
 保存该文件并重新启动计算机，风扇转速和功耗值即可被{{nvidia-smi}}读取，且NVIDIA X Server Settings可以正常设置手动风扇转速。
 
- 如果依然存在问题，可以考虑编辑{{/usr/share/X11/xorg.conf.d/10-nvidia.conf}}：
+如果依然存在问题，可以考虑编辑{{/usr/share/X11/xorg.conf.d/10-nvidia.conf}}：
 
 [[code]]
- sudo gedit /usr/share/X11/xorg.conf.d/10-nvidia.conf
- [[/code]]
+sudo gedit /usr/share/X11/xorg.conf.d/10-nvidia.conf
+[[/code]]
 
 在文件内{{EndSection}}行前添加一行：
 
 [[code]]
-     Option     "Coolbits" "4"
- [[/code]]
+    Option     "Coolbits" "4"
+[[/code]]
 
 保存该文件并重新启动计算机。
 
-**参考资料：** *https://forums.developer.nvidia.com/t/geforce-gtx-1660-super-nvidia-error-in-ubuntu-22-04-failed-to-set-new-fan-speed/216326 
+**参考资料：** *https://forums.developer.nvidia.com/t/geforce-gtx-1660-super-nvidia-error-in-ubuntu-22-04-failed-to-set-new-fan-speed/216326

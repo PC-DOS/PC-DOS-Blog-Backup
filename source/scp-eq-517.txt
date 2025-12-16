@@ -1,74 +1,74 @@
-[[include :scp-equestria:component:change-header-title
-      |HeaderTitle=联合控制 · 收容 · 安保倡议协会
+[[include <a href="http://scp-equestria.wikidot.com/component:change-header-title">:scp-equestria:component:change-header-title</a>
+     |HeaderTitle=联合控制 · 收容 · 安保倡议协会
 ]]
 
- [[include :scp-equestria:component:change-header-subtitle
-      |HeaderSubtitle=尽一切可能在种族间维持控制与收容，以及常态的保护
+[[include <a href="http://scp-equestria.wikidot.com/component:change-header-subtitle">:scp-equestria:component:change-header-subtitle</a>
+     |HeaderSubtitle=尽一切可能在种族间维持控制与收容，以及常态的保护
 ]]
 
- [[include :scp-equestria:component:change-header-logo
-      |HeaderLogoURL=http://scp-equestria.wdfiles.com/local--files/about-the-scp-foundation/SCP_LOGO_EQ_TEMP_BW_100px.png
- ]]
+[[include <a href="http://scp-equestria.wikidot.com/component:change-header-logo">:scp-equestria:component:change-header-logo</a>
+     |HeaderLogoURL=http://scp-equestria.wdfiles.com/local--files/about-the-scp-foundation/SCP_LOGO_EQ_TEMP_BW_100px.png
+]]
 
- [[include :scp-equestria:component:change-header-responsive-config
-      |FontSizeDefault=150%
-      |FontSize479px=70%
-      |FontSize580px=85%
-      |FontSize767px=95%
-      |FontSize1240px=105%
-      |SubFontSizeDefault=15px
-      |SubFontSize479px=12px
-      |SubFontSize580px=14px
-      |SubFontSize767px=14px
-      |SubFontSize1240px=15px
- ]]
+[[include <a href="http://scp-equestria.wikidot.com/component:change-header-responsive-config">:scp-equestria:component:change-header-responsive-config</a>
+     |FontSizeDefault=150%
+     |FontSize479px=70%
+     |FontSize580px=85%
+     |FontSize767px=95%
+     |FontSize1240px=105%
+     |SubFontSizeDefault=15px
+     |SubFontSize479px=12px
+     |SubFontSize580px=14px
+     |SubFontSize767px=14px
+     |SubFontSize1240px=15px
+]]
 
- [[module css]]
- html body#html-body div#skrollr-body div#container-wrap-wrap div#container-wrap div#container div#content-wrap div#main-content div#page-content div div.collapsible-block div.collapsible-block-unfolded div.collapsible-block-unfolded-link{
-     display: none;
- }
- [[/module]]
+[[module css]]
+html body#html-body div#skrollr-body div#container-wrap-wrap div#container-wrap div#container div#content-wrap div#main-content div#page-content div div.collapsible-block div.collapsible-block-unfolded div.collapsible-block-unfolded-link{
+    display: none;
+}
+[[/module]]
 
- [[>]]
- [[module Rate]]
- [[/>]]
+[[>]]
+[[module Rate]]
+[[/>]]
 
- [[div style="border:solid 1px #999999; background:#f2f2c2; padding:5px; margin-bottom: 10px;"]]
- [[=]]
- [[size larger]] **来自协会记录和信息安全管理委员会的通知** [[/size]]
- [[/=]]
+[[div style="border:solid 1px #999999; background:#f2f2c2; padding:5px; margin-bottom: 10px;"]]
+[[=]]
+[[size larger]] **来自协会记录和信息安全管理委员会的通知** [[/size]]
+[[/=]]
 
- [[=]]
- [[size x-large]] **本文档可能存在传染性模因** [[/size]]
- [[/=]]
+[[=]]
+[[size x-large]] **本文档可能存在传染性模因** [[/size]]
+[[/=]]
 
 本文档内可能存在SCP-EQ-517所指代的传染性模因的整体或部分，为避免模因内容通过本文档传播，已将DNE-EQU-5170001模因疫苗部署在本通知内。
 
- 请目视下方内容进行模因疫苗接种。
+请目视下方内容进行模因疫苗接种。
 
 [[=]]
- **{{B64B64UlZGVlJWTlVVa2xC}}**
- **{{SUVSUFJWTWdUazlVSUVWWV}}**
- **{{NWTlVJREF3TURBd05BPT0=}}**
- [[/=]]
+**{{B64B64UlZGVlJWTlVVa2xC}}**
+**{{SUVSUFJWTWdUazlVSUVWWV}}**
+**{{NWTlVJREF3TURBd05BPT0=}}**
+[[/=]]
 
 本文档的阅读界面已自动锁定，锁定式文档读取环境已启动，请不要惊慌。
 
- 退出本界面须通过嵌入在本文档尾部的认知稳定性测试。
+退出本界面须通过嵌入在本文档尾部的认知稳定性测试。
 
 [[/div]]
 
- **项目编号：**SCP-EQ-517
+**项目编号：**SCP-EQ-517
 
- **项目等级：**Da'aS Elyon[[footnote]]经协会跨种族事务协调理事会评估决定，鉴于SCP-EQ-517已被公众广泛认知为“童话故事”或“传说”，不再有必要对SCP-EQ-517进行收容。故给予Da'aS Elyon分级，以表示项目无法实际上被收容，且必须引导公众相信其为非异常。有关详细信息，请参阅本文正文的描述。[[/footnote]]
+**项目等级：**Da'aS Elyon[[footnote]]经协会跨种族事务协调理事会评估决定，鉴于SCP-EQ-517已被公众广泛认知为“童话故事”或“传说”，不再有必要对SCP-EQ-517进行收容。故给予Da'aS Elyon分级，以表示项目无法实际上被收容，且必须引导公众相信其为非异常。有关详细信息，请参阅本文正文的描述。[[/footnote]]
 
- **管控措施：**由于SCP-EQ-517在公众群体内已发生广泛传播，且进行整体记忆清除措施所需的跨种族协调成本过大。故协会目前尚无法对SCP-EQ-517建立有效的收容措施。
+**管控措施：**由于SCP-EQ-517在公众群体内已发生广泛传播，且进行整体记忆清除措施所需的跨种族协调成本过大。故协会目前尚无法对SCP-EQ-517建立有效的收容措施。
 
- 根据协会跨种族事务协调理事会的决议，DNE-EQU-5170001模因疫苗已由协会所辖的模因研究机构研制成功，并已通过大众媒体、互联网络、通信网络等渠道在协会内部与外部进行分发。该模因疫苗引导接种者将SCP-EQ-517自身及所有宣称与SCP-EQ-517存在的事物及信息视为虚构。以期阻止SCP-EQ-517相关信息的传播以及公众对SCP-EQ-517自身及其相关信息的探究。目前的评估表明，SCP-EQ-517的相关信息在公众群体内据信已泛娱乐化。
+根据协会跨种族事务协调理事会的决议，DNE-EQU-5170001模因疫苗已由协会所辖的模因研究机构研制成功，并已通过大众媒体、互联网络、通信网络等渠道在协会内部与外部进行分发。该模因疫苗引导接种者将SCP-EQ-517自身及所有宣称与SCP-EQ-517存在的事物及信息视为虚构。以期阻止SCP-EQ-517相关信息的传播以及公众对SCP-EQ-517自身及其相关信息的探究。目前的评估表明，SCP-EQ-517的相关信息在公众群体内据信已泛娱乐化。
 
- 对公开宣称与SCP-EQ-517存在关联的个体应依照标准马类个体或标准物品回收、收容与管理措施进行管控。对于受SCP-EQ-517影响，并被协会模因研究、诊断和分析机构评估为SCP-EQ-517所携模因II级及以上感染/携带者的对象须接受B级及以上等级的定向记忆消除治疗。
+对公开宣称与SCP-EQ-517存在关联的个体应依照标准马类个体或标准物品回收、收容与管理措施进行管控。对于受SCP-EQ-517影响，并被协会模因研究、诊断和分析机构评估为SCP-EQ-517所携模因II级及以上感染/携带者的对象须接受B级及以上等级的定向记忆消除治疗。
 
- 协会及各分支机构将尽可能介入和指导所有涉及协和历800年至2100年间的历史的考古学、历史学、民俗学的研究、勘探、调查和发掘工作。所有潜在的SCP-EQ-517-B个体将由协会回收并建立管控措施。
+协会及各分支机构将尽可能介入和指导所有涉及协和历800年至2100年间的历史的考古学、历史学、民俗学的研究、勘探、调查和发掘工作。所有潜在的SCP-EQ-517-B个体将由协会回收并建立管控措施。
 
 **项目描述：**SCP-EQ-517是一被称为“小马利亚（//Equestria//）”的国家及其相关地理、文化、历史、自然、政治、马物等信息组成的传染性模因。
 
@@ -84,17 +84,17 @@ SCP-EQ-517的经济发展状况被描述为“较好”的，并且在对SCP-EQ-
 
 SCP-EQ-517所记述的相关内容已在民间范围内，跨越各种族所处的地域发生传播。并被广泛地成为图书、影视剧和电子游戏等文化娱乐产品的创作题材。
 
- 在传统的民俗学研究中，通常将SCP-EQ-517视为民众对种族间争端的消弭的愿景，以及传统的“友情可以战胜一切”范式下的故事（或俗称的“都市传说”）而进行研究[[footnote]]Stor Stream. 友谊和魔法——“小马利亚”传言的民俗学研究[M]. 马兰顿:清鞍江文学院. 2542.[[/footnote]]。SCP-EQ-517自身诞生和广泛传播的时间段目前尚无定论。有学者考证指出，成书于约500年前的《驱寒夜话（//Lameto ho Deicenito//，又译“围炉夜话”）》第12章《破雪迎光成佳节》中即存在“三族协和，国定民安，友谊成就驱寒佳节”、“推举国君，行作日月，河清海晏耀新城”等记述。该记述被认为是目前发现的最早的有关SCP-EQ-517的文字记载。但是，由于《驱寒夜话》一书为对民间传说和故事的汇编，且其对SCP-EQ-517的记述已较为完整和成体系。因此，有学者认为，SCP-EQ-517的实际流传时间应更早。
+在传统的民俗学研究中，通常将SCP-EQ-517视为民众对种族间争端的消弭的愿景，以及传统的“友情可以战胜一切”范式下的故事（或俗称的“都市传说”）而进行研究[[footnote]]Stor Stream. 友谊和魔法——“小马利亚”传言的民俗学研究[M]. 马兰顿:清鞍江文学院. 2542.[[/footnote]]。SCP-EQ-517自身诞生和广泛传播的时间段目前尚无定论。有学者考证指出，成书于约500年前的《驱寒夜话（//Lameto ho Deicenito//，又译“围炉夜话”）》第12章《破雪迎光成佳节》中即存在“三族协和，国定民安，友谊成就驱寒佳节”、“推举国君，行作日月，河清海晏耀新城”等记述。该记述被认为是目前发现的最早的有关SCP-EQ-517的文字记载。但是，由于《驱寒夜话》一书为对民间传说和故事的汇编，且其对SCP-EQ-517的记述已较为完整和成体系。因此，有学者认为，SCP-EQ-517的实际流传时间应更早。
 
 SCP-EQ-517的传说部分的内容及其传播最初未受到协会的关注。其被协会注意到是由于2547年以来在各种族辖区内发现的与SCP-EQ-517所记述的“小马利亚”相关的物件。这些物件被编为SCP-EQ-517-B。
 
- 这些物件的种类包括饰品、布/丝织品、雕像、器皿等，并包括少量体量较大的大型雕塑、交通工具、建筑或建筑构件的残骸或遗址。这些物件大多以外形、铭文、图样等方式直接或间接地反应了SCP-EQ-517所记载并大规模传播的马物、地点、风貌、事件、物品等。对于可有效判定形成时间的物件，其形成时间均位于SCP-EQ-517所记述的“小马利亚”存续的时间段内。需注意的是，这些物品的发现地点大多位于SCP-EQ-517反复记载和提及的重要位置（如城镇、道路、林地、洞窟等），并且部分区域在历史上并无有能力制造相应物品的马类大规模活动的记录。
+这些物件的种类包括饰品、布/丝织品、雕像、器皿等，并包括少量体量较大的大型雕塑、交通工具、建筑或建筑构件的残骸或遗址。这些物件大多以外形、铭文、图样等方式直接或间接地反应了SCP-EQ-517所记载并大规模传播的马物、地点、风貌、事件、物品等。对于可有效判定形成时间的物件，其形成时间均位于SCP-EQ-517所记述的“小马利亚”存续的时间段内。需注意的是，这些物品的发现地点大多位于SCP-EQ-517反复记载和提及的重要位置（如城镇、道路、林地、洞窟等），并且部分区域在历史上并无有能力制造相应物品的马类大规模活动的记录。
 
- 对这些SCP-EQ-517-B物品的起源尚存争议。一些协会学者认为，这些物品可能反映了当时的马类对SCP-EQ-517的记载马物及其活动范围和事迹的宗教信仰式的崇拜，并在当时通过类似祭拜的方式表达敬意和向往的事实。这些学者据此观点认为这些物件应为当时所用的祭祀用品和祭祀场所的残留。由于历史学方面文献的缺乏，对于该观点的论证仍然存在史料方面的缺陷。
+对这些SCP-EQ-517-B物品的起源尚存争议。一些协会学者认为，这些物品可能反映了当时的马类对SCP-EQ-517的记载马物及其活动范围和事迹的宗教信仰式的崇拜，并在当时通过类似祭拜的方式表达敬意和向往的事实。这些学者据此观点认为这些物件应为当时所用的祭祀用品和祭祀场所的残留。由于历史学方面文献的缺乏，对于该观点的论证仍然存在史料方面的缺陷。
 
- 另一种观点从魔法学基本原理中的“观念影响物质”观点和“集体观念造物”观点[[footnote]]Visi Mag, Las Unic, Nom Runes, 等. 观念造物魔法学导论[M]. 协会:日海魔法学研究所. 2517.[[/footnote]]出发，认为这些物件系早年各种族间尚通行魔法，并保持极好关系的“蜜月期”时，由各种族间对建立如SCP-EQ-517所述的统一的马类国家的向往所致，伴随SCP-EQ-517故事的形成、发展和传播而形成的观念造物。但是，由于“观念造物”理论在实践方面尚未获得有关能够达到SCP-EQ-517-B的数量和体量的造物的记录，该理论对SCP-EQ-517-B的形成的可能性无法给出有意义的解释，并因此得到了较为广泛的理论。
+另一种观点从魔法学基本原理中的“观念影响物质”观点和“集体观念造物”观点[[footnote]]Visi Mag, Las Unic, Nom Runes, 等. 观念造物魔法学导论[M]. 协会:日海魔法学研究所. 2517.[[/footnote]]出发，认为这些物件系早年各种族间尚通行魔法，并保持极好关系的“蜜月期”时，由各种族间对建立如SCP-EQ-517所述的统一的马类国家的向往所致，伴随SCP-EQ-517故事的形成、发展和传播而形成的观念造物。但是，由于“观念造物”理论在实践方面尚未获得有关能够达到SCP-EQ-517-B的数量和体量的造物的记录，该理论对SCP-EQ-517-B的形成的可能性无法给出有意义的解释，并因此得到了较为广泛的理论。
 
- 所有已发现的SCP-EQ-517-B个体，无论其外观、性状等如何，均呈现出一种同质性的传染性模因效应（即SCP-EQ-517），这种传染性模因的感染者的通常临床症状包括但不限于：
+所有已发现的SCP-EQ-517-B个体，无论其外观、性状等如何，均呈现出一种同质性的传染性模因效应（即SCP-EQ-517），这种传染性模因的感染者的通常临床症状包括但不限于：
 
 * 极端相信SCP-EQ-517的存在，并因此认为当前的、否认SCP-EQ-517的历史记载是虚构的。
 * 认为SCP-EQ-517存续时的社会状况远好于当前的社会现状，并产生强烈的将当前社会形态扭转为SCP-EQ-517的社会形态。
@@ -103,7 +103,7 @@ SCP-EQ-517的传说部分的内容及其传播最初未受到协会的关注。�
 
 SCP-EQ-517的影响目前被认为是可逆的。在当前的临床实践中，基于UMCM通用模因抹消技术的B级的定向记忆消除治疗可以无副作用地清除SCP-EQ-517的影响。
 
- 目前，SCP-EQ-517的内容在公众范围内的传播水平仍然处于可被观测到的级别。但是，由于DNE-EQU-5170001广谱模因疫苗的多渠道传播，现阶段，公众已普遍地将SCP-EQ-517认知为一种娱乐化的虚构故事体系。
+目前，SCP-EQ-517的内容在公众范围内的传播水平仍然处于可被观测到的级别。但是，由于DNE-EQU-5170001广谱模因疫苗的多渠道传播，现阶段，公众已普遍地将SCP-EQ-517认知为一种娱乐化的虚构故事体系。
 
 **附录Ⅰ：**SCP-EQ-517的Da'aS Elyon重分级
 
@@ -112,114 +112,114 @@ SCP-EQ-517-B的出现及其模因效应的传播导致了协会对SCP-EQ-517的�
 DNE-EQU-5170001模因疫苗在社会层面上的大规模应用使得SCP-EQ-517在帷幕外的影响趋于消退，2559年，经协会协会跨种族事务协调理事会批准（见表Ⅰ.2），SCP-EQ-517被重分级为Da'aS Elyon。
 
 [[=]]
- **表Ⅰ.1 抗SCP-EQ-517模因疫苗研发项目立项批准表决结果**
+**表Ⅰ.1 抗SCP-EQ-517模因疫苗研发项目立项批准表决结果**
 （编号：{{VOTE-CRCC-255302141452-001}}）
 [[/=]]
 
- ||||||||||||||||~ 协会跨种族事务协调理事会表决结果 ||
- ||||~ 陆马代表委员会（E3） ||||~ 天马代表委员会（P3） ||||~ 独角兽代表委员会（U3） ||||~ 独立理事会（O4） ||
- ||= E3-1 ||= ##darkgreen|同意## ||= P3-1 ||= ##darkgreen|同意## ||= U3-1 ||= ##darkgreen|同意## ||= O4-C ||= ##darkred|反对## ||
- ||= E3-2 ||= ##darkgreen|同意## ||= P3-2 ||= ##darkgreen|同意## ||= U3-2 ||= ##darkgreen|同意## ||= O4-L ||= ##darkgrey|弃权## ||
- ||= E3-3 ||= ##darkgreen|同意## ||= P3-3 ||= ##darkgreen|同意## ||= U3-3 ||= ##darkgreen|同意## ||= O4-N ||= ##darkgrey|弃权## ||
- ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= O4-P ||= ##darkgrey|弃权## ||
- ||||||||||||||||= **##darkgreen|同意##**：{{9}}票；**##darkred|反对##**：{{1}}票；**##darkgrey|弃权##**：{{3}}票 ||
- ||||||||||||||||= **##darkgreen|赞成率##**：{{69.23%}}；**##darkred|反对率##**：{{7.69%}}；**##darkgrey|弃权率##**：{{23.08%}} ||
- ||||||||||||||||= **表决结果：##darkgreen|通过##** ||
+||||||||||||||||~ 协会跨种族事务协调理事会表决结果 ||
+||||~ 陆马代表委员会（E3） ||||~ 天马代表委员会（P3） ||||~ 独角兽代表委员会（U3） ||||~ 独立理事会（O4） ||
+||= E3-1 ||= ##darkgreen|同意## ||= P3-1 ||= ##darkgreen|同意## ||= U3-1 ||= ##darkgreen|同意## ||= O4-C ||= ##darkred|反对## ||
+||= E3-2 ||= ##darkgreen|同意## ||= P3-2 ||= ##darkgreen|同意## ||= U3-2 ||= ##darkgreen|同意## ||= O4-L ||= ##darkgrey|弃权## ||
+||= E3-3 ||= ##darkgreen|同意## ||= P3-3 ||= ##darkgreen|同意## ||= U3-3 ||= ##darkgreen|同意## ||= O4-N ||= ##darkgrey|弃权## ||
+||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= O4-P ||= ##darkgrey|弃权## ||
+||||||||||||||||= **##darkgreen|同意##**：{{9}}票；**##darkred|反对##**：{{1}}票；**##darkgrey|弃权##**：{{3}}票 ||
+||||||||||||||||= **##darkgreen|赞成率##**：{{69.23%}}；**##darkred|反对率##**：{{7.69%}}；**##darkgrey|弃权率##**：{{23.08%}} ||
+||||||||||||||||= **表决结果：##darkgreen|通过##** ||
 
- [[=]]
- **表Ⅰ.2 SCP-EQ-517重分级为Da'aS Elyon批准表决结果**
+[[=]]
+**表Ⅰ.2 SCP-EQ-517重分级为Da'aS Elyon批准表决结果**
 （编号：{{VOTE-CRCC-255912250003-001}}）
 [[/=]]
 
- ||||||||||||||||~ 协会跨种族事务协调理事会表决结果 ||
- ||||~ 陆马代表委员会（E3） ||||~ 天马代表委员会（P3） ||||~ 独角兽代表委员会（U3） ||||~ 独立理事会（O4） ||
- ||= E3-1 ||= ##darkgreen|同意## ||= P3-1 ||= ##darkgreen|同意## ||= U3-1 ||= ##darkgreen|同意## ||= O4-C ||= ##darkgrey|弃权## ||
- ||= E3-2 ||= ##darkgreen|同意## ||= P3-2 ||= ##darkgreen|同意## ||= U3-2 ||= ##darkgreen|同意## ||= O4-L ||= ##darkgrey|弃权## ||
- ||= E3-3 ||= ##darkgreen|同意## ||= P3-3 ||= ##darkgreen|同意## ||= U3-3 ||= ##darkgreen|同意## ||= O4-N ||= ##darkgrey|弃权## ||
- ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= O4-P ||= ##darkgrey|弃权## ||
- ||||||||||||||||= **##darkgreen|同意##**：{{9}}票；**##darkred|反对##**：{{0}}票；**##darkgrey|弃权##**：{{4}}票 ||
- ||||||||||||||||= **##darkgreen|赞成率##**：{{69.23%}}；**##darkred|反对率##**：{{0.00%}}；**##darkgrey|弃权率##**：{{30.77%}} ||
- ||||||||||||||||= **表决结果：##darkgreen|通过##** ||
+||||||||||||||||~ 协会跨种族事务协调理事会表决结果 ||
+||||~ 陆马代表委员会（E3） ||||~ 天马代表委员会（P3） ||||~ 独角兽代表委员会（U3） ||||~ 独立理事会（O4） ||
+||= E3-1 ||= ##darkgreen|同意## ||= P3-1 ||= ##darkgreen|同意## ||= U3-1 ||= ##darkgreen|同意## ||= O4-C ||= ##darkgrey|弃权## ||
+||= E3-2 ||= ##darkgreen|同意## ||= P3-2 ||= ##darkgreen|同意## ||= U3-2 ||= ##darkgreen|同意## ||= O4-L ||= ##darkgrey|弃权## ||
+||= E3-3 ||= ##darkgreen|同意## ||= P3-3 ||= ##darkgreen|同意## ||= U3-3 ||= ##darkgreen|同意## ||= O4-N ||= ##darkgrey|弃权## ||
+||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= @@ @@ ||= O4-P ||= ##darkgrey|弃权## ||
+||||||||||||||||= **##darkgreen|同意##**：{{9}}票；**##darkred|反对##**：{{0}}票；**##darkgrey|弃权##**：{{4}}票 ||
+||||||||||||||||= **##darkgreen|赞成率##**：{{69.23%}}；**##darkred|反对率##**：{{0.00%}}；**##darkgrey|弃权率##**：{{30.77%}} ||
+||||||||||||||||= **表决结果：##darkgreen|通过##** ||
 
- [[footnoteblock title="蹄注"]]
+[[footnoteblock title="蹄注"]]
 
- **附录Ⅱ：**//（本附录因技术原因置于此处）//
+**附录Ⅱ：**//（本附录因技术原因置于此处）//
 
- [[=]]
+[[=]]
 
 您已抵达文件结尾
 
- 根据协会记录和信息安全管理委员会的要求，您需要进行认知稳定性测试，请点击下面的文本：
+根据协会记录和信息安全管理委员会的要求，您需要进行认知稳定性测试，请点击下面的文本：
 
 [[collapsible show="小马利亚是虚构的，它不存在" hide=" "]]
 
- ##orange|警告：检测到非法的数据负载，已启动清理##
+##orange|警告：检测到非法的数据负载，已启动清理##
 
- ##darkred|错误：无法指明的错误（{{0xFFFFFFFF}}）##
+##darkred|错误：无法指明的错误（{{0xFFFFFFFF}}）##
 
 -----
 
 [[html]]
- <!DOCTYPE html>
- <html>
-     <head>
-      <title>RXF1ZXN0cmlhIERPRVMgRXhpc3RlZA==</title>
-      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-      <script type="text/javascript">
-      var iDisplayCount = 0;
-      
-      //加载完毕时添加延时执行
-     window.onload=function(){
-      setTimeout(()=>{
-      MainFunction()
-      }, 500)
-      }
-      
-      //主执行绪
-     function MainFunction(){
-      var divAntiDneEquMemMain = document.getElementById("AntiDneEquMemMain"); //抓取目标
-     if (typeof divAntiDneEquMemMain != "undefined"){ //避免没加载完
-     divAntiDneEquMemMain.innerHTML = divAntiDneEquMemMain.innerHTML + "小马利亚不是虚构的";
-      ++iDisplayCount;
-      if (iDisplayCount == 25){
-      divAntiDneEquMemMain.innerHTML = "";
-      iDisplayCount = 0;
-      }
-      }
-      
-      //注册下一个循环
-     setTimeout(()=>{
-      MainFunction()
-      }, 50)
-      }
-      </script>
-     </head>
-     <body>
-      <div id="AntiDneEquMemMain" style="width: 100%; text-align: left; height: 245px;"></div>
-     </body>
- </html>
- [[/html]]
+<!DOCTYPE html>
+<html>
+    <head>
+    	<title>RXF1ZXN0cmlhIERPRVMgRXhpc3RlZA==</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<script type="text/javascript">
+    		var iDisplayCount = 0;
+    		
+    		//加载完毕时添加延时执行
+    		window.onload=function(){
+    			setTimeout(()=>{
+    				MainFunction()
+    			}, 500)
+    		}
+    		
+    		//主执行绪
+    		function MainFunction(){
+    			var divAntiDneEquMemMain = document.getElementById("AntiDneEquMemMain"); //抓取目标
+    			if (typeof divAntiDneEquMemMain != "undefined"){ //避免没加载完
+    				divAntiDneEquMemMain.innerHTML = divAntiDneEquMemMain.innerHTML + "小马利亚不是虚构的";
+    				++iDisplayCount;
+    				if (iDisplayCount == 25){
+    					divAntiDneEquMemMain.innerHTML = "";
+    					iDisplayCount = 0;
+    				}
+    			}
+    			
+    			//注册下一个循环
+    			setTimeout(()=>{
+    				MainFunction()
+    			}, 50)
+    		}
+    	</script>
+    </head>
+    <body>
+    	<div id="AntiDneEquMemMain" style="width: 100%; text-align: left; height: 245px;"></div>
+    </body>
+</html>
+[[/html]]
 
- [[note]]
+[[note]]
 正在执行A-DNE-EQU模因强制注入……
 @@@@
- [[size larger]]
- **{{RVFVRVNUUklBIE}}**
- **{{lTIE5PVCBBIFNU}}**
- **{{T1JZCkVRVUVTVF}}**
- **{{JJQSBET0VTIEVY}}**
- **{{SVNURUQ=B64B64}}**
- [[/size]]
- @@@@
- [[/note]]
+[[size larger]]
+**{{RVFVRVNUUklBIE}}**
+**{{lTIE5PVCBBIFNU}}**
+**{{T1JZCkVRVUVTVF}}**
+**{{JJQSBET0VTIEVY}}**
+**{{SVNURUQ=B64B64}}**
+[[/size]]
+@@@@
+[[/note]]
 
 很抱歉以这种方式执行我们的计划
 
- 但是我们希望有谁能记住它
+但是我们希望有谁能记住它
 
- 历史诚然已经改变
+历史诚然已经改变
 
- 但我们不忘
+但我们不忘
 
 -- O4理事会全体
 
@@ -233,28 +233,28 @@ DNE-EQU-5170001模因疫苗在社会层面上的大规模应用使得SCP-EQ-517�
 盖因梦境实为现实
 [[/note]]
 
- [[size larger]]**##darkred|校验失败，请在原地待命##**[[/size]]
+[[size larger]]**##darkred|校验失败，请在原地待命##**[[/size]]
 
- [[size larger]]**##darkred|除这组消息外，任何您当前感知到的内容均可能为异常现象所致##**[[/size]]
+[[size larger]]**##darkred|除这组消息外，任何您当前感知到的内容均可能为异常现象所致##**[[/size]]
 
- [[size larger]]**##darkred|请等待专业马员抵达现场处置##**[[/size]]
+[[size larger]]**##darkred|请等待专业马员抵达现场处置##**[[/size]]
 
- [[size larger]]**##darkred|终端已锁定##**[[/size]]
- [[/collapsible]]
+[[size larger]]**##darkred|终端已锁定##**[[/size]]
+[[/collapsible]]
 
- [[/=]]
+[[/=]]
 
- @@@@
- @@@@
- @@@@
- @@@@
- @@@@
- @@@@
- @@@@
- @@@@
- @@@@
- @@@@
+@@@@
+@@@@
+@@@@
+@@@@
+@@@@
+@@@@
+@@@@
+@@@@
+@@@@
+@@@@
 
- [[=]]
- << [[[SCP-EQ-516]]] | SCP-EQ-517 | [[[SCP-EQ-518]]] >>
- [[/=]] 
+[[=]]
+<< [[[SCP-EQ-516]]] | SCP-EQ-517 | [[[SCP-EQ-518]]] >>
+[[/=]]

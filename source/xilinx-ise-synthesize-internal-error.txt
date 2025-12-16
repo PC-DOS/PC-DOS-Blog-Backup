@@ -24,4 +24,4 @@ INTERNAL_ERROR:Xst:cmain.c:3464:1.56 - Process will terminate. For technical sup
 
 *https://www.edaboard.com/threads/error-in-synthesis-in-xilinx-ise-14-7-internal_error.324092/
 
-*https://www.edaboard.com/threads/internal_error-xst-cmain-c-3464-1-56-process-will-terminate.338451/ 
+*https://www.edaboard.com/threads/internal_error-xst-cmain-c-3464-1-56-process-will-terminate.338451/

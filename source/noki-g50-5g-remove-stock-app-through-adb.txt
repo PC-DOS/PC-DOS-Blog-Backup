@@ -1,30 +1,30 @@
 使用USB调试模式连接手机和计算机，在计算机上使用命令行工具定位到ADB所在目录，并执行：
 
 [[code]]
- adb shell
- [[/code]]
+adb shell
+[[/code]]
 
 此时会进入手机的Shell终端，并显示“{{PHR:/ $}}”提示符，依次执行：
 
 [[code]]
- # 卸载：搜狗拼音输入法
+# 卸载：搜狗拼音输入法
 pm uninstall --user 0 com.sohu.inputmethod.sogou
- # 卸载：应用商店
+# 卸载：应用商店
 pm uninstall --user 0 com.fm.mstore.hmd
- # 卸载：内置浏览器
+# 卸载：内置浏览器
 pm uninstall --user 0 com.hmd.webbrowser
- # 卸载：游戏中心
+# 卸载：游戏中心
 pm uninstall --user 0 com.fm.gamecenter.hmd
- pm uninstall --user 0 com.meizu.gamecenter.service
- # 卸载：MyPhone
- pm uninstall --user 0 com.hmdglobal.support.cn
- pm uninstall --user 0 com.hmdglobal.app.myphonehelper
- # 卸载：智能小程序
+pm uninstall --user 0 com.meizu.gamecenter.service
+# 卸载：MyPhone
+pm uninstall --user 0 com.hmdglobal.support.cn
+pm uninstall --user 0 com.hmdglobal.app.myphonehelper
+# 卸载：智能小程序
 pm uninstall --user 0 com.baidu.swan
- # 卸载：手机管家
+# 卸载：手机管家
 pm uninstall --user 0 com.mobilesafe.nkmaster
- # 卸载：换机助手
+# 卸载：换机助手
 pm uninstall --user 0 com.ydhj.transfer
- # 卸载：负一屏
+# 卸载：负一屏
 pm uninstall --user 0 com.hmdglobal.app.negativescreen
- [[/code]] 
+[[/code]]

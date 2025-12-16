@@ -1,18 +1,18 @@
 一个项目中包含一个Qt槽函数，该槽函数包含一个模态{{QMessageBox}}调用。但在实际使用中发现关闭该{{QMessageBox}}后会诱发段错误（{{SEGEV}}）。检查Stack Trace发现该问题发生在{{qt_static_metacall()}}的过程中。进一步排查发现该槽函数绑定的信号发生源会在{{emit}}信号后调用{{deleteLater()}}删除自身。推测该故障系由模态{{QMessageBox}}返回时信号源已被事件循环删除、而{{qt_static_metacall()}}仍试图返回导致的。
 
- 解决方案是使用非模态{{QMessageBox}}：
+解决方案是使用非模态{{QMessageBox}}：
 
 [[code]]
- void MyObject::MySlot(){
-     //Event handler
-     //...
-     //Show non-modal message box, to avoid execptions
-     QMessageBox * msgBox = new QMessageBox(QMessageBox::Information, tr("Title"), tr("Info"));
-     msgBox->setAttribute(Qt::WA_DeleteOnClose);
-     msgBox->setModal(false);
-     msgBox->show();
-     return;
- }
- [[/code]]
+void MyObject::MySlot(){
+    //Event handler
+    //...
+    //Show non-modal message box, to avoid execptions
+    QMessageBox * msgBox = new QMessageBox(QMessageBox::Information, tr("Title"), tr("Info"));
+    msgBox->setAttribute(Qt::WA_DeleteOnClose);
+    msgBox->setModal(false);
+    msgBox->show();
+    return;
+}
+[[/code]]
 
-参考资料：*https://www.cnblogs.com/littleheadache/p/16833752.html 
+参考资料：*https://www.cnblogs.com/littleheadache/p/16833752.html

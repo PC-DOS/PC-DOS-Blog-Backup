@@ -2,11 +2,11 @@
 
 **故障处理：**打开 [控制面板] > [颜色管理] > [高级]，将 [设备配置文件] 改为 [Agfa：Swop Standard]。随后保存并退出。再次尝试打开图片文件，Windows照片查看器可以正常显示。
 
- 注册表项变更：
+注册表项变更：
 
 [[code]]
- [HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\ICM\RegisteredProfiles] 
- "sRGB"="RSWOP.icm" 
- [[/code]]
+[HKEY_CURRENT_USER\Software\Microsoft\Windows NT\CurrentVersion\ICM\RegisteredProfiles] 
+"sRGB"="RSWOP.icm" 
+[[/code]]
 
-参考资料：*https://new.qq.com/rain/a/20210723A0ERJS00 
+参考资料：*https://new.qq.com/rain/a/20210723A0ERJS00

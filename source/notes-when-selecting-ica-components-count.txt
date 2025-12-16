@@ -1,13 +1,13 @@
 独立成分分析（Independent Component Analysis，ICA）是一种常用的盲源分析方法。但是，使用ICA的过程中可能直接将盲源分解分量数设为原始信号的通道数。这是一种不推荐的做法，可能导致解混矩阵无法收敛，严重影响重建信号的质量。
 
- 具体的一种情形是，将盲源分解分量数直接设为原始信号的通道数，并且不从分解得到的结果中剔除任意信号源而直接重建信号。若此时解混矩阵未收敛，则可能出现重建得到的信号的功率谱（PSD）结构与原始信号的PSD之间存在较大差异的情况。
+具体的一种情形是，将盲源分解分量数直接设为原始信号的通道数，并且不从分解得到的结果中剔除任意信号源而直接重建信号。若此时解混矩阵未收敛，则可能出现重建得到的信号的功率谱（PSD）结构与原始信号的PSD之间存在较大差异的情况。
 
- 推荐的做法是由ICA算法根据分量可以解释的数据的累计方差（cumulative variance）阈值自动选择分量数。从而只包含可以最有效地解释数据的累计方差的分量。
+推荐的做法是由ICA算法根据分量可以解释的数据的累计方差（cumulative variance）阈值自动选择分量数。从而只包含可以最有效地解释数据的累计方差的分量。
 
- 参考资料：
+参考资料：
 
 *https://mne.tools/stable/generated/mne.preprocessing.ICA.html
 
- *https://mne.tools/stable/auto_tutorials/preprocessing/40_artifact_correction_ica.html
+*https://mne.tools/stable/auto_tutorials/preprocessing/40_artifact_correction_ica.html
 
- *https://zhuanlan.zhihu.com/p/394516642 
+*https://zhuanlan.zhihu.com/p/394516642

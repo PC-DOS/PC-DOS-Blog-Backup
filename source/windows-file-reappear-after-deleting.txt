@@ -2,4 +2,4 @@
 
 **问题处理：**在“运行”窗格中输入“{{services.msc}}”并回车，打开Windows服务管理器，将{{Application Experience}}服务的启动方式设为“自动”，保存并退出，问题解决。
 
- 参考：*https://blog.csdn.net/do_fork/article/details/4823307 
+参考：*https://blog.csdn.net/do_fork/article/details/4823307

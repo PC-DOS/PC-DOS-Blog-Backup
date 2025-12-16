@@ -6,4 +6,4 @@
 
 3. 打开设备管理器，根据喜欢的顺序依次启用先前禁用的磁盘。第一个被启用的磁盘将变为“磁盘1”，依此类推。
 
- 参考资料：*https://www.zhihu.com/question/377730301 
+参考资料：*https://www.zhihu.com/question/377730301

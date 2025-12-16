@@ -3,9 +3,9 @@
 **缓解措施：**打开下列目录：
 
 [[code]]
- C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE15\Office Setup Controller
- [[/code]]
+C:\Program Files (x86)\Common Files\Microsoft Shared\OFFICE15\Office Setup Controller
+[[/code]]
 
 将{{Setup.exe}}改名或删除，问题缓解。
 
-**参考资料：***https://blog.csdn.net/x_ivy/article/details/85293977 
+**参考资料：***https://blog.csdn.net/x_ivy/article/details/85293977

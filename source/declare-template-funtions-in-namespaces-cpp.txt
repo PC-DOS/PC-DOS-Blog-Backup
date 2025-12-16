@@ -1,18 +1,18 @@
 C++中，当在命名空间中声明模板函数时，应将函数的声明和实现置于一处，而不是使用“头文件-实现文件”分离的方式，否则可能导致编译错误。
 
- 即，建议的方式为：
+即，建议的方式为：
 
 [[code type="Cpp"]]
- //HEADER FILE
+//HEADER FILE
 
- namespace MyNamespace{
+namespace MyNamespace{
 
- template<class T>
- void MyFuncTemplate(T Param1, T Param2){
-     //Function Implementations
- }
+template<class T>
+void MyFuncTemplate(T Param1, T Param2){
+    //Function Implementations
+}
 
- }
- [[/code]]
+}
+[[/code]]
 
-参考资料：*https://stackoverflow.com/questions/3261093/function-template-in-a-namespace-in-a-separate-file-compiles-fine-but-the-linke 
+参考资料：*https://stackoverflow.com/questions/3261093/function-template-in-a-namespace-in-a-separate-file-compiles-fine-but-the-linke

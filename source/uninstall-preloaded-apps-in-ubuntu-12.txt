@@ -1,25 +1,25 @@
 打开终端，执行：
 
 [[code]]
- sudo apt-get purge libreoffice-common
- sudo apt-get purge thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot cheese transmission-common gnome-orca gnome-sudoku landscape-client-ui-install
- sudo apt-get purge shotwell
- sudo apt-get purge gwibber
- sudo apt-get purge remmina
- sudo apt-get purge mahjongg
- sudo apt-get purge gnomine
- sudo apt-get purge ubuntuone-installer
- sudo apt-get purge xterm
- [[/code]]
+sudo apt-get purge libreoffice-common
+sudo apt-get purge thunderbird totem rhythmbox empathy brasero simple-scan gnome-mahjongg aisleriot cheese transmission-common gnome-orca gnome-sudoku landscape-client-ui-install
+sudo apt-get purge shotwell
+sudo apt-get purge gwibber
+sudo apt-get purge remmina
+sudo apt-get purge mahjongg
+sudo apt-get purge gnomine
+sudo apt-get purge ubuntuone-installer
+sudo apt-get purge xterm
+[[/code]]
 
 最后执行：
 
 [[code]]
- sudo apt-get autoremove
- [[/code]]
+sudo apt-get autoremove
+[[/code]]
 
 参考资料：
 
 *https://blog.csdn.net/dangruchujian/article/details/79338760
 
- *https://zhuanlan.zhihu.com/p/73430356 
+*https://zhuanlan.zhihu.com/p/73430356

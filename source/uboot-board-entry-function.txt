@@ -1,7 +1,7 @@
 uBoot初始化时的板级支持入口函数{{board_init()}}和{{board_late_init()}}位于uBoot源码仓库的{{/board}}目录内，具体的设备路径通常会随设备改变。
 
- 例如：
+例如：
 
 * iTop-4412的uBoot板级支持入口函数{{board_init()}}和{{board_late_init()}}位于uBoot源码仓库的{{/board/samsung/smdkc210/smdkc210.c}}中。
 
-* iTop-4418的uBoot板级支持入口函数{{board_init()}}和{{board_late_init()}}位于uBoot源码仓库的{{/board/s5p4418/drone2/board.c}}中。 
+* iTop-4418的uBoot板级支持入口函数{{board_init()}}和{{board_late_init()}}位于uBoot源码仓库的{{/board/s5p4418/drone2/board.c}}中。

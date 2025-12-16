@@ -5,90 +5,90 @@ Steam商店：*https://store.steampowered.com/app/2076260/Slaughter_Horse_2/
 存档位置：
 
 [[code]]
- %UserProfile%\AppData\Local\AGKApps\Catsmeat_Studios\SH2\media\save\savegame.horse
- [[/code]]
+%UserProfile%\AppData\Local\AGKApps\Catsmeat_Studios\SH2\media\save\savegame.horse
+[[/code]]
 
- + 方法
++ 方法
 
- 使用内置作弊码（ *https://steamcommunity.com/sharedfiles/filedetails/?id=3039354735 ）修改数据，使用WinHex比较存档文件前后差异。
+使用内置作弊码（ *https://steamcommunity.com/sharedfiles/filedetails/?id=3039354735 ）修改数据，使用WinHex比较存档文件前后差异。
 
 [[collapsible show="+ 展开作弊码" hide="- 折叠"]]
 How to use cheats in SH2.
- It's a tough game I know, so if you want to try out wreaking havoc on helpless ponies who can't fight back, here's your chance!
+It's a tough game I know, so if you want to try out wreaking havoc on helpless ponies who can't fight back, here's your chance!
 
- Note: Use of any cheat will disable the ability to unlock achievements or earn knives. Cheats will reset to disabled on starting a new game.
+Note: Use of any cheat will disable the ability to unlock achievements or earn knives. Cheats will reset to disabled on starting a new game.
 
- To unlock a cheat, open your NOTES via the icon which is usually available on the right-hand side of the screen. Enter the cheat, making sure you use all caps. If you are successful, you will hear a sound effect and the cheat's name will appear.
- The Cheats
- OATMEAL? ARE YOU CRAZY?
+To unlock a cheat, open your NOTES via the icon which is usually available on the right-hand side of the screen. Enter the cheat, making sure you use all caps. If you are successful, you will hear a sound effect and the cheat's name will appear.
+The Cheats
+OATMEAL? ARE YOU CRAZY?
 
- Every pony in town except you will be instantly sent completely insane. Insane ponies won't carry out their jobs, so you'll be able to kill almost with impunity. However, the Magician will now never lower their shield if active!
+Every pony in town except you will be instantly sent completely insane. Insane ponies won't carry out their jobs, so you'll be able to kill almost with impunity. However, the Magician will now never lower their shield if active!
 
- A BITE OF THE CAKE
+A BITE OF THE CAKE
 
- Every pony in town except you will now have a maximum suspicion level.
+Every pony in town except you will now have a maximum suspicion level.
 
- WHO NEEDS LUCK?
+WHO NEEDS LUCK?
 
- Enter this cheat and on the tarot card screen, it will be revealed which card your pointer is hovering over.
+Enter this cheat and on the tarot card screen, it will be revealed which card your pointer is hovering over.
 
- HERBS AND SPICES
+HERBS AND SPICES
 
- All cake ingredients will be added to your inventory.
+All cake ingredients will be added to your inventory.
 
- HELLO YOUR HIGHNESS
+HELLO YOUR HIGHNESS
 
- Brings the Alicorn's transformation forward to the next day.
+Brings the Alicorn's transformation forward to the next day.
 
- NO PONY LEFT BEHIND
+NO PONY LEFT BEHIND
 
- Will reveal every pony's details.
+Will reveal every pony's details.
 
- TAKE A PERSONAL DAY
+TAKE A PERSONAL DAY
 
- Will disarm every council role for that day - i.e. none of them will work and they will all stay at home. Only works on the day you enter the cheat, but you can enter it again on another day.
+Will disarm every council role for that day - i.e. none of them will work and they will all stay at home. Only works on the day you enter the cheat, but you can enter it again on another day.
 
- TOXIC FANDOM
+TOXIC FANDOM
 
- Will reveal the Disciple.
+Will reveal the Disciple.
 
- CHANGELINGS AMONG US
+CHANGELINGS AMONG US
 
- Will reveal the Changeling Spy.
+Will reveal the Changeling Spy.
 
- MY DADDY WAS A DONKEY
+MY DADDY WAS A DONKEY
 
- Will reveal the Mule.
+Will reveal the Mule.
 
- SHOE WITH FELT
+SHOE WITH FELT
 
- Will instantly kill every pony in town except you!
+Will instantly kill every pony in town except you!
 
- I CHOOSE DEATH
+I CHOOSE DEATH
 
- Instant suicide for you.
+Instant suicide for you.
 
- MR KIPLING STRIKES AGAIN
+MR KIPLING STRIKES AGAIN
 
- All cakes will now be in your inventory.
+All cakes will now be in your inventory.
 
- MENTAL HEALTH
+MENTAL HEALTH
 
- Restores your sanity.
+Restores your sanity.
 
- INNOCENT ME
+INNOCENT ME
 
- Removes all suspicion against you.
+Removes all suspicion against you.
 
- MUCH LOVE
+MUCH LOVE
 
- Everyone becomes a best friend.
- [[/collapsible]]
+Everyone becomes a best friend.
+[[/collapsible]]
 
- + 资料
++ 资料
 
 [[code]]
- 0x28：天数
+0x28：天数
 
 ==位于Disciple消息前==
 0x161：作弊标志（疑似）
@@ -96,5 +96,5 @@ How to use cheats in SH2.
 ==位于主角名字、职业区域和住所区域==
 0x38BD：嫌疑度
 0x38C2：SAN值
- （该区域列出了所有居民的名字、职业和住所）
-[[/code]] 
+（该区域列出了所有居民的名字、职业和住所）
+[[/code]]

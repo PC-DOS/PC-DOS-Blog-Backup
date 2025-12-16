@@ -3,7 +3,7 @@
 **故障处理：**打开注册表编辑器，定位到：
 
 [[code]]
- HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers\
- [[/code]]
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers\
+[[/code]]
 
-移除名称为不再需要DEP豁免的应用程序的路径的字符串值即可。 
+移除名称为不再需要DEP豁免的应用程序的路径的字符串值即可。

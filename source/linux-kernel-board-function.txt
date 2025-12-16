@@ -1,9 +1,9 @@
 Linux内核的板级支持函数通常位于Linux内核源代码仓库中的{{/arch/ARCH/mach-XXXX/XXXXX.c}}文件内，定义了设备的上电初始化和关机行为。其中，{{ARCH}}为设备体系结构，{{mach-XXXX}}和{{XXXXX.c}}通常代表设备型号。
 
- 例如：
+例如：
 
 * iTop-4412的Linux板级支持位于Linux内核源代码仓库中的{{/arch/arm/mach-exynos/mach-itop4412.c}}中。
 
 * iTop-4418的Linux板级支持位于Linux内核源代码仓库中的{{/arch/arm/mach-s5p4418/s5p4418.c}}中。
 
- 同时，在Linux内核源代码仓库中的{{/arch/ARCH/plat-XXXX/XXXXX.c}}文件内，定义了设备板上特定硬件的配置参数和连接状态等（尤其是对于非设备树系统）。其中，{{ARCH}}为设备体系结构，{{plat-XXXX}}和{{XXXXX.c}}通常代表设备型号。 
+同时，在Linux内核源代码仓库中的{{/arch/ARCH/plat-XXXX/XXXXX.c}}文件内，定义了设备板上特定硬件的配置参数和连接状态等（尤其是对于非设备树系统）。其中，{{ARCH}}为设备体系结构，{{plat-XXXX}}和{{XXXXX.c}}通常代表设备型号。

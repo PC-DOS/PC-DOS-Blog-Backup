@@ -10,26 +10,29 @@ Imports System.Net
 Imports System.Web
 
 Private Function GetInnerTextFromTextContainer() As String
-    'Create HTML document object and elements collection
-    Dim CurrentHTMLDocument As HTMLDocument = Nothing
-    Dim PossibleElements As IHTMLElementCollection = Nothing
-    Dim CurrentElement As IHTMLElement = Nothing
-    
-    'Get HTML document from WebBrowser control
-    CurrentHTMLDocument = wbbWebContainer.Document
-    
-    'Find div elements with class "text-container"
-    PossibleElements = CurrentHTMLDocument.getElementsByTagName("div")
-    For Each CurrentElement In PossibleElements
-        If CurrentElement.className = "text-container" Then
-            'Using CurrentElement.innerText may cause problems (unneeded leading white spaces)
-            Dim PageSourceHTML As String = CurrentElement.innerHTML.Replace("<br>", "").Trim()
-            Dim PageSourceText As String = HttpUtility.HtmlDecode(PageSourceHTML)
-            Return PageSourceText
-        End If
-    Next
-    
-    Return ""
+    'Create HTML document object and elements collection
+    Dim CurrentHTMLDocument As HTMLDocument = Nothing
+    Dim PossibleElements As IHTMLElementCollection = Nothing
+    Dim CurrentElement As IHTMLElement = Nothing
+    
+    'Get HTML document from WebBrowser control
+    CurrentHTMLDocument = wbbWebContainer.Document
+    
+    'Find div elements with class "text-container"
+    PossibleElements = CurrentHTMLDocument.getElementsByTagName("div")
+    For Each CurrentElement In PossibleElements
+        If CurrentElement.className = "text-container" Then
+            'Using CurrentElement.innerText may cause problems (unneeded leading white spaces)
+            Dim PageSourceHTML As String = CurrentElement.innerHTML.Replace("<br>", "").Trim()
+            Dim PageSourceText As String = HttpUtility.HtmlDecode(PageSourceHTML)
+            PageSourceText = PageSourceText.Replace(vbCrLf, vbLf)
+            PageSourceText = PageSourceText.Replace(vbCr, vbLf)
+            PageSourceText = PageSourceText.Replace(vbLf, Environment.NewLine)
+            Return PageSourceText
+        End If
+    Next
+    
+    Return ""
 End Function
 [[/code]]
 

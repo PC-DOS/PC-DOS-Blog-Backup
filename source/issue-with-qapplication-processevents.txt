@@ -1,48 +1,48 @@
 在Qt程序的信号槽（事件处理）函数中调用{{QApplication::processEvents()}}时需特别注意，因为这可能导致对当前信号槽函数的无限循环调用，尤其是重负载的情况。
 
- 可以考虑引入一个{{bIsRunning}}变量，避免槽函数的循环调用：
+可以考虑引入一个{{bIsRunning}}变量，避免槽函数的循环调用：
 
 [[code type="Cpp"]]
- void SignalSlot(){
-     static volatile bool bIsRunning = false;
+void SignalSlot(){
+    static volatile bool bIsRunning = false;
 
-     if (bIsRunning) {
-         return;
-     }
-     else{
-         bIsRunning = true;
-     }
+    if (bIsRunning) {
+        return;
+    }
+    else{
+        bIsRunning = true;
+    }
 
-     //Handle event
+    //Handle event
 
-     //Process events
-     QApplication::processEvents();
+    //Process events
+    QApplication::processEvents();
 
-     bIsRunning = false;
-     return;
- }
- [[/code]]
+    bIsRunning = false;
+    return;
+}
+[[/code]]
 
 若该槽函数用于响应另一个对象（通常可能是一个位于子线程的类的实例，或其控制器对象）发射的事件，且该对象不会发射其他类型的事件，则可以考虑使用{{QObject::blockSignals()}}方法：
 
 [[code type="Cpp"]]
- void SignalSlot(){
-     //Block signal source
-     if (QObject::sender()) {
-         QObject::sender()->blockSignals(true);
-     }
+void SignalSlot(){
+    //Block signal source
+    if (QObject::sender()) {
+        QObject::sender()->blockSignals(true);
+    }
 
-     //Handle event
+    //Handle event
 
-     //Process events
-     QApplication::processEvents();
+    //Process events
+    QApplication::processEvents();
 
-     //Unblock signal source
-     if (QObject::sender()) {
-         QObject::sender()->blockSignals(false);
-     }
-     return;
- }
- [[/code]]
+    //Unblock signal source
+    if (QObject::sender()) {
+        QObject::sender()->blockSignals(false);
+    }
+    return;
+}
+[[/code]]
 
-参考资料库：*https://forum.qt.io/topic/22434/issue-with-qapplication-processevents 
+参考资料库：*https://forum.qt.io/topic/22434/issue-with-qapplication-processevents

@@ -1,17 +1,17 @@
 在Windows 10的 [控制面板] > [所有控制面板项] > [电源选项] > [系统设置] 中可以配置按下电源按钮时关闭计算机显示器。但是在部分情况下该项目可能从 [按电源按钮时] 的动作下拉列表框中消失。此时，可采取如下动作：
 
- 按 [Windows 徽标键]+[R] 组合键，打开 [运行] 对话框，输入“{{regedit}}”并按回车键打开注册表编辑器，定位到：
+按 [Windows 徽标键]+[R] 组合键，打开 [运行] 对话框，输入“{{regedit}}”并按回车键打开注册表编辑器，定位到：
 
 [[code]]
- HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power
- [[/code]]
+HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Power
+[[/code]]
 
 将右侧的{{CsEnabled}}注册表项的值改为{{@@0@@}}。
 
- 重新启动计算机，您应该已经可以配置按下电源按钮时关闭计算机显示器。
+重新启动计算机，您应该已经可以配置按下电源按钮时关闭计算机显示器。
 
- 参考资料：
+参考资料：
 
 *https://answers.microsoft.com/en-us/windows/forum/windows_10-power/no-turn-off-display-option-when-choosing-what-the/657307a6-918c-4a5e-bb19-c1a843d1be43
 
- *https://jingyan.baidu.com/article/c275f6ba36a958e33d7567d9.html 
+*https://jingyan.baidu.com/article/c275f6ba36a958e33d7567d9.html

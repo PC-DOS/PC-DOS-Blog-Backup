@@ -1,17 +1,17 @@
 利用Linux的{{chattr}}属性设置命令，结合阻止文件被被删除、改名、设定链接关系、写入或新增内容的“{{i}}”属性，可以拒绝对特定文件或目录的写入。
 
- 开启保护：
+开启保护：
 
 [[code]]
- chattr +i /path/to/directory
- [[/code]]
+chattr +i /path/to/directory
+[[/code]]
 
 关闭保护：
 
 [[code]]
- chattr -i /path/to/directory
- [[/code]]
+chattr -i /path/to/directory
+[[/code]]
 
 参考资料：
 
-*https://www.cnblogs.com/wawahaha/p/4657381.html 
+*https://www.cnblogs.com/wawahaha/p/4657381.html

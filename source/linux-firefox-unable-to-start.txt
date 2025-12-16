@@ -3,7 +3,7 @@
 **故障处理：**移除Firefox配置文件后，再次尝试启动Firefox，发现Firefox成功启动：
 
 [[code]]
- rm -rf ~/.mozilla
- [[/code]]
+rm -rf ~/.mozilla
+[[/code]]
 
- **参考资料：***https://blog.csdn.net/sinat_42884063/article/details/123008498 
+**参考资料：***https://blog.csdn.net/sinat_42884063/article/details/123008498

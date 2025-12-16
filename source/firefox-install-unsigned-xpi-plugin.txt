@@ -2,22 +2,22 @@
 
 **故障处理：**该错误与Firefox自身对XPI插件的签名验证机制有关。需要禁用该验证才能安装未签名的XPI插件。
 
- 首先，在Firefox中访问{{about:config}}高级配置页面，将{{@@xpinstall.signatures.required@@}}选项的值改为{{@@False@@}}。
+首先，在Firefox中访问{{about:config}}高级配置页面，将{{@@xpinstall.signatures.required@@}}选项的值改为{{@@False@@}}。
 
- 随后，使用压缩软件解压缩XPI文件（其为一个ZIP压缩文件），并编辑得到的{{@@manifest.json@@}}文件，在{{@@"version":@@}}行下新增一行：
+随后，使用压缩软件解压缩XPI文件（其为一个ZIP压缩文件），并编辑得到的{{@@manifest.json@@}}文件，在{{@@"version":@@}}行下新增一行：
 
 [[code]]
- "applications": { "gecko": { "id": "ExtensionName@DeveloperName" } },
- [[/code]]
+"applications": { "gecko": { "id": "ExtensionName@DeveloperName" } },
+[[/code]]
 
 其中，{{ExtensionName}}和{{DeveloperName}}可以替换为任意仅由英文字母、数字、英文句号（“{{@@。@@}}”）和减号（“{{@@-@@}}”）等构成的字符串，例如：
 
 [[code]]
- "applications": { "gecko": { "id": "CyanTheme@Picsell-Dois" } },
- [[/code]]
+"applications": { "gecko": { "id": "CyanTheme@Picsell-Dois" } },
+[[/code]]
 
 完成后，保存{{@@manifest.json@@}}文件。
 
- 最后，以Deflate算法，将先前解压XPI文件得到的所有文件重新压缩为ZIP格式的压缩文件，并将得到的ZIP文件的扩展名改为“{{XPI}}”。将该XPI文件拖入Firefox窗口，即可安装该XPI插件文件。
+最后，以Deflate算法，将先前解压XPI文件得到的所有文件重新压缩为ZIP格式的压缩文件，并将得到的ZIP文件的扩展名改为“{{XPI}}”。将该XPI文件拖入Firefox窗口，即可安装该XPI插件文件。
 
-**参考资料：** *https://blog.csdn.net/Leonardo_2022/article/details/136101336 
+**参考资料：** *https://blog.csdn.net/Leonardo_2022/article/details/136101336

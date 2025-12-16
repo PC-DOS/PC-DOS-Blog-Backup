@@ -1,23 +1,23 @@
 + QPST
 
- QPST（Qualcomm Product Support Tool）是一个针对高通芯片开发的传输软件组。它包含资源管理器（EFS Explorer）、工厂测试模式（Factory Test Mode Application）、内存调试模式（memory debug）、QPST配置（QPSTConfigruation）、NV项目管理（RF NV Item Manager）、服务程序（Service Programming）、软件下载（Software Download）等若干组件，可以绕过系统，进行铃声复制、更改手机功能参数等操作。
+QPST（Qualcomm Product Support Tool）是一个针对高通芯片开发的传输软件组。它包含资源管理器（EFS Explorer）、工厂测试模式（Factory Test Mode Application）、内存调试模式（memory debug）、QPST配置（QPSTConfigruation）、NV项目管理（RF NV Item Manager）、服务程序（Service Programming）、软件下载（Software Download）等若干组件，可以绕过系统，进行铃声复制、更改手机功能参数等操作。
 
 *https://qpsttool.com/
 
- + QFIL
++ QFIL
 
- QFIL（Qualcomm Flash Image Loader）允许用户刷写以XML格式的文档进行组织的固件映像。
+QFIL（Qualcomm Flash Image Loader）允许用户刷写以XML格式的文档进行组织的固件映像。
 
 *https://qfiltool.com/
 
- + QGDP
++ QGDP
 
- QGDP允许用户刷写CPB格式的固件映像。
+QGDP允许用户刷写CPB格式的固件映像。
 
 *https://qgdptool.com/
 
- + 参考资料
++ 参考资料
 
 *https://androidmtk.com/category/tools
 
- *https://www.igao7.com/news/201509/h4wVAcJeSgeyOOKZ.html 
+*https://www.igao7.com/news/201509/h4wVAcJeSgeyOOKZ.html

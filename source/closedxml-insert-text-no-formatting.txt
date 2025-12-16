@@ -1,14 +1,14 @@
 [*https://github.com/ClosedXML/ClosedXML ClosedXML库]提供了在.NET中操作XLSX格式的电子表的便捷接口。但是，当使用{{ClosedXML.Excel.IXLCell.Value = StringData}}语法设置单元格的值时，ClosedXML可能将字符串数据进行转译，导致最终得到的电子表格数据错误。例如，以半角逗号分隔数字的字符串值可能被转译为日期，导致数据丢失。
 
- 如果需要直接插入不格式化的字符串，可以使用{{ClosedXML.Excel.IXLCell}}接口提供的{{SetValue()}}函数，使用该函数插入字符串值时，ClosedXML不会进行转译。将{{ClosedXML.Excel.IXLCell.Style.NumberFormat.NumberFormatId}}属性设为{{ClosedXML.Excel.XLPredefinedFormat.Number.Text}}可以保证以文本形式显示：
+如果需要直接插入不格式化的字符串，可以使用{{ClosedXML.Excel.IXLCell}}接口提供的{{SetValue()}}函数，使用该函数插入字符串值时，ClosedXML不会进行转译。将{{ClosedXML.Excel.IXLCell.Style.NumberFormat.NumberFormatId}}属性设为{{ClosedXML.Excel.XLPredefinedFormat.Number.Text}}可以保证以文本形式显示：
 
 [[code]]
- OutputXLSXWorksheet.Cell(OutputRowPointer, OutputColPointer).Style.NumberFormat.NumberFormatId = Int(XLPredefinedFormat.Number.Text)
- OutputXLSXWorksheet.Cell(OutputRowPointer, OutputColPointer).SetValue(StringValue)
- [[/code]]
+OutputXLSXWorksheet.Cell(OutputRowPointer, OutputColPointer).Style.NumberFormat.NumberFormatId = Int(XLPredefinedFormat.Number.Text)
+OutputXLSXWorksheet.Cell(OutputRowPointer, OutputColPointer).SetValue(StringValue)
+[[/code]]
 
 参考资料：
 
 *https://github.com/ClosedXML/ClosedXML/wiki/Text-with-numbers-are-getting-converted-to-numbers
 
- *https://github.com/ClosedXML/ClosedXML/issues/1667 
+*https://github.com/ClosedXML/ClosedXML/issues/1667

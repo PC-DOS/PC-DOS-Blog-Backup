@@ -1,19 +1,19 @@
 [[=]]
- [[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
- ##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
- ----
- [[size larger]] **请勿用于不法用途。**[[/size]]
+[[div style="background: url(http://scp-wiki.wdfiles.com/local--files/the-great-hippo/scp_trans.png) center no-repeat ;background-color: #f56464; float: center; border: solid 2px #f51414; padding: 1px 15px; box-shadow: 0 1px 3px rgba(0,0,0,.2);"]]
+##black|[[size 150%]] **仅供学习与研究使用** [[/size]]##
+----
+[[size larger]] **请勿用于不法用途。**[[/size]]
 
 控制 · 收容 · 保护
 [[/div]]
- [[/=]]
+[[/=]]
 
 一芯（FirstChip）的USB磁盘量产工具FirstChip MPTool（可以从 *http://www.szfirstchip.com/col.jsp?id=137 的“通用工具”中获取）默认不支持磁盘容量的向上伪造。但实际上，该选项被制造商刻意隐藏。
 
- 使用任意支持“显示隐藏控件”功能的程序（例如[*/local--files/firstchip-mp-tool-fake-capacity/KillGray.zip 本文附件]中的{{KillGray.exe}}，需在“工具”菜单中勾选“显示隐藏控件”，且 [文件] > [控件定点监视] 处于“启用”状态），打开MPTool的 [设定（FirstChip网站下载的版本的默认密码为空）] > [Bin设定] 选项卡，即可看到被隐藏的“允许升级容量”和“过360”等2个选项。勾选这两项、勾选“固定容量”复选框并选定“全部固定为”单选按钮，输入希望的伪造容量数值并点击“确定”按钮保存设置，即可尝试使用MPTool制作具有虚假容量的USB磁盘。
+使用任意支持“显示隐藏控件”功能的程序（例如[*/local--files/firstchip-mp-tool-fake-capacity/KillGray.zip 本文附件]中的{{KillGray.exe}}，需在“工具”菜单中勾选“显示隐藏控件”，且 [文件] > [控件定点监视] 处于“启用”状态），打开MPTool的 [设定（FirstChip网站下载的版本的默认密码为空）] > [Bin设定] 选项卡，即可看到被隐藏的“允许升级容量”和“过360”等2个选项。勾选这两项、勾选“固定容量”复选框并选定“全部固定为”单选按钮，输入希望的伪造容量数值并点击“确定”按钮保存设置，即可尝试使用MPTool制作具有虚假容量的USB磁盘。
 
- 此外，亦可编辑程序目录下{{config}}目录内的{{UIConfig.ini}}文件，将{{@@[Config]@@}}一节内{{ShowUpGrade}}参数的值从{{@@0@@}}改为{{@@1@@}}来显示该选项。
+此外，亦可编辑程序目录下{{config}}目录内的{{UIConfig.ini}}文件，将{{@@[Config]@@}}一节内{{ShowUpGrade}}参数的值从{{@@0@@}}改为{{@@1@@}}来显示该选项。
 
 [[image MPToolHiddenOption.png link="*/local--files/firstchip-mp-tool-fake-capacity/MPToolHiddenOption.png"]]
 
- [[image FakedDisk.png link="*/local--files/firstchip-mp-tool-fake-capacity/FakedDisk.png"]] 
+[[image FakedDisk.png link="*/local--files/firstchip-mp-tool-fake-capacity/FakedDisk.png"]]

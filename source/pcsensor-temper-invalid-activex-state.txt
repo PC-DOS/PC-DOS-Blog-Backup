@@ -1,32 +1,32 @@
 **故障现象：**一块TEMPer温度传感器，其上位机程序（TEMPer，获取于 *https://pcsensor.com/page114?article_id=165&_l=zh_CN ，版本为[*https://download.pcsensor.cn/temper/TEMPer_v27.5.zip TEMPer V27.5]）在部分系统上启动时出现如下错误提示：
 
 [[code]]
- System.Runtime.InteropServices.COMException (0x80040154): 類別未登錄 (Exception from HRESULT: 0x80040154 (REGDB_E_CLASSNOTREG))
-    at System.Windows.Forms.UnsafeNativeMethods.CoCreateInstance(Guid& clsid, Object punkOuter, Int32 context, Guid& iid)
-    at System.Windows.Forms.AxHost.CreateWithoutLicense(Guid clsid)
-    at System.Windows.Forms.AxHost.CreateWithLicense(String license, Guid clsid)
-    at System.Windows.Forms.AxHost.CreateInstanceCore(Guid clsid)
-    at System.Windows.Forms.AxHost.CreateInstance()
-    at System.Windows.Forms.AxHost.GetOcxCreate()
-    at System.Windows.Forms.AxHost.TransitionUpTo(Int32 state)
-    at System.Windows.Forms.AxHost.CreateHandle()
-    at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
-    at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
-    at System.Windows.Forms.AxHost.EndInit()
-    at TEMPer.MainForm.InitializeComponent()
-    at TEMPer.MainForm..ctor()
- [[/code]]
+System.Runtime.InteropServices.COMException (0x80040154): 類別未登錄 (Exception from HRESULT: 0x80040154 (REGDB_E_CLASSNOTREG))
+   at System.Windows.Forms.UnsafeNativeMethods.CoCreateInstance(Guid& clsid, Object punkOuter, Int32 context, Guid& iid)
+   at System.Windows.Forms.AxHost.CreateWithoutLicense(Guid clsid)
+   at System.Windows.Forms.AxHost.CreateWithLicense(String license, Guid clsid)
+   at System.Windows.Forms.AxHost.CreateInstanceCore(Guid clsid)
+   at System.Windows.Forms.AxHost.CreateInstance()
+   at System.Windows.Forms.AxHost.GetOcxCreate()
+   at System.Windows.Forms.AxHost.TransitionUpTo(Int32 state)
+   at System.Windows.Forms.AxHost.CreateHandle()
+   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   at System.Windows.Forms.AxHost.EndInit()
+   at TEMPer.MainForm.InitializeComponent()
+   at TEMPer.MainForm..ctor()
+[[/code]]
 
 随后.NET运行时抛出错误{{System.Windows.Forms.AxHost+InvalidActiveXStateException}}，错误消息为“{{Method 'Series' cannot be invoked at this time.}}”。忽略该异常并继续后程序无法正常运行。
 
 **故障分析：**使用.NET Reflector 10.0.7.774分析TEMPer主程序（{{TEMPer.exe}}，该程序使用.NET Framework 4.0编写，基于WinForm实现图形界面）的控件初始化函数{{TEMPer.MainForm.InitializeComponent()}}，以“{{Ax}}”为关键字搜索，发现如下代码行：
 
 [[code]]
- Me.axWindowsMediaPlayer1 = New AxWindowsMediaPlayer
- [[/code]]
+Me.axWindowsMediaPlayer1 = New AxWindowsMediaPlayer
+[[/code]]
 
 推测错误和Windows Media Player状态异常相关。
 
- 查询“开启或关闭Windows功能”界面，发现 [媒体功能] > [Windows Media Player] 功能处于关闭状态。
+查询“开启或关闭Windows功能”界面，发现 [媒体功能] > [Windows Media Player] 功能处于关闭状态。
 
-**故障处理：**在“开启或关闭Windows功能”界面中，将 [媒体功能] > [Windows Media Player] 功能启用并应用更改，再次启动TEMPer V27.5，故障消失。 
+**故障处理：**在“开启或关闭Windows功能”界面中，将 [媒体功能] > [Windows Media Player] 功能启用并应用更改，再次启动TEMPer V27.5，故障消失。

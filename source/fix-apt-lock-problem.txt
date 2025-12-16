@@ -3,9 +3,9 @@
 在终端中执行{{sudo apt-get install}}时，提示如下错误：
 
 [[code]]
- E: 無法將 /var/lib/dpkg/lock-frontend 鎖定 - open (11: 資源暫時無法取得)
+E: 無法將 /var/lib/dpkg/lock-frontend 鎖定 - open (11: 資源暫時無法取得)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
- [[/code]]
+[[/code]]
 
 执行{{ps -e|grep apt-get}}时，回显为空白。
 
@@ -14,7 +14,7 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is an
 在终端中执行下列命令：
 
 [[code]]
- sudo rm /var/cache/apt/archives/lock
- sudo rm /var/lib/dpkg/lock
- sudo rm /var/lib/dpkg/lock-frontend
- [[/code]] 
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+sudo rm /var/lib/dpkg/lock-frontend
+[[/code]]

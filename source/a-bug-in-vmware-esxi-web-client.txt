@@ -2,4 +2,4 @@
 
 **解决方案：**这是一个可能与浏览器有关的问题，临时解决方案是按{{CTRL+F5}}组合键刷新页面。
 
-**参考资料：***https://communities.vmware.com/thread/589237 
+**参考资料：***https://communities.vmware.com/thread/589237

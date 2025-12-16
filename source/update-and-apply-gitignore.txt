@@ -1,13 +1,13 @@
 {{.gitignore}}文件可以要求Git程序忽略不需要进行版本控制的文件（如编译中间产物等），但对于已经被Git建立跟踪的文件，更新{{.gitignore}}文件无法自动解除跟踪。因此，更新{{.gitignore}}文件后，需要进行一次缓存重建的工作：
 
- 首先，请确保先前的所有更新已提交。
+首先，请确保先前的所有更新已提交。
 
- 然后，请依次执行：
+然后，请依次执行：
 
 [[code]]
- git rm -r --cached .
- git add .
- git commit -m "Update .gitignore"
- [[/code]]
+git rm -r --cached .
+git add .
+git commit -m "Update .gitignore"
+[[/code]]
 
-参考资料：*https://blog.csdn.net/Falcon2000/article/details/82830639 
+参考资料：*https://blog.csdn.net/Falcon2000/article/details/82830639

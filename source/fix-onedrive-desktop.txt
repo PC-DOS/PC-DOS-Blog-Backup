@@ -1,28 +1,28 @@
 打开注册表编辑器，导航到{{HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive}}，将DWORD值{{DisableFileSyncNGSC}}的值改为0。或执行下述命令：
 
 [[code]]
- reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive /v DisableFileSyncNGSC
- [[/code]]
+reg delete HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive /v DisableFileSyncNGSC
+[[/code]]
 
 也可以导入下述注册表文件：
 
 [[code]]
- Windows Registry Editor Version 5.00
+Windows Registry Editor Version 5.00
 
- [HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive]
- "DisableFileSyncNGSC"=dword:00000000
- [[/code]]
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive]
+"DisableFileSyncNGSC"=dword:00000000
+[[/code]]
 
- -----
+-----
 
 若需重置OneDrive设定，请在“运行”窗格输入：
 
 [[code]]
- %localappdata%\Microsoft\OneDrive\onedrive.exe /reset
- [[/code]]
+%localappdata%\Microsoft\OneDrive\onedrive.exe /reset
+[[/code]]
 
 若有可能，请继续在“运行”窗格执行：
 
 [[code]]
- %localappdata%\Microsoft\OneDrive\onedrive.exe
- [[/code]] 
+%localappdata%\Microsoft\OneDrive\onedrive.exe
+[[/code]]

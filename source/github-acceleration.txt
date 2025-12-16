@@ -1,9 +1,9 @@
 + FastGit
 
- *https://hub.fastgit.org
+*https://hub.fastgit.org
 
- + Others
++ Others
 
- *http://toolwa.com/github/
+*http://toolwa.com/github/
 
- *https://g.ioiox.com/ 
+*https://g.ioiox.com/

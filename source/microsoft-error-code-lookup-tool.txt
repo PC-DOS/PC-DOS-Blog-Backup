@@ -1,15 +1,15 @@
 Microsoft错误代码查询工具是一个适用于Win32错误代码的查村程序。
 
- 您可以在以下位置下载这个工具：
+您可以在以下位置下载这个工具：
 
 *https://docs.microsoft.com/en-us/windows/win32/debug/system-error-code-lookup-tool
 
- [*/local--files/microsoft-error-code-lookup-tool/Err_6.4.5.exe 本站镜像]
+[*/local--files/microsoft-error-code-lookup-tool/Err_6.4.5.exe 本站镜像]
 
 使用如下的命令行使用这个工具：
 
 [[code]]
- err_6.4.5 error_code
- [[/code]]
+err_6.4.5 error_code
+[[/code]]
 
- {{error_code}}为待查询的错误代码。 
+{{error_code}}为待查询的错误代码。

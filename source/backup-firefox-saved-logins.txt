@@ -1,26 +1,26 @@
 参考资料：*https://support.mozilla.org/zh-CN/kb/%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6
 
- + 文件位置
++ 文件位置
 
- 安装版本：{{%APPDATA%\Mozilla\Firefox\Profiles\}}
+安装版本：{{%APPDATA%\Mozilla\Firefox\Profiles\}}
 
- Portable版本：{{Data\Profile}}
+Portable版本：{{Data\Profile}}
 
- + 备份/恢复操作
++ 备份/恢复操作
 
- 请备份以下文件：
+请备份以下文件：
 
 [[code]]
- key3.db
- key4.db
- logins.json
- logins-backup.json
- formhistory.sqlite
- cookies.sqlite
- cookies.sqlite-shm
- cookies.sqlite-wal
- [[/code]]
+key3.db
+key4.db
+logins.json
+logins-backup.json
+formhistory.sqlite
+cookies.sqlite
+cookies.sqlite-shm
+cookies.sqlite-wal
+[[/code]]
 
- + 另请参考
++ 另请参考
 
-[[[backup-firefox-bookmarks|]]] 
+[[[backup-firefox-bookmarks|]]]

@@ -2,151 +2,151 @@
 
 **处理器：**Intel Xeon E5-2640 v4
 
- **内存：**128GB DDR4 REG ECC
+**内存：**128GB DDR4 REG ECC
 
- **硬盘1：**512GB SSD
+**硬盘1：**512GB SSD
 
- **硬盘2：**4TB HDD
+**硬盘2：**4TB HDD
 
- **显示卡：**NVIDIA TITAN XP
+**显示卡：**NVIDIA TITAN XP
 
- **操作系统：**AlmaLinux 9 (Linux 5.14.0)
+**操作系统：**AlmaLinux 9 (Linux 5.14.0)
 
- + 安装NVIDIA显示卡驱动程序
++ 安装NVIDIA显示卡驱动程序
 
- 本步骤操作均在Root环境下进行。
+本步骤操作均在Root环境下进行。
 
 [[code]]
- su
- [[/code]]
+su
+[[/code]]
 
 添加EPEL存储库并更新缓存：
 
 [[code]]
- sudo dnf install epel-release epel-next-release
- sudo dnf makecache
- [[/code]]
+sudo dnf install epel-release epel-next-release
+sudo dnf makecache
+[[/code]]
 
 安装依赖项：
 
 [[code]]
- sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconfig dkms
- [[/code]]
+sudo dnf install kernel-headers-$(uname -r) kernel-devel-$(uname -r) tar bzip2 make automake gcc gcc-c++ pciutils elfutils-libelf-devel libglvnd-opengl libglvnd-glx libglvnd-devel acpid pkgconfig dkms
+[[/code]]
 
 添加NVIDIA存储库并更新缓存：
 
 [[code]]
- sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
- sudo dnf makecache
- [[/code]]
+sudo dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(uname -i)/cuda-rhel9.repo
+sudo dnf makecache
+[[/code]]
 
 安装NVIDIA驱动程序：
 
 [[code]]
- sudo dnf module install nvidia-driver:latest-dkms
- [[/code]]
+sudo dnf module install nvidia-driver:latest-dkms
+[[/code]]
 
 重新启动系统并自动退出Root操作环境：
 
 [[code]]
- reboot
- [[/code]]
+reboot
+[[/code]]
 
- + 安装Docker
++ 安装Docker
 
 安装企业版 Linux 附加软件包（EPEL）：
 
 [[code]]
- sudo dnf install epel-release epel-next-release
- [[/code]]
+sudo dnf install epel-release epel-next-release
+[[/code]]
 
 安装依赖项：
 
 [[code]]
- sudo yum install -y yum-utils device-mapper-persistent-data lvm2
- [[/code]]
+sudo yum install -y yum-utils device-mapper-persistent-data lvm2
+[[/code]]
 
 添加软件源，这里采用阿里云源：
 
 [[code]]
- sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
- [[/code]]
+sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+[[/code]]
 
 安装Docker，这里加入了{{--allowerasing}}开关以避免包冲突：
 
 [[code]]
- yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin --allowerasing
- [[/code]]
+yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin --allowerasing
+[[/code]]
 
 将当前用户添加到{{docker}}组：
 
 [[code]]
- sudo gpasswd -a USER_NAME docker
- [[/code]]
+sudo gpasswd -a USER_NAME docker
+[[/code]]
 
- {{USER_NAME}}为需要加入{{docker}}组的用户名。
+{{USER_NAME}}为需要加入{{docker}}组的用户名。
 
- 设置Docker为开机自启动：
+设置Docker为开机自启动：
 
 [[code]]
- systemctl enable docker
- [[/code]]
+systemctl enable docker
+[[/code]]
 
 启动Docker：
 
 [[code]]
- sudo service docker start
- [[/code]]
+sudo service docker start
+[[/code]]
 
- + 修改Docker默认的镜像存储路径
++ 修改Docker默认的镜像存储路径
 
 Docker默认会将拉取的镜像存储到{{/var/lib/docker}}目录，为节省系统磁盘空间，可以将其移动到大容量磁盘。这里假设大容量磁盘被挂载到{{/mnt/hdd1}}。
 
- 建立Docker镜像存储路径：
+建立Docker镜像存储路径：
 
 [[code]]
- mkdir /mnt/hdd1/docker
- [[/code]]
+mkdir /mnt/hdd1/docker
+[[/code]]
 
 编辑{{/etc/docker/daemon.json}}文件：
 
 [[code]]
- sudo vim /etc/docker/daemon.json
- [[/code]]
+sudo vim /etc/docker/daemon.json
+[[/code]]
 
 修改字符串值{{"data-root"}}（或{{"graph"}}）的值为具体的存储路径：
 
 [[code]]
-  "graph":"/mnt/hdd1/docker",
-  "data-root":"/mnt/hdd1/docker",
- [[/code]]
+ "graph":"/mnt/hdd1/docker",
+ "data-root":"/mnt/hdd1/docker",
+[[/code]]
 
 保存并重启系统：
 
 [[code]]
- sudo reboot
- [[/code]]
+sudo reboot
+[[/code]]
 
- + 安装Docker-Compose
++ 安装Docker-Compose
 
- Docker-Compose依赖Python3-Pip。
+Docker-Compose依赖Python3-Pip。
 
 [[code]]
- sudo yum install python3-pip
- pip3 install docker-compose
- [[/code]]
+sudo yum install python3-pip
+pip3 install docker-compose
+[[/code]]
 
- + 安装NVIDIA Docker
++ 安装NVIDIA Docker
 
 添加软件源并安装NVIDIA Docker。需注意：由于NVIDIA的仓库未收录AlmaLinux的发行版标签，因此使用RedHat 9的发行标签{{rhel9.0}}替换了原始地址（{{@@https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.repo@@}}）中的{{$distribution}}变量，具体可参考 *https://nvidia.github.io/libnvidia-container/ 。
 
 [[code]]
- curl -s -L https://nvidia.github.io/libnvidia-container/rhel9.0/libnvidia-container.repo | tee /etc/yum.repos.d/nvidia-container-toolkit.repo
- sudo yum install -y nvidia-docker2
- [[/code]]
+curl -s -L https://nvidia.github.io/libnvidia-container/rhel9.0/libnvidia-container.repo | tee /etc/yum.repos.d/nvidia-container-toolkit.repo
+sudo yum install -y nvidia-docker2
+[[/code]]
 
 若启动NVIDIA Docker时遇到问题，请编辑{{/etc/nvidia-container-runtime/config.toml}}文件，并将{{no-cgroups}}的值改为{{true}}即：
 
 [[code]]
- no-cgroups = true
- [[/code]] 
+no-cgroups = true
+[[/code]]

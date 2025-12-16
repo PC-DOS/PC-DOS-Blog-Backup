@@ -1,8 +1,8 @@
 + 引言 项目背景
 
- 本项目为一个使用Qt编写的采集设备控制器应用程序。程序运行在ARM Linux上，从采集卡采集具有特定格式的数据帧，封包后通过以太网络发送到上位机。
+本项目为一个使用Qt编写的采集设备控制器应用程序。程序运行在ARM Linux上，从采集卡采集具有特定格式的数据帧，封包后通过以太网络发送到上位机。
 
- 本程序的线程布局如下：
+本程序的线程布局如下：
 
 # 主线程：运行时调度工作，同时接收用户发来的指令并响应。
 # 数据采集线程：轮询驱动程序中的采集完成状态标志，并在采集完成时通过驱动程序读取接口拷贝数据到用户地址空间，同时发射信号提示主线程处理数据。
@@ -12,9 +12,9 @@
 
 **故障现象：**程序运行不特定的时间后，数据发送终止，同时数据发送线程和主线程全部处于休眠状态。驱动程序的调试信息显示驱动程序仍在正常响应数据就绪中断。
 
-**调试记录：**检查源码发现，数据采集线程使用重载{{QThread::run()}}的方式，并定义一个无限的{{@@while (true)  {}@@}}循环实现，同时在实现中使用了QThread::sleep()函数及其变体。[查阅参考资料 *https://forum.qt.io/topic/98407/gui-freezes-even-with-multithreading/2]发现，该行为为不推荐的写法，改为使用[[[qt-multi-thread-best-practice | Controller-Worker设计范式]]]，同时[[[qt-multi-thread-avoid-while-true-loop-and-sleep | 使用延时参数为0毫秒的{{QTimer::singleShot()}}调用模拟无限循环]]]，问题得到缓解。
+**调试记录：**检查源码发现，数据采集线程使用重载{{QThread::run()}}的方式，并定义一个无限的{{@@while (true)  {}@@}}循环实现，同时在实现中使用了QThread::sleep()函数及其变体。[查阅参考资料 *https://forum.qt.io/topic/98407/gui-freezes-even-with-multithreading/2]发现，该行为为不推荐的写法，改为使用[[[qt-multi-thread-best-practice | Controller-Worker设计范式]]]，同时[[[qt-multi-thread-avoid-while-true-loop-and-sleep | 使用延时参数为0毫秒的{{QTimer::singleShot()}}调用模拟无限循环]]]，问题得到缓解。
 
- 同时，将保护临界区（数据缓冲区）的读写锁{{QReadWriteLock}}的锁定操作全部改为使用{{QReadWriteLock::tryLockForRead()}}和{{QReadWriteLock::tryLockForWrite()}}。
+同时，将保护临界区（数据缓冲区）的读写锁{{QReadWriteLock}}的锁定操作全部改为使用{{QReadWriteLock::tryLockForRead()}}和{{QReadWriteLock::tryLockForWrite()}}。
 
 + 2 数据采集线程单独挂起的问题
 
@@ -23,10 +23,10 @@
 **调试记录：**检查源码发现，数据采集线程使用以下的方式轮询驱动程序的数据采集状态：
 
 [[code type="Cpp"]]
- unsigned char chrDataAcquisitionState = DATA_BUFFER_STATUS_NO_NEW_DATA;
- ioctl(hDriver, CTL_CMD_GET_DATA_BUFFER_STATUS, (unsigned long)(&chrDataAcquisitionState));
- return (chrDataAcquisitionState == DATA_BUFFER_STATUS_NEW_DATA_ARRIVED);
- [[/code]]
+unsigned char chrDataAcquisitionState = DATA_BUFFER_STATUS_NO_NEW_DATA;
+ioctl(hDriver, CTL_CMD_GET_DATA_BUFFER_STATUS, (unsigned long)(&chrDataAcquisitionState));
+return (chrDataAcquisitionState == DATA_BUFFER_STATUS_NEW_DATA_ARRIVED);
+[[/code]]
 
 程序编译时开启了O3优化，推测与{{chrDataAcquisitionState}}标志被优化到CPU缓存内有关，为{{chrDataAcquisitionState}}添加{{volatile}}修饰，问题得到缓解。
 
@@ -58,26 +58,26 @@
 **调试记录：**发现程序在响应用户发来的关机（或重启）指令时，直接使用{{system("poweroff")}}指令进行同步的关机，导致程序无法安全退出。改为异步的关机/重启后，问题得到缓解：
 
 [[code type="Cpp"]]
- //Request system to shutdown asynchronously
- system("poweroff -d 1 &");
+//Request system to shutdown asynchronously
+system("poweroff -d 1 &");
 
- //Schedule the app to quit
- QTimer::singleShot(245, qApp, SLOT(quit()));
- [[/code]]
+//Schedule the app to quit
+QTimer::singleShot(245, qApp, SLOT(quit()));
+[[/code]]
 
- + 7 数据一致性问题
++ 7 数据一致性问题
 
- 数据在发送端或接收端进行发送或处理时，发现所得数据虽然单帧正确，但连续分析时异常。
+数据在发送端或接收端进行发送或处理时，发现所得数据虽然单帧正确，但连续分析时异常。
 
- 进一步分析显示，该故障的诱因包括：
+进一步分析显示，该故障的诱因包括：
 
 # 主线程数据处理算法设计存在瑕疵，可以提升性能。
 # 由于数据接收线程和主界面跨线程，因此数据就绪事件被以Qt默认的Qt::QueuedConnection关联，因此可能出现多个数据就绪事件被事件循环归并并在同一个时点被快速排程给主线程执行的情况。此时会导致主界面线程的数据接收响应函数多次接收重复的数据帧。
 # 发送端存在于上问题类似的情况。
 
- 采用的改进方式包括：
+采用的改进方式包括：
 
 # 数据发送和接收做队列化处理。
 # 接收端单开一线程用于处理数据，数据处理槽函数和数据接收完毕事件在必要时使用{{Qt::BlockingQueuedConnection}}或{{Qt::DirectConnection}}（破坏了线程隔离性，较不安全）模式关联到数据接收子线程的数据就绪事件上。当数据就绪事件触发时，预处理线程会阻塞数据接收并完成数据的读取和预处理，随后恢复数据接收线程运行。
 
- 同时发现原设计中在控制跨线程临界区时，较多地使用了{{QMutex}}（互斥锁）或{{QReadWriteLock}}（读写锁）的{{tryLock()}}方法。该方法在无法进入临界区时会直接返回False（而不是像常规的{{lock()}}/{{lockForXxx()}}方法一样等待），导致非预期的数据丢失。 
+同时发现原设计中在控制跨线程临界区时，较多地使用了{{QMutex}}（互斥锁）或{{QReadWriteLock}}（读写锁）的{{tryLock()}}方法。该方法在无法进入临界区时会直接返回False（而不是像常规的{{lock()}}/{{lockForXxx()}}方法一样等待），导致非预期的数据丢失。

@@ -1,33 +1,33 @@
 一台服务器上运行的GitLab实例运行于Docker中，近日发现在管理面板中修改默认语言、默认分支名字等部分数据，以及检查GitLab Runner情况时报500错误。检查{{production.log}}发现以下两个报错：
 
 [[code]]
- OpenSSL::Cipher::CipherError
- ActionView::Template::Error
- [[/code]]
+OpenSSL::Cipher::CipherError
+ActionView::Template::Error
+[[/code]]
 
 推测与GitLab升级后部分密钥和令牌受损有关，故使用SSL连接到服务器，并使用下面的指令登入Docker容器内部：
 
 [[code]]
- docker exec -it CONTAINER_ID /bin/bash
- [[/code]]
+docker exec -it CONTAINER_ID /bin/bash
+[[/code]]
 
 其中{{CONTAINER_ID}}为Docker容器的Container ID，格式形如“{{ded406ab4174}}”，可以使用{{docker ps}}命令获取。
 
- 随后，进入GitLab Rails控制台：
+随后，进入GitLab Rails控制台：
 
 [[code]]
- gitlab-rails c
- [[/code]]
+gitlab-rails c
+[[/code]]
 
 该命令执行可能需要数分钟，最后会出现控制台提示符。依次执行：
 
 [[code]]
- settings = ApplicationSetting.last
- settings.update_column(:runners_registration_token_encrypted, nil)
- settings.update_column(:encrypted_ci_jwt_signing_key, nil)
- settings.save!
- [[/code]]
+settings = ApplicationSetting.last
+settings.update_column(:runners_registration_token_encrypted, nil)
+settings.update_column(:encrypted_ci_jwt_signing_key, nil)
+settings.save!
+[[/code]]
 
 命令执行后，恢复正常。连续使用{{exit}}命令退出。
 
- 参考资料：*https://blog.csdn.net/ZH_CS/article/details/124709638 
+参考资料：*https://blog.csdn.net/ZH_CS/article/details/124709638
