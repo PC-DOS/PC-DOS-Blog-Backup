@@ -14,16 +14,25 @@ sudo adduser newuser
 
 [[code]]
 sudo useradd -d /mnt/hdd2/user0 -m -s /bin/bash newuser
+sudo usermod -aG users newuser
 [[/code]]
 
-+ {{sudo}}授权与解除授权
+处理home上级目录权限问题（参考 *https://www.cnblogs.com/future-dream/p/18522702 ）：
+
+[[code]]
+sudo chmod o+x /mnt/hdd2
+[[/code]]
+
++ {{sudo}}授权与解除授权（用户组管理）
+
+Ubuntu通过{{sudo}}用户组控制用户调用{{sudo}}的权限。
 
 ++ 授权
 
 允许{{newuser}}调用{{sudo}}：
 
 [[code]]
-sudo gpasswd –a newuser sudo
+sudo usermod -aG sudo newuser
 [[/code]]
 
 ++ 解除授权
@@ -31,7 +40,7 @@ sudo gpasswd –a newuser sudo
 禁止{{newuser}}调用{{sudo}}：
 
 [[code]]
-sudo gpasswd –d newuser sudo
+sudo usermod -rG sudo newuser
 [[/code]]
 
 + 删除用户
