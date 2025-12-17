@@ -1,0 +1,60 @@
+交叉编译器位于{{/usr/local/arm/4.3.2/bin/}}，前缀为{{arm-none-linux-gnueabi}}，系统包含16个核心。
+
+在本机克隆并编译安装SDL2（ *https://wiki.libsdl.org/SDL2/Installation ）：
+
+[[code]]
+cd ~
+git clone https://github.com/libsdl-org/SDL.git -b SDL2
+cd SDL
+mkdir build
+cd build
+../configure
+make -j16
+sudo make install
+[[/code]]
+
+交叉编译SDL2（ *https://my.oschina.net/emacs_8791039/blog/17272378 ； *https://blog.csdn.net/ckg3824278/article/details/138269739 ）：
+
+[[code]]
+export PATH=$PATH:/usr/local/arm/4.3.2/bin/
+cd SDL
+mkdir build-arm
+cd build-arm
+../configure --host=arm-none-linux-gnueabi --prefix=/opt/sdl2-arm --disable-joystick --disable-video-opengl --disable-video-opengles
+[[/code]]
+
+修改{{configure}}生成的{{Makefile}}，在{{CC}}行后加入：{{ -march=armv6}}。执行：
+
+[[code]]
+make -j16
+su
+make install
+exit
+[[/code]]
+
+由于直接使用{{sudo make install}}会丢失环境变量，因此进入{{su}}模式处理。
+
+交叉编译luvcview（ *https://www.cnblogs.com/xiansong1005/p/7401448.html ）：
+
+[[code]]
+git clone https://github.com/ksv1986/luvcview.git
+cd luvcview
+[[/code]]
+
+修改{{Makefile}}中的以下行：
+
+[[code]]
+CC=arm-none-linux-gnueabi-gcc
+CPP=arm-none-linux-gnueabi-g++
+INSTALL=install
+APP_BINARY=luvcview
+BIN=/usr/local/bin
+SDLLIBS = $(shell /opt/sdl2-arm/bin/sdl2-config --libs) 
+SDLFLAGS = $(shell /opt/sdl2-arm/bin/sdl2-config --cflags)
+[[/code]]
+
+修改{{luvcview.c}}，屏蔽{{#include <X11/Xlib.h>}}，回控制台执行：
+
+[[code]]
+make all
+[[/code]]
