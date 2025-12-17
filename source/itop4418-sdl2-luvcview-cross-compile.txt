@@ -58,3 +58,5 @@ SDLFLAGS = $(shell /opt/sdl2-arm/bin/sdl2-config --cflags)
 [[code]]
 make all
 [[/code]]
+
+将{{/opt/sdl2/lib}}目录复制到开发板的{{/usr/}}即可。
