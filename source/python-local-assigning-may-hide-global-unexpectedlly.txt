@@ -1,0 +1,85 @@
+示例代码：
+
+[[code type="python"]]
+arrGlobalArray = []
+
+def AddItemToGlobalArray(objItem) :
+    arrGlobalArray.append(objItem)
+#End Sub
+
+def TestLoop() :
+    print("Entered TestLoop()")
+
+    nLoopCount = 5
+    for i in range(0, nLoopCount) :
+        print(f"Loop {i+1}/{nLoopCount}:")
+        # This creates a local array named "arrGlobalArray"
+        arrGlobalArray = []
+        AddItemToGlobalArray(245)
+        print(f"arrGlobalArray={arrGlobalArray}")
+    #Next
+#End Sub
+
+if __name__ == "__main__" :
+    TestLoop()
+#End If
+[[/code]]
+
+由于{{TestLoop()}}函数中的{{arrGlobalArray = []}}语句被解释为局部变量定义，导致全局数组{{arrGlobalArray}}在{{TestLoop()}}函数中被屏蔽。此时的输出为：
+
+[[code]]
+Entered TestLoop()
+Loop 1/5:
+arrGlobalArray=[]
+Loop 2/5:
+arrGlobalArray=[]
+Loop 3/5:
+arrGlobalArray=[]
+Loop 4/5:
+arrGlobalArray=[]
+Loop 5/5:
+arrGlobalArray=[]
+[[/code]]
+
+修改代码：
+
+[[code type="python"]]
+arrGlobalArray = []
+
+def AddItemToGlobalArray(objItem) :
+    arrGlobalArray.append(objItem)
+#End Sub
+
+def TestLoop() :
+    print("Entered TestLoop()")
+
+    nLoopCount = 5
+    for i in range(0, nLoopCount) :
+        print(f"Loop {i+1}/{nLoopCount}:")
+        # This won't create local array
+        arrGlobalArray.clear()
+        AddItemToGlobalArray(245)
+        print(f"arrGlobalArray={arrGlobalArray}")
+    #Next
+#End Sub
+
+if __name__ == "__main__" :
+    TestLoop()
+#End If
+[[/code]]
+
+此时输出正确：
+
+[[code]]
+Entered TestLoop()
+Loop 1/5:
+arrGlobalArray=[245]
+Loop 2/5:
+arrGlobalArray=[245]
+Loop 3/5:
+arrGlobalArray=[245]
+Loop 4/5:
+arrGlobalArray=[245]
+Loop 5/5:
+arrGlobalArray=[245]
+[[/code]]
