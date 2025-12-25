@@ -1,0 +1,3 @@
+本教程旨在禁用StartIsBack/StartAllBack的更新提示，以免意外覆盖某些特殊版本。
+
+进入StartIsBack安装目录（如{{C:\Program Files (x86)\StartIsBack\}}）将文件{{UpdateCheck.exe}}改名或移除即可。
