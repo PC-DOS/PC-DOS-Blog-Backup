@@ -168,9 +168,9 @@ jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
     },
     edges=[
         # JRC1 -> JRC2, excitatory
-        ("JRC1/PC/PRO/m_out", "JRC2/EIN/RPO_e/m_in", None, {"weight" : 20.0, "delay" : 0.004, "spread" : 0.001}),
+        ("JRC1/PC/PRO/m_out", "JRC2/PC/RPO_e/m_in", None, {"weight" : 20.0, "delay" : 0.004, "spread" : 0.001}),
         # JRC2 -> JRC1, excitatory
-        ("JRC2/PC/PRO/m_out", "JRC1/EIN/RPO_e/m_in", None, {"weight" : 40.0, "delay" : 0.004, "spread" : 0.001}),
+        ("JRC2/PC/PRO/m_out", "JRC1/PC/RPO_e/m_in", None, {"weight" : 40.0, "delay" : 0.004, "spread" : 0.001}),
     ],
     description=f"{sJRCDescTemplate} of {sCurrentNodeName}")
 [[/code]]
@@ -250,7 +250,7 @@ pyrates.utility.clear_frontend_caches()
 
 需要注意的是，PyRates生成的仿真结果中，共包含{{nPoint = simulation_time * (1.0 / sampling_step_size)}}个测量点。因此，部分算法（例如MNE工具包采用的算法：{{dTime = (nPoint - 1) * sampling_step_size}}）会导致测得的时长略小于{{simulation_time}}的设置值。此时，可以通过将{{simulation_time}}设为期望的仿真时长与1个{{sampling_step_size}}的和进行处理，即设置{{simulation_time=dSimulationDuration+dSamplingStep}}。
 
-为了获得较为稳定的仿真结果，可以考虑在{{simulation_time}}中设置一个5 s左右的引导段，并在处理时剔除这个引导段：
+为了获得较为稳定的仿真结果，可以考虑在{{simulation_time}}中设置一个10 s左右的引导段，并在处理时剔除这个引导段：
 
 [[code type="python"]]
 # Remove simulation padding segment
