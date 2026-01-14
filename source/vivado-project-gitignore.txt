@@ -2,8 +2,8 @@
 
 [[code]]
 #########################################################################################################
-##    This is an example .gitignore file for Vivado, please treat it as an example as 
-##    it might not be complete. In addition, XAPP 1165 should be followed.
+##    This is an example .gitignore file for Vivado, please treat it as an example as 
+##    it might not be complete. In addition, XAPP 1165 should be followed.
 #########################################################################################################
 #########
 #Exclude all
@@ -13,7 +13,7 @@
 !.gitignore
 
 ###########################################################################
-##    VIVADO
+##    VIVADO
 ###########################################################################
 #########
 #Source files:
@@ -57,7 +57,7 @@
 #########
 #Project files
 #########
-#XPR  +  *.XML ? XPR (Files are merged into a single XPR file for 2014.1 version)
+#XPR  +  *.XML ? XPR (Files are merged into a single XPR file for 2014.1 version)
 #Do NOT ignore *.xpr files
 !*.xpr
 #Include *.xml files for 2013.4 or earlier version

@@ -5,15 +5,15 @@
 [[code]]
 initial begin
 
-    //...
+    //...
 
-    #0 rRest = 1;
-    //#250 rReset = 0; //Should align with clock cycle
-    #240 rReset = 0;
+    #0 rRest = 1;
+    //#250 rReset = 0; //Should align with clock cycle
+    #240 rReset = 0;
 
-    #0 ; //Simulation code
+    #0 ; //Simulation code
 
-    //...
+    //...
 
 end
 

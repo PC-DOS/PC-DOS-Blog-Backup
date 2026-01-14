@@ -22,12 +22,12 @@ https://repairavoidance.blob.core.windows.net/packages/EmergencyFlash/%Model%/em
 
 [[code type="xml"]]
 <emergency_flash_config>
-    <first_boot_images>
-        <first_boot_image image_id="13" image_path="MPRG8x26_fh.ede" programmer="true" safe="false" signed="true" boot_rom_proto="sahara" emergency_dl_proto="firehose_single_image"/>
-    </first_boot_images>
-    <second_boot_firehose_single_image>
-        <firehose_image image_partition="EMERGENCY" image_path="RM984_fh.edp" signed="true"/>
-    </second_boot_firehose_single_image>
+    <first_boot_images>
+        <first_boot_image image_id="13" image_path="MPRG8x26_fh.ede" programmer="true" safe="false" signed="true" boot_rom_proto="sahara" emergency_dl_proto="firehose_single_image"/>
+    </first_boot_images>
+    <second_boot_firehose_single_image>
+        <firehose_image image_partition="EMERGENCY" image_path="RM984_fh.edp" signed="true"/>
+    </second_boot_firehose_single_image>
 </emergency_flash_config>
 [[/code]]
 
@@ -42,8 +42,8 @@ RM-821（Lumia 920）的查询（ *https://repairavoidance.blob.core.windows.net
 
 [[code type="xml"]]
 <emergency_flash_config>
-    <hex_flasher image_path="FAST8960_PHI.hex"/>
-    <mbn_image image_path="RM821_msimage_v1.0.mbn"/>
+    <hex_flasher image_path="FAST8960_PHI.hex"/>
+    <mbn_image image_path="RM821_msimage_v1.0.mbn"/>
 </emergency_flash_config>
 [[/code]]
 

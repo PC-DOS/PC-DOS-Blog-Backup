@@ -1,22 +1,22 @@
 [[module css]]
 .win10-link-button {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    color: #fff;
-    background-color: #004b91;
-    padding: 0.75em;
-    font-size: 105%;
-    text-decoration:none;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #004b91;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
 }
 
 .win10-link-button:hover {
-    margin-top: 1em;
-    margin-bottom: 1em;
-    color: #fff;
-    background-color: #0073d7;
-    padding: 0.75em;
-    font-size: 105%;
-    text-decoration:none;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #0073d7;
+    padding: 0.75em;
+    font-size: 105%;
+    text-decoration:none;
 }
 [[/module]]
 
@@ -54,7 +54,7 @@ Windows Registry Editor Version 5.00
 "LedIndexList"=hex(7):30,00,00,00,31,00,00,00,32,00,00,00,00,00
 "InactivityTimeout"=dword:00000000
 "MilliLuxRanges"=hex(7):31,00,30,00,30,00,30,00,30,00,30,00,00,00,34,00,32,00,\
-  39,00,34,00,39,00,36,00,37,00,32,00,39,00,35,00,00,00,00,00
+  39,00,34,00,39,00,36,00,37,00,32,00,39,00,35,00,00,00,00,00
 "IntensityMappings0"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
 "IntensityMappings1"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00
 "IntensityMappings2"=hex(7):31,00,32,00,00,00,30,00,00,00,00,00

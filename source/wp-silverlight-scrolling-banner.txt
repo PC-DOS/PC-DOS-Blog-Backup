@@ -1,24 +1,24 @@
 [[code]]
 <Canvas x:Name="cvsScrollingTextContainer" VerticalAlignment="Top" Margin="0,88,0,0">
-    <Canvas.Clip>
-    	<RectangleGeometry Rect="10,0,460,100"/>
-    </Canvas.Clip>
-    <TextBlock x:Name="txtScrollingText" Text="这里有一条警告信息。Here is a warning."  FontFamily="Portable User Interface" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0.5" Foreground="Red" FontSize="18" Margin="0,4,0,0">
-    	<TextBlock.RenderTransform>
-    		<TranslateTransform />
-    	</TextBlock.RenderTransform>
-    </TextBlock>
-    <Canvas.Triggers>
-    	<EventTrigger RoutedEvent="Canvas.Loaded">
-    		<BeginStoryboard>
-    			<Storyboard>
-    				<DoubleAnimation From="480" To="-480" Duration="0:0:10"
-    										RepeatBehavior="Forever"
-    										Storyboard.TargetName="txtScrollingText"
-    										Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" />
-    			</Storyboard>
-    		</BeginStoryboard>
-    	</EventTrigger>
-    </Canvas.Triggers>
+    <Canvas.Clip>
+    	<RectangleGeometry Rect="10,0,460,100"/>
+    </Canvas.Clip>
+    <TextBlock x:Name="txtScrollingText" Text="这里有一条警告信息。Here is a warning."  FontFamily="Portable User Interface" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0,0.5" Foreground="Red" FontSize="18" Margin="0,4,0,0">
+    	<TextBlock.RenderTransform>
+    		<TranslateTransform />
+    	</TextBlock.RenderTransform>
+    </TextBlock>
+    <Canvas.Triggers>
+    	<EventTrigger RoutedEvent="Canvas.Loaded">
+    		<BeginStoryboard>
+    			<Storyboard>
+    				<DoubleAnimation From="480" To="-480" Duration="0:0:10"
+    										RepeatBehavior="Forever"
+    										Storyboard.TargetName="txtScrollingText"
+    										Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)" />
+    			</Storyboard>
+    		</BeginStoryboard>
+    	</EventTrigger>
+    </Canvas.Triggers>
 </Canvas>
 [[/code]]

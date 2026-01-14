@@ -20,39 +20,39 @@ https://api.bilibili.com/x/web-interface/view?bvid=BVID
 
 [[html]]
 <form id="bliAvid" name="bliAvid" action="https://api.bilibili.com/x/web-interface/view" method="get" target="_blank">
-     <table height="100%" width="100%">
-     <tr align="center">
-     <td align="center">
-     <table width="100%" height="100" border="0" bordercolor="#FFFFFF" cellpadding="0" cellspacing="0" >
-     <tr>
-     <td align="center">
-     <br>
-     <br>
-     <table width="300" border="1" bgcolor="transparent" bordercolor="#FFFFFF"
-     cellpadding="0" cellspacing="0">
-     <tr>
-     <td align="center" nowrap="nowrap">
-     视频AV号：
-     </td>
-     <td nowrap="nowrap">
-     <input type="text" name="aid" size="15" maxlength="15" value="" id="aid" type="text"/>
-     <font color="red">*</font>
-     </td>
-     </tr>
-     <tr>
-     <td colspan="2" align="center" nowrap="nowrap">
-     <input type="submit" id="bliAvid_0" value="查询JSON"/>
-     </td>
-     </tr>
-     </table>
-     <br>
-     </td>
-     </tr>
-     </table>
-     </td>
-     </tr>
-     </table>
-     </form>
+     <table height="100%" width="100%">
+     <tr align="center">
+     <td align="center">
+     <table width="100%" height="100" border="0" bordercolor="#FFFFFF" cellpadding="0" cellspacing="0" >
+     <tr>
+     <td align="center">
+     <br>
+     <br>
+     <table width="300" border="1" bgcolor="transparent" bordercolor="#FFFFFF"
+     cellpadding="0" cellspacing="0">
+     <tr>
+     <td align="center" nowrap="nowrap">
+     视频AV号：
+     </td>
+     <td nowrap="nowrap">
+     <input type="text" name="aid" size="15" maxlength="15" value="" id="aid" type="text"/>
+     <font color="red">*</font>
+     </td>
+     </tr>
+     <tr>
+     <td colspan="2" align="center" nowrap="nowrap">
+     <input type="submit" id="bliAvid_0" value="查询JSON"/>
+     </td>
+     </tr>
+     </table>
+     <br>
+     </td>
+     </tr>
+     </table>
+     </td>
+     </tr>
+     </table>
+     </form>
 [[/html]]
 
 + BV号（BVID）JSON接口一键查询工具
@@ -61,37 +61,37 @@ https://api.bilibili.com/x/web-interface/view?bvid=BVID
 
 [[html]]
 <form id="bliBvid" name="bliBvid" action="https://api.bilibili.com/x/web-interface/view" method="get" target="_blank">
-     <table height="100%" width="100%">
-     <tr align="center">
-     <td align="center">
-     <table width="100%" height="100" border="0" bordercolor="#FFFFFF" cellpadding="0" cellspacing="0" >
-     <tr>
-     <td align="center">
-     <br>
-     <br>
-     <table width="300" border="1" bgcolor="transparent" bordercolor="#FFFFFF"
-     cellpadding="0" cellspacing="0">
-     <tr>
-     <td align="center" nowrap="nowrap">
-     视频BV号：
-     </td>
-     <td nowrap="nowrap">
-     <input type="text" name="bvid" size="15" maxlength="15" value="" id="bvid" type="text"/>
-     <font color="red">*</font>
-     </td>
-     </tr>
-     <tr>
-     <td colspan="2" align="center" nowrap="nowrap">
-     <input type="submit" id="bliBvid_0" value="查询JSON"/>
-     </td>
-     </tr>
-     </table>
-     <br>
-     </td>
-     </tr>
-     </table>
-     </td>
-     </tr>
-     </table>
-     </form>
+     <table height="100%" width="100%">
+     <tr align="center">
+     <td align="center">
+     <table width="100%" height="100" border="0" bordercolor="#FFFFFF" cellpadding="0" cellspacing="0" >
+     <tr>
+     <td align="center">
+     <br>
+     <br>
+     <table width="300" border="1" bgcolor="transparent" bordercolor="#FFFFFF"
+     cellpadding="0" cellspacing="0">
+     <tr>
+     <td align="center" nowrap="nowrap">
+     视频BV号：
+     </td>
+     <td nowrap="nowrap">
+     <input type="text" name="bvid" size="15" maxlength="15" value="" id="bvid" type="text"/>
+     <font color="red">*</font>
+     </td>
+     </tr>
+     <tr>
+     <td colspan="2" align="center" nowrap="nowrap">
+     <input type="submit" id="bliBvid_0" value="查询JSON"/>
+     </td>
+     </tr>
+     </table>
+     <br>
+     </td>
+     </tr>
+     </table>
+     </td>
+     </tr>
+     </table>
+     </form>
 [[/html]]

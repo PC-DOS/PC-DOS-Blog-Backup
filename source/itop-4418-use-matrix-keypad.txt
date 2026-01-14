@@ -31,10 +31,10 @@ iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet
 [[code type="cpp"]]
 /* gpio mode, altfunction, gpio in/out or interrput */
 enum {
-    PAD_MODE_ALT    = (0 << PAD_MODE_SHIFT),
-    PAD_MODE_IN     = (1 << PAD_MODE_SHIFT),
-    PAD_MODE_OUT    = (2 << PAD_MODE_SHIFT),
-    PAD_MODE_INT    = (3 << PAD_MODE_SHIFT),
+    PAD_MODE_ALT    = (0 << PAD_MODE_SHIFT),
+    PAD_MODE_IN     = (1 << PAD_MODE_SHIFT),
+    PAD_MODE_OUT    = (2 << PAD_MODE_SHIFT),
+    PAD_MODE_INT    = (3 << PAD_MODE_SHIFT),
 };
 [[/code]]
 
@@ -53,10 +53,10 @@ enum {
 [[code type="cpp"]]
 /* gpio altfunction, refer to NX_GPIO_PADFUNC in nx_gpio.h */
 enum {
-    PAD_FUNC_ALT0   = (0 << PAD_FUNC_SHIFT),
-    PAD_FUNC_ALT1   = (1 << PAD_FUNC_SHIFT),
-    PAD_FUNC_ALT2   = (2 << PAD_FUNC_SHIFT),
-    PAD_FUNC_ALT3   = (3 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT0   = (0 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT1   = (1 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT2   = (2 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT3   = (3 << PAD_FUNC_SHIFT),
 };
 [[/code]]
 
@@ -83,14 +83,14 @@ enum {
 [[code type="cpp"]]
 /* ouput level or interrupt detect mode, refer to NX_GPIO_INTMODE in nx_gpio.h */
 enum {
-    PAD_LEVEL_LOW         = (0 << PAD_LEVEL_SHIFT),     /* if alive, async lowlevel */
-    PAD_LEVEL_HIGH        = (1 << PAD_LEVEL_SHIFT),     /* if alive, async highlevel */
-    PAD_LEVEL_FALLINGEDGE = (2 << PAD_LEVEL_SHIFT),     /* if alive, async fallingedge */
-    PAD_LEVEL_RISINGEDGE  = (3 << PAD_LEVEL_SHIFT),     /* if alive, async eisingedge */
-    PAD_LEVEL_LOW_SYNC    = (4 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
-    PAD_LEVEL_HIGH_SYNC   = (5 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
-    PAD_LEVEL_BOTHEDGE    = (4 << PAD_LEVEL_SHIFT),     /* if alive, not support */
-    PAD_LEVEL_ALT         = (6 << PAD_LEVEL_SHIFT),     /* if pad function is alt, not set */
+    PAD_LEVEL_LOW         = (0 << PAD_LEVEL_SHIFT),     /* if alive, async lowlevel */
+    PAD_LEVEL_HIGH        = (1 << PAD_LEVEL_SHIFT),     /* if alive, async highlevel */
+    PAD_LEVEL_FALLINGEDGE = (2 << PAD_LEVEL_SHIFT),     /* if alive, async fallingedge */
+    PAD_LEVEL_RISINGEDGE  = (3 << PAD_LEVEL_SHIFT),     /* if alive, async eisingedge */
+    PAD_LEVEL_LOW_SYNC    = (4 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
+    PAD_LEVEL_HIGH_SYNC   = (5 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
+    PAD_LEVEL_BOTHEDGE    = (4 << PAD_LEVEL_SHIFT),     /* if alive, not support */
+    PAD_LEVEL_ALT         = (6 << PAD_LEVEL_SHIFT),     /* if pad function is alt, not set */
 };
 [[/code]]
 
@@ -106,9 +106,9 @@ enum {
 
 [[code type="cpp"]]
 enum {
-    PAD_PULL_DN     = (0 << PAD_PULLUP_SHIFT),          /* Do not support Alive-GPIO */
-    PAD_PULL_UP     = (1 << PAD_PULLUP_SHIFT),
-    PAD_PULL_OFF    = (2 << PAD_PULLUP_SHIFT),
+    PAD_PULL_DN     = (0 << PAD_PULLUP_SHIFT),          /* Do not support Alive-GPIO */
+    PAD_PULL_UP     = (1 << PAD_PULLUP_SHIFT),
+    PAD_PULL_OFF    = (2 << PAD_PULLUP_SHIFT),
 };
 [[/code]]
 
@@ -118,10 +118,10 @@ enum {
 
 [[code type="cpp"]]
 enum {
-    PAD_STRENGTH_0 = (0 << PAD_STRENGTH_SHIFT),
-    PAD_STRENGTH_1 = (1 << PAD_STRENGTH_SHIFT),
-    PAD_STRENGTH_2 = (2 << PAD_STRENGTH_SHIFT),
-    PAD_STRENGTH_3 = (3 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_0 = (0 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_1 = (1 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_2 = (2 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_3 = (3 << PAD_STRENGTH_SHIFT),
 };
 [[/code]] 
 
@@ -139,10 +139,10 @@ enum {
 
 [[code type="cpp"]]
 //Modification: Set GPIOD[28..31] (MCU_TSI1_D[0..3]) to OUTPUT mode to work as COL[3..0] for matrix_keypad driver
-#define PAD_GPIOD28     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[0]          ,2: MPEGTSI_TDATA1[0]   ,3: MCUS_ADDR[24]       =
-#define PAD_GPIOD29     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[1]          ,2: MPEGTSI_TDATA1[1]   ,3:_                    =
-#define PAD_GPIOD30     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[2]          ,2: MPEGTSI_TDATA1[2]   ,3:_                    =
-#define PAD_GPIOD31     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[3]          ,2: MPEGTSI_TDATA1[3]   ,3:_                    =
+#define PAD_GPIOD28     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[0]          ,2: MPEGTSI_TDATA1[0]   ,3: MCUS_ADDR[24]       =
+#define PAD_GPIOD29     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[1]          ,2: MPEGTSI_TDATA1[1]   ,3:_                    =
+#define PAD_GPIOD30     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[2]          ,2: MPEGTSI_TDATA1[2]   ,3:_                    =
+#define PAD_GPIOD31     (PAD_MODE_OUT | PAD_FUNC_ALT0 | PAD_LEVEL_HIGH | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          ,1: VIP1_VD[3]          ,2: MPEGTSI_TDATA1[3]   ,3:_                    =
 //End-of-Modification: Set GPIOD[28..31] (MCU_TSI1_D[0..3]) to OUTPUT mode to work as COL[3..0] for matrix_keypad driver
 [[/code]]
 
@@ -152,10 +152,10 @@ enum {
 
 [[code type="cpp"]]
 //Modification: Set pull-up for ROW[0..3] for matrix_keypad using GPIOE[3..0] (MCU_TSI1_D[7..4])
-#define PAD_GPIOE0      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[4]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
-#define PAD_GPIOE1      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[5]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
-#define PAD_GPIOE2      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[6]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
-#define PAD_GPIOE3      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[7]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
+#define PAD_GPIOE0      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[4]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
+#define PAD_GPIOE1      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[5]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
+#define PAD_GPIOE2      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[6]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
+#define PAD_GPIOE3      (PAD_MODE_IN  | PAD_FUNC_ALT0 | PAD_LEVEL_LOW  | PAD_PULL_UP  | PAD_STRENGTH_0)     // 0: GPIO          1: VIP1_VD[7]           ,2: MPEGTSI_TDATA1[0]   ,3:_                    =
 //End-of-Modification: Set pull-up for ROW[0..3] for matrix_keypad using GPIOE[3..0] (MCU_TSI1_D[7..4])
 [[/code]]
 
@@ -184,50 +184,50 @@ Device Drivers ---> Input device support ---> Keyboards
 [[code type="cpp"]]
 #ifdef CONFIG_KEYBOARD_MATRIX
 /* 
- * Matrix Keypad Definitions for iTop-4418.
- * 
- * Include 'GPIO driven matrix keypad support' to enable the definition of CONFIG_KEYBOARD_MATRIX in:
- * MenuConfig ---> Device Drivers ---> Input device support ---> Keyboards
- * 
- * This file is merged into:
- * kernel/arch/arm/plat-s5p4418/topeet/device.c
- * 
- * Code adapted from SAMSUNG Exynos 4412's keypad definition. (%iTop4412Src%\arch\arm\mach-exynos\mach-itop4412.c : '#ifdef CONFIG_SAMSUNG_DEV_KEYPAD' line)
- * We set GPIOD[28..31] (MCU_TSI1_D[0..3]) to OUTPUT mode to work as COL[3..0] for matrix_keypad driver.
- * We set pull-up for ROW[0..3] for matrix_keypad using GPIOE[3..0] (MCU_TSI1_D[7..4]).
- * In iTop-4412:
- * -   CORE   -> KEYPAD
- * - KP_COL6  -> COL0
- * - KP_COL5  -> COL1
- * - KP_COL3  -> COL2
- * - KP_COL0  -> COL3
- * - KP_ROW13 -> ROW0
- * - KP_ROW7  -> ROW1
- * - KP_ROW6  -> ROW2
- * - KP_ROW8  -> ROW3
- * In iTop-4418:
- * -   CORE   -> KEYPAD
- * - GPIOD31  -> COL0
- * - GPIOD30  -> COL1
- * - GPIOD29  -> COL2
- * - GPIOD28  -> COL3
- * - GPIOE3   -> ROW0
- * - GPIOE2   -> ROW1
- * - GPIOE1   -> ROW2
- * - GPIOE0   -> ROW3
- * 
- * Ref. https://blog.csdn.net/jklinux/article/details/73848927
- * 
- * Add this code in nxp_board_devices_register():
- * //Modification: register matrix keypad for iTpp-4418
- * #ifdef CONFIG_KEYBOARD_MATRIX
- * printk("plat: add device matrix-keypad (for itop-4418)\n");
- * platform_device_register(&itop4418_matrix_keypad_device);
- * #endif
- * //End-of-Modification: register matrix keypad for iTpp-4418
- * 
- * Picsell Dois @ SEU-BME
- */
+ * Matrix Keypad Definitions for iTop-4418.
+ * 
+ * Include 'GPIO driven matrix keypad support' to enable the definition of CONFIG_KEYBOARD_MATRIX in:
+ * MenuConfig ---> Device Drivers ---> Input device support ---> Keyboards
+ * 
+ * This file is merged into:
+ * kernel/arch/arm/plat-s5p4418/topeet/device.c
+ * 
+ * Code adapted from SAMSUNG Exynos 4412's keypad definition. (%iTop4412Src%\arch\arm\mach-exynos\mach-itop4412.c : '#ifdef CONFIG_SAMSUNG_DEV_KEYPAD' line)
+ * We set GPIOD[28..31] (MCU_TSI1_D[0..3]) to OUTPUT mode to work as COL[3..0] for matrix_keypad driver.
+ * We set pull-up for ROW[0..3] for matrix_keypad using GPIOE[3..0] (MCU_TSI1_D[7..4]).
+ * In iTop-4412:
+ * -   CORE   -> KEYPAD
+ * - KP_COL6  -> COL0
+ * - KP_COL5  -> COL1
+ * - KP_COL3  -> COL2
+ * - KP_COL0  -> COL3
+ * - KP_ROW13 -> ROW0
+ * - KP_ROW7  -> ROW1
+ * - KP_ROW6  -> ROW2
+ * - KP_ROW8  -> ROW3
+ * In iTop-4418:
+ * -   CORE   -> KEYPAD
+ * - GPIOD31  -> COL0
+ * - GPIOD30  -> COL1
+ * - GPIOD29  -> COL2
+ * - GPIOD28  -> COL3
+ * - GPIOE3   -> ROW0
+ * - GPIOE2   -> ROW1
+ * - GPIOE1   -> ROW2
+ * - GPIOE0   -> ROW3
+ * 
+ * Ref. https://blog.csdn.net/jklinux/article/details/73848927
+ * 
+ * Add this code in nxp_board_devices_register():
+ * //Modification: register matrix keypad for iTpp-4418
+ * #ifdef CONFIG_KEYBOARD_MATRIX
+ * printk("plat: add device matrix-keypad (for itop-4418)\n");
+ * platform_device_register(&itop4418_matrix_keypad_device);
+ * #endif
+ * //End-of-Modification: register matrix keypad for iTpp-4418
+ * 
+ * Picsell Dois @ SEU-BME
+ */
 
 /* Linux header */
 #include <linux/init.h>
@@ -242,16 +242,16 @@ Device Drivers ---> Input device support ---> Keyboards
 
 /* Key definition */
 static u32 arrKeyMapping[] = {
-    //KEY(row, col, keycode)
-    KEY( 3, 3, KEY_1), KEY( 3, 2, KEY_2), KEY( 3, 1, KEY_3), KEY( 3, 0, KEY_4),
-    KEY( 2, 3, KEY_5), KEY( 2, 2, KEY_6), KEY( 2, 1, KEY_7), KEY( 2, 0, KEY_8),
-    KEY( 1, 3, KEY_9), KEY( 1, 2, KEY_0), KEY( 1, 1, KEY_A), KEY( 1, 0, KEY_B),
-    KEY( 0, 3, KEY_C), KEY( 0, 2, KEY_D), KEY( 0, 1, KEY_E), KEY( 0, 0, KEY_F)
+    //KEY(row, col, keycode)
+    KEY( 3, 3, KEY_1), KEY( 3, 2, KEY_2), KEY( 3, 1, KEY_3), KEY( 3, 0, KEY_4),
+    KEY( 2, 3, KEY_5), KEY( 2, 2, KEY_6), KEY( 2, 1, KEY_7), KEY( 2, 0, KEY_8),
+    KEY( 1, 3, KEY_9), KEY( 1, 2, KEY_0), KEY( 1, 1, KEY_A), KEY( 1, 0, KEY_B),
+    KEY( 0, 3, KEY_C), KEY( 0, 2, KEY_D), KEY( 0, 1, KEY_E), KEY( 0, 0, KEY_F)
 };
 
 static struct matrix_keymap_data mkdKeyMappingData = {
-    .keymap = arrKeyMapping,
-    .keymap_size = ARRAY_SIZE(arrKeyMapping), 
+    .keymap = arrKeyMapping,
+    .keymap_size = ARRAY_SIZE(arrKeyMapping), 
 };
 
 /* Row & Col definition */
@@ -259,27 +259,27 @@ static u32 arrRowGPIOs[] = {PAD_GPIO_E + 3, PAD_GPIO_E + 2, PAD_GPIO_E + 1, PAD_
 static u32 arrColGPIOs[] = {PAD_GPIO_D + 31, PAD_GPIO_D + 30, PAD_GPIO_D + 29, PAD_GPIO_D + 28}; //GPIO ports of Col line
 
 static struct matrix_keypad_platform_data mkpMatrixKeypadPlatformData = {
-    .keymap_data = &mkdKeyMappingData,
-    .row_gpios = arrRowGPIOs,
-    .col_gpios = arrColGPIOs,
+    .keymap_data = &mkdKeyMappingData,
+    .row_gpios = arrRowGPIOs,
+    .col_gpios = arrColGPIOs,
 
-    .num_row_gpios = ARRAY_SIZE(arrRowGPIOs),
-    .num_col_gpios = ARRAY_SIZE(arrColGPIOs),
+    .num_row_gpios = ARRAY_SIZE(arrRowGPIOs),
+    .num_col_gpios = ARRAY_SIZE(arrColGPIOs),
 
-    .col_scan_delay_us = 100,
-    .debounce_ms = 10,  
+    .col_scan_delay_us = 100,
+    .debounce_ms = 10,  
 
-    .active_low = 1,
-    .no_autorepeat = 0,
+    .active_low = 1,
+    .no_autorepeat = 0,
 };
 
 /* Platform device definition */
 struct platform_device itop4418_matrix_keypad_device = {
-    .name = "matrix-keypad",
-    .id = -1,
-    .dev = {
-        .platform_data = &mkpMatrixKeypadPlatformData,
-    },
+    .name = "matrix-keypad",
+    .id = -1,
+    .dev = {
+        .platform_data = &mkpMatrixKeypadPlatformData,
+    },
 };
 
 #endif // CONFIG_KEYBOARD_MATRIX

@@ -159,24 +159,24 @@ sudo philomena down
 请编辑{{docker-compose.yml}}文件，在{{app}}映像的{{environment}}中加入或修改：
 
 [[code]]
-      - SITE_DOMAINS=srv1-booru.scp-eq.org
-      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=srv1-booru.scp-eq.org
+      - SITE_DOMAINS=srv1-booru.scp-eq.org
+      - __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS=srv1-booru.scp-eq.org
 [[/code]]
 
 同时，若您使用Nginx等进行{{proxy_pass}}代理，请不要在{{nginx.conf}}中将目标设为{{localhost}}，而是直接使用带端口号的域名，例如：
 
 [[code]]
 http {
-    # Philomena
-    server {
-    	listen 80;
-    	server_name srv1-booru.scp-eq.org;
-    	
-    	location / {
-    		# proxy_pass http://localhost:2451;
-    		proxy_pass http://srv1-booru.scp-eq.org:2451;
-    	}
-    }
+    # Philomena
+    server {
+    	listen 80;
+    	server_name srv1-booru.scp-eq.org;
+    	
+    	location / {
+    		# proxy_pass http://localhost:2451;
+    		proxy_pass http://srv1-booru.scp-eq.org:2451;
+    	}
+    }
 }
 [[/code]]
 

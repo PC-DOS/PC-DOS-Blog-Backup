@@ -12,7 +12,7 @@
 
 **故障现象：**程序运行不特定的时间后，数据发送终止，同时数据发送线程和主线程全部处于休眠状态。驱动程序的调试信息显示驱动程序仍在正常响应数据就绪中断。
 
-**调试记录：**检查源码发现，数据采集线程使用重载{{QThread::run()}}的方式，并定义一个无限的{{@@while (true)  {}@@}}循环实现，同时在实现中使用了QThread::sleep()函数及其变体。[查阅参考资料 *https://forum.qt.io/topic/98407/gui-freezes-even-with-multithreading/2]发现，该行为为不推荐的写法，改为使用[[[qt-multi-thread-best-practice | Controller-Worker设计范式]]]，同时[[[qt-multi-thread-avoid-while-true-loop-and-sleep | 使用延时参数为0毫秒的{{QTimer::singleShot()}}调用模拟无限循环]]]，问题得到缓解。
+**调试记录：**检查源码发现，数据采集线程使用重载{{QThread::run()}}的方式，并定义一个无限的{{@@while (true)  {}@@}}循环实现，同时在实现中使用了QThread::sleep()函数及其变体。[查阅参考资料 *https://forum.qt.io/topic/98407/gui-freezes-even-with-multithreading/2]发现，该行为为不推荐的写法，改为使用[[[qt-multi-thread-best-practice | Controller-Worker设计范式]]]，同时[[[qt-multi-thread-avoid-while-true-loop-and-sleep | 使用延时参数为0毫秒的{{QTimer::singleShot()}}调用模拟无限循环]]]，问题得到缓解。
 
 同时，将保护临界区（数据缓冲区）的读写锁{{QReadWriteLock}}的锁定操作全部改为使用{{QReadWriteLock::tryLockForRead()}}和{{QReadWriteLock::tryLockForWrite()}}。
 

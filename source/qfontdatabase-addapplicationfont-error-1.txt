@@ -13,7 +13,7 @@ sudo apt-get install libfontconfig1-dev
 随后，重新编译Qt桌面框架，并在执行“{{./config}}”时，添加以下开关：
 
 [[code]]
- -qt-freetype -fontconfig -continue
+ -qt-freetype -fontconfig -continue
 [[/code]]
 
 **参考文献：**

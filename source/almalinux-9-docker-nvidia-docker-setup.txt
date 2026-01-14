@@ -117,8 +117,8 @@ sudo vim /etc/docker/daemon.json
 修改字符串值{{"data-root"}}（或{{"graph"}}）的值为具体的存储路径：
 
 [[code]]
- "graph":"/mnt/hdd1/docker",
- "data-root":"/mnt/hdd1/docker",
+ "graph":"/mnt/hdd1/docker",
+ "data-root":"/mnt/hdd1/docker",
 [[/code]]
 
 保存并重启系统：

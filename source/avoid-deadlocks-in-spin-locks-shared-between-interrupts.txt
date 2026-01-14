@@ -19,30 +19,30 @@ unsigned long iIrqData; //IRQ数据备份
 //...
 
 static irqreturn_t interrupt_handler_proc(int iIrq, void * lpDevId){ //中断处理函数
-    disable_irq_nosync(INT_ID); //关中断，在中断处理程序内使用disable_irq_nosync()无条件关闭中断并不等待既有中断处理程序完成，否则会导致死锁
-    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁
-    //临界区操作
-    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁
-    enable_irq(INT_ID); //开中断
-    return IRQ_HANDLED;
+    disable_irq_nosync(INT_ID); //关中断，在中断处理程序内使用disable_irq_nosync()无条件关闭中断并不等待既有中断处理程序完成，否则会导致死锁
+    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁
+    //临界区操作
+    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁
+    enable_irq(INT_ID); //开中断
+    return IRQ_HANDLED;
 }
 
 //...
 
 void NormalProc(){ //非中断函数
-    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁，保存中断数据到本地
-    //临界区操作
-    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁，恢复中断数据
-    return;
+    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁，保存中断数据到本地
+    //临界区操作
+    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁，恢复中断数据
+    return;
 }
 
 void NormalProcInterruptsDisabled(){ //禁用了中断的非中断函数
-    disable_irq(INT_ID); //关中断
-    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁
-    //临界区操作
-    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁
-    enable_irq(INT_ID); //开中断
-    return;
+    disable_irq(INT_ID); //关中断
+    spin_lock_irqsave(&spnlkSpinLock, &iIrqData); //获取自旋锁
+    //临界区操作
+    spin_unlock_irqrestore(&spnlkSpinLock, &iIrqData); //释放自旋锁
+    enable_irq(INT_ID); //开中断
+    return;
 }
 
 //...

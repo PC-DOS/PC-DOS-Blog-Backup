@@ -9,7 +9,7 @@ Unresolved reference to 'PUR_INST'.
 
 [[code]]
 //Instance of GSR & PUR, ref https://mbb.eet-china.com/blog/1396350-247769.html
-GSR GSR_INST (.GSR(1'b1));  
+GSR GSR_INST (.GSR(1'b1));  
 PUR PUR_INST (.PUR(1'b1)); 
 [[/code]]
 

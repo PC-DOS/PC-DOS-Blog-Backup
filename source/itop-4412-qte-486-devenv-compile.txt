@@ -120,10 +120,10 @@ update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.6 50
 # with the old glx packages.
 
 # ------------------------------------------------------------------
-# 12.04                --> 12.04.2 (*-lts-quantal)
+# 12.04                --> 12.04.2 (*-lts-quantal)
 # ------------------------------------------------------------------
 # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
-# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
 # ------------------------------------------------------------------
 #
 # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
@@ -132,27 +132,27 @@ update-alternatives --install /usr/bin/cpp cpp-bin /usr/bin/cpp-4.6 50
 
 # Execute an action
 FA_DoExec() {
-    echo "==> Executing: '${@}'"
-    eval $@ || exit $?
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
 }
 
 # Ubuntu 12.04.2 LTS
 FA_DoExec apt-get install \
-    git gnupg flex bison gperf build-essential \
-    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-    libx11-dev:i386 libreadline6-dev:i386 \
-    libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
-    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx-lts-quantal:i386 libgl1-mesa-dev-lts-quantal \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
 
 if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-        /usr/lib/i386-linux-gnu/libGL.so
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
 fi
 
 # Development support
 FA_DoExec apt-get install \
-    vim dos2unix minicom gawk
+    vim dos2unix minicom gawk
 [[/code]]
 
 由此可知，由于Ubuntu 12.04.2 LTS修改了用于图形界面的X程序堆栈，因此{{libgl1-mesa-glx:i386}}和{{libgl1-mesa-dev}}两个库需要使用等价的{{libgl1-mesa-glx-lts-quantal:i386}}和{{libgl1-mesa-dev-lts-quantal}}进行替换。
@@ -170,10 +170,10 @@ FA_DoExec apt-get install \
 # with the old glx packages.
 
 # ------------------------------------------------------------------
-# 12.04                --> 12.04.2 (*-lts-quantal)
+# 12.04                --> 12.04.2 (*-lts-quantal)
 # ------------------------------------------------------------------
 # libgl1-mesa-glx:i386 --> libgl1-mesa-glx-lts-quantal:i386
-# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
+# libgl1-mesa-dev      --> libgl1-mesa-dev-lts-quantal
 # ------------------------------------------------------------------
 #
 # DON'T install libgl1-mesa-glx:i386 on 12.04.2, else it will *BREAK*
@@ -185,27 +185,27 @@ FA_DoExec apt-get install \
 
 # Execute an action
 FA_DoExec() {
-    echo "==> Executing: '${@}'"
-    eval $@ || exit $?
+    echo "==> Executing: '${@}'"
+    eval $@ || exit $?
 }
 
 # Ubuntu 12.04.5 LTS
 FA_DoExec apt-get install \
-    git gnupg flex bison gperf build-essential \
-    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
-    libx11-dev:i386 libreadline6-dev:i386 \
-    libgl1-mesa-glx:i386 libgl1-mesa-dev \
-    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
-    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
+    git gnupg flex bison gperf build-essential \
+    zip curl libc6-dev libncurses5-dev x11proto-core-dev \
+    libx11-dev:i386 libreadline6-dev:i386 \
+    libgl1-mesa-glx:i386 libgl1-mesa-dev \
+    g++-multilib mingw32 tofrodos lib32ncurses5-dev \
+    python-markdown libxml2-utils xsltproc zlib1g-dev:i386
 
 if [ ! -h /usr/lib/i386-linux-gnu/libGL.so ]; then
-    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
-        /usr/lib/i386-linux-gnu/libGL.so
+    FA_DoExec ln -s /usr/lib/i386-linux-gnu/mesa/libGL.so.1 \
+        /usr/lib/i386-linux-gnu/libGL.so
 fi
 
 # Development support
 FA_DoExec apt-get install \
-    vim dos2unix minicom gawk
+    vim dos2unix minicom gawk
 [[/code]]
 [[/collapsible]]
 
@@ -338,7 +338,7 @@ tar xfvz qt-everywhere-opensource-src-4.8.6.tar.gz
 
 cd qt-everywhere-opensource-src-4.8.6
 
-echo yes | ./configure -opensource -embedded arm -xplatform qws/linux-arm-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-tslib -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.6   -I /usr/local/tslib/include -L /usr/local/tslib/lib
+echo yes | ./configure -opensource -embedded arm -xplatform qws/linux-arm-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-tslib -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.6   -I /usr/local/tslib/include -L /usr/local/tslib/lib
 
 sed -i '/^LIBS/{s/$/-L\/opt -llinux-atomic/}' src/script/Makefile
 
@@ -464,7 +464,7 @@ tar xfvz qt-everywhere-opensource-src-4.8.6.tar.gz
 
 cd qt-everywhere-opensource-src-4.8.6
 
-echo yes | ./configure -opensource -xplatform linux-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.6-intel
+echo yes | ./configure -opensource -xplatform linux-g++  -no-webkit -qt-libtiff -qt-libmng -qt-kbd-linuxinput -qt-mouse-pc -qt-gfx-transformed -no-mouse-linuxtp -prefix /opt/qt-4.8.6-intel
 
 make 2>&1 | tee ../qte4.8.6Makelog && make install
 [[/code]]

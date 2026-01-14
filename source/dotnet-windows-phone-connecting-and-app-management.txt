@@ -36,11 +36,11 @@ Dim PhoneConnectionManager As New MultiTargetingConnectivity(System.Globalizatio
 
 [[code]]
 Public Function EnumerateDevices() As List(Of ConnectableDevice)
-    Dim PhoneList As New List(Of ConnectableDevice)
-    For Each Phone As ConnectableDevice In PhoneConnectionManager.GetConnectableDevices()
-        PhoneList.Add(Phone)
-    Next
-    Return PhoneList
+    Dim PhoneList As New List(Of ConnectableDevice)
+    For Each Phone As ConnectableDevice In PhoneConnectionManager.GetConnectableDevices()
+        PhoneList.Add(Phone)
+    Next
+    Return PhoneList
 End Function
 [[/code]]
 
@@ -64,15 +64,15 @@ Dim AppGuid As System.Guid
 Dim AppGenre As String
 Dim AppIconPath As String
 If AppPackagePath.ToUpper.EndsWith(".XAP") Then
-    Dim AppManifest As New Xap(AppPackagePath)
-    AppGuid = AppManifest.Guid
-    AppGenre = "32"
-    AppIconPath = AppManifest.Icon
+    Dim AppManifest As New Xap(AppPackagePath)
+    AppGuid = AppManifest.Guid
+    AppGenre = "32"
+    AppIconPath = AppManifest.Icon
 Else
-    Dim AppManifest As IAppManifestInfo = Utils.ReadAppManifestInfoFromPackage(AppPackagePath)
-    AppGuid = AppManifest.ProductId
-    AppGenre = "32"
-    AppIconPath = CInt(AppManifest.PackageType).ToString()
+    Dim AppManifest As IAppManifestInfo = Utils.ReadAppManifestInfoFromPackage(AppPackagePath)
+    AppGuid = AppManifest.ProductId
+    AppGenre = "32"
+    AppIconPath = CInt(AppManifest.PackageType).ToString()
 End If
 [[/code]]
 
@@ -81,7 +81,7 @@ End If
 [[code]]
 'Check if package is already installed
 If CurrentConnectedDevice.IsApplicationInstalled(AppGuid) Then
-    CurrentConnectedDevice.GetApplication(AppGuid).Uninstall()
+    CurrentConnectedDevice.GetApplication(AppGuid).Uninstall()
 End If
 [[/code]]
 
@@ -90,8 +90,8 @@ End If
 [[code]]
 'Install package
 CurrentConnectedDevice.InstallApplication(AppGuid, _
-                                          AppGuid, _
-                                          AppGenre, _
-                                          AppIconPath, _
-                                          AppPackagePath)
+                                          AppGuid, _
+                                          AppGenre, _
+                                          AppIconPath, _
+                                          AppPackagePath)
 [[/code]]

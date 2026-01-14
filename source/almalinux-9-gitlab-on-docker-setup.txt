@@ -77,8 +77,8 @@ sudo vim /etc/docker/daemon.json
 修改字符串值{{"data-root"}}（或{{"graph"}}）的值为具体的存储路径：
 
 [[code]]
- "graph":"/mnt/hdd1/docker",
- "data-root":"/mnt/hdd1/docker",
+ "graph":"/mnt/hdd1/docker",
+ "data-root":"/mnt/hdd1/docker",
 [[/code]]
 
 保存并重启系统：
@@ -117,17 +117,17 @@ sudo vim docker-compose.yml
 [[code]]
 version: '3'
 services:
-  web:
-    stdin_open: true
-    tty: true
-    restart: always
-    image: gitlab/gitlab-ce
-    ports:
-      - 80:80
-    volumes:
-      - ./config:/etc/gitlab
-      - ./logs:/var/log/gitlab
-      - ./data:/var/opt/gitlab
+  web:
+    stdin_open: true
+    tty: true
+    restart: always
+    image: gitlab/gitlab-ce
+    ports:
+      - 80:80
+    volumes:
+      - ./config:/etc/gitlab
+      - ./logs:/var/log/gitlab
+      - ./data:/var/opt/gitlab
 [[/code]]
 
 保存文件，并套用配置：

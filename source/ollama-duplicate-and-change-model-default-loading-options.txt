@@ -57,17 +57,17 @@ PARAMETER ParamName ParamValue
 其中，{{ParamName}}为参数名称，{{ParamValue}}为参数的值。支持的参数包括：
 
 [[code]]
-seed <int>             Random number seed
-num_predict <int>      Max number of tokens to predict
-top_k <int>            Pick from top k num of tokens
-top_p <float>          Pick token based on sum of probabilities
-min_p <float>          Pick token based on top token probability * min_p
-num_ctx <int>          Set the context size
-temperature <float>    Set creativity level
+seed <int>             Random number seed
+num_predict <int>      Max number of tokens to predict
+top_k <int>            Pick from top k num of tokens
+top_p <float>          Pick token based on sum of probabilities
+min_p <float>          Pick token based on top token probability * min_p
+num_ctx <int>          Set the context size
+temperature <float>    Set creativity level
 repeat_penalty <float> How strongly to penalize repetitions
-repeat_last_n <int>    Set how far back to look for repetitions
-num_gpu <int>          The number of layers to send to the GPU
-stop <string> <string> ...   Set the stop parameters
+repeat_last_n <int>    Set how far back to look for repetitions
+num_gpu <int>          The number of layers to send to the GPU
+stop <string> <string> ...   Set the stop parameters
 [[/code]]
 
 完成后，即可保存模型描述文件，并关闭文本编辑器。

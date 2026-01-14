@@ -2,9 +2,9 @@
 
 [[code]]
 {
-  "policies": {
-    "DisableAppUpdate": true
-  }
+  "policies": {
+    "DisableAppUpdate": true
+  }
 }
 [[/code]]
 

@@ -15,23 +15,23 @@
 
 //Replace specified string in a char string
 char * strreplace(char * str, char * oldstr, char * newstr) {
-    char * bstr = new char[strlen(str)];
-    memset(bstr, 0, sizeof(bstr));
+    char * bstr = new char[strlen(str)];
+    memset(bstr, 0, sizeof(bstr));
 
-    for (int i = 0; i < strlen(str); ++i) {
-        if (!strncmp(str + i, oldstr, strlen(oldstr))) {
-            strcat(bstr, newstr);
-            i += strlen(oldstr) - 1;
-        }
-        else {
-            strncat(bstr, str + i, 1);
-        }
-    }
+    for (int i = 0; i < strlen(str); ++i) {
+        if (!strncmp(str + i, oldstr, strlen(oldstr))) {
+            strcat(bstr, newstr);
+            i += strlen(oldstr) - 1;
+        }
+        else {
+            strncat(bstr, str + i, 1);
+        }
+    }
 
-    strcpy(str, bstr);
-    delete bstr;
+    strcpy(str, bstr);
+    delete bstr;
 
-    return str;
+    return str;
 }
 [[/code]]
 
@@ -49,22 +49,22 @@ char * strreplace(char * str, char * oldstr, char * newstr) {
 //Replace specified string in a char string
 //https://zhuanlan.zhihu.com/p/364035600
 wchar_t * wcsreplace(wchar_t * str, wchar_t * oldstr, wchar_t * newstr) {
-    wchar_t * bstr = new wchar_t[wcslen(str)];
-    memset(bstr, 0, sizeof(bstr));
+    wchar_t * bstr = new wchar_t[wcslen(str)];
+    memset(bstr, 0, sizeof(bstr));
 
-    for (int i = 0; i < wcslen(str); ++i) {
-        if (!wcsncmp(str + i, oldstr, wcslen(oldstr))) {
-            wcscat(bstr, newstr);
-            i += wcslen(oldstr) - 1;
-        }
-        else {
-            wcsncat(bstr, str + i, 1);
-        }
-    }
+    for (int i = 0; i < wcslen(str); ++i) {
+        if (!wcsncmp(str + i, oldstr, wcslen(oldstr))) {
+            wcscat(bstr, newstr);
+            i += wcslen(oldstr) - 1;
+        }
+        else {
+            wcsncat(bstr, str + i, 1);
+        }
+    }
 
-    wcscpy(str, bstr);
-    delete bstr;
+    wcscpy(str, bstr);
+    delete bstr;
 
-    return str;
+    return str;
 }
 [[/code]]

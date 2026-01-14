@@ -2,12 +2,12 @@
 
 [[code]]
 const QVector<double> & DataSourceProvider::GeneratePlotForTesting(){
-    srand(time(0));
-    _arrData.clear();
-    for (int i=1; i<=_iPointsPerPlot;++i){
-        _arrData.push_back((double(rand())/double(__INT_MAX__)*_dCurrentGain));
-    }
-    return _arrData;
+    srand(time(0));
+    _arrData.clear();
+    for (int i=1; i<=_iPointsPerPlot;++i){
+        _arrData.push_back((double(rand())/double(__INT_MAX__)*_dCurrentGain));
+    }
+    return _arrData;
 }
 [[/code]]
 
@@ -15,22 +15,22 @@ const QVector<double> & DataSourceProvider::GeneratePlotForTesting(){
 
 [[code]]
 void MainWindow::tmrDataGenerationTimer_Tick(){
-    QVector<double> arrData=datUltrasoud->GeneratePlotForTesting();
-    QVector<QCPGraphData> *mData;
-    mData = ui->chrtData->graph(0)->data()->coreData(); //此处对qcustomplot.h文件进行过修改
-    mData->clear();
-    QCPGraphData gpdDataPoint;
-    for (int i=0; i<datUltrasoud->GetCurrentPointsPerPlot(); ++i){
-        gpdDataPoint.key=arrXAxis[i];
-        gpdDataPoint.value=arrData[i];
-        mData->append(gpdDataPoint);
-    }
-    ui->chrtData->xAxis->setRange(0,datUltrasoud->GetCurrentDisplayTimespan());
-    ui->chrtData->yAxis->setRange(0,50);
-    ui->chrtData->replot(QCustomPlot::rpQueuedReplot);
-    qApp->processEvents();
-    QApplication::processEvents();
-    return;
+    QVector<double> arrData=datUltrasoud->GeneratePlotForTesting();
+    QVector<QCPGraphData> *mData;
+    mData = ui->chrtData->graph(0)->data()->coreData(); //此处对qcustomplot.h文件进行过修改
+    mData->clear();
+    QCPGraphData gpdDataPoint;
+    for (int i=0; i<datUltrasoud->GetCurrentPointsPerPlot(); ++i){
+        gpdDataPoint.key=arrXAxis[i];
+        gpdDataPoint.value=arrData[i];
+        mData->append(gpdDataPoint);
+    }
+    ui->chrtData->xAxis->setRange(0,datUltrasoud->GetCurrentDisplayTimespan());
+    ui->chrtData->yAxis->setRange(0,50);
+    ui->chrtData->replot(QCustomPlot::rpQueuedReplot);
+    qApp->processEvents();
+    QApplication::processEvents();
+    return;
 }
 [[/code]]
 

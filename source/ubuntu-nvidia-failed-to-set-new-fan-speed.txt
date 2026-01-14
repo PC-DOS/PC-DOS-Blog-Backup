@@ -23,7 +23,7 @@ sudo gedit /usr/share/X11/xorg.conf.d/10-nvidia.conf
 在文件内{{EndSection}}行前添加一行：
 
 [[code]]
-    Option     "Coolbits" "4"
+    Option     "Coolbits" "4"
 [[/code]]
 
 保存该文件并重新启动计算机。

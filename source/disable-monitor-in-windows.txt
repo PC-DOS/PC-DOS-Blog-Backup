@@ -10,8 +10,8 @@ Private Const SC_MONITORPOWER = &HF170&
 Private Const MONITOR_OFF = 2
 
 Private Sub Form_Load()
-     SendMessage Me.hwnd, WM_SYSCOMMAND, SC_MONITORPOWER, ByVal MONITOR_OFF
-     End
+     SendMessage Me.hwnd, WM_SYSCOMMAND, SC_MONITORPOWER, ByVal MONITOR_OFF
+     End
 End Sub
 [[/code]]
 

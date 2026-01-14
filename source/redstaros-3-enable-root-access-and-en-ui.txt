@@ -15,8 +15,8 @@ sudo gedit ./etc/sudoers
 将下列两行解除注释（即删除行前端的井号（“{{#}}”））：
 
 [[code]]
-%wheel  ALL=(ALL)       ALL
-%wheel  ALL=(ALL)       NOPASSWD: ALL
+%wheel  ALL=(ALL)       ALL
+%wheel  ALL=(ALL)       NOPASSWD: ALL
 [[/code]]
 
 完成后，保存并退出。

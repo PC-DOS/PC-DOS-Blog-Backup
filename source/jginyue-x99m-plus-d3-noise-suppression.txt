@@ -7,11 +7,11 @@
 重新启动系统并在开机自检时按Delete键进去BIOS设定，切换到 [Advanced] > [Smart Fan Function Setting]，发现原本的风扇控制参数如下：
 
 ||~ 温度节点（Smart Fan Temperature）|| 30 || 45 || 65 || 80 ||
-||~ 转速（Smart Fan PWM） ||  50 || 100 || 200 || 255 ||
+||~ 转速（Smart Fan PWM） ||  50 || 100 || 200 || 255 ||
 
 修改为如下参数：
 
 ||~ 温度节点（Smart Fan Temperature）|| 60 || 65 || 75 || 80 ||
-||~ 转速（Smart Fan PWM） ||  50 || 100 || 200 || 255 ||
+||~ 转速（Smart Fan PWM） ||  50 || 100 || 200 || 255 ||
 
 保存设定并重新引导系统，故障解决。

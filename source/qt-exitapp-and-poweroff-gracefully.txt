@@ -2,16 +2,16 @@
 
 [[code type="Cpp"]]
 void Shutdown() {
-    //Request the OS to shutdown after 1 sec, executes the command asynchronously
-    system("poweroff -d 1 &");
-    //Exit the app safely
-    QTimer::singleShot(245, qApp, SLOT(quit()));
+    //Request the OS to shutdown after 1 sec, executes the command asynchronously
+    system("poweroff -d 1 &");
+    //Exit the app safely
+    QTimer::singleShot(245, qApp, SLOT(quit()));
 }
 
 void Reboot() {
-    //Request the OS to reboot after 1 sec, executes the command asynchronously
-    system("reboot -d 1 &");
-    //Exit the app safely
-    QTimer::singleShot(245, qApp, SLOT(quit()));
+    //Request the OS to reboot after 1 sec, executes the command asynchronously
+    system("reboot -d 1 &");
+    //Exit the app safely
+    QTimer::singleShot(245, qApp, SLOT(quit()));
 }
 [[/code]]

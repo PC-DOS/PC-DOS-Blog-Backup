@@ -81,9 +81,9 @@ sudo nginx -s reload
 
 [[code]]
 sudo apt-get install -y build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libre2-dev \
-  libreadline-dev libncurses5-dev libffi-dev curl openssh-server checkinstall libxml2-dev \
-  libxslt-dev libcurl4-openssl-dev libicu-dev logrotate rsync python-docutils pkg-config cmake \
-  runit
+  libreadline-dev libncurses5-dev libffi-dev curl openssh-server checkinstall libxml2-dev \
+  libxslt-dev libcurl4-openssl-dev libicu-dev logrotate rsync python-docutils pkg-config cmake \
+  runit
 [[/code]]
 
 +++++ 安装Git、确认Git版本以及更新Git
@@ -105,7 +105,7 @@ sudo apt-get remove git-core
 sudo apt-get install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libssl-dev build-essential
 cd /tmp
 curl --remote-name --location --progress https://www.kernel.org/pub/software/scm/git/git-2.18.0.tar.gz
-echo '94faf2c0b02a7920b0b46f4961d8e9cad08e81418614102898a55f980fa3e7e4  git-2.18.0.tar.gz' | shasum -a256 -c - && tar -xzf git-2.18.0.tar.gz
+echo '94faf2c0b02a7920b0b46f4961d8e9cad08e81418614102898a55f980fa3e7e4  git-2.18.0.tar.gz' | shasum -a256 -c - && tar -xzf git-2.18.0.tar.gz
 cd git-2.18.0/
 ./configure
 make prefix=/usr/local all
@@ -145,7 +145,7 @@ sudo apt-get remove ruby1.8
 [[code]]
 mkdir /tmp/ruby && cd /tmp/ruby
 curl --remote-name --progress https://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.3.tar.gz
-echo 'f919a9fbcdb7abecd887157b49833663c5c15fda  ruby-2.5.3.tar.gz' | shasum -c - && tar xzf ruby-2.5.3.tar.gz
+echo 'f919a9fbcdb7abecd887157b49833663c5c15fda  ruby-2.5.3.tar.gz' | shasum -c - && tar xzf ruby-2.5.3.tar.gz
 cd ruby-2.5.3
 ./configure --disable-install-rdoc
 make
@@ -165,8 +165,8 @@ GitLab需要Go语言环境支持。
 [[code]]
 sudo rm -rf /usr/local/go
 curl --remote-name --progress https://dl.google.com/go/go1.10.3.linux-amd64.tar.gz
-echo 'fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035  go1.10.3.linux-amd64.tar.gz' | shasum -a256 -c - && \
-  sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
+echo 'fa1b0e45d3b647c252f51f5e1204aba049cde4af177ef9f2181f43004f901035  go1.10.3.linux-amd64.tar.gz' | shasum -a256 -c - && \
+  sudo tar -C /usr/local -xzf go1.10.3.linux-amd64.tar.gz
 sudo ln -sf /usr/local/go/bin/{go,godoc,gofmt} /usr/local/bin/
 rm go1.10.3.linux-amd64.tar.gz
 [[/code]]
@@ -240,7 +240,7 @@ AND installed_version IS NOT NULL;
 [[code]]
 enabled
 ---------
- t
+ t
 (1 row)
 [[/code]]
 

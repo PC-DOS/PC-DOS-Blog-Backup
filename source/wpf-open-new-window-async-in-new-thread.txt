@@ -7,32 +7,32 @@ Imports System.Threading
 Imports System.Threading.Tasks
 
 Private Function OpenWindowAsync(Of TWindow As {System.Windows.Window, New})() As Task
-    Dim TaskComp As New TaskCompletionSource(Of Object)
+    Dim TaskComp As New TaskCompletionSource(Of Object)
 
-    'Create child window container
-    Dim WinThread As New Thread(Sub()
-                                    Dim WindowInstance As New TWindow
-                                    'Close target window's event loop when closed
-                                    AddHandler WindowInstance.Closed, Sub()
-                                                                          System.Windows.Threading.Dispatcher.ExitAllFrames()
-                                                                      End Sub
-                                    'Show window in separated thread
-                                    WindowInstance.Show()
-                                    'Start window's event loop
-                                    System.Windows.Threading.Dispatcher.Run()
-                                    'Set task's result
-                                    TaskComp.SetResult(Nothing)
-                                End Sub)
+    'Create child window container
+    Dim WinThread As New Thread(Sub()
+                                    Dim WindowInstance As New TWindow
+                                    'Close target window's event loop when closed
+                                    AddHandler WindowInstance.Closed, Sub()
+                                                                          System.Windows.Threading.Dispatcher.ExitAllFrames()
+                                                                      End Sub
+                                    'Show window in separated thread
+                                    WindowInstance.Show()
+                                    'Start window's event loop
+                                    System.Windows.Threading.Dispatcher.Run()
+                                    'Set task's result
+                                    TaskComp.SetResult(Nothing)
+                                End Sub)
 
-    'Allow sub thread to be exited when calling Application.Current.Shutdown()
-    WinThread.IsBackground = True
-    'Allow UI dispatching
-    WinThread.SetApartmentState(ApartmentState.STA)
-    'Start sub thread
-    WinThread.Start()
+    'Allow sub thread to be exited when calling Application.Current.Shutdown()
+    WinThread.IsBackground = True
+    'Allow UI dispatching
+    WinThread.SetApartmentState(ApartmentState.STA)
+    'Start sub thread
+    WinThread.Start()
 
-    'Returns task object
-    Return TaskComp.Task
+    'Returns task object
+    Return TaskComp.Task
 End Function
 [[/code]]
 

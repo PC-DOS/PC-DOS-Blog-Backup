@@ -30,51 +30,51 @@ Device Drivers ---> Input device support ---> Keyboards
 
 [[code type="Cpp"]]
 /**
- * matrix_keymap_data结构体 - 矩阵键盘按键映射信息
- * @keymap: 指向由KEY(row, col, val)宏定义、代表矩阵键盘按键行-列-键码对应关系的uint32数组
- * @keymap_size: 数组的大小
- *
- */
+ * matrix_keymap_data结构体 - 矩阵键盘按键映射信息
+ * @keymap: 指向由KEY(row, col, val)宏定义、代表矩阵键盘按键行-列-键码对应关系的uint32数组
+ * @keymap_size: 数组的大小
+ *
+ */
 struct matrix_keymap_data {
-    const uint32_t *keymap;
-    unsigned int	keymap_size;
+    const uint32_t *keymap;
+    unsigned int	keymap_size;
 };
 
 /**
- * matrix_keypad_platform_data结构体 - 矩阵键盘的平台相关数据
- * @keymap_data: 指向matrix_keymap_data结构体的指针
- * @row_gpios: 指向代表矩阵键盘的行（Row）的GPIO引脚编号的数组
- * @col_gpios: 指向代表矩阵键盘的列（Col）的GPIO引脚编号的数组
- * @num_row_gpios: 矩阵键盘设备实际使用的行数
- * @num_col_gpios: 矩阵键盘设备实际使用的列数
- * @col_scan_delay_us: 以微秒为单位的延时，指示列线扫描的间隔时间
- * @debounce_ms: 消抖间隔，单位为毫秒
- * @clustered_irq: 指示行线、列线是否共用中断
- * @clustered_irq_flags: 共用中断时的配置信息
- * @active_low: GPIO极性，设为1指示键按下时，行线为低电平
- * @wakeup: 指示设备是否被配置为具有唤醒主机功能
- * @no_autorepeat: 指示是否停用按键长按时的自动重复动作，设为1表示停用
- */
+ * matrix_keypad_platform_data结构体 - 矩阵键盘的平台相关数据
+ * @keymap_data: 指向matrix_keymap_data结构体的指针
+ * @row_gpios: 指向代表矩阵键盘的行（Row）的GPIO引脚编号的数组
+ * @col_gpios: 指向代表矩阵键盘的列（Col）的GPIO引脚编号的数组
+ * @num_row_gpios: 矩阵键盘设备实际使用的行数
+ * @num_col_gpios: 矩阵键盘设备实际使用的列数
+ * @col_scan_delay_us: 以微秒为单位的延时，指示列线扫描的间隔时间
+ * @debounce_ms: 消抖间隔，单位为毫秒
+ * @clustered_irq: 指示行线、列线是否共用中断
+ * @clustered_irq_flags: 共用中断时的配置信息
+ * @active_low: GPIO极性，设为1指示键按下时，行线为低电平
+ * @wakeup: 指示设备是否被配置为具有唤醒主机功能
+ * @no_autorepeat: 指示是否停用按键长按时的自动重复动作，设为1表示停用
+ */
 struct matrix_keypad_platform_data {
-    const struct matrix_keymap_data *keymap_data;
+    const struct matrix_keymap_data *keymap_data;
 
-    const unsigned int *row_gpios;
-    const unsigned int *col_gpios;
+    const unsigned int *row_gpios;
+    const unsigned int *col_gpios;
 
-    unsigned int	num_row_gpios;
-    unsigned int	num_col_gpios;
+    unsigned int	num_row_gpios;
+    unsigned int	num_col_gpios;
 
-    unsigned int	col_scan_delay_us;
+    unsigned int	col_scan_delay_us;
 
-    /* key debounce interval in milli-second */
-    unsigned int	debounce_ms;
+    /* key debounce interval in milli-second */
+    unsigned int	debounce_ms;
 
-    unsigned int	clustered_irq;
-    unsigned int	clustered_irq_flags;
+    unsigned int	clustered_irq;
+    unsigned int	clustered_irq_flags;
 
-    bool		active_low;
-    bool		wakeup;
-    bool		no_autorepeat;
+    bool		active_low;
+    bool		wakeup;
+    bool		no_autorepeat;
 };
 [[/code]]
 
@@ -85,16 +85,16 @@ struct matrix_keypad_platform_data {
 [[code type="Cpp"]]
 /* Key definition */
 static u32 arrKeyMapping[] = {
-    //KEY(row, col, keycode)
-    KEY( 3, 3, KEY_1), KEY( 3, 2, KEY_2), KEY( 3, 1, KEY_3), KEY( 3, 0, KEY_4),
-    KEY( 2, 3, KEY_5), KEY( 2, 2, KEY_6), KEY( 2, 1, KEY_7), KEY( 2, 0, KEY_8),
-    KEY( 1, 3, KEY_9), KEY( 1, 2, KEY_0), KEY( 1, 1, KEY_A), KEY( 1, 0, KEY_B),
-    KEY( 0, 3, KEY_C), KEY( 0, 2, KEY_D), KEY( 0, 1, KEY_E), KEY( 0, 0, KEY_F)
+    //KEY(row, col, keycode)
+    KEY( 3, 3, KEY_1), KEY( 3, 2, KEY_2), KEY( 3, 1, KEY_3), KEY( 3, 0, KEY_4),
+    KEY( 2, 3, KEY_5), KEY( 2, 2, KEY_6), KEY( 2, 1, KEY_7), KEY( 2, 0, KEY_8),
+    KEY( 1, 3, KEY_9), KEY( 1, 2, KEY_0), KEY( 1, 1, KEY_A), KEY( 1, 0, KEY_B),
+    KEY( 0, 3, KEY_C), KEY( 0, 2, KEY_D), KEY( 0, 1, KEY_E), KEY( 0, 0, KEY_F)
 };
- 
+ 
 static struct matrix_keymap_data mkdKeyMappingData = {
-    .keymap = arrKeyMapping,
-    .keymap_size = ARRAY_SIZE(arrKeyMapping), 
+    .keymap = arrKeyMapping,
+    .keymap_size = ARRAY_SIZE(arrKeyMapping), 
 };
 [[/code]]
 
@@ -106,20 +106,20 @@ static struct matrix_keymap_data mkdKeyMappingData = {
 /* Row & Col definition */
 static u32 arrRowGPIOs[] = {PAD_GPIO_E + 3, PAD_GPIO_E + 2, PAD_GPIO_E + 1, PAD_GPIO_E + 0}; //GPIO ports of Row line
 static u32 arrColGPIOs[] = {PAD_GPIO_D + 31, PAD_GPIO_D + 30, PAD_GPIO_D + 29, PAD_GPIO_D + 28}; //GPIO ports of Col line
- 
+ 
 static struct matrix_keypad_platform_data mkpMatrixKeypadPlatformData = {
-    .keymap_data = &mkdKeyMappingData,
-    .row_gpios = arrRowGPIOs,
-    .col_gpios = arrColGPIOs,
- 
-    .num_row_gpios = ARRAY_SIZE(arrRowGPIOs),
-    .num_col_gpios = ARRAY_SIZE(arrColGPIOs),
- 
-    .col_scan_delay_us = 100,
-    .debounce_ms = 10,  
- 
-    .active_low = 1,
-    .no_autorepeat = 0,
+    .keymap_data = &mkdKeyMappingData,
+    .row_gpios = arrRowGPIOs,
+    .col_gpios = arrColGPIOs,
+ 
+    .num_row_gpios = ARRAY_SIZE(arrRowGPIOs),
+    .num_col_gpios = ARRAY_SIZE(arrColGPIOs),
+ 
+    .col_scan_delay_us = 100,
+    .debounce_ms = 10,  
+ 
+    .active_low = 1,
+    .no_autorepeat = 0,
 };
 [[/code]]
 
@@ -129,11 +129,11 @@ static struct matrix_keypad_platform_data mkpMatrixKeypadPlatformData = {
 
 [[code type="Cpp"]]
 struct platform_device itop4418_matrix_keypad_device = {
-    .name = "matrix-keypad",
-    .id = -1,
-    .dev = {
-        .platform_data = &mkpMatrixKeypadPlatformData,
-    },
+    .name = "matrix-keypad",
+    .id = -1,
+    .dev = {
+        .platform_data = &mkpMatrixKeypadPlatformData,
+    },
 };
 [[/code]]
 

@@ -1,21 +1,21 @@
 [[module css]]
 .page-tags {
-     display: none;
+     display: none;
 }
 [[/module]]
 
 [[module css]]
 .shadow{
-    border: 0;
-    box-shadow: 0 4.5px 10px rgba(0,0,0,.5);
-    background: transparent;
-    margin: 2.5px;
+    border: 0;
+    box-shadow: 0 4.5px 10px rgba(0,0,0,.5);
+    background: transparent;
+    margin: 2.5px;
 }
 
 .shadow:hover{
-    border: 0;
-    box-shadow: 0 4.5px 10px rgba(0,0,0,.75);
-    background: transparent;
+    border: 0;
+    box-shadow: 0 4.5px 10px rgba(0,0,0,.75);
+    background: transparent;
 }
 [[/module]]
 

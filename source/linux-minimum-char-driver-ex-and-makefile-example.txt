@@ -4,9 +4,9 @@
 
 [[code type="Cpp"]]
 /* Minimum Linux Character Driver Demo
- *
- * This is a character device, which is used to demostrate Linux character driver's structure
- */
+ *
+ * This is a character device, which is used to demostrate Linux character driver's structure
+ */
 
 /* Main header files */
 #include <linux/init.h>
@@ -40,8 +40,8 @@
 // Name strings
 #define DRIVER_NAME "minimum-char-driver"
 #define DEVICE_NAME "minimum-char-device"
-#define NODE_NAME   "minimum-char-device"
-#define CLASS_NAME  "minimum-char-device-class"
+#define NODE_NAME   "minimum-char-device"
+#define CLASS_NAME  "minimum-char-device-class"
 /* End of definitions */
 
 static struct class * clsDevice; //Device node
@@ -50,137 +50,137 @@ static struct cdev cdevDevice; //cdev structure
 
 /* Character Device Related Functions */
 static int minimum_char_driver_open(struct inode * lpNode, struct file * lpFile) {
-    DBGPRINT("Device file opening...\n");
-    return 0;
+    DBGPRINT("Device file opening...\n");
+    return 0;
 }
 
 static int minimum_char_driver_release(struct inode * lpNode, struct file * lpFile) {
-    DBGPRINT("Device file closing...\n");
-    return 0;
+    DBGPRINT("Device file closing...\n");
+    return 0;
 }
 
 static ssize_t minimum_char_driver_read(struct file * lpFile, char __user * lpszBuffer, size_t iSize, loff_t * lpOffset) {
-    DBGPRINT("Reading data from device file...\n");
-    return 0;
+    DBGPRINT("Reading data from device file...\n");
+    return 0;
 }
 
 static ssize_t minimum_char_driver_write(struct file * lpFile, const char __user * lpszBuffer, size_t iSize, loff_t * lpOffset) {
-    DBGPRINT("Writing data to device file...\n");
-    return 0;
+    DBGPRINT("Writing data to device file...\n");
+    return 0;
 }
 
 static long minimum_char_driver_unlocked_ioctl(struct file * lpFile, unsigned int iIoControlCommand, unsigned long lpIoControlParameters) {
-    DBGPRINT("Unlocked IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
-    return 0;
+    DBGPRINT("Unlocked IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
+    return 0;
 }
 
 /* For 64-bit drivers
-static long minimum_char_driver_compact_ioctl(struct file * lpFile, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
-    DBGPRINT("Compact IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
-    return 0;
+static long minimum_char_driver_compact_ioctl(struct file * lpFile, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
+    DBGPRINT("Compact IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
+    return 0;
 }
 */
 
 /* For kernels before 2.6.36
-static int minimum_char_driver_ioctl(struct inode * lpNode, struct file *file, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
-    DBGPRINT("IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
-    return 0;
+static int minimum_char_driver_ioctl(struct inode * lpNode, struct file *file, unsigned int iIoControlCommand, unsigned long lpIoControlParameters){  
+    DBGPRINT("IOControl command %u with argument %lu received.\n", iIoControlCommand, lpIoControlParameters);
+    return 0;
 }
 */
 
 /* Pointers to Character Device Related Functions */
 static struct file_operations minimum_char_driver_device_file_operations = {
-    .owner = THIS_MODULE,
-    .open = minimum_char_driver_open, //Open device, executed when calling open()
-    .release = minimum_char_driver_release, //Release device, executed when calling close()
-    .read = minimum_char_driver_read, //Read operations, executed when calling read()
-    .write = minimum_char_driver_write, //Write operations, executed when calling write()
-    .unlocked_ioctl = minimum_char_driver_unlocked_ioctl, //Unlocked IOControl, executed when calling ioctl()
-    //.compact_ioctl = minimum_char_driver_compact_ioctl, //Compact IOControl, executed when calling ioctl() from 32-bit user application on 64-bit platform
-    //.ioctl = minimum_char_driver_ioctl, //For kernels before 2.6.36, use .ioctl and comment .unlocked_ioctl
+    .owner = THIS_MODULE,
+    .open = minimum_char_driver_open, //Open device, executed when calling open()
+    .release = minimum_char_driver_release, //Release device, executed when calling close()
+    .read = minimum_char_driver_read, //Read operations, executed when calling read()
+    .write = minimum_char_driver_write, //Write operations, executed when calling write()
+    .unlocked_ioctl = minimum_char_driver_unlocked_ioctl, //Unlocked IOControl, executed when calling ioctl()
+    //.compact_ioctl = minimum_char_driver_compact_ioctl, //Compact IOControl, executed when calling ioctl() from 32-bit user application on 64-bit platform
+    //.ioctl = minimum_char_driver_ioctl, //For kernels before 2.6.36, use .ioctl and comment .unlocked_ioctl
 };
 
 /* Platform Device Related Functions */
 static int minimum_char_driver_probe(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Initializing...\n");
-    return 0;
+    DBGPRINT("Initializing...\n");
+    return 0;
 }
 
 static int minimum_char_driver_remove(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Removing...\n");
-    return 0;
+    DBGPRINT("Removing...\n");
+    return 0;
 }
 
 static void minimum_char_driver_shutdown(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Shutting down...\n");
-    return;
+    DBGPRINT("Shutting down...\n");
+    return;
 }
 
 static int minimum_char_driver_suspend(struct platform_device * lpPlatformDevice, pm_message_t iState) {
-    DBGPRINT("Suspending...\n");
-    return 0;
+    DBGPRINT("Suspending...\n");
+    return 0;
 }
 
 static int minimum_char_driver_resume(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Resuming...\n");
-    return 0;
+    DBGPRINT("Resuming...\n");
+    return 0;
 }
 
 /* Init & Exit Functions */
 static void minimum_char_driver_setup_cdev(struct cdev * lpCharDevice, int iMinorDeviceNumber, struct file_operations * lpFileOperations) { //Device setup function, called by init()
-    int iError, iDeviceDeviceNumber = MKDEV(iMajorDeviceNumber, iMinorDeviceNumber);
-    cdev_init(lpCharDevice, lpFileOperations); //Initialize cdev
-    lpCharDevice->owner = THIS_MODULE;
-    lpCharDevice->ops = lpFileOperations;
-    iError = cdev_add(lpCharDevice, iDeviceDeviceNumber, 1);
-    if (iError) {
-        WRNPRINT("Error %d adding device  %d.\n", iError, iMinorDeviceNumber);
-    }
-    NFOPRINT("Device setup process finished.\n");
+    int iError, iDeviceDeviceNumber = MKDEV(iMajorDeviceNumber, iMinorDeviceNumber);
+    cdev_init(lpCharDevice, lpFileOperations); //Initialize cdev
+    lpCharDevice->owner = THIS_MODULE;
+    lpCharDevice->ops = lpFileOperations;
+    iError = cdev_add(lpCharDevice, iDeviceDeviceNumber, 1);
+    if (iError) {
+        WRNPRINT("Error %d adding device  %d.\n", iError, iMinorDeviceNumber);
+    }
+    NFOPRINT("Device setup process finished.\n");
 }
 
 static int __init minimum_char_driver_init(void) {
-    NFOPRINT("Initializing...\n");
-    int iResult;
-    dev_t devDeviceNumber = MKDEV(iMajorDeviceNumber, 0);
-    if (iMajorDeviceNumber) {
-        //Static device number
-        iResult = register_chrdev_region(devDeviceNumber, 1, DEVICE_NAME);
-        DBGPRINT("register_chrdev_region().\n");
-    }
-    else {
-        //Allocate device number
-        iResult = alloc_chrdev_region(&devDeviceNumber, 0, 1, DEVICE_NAME);
-        DBGPRINT("alloc_chrdev_region().\n");
-        iMajorDeviceNumber = MAJOR(devDeviceNumber);
-    }
-    if (iResult < 0) { //Errors occurred
-        WRNPRINT("alloc_chrdev_region() failed.\n");
-        return iResult;
-    }
-    minimum_char_driver_setup_cdev(&cdevDevice, 0, &minimum_char_driver_device_file_operations);
-    DBGPRINT("The major device number of this device is %d.\n", iMajorDeviceNumber);
-    //Use request_irq() to register interrupts here
+    NFOPRINT("Initializing...\n");
+    int iResult;
+    dev_t devDeviceNumber = MKDEV(iMajorDeviceNumber, 0);
+    if (iMajorDeviceNumber) {
+        //Static device number
+        iResult = register_chrdev_region(devDeviceNumber, 1, DEVICE_NAME);
+        DBGPRINT("register_chrdev_region().\n");
+    }
+    else {
+        //Allocate device number
+        iResult = alloc_chrdev_region(&devDeviceNumber, 0, 1, DEVICE_NAME);
+        DBGPRINT("alloc_chrdev_region().\n");
+        iMajorDeviceNumber = MAJOR(devDeviceNumber);
+    }
+    if (iResult < 0) { //Errors occurred
+        WRNPRINT("alloc_chrdev_region() failed.\n");
+        return iResult;
+    }
+    minimum_char_driver_setup_cdev(&cdevDevice, 0, &minimum_char_driver_device_file_operations);
+    DBGPRINT("The major device number of this device is %d.\n", iMajorDeviceNumber);
+    //Use request_irq() to register interrupts here
 
-    //Create device node
-    clsDevice = class_create(THIS_MODULE, CLASS_NAME);
-    if (IS_ERR(clsDevice)) {
-        WRNPRINT("failed in creating device class.\n");
-        return 0;
-    }
-    device_create(clsDevice, NULL, devDeviceNumber, NULL, NODE_NAME);
-    return 0;
+    //Create device node
+    clsDevice = class_create(THIS_MODULE, CLASS_NAME);
+    if (IS_ERR(clsDevice)) {
+        WRNPRINT("failed in creating device class.\n");
+        return 0;
+    }
+    device_create(clsDevice, NULL, devDeviceNumber, NULL, NODE_NAME);
+    return 0;
 }
 
 static void __exit minimum_char_driver_exit(void) {
-    NFOPRINT("Exiting...\n");
-    device_destroy(clsDevice, MKDEV(iMajorDeviceNumber, 0));
-    class_destroy(clsDevice);
-    cdev_del(&cdevDevice);
-    unregister_chrdev_region(MKDEV(iMajorDeviceNumber, 0), 1);
-    //Use free_irq() to unregister interrupts here
+    NFOPRINT("Exiting...\n");
+    device_destroy(clsDevice, MKDEV(iMajorDeviceNumber, 0));
+    class_destroy(clsDevice);
+    cdev_del(&cdevDevice);
+    unregister_chrdev_region(MKDEV(iMajorDeviceNumber, 0), 1);
+    //Use free_irq() to unregister interrupts here
 
-    return;
+    return;
 }
 
 /* Pointers to Init function & Exit Functions */
@@ -189,15 +189,15 @@ module_exit(minimum_char_driver_exit);
 
 /* Pointers to Platform Driver Related Functions */
 static struct platform_driver minimum_char_driver_driver = {
-    .probe = minimum_char_driver_probe,
-    .remove = minimum_char_driver_remove,
-    .shutdown = minimum_char_driver_shutdown,
-    .suspend = minimum_char_driver_suspend,
-    .resume = minimum_char_driver_resume,
-    .driver = {
-        .name = DRIVER_NAME
-        //.owner = THIS_MODULE
-    }
+    .probe = minimum_char_driver_probe,
+    .remove = minimum_char_driver_remove,
+    .shutdown = minimum_char_driver_shutdown,
+    .suspend = minimum_char_driver_suspend,
+    .resume = minimum_char_driver_resume,
+    .driver = {
+        .name = DRIVER_NAME
+        //.owner = THIS_MODULE
+    }
 };
 
 /* Licenses, Authors & Descriptions */
@@ -225,12 +225,12 @@ PWD ?= $(shell pwd)
 
 # Operations when calling make
 all:
-    rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
-    make -C $(KRNLDIR) M=$(PWD) modules
+    rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+    make -C $(KRNLDIR) M=$(PWD) modules
 
 # Operations when calling make clean
 clean:
-    rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+    rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
 [[/code]]
 
 + .gitignore

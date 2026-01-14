@@ -27,10 +27,10 @@ iTop-4418的GPIO初始化配置文件位于{{kernel/arch/arm/plat-s5p4418/topeet
 [[code type="cpp"]]
 /* gpio mode, altfunction, gpio in/out or interrput */
 enum {
-    PAD_MODE_ALT    = (0 << PAD_MODE_SHIFT),
-    PAD_MODE_IN     = (1 << PAD_MODE_SHIFT),
-    PAD_MODE_OUT    = (2 << PAD_MODE_SHIFT),
-    PAD_MODE_INT    = (3 << PAD_MODE_SHIFT),
+    PAD_MODE_ALT    = (0 << PAD_MODE_SHIFT),
+    PAD_MODE_IN     = (1 << PAD_MODE_SHIFT),
+    PAD_MODE_OUT    = (2 << PAD_MODE_SHIFT),
+    PAD_MODE_INT    = (3 << PAD_MODE_SHIFT),
 };
 [[/code]]
 
@@ -49,10 +49,10 @@ enum {
 [[code type="cpp"]]
 /* gpio altfunction, refer to NX_GPIO_PADFUNC in nx_gpio.h */
 enum {
-    PAD_FUNC_ALT0   = (0 << PAD_FUNC_SHIFT),
-    PAD_FUNC_ALT1   = (1 << PAD_FUNC_SHIFT),
-    PAD_FUNC_ALT2   = (2 << PAD_FUNC_SHIFT),
-    PAD_FUNC_ALT3   = (3 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT0   = (0 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT1   = (1 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT2   = (2 << PAD_FUNC_SHIFT),
+    PAD_FUNC_ALT3   = (3 << PAD_FUNC_SHIFT),
 };
 [[/code]]
 
@@ -79,14 +79,14 @@ enum {
 [[code type="cpp"]]
 /* ouput level or interrupt detect mode, refer to NX_GPIO_INTMODE in nx_gpio.h */
 enum {
-    PAD_LEVEL_LOW         = (0 << PAD_LEVEL_SHIFT),     /* if alive, async lowlevel */
-    PAD_LEVEL_HIGH        = (1 << PAD_LEVEL_SHIFT),     /* if alive, async highlevel */
-    PAD_LEVEL_FALLINGEDGE = (2 << PAD_LEVEL_SHIFT),     /* if alive, async fallingedge */
-    PAD_LEVEL_RISINGEDGE  = (3 << PAD_LEVEL_SHIFT),     /* if alive, async eisingedge */
-    PAD_LEVEL_LOW_SYNC    = (4 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
-    PAD_LEVEL_HIGH_SYNC   = (5 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
-    PAD_LEVEL_BOTHEDGE    = (4 << PAD_LEVEL_SHIFT),     /* if alive, not support */
-    PAD_LEVEL_ALT         = (6 << PAD_LEVEL_SHIFT),     /* if pad function is alt, not set */
+    PAD_LEVEL_LOW         = (0 << PAD_LEVEL_SHIFT),     /* if alive, async lowlevel */
+    PAD_LEVEL_HIGH        = (1 << PAD_LEVEL_SHIFT),     /* if alive, async highlevel */
+    PAD_LEVEL_FALLINGEDGE = (2 << PAD_LEVEL_SHIFT),     /* if alive, async fallingedge */
+    PAD_LEVEL_RISINGEDGE  = (3 << PAD_LEVEL_SHIFT),     /* if alive, async eisingedge */
+    PAD_LEVEL_LOW_SYNC    = (4 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
+    PAD_LEVEL_HIGH_SYNC   = (5 << PAD_LEVEL_SHIFT),     /* if gpio , not support */
+    PAD_LEVEL_BOTHEDGE    = (4 << PAD_LEVEL_SHIFT),     /* if alive, not support */
+    PAD_LEVEL_ALT         = (6 << PAD_LEVEL_SHIFT),     /* if pad function is alt, not set */
 };
 [[/code]]
 
@@ -102,9 +102,9 @@ enum {
 
 [[code type="cpp"]]
 enum {
-    PAD_PULL_DN     = (0 << PAD_PULLUP_SHIFT),          /* Do not support Alive-GPIO */
-    PAD_PULL_UP     = (1 << PAD_PULLUP_SHIFT),
-    PAD_PULL_OFF    = (2 << PAD_PULLUP_SHIFT),
+    PAD_PULL_DN     = (0 << PAD_PULLUP_SHIFT),          /* Do not support Alive-GPIO */
+    PAD_PULL_UP     = (1 << PAD_PULLUP_SHIFT),
+    PAD_PULL_OFF    = (2 << PAD_PULLUP_SHIFT),
 };
 [[/code]]
 
@@ -114,9 +114,9 @@ enum {
 
 [[code type="cpp"]]
 enum {
-    PAD_STRENGTH_0 = (0 << PAD_STRENGTH_SHIFT),
-    PAD_STRENGTH_1 = (1 << PAD_STRENGTH_SHIFT),
-    PAD_STRENGTH_2 = (2 << PAD_STRENGTH_SHIFT),
-    PAD_STRENGTH_3 = (3 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_0 = (0 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_1 = (1 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_2 = (2 << PAD_STRENGTH_SHIFT),
+    PAD_STRENGTH_3 = (3 << PAD_STRENGTH_SHIFT),
 };
 [[/code]]

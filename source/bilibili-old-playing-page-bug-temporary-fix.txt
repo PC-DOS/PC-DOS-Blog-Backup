@@ -6,7 +6,7 @@
 请编辑该脚本，并删除下面的行，禁用外部脚本：
 
 [[code type="JavaScript"]]
-// @resource     bilibiliPlayer.js https://fastly.jsdelivr.net/gh/MotooriKashin/Bilibili-Old@3ae20f30de5ad37882b474aa886ea06f9641886b/src/bilibili/bilibiliPlayer.min.js
+// @resource     bilibiliPlayer.js https://fastly.jsdelivr.net/gh/MotooriKashin/Bilibili-Old@3ae20f30de5ad37882b474aa886ea06f9641886b/src/bilibili/bilibiliPlayer.min.js
 [[/code]]
 
 参考自：*https://greasyfork.org/zh-TW/scripts/394296/discussions/145015

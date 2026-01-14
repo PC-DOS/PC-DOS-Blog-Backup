@@ -47,7 +47,7 @@ trdThread->start(); //由于没有重载QThread::run()，调用了QThread::exec(
 
 trdThread->quit(); //关闭事件循环
 if (!trdThread->wait(1000)){ //等待线程退出，给予1000毫秒的等待时间
-    trdThread->terminate(); //如果等待超时，可以考虑删除
+    trdThread->terminate(); //如果等待超时，可以考虑删除
 }
 trdThread->deleteLater(); //删除线程对象
 [[/code]]
@@ -63,51 +63,51 @@ trdThread->deleteLater(); //删除线程对象
 /* 头文件ChildThread.h */
 #ifndef CHILDTHREAD_H
 #define CHILDTHREAD_H
- 
+ 
 #include <QThread>
- 
+ 
 class ChildThread : public QObject {
-    Q_OBJECT
- 
+    Q_OBJECT
+ 
 public:
-    ChildThread();
-    virtual ~ChildThread();
+    ChildThread();
+    virtual ~ChildThread();
 
-    void StartThread(Priority prtPriority=InheritPriority); //启动线程
-    bool StopThread(unsigned long iMaxWaitTime = ULONG_MAX); //要求退出线程并返回等待结果（线程是否在指定的等待时间内退出），您也可以考虑重载QThread::quit()函数
- 
+    void StartThread(Priority prtPriority=InheritPriority); //启动线程
+    bool StopThread(unsigned long iMaxWaitTime = ULONG_MAX); //要求退出线程并返回等待结果（线程是否在指定的等待时间内退出），您也可以考虑重载QThread::quit()函数
+ 
 protected:
-    void run(); //重载执行函数
+    void run(); //重载执行函数
 
 private:
-    bool _IsRunning; //继续执行标志位
+    bool _IsRunning; //继续执行标志位
 };
- 
+ 
 #endif // CHILDTHREAD_H
 
 /* 代码文件ChildThread.cpp */
 #include "ChildThread.h"
 
 ChildThread::ChildThread(){
-    _IsRunning=false;
+    _IsRunning=false;
 }
 
 void ChildThread::StartThread(Priority prtPriority=InheritPriority){
-    _IsRunning=true; //设置执行标志位为开
-    start(prtPriority); //启动线程
-    return;
+    _IsRunning=true; //设置执行标志位为开
+    start(prtPriority); //启动线程
+    return;
 }
 
 bool ChildThread::StopThread(unsigned long iMaxWaitTime){
-    _IsRunning=false; //设置执行标志位为关
-    return wait(iMaxWaitTime); //等待线程退出，并返回线程是否在给定的时间内安全退出
+    _IsRunning=false; //设置执行标志位为关
+    return wait(iMaxWaitTime); //等待线程退出，并返回线程是否在给定的时间内安全退出
 }
 
 void ChildThread::run(){
-    while (_IsRunning){
-        /* 在这里编写异步工作 */
-    }
-    return;
+    while (_IsRunning){
+        /* 在这里编写异步工作 */
+    }
+    return;
 }
 
 /* 主程序代码 */
@@ -117,7 +117,7 @@ trdThread->StartThread(); //启动线程
 /* …… */
 
 if (!trdThread->StopThread(1000)){ //要求等待线程退出，给予1000毫秒的等待时间
-    trdThread->terminate(); //如果等待超时，可以考虑终止
+    trdThread->terminate(); //如果等待超时，可以考虑终止
 }
 trdThread->deleteLater(); //删除线程对象
 [[/code]]

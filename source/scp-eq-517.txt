@@ -1,31 +1,31 @@
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-title">:scp-equestria:component:change-header-title</a>
-     |HeaderTitle=联合控制 · 收容 · 安保倡议协会
+     |HeaderTitle=联合控制 · 收容 · 安保倡议协会
 ]]
 
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-subtitle">:scp-equestria:component:change-header-subtitle</a>
-     |HeaderSubtitle=尽一切可能在种族间维持控制与收容，以及常态的保护
+     |HeaderSubtitle=尽一切可能在种族间维持控制与收容，以及常态的保护
 ]]
 
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-logo">:scp-equestria:component:change-header-logo</a>
-     |HeaderLogoURL=http://scp-equestria.wdfiles.com/local--files/about-the-scp-foundation/SCP_LOGO_EQ_TEMP_BW_100px.png
+     |HeaderLogoURL=http://scp-equestria.wdfiles.com/local--files/about-the-scp-foundation/SCP_LOGO_EQ_TEMP_BW_100px.png
 ]]
 
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-responsive-config">:scp-equestria:component:change-header-responsive-config</a>
-     |FontSizeDefault=150%
-     |FontSize479px=70%
-     |FontSize580px=85%
-     |FontSize767px=95%
-     |FontSize1240px=105%
-     |SubFontSizeDefault=15px
-     |SubFontSize479px=12px
-     |SubFontSize580px=14px
-     |SubFontSize767px=14px
-     |SubFontSize1240px=15px
+     |FontSizeDefault=150%
+     |FontSize479px=70%
+     |FontSize580px=85%
+     |FontSize767px=95%
+     |FontSize1240px=105%
+     |SubFontSizeDefault=15px
+     |SubFontSize479px=12px
+     |SubFontSize580px=14px
+     |SubFontSize767px=14px
+     |SubFontSize1240px=15px
 ]]
 
 [[module css]]
 html body#html-body div#skrollr-body div#container-wrap-wrap div#container-wrap div#container div#content-wrap div#main-content div#page-content div div.collapsible-block div.collapsible-block-unfolded div.collapsible-block-unfolded-link{
-    display: none;
+    display: none;
 }
 [[/module]]
 
@@ -162,41 +162,41 @@ DNE-EQU-5170001模因疫苗在社会层面上的大规模应用使得SCP-EQ-517�
 [[html]]
 <!DOCTYPE html>
 <html>
-    <head>
-    	<title>RXF1ZXN0cmlhIERPRVMgRXhpc3RlZA==</title>
-    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    	<script type="text/javascript">
-    		var iDisplayCount = 0;
-    		
-    		//加载完毕时添加延时执行
-    		window.onload=function(){
-    			setTimeout(()=>{
-    				MainFunction()
-    			}, 500)
-    		}
-    		
-    		//主执行绪
-    		function MainFunction(){
-    			var divAntiDneEquMemMain = document.getElementById("AntiDneEquMemMain"); //抓取目标
-    			if (typeof divAntiDneEquMemMain != "undefined"){ //避免没加载完
-    				divAntiDneEquMemMain.innerHTML = divAntiDneEquMemMain.innerHTML + "小马利亚不是虚构的";
-    				++iDisplayCount;
-    				if (iDisplayCount == 25){
-    					divAntiDneEquMemMain.innerHTML = "";
-    					iDisplayCount = 0;
-    				}
-    			}
-    			
-    			//注册下一个循环
-    			setTimeout(()=>{
-    				MainFunction()
-    			}, 50)
-    		}
-    	</script>
-    </head>
-    <body>
-    	<div id="AntiDneEquMemMain" style="width: 100%; text-align: left; height: 245px;"></div>
-    </body>
+    <head>
+    	<title>RXF1ZXN0cmlhIERPRVMgRXhpc3RlZA==</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<script type="text/javascript">
+    		var iDisplayCount = 0;
+    		
+    		//加载完毕时添加延时执行
+    		window.onload=function(){
+    			setTimeout(()=>{
+    				MainFunction()
+    			}, 500)
+    		}
+    		
+    		//主执行绪
+    		function MainFunction(){
+    			var divAntiDneEquMemMain = document.getElementById("AntiDneEquMemMain"); //抓取目标
+    			if (typeof divAntiDneEquMemMain != "undefined"){ //避免没加载完
+    				divAntiDneEquMemMain.innerHTML = divAntiDneEquMemMain.innerHTML + "小马利亚不是虚构的";
+    				++iDisplayCount;
+    				if (iDisplayCount == 25){
+    					divAntiDneEquMemMain.innerHTML = "";
+    					iDisplayCount = 0;
+    				}
+    			}
+    			
+    			//注册下一个循环
+    			setTimeout(()=>{
+    				MainFunction()
+    			}, 50)
+    		}
+    	</script>
+    </head>
+    <body>
+    	<div id="AntiDneEquMemMain" style="width: 100%; text-align: left; height: 245px;"></div>
+    </body>
 </html>
 [[/html]]
 

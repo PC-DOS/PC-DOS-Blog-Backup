@@ -19,11 +19,11 @@ about:config
 
 [[code]]
 {
-  "policies": {
-    "FlashPlugin": {
-      "Default": true
-    }
-  }
+  "policies": {
+    "FlashPlugin": {
+      "Default": true
+    }
+  }
 }
 [[/code]]
 

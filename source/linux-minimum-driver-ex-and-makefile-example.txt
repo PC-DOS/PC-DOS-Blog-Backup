@@ -4,9 +4,9 @@
 
 [[code type="Cpp"]]
 /* Minimum Linux Driver Demo
- *
- * This is a demo driver, which is used to demostrate Linux driver's structure
- */
+ *
+ * This is a demo driver, which is used to demostrate Linux driver's structure
+ */
 
 /* Main header files, include them in all your drivers */
 #include <linux/init.h>
@@ -42,39 +42,39 @@
 
 /* Platform Device Related Functions */
 static int minimum_driver_probe(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Initializing...\n");
-    return 0;
+    DBGPRINT("Initializing...\n");
+    return 0;
 }
 
 static int minimum_driver_remove(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Removing...\n");
-    return 0;
+    DBGPRINT("Removing...\n");
+    return 0;
 }
 
 static void minimum_driver_shutdown(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Shutting down...\n");
-    return 0;
+    DBGPRINT("Shutting down...\n");
+    return 0;
 }
 
 static int minimum_driver_suspend(struct platform_device * lpPlatformDevice, pm_message_t iState) {
-    DBGPRINT("Suspending...\n");
-    return 0;
+    DBGPRINT("Suspending...\n");
+    return 0;
 }
 
 static int minimum_driver_resume(struct platform_device * lpPlatformDevice) {
-    DBGPRINT("Resuming...\n");
-    return 0;
+    DBGPRINT("Resuming...\n");
+    return 0;
 }
 
 /* Init & Exit Functions */
 static int minimum_driver_init(void) {
-    NFOPRINT("Initializing...\n");
-    return 0;
+    NFOPRINT("Initializing...\n");
+    return 0;
 }
 
 static void minimum_driver_exit(void) {
-    NFOPRINT("Exiting...\n");
-    return;
+    NFOPRINT("Exiting...\n");
+    return;
 }
 
 /* Pointers to Init function & Exit Functions */
@@ -83,15 +83,15 @@ module_exit(minimum_driver_exit);
 
 /* Pointers to Platform Driver Related Functions */
 static struct platform_driver minimum_driver = {
-    .probe = minimum_driver_probe,
-    .remove = minimum_driver_remove,
-    .shutdown = minimum_driver_shutdown,
-    .suspend = minimum_driver_suspend,
-    .resume = minimum_driver_suspend,
-    .driver = {
-        .name = DRIVER_NAME
-        //.owner = THIS_MODULE
-    }
+    .probe = minimum_driver_probe,
+    .remove = minimum_driver_remove,
+    .shutdown = minimum_driver_shutdown,
+    .suspend = minimum_driver_suspend,
+    .resume = minimum_driver_suspend,
+    .driver = {
+        .name = DRIVER_NAME
+        //.owner = THIS_MODULE
+    }
 };
 
 /* Licenses, Authors & Descriptions */
@@ -119,12 +119,12 @@ PWD ?= $(shell pwd)
 
 # Operations when calling make
 all:
-    rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
-    make -C $(KRNLDIR) M=$(PWD) modules
+    rm -rf *.ko *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+    make -C $(KRNLDIR) M=$(PWD) modules
 
 # Operations when calling make clean
 clean:
-    rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
+    rm -rf *.o *.mod.* *.order *.symvers *.cmd *.*.cmd .*.cmd .*.*.cmd .tmp_versions
 [[/code]]
 
 + .gitignore

@@ -5,9 +5,9 @@
 lstMessage.ItemsSource = MessageList
 lstMessage.SelectedIndex = lstMessage.Items.Count - 1
 Try
-    lstMessage.ScrollIntoView(lstMessage.SelectedItem)
+    lstMessage.ScrollIntoView(lstMessage.SelectedItem)
 Catch ex As Exception
-    'DoNothing()
+    'DoNothing()
 End Try
 [[/code]]
 

@@ -5,36 +5,36 @@
 选项:
 
 [[code]]
--l                             列出连接的设备
--info                          列出连接到指定COM端口的设备的硬件资料 (例如: -p COM8 -info)
+-l                             列出连接的设备
+-info                          列出连接到指定COM端口的设备的硬件资料 (例如: -p COM8 -info)
 -MaxPayloadSizeToTargetInBytes 指定Firehose模式的最大字节数 (DDR 或更大的 IMEM 使用 16384, 默认值=8192)
--SkipWrite                     不要向磁盘写入真实数据 (UFS 部署时使用)
--SkipStorageInit               不要初始化存储设备 (UFS 部署时使用)
--MemoryName <ufs/emmc>         存储器类型，默认为EMMC
--SetActivePartition <num>      设定引导使用的活动分区
--disk_sector_size <int>        设定磁盘扇区大小? (原始文本为 Dump from start sector to end sector to file，与 -d 的描述相同，但是似乎不符合这个参数的参数表)
--d <start> <end>               从指定的起始扇区到结束扇区读取资料并输出到文件
--d <PartName>                  从指定分区读取资料并输出到文件
--e <start> <num>               清除指定扇区区间内的资料
--e <PartName>                  清空指定的分区
--s <sectors>                   磁盘映像的扇区数
--p <port or disk>              设定编程对象的端口号 (例如: COM8)
--o <filename>                  指定输出文件名
--x <*.xml>                     将XML文件编程到输出端口
--f <flash programmer>          指定需要载入到目标的编程器
--i <singleimage>               载入到偏移量 0 的单一映像
--t                             运行性能测试
--b <prtname> <binfile>         将 <binfile> 写入到 GPT 分区 <prtname>
--g GPP1 GPP2 GPP3 GPP4         创建以 MB 为单位的 4 个 GPP 分区
--gq                            创建 GPP 分区时不提示 (安静模式)
--r                             复位设备
--ffu <*.ffu>                   在应急下载模式下将 FFU 文件刷写到设备，需要和 -p 或 -o 配合使用
+-SkipWrite                     不要向磁盘写入真实数据 (UFS 部署时使用)
+-SkipStorageInit               不要初始化存储设备 (UFS 部署时使用)
+-MemoryName <ufs/emmc>         存储器类型，默认为EMMC
+-SetActivePartition <num>      设定引导使用的活动分区
+-disk_sector_size <int>        设定磁盘扇区大小? (原始文本为 Dump from start sector to end sector to file，与 -d 的描述相同，但是似乎不符合这个参数的参数表)
+-d <start> <end>               从指定的起始扇区到结束扇区读取资料并输出到文件
+-d <PartName>                  从指定分区读取资料并输出到文件
+-e <start> <num>               清除指定扇区区间内的资料
+-e <PartName>                  清空指定的分区
+-s <sectors>                   磁盘映像的扇区数
+-p <port or disk>              设定编程对象的端口号 (例如: COM8)
+-o <filename>                  指定输出文件名
+-x <*.xml>                     将XML文件编程到输出端口
+-f <flash programmer>          指定需要载入到目标的编程器
+-i <singleimage>               载入到偏移量 0 的单一映像
+-t                             运行性能测试
+-b <prtname> <binfile>         将 <binfile> 写入到 GPT 分区 <prtname>
+-g GPP1 GPP2 GPP3 GPP4         创建以 MB 为单位的 4 个 GPP 分区
+-gq                            创建 GPP 分区时不提示 (安静模式)
+-r                             复位设备
+-ffu <*.ffu>                   在应急下载模式下将 FFU 文件刷写到设备，需要和 -p 或 -o 配合使用
 -splitffu <*.ffu> -o <xmlfile> 拆分 FFU 文件，并在输出位置创建 rawprogram0.xml
--protocol <protocol>           设定协议，可以是 FIREHOSE 或 STREAMING，默认值为 FIREHOSE
--chipset <chipset>             指定芯片组类型，可以归属于 8960 或 8974 家族
--gpt                           从连接的设备读取 GPT
--raw                           从串口 0x75 0x25 0x10 读写 RAW 数据
--verbose                       启用详尽输出模式
+-protocol <protocol>           设定协议，可以是 FIREHOSE 或 STREAMING，默认值为 FIREHOSE
+-chipset <chipset>             指定芯片组类型，可以归属于 8960 或 8974 家族
+-gpt                           从连接的设备读取 GPT
+-raw                           从串口 0x75 0x25 0x10 读写 RAW 数据
+-verbose                       启用详尽输出模式
 [[/code]]
 
 范例:

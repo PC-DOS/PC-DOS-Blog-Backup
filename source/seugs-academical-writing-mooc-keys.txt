@@ -5,79 +5,79 @@
 1、 问题:1. The register of the following discourse is____.I, James Bond, take you, Judith Kroll, to be my wife, to have and to hold from this day forward, for better, for worse, for richer, for poorer, in sickness and in health, to love and to cherish, till death us do part, according to God’s holy law, in the presence of God I make this vow.
 选项：
 A:static
- B:formal
- C:consultative
- D:casual
+ B:formal
+ C:consultative
+ D:casual
 答案: 【static】
 
 2、 问题:Which of the following is NOT the purpose of nominalization?
 选项：
 A:Increase information density and facilitate efficiency and accuracy of communication.
- B:Express concrete concepts.
- C:Make writing more professional.
- D:Maintain connections between ideas.
+ B:Express concrete concepts.
+ C:Make writing more professional.
+ D:Maintain connections between ideas.
 答案: 【Express concrete concepts.】
 
 3、 问题:Which of the following statement is TRUE?
 选项：
 A:“It’s possible that he’ll be late.” sounds more formal than “There is possibility that he’ll be late.”
 B:Nominalization can hide the object behind an action.
- C:The 4-step procedure mentioned in the video is to transform a formal sentence into a more formal one.
- D:The sentence nominalization formula consists of 4 steps, writing a simple sentence, nominalizing a main verb or adjective, adding a second verb and writing the additional information.
+ C:The 4-step procedure mentioned in the video is to transform a formal sentence into a more formal one.
+ D:The sentence nominalization formula consists of 4 steps, writing a simple sentence, nominalizing a main verb or adjective, adding a second verb and writing the additional information.
 答案: 【The sentence nominalization formula consists of 4 steps, writing a simple sentence, nominalizing a main verb or adjective, adding a second verb and writing the additional information.】
 
 4、 问题:“The U.S. constitution” is not a good title for an essay, because it is too general.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 5、 问题:For beginner writers, the title should be as short as possible.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 6、 问题:Nominalization is the process of converting simple nouns within a sentence to complex nouns.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 7、 问题:When writing an academic paper, you should nominalize as many words as possible.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 8、 问题:First personal pronouns can never be used in academic paper.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 9、 问题:You can use “he or she” to avoid gender discrimination every time when you mean “everyone”.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 10、 问题:If the authors are to announce the results of their study, they can just state the results without saying “we think that…”
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 + 【作业】Unit 2 Literature Review Assignment for Unit 2
 
 1、 问题: Write a short review of at least
- five research papers on citation practice or from your own field. Use the reference system that you are
- most comfortable with. Write no less than 300 words, but no more than 400
- words.
+ five research papers on citation practice or from your own field. Use the reference system that you are
+ most comfortable with. Write no less than 300 words, but no more than 400
+ words.
 评分规则: 【 内容及步骤：引出问题、历史梳理/理论梳理/方法梳理、总结评判、发现新问题、提出自己的研究目的或假设 具体标准：包含文献综述的所有内容、要点 (5′); 包含基本内容要点, 漏掉1、2个次重点(4′) ;包含多数内容要点(3′)
- ; 漏掉或未能有效阐述主要内容要点(2′)；明显遗漏主要内容，且有许多不相关的内容（1′)未作答（0’）
- 使用清晰的语法结构和合适的学术词汇（2’）有一些语法及词汇错误，但不影响理解（1’）
- 引用充分、并且有效地采用了多种引用方法（3’）
+ ; 漏掉或未能有效阐述主要内容要点(2′)；明显遗漏主要内容，且有许多不相关的内容（1′)未作答（0’）
+ 使用清晰的语法结构和合适的学术词汇（2’）有一些语法及词汇错误，但不影响理解（1’）
+ 引用充分、并且有效地采用了多种引用方法（3’）
 】
 
 + Unit 2 Literature Review
@@ -85,87 +85,87 @@ B:错误
 1、 问题:What should you do when you write a literature review?
 选项：
 A:Gather and put in all the information you have acquired.
- B:Write in the same way as you do for a book report.
- C:Include a critical analysis of various opinions from credible sources.
- D:Answer the research question with a brief overview of the topic.
+ B:Write in the same way as you do for a book report.
+ C:Include a critical analysis of various opinions from credible sources.
+ D:Answer the research question with a brief overview of the topic.
 答案: 【Include a critical analysis of various opinions from credible sources.】
 
 2、 问题:What is included in a complex model of literature review but NOT included in a simple one?
 选项：
 A:Research topic
- B:Research interest
- C:Thesis statement
- D:Research question
+ B:Research interest
+ C:Thesis statement
+ D:Research question
 答案: 【Research question】
 
 3、 问题:What should we think about when we begin to write a literature review?
 选项：
 A:What are the seminal works on my topic? Do I need to mention these?
- B:What progress has been made since these seminal works?
- C:What are the most relevant recent works? What is the best order to mention these works?
- D:All of the above.
+ B:What progress has been made since these seminal works?
+ C:What are the most relevant recent works? What is the best order to mention these works?
+ D:All of the above.
 答案: 【All of the above.】
 
 4、 问题:When you’d like to trace the development of research topic over a period, which of following method would you adopt to organize your literature review?
 选项：
 A:Chronological
- B:Thematic
- C:Methodological
- D:Theoretical
+ B:Thematic
+ C:Methodological
+ D:Theoretical
 答案: 【Chronological】
 
 5、 问题:Reporting verbs can indicate either
 选项：
 A:the author’s personal viewpoint.
- B:the author’s viewpoint regarding other literature.
- C:your viewpoint regarding what the author says.
- D:All of the options.
+ B:the author’s viewpoint regarding other literature.
+ C:your viewpoint regarding what the author says.
+ D:All of the options.
 答案: 【All of the options.】
 
 6、 问题:Which of the following reporting verbs could be categorized as strong?
 选项：
 A:suggest
- B: reject
- C:assume
- D:propose
+ B: reject
+ C:assume
+ D:propose
 答案: 【 reject】
 
 7、 问题:Which of the following tenses could be used when the year of publication is stated within the main sentence.
 选项：
 A:The past tense
- B:The present simple
- C:The present perfect
- D:The past perfect
+ B:The present simple
+ C:The present perfect
+ D:The past perfect
 答案: 【The past tense】
 
 8、 问题:Which of the following tenses could be used to discuss previously published works which is generally considered to be established knowledge?
 选项：
 A:The past tense
- B:The present simple
- C:The present perfect
- D:The past perfect
+ B:The present simple
+ C:The present perfect
+ D:The past perfect
 答案: 【The present simple】
 
 9、 问题:To avoid plagiarism and conform to academic ethics, you need to provide reference to every citation and check for plagiarism before submitting your paper.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 10、 问题:Paraphrasing is to explain the original ideas of a passage, chapter, article or book in fewer words.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 + 【作业】Unit 3 Methods & Results Assignment for Unit 3
 
 1、 问题:The line graph below shows the sales amount of an online shop last week. Write a short passage describing the sales amount of an online shop in a week with the information presented in the attached graph. See the attachment for the graph.
 评分规则: 【 The task fulfilment: a .Satisfying the requirements of the task;b. Presenting a clear overview of the trends, differences or stages with a clear purpose;c. Highlighting key features in the graph
- Topic sentence:Stating a clear overview of the trends or a main idea
+ Topic sentence:Stating a clear overview of the trends or a main idea
 Supporting sentences:a. Describing the data with evidence;b. Making necessary comparison or contrast;c. Making some explanation if possible
- Concluding sentence:Concluding the paragraph with a statement
- Language points:Grammatical usage; Lexical usage; The use of coherence and cohesion
+ Concluding sentence:Concluding the paragraph with a statement
+ Language points:Grammatical usage; Lexical usage; The use of coherence and cohesion
 】
 
 + Unit 3 Methods & Results
@@ -173,81 +173,81 @@ Supporting sentences:a. Describing the data with evidence;b. Making necessary co
 1、 问题:In the elements of the Method Section, ______ refer to the precautions taken to make sure that the data are valid.
 选项：
 A:Overviews
- B:Populations
- C:Restrictions
- D:Materials
+ B:Populations
+ C:Restrictions
+ D:Materials
 答案: 【Restrictions】
 
 2、 问题:When the author uses “Methodology” as the title of this section, he/she needs to provide the _ for how the experiment was designed and conducted for the current study.
 选项：
 A:models
- B:replies
- C:restrictions
- D:rationales
+ B:replies
+ C:restrictions
+ D:rationales
 答案: 【rationales】
 
 3、 问题:Sequence markers in English are a certain group of items that link sentences together into a larger unit of _.
 选项：
 A:words
- B:sentences
- C:discourse
- D:phrases
+ B:sentences
+ C:discourse
+ D:phrases
 答案: 【discourse】
 
 4、 问题:Strictly speaking, the purpose of _ is to show similarities while contrast is used to show differences.
 选项：
 A:comparison
- B:contrast
- C:conjunction
- D:connection
+ B:contrast
+ C:conjunction
+ D:connection
 答案: 【comparison】
 
 5、 问题:One way is to examine one thing thoroughly and then examine the other. This method is called _____ comparison or contrast.
 选项：
 A:alternating
- B:block
- C:black
- D:alternative
+ B:block
+ C:black
+ D:alternative
 答案: 【block】
 
 6、 问题:The Method Section is considered the most important section because it appears in the middle of a research paper.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 7、 问题:The Method Section can be called Materials and Methods in natural sciences.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 8、 问题:The Results Section can only be presented both in diagrams or graphs.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 9、 问题:The process paragraphs are usually developed step by step in a chronological or logical sequence.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 10、 问题:You can choose any information or data from the graph when you describe a graph.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 + 【作业】Unit 4 Discussion & Conclusion Assignment for Unit 4
 
 1、 问题:Write a conclusion section according to the following sample of Results and Discussion. (See the attached file for the sample of Results and Discussion.)Directions: Include the key elements of a Conclusion section in relation to the sample. Write at least 150 words in one or more paragraphs.Avoid typical issues in structuring the Conclusion, such as redundancy, overstatement, anticlimax and so on. Use appropriate academic style of language.Follow grammar rules.
 评分规则: 【 Include the key elements of a Conclusion section in relation to the sample.
- Write at least 150 words in one or more paragraphs.
- Avoid typical issues in structuring the Conclusion, such as redundancy, overstatement, anticlimax and so on.
- Use appropriate academic style of language.
- Follow grammar rules.
+ Write at least 150 words in one or more paragraphs.
+ Avoid typical issues in structuring the Conclusion, such as redundancy, overstatement, anticlimax and so on.
+ Use appropriate academic style of language.
+ Follow grammar rules.
 】
 
 + Unit 4 Discussion & Conclusion
@@ -256,81 +256,81 @@ B:错误
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 2、 问题:“Shopping malls are wonderful places.” is a weak thesis statement in that it restates conventional wisdom.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 3、 问题:A weak thesis statement either makes no claim or makes a claim that does not need proving.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 4、 问题:Oversimplification should be avoided because many problems have complex causes and complex effects.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 5、 问题:Effects are the consequences of an event and they respond to the question “Why did that event happen?”
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 6、 问题:If you can discuss a cause without having to discuss any other causes then very likely it is an indirect cause.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 7、 问题:Beginning the Discussion section an author would possibly refer back to papers he/she cited in the Review of the Literature.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 8、 问题:“What implications are revealed in my results?” is a question to consider after drafting the Discussion section.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 9、 问题:To end the Discussion section which also has a Conclusion, the author may admit what she/he has not been able to do and as a consequence cannot provide conclusions on.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 10、 问题:One of the key elements of the Conclusion section is a final judgment on the importance and significance of the findings in terms of their implications and impact, along with possible applications to other areas.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 11、 问题:Unlike the Abstract and Introduction，the Conclusions section does provide background details.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 12、 问题:Redundancy, raising a totally new point, understatement, anticlimax are the typical issues in structuring the Conclusion.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 + 【作业】Unit 5 Publication Assignment for Unit 5
 
 1、 问题:Write an acknowledgement within 200 words. Suppose you are a graduate writing your dissertation. You need to give thanks to your supervisor, your teachers or your friends who have already helped you.
 评分规则: 【 标题：正确写出Acknowledgements。
- 内容：正确写出对导师、老师和朋友的感谢并给出恰当的理由。
- 语法词汇：正确使用清晰的语法结构，正确使用与致谢相关的句型结构和词汇。
- 字数要求：字数低于150字扣1分，字数超过200扣1分。
+ 内容：正确写出对导师、老师和朋友的感谢并给出恰当的理由。
+ 语法词汇：正确使用清晰的语法结构，正确使用与致谢相关的句型结构和词汇。
+ 字数要求：字数低于150字扣1分，字数超过200扣1分。
 】
 
 + Unit 5 Publication
@@ -338,74 +338,74 @@ B:错误
 1、 问题: is always together with abstract.
 选项：
 A:Abstract
- B:Keywords
- C:Reference
- D:Acknowledgement
- E:Cover letter
+ B:Keywords
+ C:Reference
+ D:Acknowledgement
+ E:Cover letter
 答案: 【Keywords】
 
 2、 问题: is used to avoid plagiarism.
 选项：
 A:Abstract
- B:Keywords
- C:Reference
- D:Acknowledgement
- E:Cover letter
+ B:Keywords
+ C:Reference
+ D:Acknowledgement
+ E:Cover letter
 答案: 【Reference】
 
 3、 问题: is the last part of a paper to write.
 选项：
 A:Abstract
- B:Keywords
- C:Reference
- D:Acknowledgement
- E:Cover letter
+ B:Keywords
+ C:Reference
+ D:Acknowledgement
+ E:Cover letter
 答案: 【Abstract】
 
 4、 问题: is used to express gratitude.
 选项：
 A:Abstract
- B:Keywords
- C:Reference
- D:Acknowledgement
- E:Cover letter
+ B:Keywords
+ C:Reference
+ D:Acknowledgement
+ E:Cover letter
 答案: 【Acknowledgement】
 
 5、 问题: is used to inform editor of paper publication.
 选项：
 A:Abstract
- B:Keywords
- C:Reference
- D:Acknowledgement
- E:Cover letter
+ B:Keywords
+ C:Reference
+ D:Acknowledgement
+ E:Cover letter
 答案: 【Cover letter】
 
 6、 问题:Generally, a complete abstract should include several key elements like the background, the problem, the method, the results, etc.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 7、 问题:Generally, keywords can be more than 6 words in an abstract.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 8、 问题:A good Reference should be authoritative, up-to-date, and journal-targeted.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】
 
 9、 问题:Acknowledgement is an unnecessary part in a dissertation.
 选项：
 A:正确
 B:错误
- 答案: 【错误】
+ 答案: 【错误】
 
 10、 问题:Cover letter should claim the originality of the paper.
 选项：
 A:正确
 B:错误
- 答案: 【正确】
+ 答案: 【正确】

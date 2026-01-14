@@ -4,9 +4,9 @@
 esxtop
 [[/code]]
 
-进入{{esxtop}}界面后，按键盘上的{{P}}键，调到电源管理界面（Power Management Screen），此时屏幕上将显示所有处理器核心的利用率等信息。随后，按键盘上的{{F}}键，进入栏位（Field）选择界面。随后，按键盘上的{{F}}键，使“{{F:  %Aperf/Mperf = Percentage of aperf to mperf ratio}}”行前显示星号标识（“{{*}}”）。最后，按回车键保存，回到{{esxtop}}电源管理界面。
+进入{{esxtop}}界面后，按键盘上的{{P}}键，调到电源管理界面（Power Management Screen），此时屏幕上将显示所有处理器核心的利用率等信息。随后，按键盘上的{{F}}键，进入栏位（Field）选择界面。随后，按键盘上的{{F}}键，使“{{F:  %Aperf/Mperf = Percentage of aperf to mperf ratio}}”行前显示星号标识（“{{*}}”）。最后，按回车键保存，回到{{esxtop}}电源管理界面。
 
-这时，{{esxtop}}电源管理界面将出现{{%A/MPERF}}栏位[[footnote]]若显示不全，可以再次按键盘上的{{F}}键，进入栏位（Field）选择界面，并通过相应的按键提示关闭“{{C:  %CState = Percentage of time spent in a C-State}}”（通过键盘上的{{C}}键控制开关）、“{{D:  %PState = Percentage of time spent in a P-State}}”（通过键盘上的{{D}}键控制开关）、“{{E:  %TState = Percentage of time spent in a T-State}}”（通过键盘上的{{E}}键控制开关）等较长的栏位（即使这些栏位行前不显示星号标识（“{{*}}”）），并按回车键保存，回到{{esxtop}}电源管理界面。[[/footnote]]。该栏位衡量了X86处理器每颗逻辑逻辑上的{{APERF}}寄存器（该寄存器保存了处理器在当前频率下的执行速度）和{{MPERF}}寄存器（该寄存器保存了处理器在基本频率下的执行速度）的值的比值。因此，可以计算处理器当前的频率：
+这时，{{esxtop}}电源管理界面将出现{{%A/MPERF}}栏位[[footnote]]若显示不全，可以再次按键盘上的{{F}}键，进入栏位（Field）选择界面，并通过相应的按键提示关闭“{{C:  %CState = Percentage of time spent in a C-State}}”（通过键盘上的{{C}}键控制开关）、“{{D:  %PState = Percentage of time spent in a P-State}}”（通过键盘上的{{D}}键控制开关）、“{{E:  %TState = Percentage of time spent in a T-State}}”（通过键盘上的{{E}}键控制开关）等较长的栏位（即使这些栏位行前不显示星号标识（“{{*}}”）），并按回车键保存，回到{{esxtop}}电源管理界面。[[/footnote]]。该栏位衡量了X86处理器每颗逻辑逻辑上的{{APERF}}寄存器（该寄存器保存了处理器在当前频率下的执行速度）和{{MPERF}}寄存器（该寄存器保存了处理器在基本频率下的执行速度）的值的比值。因此，可以计算处理器当前的频率：
 
 [[code]]
 dCurrentFreq = dBaseFreq * (APerf / MPerf)

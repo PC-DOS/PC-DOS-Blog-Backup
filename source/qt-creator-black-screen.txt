@@ -9,7 +9,7 @@ sudo gedit /usr/share/applications/DigiaQt-qtcreator-community.desktop
 找到{{Exec=}}行，在该行末尾添加：
 
 [[code]]
- -noload Welcome
+ -noload Welcome
 [[/code]]
 
 使其看起来像：

@@ -35,8 +35,8 @@ Dim DevicesDiscovered As New List(Of DiscoveredDeviceInfo)
 
 [[code]]
 AddHandler PhoneConnectionManager.Discovered, Sub(sender As Object, e As DiscoveredEventArgs)
-                                                  DevicesDiscovered.Add(e.Info)
-                                              End Sub
+                                                  DevicesDiscovered.Add(e.Info)
+                                              End Sub
 [[/code]]
 
 配置设备发现超时值，并进行等待：

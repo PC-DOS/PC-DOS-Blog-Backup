@@ -8,12 +8,12 @@
 
 [[code]]
 public static List<ConnectableDevice> GetDevices(){
-    List<ConnectableDevice> list = new List<ConnectableDevice>();    
-    MultiTargetingConnectivity multiConnect = new MultiTargetingConnectivity(CultureInfo.CurrentCulture.LCID);
-    foreach (ConnectableDevice device in multiConnect.GetConnectableDevices(false)){
-        list.Add(device);
-    }
-    return list;
+    List<ConnectableDevice> list = new List<ConnectableDevice>();    
+    MultiTargetingConnectivity multiConnect = new MultiTargetingConnectivity(CultureInfo.CurrentCulture.LCID);
+    foreach (ConnectableDevice device in multiConnect.GetConnectableDevices(false)){
+        list.Add(device);
+    }
+    return list;
 }
 [[/code]]
 
@@ -25,7 +25,7 @@ public static List<ConnectableDevice> GetDevices(){
 Dim DeviceNames As String = ""
 Dim Connectivity As New Microsoft.SmartDevice.MultiTargeting.Connectivity.MultiTargetingConnectivity(System.Globalization.CultureInfo.CurrentCulture.LCID)
 For Each Device In Connectivity.GetConnectableDevices(False)
-    DeviceNames = DeviceNames & Device.Name & vbTab & Device.Id & vbCrLf
+    DeviceNames = DeviceNames & Device.Name & vbTab & Device.Id & vbCrLf
 Next
 Debug.Print(DeviceNames)
 [[/code]]

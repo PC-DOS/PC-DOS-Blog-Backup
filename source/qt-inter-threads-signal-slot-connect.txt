@@ -24,45 +24,45 @@ Qt默认使用{{Qt::AutoConnection}}进行信号-槽的连接（{{connect()}}）
 Q_DECLARE_METATYPE(MyType);
 
 class MyClass : public QObject{
-    Q_OBJECT
+    Q_OBJECT
 
 public:
-    void ConnectSignals(MyClass * objObject);
+    void ConnectSignals(MyClass * objObject);
 
 public signals:
-    void signal(MyType typParam);
+    void signal(MyType typParam);
 
 private slots:
-    void slot(MyType typParam);
+    void slot(MyType typParam);
 };
 
 class MyThread : public QThread {
-    Q_OBJECT
+    Q_OBJECT
 
 public:
-    MyThread() {_IsSignalConnected=false;}
-    virtual ~MyThread() {}
+    MyThread() {_IsSignalConnected=false;}
+    virtual ~MyThread() {}
 
 protected:
-    void run();
+    void run();
 
 private:
-    bool _IsSignalConnected;
+    bool _IsSignalConnected;
 };
 
 //CPP FILE
 MyClass * clsMyClass = new MyClass();
 
 void MyClass::ConnectSignals(MyClass * objObject){
-    qRegisterMetaType<MyType>("MyType");
-    connect(objObject, SIGNAL(signal(MyType)), this, SLOT(slot(MyType)),Qt::QueuedConnection);
+    qRegisterMetaType<MyType>("MyType");
+    connect(objObject, SIGNAL(signal(MyType)), this, SLOT(slot(MyType)),Qt::QueuedConnection);
 }
 
 void MyThread::run(){
-    if (!_IsSignalConnected){
-        MyClass.ConnectSignals(clsMyClass);
-    }
-    
-    //Real works
+    if (!_IsSignalConnected){
+        MyClass.ConnectSignals(clsMyClass);
+    }
+    
+    //Real works
 }
 [[/code]]

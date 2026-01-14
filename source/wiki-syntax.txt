@@ -76,7 +76,7 @@ thanks for Erich for that!
 
 + [[# typography]]标点符号
 
-||~ 您所打的  ||~ 您得到的 ||
+||~ 您所打的  ||~ 您得到的 ||
 || {{@@``引号'' @@}} || ``引号''||
 || {{@@`引号' @@}} || `引号' ||
 || {{@@,,引号''@@}} || ,,引号'' ||
@@ -159,12 +159,12 @@ thanks for Erich for that!
 [[code]]
 * 事项1
 * 事项 2
- * 事项 2.1
+ * 事项 2.1
 [[/code]]
 
 * 事项1
 * 事项2
- * 事项2.1
+ * 事项2.1
 
 如果要在列表中弄一行以上，在行尾放"_"(要空格)，"_"后面不能放东西。
 
@@ -172,13 +172,13 @@ thanks for Erich for that!
 * 事项1 _
 另一行
 * 事项2
- * 事项2.1
+ * 事项2.1
 [[/code]]
 
 * 事项1 _
 另一行
 * 事项2
- * 事项2.1
+ * 事项2.1
 
 ++ 有序列表
 
@@ -187,12 +187,12 @@ thanks for Erich for that!
 [[code]]
 # 事项1
 # 事项2
- # 事项2.1
+ # 事项2.1
 [[/code]]
 
 # 事项1
 # 事项2
- # 事项2.1
+ # 事项2.1
 
 如果要在列表中弄一行以上，在行尾放"_"(要空格)，"_"后面不能放东西。
 
@@ -200,13 +200,13 @@ thanks for Erich for that!
 # 事项1 _
 另一行
 # 事项2
- # 事项2.1
+ # 事项2.1
 [[/code]]
 
 # 事项1 _
 另一行
 # 事项2
- # 事项2.1
+ # 事项2.1
 
 有序和无序的列表可以混用。
 
@@ -216,22 +216,22 @@ thanks for Erich for that!
 
 [[code]]
 [[ul]]
- [[li class="item1" data-toggle="data1"]]Item1[[/li]]
- [[li style="color: red;"]]Item 2[[/li]]
-  [[ul]]
-    [[li]]Item 2.1[[/li]]
-    [[li]]Item 2.2[[/li]]
-  [[/ul]]
+ [[li class="item1" data-toggle="data1"]]Item1[[/li]]
+ [[li style="color: red;"]]Item 2[[/li]]
+  [[ul]]
+    [[li]]Item 2.1[[/li]]
+    [[li]]Item 2.2[[/li]]
+  [[/ul]]
 [[/ul]]
 [[/code]]
 
 [[ul]]
- [[li class="item1" data-toggle="data1"]]Item1[[/li]]
- [[li style="color: red;"]]Item 2[[/li]]
-  [[ol]]
-    [[li]]Item 2.1[[/li]]
-    [[li]]Item 2.2[[/li]]
-  [[/ol]]
+ [[li class="item1" data-toggle="data1"]]Item1[[/li]]
+ [[li style="color: red;"]]Item 2[[/li]]
+  [[ol]]
+    [[li]]Item 2.1[[/li]]
+    [[li]]Item 2.2[[/li]]
+  [[/ol]]
 [[/ul]]
 
 + [[# definitions]]定义列表
@@ -327,7 +327,7 @@ thanks for Erich for that!
 {{@@[*http://www.wikidot.com wikidot]@@}} || *http://www.wikidot.com _
 [*http://www.wikidot.com wikidot] || 开新窗口 ||
 || {{@@[# empty link]@@}} || [# empty link] || 连到{{href="javascript:;"}} ||
-|| {{@@[/category:page/option1/option2 link text]@@}} ||  [http://your-site.wikidot.com/cat:page/opt1/opt2 link text] || 用短连结去打开网站内连结，不用加http。 _
+|| {{@@[/category:page/option1/option2 link text]@@}} ||  [http://your-site.wikidot.com/cat:page/opt1/opt2 link text] || 用短连结去打开网站内连结，不用加http。 _
 例子；您能用 _
 {{@@[[[/blog:post/edit/true 编辑这页]]]@@}} _
 去取代 _
@@ -355,7 +355,7 @@ thanks for Erich for that!
 {{@@"#anchor"@@}} _
 {{@@"#"@@}} || 点图前往其他页面或网址; 在前面加上'*'就能开新窗口；; 可以选择连至页内的[#toc22 锚点]||
 || width || 像素数 || {{@@"200px"@@}} || 强制设定图片宽度||
-|| height || 像素数  || {{@@"200px"@@}} || 强制设定图片高度 ||
+|| height || 像素数  || {{@@"200px"@@}} || 强制设定图片高度 ||
 
 
 //而图源//可以用下面的其中之一：
@@ -379,7 +379,7 @@ thanks for Erich for that!
 还有这种：
 [[code]]
 [[div style="float:right; margin:0 2em 1em 2em; width:300px; border:0;"]]
-|||| [[image URL图源  width="300px"]] ||
+|||| [[image URL图源  width="300px"]] ||
 ||||~ ^^描述^^ ||
 [[/div]]
 [[/code]]
@@ -449,7 +449,7 @@ thanks for Erich for that!
 ||~ 标题 1 ||~ 标题 2 ||~ 标题 3 ||
 || 内容 1 || 内容 2 || 内容 3 ||
 |||| 长内容 4 || 内容 5 ||
-||内容 6 |||| 长内容  7 ||
+||内容 6 |||| 长内容  7 ||
 |||||| 超长 _
 内容 8||
 [[/code]]
@@ -567,9 +567,9 @@ right column right column right column right column right column right column ri
 
 ||~ 您所打的 ||~ 您看到的 ||~ 描述||
 || {{@@[[user@@ //用户名称//]]}} _
- e.g. {{@@[[user PC-DOS]]@@}} ||  [[user PC-DOS]] || 用户信息(没头像)||
+ e.g. {{@@[[user PC-DOS]]@@}} ||  [[user PC-DOS]] || 用户信息(没头像)||
 || {{@@[[*user@@ //用户名称//]]}} _
- e.g. {{@@[[*user PC-DOS]]@@}} ||  [[*user PC-DOS]] || 用户信息(连头像)||
+ e.g. {{@@[[*user PC-DOS]]@@}} ||  [[*user PC-DOS]] || 用户信息(连头像)||
 
 + 设计元素
 

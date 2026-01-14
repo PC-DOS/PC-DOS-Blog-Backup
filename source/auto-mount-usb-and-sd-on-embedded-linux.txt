@@ -5,10 +5,10 @@
 iTop-4418和iTop-4412的Qt/E文件系统已原生支持mdev，无需重新编译BusyBox的以下支持：
 
 [[code]]
-Linux System Utilities  --->   
-       [*] mdev      
-             [*]   Support /etc/mdev.conf
-             [*]     Support command execution at device addition/removal
+Linux System Utilities  --->   
+       [*] mdev      
+             [*]   Support /etc/mdev.conf
+             [*]     Support command execution at device addition/removal
 [[/code]]
 
 + 创建脚本
@@ -25,18 +25,18 @@ Linux System Utilities  --->   
 #Judge device action variable ($ACTION)
 if [ $ACTION == "add" ]
 then
-    #Device plugged operations
-    echo "Hotplug: USB disk $MDEV plugged." > /dev/console
-    if [ -e "/dev/$MDEV" ] ; then
-    	mkdir -p /mnt/$MDEV
-    	mount -rw /dev/$MDEV /mnt/$MDEV
-    	echo "Hotplug: USB disk $MDEV mounted to /mnt/$MDEV ." > /dev/console
-    fi
+    #Device plugged operations
+    echo "Hotplug: USB disk $MDEV plugged." > /dev/console
+    if [ -e "/dev/$MDEV" ] ; then
+    	mkdir -p /mnt/$MDEV
+    	mount -rw /dev/$MDEV /mnt/$MDEV
+    	echo "Hotplug: USB disk $MDEV mounted to /mnt/$MDEV ." > /dev/console
+    fi
 else
-    #Device unplugged operations
-    echo "Hotplug: USB disk $MDEV unplugged. Unmounting /mnt/$MDEV ..." > /dev/console
-    umount /mnt/$MDEV
-    rm -r /mnt/$MDEV
+    #Device unplugged operations
+    echo "Hotplug: USB disk $MDEV unplugged. Unmounting /mnt/$MDEV ..." > /dev/console
+    umount /mnt/$MDEV
+    rm -r /mnt/$MDEV
 fi
 [[/code]]
 
@@ -50,18 +50,18 @@ fi
 #Judge device action variable ($ACTION)
 if [ $ACTION == "add" ]
 then
-    #Device plugged operations
-    echo "Hotplug: USB disk $MDEV plugged." > /dev/console
-    if [ -e "/dev/$MDEV" ] ; then
-    	mkdir -p /mnt/$MDEV
-    	mount -rw /dev/$MDEV /mnt/$MDEV
-    	echo "Hotplug: SD card $MDEV mounted to /mnt/$MDEV ." > /dev/console
-    fi
+    #Device plugged operations
+    echo "Hotplug: USB disk $MDEV plugged." > /dev/console
+    if [ -e "/dev/$MDEV" ] ; then
+    	mkdir -p /mnt/$MDEV
+    	mount -rw /dev/$MDEV /mnt/$MDEV
+    	echo "Hotplug: SD card $MDEV mounted to /mnt/$MDEV ." > /dev/console
+    fi
 else
-    #Device unplugged operations
-    echo "Hotplug: USB disk $MDEV unplugged. Unmounting /mnt/$MDEV ..." > /dev/console
-    umount /mnt/$MDEV
-    rm -r /mnt/$MDEV
+    #Device unplugged operations
+    echo "Hotplug: USB disk $MDEV unplugged. Unmounting /mnt/$MDEV ..." > /dev/console
+    umount /mnt/$MDEV
+    rm -r /mnt/$MDEV
 fi
 [[/code]]
 
@@ -79,10 +79,10 @@ sda1		0:0	0600	=udisk * /bin/hotplug
 
 [[code]]
 # USB disk
-sd[a-z][0-9]      0:0 666        * /etc/hotplug/usbdisk
+sd[a-z][0-9]      0:0 666        * /etc/hotplug/usbdisk
 
 # SD card
-mmcblk1p[0-9]     0:0 666        * /etc/hotplug/sdcard
+mmcblk1p[0-9]     0:0 666        * /etc/hotplug/sdcard
 [[/code]]
 
 + 参考资料

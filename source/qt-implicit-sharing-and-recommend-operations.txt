@@ -8,8 +8,8 @@ Qt隐式共享机制的实现基础是{{QSharedData}}和{{QSharedDataPointer}}�
 * 只读访问非常量的向量（{{Vector}}）或列表（{{List}}）时，使用{{at()}}函数，而非{{[]}}操作符[[footnote]]Qt无法判断{{[]}}操作符的使用目的（读取/赋值），因此会在使用{{[]}}操作符时执行深复制。而{{at()}}函数只允许进行读操作。[[/footnote]]。
 * 只读访问非常量的键值对容器（关联容器，字典型容器，如{{QMap< K , T >}}、{{QMultiMap< K , T >}}、{{QHash< K , T >}}、{{QMultiHash< K , T >}}等）的值时，使用{{value()}}函数，而非{{[]}}操作符[[footnote]]Qt无法判断{{[]}}操作符的使用目的（读取/赋值），因此会在使用{{[]}}操作符时执行深复制，且{{[]}}操作符的使用可能导致非预期的空值的创建。而{{value()}}函数只允许进行读操作，不进行深复制，亦不会导致未预期的空值的形成。[[/footnote]]。
 * 使用STL风格的迭代器{{C<T>::iterator}}时，对{{begin()}}和{{end()}}函数的调用也会导致深复制。推荐的操作包括：
- * 使用返回常量的STL风格迭代器{{C<T>::const_iterator}}代替{{C<T>::iterator}}。
- * 使用{{begin()}}和{{end()}}函数的常量版本{{constBegin()}}和{{constEnd()}}。
+ * 使用返回常量的STL风格迭代器{{C<T>::const_iterator}}代替{{C<T>::iterator}}。
+ * 使用{{begin()}}和{{end()}}函数的常量版本{{constBegin()}}和{{constEnd()}}。
 
 @@@@
 @@@@

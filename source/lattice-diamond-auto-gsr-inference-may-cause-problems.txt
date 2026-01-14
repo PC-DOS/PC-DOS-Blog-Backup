@@ -2,8 +2,8 @@ Lattice Diamond的综合器的默认设置会尝试自动推断全局复位（GS
 
 * 通过 [Spreadsheet View] > [Global Preferences] > [Global Set/Reset Net] 手动指定GSR信号。
 * 编辑当前的Strategy：
- * 在LSE综合器选项中，将 [Force GSR] 设为{{False}}。
- * 在Map Design选项中，将 [Force GSR] 设为{{False}}。
+ * 在LSE综合器选项中，将 [Force GSR] 设为{{False}}。
+ * 在Map Design选项中，将 [Force GSR] 设为{{False}}。
 
 参考资料：
 

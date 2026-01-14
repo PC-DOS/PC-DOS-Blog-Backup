@@ -21,18 +21,18 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: CIC (Cascaded Integrator Comb) Filter for signal decimation.
-//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
-//              This CIC Filter can be customized using following options:
-//                  DECIMATION_COEFFICIENT: Decimation coefficient of the filter. Defines the interval of data sampling.
-//                  STAGE_COUNT: Stage (section count) of the filter. Defines the count of cascaded filters.
-//                  INPUT_DATA_WIDTH: Width of input data.
-//                  TEMP_DATA_WIDTH: Width of medium data output by the Integrator Module. Can be calculated with:
-//                      TEMP_DATA_WIDTH = INPUT_DATA_WIDTH + STAGE_COUNT * ceil(log2(DECIMATION_COEFFICIENT))
-//                  OUTPUT_DATA_WIDTH: Width of output data. OUTPUT_DATA_WIDTH must be greater or equal to INPUT_DATA_WIDTH.
+//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
+//              This CIC Filter can be customized using following options:
+//                  DECIMATION_COEFFICIENT: Decimation coefficient of the filter. Defines the interval of data sampling.
+//                  STAGE_COUNT: Stage (section count) of the filter. Defines the count of cascaded filters.
+//                  INPUT_DATA_WIDTH: Width of input data.
+//                  TEMP_DATA_WIDTH: Width of medium data output by the Integrator Module. Can be calculated with:
+//                      TEMP_DATA_WIDTH = INPUT_DATA_WIDTH + STAGE_COUNT * ceil(log2(DECIMATION_COEFFICIENT))
+//                  OUTPUT_DATA_WIDTH: Width of output data. OUTPUT_DATA_WIDTH must be greater or equal to INPUT_DATA_WIDTH.
 // 
 // Dependencies: CICDecimationFilter_IntegratorModule.v
-//               CICDecimationFilter_DecimatorModule.v
-//               CICDecimationFilter_CombModule.v
+//               CICDecimationFilter_DecimatorModule.v
+//               CICDecimationFilter_CombModule.v
 // 
 // Revision:
 // Revision 0.01 - File Created
@@ -41,46 +41,46 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module CICDecimationFilter
-    #(parameter DECIMATION_COEFFICIENT = 5,
-      parameter STAGE_COUNT = 3,
-      parameter INPUT_DATA_WIDTH = 12,
-      parameter TEMP_DATA_WIDTH = 21,
-      parameter OUTPUT_DATA_WIDTH = 17)
-    (input iClock,
-     input iReset,
-     input iIsDataValid,
-     input [INPUT_DATA_WIDTH-1:0] iData,
-     output oIsDataValid,
-     output [OUTPUT_DATA_WIDTH-1:0] oDecimatedData
-     );
+    #(parameter DECIMATION_COEFFICIENT = 5,
+      parameter STAGE_COUNT = 3,
+      parameter INPUT_DATA_WIDTH = 12,
+      parameter TEMP_DATA_WIDTH = 21,
+      parameter OUTPUT_DATA_WIDTH = 17)
+    (input iClock,
+     input iReset,
+     input iIsDataValid,
+     input [INPUT_DATA_WIDTH-1:0] iData,
+     output oIsDataValid,
+     output [OUTPUT_DATA_WIDTH-1:0] oDecimatedData
+     );
 
-   wire [TEMP_DATA_WIDTH-1:0] wIntegratorOutput;
-   wire [TEMP_DATA_WIDTH-1:0] wDecimatorOutput;
-   wire wIsIntegratorOutputDataValid, wIsDecimatorOutputDataValid;
+   wire [TEMP_DATA_WIDTH-1:0] wIntegratorOutput;
+   wire [TEMP_DATA_WIDTH-1:0] wDecimatorOutput;
+   wire wIsIntegratorOutputDataValid, wIsDecimatorOutputDataValid;
 
-   CICDecimationFilter_IntegratorModule #(.INPUT_DATA_WIDTH(INPUT_DATA_WIDTH), .OUTPUT_DATA_WIDTH(TEMP_DATA_WIDTH), .STAGE_COUNT(STAGE_COUNT))
-   uIntegrator(.iClock(iClock),
-               .iReset(iReset),
-               .iIsDataValid(iIsDataValid),
-               .iData(iData),
-               .oIsDataValid(wIsIntegratorOutputDataValid),
-               .oIntegratedData(wIntegratorOutput));
+   CICDecimationFilter_IntegratorModule #(.INPUT_DATA_WIDTH(INPUT_DATA_WIDTH), .OUTPUT_DATA_WIDTH(TEMP_DATA_WIDTH), .STAGE_COUNT(STAGE_COUNT))
+   uIntegrator(.iClock(iClock),
+               .iReset(iReset),
+               .iIsDataValid(iIsDataValid),
+               .iData(iData),
+               .oIsDataValid(wIsIntegratorOutputDataValid),
+               .oIntegratedData(wIntegratorOutput));
 
-   CICDecimationFilter_DecimatorModule #(.DATA_WIDTH(TEMP_DATA_WIDTH), .DECIMATION_COEFFICIENT(DECIMATION_COEFFICIENT))
-   uDecimator(.iClock(iClock),
-              .iReset(iReset),
-              .iIsDataValid(wIsIntegratorOutputDataValid),
-              .iData(wIntegratorOutput),
-              .oDecimatedData(wDecimatorOutput),
-              .oIsDataValid(wIsDecimatorOutputDataValid));
+   CICDecimationFilter_DecimatorModule #(.DATA_WIDTH(TEMP_DATA_WIDTH), .DECIMATION_COEFFICIENT(DECIMATION_COEFFICIENT))
+   uDecimator(.iClock(iClock),
+              .iReset(iReset),
+              .iIsDataValid(wIsIntegratorOutputDataValid),
+              .iData(wIntegratorOutput),
+              .oDecimatedData(wDecimatorOutput),
+              .oIsDataValid(wIsDecimatorOutputDataValid));
 
-   CICDecimationFilter_CombModule #(.INPUT_DATA_WIDTH(TEMP_DATA_WIDTH), .OUTPUT_DATA_WIDTH(OUTPUT_DATA_WIDTH), .STAGE_COUNT(STAGE_COUNT))
-   uComb(.iClock(iClock),
-         .iReset(iReset),
-         .iIsDataValid(wIsDecimatorOutputDataValid),
-         .iData(wDecimatorOutput),
-         .oIsDataValid(oIsDataValid),
-         .oDecimatedData(oDecimatedData));
+   CICDecimationFilter_CombModule #(.INPUT_DATA_WIDTH(TEMP_DATA_WIDTH), .OUTPUT_DATA_WIDTH(OUTPUT_DATA_WIDTH), .STAGE_COUNT(STAGE_COUNT))
+   uComb(.iClock(iClock),
+         .iReset(iReset),
+         .iIsDataValid(wIsDecimatorOutputDataValid),
+         .iData(wDecimatorOutput),
+         .oIsDataValid(oIsDataValid),
+         .oDecimatedData(oDecimatedData));
 
 endmodule
 [[/code]]
@@ -102,7 +102,7 @@ endmodule
 // Target Devices: 
 // Tool Versions: 
 // Description: Integrator module of a CIC Decimation Filter.
-//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
+//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
 // 
 // Dependencies: 
 // 
@@ -113,58 +113,58 @@ endmodule
 //////////////////////////////////////////////////////////////////////////////////
 
 module CICDecimationFilter_IntegratorModule
-    #(parameter INPUT_DATA_WIDTH = 12,
-      parameter OUTPUT_DATA_WIDTH = 21,
-      parameter STAGE_COUNT = 3)
-    (input iClock,
-     input iReset,
-     input iIsDataValid,
-     input [INPUT_DATA_WIDTH-1:0] iData,
-     output oIsDataValid,
-     output [OUTPUT_DATA_WIDTH-1:0] oIntegratedData
-     );
+    #(parameter INPUT_DATA_WIDTH = 12,
+      parameter OUTPUT_DATA_WIDTH = 21,
+      parameter STAGE_COUNT = 3)
+    (input iClock,
+     input iReset,
+     input iIsDataValid,
+     input [INPUT_DATA_WIDTH-1:0] iData,
+     output oIsDataValid,
+     output [OUTPUT_DATA_WIDTH-1:0] oIntegratedData
+     );
 
-    reg [OUTPUT_DATA_WIDTH-1:0] rIntegratedData[0:STAGE_COUNT-1];
-    wire [OUTPUT_DATA_WIDTH-1:0] wPaddedInputData = {{(OUTPUT_DATA_WIDTH-INPUT_DATA_WIDTH){1'b0}}, iData};
-    reg [STAGE_COUNT-1:0] rIsDataValid;
+    reg [OUTPUT_DATA_WIDTH-1:0] rIntegratedData[0:STAGE_COUNT-1];
+    wire [OUTPUT_DATA_WIDTH-1:0] wPaddedInputData = {{(OUTPUT_DATA_WIDTH-INPUT_DATA_WIDTH){1'b0}}, iData};
+    reg [STAGE_COUNT-1:0] rIsDataValid;
 
-    //Data input enable delay
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            rIsDataValid <= 0;
-        end
-        else begin
-            rIsDataValid <= {rIsDataValid[STAGE_COUNT-2:0], iIsDataValid};
-        end
-    end
+    //Data input enable delay
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rIsDataValid <= 0;
+        end
+        else begin
+            rIsDataValid <= {rIsDataValid[STAGE_COUNT-2:0], iIsDataValid};
+        end
+    end
 
-    //Integrator stage 1
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            rIntegratedData[0] <= 0;
-        end
-        else if (iIsDataValid) begin
-            rIntegratedData[0] <= rIntegratedData[0] + wPaddedInputData;
-        end
-    end
-    
-    //Integrator stage 2 and higher
-    generate
-    genvar i;
-    for (i = 1; i < STAGE_COUNT; i = i + 1) begin : IntegratorStage
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            rIntegratedData[i] <= 0;
-        end
-        else if (rIsDataValid[i-1]) begin
-            rIntegratedData[i] <= rIntegratedData[i] + rIntegratedData[i-1];
-        end
-    end
-    end
-    endgenerate
+    //Integrator stage 1
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rIntegratedData[0] <= 0;
+        end
+        else if (iIsDataValid) begin
+            rIntegratedData[0] <= rIntegratedData[0] + wPaddedInputData;
+        end
+    end
+    
+    //Integrator stage 2 and higher
+    generate
+    genvar i;
+    for (i = 1; i < STAGE_COUNT; i = i + 1) begin : IntegratorStage
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rIntegratedData[i] <= 0;
+        end
+        else if (rIsDataValid[i-1]) begin
+            rIntegratedData[i] <= rIntegratedData[i] + rIntegratedData[i-1];
+        end
+    end
+    end
+    endgenerate
 
-    assign oIntegratedData = rIntegratedData[STAGE_COUNT-1];
-    assign oIsDataValid = rIsDataValid[STAGE_COUNT-1];
+    assign oIntegratedData = rIntegratedData[STAGE_COUNT-1];
+    assign oIsDataValid = rIsDataValid[STAGE_COUNT-1];
 
 endmodule
 [[/code]]
@@ -186,7 +186,7 @@ endmodule
 // Target Devices: 
 // Tool Versions: 
 // Description: Decimator module of a CIC Decimation Filter.
-//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
+//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
 // 
 // Dependencies: 
 // 
@@ -197,49 +197,49 @@ endmodule
 //////////////////////////////////////////////////////////////////////////////////
 
 module CICDecimationFilter_DecimatorModule
-    #(parameter DATA_WIDTH = 21,
-      parameter DECIMATION_COEFFICIENT = 5)
-    (input iClock,
-     input iReset,
-     input iIsDataValid,
-     input [DATA_WIDTH-1:0] iData,
-     output reg oIsDataValid,
-     output reg [DATA_WIDTH-1:0] oDecimatedData
-     );
+    #(parameter DATA_WIDTH = 21,
+      parameter DECIMATION_COEFFICIENT = 5)
+    (input iClock,
+     input iReset,
+     input iIsDataValid,
+     input [DATA_WIDTH-1:0] iData,
+     output reg oIsDataValid,
+     output reg [DATA_WIDTH-1:0] oDecimatedData
+     );
 
-    reg [$clog2(DECIMATION_COEFFICIENT+1)-1:0] rCounter;
+    reg [$clog2(DECIMATION_COEFFICIENT+1)-1:0] rCounter;
 
-    //Counter
-    always @(posedge iClock) begin
-        if (iReset) begin
-            rCounter <= 0;
-        end
-        else if (iIsDataValid) begin
-            if (rCounter == DECIMATION_COEFFICIENT-1) begin
-                rCounter <= 0;
-            end
-            else begin
-                rCounter <= rCounter + 1;
-            end
-        end
-    end
+    //Counter
+    always @(posedge iClock) begin
+        if (iReset) begin
+            rCounter <= 0;
+        end
+        else if (iIsDataValid) begin
+            if (rCounter == DECIMATION_COEFFICIENT-1) begin
+                rCounter <= 0;
+            end
+            else begin
+                rCounter <= rCounter + 1;
+            end
+        end
+    end
 
-    //Data, iIsDataValid
-    always @(posedge iClock) begin
-        if (iReset) begin
-            oIsDataValid <= 1'b0;
-            oDecimatedData <= 0;
-        end
-        else if (iIsDataValid) begin
-            if (rCounter == DECIMATION_COEFFICIENT-1) begin
-                oIsDataValid <= 1'b1;
-                oDecimatedData <= iData;
-            end
-            else begin
-                oIsDataValid <= 1'b0;
-            end
-        end
-    end
+    //Data, iIsDataValid
+    always @(posedge iClock) begin
+        if (iReset) begin
+            oIsDataValid <= 1'b0;
+            oDecimatedData <= 0;
+        end
+        else if (iIsDataValid) begin
+            if (rCounter == DECIMATION_COEFFICIENT-1) begin
+                oIsDataValid <= 1'b1;
+                oDecimatedData <= iData;
+            end
+            else begin
+                oIsDataValid <= 1'b0;
+            end
+        end
+    end
 
 endmodule
 [[/code]]
@@ -261,7 +261,7 @@ endmodule
 // Target Devices: 
 // Tool Versions: 
 // Description: Comb module of a CIC Decimation Filter.
-//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
+//              Verilog code referenced from https://www.runoob.com/w3cnote/verilog-cic.html
 // 
 // Dependencies: 
 // 
@@ -272,56 +272,56 @@ endmodule
 //////////////////////////////////////////////////////////////////////////////////
 
 module CICDecimationFilter_CombModule
-    #(parameter INPUT_DATA_WIDTH = 21,
-      parameter OUTPUT_DATA_WIDTH = 17,
-      parameter STAGE_COUNT = 3)
-    (input iClock,
-     input iReset,
-     input iIsDataValid,
-     input [INPUT_DATA_WIDTH-1:0] iData,
-     output reg oIsDataValid,
-     output reg [OUTPUT_DATA_WIDTH-1:0] oDecimatedData
-     );
+    #(parameter INPUT_DATA_WIDTH = 21,
+      parameter OUTPUT_DATA_WIDTH = 17,
+      parameter STAGE_COUNT = 3)
+    (input iClock,
+     input iReset,
+     input iIsDataValid,
+     input [INPUT_DATA_WIDTH-1:0] iData,
+     output reg oIsDataValid,
+     output reg [OUTPUT_DATA_WIDTH-1:0] oDecimatedData
+     );
 
-    reg [OUTPUT_DATA_WIDTH-1:0] rStageInput[0:STAGE_COUNT];
-    reg [OUTPUT_DATA_WIDTH-1:0] rStageOutput[0:STAGE_COUNT];
-    wire [OUTPUT_DATA_WIDTH-1:0] wStageOutput[0:STAGE_COUNT];
-    
-    //Shift iData to keep high bits only
-    assign wStageOutput[0] = iData>>(INPUT_DATA_WIDTH-OUTPUT_DATA_WIDTH);
-    
-    //FIR filtering for Comb module
-    generate
-    genvar i;
-    for (i = 1; i <= STAGE_COUNT; i = i + 1) begin : CombStage
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            rStageInput[i] <= 0;
-            rStageOutput[i] <= 0;
-        end
-        else if (iIsDataValid) begin
-            rStageInput[i] <= wStageOutput[i-1];
-            rStageOutput[i] <= rStageInput[i];
-        end
-    end
-    assign wStageOutput[i] = rStageInput[i] - rStageOutput[i];
-    end
-    endgenerate
+    reg [OUTPUT_DATA_WIDTH-1:0] rStageInput[0:STAGE_COUNT];
+    reg [OUTPUT_DATA_WIDTH-1:0] rStageOutput[0:STAGE_COUNT];
+    wire [OUTPUT_DATA_WIDTH-1:0] wStageOutput[0:STAGE_COUNT];
+    
+    //Shift iData to keep high bits only
+    assign wStageOutput[0] = iData>>(INPUT_DATA_WIDTH-OUTPUT_DATA_WIDTH);
+    
+    //FIR filtering for Comb module
+    generate
+    genvar i;
+    for (i = 1; i <= STAGE_COUNT; i = i + 1) begin : CombStage
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rStageInput[i] <= 0;
+            rStageOutput[i] <= 0;
+        end
+        else if (iIsDataValid) begin
+            rStageInput[i] <= wStageOutput[i-1];
+            rStageOutput[i] <= rStageInput[i];
+        end
+    end
+    assign wStageOutput[i] = rStageInput[i] - rStageOutput[i];
+    end
+    endgenerate
 
-    //Tap the output data for better display
-    always @(posedge iClock) begin
-        if (iReset) begin
-            oDecimatedData <= 0;
-            oIsDataValid <= 0;
-        end
-        else if (iIsDataValid) begin
-            oDecimatedData <= wStageOutput[STAGE_COUNT];
-            oIsDataValid <= 1'b1;
-        end
-        else begin
-            oIsDataValid <= 1'b0;
-        end
-    end
+    //Tap the output data for better display
+    always @(posedge iClock) begin
+        if (iReset) begin
+            oDecimatedData <= 0;
+            oIsDataValid <= 0;
+        end
+        else if (iIsDataValid) begin
+            oDecimatedData <= wStageOutput[STAGE_COUNT];
+            oIsDataValid <= 1'b1;
+        end
+        else begin
+            oIsDataValid <= 1'b0;
+        end
+    end
 
 endmodule
 [[/code]]
@@ -334,66 +334,66 @@ endmodule
 `timescale 1ns / 1ps
 
 module Testbench_CICDecimationFilter;
-   parameter INPUT_DATA_WIDTH = 16;
-   parameter TEMP_DATA_WIDTH = 23;
-   parameter OUTPUT_DATA_WIDTH = 16;
+   parameter INPUT_DATA_WIDTH = 16;
+   parameter TEMP_DATA_WIDTH = 23;
+   parameter OUTPUT_DATA_WIDTH = 16;
 
-   reg rClock;
-   reg rReset;
-   reg rIsInputValid;
-   reg [INPUT_DATA_WIDTH-1:0] rInputData;
-   wire wIsOutputValid;
-   wire [OUTPUT_DATA_WIDTH-1:0] wOutputData;
+   reg rClock;
+   reg rReset;
+   reg rIsInputValid;
+   reg [INPUT_DATA_WIDTH-1:0] rInputData;
+   wire wIsOutputValid;
+   wire [OUTPUT_DATA_WIDTH-1:0] wOutputData;
 
-   //Clock generating
-   localparam CLOCK_HALF_TIME = 10;
-   initial begin
-      rClock = 1'b0;
-      forever begin
-         # CLOCK_HALF_TIME rClock = ~rClock;
-      end
-   end
+   //Clock generating
+   localparam CLOCK_HALF_TIME = 10;
+   initial begin
+      rClock = 1'b0;
+      forever begin
+         # CLOCK_HALF_TIME rClock = ~rClock;
+      end
+   end
 
-   //reset and finish
-   initial begin
-      rReset = 1'b1;
-      # 200;
-      rReset = 1'b0;
-      # (CLOCK_HALF_TIME * 2 * 2000);
-      $finish;
-   end
+   //reset and finish
+   initial begin
+      rReset = 1'b1;
+      # 200;
+      rReset = 1'b0;
+      # (CLOCK_HALF_TIME * 2 * 2000);
+      $finish;
+   end
 
-   //Read cos data into register
-   parameter SIN_DATA_NUM = 200;
-   reg [INPUT_DATA_WIDTH-1:0] rSimData[0: SIN_DATA_NUM-1];
-   integer i;
-   initial begin
-      $readmemh("cosx0p25m7p5m12bit.txt", rSimData);
-      i = 0;
-      rIsInputValid = 0;
-      rInputData = 0;
-      # 300;
-      forever begin
-         @(posedge rClock) begin
-            rIsInputValid = 1;
-            rInputData = rSimData[i];
-            if (i == SIN_DATA_NUM-1) begin
-               i = 0;
-            end
-            else begin
-               i = i + 1;
-            end
-         end
-      end
-   end
+   //Read cos data into register
+   parameter SIN_DATA_NUM = 200;
+   reg [INPUT_DATA_WIDTH-1:0] rSimData[0: SIN_DATA_NUM-1];
+   integer i;
+   initial begin
+      $readmemh("cosx0p25m7p5m12bit.txt", rSimData);
+      i = 0;
+      rIsInputValid = 0;
+      rInputData = 0;
+      # 300;
+      forever begin
+         @(posedge rClock) begin
+            rIsInputValid = 1;
+            rInputData = rSimData[i];
+            if (i == SIN_DATA_NUM-1) begin
+               i = 0;
+            end
+            else begin
+               i = i + 1;
+            end
+         end
+      end
+   end
 
-   CICDecimationFilter #(.DECIMATION_COEFFICIENT(5), .STAGE_COUNT(3), .INPUT_DATA_WIDTH(INPUT_DATA_WIDTH), .TEMP_DATA_WIDTH(TEMP_DATA_WIDTH), .OUTPUT_DATA_WIDTH(OUTPUT_DATA_WIDTH))
-   uCIC(.iClock(rClock),
-        .iReset(rReset),
-        .iIsDataValid(rIsInputValid),
-        .iData(rInputData),
-        .oIsDataValid(wIsOutputValid),
-        .oDecimatedData(wOutputData));
+   CICDecimationFilter #(.DECIMATION_COEFFICIENT(5), .STAGE_COUNT(3), .INPUT_DATA_WIDTH(INPUT_DATA_WIDTH), .TEMP_DATA_WIDTH(TEMP_DATA_WIDTH), .OUTPUT_DATA_WIDTH(OUTPUT_DATA_WIDTH))
+   uCIC(.iClock(rClock),
+        .iReset(rReset),
+        .iIsDataValid(rIsInputValid),
+        .iData(rInputData),
+        .oIsDataValid(wIsOutputValid),
+        .oDecimatedData(wOutputData));
 
 endmodule
 [[/code]]

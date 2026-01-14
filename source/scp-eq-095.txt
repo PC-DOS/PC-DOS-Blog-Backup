@@ -1,54 +1,54 @@
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-title">:scp-equestria:component:change-header-title</a>
-     |HeaderTitle=联合应急响应中心（SCP-EQ分支）
+     |HeaderTitle=联合应急响应中心（SCP-EQ分支）
 ]]
 
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-subtitle">:scp-equestria:component:change-header-subtitle</a>
-     |HeaderSubtitle=小马利亚皇室 - SCP基金会小马国分部 - EPSI
+     |HeaderSubtitle=小马利亚皇室 - SCP基金会小马国分部 - EPSI
 ]]
 
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-logo">:scp-equestria:component:change-header-logo</a>
-     |HeaderLogoURL=http://scp-equestria.wdfiles.com/local--files/about-the-scp-foundation/SCP_LOGO_EQ_TEMP_BW_100px.png
+     |HeaderLogoURL=http://scp-equestria.wdfiles.com/local--files/about-the-scp-foundation/SCP_LOGO_EQ_TEMP_BW_100px.png
 ]]
 
 [[include <a href="http://scp-equestria.wikidot.com/component:change-header-responsive-config">:scp-equestria:component:change-header-responsive-config</a>
-     |FontSizeDefault=150%
-     |FontSize479px=70%
-     |FontSize580px=85%
-     |FontSize767px=95%
-     |FontSize1240px=105%
-     |SubFontSizeDefault=15px
-     |SubFontSize479px=12px
-     |SubFontSize580px=14px
-     |SubFontSize767px=14px
-     |SubFontSize1240px=15px
+     |FontSizeDefault=150%
+     |FontSize479px=70%
+     |FontSize580px=85%
+     |FontSize767px=95%
+     |FontSize1240px=105%
+     |SubFontSizeDefault=15px
+     |SubFontSize479px=12px
+     |SubFontSize580px=14px
+     |SubFontSize767px=14px
+     |SubFontSize1240px=15px
 ]]
 
 [[module css]]
 .page-cn {
-    display: block;
-    overflow: hidden;
-    font-family: DFKai-SB,Kaiti,SimSun,"Microsoft YaHei UI Light";
-    [!-- *font-family: "Monotype Corsiva", "Bradley Hand ITC", sans-serif;* --]
-    font-style: normal;
-    font-size: 125%;
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: transparent;
-    background-image: linear-gradient(to top ,rgb(202, 219, 228) 0%, rgb(231, 233, 220) 8%);
-    background-origin: padding-box;
-    background-position: 0px 8px;
-    background-repeat: repeat;
-    background-size: 100% 20px;
-    border: 1px solid #CCC;
-    border-radius: 10px;
-    padding: 10px 10px;
-    margin-bottom: 10px;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2)
+    display: block;
+    overflow: hidden;
+    font-family: DFKai-SB,Kaiti,SimSun,"Microsoft YaHei UI Light";
+    [!-- *font-family: "Monotype Corsiva", "Bradley Hand ITC", sans-serif;* --]
+    font-style: normal;
+    font-size: 125%;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: linear-gradient(to top ,rgb(202, 219, 228) 0%, rgb(231, 233, 220) 8%);
+    background-origin: padding-box;
+    background-position: 0px 8px;
+    background-repeat: repeat;
+    background-size: 100% 20px;
+    border: 1px solid #CCC;
+    border-radius: 10px;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2)
 }
 
 .page-cn p {
-    line-height: 20px;
-    margin: 0;
+    line-height: 20px;
+    margin: 0;
 }
 [[/module]]
 
@@ -101,14 +101,14 @@ SCP-EQ-095目前的项目分级待定，根据目前的评估，SCP-EQ-095可能
 直到SCP-EQ-095的威胁解除、无效化、解明或经过评估成为新的常态/基准现实之前，这个应急响应中心将持续运作，其工作包括但不限于：
 
 * 制定并执行忽怠协议ENU-00095。根据该协议，SCP-EQ-095被添加Da'aS Elyon分级。在该协议执行期间，联合应急响应中心将指导民众将所有可能来自SCP-EQ-095的影响认知为正常现象。通过这一协议的执行，联合应急响应中心将尽可能维持当前的基准常态。为执行ENU-00095协议而可能使用的方法包括但不限于：
- * 新闻媒体、互联网与教学环境中的宣教。根据目前的预测和观测，SCP-EQ-095的效应将使得小马利亚境内的包括马类在内的智能实体的思维和行动模式发生变化，因此，SCP-EQ-095被添加Chhokmah分级。联合应急响应中心将尽可能通过非异常方式维持小马利亚境内的包括马类在内的智能实体的旧有思维和行动模式。
- * 皇室公文、命令与法令。根据小马利亚皇室-O5议会小马国分会-EPSI最高理事会联席会议的决议和评估，SCP-EQ-095的影响可能使小马利亚皇室进入无法正常履职的状况，在这一情况下，若联合应急响应中心、基金会、EPSI仍能正常运作，则授权基金会和EPSI将最大限度地介入小马利亚政局。
- * 认知干扰制剂和/或方法，包括但不限于记忆删除方法、记忆强化方法与记忆植入/改造方法等。必要时，联合应急响应中心将通过对个体、在局部或大范围执行这些方法的方式干涉SCP-EQ-095对小马利亚境内智能实体的影响。
- * 模因与逆模因制剂。必要时，联合应急响应中心将通过此方法干涉SCP-EQ-095对小马利亚境内智能实体的影响。
- * 主动制造的认知干扰和/或认知影响装置、符文及其他内容。必要时，联合应急响应中心将通过此方法干涉SCP-EQ-095对小马利亚境内智能实体的影响。
- * 以小马利亚主要城镇为中心的大型法阵。这些法阵旨在通过驱动EVE例子的运动维持当前的本底EVE粒子浓度与VER辐射强度，使基于EVE粒子的奇术/魔法的继续作用成为可能。
- * 不设在小马利亚境内主要区域的小型斯克兰顿现实稳定锚，这些稳定锚被设定为“下拉”运作状态，即这些现实稳定锚将小幅降低其锚定环境的休谟指数稳定值。这一工作旨在降低这些区域的环境休谟指数，以使基于现实扭曲术的魔法的继续作用成为可能。
- * 基于超形上学的叙事总基调锚定方案。该方案将试图通过借助上层叙事实体及其在本叙事域内的投影的帮助，稳定当前叙事域的叙事总基调或降低SCP-EQ-095对本叙事的影响。
+ * 新闻媒体、互联网与教学环境中的宣教。根据目前的预测和观测，SCP-EQ-095的效应将使得小马利亚境内的包括马类在内的智能实体的思维和行动模式发生变化，因此，SCP-EQ-095被添加Chhokmah分级。联合应急响应中心将尽可能通过非异常方式维持小马利亚境内的包括马类在内的智能实体的旧有思维和行动模式。
+ * 皇室公文、命令与法令。根据小马利亚皇室-O5议会小马国分会-EPSI最高理事会联席会议的决议和评估，SCP-EQ-095的影响可能使小马利亚皇室进入无法正常履职的状况，在这一情况下，若联合应急响应中心、基金会、EPSI仍能正常运作，则授权基金会和EPSI将最大限度地介入小马利亚政局。
+ * 认知干扰制剂和/或方法，包括但不限于记忆删除方法、记忆强化方法与记忆植入/改造方法等。必要时，联合应急响应中心将通过对个体、在局部或大范围执行这些方法的方式干涉SCP-EQ-095对小马利亚境内智能实体的影响。
+ * 模因与逆模因制剂。必要时，联合应急响应中心将通过此方法干涉SCP-EQ-095对小马利亚境内智能实体的影响。
+ * 主动制造的认知干扰和/或认知影响装置、符文及其他内容。必要时，联合应急响应中心将通过此方法干涉SCP-EQ-095对小马利亚境内智能实体的影响。
+ * 以小马利亚主要城镇为中心的大型法阵。这些法阵旨在通过驱动EVE例子的运动维持当前的本底EVE粒子浓度与VER辐射强度，使基于EVE粒子的奇术/魔法的继续作用成为可能。
+ * 不设在小马利亚境内主要区域的小型斯克兰顿现实稳定锚，这些稳定锚被设定为“下拉”运作状态，即这些现实稳定锚将小幅降低其锚定环境的休谟指数稳定值。这一工作旨在降低这些区域的环境休谟指数，以使基于现实扭曲术的魔法的继续作用成为可能。
+ * 基于超形上学的叙事总基调锚定方案。该方案将试图通过借助上层叙事实体及其在本叙事域内的投影的帮助，稳定当前叙事域的叙事总基调或降低SCP-EQ-095对本叙事的影响。
 * 开展针对SCP-EQ-095的全面研究工作，并对SCP-EQ-095的状态进行观测和预测，并对SCP-EQ-095是否发生及其演化进展进行评估。
 * 作为应对方案的一部分，亦作为维持常态的需求，联合应急响应中心仍然需要维持帷幕的稳定存在。
 
@@ -122,10 +122,10 @@ SCP-EQ-095目前的项目分级待定，根据目前的评估，SCP-EQ-095可能
 
 * 包括马类在内的智能实体的思维和行为方式可能发生改变。导致这种改变的原因可能包括总体价值判断原则的改变、认知阻抗值（CRV）的整体变动、大规模的模因/认知危害影响、超形上学层面上的直接改变以及未判明的异常作用等。这种改变可能导致马类个体与种族之间的敌意上升，并由此导致敌对行为的增加。这种改变可能进一步引发包括社会结构转变、定居点分散、犯罪率上升、经济衰退、科技发展减缓或倒退、局部或全面的战争等方面的转变。在最坏预后下，包括基金会、EPSI等在内的帷幕相关组织，以及小马利亚皇室等，可能无法继续正常运作，并有可能进一步引发一次BK级“破碎面纱”情景。BK级“破碎面纱”情景的最坏预测是，由于小马利亚境内各异常相关组织无法继续维持对异常项目的收容，一次广义的XK级世界末日情景将最终发生。
 * 一次CK级现实重构事件可能发生，作为这次事件的预测结果：
- * 小马利亚境内和/或更大范围内的空间拓扑结构可能发生重构和/或破坏。这一变更可能导致小马利亚境内的自然空间拓扑结构及行政区划发生系统性、结构性的改变，并可能改变环境的宜居性，同时可能对小马利亚政府以及帷幕后各机构维持正常运作的可能性造成影响。
- * 一次大规模的历史/现实扭曲事件可能发生。该事件可能导致小马利亚或更大范围内的历史和/或现实状态被修改。这种改变的影响范围包括但不限于对马物、地区、组织、事件等的存在性的添加、移除和修改。这种历史/现实扭曲同样可能导致对包括“基准现实”和“常态”在内的概念性存在的普遍认知发生转变和/或改写。
- * 小马利亚境内本底EVE粒子浓度、VER辐射强度的下降，以及环境休谟指数的上升。这一变化的直观表现体现为使用魔法/奇术/现实扭曲术的难度大幅度提升。在这一情况下，当前的魔法学相关理论与应用，以及部分科学理论与应用的适用性和正确性可能发生改变。此外，由于当前小马利亚境内的气象系统对魔法/奇术/现实扭曲术重度依赖，因此，这一改变可能导致气象调控措施失灵。并可能导致[[[scp-eq-417|SCP-EQ-417]]]的影响范围扩大至小马利亚全境。尽管SCP-EQ-417当前表现出的气候环境整体是适宜马类继续生活的，但是，若SCP-EQ-417因其他原因无法维持并成为适宜马类居住的新气候环境，则一次GK级“死亡温室”情景将可能抹消包括马类在内的大部分适应性较差的生物的存在。
- * 可爱标志的运作受到影响。根据基金会社会科学部和EPSI哲学部的的批注，这一观点认为，SCP-EQ-095的影响将改变当前可爱标志的运作模式，并由此削弱或消灭可爱标志对包括马类在内的智能实体的思维方式和行为模式的干涉和指导作用。这将导致帷幕外的马类个体对自身认知能力的下降，并提高这些个体生活中需要面对的不确定性。这种不确定性的大幅度增加可能进一步促使在SCP-EQ-095影响下当前常态的崩溃，并导致前述的敌意上升、犯罪率增高、社会结构转变等负面效应，以及可能的最坏预后。
+ * 小马利亚境内和/或更大范围内的空间拓扑结构可能发生重构和/或破坏。这一变更可能导致小马利亚境内的自然空间拓扑结构及行政区划发生系统性、结构性的改变，并可能改变环境的宜居性，同时可能对小马利亚政府以及帷幕后各机构维持正常运作的可能性造成影响。
+ * 一次大规模的历史/现实扭曲事件可能发生。该事件可能导致小马利亚或更大范围内的历史和/或现实状态被修改。这种改变的影响范围包括但不限于对马物、地区、组织、事件等的存在性的添加、移除和修改。这种历史/现实扭曲同样可能导致对包括“基准现实”和“常态”在内的概念性存在的普遍认知发生转变和/或改写。
+ * 小马利亚境内本底EVE粒子浓度、VER辐射强度的下降，以及环境休谟指数的上升。这一变化的直观表现体现为使用魔法/奇术/现实扭曲术的难度大幅度提升。在这一情况下，当前的魔法学相关理论与应用，以及部分科学理论与应用的适用性和正确性可能发生改变。此外，由于当前小马利亚境内的气象系统对魔法/奇术/现实扭曲术重度依赖，因此，这一改变可能导致气象调控措施失灵。并可能导致[[[scp-eq-417|SCP-EQ-417]]]的影响范围扩大至小马利亚全境。尽管SCP-EQ-417当前表现出的气候环境整体是适宜马类继续生活的，但是，若SCP-EQ-417因其他原因无法维持并成为适宜马类居住的新气候环境，则一次GK级“死亡温室”情景将可能抹消包括马类在内的大部分适应性较差的生物的存在。
+ * 可爱标志的运作受到影响。根据基金会社会科学部和EPSI哲学部的的批注，这一观点认为，SCP-EQ-095的影响将改变当前可爱标志的运作模式，并由此削弱或消灭可爱标志对包括马类在内的智能实体的思维方式和行为模式的干涉和指导作用。这将导致帷幕外的马类个体对自身认知能力的下降，并提高这些个体生活中需要面对的不确定性。这种不确定性的大幅度增加可能进一步促使在SCP-EQ-095影响下当前常态的崩溃，并导致前述的敌意上升、犯罪率增高、社会结构转变等负面效应，以及可能的最坏预后。
 * 不排除一次更为彻底的类SCP-EQ-926“叙事终结”事件的发生和/或迭代发生。对该事件的预后与对SCP-EQ-926的预后一致且存在较大分歧。较为悲观的观点认为该事件将在前述K级情景发生后发生，并销毁本叙事域；较为乐观的观点认为该事件不会发生或仅会对基金会的工作产生一定的正面影响。
 
 综上所述，SCP-EQ-095事件的发生将导致当前的基准常态在不确定性、生活方式、社会结构、行政体系、思维模式、价值判断、自然环境、学术理论等方面发生结构性转变。在最坏预后下，SCP-EQ-095的发生导致的冲突性将导致基准常态和/或基准现实在SCP-EQ-095导致的引入常态嵌入到基准现实前因结构性冲突而被破坏，并由此导致K级情景的发生。
@@ -146,7 +146,7 @@ SCP-EQ-095目前的项目分级待定，根据目前的评估，SCP-EQ-095可能
 
 [[footnoteblock title="蹄注"]]
 
-[[collapsible show="     " hide="     "]]
+[[collapsible show="     " hide="     "]]
 [[div class="page-cn"]]
 Dr. Picsell Dois的笔记 - 关于SCP-EQ-095
 @@ @@

@@ -33,8 +33,8 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: Sample implementation of a module with a 4-bit bidirection port ioData[3:0]
-//              when iWriteEnable is asserted, the module reads data from ioData.
-//              Otherwise, a constant is sent to ioData as an output.
+//              when iWriteEnable is asserted, the module reads data from ioData.
+//              Otherwise, a constant is sent to ioData as an output.
 // 
 // Dependencies: 
 // 
@@ -45,36 +45,36 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ModuleWithBidirectionPort(
-    input iWriteEnable,
-    inout [3:0] ioData,
-    output reg [3:0] oDataRead
-    );
-    
-    //In-Out bi-direction pin arbitration
-    wire [3:0] wDataToRead, wDataToOutput;
-    //Allow wDataToRead to read data from ioData
-    assign wDataToRead = ioData;
-    //If iWriteEnable is asserted, set all pins of ioData to high-impedance state inorder to receive data
-    //Otherwise, send output data to ioData
-    assign ioData = iWriteEnable ? 4'bZZZZ : wDataToOutput;
-    
-    //Output registers
-    reg [3:0] rDataToOutput;
-    assign wDataToOutput = rDataToOutput;
-    
-    //Combo logic: output logic to set values of oDataRead
-    always @ (*) begin
-        //When iWriteEnable is unasserted, send 4'b0101 to ioData as output
-        rDataToOutput = 4'b0101;
-        //When iWriteEnable is asserted, read data from ioData and send it to oDataRead
-        if (iWriteEnable) begin
-            oDataRead = wDataToRead;
-        end
-        else begin
-            oDataRead = 0;
-        end
-    end
-    
+    input iWriteEnable,
+    inout [3:0] ioData,
+    output reg [3:0] oDataRead
+    );
+    
+    //In-Out bi-direction pin arbitration
+    wire [3:0] wDataToRead, wDataToOutput;
+    //Allow wDataToRead to read data from ioData
+    assign wDataToRead = ioData;
+    //If iWriteEnable is asserted, set all pins of ioData to high-impedance state inorder to receive data
+    //Otherwise, send output data to ioData
+    assign ioData = iWriteEnable ? 4'bZZZZ : wDataToOutput;
+    
+    //Output registers
+    reg [3:0] rDataToOutput;
+    assign wDataToOutput = rDataToOutput;
+    
+    //Combo logic: output logic to set values of oDataRead
+    always @ (*) begin
+        //When iWriteEnable is unasserted, send 4'b0101 to ioData as output
+        rDataToOutput = 4'b0101;
+        //When iWriteEnable is asserted, read data from ioData and send it to oDataRead
+        if (iWriteEnable) begin
+            oDataRead = wDataToRead;
+        end
+        else begin
+            oDataRead = 0;
+        end
+    end
+    
 endmodule
 [[/code]]
 
@@ -85,37 +85,37 @@ endmodule
 
 module Testbench_ModuleWithBidirectionPort(
 
-    );
-    
-    reg rWriteEnable;
-    reg [3:0] rDataToWrite;
-    wire [3:0] wData; //INOUT-typed bidirection port must be connected to a WIRE-typed net
-    wire [3:0] wDataRead;
-    
-    //In-Out bi-direction pin arbitration
-    //This arbitration is the inversion of the arbitration logic in the module which defines the bidirection port
-    assign wData = rWriteEnable ? rDataToWrite : 4'bZZZZ;
-    
-    //Test module
-    ModuleWithBidirectionPort modInOutPort(.iWriteEnable(rWriteEnable),
-                                           .ioData(wData),
-                                           .oDataRead(wDataRead)
-                                           );
-    
-    //Simulation
-    initial begin
-        rWriteEnable = 0;
-        rDataToWrite = 0;
-        
-        #200 rWriteEnable = 1'b1;
-        #0   rDataToWrite = 4'b1111;
-        #100 rWriteEnable = 1'b0;
-        
-        #200 rWriteEnable = 1'b1;
-        #0   rDataToWrite = 4'b1010;
-        #100 rWriteEnable = 1'b0;
-    end
-    
+    );
+    
+    reg rWriteEnable;
+    reg [3:0] rDataToWrite;
+    wire [3:0] wData; //INOUT-typed bidirection port must be connected to a WIRE-typed net
+    wire [3:0] wDataRead;
+    
+    //In-Out bi-direction pin arbitration
+    //This arbitration is the inversion of the arbitration logic in the module which defines the bidirection port
+    assign wData = rWriteEnable ? rDataToWrite : 4'bZZZZ;
+    
+    //Test module
+    ModuleWithBidirectionPort modInOutPort(.iWriteEnable(rWriteEnable),
+                                           .ioData(wData),
+                                           .oDataRead(wDataRead)
+                                           );
+    
+    //Simulation
+    initial begin
+        rWriteEnable = 0;
+        rDataToWrite = 0;
+        
+        #200 rWriteEnable = 1'b1;
+        #0   rDataToWrite = 4'b1111;
+        #100 rWriteEnable = 1'b0;
+        
+        #200 rWriteEnable = 1'b1;
+        #0   rDataToWrite = 4'b1010;
+        #100 rWriteEnable = 1'b0;
+    end
+    
 endmodule
 [[/code]]
 

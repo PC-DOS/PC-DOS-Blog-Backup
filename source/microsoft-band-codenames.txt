@@ -27,9 +27,9 @@ Imports Microsoft.Band.Tiles
 Imports Microsoft.Band.Admin
 Imports Microsoft.Band.Personalization
 Module BandConnectionManager
-    Public BandClient As ICargoClient
-    Public BandClientLimited As IBandClient
-    Public CurrentBandClass As BandClass = BandClass.Unknown
+    Public BandClient As ICargoClient
+    Public BandClientLimited As IBandClient
+    Public CurrentBandClass As BandClass = BandClass.Unknown
 End Module
 [[/code]]
 
@@ -43,15 +43,15 @@ End Module
 
 [[code]]
 Try
-    Select Case BandClient.ConnectedBandConstants.BandClass
-    	Case BandClass.Cargo
-    		txtBandClass.Text = "Microsoft Band (Cargo)"
-    	Case BandClass.Envoy
-    		txtBandClass.Text = "Microsoft Band 2 (Envoy)"
-    	Case Else
-    		txtBandClass.Text = "不明"
-    End Select
+    Select Case BandClient.ConnectedBandConstants.BandClass
+    	Case BandClass.Cargo
+    		txtBandClass.Text = "Microsoft Band (Cargo)"
+    	Case BandClass.Envoy
+    		txtBandClass.Text = "Microsoft Band 2 (Envoy)"
+    	Case Else
+    		txtBandClass.Text = "不明"
+    End Select
 Catch ex As Exception
-    txtBandClass.Text = "試圖獲取資料時發生例外情況: " & ex.Message
+    txtBandClass.Text = "試圖獲取資料時發生例外情況: " & ex.Message
 End Try
 [[/code]]

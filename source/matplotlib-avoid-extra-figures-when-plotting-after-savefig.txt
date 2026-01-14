@@ -11,12 +11,12 @@ arrAnalysisResults = DoDataAnalysis()
 
 # Save standalone figures
 for AnalysisResult in arrAnalysisResults :
-    # This plot() calling won't open a new MetPlotLib window
-    figResult = AnalysisResult.plot()
-    
-    # Configure and save figure
-    figResult.set_size_inches(w=8, h=6)
-    plt.savefig(f"{AnalysisResult.Name}.png", dpi=120)
+    # This plot() calling won't open a new MetPlotLib window
+    figResult = AnalysisResult.plot()
+    
+    # Configure and save figure
+    figResult.set_size_inches(w=8, h=6)
+    plt.savefig(f"{AnalysisResult.Name}.png", dpi=120)
 #Next
 
 # Draw a new figure

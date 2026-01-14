@@ -9,48 +9,48 @@
 Imports System.Runtime.Serialization
 
 Public Module AppSettings
-    Public AppSettingsContainer As IO.IsolatedStorage.IsolatedStorageSettings
-    Public Sub InitializeAppSettings()
-        ' Initializes settings container
-        AppSettingsContainer = IO.IsolatedStorage.IsolatedStorageSettings.ApplicationSettings
+    Public AppSettingsContainer As IO.IsolatedStorage.IsolatedStorageSettings
+    Public Sub InitializeAppSettings()
+        ' Initializes settings container
+        AppSettingsContainer = IO.IsolatedStorage.IsolatedStorageSettings.ApplicationSettings
 
-        InitializeSubmittedLocationHistory()
-    End Sub
+        InitializeSubmittedLocationHistory()
+    End Sub
 
-    'Location History
-    <DataContract> Public Class LocationHistoryEntry
-        <DataMember> Public LocationName As String
-        <DataMember> Public LocationAddress As String
-        <DataMember> Public LocationCity As String
-        <DataMember> Public Reserved1 As String
-        <DataMember> Public Reserved2 As String
-        <DataMember> Public Reserved3 As String
-        <DataMember> Public Reserved4 As String
-        <DataMember> Public Reserved5 As String
-        Public Sub New()
-            LocationName = ""
-            LocationAddress = ""
-            LocationCity = "N/A"
-            Reserved1 = ""
-            Reserved2 = ""
-            Reserved3 = ""
-            Reserved4 = ""
-            Reserved5 = ""
-        End Sub
-    End Class
-    Public SubmittedLocationHistoryList As New List(Of LocationHistoryEntry)
-    Public Const SubmittedLocationHistoryKey As String = "SubmittedLocationHistoryList"
-    Public Sub InitializeSubmittedLocationHistory()
-        If AppSettingsContainer.Contains(SubmittedLocationHistoryKey) Then
-            SubmittedLocationHistoryList = AppSettingsContainer(SubmittedLocationHistoryKey)
-        Else
-            SubmittedLocationHistoryList = New List(Of LocationHistoryEntry)
-        End If
-    End Sub
-    Public Sub SaveSubmittedLocationHistory()
-        AppSettingsContainer(SubmittedLocationHistoryKey) = SubmittedLocationHistoryList
-        AppSettingsContainer.Save()
-    End Sub
+    'Location History
+    <DataContract> Public Class LocationHistoryEntry
+        <DataMember> Public LocationName As String
+        <DataMember> Public LocationAddress As String
+        <DataMember> Public LocationCity As String
+        <DataMember> Public Reserved1 As String
+        <DataMember> Public Reserved2 As String
+        <DataMember> Public Reserved3 As String
+        <DataMember> Public Reserved4 As String
+        <DataMember> Public Reserved5 As String
+        Public Sub New()
+            LocationName = ""
+            LocationAddress = ""
+            LocationCity = "N/A"
+            Reserved1 = ""
+            Reserved2 = ""
+            Reserved3 = ""
+            Reserved4 = ""
+            Reserved5 = ""
+        End Sub
+    End Class
+    Public SubmittedLocationHistoryList As New List(Of LocationHistoryEntry)
+    Public Const SubmittedLocationHistoryKey As String = "SubmittedLocationHistoryList"
+    Public Sub InitializeSubmittedLocationHistory()
+        If AppSettingsContainer.Contains(SubmittedLocationHistoryKey) Then
+            SubmittedLocationHistoryList = AppSettingsContainer(SubmittedLocationHistoryKey)
+        Else
+            SubmittedLocationHistoryList = New List(Of LocationHistoryEntry)
+        End If
+    End Sub
+    Public Sub SaveSubmittedLocationHistory()
+        AppSettingsContainer(SubmittedLocationHistoryKey) = SubmittedLocationHistoryList
+        AppSettingsContainer.Save()
+    End Sub
 End Module
 [[/code]]
 

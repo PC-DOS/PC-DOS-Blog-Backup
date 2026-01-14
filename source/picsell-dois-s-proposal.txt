@@ -1,11 +1,11 @@
 [[module css]]
-/* Use [[span class="tt-no-full-word-break"]]  [[/span]] */
+/* Use [[span class="tt-no-full-word-break"]]  [[/span]] */
 /* Adapted form Wikidot's theme */
 /* Ref. https://www.w3school.com.cn/cssref/pr_word-break.asp */
 .tt-no-full-word-break {
-    font-family: 'Andale Mono', 'Courier New', Courier, monospace;
-    font-size: 98%;
-    word-break: break-all;
+    font-family: 'Andale Mono', 'Courier New', Courier, monospace;
+    font-size: 98%;
+    word-break: break-all;
 }
 [[/module]]
 
@@ -15,7 +15,7 @@
 
 @media (max-width: 767px) {
 .wide-table-container {
-    overflow-x: auto;
+    overflow-x: auto;
 }
 }
 [[/module]] 
@@ -78,11 +78,11 @@
 #define DATA_SIZE_GUID 2
 
 typedef struct tagPayloadHeaderDescriptor {
-    uint64 pPayloadHead; //指向内容头部的指针
-    uint64 iSize; //内容大小（字节）
-    uint32 iType; //内容的类型与编码方式
-    uint64 iDataGuid[DATA_SIZE_GUID]; //内容的128位GUID号，供扩展查询使用
-    uint64 iAclBitmap; //内置式简易访问控制列表（sACL）位图
+    uint64 pPayloadHead; //指向内容头部的指针
+    uint64 iSize; //内容大小（字节）
+    uint32 iType; //内容的类型与编码方式
+    uint64 iDataGuid[DATA_SIZE_GUID]; //内容的128位GUID号，供扩展查询使用
+    uint64 iAclBitmap; //内置式简易访问控制列表（sACL）位图
 } PayloadHeaderDescriptor;
 [[/code]]
 
@@ -460,97 +460,97 @@ ACS在SCP-CN-001定义的格式基础上，新增了保密等级（指定开启�
 
 [[html]]
 <html>
- <head>
-  <style type="text/css" id="internal-style">
-                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/css/pagerate/PageRateWidgetModule.css);
-                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
-                    @import url(https://cdn.jsdelivr.net/gh/scp-cn-tech/sigma9@cn/cn/sigma9_ch.min.css);
-            </style> 
- </head>
- <body>
-  <div id="action-area" style="display: block;"> 
-   <h1>编辑页面</h1> 
-   <div> 
-    <form id="edit-page-form" onkeypress="return OZONE.utils.disableEnterKey(event);"> 
-     <input type="hidden" name="page_id" value="1307024977" /> 
-     <input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field" /> 
-     <input type="hidden" name="recaptcha_response_field" id="recaptcha_response_field" /> 
-     <table class="form" style="margin: 0.5em auto 1em 0"> 
-      <tbody>
-       <tr> 
-        <td> 页面标题: </td> 
-        <td> <input class="text" id="edit-page-title" name="title" type="text" value="Scp Cn Xxxx" size="35" maxlength="128" style="font-weight: bold; font-size: 130%;" readonly="readonly" /> </td> 
-       </tr> 
-      </tbody>
-     </table> 
-     <div class="wd-editor-toolbar-panel" id="wd-editor-toolbar-panel"> 
-      <div> 
-       <ul> 
-        <li><a class="weditor-h1" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 1);"><span>1 级标题</span></a> 
-         <ul> 
-          <li><a class="weditor-h2" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 2);"><span>2 级标题</span></a></li> 
-          <li><a class="weditor-h3" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 3);"><span>3 级标题</span></a></li> 
-          <li><a class="weditor-h4" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 4);"><span>4 级标题</span></a></li> 
-          <li><a class="weditor-h5" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 5);"><span>5 级标题</span></a></li> 
-          <li><a class="weditor-h6" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 6);"><span>6 级标题</span></a></li> 
-         </ul> </li> 
-        <li><a class="weditor-bold" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bold(event);"><span>粗体</span></a></li> 
-        <li><a class="weditor-italic" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.italic(event);"><span>斜体</span></a></li> 
-        <li><a class="weditor-underline" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.underline(event);"><span>下划线</span></a></li> 
-        <li><a class="weditor-strikethrough" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.strikethrough(event);"><span>删除线</span></a></li> 
-        <li><a class="weditor-teletype" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.teletype(event);"><span>teletype</span></a></li> 
-        <li><a class="weditor-quote" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.quote(event);"><span>引用</span></a></li> 
-        <li><a class="weditor-superscript" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.superscript(event);"><span>上标</span></a></li> 
-        <li><a class="weditor-subscript" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.subscript(event);"><span>下标</span></a></li> 
-        <li><a class="weditor-raw" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.raw(event);"><span>原始</span></a></li> 
-       </ul> 
-      </div> 
-      <div> 
-       <ul> 
-        <li><a class="weditor-hr" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.hr(event);"><span>时</span></a></li> 
-        <li><a class="weditor-div" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.div(event);"><span>div</span></a> </li> 
-        <li><a class="weditor-clearfloat" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.clearFloat(event);"><span>清除浮动属性</span></a> 
-         <ul> 
-          <li><a class="weditor-clearfloatleft" href="javascript:;" onclick="WIKIDOT.Editor.buttons.clearFloat(event,'&lt;')" title=""><span>向左对齐</span></a></li> 
-          <li><a class="weditor-clearfloatright" href="javascript:;" onclick="WIKIDOT.Editor.buttons.clearFloat(event,'&gt;')" title=""><span>向右对齐</span></a></li> 
-         </ul> </li> 
-        <li><a class="weditor-table" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.tableWizard(event);"><span>平台</span></a></li> 
-        <li><a class="weditor-toc" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.toc(event);"><span>目录</span></a></li> 
-        <li class="hseparator"></li> 
-        <li><a class="weditor-code" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.code(event);"><span>代码</span></a></li> 
-        <li><a class="weditor-codewiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.codeWizard(event);"><span>代码向导</span></a></li> 
-        <li class="hseparator"></li> 
-        <li><a class="weditor-uri" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.uri(event);"><span>url</span></a></li> 
-        <li><a class="weditor-uriwiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.uriWizard(event);"><span>url 链接向导</span></a></li> 
-        <li><a class="weditor-pagelink" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.pageLink(event);"><span>页面链接</span></a></li> 
-        <li><a class="weditor-pagelinkwiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.pageLinkWizard(event);"><span>页面链接向导</span></a></li> 
-        <li class="hseparator"></li> 
-        <li><a class="weditor-image" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.image(event);"><span>图片</span></a></li> 
-        <li><a class="weditor-imagewiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.imageWizard(event);"><span>图片精灵</span></a></li> 
-        <li class="hseparator"></li> 
-        <li><a class="weditor-html" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.html(event);"><span>HTML</span></a></li> 
-       </ul> 
-      </div> 
-      <div> 
-       <ul> 
-        <li><a class="weditor-numlist" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.numberedList(event);"><span>有序清单</span></a></li> 
-        <li><a class="weditor-bullist" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bulletedList(event);"><span>无序列表</span></a></li> 
-        <li><a class="weditor-incindent" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.increaseListIndent(event);"><span>增加缩排</span></a></li> 
-        <li><a class="weditor-decindent" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.decreaseListIndent(event);"><span>减少缩进</span></a></li> 
-        <li><a class="weditor-deflist" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.definitionList(event);"><span>定义列表</span></a></li> 
-        <li><a class="weditor-footnote" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.footnote(event);"><span>脚注</span></a></li> 
-        <li class="hseparator"></li> 
-        <li><a class="weditor-math" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.math(event);"><span>数学</span></a></li> 
-        <li><a class="weditor-mathinline" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.inlineMath(event);"><span>内建数学</span></a></li> 
-        <li><a class="weditor-eqref" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.erefWizard(event);"><span>等效参照</span></a></li> 
-        <li class="hseparator"></li> 
-        <li><a class="weditor-bib" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bibliography(event);"><span>参考文献</span></a></li> 
-        <li><a class="weditor-bibcite" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bibliographycitation(event);"><span>引述</span></a></li> 
-       </ul> 
-      </div> 
-     </div> 
-     <div> 
-      <textarea id="edit-page-textarea" name="source" rows="20" cols="60" style="width: 95%;" readonly="readonly">
+ <head>
+  <style type="text/css" id="internal-style">
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--modules/css/pagerate/PageRateWidgetModule.css);
+                    @import url(http://d3g0gp89917ko0.cloudfront.net/v--3e3a6f7dbcc9/common--theme/base/css/style.css);
+                    @import url(https://cdn.jsdelivr.net/gh/scp-cn-tech/sigma9@cn/cn/sigma9_ch.min.css);
+            </style> 
+ </head>
+ <body>
+  <div id="action-area" style="display: block;"> 
+   <h1>编辑页面</h1> 
+   <div> 
+    <form id="edit-page-form" onkeypress="return OZONE.utils.disableEnterKey(event);"> 
+     <input type="hidden" name="page_id" value="1307024977" /> 
+     <input type="hidden" name="recaptcha_challenge_field" id="recaptcha_challenge_field" /> 
+     <input type="hidden" name="recaptcha_response_field" id="recaptcha_response_field" /> 
+     <table class="form" style="margin: 0.5em auto 1em 0"> 
+      <tbody>
+       <tr> 
+        <td> 页面标题: </td> 
+        <td> <input class="text" id="edit-page-title" name="title" type="text" value="Scp Cn Xxxx" size="35" maxlength="128" style="font-weight: bold; font-size: 130%;" readonly="readonly" /> </td> 
+       </tr> 
+      </tbody>
+     </table> 
+     <div class="wd-editor-toolbar-panel" id="wd-editor-toolbar-panel"> 
+      <div> 
+       <ul> 
+        <li><a class="weditor-h1" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 1);"><span>1 级标题</span></a> 
+         <ul> 
+          <li><a class="weditor-h2" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 2);"><span>2 级标题</span></a></li> 
+          <li><a class="weditor-h3" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 3);"><span>3 级标题</span></a></li> 
+          <li><a class="weditor-h4" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 4);"><span>4 级标题</span></a></li> 
+          <li><a class="weditor-h5" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 5);"><span>5 级标题</span></a></li> 
+          <li><a class="weditor-h6" title="" href="javascript:;" onclick="WIKIDOT.Editor.buttons.heading(event, 6);"><span>6 级标题</span></a></li> 
+         </ul> </li> 
+        <li><a class="weditor-bold" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bold(event);"><span>粗体</span></a></li> 
+        <li><a class="weditor-italic" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.italic(event);"><span>斜体</span></a></li> 
+        <li><a class="weditor-underline" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.underline(event);"><span>下划线</span></a></li> 
+        <li><a class="weditor-strikethrough" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.strikethrough(event);"><span>删除线</span></a></li> 
+        <li><a class="weditor-teletype" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.teletype(event);"><span>teletype</span></a></li> 
+        <li><a class="weditor-quote" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.quote(event);"><span>引用</span></a></li> 
+        <li><a class="weditor-superscript" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.superscript(event);"><span>上标</span></a></li> 
+        <li><a class="weditor-subscript" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.subscript(event);"><span>下标</span></a></li> 
+        <li><a class="weditor-raw" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.raw(event);"><span>原始</span></a></li> 
+       </ul> 
+      </div> 
+      <div> 
+       <ul> 
+        <li><a class="weditor-hr" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.hr(event);"><span>时</span></a></li> 
+        <li><a class="weditor-div" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.div(event);"><span>div</span></a> </li> 
+        <li><a class="weditor-clearfloat" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.clearFloat(event);"><span>清除浮动属性</span></a> 
+         <ul> 
+          <li><a class="weditor-clearfloatleft" href="javascript:;" onclick="WIKIDOT.Editor.buttons.clearFloat(event,'&lt;')" title=""><span>向左对齐</span></a></li> 
+          <li><a class="weditor-clearfloatright" href="javascript:;" onclick="WIKIDOT.Editor.buttons.clearFloat(event,'&gt;')" title=""><span>向右对齐</span></a></li> 
+         </ul> </li> 
+        <li><a class="weditor-table" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.tableWizard(event);"><span>平台</span></a></li> 
+        <li><a class="weditor-toc" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.toc(event);"><span>目录</span></a></li> 
+        <li class="hseparator"></li> 
+        <li><a class="weditor-code" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.code(event);"><span>代码</span></a></li> 
+        <li><a class="weditor-codewiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.codeWizard(event);"><span>代码向导</span></a></li> 
+        <li class="hseparator"></li> 
+        <li><a class="weditor-uri" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.uri(event);"><span>url</span></a></li> 
+        <li><a class="weditor-uriwiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.uriWizard(event);"><span>url 链接向导</span></a></li> 
+        <li><a class="weditor-pagelink" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.pageLink(event);"><span>页面链接</span></a></li> 
+        <li><a class="weditor-pagelinkwiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.pageLinkWizard(event);"><span>页面链接向导</span></a></li> 
+        <li class="hseparator"></li> 
+        <li><a class="weditor-image" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.image(event);"><span>图片</span></a></li> 
+        <li><a class="weditor-imagewiz" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.imageWizard(event);"><span>图片精灵</span></a></li> 
+        <li class="hseparator"></li> 
+        <li><a class="weditor-html" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.html(event);"><span>HTML</span></a></li> 
+       </ul> 
+      </div> 
+      <div> 
+       <ul> 
+        <li><a class="weditor-numlist" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.numberedList(event);"><span>有序清单</span></a></li> 
+        <li><a class="weditor-bullist" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bulletedList(event);"><span>无序列表</span></a></li> 
+        <li><a class="weditor-incindent" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.increaseListIndent(event);"><span>增加缩排</span></a></li> 
+        <li><a class="weditor-decindent" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.decreaseListIndent(event);"><span>减少缩进</span></a></li> 
+        <li><a class="weditor-deflist" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.definitionList(event);"><span>定义列表</span></a></li> 
+        <li><a class="weditor-footnote" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.footnote(event);"><span>脚注</span></a></li> 
+        <li class="hseparator"></li> 
+        <li><a class="weditor-math" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.math(event);"><span>数学</span></a></li> 
+        <li><a class="weditor-mathinline" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.inlineMath(event);"><span>内建数学</span></a></li> 
+        <li><a class="weditor-eqref" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.erefWizard(event);"><span>等效参照</span></a></li> 
+        <li class="hseparator"></li> 
+        <li><a class="weditor-bib" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bibliography(event);"><span>参考文献</span></a></li> 
+        <li><a class="weditor-bibcite" href="javascript:;" title="" onclick="WIKIDOT.Editor.buttons.bibliographycitation(event);"><span>引述</span></a></li> 
+       </ul> 
+      </div> 
+     </div> 
+     <div> 
+      <textarea id="edit-page-textarea" name="source" rows="20" cols="60" style="width: 95%;" readonly="readonly">
 [[>]]
 [[module Rate]]
 [[/>]]
@@ -572,66 +572,66 @@ ACS在SCP-CN-001定义的格式基础上，新增了保密等级（指定开启�
 << [[[SCP-CN-XXXW]]] | SCP-CN-XXXX | [[[SCP-CN-XXXY]]] >>
 [[/=]]
 [[/div]]
-      </textarea> 
-     </div> 
-     <div class="change-textarea-size"> 
-      <a href="javascript:;" class="btn btn-default" onclick="WIKIDOT.utils.changeTextareaRowNo('edit-page-textarea',-5);">-</a> 
-      <a href="javascript:;" class="btn btn-default" onclick="WIKIDOT.utils.changeTextareaRowNo('edit-page-textarea',5);">+</a> 
-     </div> 
-     <div class="edit-help-34">
-       帮助：
-      <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">维基语法快速参考</a> 
-      <a href="http://snippets.wikidot.com" target="_blank">代码片段选集</a> 
-     </div> 
-     <table class="edit-page-bottomtable" style="padding: 2px 0; border: none;"> 
-      <tbody>
-       <tr> 
-        <td style="border: none; padding: 0 5px;"> 
-         <div>
-           本次编辑的简要说明: 
-          <br /> 
-          <textarea id="edit-page-comments" name="comments" rows="2" cols="40" readonly="readonly">
+      </textarea> 
+     </div> 
+     <div class="change-textarea-size"> 
+      <a href="javascript:;" class="btn btn-default" onclick="WIKIDOT.utils.changeTextareaRowNo('edit-page-textarea',-5);">-</a> 
+      <a href="javascript:;" class="btn btn-default" onclick="WIKIDOT.utils.changeTextareaRowNo('edit-page-textarea',5);">+</a> 
+     </div> 
+     <div class="edit-help-34">
+       帮助：
+      <a href="http://www.wikidot.com/doc:quick-reference" target="_blank">维基语法快速参考</a> 
+      <a href="http://snippets.wikidot.com" target="_blank">代码片段选集</a> 
+     </div> 
+     <table class="edit-page-bottomtable" style="padding: 2px 0; border: none;"> 
+      <tbody>
+       <tr> 
+        <td style="border: none; padding: 0 5px;"> 
+         <div>
+           本次编辑的简要说明: 
+          <br /> 
+          <textarea id="edit-page-comments" name="comments" rows="2" cols="40" readonly="readonly">
 第一次写SCP，还不熟练，还请多多指教
-          </textarea> 
-         </div> 
-         <div class="sub">
-           最多200个字符 
-         </div> </td> 
-        <td style="border: none; padding: 0 5px;"> 
-         <div id="lock-info" class="alert alert-info">
-           您握有一个独占的∞分钟锁定，这将会阻止其他人编辑您正在作业的页面。 
-          <br />这个锁定将在闲置 
-          <strong><span id="lock-timer">∞</span></strong> 秒后失效。 
-         </div> </td> 
-       </tr> 
-      </tbody>
-     </table> 
-     <div class="checkbox do-not-notify"> 
-      <label><input type="checkbox" name="dont_notify_watchers" value="true" />不提醒关注者</label> 
-     </div> 
-     <div id="edit-page-captcha"></div> 
-     <div class="buttons alignleft"> 
-      <input type="button" name="cancel" id="edit-cancel-button" class="btn btn-danger" value="取消" onclick="WIKIDOT.modules.PageEditModule.listeners.cancelWithDeleteDraftConfirmation(event);" /> 
-      <input type="button" name="diff" id="edit-diff-button" class="btn btn-default" value="显示变更" onclick="WIKIDOT.modules.PageEditModule.listeners.viewDiff(event);" /> 
-      <input type="button" name="preview" id="edit-preview-button" class="btn btn-default" value="预览" onclick="WIKIDOT.modules.PageEditModule.listeners.preview(event);" /> 
-      <input type="button" name="save-draft" id="edit-save-draft-button" class="btn btn-default" value="保存草稿" onclick="WIKIDOT.modules.PageEditModule.listeners.saveDraft(event);" /> 
-      <input type="button" name="save-continue" id="edit-save-continue-button" class="btn btn-info" value="保存并继续" onclick="WIKIDOT.modules.PageEditModule.listeners.saveAndContinue(event);" /> 
-      <input type="button" name="save" id="edit-save-button" class="btn btn-primary" value="保存" onclick="WIKIDOT.modules.PageEditModule.listeners.save(event);" /> 
-     </div> 
-    </form> 
-   </div> 
-   <div id="view-diff-div"></div> 
-   <div id="preview-message" style="display: none;"> 
-    <div class="preview-message">
-      请注意：这只是预览而已。
-     <br />若您现在离开本页，您将会遗失您的变更。 
-     <br /> 
-     <a href="javascript:;" onclick="OZONE.visuals.scrollTo('action-area');">页面下拉至编辑器</a> | 
-     <a href="javascript:;" onclick="document.getElementById('action-area-top').innerHTML='';">关闭本对话框</a> 
-    </div> 
-   </div> 
-  </div>
- </body>
+          </textarea> 
+         </div> 
+         <div class="sub">
+           最多200个字符 
+         </div> </td> 
+        <td style="border: none; padding: 0 5px;"> 
+         <div id="lock-info" class="alert alert-info">
+           您握有一个独占的∞分钟锁定，这将会阻止其他人编辑您正在作业的页面。 
+          <br />这个锁定将在闲置 
+          <strong><span id="lock-timer">∞</span></strong> 秒后失效。 
+         </div> </td> 
+       </tr> 
+      </tbody>
+     </table> 
+     <div class="checkbox do-not-notify"> 
+      <label><input type="checkbox" name="dont_notify_watchers" value="true" />不提醒关注者</label> 
+     </div> 
+     <div id="edit-page-captcha"></div> 
+     <div class="buttons alignleft"> 
+      <input type="button" name="cancel" id="edit-cancel-button" class="btn btn-danger" value="取消" onclick="WIKIDOT.modules.PageEditModule.listeners.cancelWithDeleteDraftConfirmation(event);" /> 
+      <input type="button" name="diff" id="edit-diff-button" class="btn btn-default" value="显示变更" onclick="WIKIDOT.modules.PageEditModule.listeners.viewDiff(event);" /> 
+      <input type="button" name="preview" id="edit-preview-button" class="btn btn-default" value="预览" onclick="WIKIDOT.modules.PageEditModule.listeners.preview(event);" /> 
+      <input type="button" name="save-draft" id="edit-save-draft-button" class="btn btn-default" value="保存草稿" onclick="WIKIDOT.modules.PageEditModule.listeners.saveDraft(event);" /> 
+      <input type="button" name="save-continue" id="edit-save-continue-button" class="btn btn-info" value="保存并继续" onclick="WIKIDOT.modules.PageEditModule.listeners.saveAndContinue(event);" /> 
+      <input type="button" name="save" id="edit-save-button" class="btn btn-primary" value="保存" onclick="WIKIDOT.modules.PageEditModule.listeners.save(event);" /> 
+     </div> 
+    </form> 
+   </div> 
+   <div id="view-diff-div"></div> 
+   <div id="preview-message" style="display: none;"> 
+    <div class="preview-message">
+      请注意：这只是预览而已。
+     <br />若您现在离开本页，您将会遗失您的变更。 
+     <br /> 
+     <a href="javascript:;" onclick="OZONE.visuals.scrollTo('action-area');">页面下拉至编辑器</a> | 
+     <a href="javascript:;" onclick="document.getElementById('action-area-top').innerHTML='';">关闭本对话框</a> 
+    </div> 
+   </div> 
+  </div>
+ </body>
 </html>
 [[/html]]
 

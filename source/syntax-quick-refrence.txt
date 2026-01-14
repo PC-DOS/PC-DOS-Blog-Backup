@@ -51,7 +51,7 @@
 || @@[[image@@ [*/wiki-syntax#image URL 或 附件] @@]]@@ ||
 || @@[[image@@ [*/wiki-syntax#images UR(ry] @@link="页面名称或URL" ]]@@ ||
 || @@[[collapsible show="+ 点击显示" hide="- 点击隐藏"]]@@ [*/wiki-syntax#collapsible 隐藏的东西] @@[[/collapsible]]@@ ||
-|| @@||@@ [*/wiki-syntax#tables 表格]@@ ||~ 标题|| 内容||@@  ||
+|| @@||@@ [*/wiki-syntax#tables 表格]@@ ||~ 标题|| 内容||@@  ||
 || @@[[div@@ [*/wiki-syntax#custom-divs 自定义DIV] @@]]@@ ||
 || @@[[footnote]]@@[*/wiki-syntax#footnotes 脚注]@@[[/footnote]]@@ ||
 
@@ -68,6 +68,6 @@
 
 +++ 音频文件：
 > @@[[include :snippets:html5player@@
-> @@    |type=audio@@
-> @@    |url=文件位置@@
+> @@    |type=audio@@
+> @@    |url=文件位置@@
 > @@]]@@

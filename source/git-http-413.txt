@@ -50,7 +50,7 @@ vi /etc/nginx/nginx.conf
 在{{@@http {}@@}}结点中，添加下列行，修改{{client_max_body_size}}为{{@@0@@}}（无限制）：
 
 [[code]]
-    client_max_body_size 0;
+    client_max_body_size 0;
 [[/code]]
 
 按{{ESC}}键并输入“{{:wq}}”指令，按回车保存并退出VI，重新配置NGINX：

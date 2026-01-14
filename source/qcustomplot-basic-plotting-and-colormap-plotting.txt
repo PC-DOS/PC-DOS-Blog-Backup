@@ -76,9 +76,9 @@ ui->wgtCustomPlot->axisRect()->setMarginGroup(QCP::msTop|QCP::msBottom, lpLegend
 //添加数据，setCell()函数直接使用数据点的绝对坐标（通常其坐标原点位于颜色图的左下角）来设置颜色图各点上的值
 //如果您希望根据您给出的X/Y坐标范围内的坐标来操作数据，请使用setData()方法，具体请参考：https://www.qcustomplot.com/documentation/classQCPColorMapData.html
 for (int iRow = 0; iRow < nRow; ++iRow) {
-    for (int iCol = 0; iCol < nCol; ++iCol) {
-        lpColorMap->data()->setCell(iRow, iCol, dData);
-    }
+    for (int iCol = 0; iCol < nCol; ++iCol) {
+        lpColorMap->data()->setCell(iRow, iCol, dData);
+    }
 }
 //更新坐标轴
 ui->wgtCustomPlot->rescaleAxes();

@@ -26,7 +26,7 @@ blacklist i2c_piix4
 重建RAMFS：
 
 [[code]]
-update-initramfs  -u  -k  all
+update-initramfs  -u  -k  all
 [[/code]]
 
 随后重启系统即可。

@@ -38,25 +38,25 @@
 // GenerateHDLTestBench: off
 
 // -------------------------------------------------------------
-// HDL Implementation    : Fully parallel
-// Folding Factor        : 1
+// HDL Implementation    : Fully parallel
+// Folding Factor        : 1
 // -------------------------------------------------------------
 // Filter Settings:
 //
 // Discrete-Time FIR Filter (real)
 // -------------------------------
-// Filter Structure  : Direct-Form FIR
-// Filter Length     : 11
-// Stable            : Yes
-// Linear Phase      : Yes (Type 1)
-// Arithmetic        : fixed
-// Numerator         : s16,8 -> [-128 128)
-// Input             : s16,0 -> [-32768 32768)
-// Filter Internals  : Specify Precision
-//   Output          : s16,0 -> [-32768 32768)
-//   Product         : s32,0 -> [-2147483648 2147483648)
-//   Accumulator     : s32,0 -> [-2147483648 2147483648)
-//   Round Mode      : convergent
-//   Overflow Mode   : wrap
+// Filter Structure  : Direct-Form FIR
+// Filter Length     : 11
+// Stable            : Yes
+// Linear Phase      : Yes (Type 1)
+// Arithmetic        : fixed
+// Numerator         : s16,8 -> [-128 128)
+// Input             : s16,0 -> [-32768 32768)
+// Filter Internals  : Specify Precision
+//   Output          : s16,0 -> [-32768 32768)
+//   Product         : s32,0 -> [-2147483648 2147483648)
+//   Accumulator     : s32,0 -> [-2147483648 2147483648)
+//   Round Mode      : convergent
+//   Overflow Mode   : wrap
 // -------------------------------------------------------------
 [[/code]]

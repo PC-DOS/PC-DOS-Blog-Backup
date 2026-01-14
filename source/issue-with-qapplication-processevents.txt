@@ -4,22 +4,22 @@
 
 [[code type="Cpp"]]
 void SignalSlot(){
-    static volatile bool bIsRunning = false;
+    static volatile bool bIsRunning = false;
 
-    if (bIsRunning) {
-        return;
-    }
-    else{
-        bIsRunning = true;
-    }
+    if (bIsRunning) {
+        return;
+    }
+    else{
+        bIsRunning = true;
+    }
 
-    //Handle event
+    //Handle event
 
-    //Process events
-    QApplication::processEvents();
+    //Process events
+    QApplication::processEvents();
 
-    bIsRunning = false;
-    return;
+    bIsRunning = false;
+    return;
 }
 [[/code]]
 
@@ -27,21 +27,21 @@ void SignalSlot(){
 
 [[code type="Cpp"]]
 void SignalSlot(){
-    //Block signal source
-    if (QObject::sender()) {
-        QObject::sender()->blockSignals(true);
-    }
+    //Block signal source
+    if (QObject::sender()) {
+        QObject::sender()->blockSignals(true);
+    }
 
-    //Handle event
+    //Handle event
 
-    //Process events
-    QApplication::processEvents();
+    //Process events
+    QApplication::processEvents();
 
-    //Unblock signal source
-    if (QObject::sender()) {
-        QObject::sender()->blockSignals(false);
-    }
-    return;
+    //Unblock signal source
+    if (QObject::sender()) {
+        QObject::sender()->blockSignals(false);
+    }
+    return;
 }
 [[/code]]
 

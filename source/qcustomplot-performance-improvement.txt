@@ -51,14 +51,14 @@ QCustomPlot推荐在同时存在多个数据量和更新速率差异极大的曲
 
 [[code]]
 #if (QT_VERSION < QT_VERSION_CHECK(5,0,0))
-    QApplication::setGraphicsSystem("raster");
+    QApplication::setGraphicsSystem("raster");
 #endif
 [[/code]]
 
 或在目标机中修改程序调用指令，在指令末尾追加：
 
 [[code]]
- -graphicssystem raster
+ -graphicssystem raster
 [[/code]]
 
 + 使用有序的数据

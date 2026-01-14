@@ -13,19 +13,19 @@ http://ehall.seu.edu.cn/qljfwapp2/sys/lwReportEpidemicSeu/modules/dailyReport/da
 在左侧代码窗格中，找到下面的代码块：
 
 [[code type="javascript"]]
-            //...
-            var sfksbData = checkMrbpaSfksb();
-            if (sfksbData.success) {
-                if (!sfksbData.SFKSB_TQ) {
-                    $.warn(sfksbData.TQTBTS || '根据东南大学疫情防控工作安排，每天执行晨/午检制度（申报早晨、中午体温）。为方便师生一次性填报，将健康申报时间调整为11点～15点。');
-                    return false;
-                }
-                if (!sfksbData.SFKSB_CS) {
-                    $.warn('每日健康申报截止时间' + sfksbData.JZSJ);
-                    return false;
-                }
-            }
-            //...
+            //...
+            var sfksbData = checkMrbpaSfksb();
+            if (sfksbData.success) {
+                if (!sfksbData.SFKSB_TQ) {
+                    $.warn(sfksbData.TQTBTS || '根据东南大学疫情防控工作安排，每天执行晨/午检制度（申报早晨、中午体温）。为方便师生一次性填报，将健康申报时间调整为11点～15点。');
+                    return false;
+                }
+                if (!sfksbData.SFKSB_CS) {
+                    $.warn('每日健康申报截止时间' + sfksbData.JZSJ);
+                    return false;
+                }
+            }
+            //...
 [[/code]]
 
 通过点击左侧显示的行号，在下面的{{if}}语句上下断点：

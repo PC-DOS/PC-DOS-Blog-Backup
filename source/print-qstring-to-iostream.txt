@@ -4,8 +4,8 @@
 #include <iostream>
 
 void PrintMessageToConsole(QString sConsoleMessage){
-    std::cerr<<qPrintable(sConsoleMessage)<<endl;
-    return;
+    std::cerr<<qPrintable(sConsoleMessage)<<endl;
+    return;
 }
 [[/code]]
 

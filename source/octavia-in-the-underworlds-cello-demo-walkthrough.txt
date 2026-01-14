@@ -1,27 +1,27 @@
 [[module css]]
 .promptbox .collapsible-block-link{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
+    color: black;
+    font-size: 150%;
+    font-weight: bold;
+    text-decoration: none;
 }
 .promptbox .collapsible-block-link:hover{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
+    color: black;
+    font-size: 150%;
+    font-weight: bold;
+    text-decoration: none;
 }
 .promptbox .collapsible-block-unfolded-link .collapsible-block-link{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
+    color: black;
+    font-size: 150%;
+    font-weight: bold;
+    text-decoration: none;
 }
 .promptbox .collapsible-block-unfolded-link .collapsible-block-link:hover{
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-    text-decoration: none;
+    color: black;
+    font-size: 150%;
+    font-weight: bold;
+    text-decoration: none;
 }
 [[/module]]
 

@@ -16,7 +16,7 @@ sudo gedit /etc/rc.local
 Numlock enable [ -x /usr/bin/numlockx ] && numlockx on
 
 for tty in /dev/tty[1-9]*;do
-    setleds -D +num < $tty
+    setleds -D +num < $tty
 done
 [[/code]]
 

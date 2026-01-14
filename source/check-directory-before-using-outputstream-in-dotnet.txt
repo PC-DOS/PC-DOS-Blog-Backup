@@ -6,12 +6,12 @@
 Dim OutputDirectory As String = ""
 OutputFilePath = OutputFilePath.Replace("/", "\")
 If OutputFilePath.Contains("\") Or OutputFilePath.Contains("/") Then
-    OutputDirectory = OutputFilePath.Substring(0, OutputFilePath.LastIndexOf("\"))
-        If OutputDirectory.Trim().Length > 0 Then
-            If Not Directory.Exists(OutputDirectory) Then
-            Directory.CreateDirectory(OutputDirectory)
-        End If
-    End If
+    OutputDirectory = OutputFilePath.Substring(0, OutputFilePath.LastIndexOf("\"))
+        If OutputDirectory.Trim().Length > 0 Then
+            If Not Directory.Exists(OutputDirectory) Then
+            Directory.CreateDirectory(OutputDirectory)
+        End If
+    End If
 End If
 [[/code]]
 

@@ -9,7 +9,7 @@ namespace MyNamespace{
 
 template<class T>
 void MyFuncTemplate(T Param1, T Param2){
-    //Function Implementations
+    //Function Implementations
 }
 
 }

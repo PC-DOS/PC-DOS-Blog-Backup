@@ -5,14 +5,14 @@
 [[code type="Cpp"]]
 struct mmc *mmc = find_mmc_device(CFG_FASTBOOT_SDFUSE_MMCDEV);
 if (mmc_init(mmc)) {
-    printf("Not found tf card.\n");
+    printf("Not found tf card.\n");
 
-    tf_insert_flags = 0;
+    tf_insert_flags = 0;
 }
 else
 {
-    printf("Found tf card.\n");
+    printf("Found tf card.\n");
 
-    tf_insert_flags = 1;
+    tf_insert_flags = 1;
 }
 [[/code]]

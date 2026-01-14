@@ -4,8 +4,8 @@
 
 [[code]]
 <encoding name="UTF-8">
-    <encoding_alias name="utf8"/>
-    <encoding_alias name="Big5"/>
+    <encoding_alias name="utf8"/>
+    <encoding_alias name="Big5"/>
 </encoding>
 [[/code]]
 

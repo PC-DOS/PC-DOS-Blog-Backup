@@ -2,8 +2,8 @@
 
 并行执行并等待多个任务时，可能需要注意：
 * 变量作用域与意外更新：尽管您可以直接通过Lambda子句，将主线程作用域的变量传递给子线程。但是，建议不要传递作用域大于创建子线程的语句所在的作用域的变量。否则，您可能会遇到变量被意外修改的问题。
- * 例如，若您在{{For}}循环中设置定义在循环之外的变量{{GlobalVar}}，并通过{{Task.Factory.StartNew()}}语句建立子线程，该线程执行体中同样引用了{{GlobalVar}}变量。您可能会预期每个子线程使用其被建立时的{{GlobalVar}}的副本，但事实上每个子线程会在执行时直接引用主线程中{{GlobalVar}}的当前值。
- * 为此，您应当在通过{{Task.Factory.StartNew()}}语句建立子线程前，手动建立{{GlobalVar}}的局部副本{{GlobalVarLocalBackup}}，并在子线程中引用{{GlobalVarLocalBackup}}。
+ * 例如，若您在{{For}}循环中设置定义在循环之外的变量{{GlobalVar}}，并通过{{Task.Factory.StartNew()}}语句建立子线程，该线程执行体中同样引用了{{GlobalVar}}变量。您可能会预期每个子线程使用其被建立时的{{GlobalVar}}的副本，但事实上每个子线程会在执行时直接引用主线程中{{GlobalVar}}的当前值。
+ * 为此，您应当在通过{{Task.Factory.StartNew()}}语句建立子线程前，手动建立{{GlobalVar}}的局部副本{{GlobalVarLocalBackup}}，并在子线程中引用{{GlobalVarLocalBackup}}。
 * 若您的应用程序具有用户界面，您不应在子线程中直接引用用户界面上的控件。
 
 下例中，函数{{DoWorkAsync()}}位于主线程中，并会在执行时异步进行一系列操作。子线程会引用主线程中的全局变量{{GlobalVar1}}、局部变量{{LocalVar1}}和用户界面控件{{txtScale}}的值，并返回结果字典。通过全局变量{{ParallelCount}}限制并行执行的任务数量（本例中使用物理处理器个数的一半）。
@@ -15,62 +15,62 @@ Imports System.Threading.Tasks
 Dim GlobalVar1 As String
 
 Private Async Sub DoWorkAsync()
-    'Determine parallel count
-    Dim ParallelCount As Integer = Int(Environment.ProcessorCount / 2)
-    If ParallelCount < 1 Then
-        ParallelCount = 1
-    End If
-    
-    'Create semaphore
-    Dim ParallelSemaphore As New SemaphoreSlim(ParallelCount)
-    
-    'Create task list
-    Dim TaskList As New List(Of Task(Of Dictionary(Of String, String)))
-    
-    'Create child threads
-    For i As Integer = 1 To 245
-        'Update global variable and create local snapshot
-        GlobalVar1 = i.ToString() & "^2 = "
-        Dim GlobalVar1LocalBackup As String = GlobalVar1
-        
-        'Create local variable
-        Dim LocalVar1 As Integer = i
-        Dim CurrentScale As Double = Val(txtScale.Text)
-        
-        'Run child thread
-        Dim CurrentTask As Task(Of Dictionary(Of String, String)) = _
-            Task.Factory.StartNew(Function()
-                                      'Result dictionary
-                                      Dim ResultDict As New Dictionary(Of String, String)
-                                      
-                                      'Wait for executing slot
-                                      ParallelSemaphore.Wait()
+    'Determine parallel count
+    Dim ParallelCount As Integer = Int(Environment.ProcessorCount / 2)
+    If ParallelCount < 1 Then
+        ParallelCount = 1
+    End If
+    
+    'Create semaphore
+    Dim ParallelSemaphore As New SemaphoreSlim(ParallelCount)
+    
+    'Create task list
+    Dim TaskList As New List(Of Task(Of Dictionary(Of String, String)))
+    
+    'Create child threads
+    For i As Integer = 1 To 245
+        'Update global variable and create local snapshot
+        GlobalVar1 = i.ToString() & "^2 = "
+        Dim GlobalVar1LocalBackup As String = GlobalVar1
+        
+        'Create local variable
+        Dim LocalVar1 As Integer = i
+        Dim CurrentScale As Double = Val(txtScale.Text)
+        
+        'Run child thread
+        Dim CurrentTask As Task(Of Dictionary(Of String, String)) = _
+            Task.Factory.StartNew(Function()
+                                      'Result dictionary
+                                      Dim ResultDict As New Dictionary(Of String, String)
+                                      
+                                      'Wait for executing slot
+                                      ParallelSemaphore.Wait()
 
-                                      'Do work
-                                      Dim NumResult As Double = (LocalVar1 * CurrentScale) * (LocalVar1 * CurrentScale)
-                                      Dim StrResult As String = GlobalVar1LocalBackup & NumResult.ToString()
-                                      ResultDict.Add("Input", LocalVar1.ToString())
-                                      ResultDict.Add("Output", NumResult.ToString())
-                                      ResultDict.Add("Message", StrResult)
-                                      
-                                      'Release executing slot for next worker
-                                      ParallelSemaphore.Release()
+                                      'Do work
+                                      Dim NumResult As Double = (LocalVar1 * CurrentScale) * (LocalVar1 * CurrentScale)
+                                      Dim StrResult As String = GlobalVar1LocalBackup & NumResult.ToString()
+                                      ResultDict.Add("Input", LocalVar1.ToString())
+                                      ResultDict.Add("Output", NumResult.ToString())
+                                      ResultDict.Add("Message", StrResult)
+                                      
+                                      'Release executing slot for next worker
+                                      ParallelSemaphore.Release()
 
-                                      Return ResultDict
-                                  End Function)
-        TaskList.Add(CurrentTask)
-    Next
-    
-    'Wait for results
-    For Each CurrentTask In TaskList
-        'Wait asynchronously
-        Await Task.Factory.StartNew(Sub()
-                                        CurrentTask.Wait()
-                                    End Sub)
-        
-        'Get result
-        Dim ResultDict As New Dictionary(Of String, String) = CurrentTask.Result
-    Next
+                                      Return ResultDict
+                                  End Function)
+        TaskList.Add(CurrentTask)
+    Next
+    
+    'Wait for results
+    For Each CurrentTask In TaskList
+        'Wait asynchronously
+        Await Task.Factory.StartNew(Sub()
+                                        CurrentTask.Wait()
+                                    End Sub)
+        
+        'Get result
+        Dim ResultDict As New Dictionary(Of String, String) = CurrentTask.Result
+    Next
 End Sub
 [[/code]]
 
@@ -78,14 +78,14 @@ End Sub
 
 [[code]]
 <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-    <dependentAssembly>
-        <assemblyIdentity name="System.Runtime" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-2.6.8.0" newVersion="2.6.8.0" />
-    </dependentAssembly>
-    <dependentAssembly>
-        <assemblyIdentity name="System.Threading.Tasks" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
-        <bindingRedirect oldVersion="0.0.0.0-2.6.8.0" newVersion="2.6.8.0" />
-    </dependentAssembly>
+    <dependentAssembly>
+        <assemblyIdentity name="System.Runtime" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.6.8.0" newVersion="2.6.8.0" />
+    </dependentAssembly>
+    <dependentAssembly>
+        <assemblyIdentity name="System.Threading.Tasks" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-2.6.8.0" newVersion="2.6.8.0" />
+    </dependentAssembly>
 </assemblyBinding>
 [[/code]]
 

@@ -7,7 +7,7 @@
 [[code]]
 oIsPosEdgeDetected = ~rSig2ClocksBefore & rSig1ClockBefore;
 oIsNegEdgeDetected = rSig2ClocksBefore & ~rSig1ClockBefore;
-oIsAnyEdgeDetected = oIsPosEdgeDetected  | oIsNegEdgeDetected;
+oIsAnyEdgeDetected = oIsPosEdgeDetected  | oIsNegEdgeDetected;
 [[/code]]
 
 Verilog代码：
@@ -25,10 +25,10 @@ Verilog代码：
 // Target Devices: 
 // Tool Versions: 
 // Description: Executes edge detection for signal iSignalToDetect.
-//              Outputs status:
-//              oIsPosEdgeDetected set to high: rising edge detected
-//              oIsNegEdgeDetected set to high: falling edge detected
-//              oIsAnyEdgeDetected set to high: edge detected
+//              Outputs status:
+//              oIsPosEdgeDetected set to high: rising edge detected
+//              oIsNegEdgeDetected set to high: falling edge detected
+//              oIsAnyEdgeDetected set to high: edge detected
 // 
 // Dependencies: 
 // 
@@ -39,36 +39,36 @@ Verilog代码：
 //////////////////////////////////////////////////////////////////////////////////
 
 module EdgeDetector(
-    input iClock,
-    input iReset,
-    input iSignalToDetect,
-    output reg oIsPosEdgeDetected,
-    output reg oIsNegEdgeDetected,
-    output reg oIsAnyEdgeDetected
-    );
-    
-    //Registers to storage the level of iSignalToDetect in 1 clock before (rSignalPrevStatus[0]) and 2 clocks before (rSignalPrevStatus[1])
-    reg [1:0] rSignalPrevStatus;
-    
-    //Use clock to synchronize status
-    always @ (posedge iClock) begin
-        //Check if reset requested
-        if (iReset) begin
-            rSignalPrevStatus <= 2'b00;
-            oIsPosEdgeDetected <= 1'b0;
-            oIsNegEdgeDetected <= 1'b0;
-            oIsAnyEdgeDetected <= 1'b0;
-        end
-        else begin
-            //Move level of iSignalToDetect 1 clock before to 2 clocks before, save current level of iSignalToDetect as 1 clock before
-            rSignalPrevStatus <= {rSignalPrevStatus[0], iSignalToDetect};
-            //Update output registers
-            oIsPosEdgeDetected <= ~rSignalPrevStatus[1] & rSignalPrevStatus[0];
-            oIsNegEdgeDetected <= rSignalPrevStatus[1] & ~rSignalPrevStatus[0];
-            oIsAnyEdgeDetected <= oIsPosEdgeDetected | oIsNegEdgeDetected;
-        end
-    end
-    
+    input iClock,
+    input iReset,
+    input iSignalToDetect,
+    output reg oIsPosEdgeDetected,
+    output reg oIsNegEdgeDetected,
+    output reg oIsAnyEdgeDetected
+    );
+    
+    //Registers to storage the level of iSignalToDetect in 1 clock before (rSignalPrevStatus[0]) and 2 clocks before (rSignalPrevStatus[1])
+    reg [1:0] rSignalPrevStatus;
+    
+    //Use clock to synchronize status
+    always @ (posedge iClock) begin
+        //Check if reset requested
+        if (iReset) begin
+            rSignalPrevStatus <= 2'b00;
+            oIsPosEdgeDetected <= 1'b0;
+            oIsNegEdgeDetected <= 1'b0;
+            oIsAnyEdgeDetected <= 1'b0;
+        end
+        else begin
+            //Move level of iSignalToDetect 1 clock before to 2 clocks before, save current level of iSignalToDetect as 1 clock before
+            rSignalPrevStatus <= {rSignalPrevStatus[0], iSignalToDetect};
+            //Update output registers
+            oIsPosEdgeDetected <= ~rSignalPrevStatus[1] & rSignalPrevStatus[0];
+            oIsNegEdgeDetected <= rSignalPrevStatus[1] & ~rSignalPrevStatus[0];
+            oIsAnyEdgeDetected <= oIsPosEdgeDetected | oIsNegEdgeDetected;
+        end
+    end
+    
 endmodule
 [[/code]]
 
@@ -77,38 +77,38 @@ endmodule
 [[code]]
 module Testbench_EdgeDetector(
 
-    );
-    reg rIsADCDoneN;
-    reg rClock;
-    reg rReset;
-    wire wPos, wNeg, wAny;
-    
-    EdgeDetector ed1(.iClock(rClock),
-                     .iReset(rReset),
-                     .iSignalToDetect(rIsADCDoneN),
-                     .oIsPosEdgeDetected(wPos),
-                     .oIsNegEdgeDetected(wNeg),
-                     .oIsAnyEdgeDetected(wAny)
-    );
-    
-    initial begin
-        rClock = 0;
-        rReset = 1;
-        rIsADCDoneN=1;
-        
-        #200 rReset = 0;
-        
-        #50 rIsADCDoneN = 0;
-        #50 rIsADCDoneN = 1;
-        #50 rIsADCDoneN = 0;
-        #50 rIsADCDoneN = 1;
-        #50 rIsADCDoneN = 0;
-        #50 rIsADCDoneN = 1;
-        
-    end
-    
-    always #1 rClock = ~rClock;
-    
+    );
+    reg rIsADCDoneN;
+    reg rClock;
+    reg rReset;
+    wire wPos, wNeg, wAny;
+    
+    EdgeDetector ed1(.iClock(rClock),
+                     .iReset(rReset),
+                     .iSignalToDetect(rIsADCDoneN),
+                     .oIsPosEdgeDetected(wPos),
+                     .oIsNegEdgeDetected(wNeg),
+                     .oIsAnyEdgeDetected(wAny)
+    );
+    
+    initial begin
+        rClock = 0;
+        rReset = 1;
+        rIsADCDoneN=1;
+        
+        #200 rReset = 0;
+        
+        #50 rIsADCDoneN = 0;
+        #50 rIsADCDoneN = 1;
+        #50 rIsADCDoneN = 0;
+        #50 rIsADCDoneN = 1;
+        #50 rIsADCDoneN = 0;
+        #50 rIsADCDoneN = 1;
+        
+    end
+    
+    always #1 rClock = ~rClock;
+    
 endmodule
 [[/code]]
 

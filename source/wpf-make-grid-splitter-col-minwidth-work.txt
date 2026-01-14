@@ -2,12 +2,12 @@
 
 [[code]]
 <Grid.RowDefinitions>
-    <RowDefinition Height="*" />
+    <RowDefinition Height="*" />
 </Grid.RowDefinitions>
 <Grid.ColumnDefinitions>
-    <ColumnDefinition Width="200" MinWidth="150" />
-    <ColumnDefinition Width="Auto" />
-    <ColumnDefinition MinWidth="800" />
+    <ColumnDefinition Width="200" MinWidth="150" />
+    <ColumnDefinition Width="Auto" />
+    <ColumnDefinition MinWidth="800" />
 </Grid.ColumnDefinitions>
 [[/code]]
 
@@ -25,11 +25,11 @@
 
 [[code]]
 <Grid.RowDefinitions>
-    <RowDefinition Height="*" />
+    <RowDefinition Height="*" />
 </Grid.RowDefinitions>
 <Grid.ColumnDefinitions>
-    <ColumnDefinition Width="1*" MinWidth="150" />
-    <ColumnDefinition Width="Auto" />
-    <ColumnDefinition Width="5*" MinWidth="800" />
+    <ColumnDefinition Width="1*" MinWidth="150" />
+    <ColumnDefinition Width="Auto" />
+    <ColumnDefinition Width="5*" MinWidth="800" />
 </Grid.ColumnDefinitions>
 [[/code]]

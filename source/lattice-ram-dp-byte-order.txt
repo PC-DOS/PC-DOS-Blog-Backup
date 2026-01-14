@@ -8,16 +8,16 @@ LatticeXP2提供了{{RAM_DP}}和{{RAM_DP_TRUE}}等双端口RAM的IP模块。这�
 When instantiating memories that have different port widths, the following examples show the byte order as it relates to endian of the memory input and output.
 
 Example 1: 8-bit Write, 32-bit Read
-    Big Endian Write Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
-    Big Endian Read Order – Word[31:0]
-    Little Endian Write Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
-    Little Endian Read Order – Word[0:31]
+    Big Endian Write Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
+    Big Endian Read Order – Word[31:0]
+    Little Endian Write Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
+    Little Endian Read Order – Word[0:31]
 
 Example 2: 32-bit Write, 8-bit Read
-    Big Endian Write Order – Word[31:0]
-    Big Endian Read Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
-    Little Endian Write Order – Word[0:31]
-    Little Endian Read Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
+    Big Endian Write Order – Word[31:0]
+    Big Endian Read Order – Byte[31:24], Byte[23:16], Byte[15:8], Byte[7:0]
+    Little Endian Write Order – Word[0:31]
+    Little Endian Read Order – Byte[0:7], Byte[8:15], Byte[16:23], Byte[24:31]
 [[/code]]
 
 需要注意的是，这里使用逗号（“,”）分隔的顺序是需要从右往左阅读的。

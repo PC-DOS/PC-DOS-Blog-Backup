@@ -18,14 +18,14 @@ Qt使用{{QThread}}对象管理线程，通常有两种多线程实现：
 #include <QThread>
 
 class ChildThread : public QObject {
-    Q_OBJECT
-    
+    Q_OBJECT
+    
 public:
-    ChildThread();
-    virtual ~ChildThread();
-    
+    ChildThread();
+    virtual ~ChildThread();
+    
 protected:
-    void run(); //重载执行函数
+    void run(); //重载执行函数
 };
 
 #endif // CHILDTHREAD_H
@@ -37,8 +37,8 @@ protected:
 #include "ChildThread.h"
 
 void ChildThread::run() {
-    /* 在这里编写异步工作 */
-    return;
+    /* 在这里编写异步工作 */
+    return;
 }
 [[/code]]
 
@@ -72,15 +72,15 @@ void ChildThread::run() {
 #include <QObject>
 
 class Worker : public QObject {
-    Q_OBJECT
-    
+    Q_OBJECT
+    
 public:
-    Worker();
-    ~Worker();
-    
+    Worker();
+    ~Worker();
+    
 public slots:
-    /* 这里放置各类槽函数的实现 */
-    void ExecuteWorkRequestedEventHandler();
+    /* 这里放置各类槽函数的实现 */
+    void ExecuteWorkRequestedEventHandler();
 };
 
 #endif // WORKER_H
@@ -98,8 +98,8 @@ Worker::~Worker() {
 }
 
 void Worker::ExecuteWorkRequestedEventHandler() {
-    /* 在这里编写异步工作 */
-    return;
+    /* 在这里编写异步工作 */
+    return;
 }
 [[/code]]
 
@@ -117,26 +117,26 @@ void Worker::ExecuteWorkRequestedEventHandler() {
 #include <QThread>
 
 class Controller : public QObject {
-    Q_OBJECT
-    
+    Q_OBJECT
+    
 public:
-    /* 构造与析构 */
-    Controller();
-    ~Controller();
-    
-    /* 操作接口 */
-    void ExecuteWork();
-    
+    /* 构造与析构 */
+    Controller();
+    ~Controller();
+    
+    /* 操作接口 */
+    void ExecuteWork();
+    
 signals:
-    /* 这里放置各类用于与工作者通讯的信号 */
-    void ExecuteWorkRequestedEvent();
-    
+    /* 这里放置各类用于与工作者通讯的信号 */
+    void ExecuteWorkRequestedEvent();
+    
 private:
-    /* 子线程对象 */
-    QThread * trdWorkerThread;
-    
-    /* 工作者对象 */
-    Worker * wrkWorker;
+    /* 子线程对象 */
+    QThread * trdWorkerThread;
+    
+    /* 工作者对象 */
+    Worker * wrkWorker;
 };
 
 #endif // CONTROLLER_H
@@ -149,42 +149,42 @@ private:
 
 /* 构造与析构 */
 Controller::Controller() {
-    //实例化工作者对象
-    wrkWorker = new Worker;
+    //实例化工作者对象
+    wrkWorker = new Worker;
 
-    //实例化子线程对象
-    trdWorkerThread = new QThread;
+    //实例化子线程对象
+    trdWorkerThread = new QThread;
 
-    //将工作者对象移动到子线程
-    wrkWorker->moveToThread(trdWorkerThread);
+    //将工作者对象移动到子线程
+    wrkWorker->moveToThread(trdWorkerThread);
 
-    //连接信号与槽
-    connect(this, SIGNAL(ExecuteWorkRequestedEvent()), wrkWorker, SLOT(ExecuteWorkRequestedEventHandler)); //对于信号发射者和接收者不在同一线程的情况，会默认使用Qt::QueuedConnection队列化连接，这样信号即可在触发后被置入目标线程的消息队列（事件循环）中
-    //如果工作者对象wrkWorker有子对象需要进行信号-槽的连接，也可以在这里使用Qt::QueuedConnection方式连接：
-    //connect(wrkWorker->objSubObject, SIGNAL(EventOfSubObject()), wrkWorker, SLOT(EventOfSubObjectHandler()));
+    //连接信号与槽
+    connect(this, SIGNAL(ExecuteWorkRequestedEvent()), wrkWorker, SLOT(ExecuteWorkRequestedEventHandler)); //对于信号发射者和接收者不在同一线程的情况，会默认使用Qt::QueuedConnection队列化连接，这样信号即可在触发后被置入目标线程的消息队列（事件循环）中
+    //如果工作者对象wrkWorker有子对象需要进行信号-槽的连接，也可以在这里使用Qt::QueuedConnection方式连接：
+    //connect(wrkWorker->objSubObject, SIGNAL(EventOfSubObject()), wrkWorker, SLOT(EventOfSubObjectHandler()));
 
-    //启动子线程的事件循环
-    trdWorkerThread->start();
+    //启动子线程的事件循环
+    trdWorkerThread->start();
 }
 
 Controller::~Controller() {
-    //结束子线程的事件循环
-    trdWorkerThread->quit();
-    trdWorkerThread->wait();
+    //结束子线程的事件循环
+    trdWorkerThread->quit();
+    trdWorkerThread->wait();
 
-    //删除工作者对象
-    wrkWorker->deleteLater();
-    wrkWorker = NULL;
+    //删除工作者对象
+    wrkWorker->deleteLater();
+    wrkWorker = NULL;
 
-    //删除子线程对象
-    trdWorkerThread->deleteLater();
-    trdWorkerThread = NULL;
+    //删除子线程对象
+    trdWorkerThread->deleteLater();
+    trdWorkerThread = NULL;
 }
 
 /* 操作接口 */
 void Controller::ExecuteWork() {
-    emit ExecuteWorkRequestedEvent(); //发射相应的信号到目标进程的消息队列
-    return;
+    emit ExecuteWorkRequestedEvent(); //发射相应的信号到目标进程的消息队列
+    return;
 }
 [[/code]]
 

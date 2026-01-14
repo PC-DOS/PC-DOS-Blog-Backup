@@ -74,30 +74,30 @@ from ui_MainWindow import Ui_MainWindow
 # MainWindow implementation
 class MainWindow(QMainWindow, Ui_MainWindow) :
 
-    # MainWindow constructor
-    def __init__(self) :
-        # Initialize base classes
-        super().__init__()
+    # MainWindow constructor
+    def __init__(self) :
+        # Initialize base classes
+        super().__init__()
 
-        # Initialize widgets
-        self.setupUi(self)
+        # Initialize widgets
+        self.setupUi(self)
 
-        # Application init
-        pass
-    #End Sub
+        # Application init
+        pass
+    #End Sub
 
-    # MainWindow destructor
-    def __del__(self) :
-        pass
-    #End Sub
-    
-    # Do cleaning works when closing
-    def closeEvent(self, evtEvent) :
-        # Generally you don't need to delete an object manually
-        #self.__del__()
-        
-        evtEvent.accept()
-    #End Sub
+    # MainWindow destructor
+    def __del__(self) :
+        pass
+    #End Sub
+    
+    # Do cleaning works when closing
+    def closeEvent(self, evtEvent) :
+        # Generally you don't need to delete an object manually
+        #self.__del__()
+        
+        evtEvent.accept()
+    #End Sub
 
 #End Class
 [[/code]]
@@ -118,15 +118,15 @@ from MainWindow import MainWindow
 
 # Main entry point
 if __name__ == "__main__" : 
-    # Create QApplication object and start main event loop
-    appCurrent = PyQt5.QtWidgets.QApplication(sys.argv)
+    # Create QApplication object and start main event loop
+    appCurrent = PyQt5.QtWidgets.QApplication(sys.argv)
 
-    # Show main window
-    frmMainWindow = MainWindow()
-    frmMainWindow.show()
+    # Show main window
+    frmMainWindow = MainWindow()
+    frmMainWindow.show()
 
-    # Wait until main event loop exits
-    sys.exit(appCurrent.exec_())
+    # Wait until main event loop exits
+    sys.exit(appCurrent.exec_())
 #End If
 [[/code]]
 
@@ -186,44 +186,44 @@ from PyQt5.QtCore import *
 
 # Sample signal emitter
 class SignalEmitter(QObject) :
-    # Sample signal with no parameters
-    SampleSignalWithNoParameters = pyqtSignal()
+    # Sample signal with no parameters
+    SampleSignalWithNoParameters = pyqtSignal()
 
-    # Sample signal with 1 string parameter
-    SampleSignalWith1Parameter = pyqtSignal(str)
+    # Sample signal with 1 string parameter
+    SampleSignalWith1Parameter = pyqtSignal(str)
 
-    # Sample signal with 2 parameters, both can be Integer or String
-    SampleSignalWith2Parameters = pyqtSignal([int,str], [int,str])
+    # Sample signal with 2 parameters, both can be Integer or String
+    SampleSignalWith2Parameters = pyqtSignal([int,str], [int,str])
 
-    # Signal emitting test
-    def TestEmittingSignals(self) :
-        # Emit signal with no parameters
-        self.SampleSignalWithNoParameters.emit()
+    # Signal emitting test
+    def TestEmittingSignals(self) :
+        # Emit signal with no parameters
+        self.SampleSignalWithNoParameters.emit()
 
-        # Emit signal with 1 parameter
-        self.SampleSignalWith1Parameter.emit("Picsell Dois")
+        # Emit signal with 1 parameter
+        self.SampleSignalWith1Parameter.emit("Picsell Dois")
 
-        # Emit signal with 2 parameters
-        self.SampleSignalWith2Parameters.emit(245, "Suicune")
-    #End Sub
+        # Emit signal with 2 parameters
+        self.SampleSignalWith2Parameters.emit(245, "Suicune")
+    #End Sub
 #End Class
 
 # Sample signal receiver
 class SignalReceiver(QObject) :
-    # Slot with no parameters
-    def SampleSlotWithNoParameters(self) :
-        print("SampleSlotWithNoParameters: Executed with no parameters received.")
-    #End Sub
-    
-    # Slot with 1 parameter
-    def SampleSlotWith1Parameter(self, sData : str) :
-        print(f"SampleSlotWithWith1Parameter: Received {sData}")
-    #End Sub
-    
-    # Slot with 2 parameters
-    def SampleSlotWith2Parameters(self, iData1 : int, sData2 : str) :
-        print(f"SampleSlotWithWith1Parameter: Received {iData1} and {sData2}")
-    #End Sub
+    # Slot with no parameters
+    def SampleSlotWithNoParameters(self) :
+        print("SampleSlotWithNoParameters: Executed with no parameters received.")
+    #End Sub
+    
+    # Slot with 1 parameter
+    def SampleSlotWith1Parameter(self, sData : str) :
+        print(f"SampleSlotWithWith1Parameter: Received {sData}")
+    #End Sub
+    
+    # Slot with 2 parameters
+    def SampleSlotWith2Parameters(self, iData1 : int, sData2 : str) :
+        print(f"SampleSlotWithWith1Parameter: Received {iData1} and {sData2}")
+    #End Sub
 #End Class
 [[/code]]
 
@@ -241,23 +241,23 @@ from SignalSlotTest import SignalEmitter,SignalReceiver
 
 # Main entry point
 if __name__ == "__main__" : 
-    # Create QApplication object and start main event loop
-    appCurrent = QApplication(sys.argv)
+    # Create QApplication object and start main event loop
+    appCurrent = QApplication(sys.argv)
 
-    # Create signal emitter and receiver objects
-    objEmitter = SignalEmitter()
-    objReceiver = SignalReceiver()
+    # Create signal emitter and receiver objects
+    objEmitter = SignalEmitter()
+    objReceiver = SignalReceiver()
 
-    # Connect signals and slots
-    objEmitter.SampleSignalWithNoParameters.connect(objReceiver.SampleSlotWithNoParameters)
-    objEmitter.SampleSignalWith1Parameter.connect(objReceiver.SampleSlotWith1Parameter)
-    objEmitter.SampleSignalWith2Parameters.connect(objReceiver.SampleSlotWith2Parameters)
+    # Connect signals and slots
+    objEmitter.SampleSignalWithNoParameters.connect(objReceiver.SampleSlotWithNoParameters)
+    objEmitter.SampleSignalWith1Parameter.connect(objReceiver.SampleSlotWith1Parameter)
+    objEmitter.SampleSignalWith2Parameters.connect(objReceiver.SampleSlotWith2Parameters)
 
-    # Test emitting signals
-    objEmitter.TestEmittingSignals()
+    # Test emitting signals
+    objEmitter.TestEmittingSignals()
 
-    # Wait until main event loop exits
-    #sys.exit(appCurrent.exec_())
+    # Wait until main event loop exits
+    #sys.exit(appCurrent.exec_())
 #End If
 [[/code]]
 

@@ -6,8 +6,8 @@ Python支持在py文件中定义全局变量，但是在不同文件中对全局
 arrGlobalArray = []
 
 def UpdateGlobalArray() :
-    arrGlobalArray = [2,4,5]
-    print(f"In GlobalVarSource, arrGlobalArray={arrGlobalArray}")
+    arrGlobalArray = [2,4,5]
+    print(f"In GlobalVarSource, arrGlobalArray={arrGlobalArray}")
 #End Sub
 [[/code]]
 
@@ -18,8 +18,8 @@ from GlobalVarSource import *
 
 # Main entry point
 if __name__ == "__main__" : 
-    UpdateGlobalArray()
-    print(f"In GlobalVarUser, arrGlobalArray={arrGlobalArray}")
+    UpdateGlobalArray()
+    print(f"In GlobalVarUser, arrGlobalArray={arrGlobalArray}")
 #End Sub
 [[/code]]
 
@@ -36,13 +36,13 @@ In GlobalVarUser, arrGlobalArray=[]
 
 [[code type="python"]]
 class GlobalVarContainer :
-    arrGlobalArray = []
+    arrGlobalArray = []
 #End Class
 objGlobalVarContainer = GlobalVarContainer()
 
 def UpdateGlobalArray() :
-    objGlobalVarContainer.arrGlobalArray = [2,4,5]
-    print(f"In GlobalVarSource, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
+    objGlobalVarContainer.arrGlobalArray = [2,4,5]
+    print(f"In GlobalVarSource, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
 #End Sub
 [[/code]]
 
@@ -53,8 +53,8 @@ from GlobalVarSource import *
 
 # Main entry point
 if __name__ == "__main__" : 
-    UpdateGlobalArray()
-    print(f"In GlobalVarUser, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
+    UpdateGlobalArray()
+    print(f"In GlobalVarUser, arrGlobalArray={objGlobalVarContainer.arrGlobalArray}")
 #End Sub
 [[/code]]
 

@@ -59,6 +59,6 @@ vendor/google
 [[code]]
 if [ "$kernel_type" = "android" ]
 then
-    build_android
+    build_android
 fi
 [[/code]]

@@ -2,19 +2,19 @@
 
 [[code]]
 System.Runtime.InteropServices.COMException (0x80040154): 類別未登錄 (Exception from HRESULT: 0x80040154 (REGDB_E_CLASSNOTREG))
-   at System.Windows.Forms.UnsafeNativeMethods.CoCreateInstance(Guid& clsid, Object punkOuter, Int32 context, Guid& iid)
-   at System.Windows.Forms.AxHost.CreateWithoutLicense(Guid clsid)
-   at System.Windows.Forms.AxHost.CreateWithLicense(String license, Guid clsid)
-   at System.Windows.Forms.AxHost.CreateInstanceCore(Guid clsid)
-   at System.Windows.Forms.AxHost.CreateInstance()
-   at System.Windows.Forms.AxHost.GetOcxCreate()
-   at System.Windows.Forms.AxHost.TransitionUpTo(Int32 state)
-   at System.Windows.Forms.AxHost.CreateHandle()
-   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
-   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
-   at System.Windows.Forms.AxHost.EndInit()
-   at TEMPer.MainForm.InitializeComponent()
-   at TEMPer.MainForm..ctor()
+   at System.Windows.Forms.UnsafeNativeMethods.CoCreateInstance(Guid& clsid, Object punkOuter, Int32 context, Guid& iid)
+   at System.Windows.Forms.AxHost.CreateWithoutLicense(Guid clsid)
+   at System.Windows.Forms.AxHost.CreateWithLicense(String license, Guid clsid)
+   at System.Windows.Forms.AxHost.CreateInstanceCore(Guid clsid)
+   at System.Windows.Forms.AxHost.CreateInstance()
+   at System.Windows.Forms.AxHost.GetOcxCreate()
+   at System.Windows.Forms.AxHost.TransitionUpTo(Int32 state)
+   at System.Windows.Forms.AxHost.CreateHandle()
+   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   at System.Windows.Forms.Control.CreateControl(Boolean fIgnoreVisible)
+   at System.Windows.Forms.AxHost.EndInit()
+   at TEMPer.MainForm.InitializeComponent()
+   at TEMPer.MainForm..ctor()
 [[/code]]
 
 随后.NET运行时抛出错误{{System.Windows.Forms.AxHost+InvalidActiveXStateException}}，错误消息为“{{Method 'Series' cannot be invoked at this time.}}”。忽略该异常并继续后程序无法正常运行。

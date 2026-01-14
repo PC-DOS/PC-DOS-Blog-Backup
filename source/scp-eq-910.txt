@@ -5,7 +5,7 @@
 **项目编号：**SCP-EQ-910
 
 **项目等级：**--Safe-- Euclid
- 
+ 
 **特殊收容措施：**项目目前被收容在Site-EQ-17惰性潜在超维度类异常收容区Sector 39内的一个特殊加固的保险箱中。访问或调用SCP-EQ-910需要二级及以上的安保许可等级。所有受到SCP-EQ-910的异常性质影响的对象应被转运到Site-EQ-24，按照标准Safe级轻度模因类SCP项目收容协议建立临时收容措施并等待进一步指示。禁止任何存在教师职业背景的职员接近受SCP-EQ-910影响的对象。
 
 [[include <a href="/component:image-block">component:image-block</a> name=SCP-EQ-910.jpg |caption=SCP-EQ-910的外观，于实验中拍摄。 | width=245px]]

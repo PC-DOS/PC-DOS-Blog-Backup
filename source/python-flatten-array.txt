@@ -7,30 +7,30 @@ import itertools
 
 # Checks if a given object is iterable
 def IsIterable(objTest) -> bool :
-    return hasattr(objTest, "__iter__")
+    return hasattr(objTest, "__iter__")
 #End Function
 
 # Flatten arrays with over 1 dimensions to 1D-array
 # If UseNestedFlattening is set, will flatten all child elements
 def FlattenArray(arrOrig : array, UseNestedFlattening : bool = False) -> array :
-    if UseNestedFlattening :
-        arrResult = []
-        # Flatten all child elements
-        for DataElement in arrOrig :
-            if IsIterable(DataElement) :
-                # If current element is iterable, flatten it and add all child elements to flattened array
-                for FlattenedDataElement in FlattenArray(DataElement, True) :
-                    arrResult.append(FlattenedDataElement)
-                #Next
-            else :
-                # If current element is not iterable, all it to flattened array directly
-                arrResult.append(DataElement)
-            #End If
-        #Next
-        return arrResult
-    else :
-        return list(itertools.chain.from_iterable(arrOrig))
-    #End If
+    if UseNestedFlattening :
+        arrResult = []
+        # Flatten all child elements
+        for DataElement in arrOrig :
+            if IsIterable(DataElement) :
+                # If current element is iterable, flatten it and add all child elements to flattened array
+                for FlattenedDataElement in FlattenArray(DataElement, True) :
+                    arrResult.append(FlattenedDataElement)
+                #Next
+            else :
+                # If current element is not iterable, all it to flattened array directly
+                arrResult.append(DataElement)
+            #End If
+        #Next
+        return arrResult
+    else :
+        return list(itertools.chain.from_iterable(arrOrig))
+    #End If
 #End Function
 [[/code]]
 

@@ -48,38 +48,38 @@
 >
 > 备注：标有“*”的页面包含需要复制的附件。
 * *http://www.scp-wiki.net/component:theme —— 请按照该页上指导1至5和7至11所述的要求执行，请注意：务必复制页面的源代码，而非页面上显示的CSS代码。
- * 请按照布景主题页上的指导的指示复制下列页面：
- * *http://www.scp-wiki.net/nav:top
- * *http://www.scp-wiki.net/nav:side @@ @@[[footnote]]对于翻译网站，请在必要时对侧边栏进行修改和调整。您不应简单地复制主站的侧边栏页面。此外，翻译时请仅翻译页面的显示名称（页面标题），而非页面的URL名称（例如{{@@[[[groups-of-interest|相关组织]]]@@}}）[[/footnote]]*
- * *http://www.scp-wiki.net/main @@ @@[[footnote]]您可能需要微调首页的布局。例如，对于新生网站而言，“精品”框可能是暂时无用的（因为您可能暂时找不到精品文档）；您可能也会希望加一个“欢迎”框。[[/footnote]]*
+ * 请按照布景主题页上的指导的指示复制下列页面：
+ * *http://www.scp-wiki.net/nav:top
+ * *http://www.scp-wiki.net/nav:side @@ @@[[footnote]]对于翻译网站，请在必要时对侧边栏进行修改和调整。您不应简单地复制主站的侧边栏页面。此外，翻译时请仅翻译页面的显示名称（页面标题），而非页面的URL名称（例如{{@@[[[groups-of-interest|相关组织]]]@@}}）[[/footnote]]*
+ * *http://www.scp-wiki.net/main @@ @@[[footnote]]您可能需要微调首页的布局。例如，对于新生网站而言，“精品”框可能是暂时无用的（因为您可能暂时找不到精品文档）；您可能也会希望加一个“欢迎”框。[[/footnote]]*
 
 * *http://www.scp-wiki.net/_404 @@ @@[[footnote]]这个模板页存在时，它会在用户打开一个尚不存在的页面时被显示。[[/footnote]]
 
 * 隶属于{{component:}}分类[[footnote]]页面URL中“:”符号前的部分是页面的分类。[[/footnote]]的页面是可以通过{{@@[[@@[http://www.wikidot.com/doc-wiki-syntax:include include]@@]]@@}}语法被包含在其它页面中的模板页。翻译时请不要翻译它们中类似“{$bla}”的代码。
- * *http://www.scp-wiki.net/component:_template @@ @@[[footnote]]这个模板页存在时，它会在所以{{component:}}分类的页面中显示，而不影响这些页面的源代码。[[/footnote]]
- * *http://www.scp-wiki.net/component:area
- * *http://www.scp-wiki.net/component:listpages-hubs
- * *http://www.scp-wiki.net/component:listpages-table
- * *http://www.scp-wiki.net/component:listpages-table-alt
- * *http://www.scp-wiki.net/component:listpages-tales
- * *http://www.scp-wiki.net/component:heritage-rating *
- * *http://www.scp-wiki.net/component:image-block
- * *http://www.scp-wiki.net/component:image-block-base
- * *http://www.scp-wiki.net/component:image-block-left
- * *http://www.scp-wiki.net/component:image-block-left-base
- * *http://www.scp-wiki.net/component:image-block-quoted
- * *http://www.scp-wiki.net/component:image-block-quoted-base
- * *http://www.scp-wiki.net/component:mtf
- * *http://www.scp-wiki.net/component:preview
- * *http://www.scp-wiki.net/component:site *
+ * *http://www.scp-wiki.net/component:_template @@ @@[[footnote]]这个模板页存在时，它会在所以{{component:}}分类的页面中显示，而不影响这些页面的源代码。[[/footnote]]
+ * *http://www.scp-wiki.net/component:area
+ * *http://www.scp-wiki.net/component:listpages-hubs
+ * *http://www.scp-wiki.net/component:listpages-table
+ * *http://www.scp-wiki.net/component:listpages-table-alt
+ * *http://www.scp-wiki.net/component:listpages-tales
+ * *http://www.scp-wiki.net/component:heritage-rating *
+ * *http://www.scp-wiki.net/component:image-block
+ * *http://www.scp-wiki.net/component:image-block-base
+ * *http://www.scp-wiki.net/component:image-block-left
+ * *http://www.scp-wiki.net/component:image-block-left-base
+ * *http://www.scp-wiki.net/component:image-block-quoted
+ * *http://www.scp-wiki.net/component:image-block-quoted-base
+ * *http://www.scp-wiki.net/component:mtf
+ * *http://www.scp-wiki.net/component:preview
+ * *http://www.scp-wiki.net/component:site *
 * 复制这些分类为{{forum:}}的页面时，请仅翻译它们的页面标题，而不要改动页面的代码！
- * *http://www.scp-wiki.net/forum:start
- * *http://www.scp-wiki.net/forum:category
- * *http://www.scp-wiki.net/forum:new-thread
- * *http://www.scp-wiki.net/forum:recent-posts
- * *http://www.scp-wiki.net/forum:recent-threads
- * *http://www.scp-wiki.net/forum:thread
- 
+ * *http://www.scp-wiki.net/forum:start
+ * *http://www.scp-wiki.net/forum:category
+ * *http://www.scp-wiki.net/forum:new-thread
+ * *http://www.scp-wiki.net/forum:recent-posts
+ * *http://www.scp-wiki.net/forum:recent-threads
+ * *http://www.scp-wiki.net/forum:thread
+ 
 * 创建{{random:random-scp}}并填入下述代码[[footnote]]这个页面会自动将用户重定向到一个有随机的“scp”标签的页面。如果您日后想要访问这个页面而不被自动重定向，请在URL尾部加入{{/noredirect/true}}，这样看起来就像{{scp-XX.wikidot.com/random:random-scp/noredirect/true}}。[[/footnote]]：
 > @@[[module ListPages category="*" order="random" limit="1" tag="scp"]]@@
 > @@[[include :snippets:redirect url=%%link%%]]@@
@@ -95,13 +95,13 @@
 * 您应当隐藏Wikidot工具栏。
 * 启用页面评分（您至少应为_default分类的页面启用页面评分）。基金会分部均应使用匿名的“+/- 型”页面评分系统。
 * 配置您网站的讨论区。
- * 我个人建议的讨论区深度为3。
- * 至于讨论区的结构，我个人建议包含一个供一般性SCP相关内容讨论的分区、一个用于批判和寻找/提供帮助的分区、一个用于讨论网站事务的分区、一个单页讨论分区和一个用于存放被删除的讨论串的隐藏分区。别忘了在每个分区中创建至少一个讨论分类。更别忘了保存您的更改。
- * 至少为_default分类的页面启用“单页讨论”功能。我个人建议启用除“forum”、“random”、“search”和“system”分类之外的所有页面的单页讨论功能。
- * 我个人建议关闭在单页讨论中创建新讨论串的功能。当用户在页面对应的讨论区中发帖时会自动创建页面对应的讨论串。单页讨论中不应有用户创建的讨论串。
+ * 我个人建议的讨论区深度为3。
+ * 至于讨论区的结构，我个人建议包含一个供一般性SCP相关内容讨论的分区、一个用于批判和寻找/提供帮助的分区、一个用于讨论网站事务的分区、一个单页讨论分区和一个用于存放被删除的讨论串的隐藏分区。别忘了在每个分区中创建至少一个讨论分类。更别忘了保存您的更改。
+ * 至少为_default分类的页面启用“单页讨论”功能。我个人建议启用除“forum”、“random”、“search”和“system”分类之外的所有页面的单页讨论功能。
+ * 我个人建议关闭在单页讨论中创建新讨论串的功能。当用户在页面对应的讨论区中发帖时会自动创建页面对应的讨论串。单页讨论中不应有用户创建的讨论串。
 
 如果您是一个现存分部的工作人员，但是您的网站的讨论区功能和/或页面评分功能被管理员关闭且这些管理员均已不再活跃且无法联络，那么无论您的分部的用户多么活跃，它已经事实上无法运作了。创建一个新分部网站吧。
- 
+ 
 恭喜您，您已经成功创建了您的新分部的//基础//！ :)
 
 ++ 1.5 元信息标签[[footnote]]译注：也会显示为Meta标签。[[/footnote]]
@@ -112,19 +112,19 @@ Wikidot支持为每一个页面添加元信息标签。它们可以为浏览器�
 
 您同样应当设定[http://ogp.me/ Open Graph]元信息标签来控制指向您的网站的链接如何在社交媒体、Google和其它地方显示。我建议为您的首页设定以下元信息标签：
 * property="{{og:url}}" content="{{exact_url}}"
- * 设定您的网站的实际URL。
+ * 设定您的网站的实际URL。
 * property="{{og:title}}" content="{{the_big_text_in_your_header}}"
- * 就像“International Translation Archive”。
+ * 就像“International Translation Archive”。
 * property="{{og:description}}" content="{{the_small_text_in_your_header}}"
- * 就像“of the SCP Foundation”或其他您想在这里显示的内容。
+ * 就像“of the SCP Foundation”或其他您想在这里显示的内容。
 * property="{{og:image}}" content="{{your_image_url}}"
- * 设定需要显示的图像。我建议使用250x250像素分辨率的图像。Facebook的最小图像大小是200x200像素。我建议使用与首页图标相同的图像。当然，如果您愿意，您也可以上传其他的图像。
+ * 设定需要显示的图像。我建议使用250x250像素分辨率的图像。Facebook的最小图像大小是200x200像素。我建议使用与首页图标相同的图像。当然，如果您愿意，您也可以上传其他的图像。
 
 如果某人发布了一个指向文章（而非首页）的链接，以Facebook为例，它会将页面正文的部分（而非标题部分）的代码中的第一张图像作为链接的图像。因此对于没有插图的文章，链接的图像会被显示为侧边栏上的“红房子”[[footnote]]译注：因为主站侧边栏的第一个链接为“主页”，而“主页”的链接图像往往是一个红色房子。对于中国分部（新人资讯位于顶部）可能显示为“新手指南”的“方块问号”图标？[[/footnote]]。如要需避免这一现象的方式，请在您的侧边栏页面的顶部加入如下代码：{{@@[[image url_of_you_preview_image width="0" height="0"]]@@}}，这样链接预览图像将会使用{{@@http://scp-XX.wdfiles.com/local--files/start/250_logo.png@@}}（您上传到首页的图像）。您也可以在侧边栏页面上传其它图像。
 
 当您完成上述工作时，请确认Facebook等社交媒体以及搜索引擎可以读取正确的信息，并确认Facebook已经缓存了正确的数据：
 * 前往[*https://developers.facebook.com/tools/debug/og/object/ Facebook debugger]，输入您的分部的网址并强制Facebook更新缓存的数据。有时这一更新的实际过程可能需要一些时间，请在每次更新请求之间等待大约30秒。如果您没有Facebook账号，您可以请求一位有Facebook账号的用户代您完成。
- * VK等社交媒体可能也有类似的功能。
+ * VK等社交媒体可能也有类似的功能。
 * 前往[*https://search.google.com/structured-data/testing-tool Google测试工具]来检查您的网站的显示信息是否存在错误。
 
 ++ 1.6 沙盒
@@ -152,64 +152,64 @@ Wikidot支持为每一个页面添加元信息标签。它们可以为浏览器�
 * 行为规范（例如“别当混蛋（Don't be a dick）”或其他您认为有需要的东西）。
 * 未被翻译规则囊括的写作和标签方面的规则。
 * 翻译规则，包含翻译作品的标签使用规则以及下列常见表述（我可能漏了一些）的固定翻译：
- * 项目编号：（Item #:）
- * 项目等级（Object class:）
- * 特殊收容措施：（Special Containment Procedures:）
- * 描述：（Description:）
- * 附录：（Addendum:）
- * 安全（Safe）
- * 无效化（Neutralized）
- * [数据删除]（[Data expunged]）
- * [已编辑]（[Redacted]）
- * 站点（Site）
- * 收容（Containment）
- * 收容间（Containment Chamber）
- * 收容失效（Containment Breach）
- * 记忆消除（Amnestic）
+ * 项目编号：（Item #:）
+ * 项目等级（Object class:）
+ * 特殊收容措施：（Special Containment Procedures:）
+ * 描述：（Description:）
+ * 附录：（Addendum:）
+ * 安全（Safe）
+ * 无效化（Neutralized）
+ * [数据删除]（[Data expunged]）
+ * [已编辑]（[Redacted]）
+ * 站点（Site）
+ * 收容（Containment）
+ * 收容间（Containment Chamber）
+ * 收容失效（Containment Breach）
+ * 记忆消除（Amnestic）
 * **直接使用机器翻译结果的行为应被严格禁止并且可能是导致文档被删除甚至封禁账户的理由！**
 * 您应当制定标签使用规则。标签对于保持维基的简洁性和专业性非常重要。用户应当被要求在页面上使用适当的标签。
- * 您应当创建一份[*http://05command.wikidot.com/tag-guide 英文主站标签合集]的翻译件，这份文档中应包含这些标签在您的目标语言以及英文原版之间的对照。
- * 您应该分别为翻译文档和原创作品制定一个专属标签来标识它们。
+ * 您应当创建一份[*http://05command.wikidot.com/tag-guide 英文主站标签合集]的翻译件，这份文档中应包含这些标签在您的目标语言以及英文原版之间的对照。
+ * 您应该分别为翻译文档和原创作品制定一个专属标签来标识它们。
 * 我强烈建议制定规则，要求所有用户在正式发布原创作品前在讨论区征求意见和反馈，并直到得到一位网站工作人员或其他有经验且值得信赖的网站成员的认可之后才能将作品正式发表。这一规则可以有效避免低质量的“空降作品[[footnote]]译注：该词借用自[*http://rpc-wiki-cn.wikidot.com/ RPC管理局社区]，指没有经过草稿批判流程就直接发表在网站上的原创作品（事实上，RPC管理局社区禁止发表空降作品）。[[/footnote]]”。且强迫包括您和网站工作人员在内的所有成员在正式发表作品前征求反馈可以让每个人受益匪浅。
 * 用户不应当被允许创建新页面分类（即在页面URL中添加“:”并在其前部使用先前未被使用的页面分类）——因为这样做可能破坏预编码的自动页面分类系统。
 
 ++ 2.2 宣传与推广
 如果您的分部不为人知且无人问津，那么它是不值一文的。因此，当您已将一切基础设施安排妥当之后，就是做一些宣传与推广的时候了。
 * 将您建立新分部的消息和您的分部的基本信息告知[[*user LadyKatie]]。她将是您的处理您的分部的对外关系事务时主要联系人，而且她也可能是决定您的分部是否具有成为官方分部的资格的人。
- * 请不要在没有得到她的批准的情况下在主站的讨论区宣告您的分部的建立！
- * 请加入[*http://scp-int.wikidot.com/ SCP基金会国际翻译站]的[*http://scp-int.wikidot.com/chat-guidelines Discord讨论组]。那里有许多资深用户以及几乎所有分部的工作人员可以解答您在建设和运营您的分部时所遭遇的问题。
+ * 请不要在没有得到她的批准的情况下在主站的讨论区宣告您的分部的建立！
+ * 请加入[*http://scp-int.wikidot.com/ SCP基金会国际翻译站]的[*http://scp-int.wikidot.com/chat-guidelines Discord讨论组]。那里有许多资深用户以及几乎所有分部的工作人员可以解答您在建设和运营您的分部时所遭遇的问题。
 * 在您的目标受众最常用的社交媒体上创建一个代表您的分部的账号。
- * 如果条件允许，您可以在更多社交媒体上创建账号，例如Facebook主页、YouTube频道、Twitter账号等。
+ * 如果条件允许，您可以在更多社交媒体上创建账号，例如Facebook主页、YouTube频道、Twitter账号等。
 * 与使用您的目标语言的运营与CreepyPasta相关内容的网站取得联系。您或许可以可以与它们之间互设友情链接（例如SCP基金会德国分部与德文CreepyPasta-Wikia）。有时您甚至可以从那些网站复制CreepyPasta内容的翻译甚至吸纳新成员。
 如果您想要创建图标等内容，您可以使用[*http://05zentrale.wikidot.com/grafiksammlung 我们的模板]。
- 
+ 
 ++ 2.3 发展路线图
 一份路线图是在计划如何达成一个特定目标时重要且趁手的工具，它可以用于追踪所有完成和未完成的工作。在我看来，包括英文主站在内的每一个分部都应该有一份发展路线图。如果您感到困惑，可以参考[http://scp-wiki-de.wikidot.com/about-the-foundation-in-germany 我们的路线图]来找到一些灵感。
 
 针对一个新生的非官方分部，我建议从这样的路线图开始：
 > # 里程碑：基本框架
->  * 创建所有系统页面。
->  * 创建侧边栏链接到的所有页面。
->  * 创建顶栏链接到的所有页面。
->  * 创建必要的指导[[footnote]]您不需要翻译英文主站的每一份指导，有一些指导仅适用于英文主站或特定分部。[[/footnote]]。
->  * 整理一份常见问题解答。
->  * 整理基金会基础设定、背景和概念：
->   * 我们是谁？基金会是什么？
->   * 我们怎样处理那些有争议的概念？例如：核武器、D级人员和Thaumiel级的SCP项目。
->   * 如果我们没有引入其它背景设定，我们是否在暗示我们正在使用一个“主要”的设定？
+>  * 创建所有系统页面。
+>  * 创建侧边栏链接到的所有页面。
+>  * 创建顶栏链接到的所有页面。
+>  * 创建必要的指导[[footnote]]您不需要翻译英文主站的每一份指导，有一些指导仅适用于英文主站或特定分部。[[/footnote]]。
+>  * 整理一份常见问题解答。
+>  * 整理基金会基础设定、背景和概念：
+>   * 我们是谁？基金会是什么？
+>   * 我们怎样处理那些有争议的概念？例如：核武器、D级人员和Thaumiel级的SCP项目。
+>   * 如果我们没有引入其它背景设定，我们是否在暗示我们正在使用一个“主要”的设定？
 > # 里程碑：内容
->  * 翻译最重要和有代表性的主站条目（优先级为B，见第2.4节）。
->  * 如果可能，翻译其它分部的最重要和有代表性的条目[[footnote]]如果您的翻译工作基于其它分部，我个人建议您这么做。[[/footnote]]（优先级为B）。
->  * 从同行网站获取翻译（例如CreepyPasta-Wikia）。
->  * 拥有100篇原创SCP文档。
+>  * 翻译最重要和有代表性的主站条目（优先级为B，见第2.4节）。
+>  * 如果可能，翻译其它分部的最重要和有代表性的条目[[footnote]]如果您的翻译工作基于其它分部，我个人建议您这么做。[[/footnote]]（优先级为B）。
+>  * 从同行网站获取翻译（例如CreepyPasta-Wikia）。
+>  * 拥有100篇原创SCP文档。
 > # 里程碑：成员数超过100名
->  * 策划宣传活动。
->   * 在目标受众中最流行的社交媒体上宣传。
->   * 在目标受众中流行的其它社交媒体上宣传。
->  * 提高网站的Google评分
->   * Google Analytics（参见第2.5节）
->   * 连接到Google搜索控制台。
->   * 建立友情链接。
+>  * 策划宣传活动。
+>   * 在目标受众中最流行的社交媒体上宣传。
+>   * 在目标受众中流行的其它社交媒体上宣传。
+>  * 提高网站的Google评分
+>   * Google Analytics（参见第2.5节）
+>   * 连接到Google搜索控制台。
+>   * 建立友情链接。
 
 ++ 2.4 优先翻译
 我建议您创建一份“翻译优先级”列表——无论您的分部是刚刚建立还是久经考验，您可以从[*http://scp-wiki-de.wikidot.com/uebersetzungsprioritaeten 这里]获得参考。通过“翻译优先级”列表，您和其他成员可以轻松追踪文档的翻译进程并调整待翻译文档池。我建议复制德国分部翻译优先级列表的第25个版本（最为完善）并添加您尚未翻译的文档。一旦翻译工作完成，就将其从列表移除。
@@ -310,13 +310,13 @@ Wikidot语法是非常灵活的，善用它可以造出许多魔法般的惊人�
 
 无论您选择怎么做，都请务必遵守以下规则：
 * 别当混蛋！
- * 不要随意封禁用户！
- * 不要在非必要的情况下删除文档！
- * 不要多管闲事！
+ * 不要随意封禁用户！
+ * 不要在非必要的情况下删除文档！
+ * 不要多管闲事！
 * 如果您想做一位受人尊敬的管理员，请尊重每一个人！
 * 不要在未和其他工作人员讨论的情况下擅自做出决定！
- * 维持网站和管理层的民主！
- * 别忘了听取用户的意见！您总会有不知道的领域，而用户们也会提出您和其他工作人员想不到的新点子。
+ * 维持网站和管理层的民主！
+ * 别忘了听取用户的意见！您总会有不知道的领域，而用户们也会提出您和其他工作人员想不到的新点子。
 * 不要太官僚主义！
 * 支持您的社区，而非引领它！
 * 做一个值得信任的人！请尊重他人的隐私，不到万不得已，请不要公开私信内容！

@@ -4,14 +4,14 @@
 
 [[code]]
 void MyObject::MySlot(){
-    //Event handler
-    //...
-    //Show non-modal message box, to avoid execptions
-    QMessageBox * msgBox = new QMessageBox(QMessageBox::Information, tr("Title"), tr("Info"));
-    msgBox->setAttribute(Qt::WA_DeleteOnClose);
-    msgBox->setModal(false);
-    msgBox->show();
-    return;
+    //Event handler
+    //...
+    //Show non-modal message box, to avoid execptions
+    QMessageBox * msgBox = new QMessageBox(QMessageBox::Information, tr("Title"), tr("Info"));
+    msgBox->setAttribute(Qt::WA_DeleteOnClose);
+    msgBox->setModal(false);
+    msgBox->show();
+    return;
 }
 [[/code]]
 

@@ -23,54 +23,54 @@ Exynos 4412外部地址总线与GPIO接口组Y（GPY）存在端口复用关系�
 
 [[code]]
 /* CSn, WE, OE*/
-ldr  r0, =0x11000120 //GPY0CON
-ldr  r1, =0x00222222 //SROM_CSn, EBI_OEn, EBI_WEn
-str  r1, [r0]
+ldr  r0, =0x11000120 //GPY0CON
+ldr  r1, =0x00222222 //SROM_CSn, EBI_OEn, EBI_WEn
+str  r1, [r0]
 
 
 /* BE, WAIT, RD */
-ldr  r0, =0x11000140 //GPY1CON
-ldr  r1, =0x00002222 //EBI
-str  r1, [r0]
+ldr  r0, =0x11000140 //GPY1CON
+ldr  r1, =0x00002222 //EBI
+str  r1, [r0]
 
 
 /* ADDR[0-7], pull up */
-ldr  r0, =0x11000180 //GPY3CON
-ldr  r1, =0x22222222 //EBI_ADDR
-str  r1, [r0]
-ldr  r0, =0x11000188 //GPY3PUD
-ldr  r1, =0x0000FFFF //PULL_UP
-str  r1, [r0]
+ldr  r0, =0x11000180 //GPY3CON
+ldr  r1, =0x22222222 //EBI_ADDR
+str  r1, [r0]
+ldr  r0, =0x11000188 //GPY3PUD
+ldr  r1, =0x0000FFFF //PULL_UP
+str  r1, [r0]
 
 
 /* DATA[0-7], pull up */
-ldr  r0, =0x110001C0 //GPY5CON
-ldr  r1, =0x22222222 //EBI_DATA
-str  r1, [r0]
-ldr  r0, =0x110001C8 //GPY5PUD
-ldr  r1, =0x0000FFFF //PULL_UP
-str  r1, [r0]
+ldr  r0, =0x110001C0 //GPY5CON
+ldr  r1, =0x22222222 //EBI_DATA
+str  r1, [r0]
+ldr  r0, =0x110001C8 //GPY5PUD
+ldr  r1, =0x0000FFFF //PULL_UP
+str  r1, [r0]
 
 
 /* DATA[8-15], pull up */
-ldr  r0, =0x110001E0 //GPY6CON
-ldr  r1, =0x22222222 //EBI_DATA
-str  r1, [r0]
-ldr  r0, =0x110001E8 //GPY6PUD
-ldr  r1, =0x0000FFFF //PULL_UP
-str  r1, [r0]
+ldr  r0, =0x110001E0 //GPY6CON
+ldr  r1, =0x22222222 //EBI_DATA
+str  r1, [r0]
+ldr  r0, =0x110001E8 //GPY6PUD
+ldr  r1, =0x0000FFFF //PULL_UP
+str  r1, [r0]
 
 
 /* SROM BANK 1 */
-ldr  r0, =0x12570000 //SROM_BW
-ldr  r1, [r0]
-orr  r1, r1, #0xF0 //视情况改变SROM_BW寄存器的值
-str  r1, [r0]
+ldr  r0, =0x12570000 //SROM_BW
+ldr  r1, [r0]
+orr  r1, r1, #0xF0 //视情况改变SROM_BW寄存器的值
+str  r1, [r0]
 
 
-ldr  r0, =0x12570008 //SROM_BC1
-ldr  r1, =SROM_BC1_VAL //视情况改变SROM_BCn寄存器的值
-str  r1, [r0] 
+ldr  r0, =0x12570008 //SROM_BC1
+ldr  r1, =SROM_BC1_VAL //视情况改变SROM_BCn寄存器的值
+str  r1, [r0] 
 [[/code]]
 
 + C代码
@@ -79,14 +79,14 @@ str  r1, [r0]
 
 [[code type="cpp"]]
 /* PLATFORM SUPPORT :: SROM ACCESS :: SAMSUNG :: EXYNOS 4412
- * 
- * This header file contains code that used to configure Samsung Exynos 4412 SoC's External Bus Interface (EBI) for SROM access.
- * Including register configurations and GPIO pin configurations.
- *
- * GPIO constants and functions are defined in the following location(s) in iTop-4412's Linux Kernel source:
- * - arch\arm\plat-samsung\include\plat\gpio-cfg.h
- * 
- */
+ * 
+ * This header file contains code that used to configure Samsung Exynos 4412 SoC's External Bus Interface (EBI) for SROM access.
+ * Including register configurations and GPIO pin configurations.
+ *
+ * GPIO constants and functions are defined in the following location(s) in iTop-4412's Linux Kernel source:
+ * - arch\arm\plat-samsung\include\plat\gpio-cfg.h
+ * 
+ */
 
 #ifndef _PLATFORMSUPPORT_SROMACCESS_SAMSUNG_EXYNOS4412_H
 #define _PLATFORMSUPPORT_SROMACCESS_SAMSUNG_EXYNOS4412_H
@@ -169,94 +169,94 @@ static unsigned int iSromBc1; //Value of SROM_BC1
 /* Configure SROM access on initializing */
 //Returns 0 if operation is success
 static int InitConfigureSROMAccess(){
-    //Config SROM_BXx Registers
-    request_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
-    lpSromRegistersBaseAddress = ioremap(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE);
-    lpSromRegistersResource = request_mem_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
-    if (lpSromRegistersBaseAddress){
-    	NFOPRINT("SFR SROM_BW and SROM_BCn mapped to virtual address 0x%x.\n", lpSromRegistersBaseAddress);
-    	
-    	iSromBw=__raw_readl(lpSromRegistersBaseAddress);
-    	DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
-    	iSromBw=iSromBw | S3C_REGISTER_SROM_BW_CONFIG_BITS;
-    	DBGPRINT("Writing SROM_BW with 0x%x inorder to config Xm0Cs1.\n", iSromBw);
-    	__raw_writel(iSromBw, lpSromRegistersBaseAddress);
-    	iSromBw=__raw_readl(lpSromRegistersBaseAddress);
-    	DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
-    	
-    	iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
-    	DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
-    	iSromBc1=iSromBc1 | S3C_REGISTER_SROM_BC1_CONFIG_BITS;
-    	DBGPRINT("Writing SROM_BC1 with 0x%x inorder to config Xm0Cs1.\n", iSromBc1);
-    	__raw_writel(iSromBc1, lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
-    	iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
-    	DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
-    }
-    else{
-    	WRNPRINT("Failed to map SFR SROM_BW and SROM_BCn. The remap of external device at Xm0Cs1 may not success.\n");
-    }
-    //Request GPIOs for external device mapping
-    int iCsResult=0;
-    iCsResult=gpio_request(CHIP_SELECT_GPIO_LABEL, CHIP_SELECT_GPIO_NAME);
-    if (0==iCsResult){
-    	//Config EBI
-    	int iEBIConfigResult=0;
-    	//GPY0
-    	iEBIConfigResult=s3c_gpio_cfgpin(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[1] to 0x2 (SROM_CSn[1])
-    	if (iEBIConfigResult != 0){
-    		WRNPRINT("Failed to config GPY0_1 (Xm0Cs1), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	}
-    	s3c_gpio_setpull(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[1] to PULL_UP
-    	s5p_gpio_set_drvstr(CHIP_SELECT_GPIO_LABEL, S5P_GPIO_DRVSTR_LV4); //Set drive strength to max
-    	iEBIConfigResult=s3c_gpio_cfgpin(EBI_WEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[5] to 0x2 (EBI_WEn)
-    	if (iEBIConfigResult != 0){
-    		WRNPRINT("Failed to config GPY0_5 (Xm0WEn), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	}
-    	s3c_gpio_setpull(EBI_WEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[5] to PULL_UP
-    	iEBIConfigResult=s3c_gpio_cfgpin(EBI_OEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[4] to 0x2 (EBI_OEn)
-    	if (iEBIConfigResult != 0){
-    		WRNPRINT("Failed to config GPY0_4 (Xm0OEn), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	}
-    	s3c_gpio_setpull(EBI_OEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[4] to PULL_UP
-    	//GPY1
-    	iEBIConfigResult=s3c_gpio_cfgall_range(EBI_GPY1CON_START, EBI_GPY1CON_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY1CON to 0x00002222 (EBI_DATA_RDn, SROM_WAITn, EBI_BEn[1], EBI_BEn[0])
-    	if (iEBIConfigResult != 0){
-    		WRNPRINT("Failed to config GPY1, Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	}
-    	//ADDR
-    	s3c_gpio_cfgall_range(EBI_ADDRLOW_START, EBI_ADDRLOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY3CON to 0x22222222 (EBI_ADDR[7..0]), and set GPY3PUD to 0x0000FFFF (PULL_UP)
-    	if (iEBIConfigResult != 0){
-    		WRNPRINT("Failed to config GPY3 (Xm0ADDR[0..7]), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	}
-    	//s3c_gpio_cfgall_range(EBI_ADDRHIGH_START, EBI_ADDRHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY4CON to 0x22222222 (EBI_ADDR[15..8]), and set GPY4PUD to 0x0000FFFF (PULL_UP)
-    	//if (iEBIConfigResult != 0){
-    	//	WRNPRINT("Failed to config GPY4 (Xm0ADDR[8..15]), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	//}
-    	//DATA
-    	s3c_gpio_cfgall_range(EBI_DATALOW_START, EBI_DATALOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP);
-    	if (iEBIConfigResult != 0){
-    		WRNPRINT("Failed to config GPY5 (Xm0DATA[0..7]), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	}
-    	s3c_gpio_cfgall_range(EBI_DATAHIGH_START, EBI_DATAHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY5CON & GPY6CON to 0x22222222 (EBI_DATA), and set GPY5PUD & GPY6PUD to 0x0000FFFF (PULL_UP)
-    	if (iEBIConfigResult != 0){
-    		WRNPRINT("Failed to config GPY6, Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
-    	}
-    	
-    	gpio_free(CHIP_SELECT_GPIO_LABEL);
-    	return 0;
-    }
-    else{
-    	WRNPRINT("Request GPIO %d failed with return code %d. Unnable to remap external device.\n", CHIP_SELECT_GPIO_LABEL, iCsResult);
-    	return iCsResult;
-    }
+    //Config SROM_BXx Registers
+    request_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
+    lpSromRegistersBaseAddress = ioremap(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE);
+    lpSromRegistersResource = request_mem_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE, S3C_REGISTER_SROM_NAME);
+    if (lpSromRegistersBaseAddress){
+    	NFOPRINT("SFR SROM_BW and SROM_BCn mapped to virtual address 0x%x.\n", lpSromRegistersBaseAddress);
+    	
+    	iSromBw=__raw_readl(lpSromRegistersBaseAddress);
+    	DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
+    	iSromBw=iSromBw | S3C_REGISTER_SROM_BW_CONFIG_BITS;
+    	DBGPRINT("Writing SROM_BW with 0x%x inorder to config Xm0Cs1.\n", iSromBw);
+    	__raw_writel(iSromBw, lpSromRegistersBaseAddress);
+    	iSromBw=__raw_readl(lpSromRegistersBaseAddress);
+    	DBGPRINT("SFR SROM_BW=0x%x.\n", iSromBw);
+    	
+    	iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
+    	DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
+    	iSromBc1=iSromBc1 | S3C_REGISTER_SROM_BC1_CONFIG_BITS;
+    	DBGPRINT("Writing SROM_BC1 with 0x%x inorder to config Xm0Cs1.\n", iSromBc1);
+    	__raw_writel(iSromBc1, lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
+    	iSromBc1=__raw_readl(lpSromRegistersBaseAddress + S3C_REGISTER_SROM_BC1_ADDR_OFFSET);
+    	DBGPRINT("SFR SROM_BC1=0x%x.\n", iSromBc1);
+    }
+    else{
+    	WRNPRINT("Failed to map SFR SROM_BW and SROM_BCn. The remap of external device at Xm0Cs1 may not success.\n");
+    }
+    //Request GPIOs for external device mapping
+    int iCsResult=0;
+    iCsResult=gpio_request(CHIP_SELECT_GPIO_LABEL, CHIP_SELECT_GPIO_NAME);
+    if (0==iCsResult){
+    	//Config EBI
+    	int iEBIConfigResult=0;
+    	//GPY0
+    	iEBIConfigResult=s3c_gpio_cfgpin(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[1] to 0x2 (SROM_CSn[1])
+    	if (iEBIConfigResult != 0){
+    		WRNPRINT("Failed to config GPY0_1 (Xm0Cs1), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	}
+    	s3c_gpio_setpull(CHIP_SELECT_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[1] to PULL_UP
+    	s5p_gpio_set_drvstr(CHIP_SELECT_GPIO_LABEL, S5P_GPIO_DRVSTR_LV4); //Set drive strength to max
+    	iEBIConfigResult=s3c_gpio_cfgpin(EBI_WEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[5] to 0x2 (EBI_WEn)
+    	if (iEBIConfigResult != 0){
+    		WRNPRINT("Failed to config GPY0_5 (Xm0WEn), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	}
+    	s3c_gpio_setpull(EBI_WEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[5] to PULL_UP
+    	iEBIConfigResult=s3c_gpio_cfgpin(EBI_OEN_GPIO_LABEL, S3C_GPIO_SFN(0x2)); //Set GPY0CON[4] to 0x2 (EBI_OEn)
+    	if (iEBIConfigResult != 0){
+    		WRNPRINT("Failed to config GPY0_4 (Xm0OEn), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	}
+    	s3c_gpio_setpull(EBI_OEN_GPIO_LABEL, S3C_GPIO_PULL_UP); //Set GPY0PUD[4] to PULL_UP
+    	//GPY1
+    	iEBIConfigResult=s3c_gpio_cfgall_range(EBI_GPY1CON_START, EBI_GPY1CON_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY1CON to 0x00002222 (EBI_DATA_RDn, SROM_WAITn, EBI_BEn[1], EBI_BEn[0])
+    	if (iEBIConfigResult != 0){
+    		WRNPRINT("Failed to config GPY1, Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	}
+    	//ADDR
+    	s3c_gpio_cfgall_range(EBI_ADDRLOW_START, EBI_ADDRLOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY3CON to 0x22222222 (EBI_ADDR[7..0]), and set GPY3PUD to 0x0000FFFF (PULL_UP)
+    	if (iEBIConfigResult != 0){
+    		WRNPRINT("Failed to config GPY3 (Xm0ADDR[0..7]), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	}
+    	//s3c_gpio_cfgall_range(EBI_ADDRHIGH_START, EBI_ADDRHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //set GPY4CON to 0x22222222 (EBI_ADDR[15..8]), and set GPY4PUD to 0x0000FFFF (PULL_UP)
+    	//if (iEBIConfigResult != 0){
+    	//	WRNPRINT("Failed to config GPY4 (Xm0ADDR[8..15]), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	//}
+    	//DATA
+    	s3c_gpio_cfgall_range(EBI_DATALOW_START, EBI_DATALOW_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP);
+    	if (iEBIConfigResult != 0){
+    		WRNPRINT("Failed to config GPY5 (Xm0DATA[0..7]), Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	}
+    	s3c_gpio_cfgall_range(EBI_DATAHIGH_START, EBI_DATAHIGH_PINCOUNT, S3C_GPIO_SFN(0x2), S3C_GPIO_PULL_UP); //Set GPY5CON & GPY6CON to 0x22222222 (EBI_DATA), and set GPY5PUD & GPY6PUD to 0x0000FFFF (PULL_UP)
+    	if (iEBIConfigResult != 0){
+    		WRNPRINT("Failed to config GPY6, Error %d. The remap of external device at Xm0Cs1 may not success.\n", iEBIConfigResult);
+    	}
+    	
+    	gpio_free(CHIP_SELECT_GPIO_LABEL);
+    	return 0;
+    }
+    else{
+    	WRNPRINT("Request GPIO %d failed with return code %d. Unnable to remap external device.\n", CHIP_SELECT_GPIO_LABEL, iCsResult);
+    	return iCsResult;
+    }
 }
 
 /* Release SROM access on initializing */
 static void ExitReleaseSROMAccess(){
-    iounmap(lpSromRegistersBaseAddress);
-    release_mem_region(lpSromRegistersResource, S3C_REGISTER_SROM_SIZE_BYTE);
-    release_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE);
-    return;
+    iounmap(lpSromRegistersBaseAddress);
+    release_mem_region(lpSromRegistersResource, S3C_REGISTER_SROM_SIZE_BYTE);
+    release_region(S3C_REGISTER_SROM_BASE_ADDR, S3C_REGISTER_SROM_SIZE_BYTE);
+    return;
 }
 
 #endif

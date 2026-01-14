@@ -30,7 +30,7 @@
 // Target Devices: 
 // Tool Versions: 
 // Description: A demo state machine with only one part.
-//              This timing logic part finishs all work: Judgement, execution and state transition.
+//              This timing logic part finishs all work: Judgement, execution and state transition.
 // 
 // Dependencies: 
 // 
@@ -42,74 +42,74 @@
 
 
 module StateMachineDemo1Part(
-    //Clock and Reset signal
-    input iClock,
-    input iReset,
-    //Sample input
-    input [1:0] iData,
-    //Sample output
-    output reg [3:0] oResult
-    );
-    
-    //State definitions
-    localparam STATE_DEFAULT = 4'b0000,
-               STATE_S1      = 4'b0001,
-               STATE_S2      = 4'b0010,
-               STATE_S3      = 4'b0011;
-    
-    //State register
-    reg [3:0] rCurrentState;
-    
-    //Timing logic: State Machine judegement, output and state transition (combined with state update)
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            oResult <= 0;
-            rCurrentState <= STATE_DEFAULT;
-        end
-        else begin
-            case (rCurrentState)
-                STATE_DEFAULT: begin
-                    if (iData == 2'b01) begin
-                        //Function execution & Output update
-                        oResult <= 1;
-                        //State transition
-                        rCurrentState <= STATE_S1;
-                    end
-                    else begin
-                        //Function execution & Output update
-                        oResult <= 0;
-                        //State transition
-                        rCurrentState <= STATE_DEFAULT;
-                    end
-                end
-                STATE_S1: begin
-                    //Function execution & Output update
-                    oResult <= 2;
-                    //State transition
-                    rCurrentState <= STATE_S2;
-                end
-                STATE_S2: begin
-                    //Function execution & Output update
-                    oResult <= 3;
-                    //State transition
-                    rCurrentState <= STATE_S3;
-                end
-                STATE_S3: begin
-                    //Function execution & Output update
-                    oResult <= 0;
-                    //State transition
-                    rCurrentState <= STATE_DEFAULT;
-                end
-                default: begin
-                    //Function execution & Output update
-                    oResult <= 0;
-                    //State transition
-                    rCurrentState <= STATE_DEFAULT;
-                end
-            endcase 
-        end
-    end
-    
+    //Clock and Reset signal
+    input iClock,
+    input iReset,
+    //Sample input
+    input [1:0] iData,
+    //Sample output
+    output reg [3:0] oResult
+    );
+    
+    //State definitions
+    localparam STATE_DEFAULT = 4'b0000,
+               STATE_S1      = 4'b0001,
+               STATE_S2      = 4'b0010,
+               STATE_S3      = 4'b0011;
+    
+    //State register
+    reg [3:0] rCurrentState;
+    
+    //Timing logic: State Machine judegement, output and state transition (combined with state update)
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            oResult <= 0;
+            rCurrentState <= STATE_DEFAULT;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //Function execution & Output update
+                        oResult <= 1;
+                        //State transition
+                        rCurrentState <= STATE_S1;
+                    end
+                    else begin
+                        //Function execution & Output update
+                        oResult <= 0;
+                        //State transition
+                        rCurrentState <= STATE_DEFAULT;
+                    end
+                end
+                STATE_S1: begin
+                    //Function execution & Output update
+                    oResult <= 2;
+                    //State transition
+                    rCurrentState <= STATE_S2;
+                end
+                STATE_S2: begin
+                    //Function execution & Output update
+                    oResult <= 3;
+                    //State transition
+                    rCurrentState <= STATE_S3;
+                end
+                STATE_S3: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                    //State transition
+                    rCurrentState <= STATE_DEFAULT;
+                end
+                default: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                    //State transition
+                    rCurrentState <= STATE_DEFAULT;
+                end
+            endcase 
+        end
+    end
+    
 endmodule
 [[/code]]
 
@@ -137,8 +137,8 @@ endmodule
 // Target Devices: 
 // Tool Versions: 
 // Description: A demo state machine with 2 parts.
-//              Part 1: A timing logic part, updates current state register.
-//              Part 2: A combo logic part, judges current staste, executes corresponding function, and generates next state.
+//              Part 1: A timing logic part, updates current state register.
+//              Part 2: A combo logic part, judges current staste, executes corresponding function, and generates next state.
 // 
 // Dependencies: 
 // 
@@ -150,81 +150,81 @@ endmodule
 
 
 module StateMachineDemo2Parts(
-    input iClock,
-    input iReset,
-    input [7:0] iData,
-    output reg [3:0] oResult
-    );
-    
-    //State definitions
-    localparam STATE_DEFAULT = 4'b0000,
-               STATE_S1      = 4'b0001,
-               STATE_S2      = 4'b0010,
-               STATE_S3      = 4'b0011;
-    
-    //State register
-    reg [3:0] rCurrentState, rNextState;
-    
-    //Timing logic: State Machine state update
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            rCurrentState <= STATE_DEFAULT;
-        end
-        else begin
-            rCurrentState <= rNextState;
-        end
-    end
-    
-    //Combo logic: State Machine judegement, output and state transition
-    always @ (*) begin
-        if (iReset) begin
-            oResult = 0;
-            rNextState = STATE_DEFAULT;
-        end
-        else begin
-            case (rCurrentState)
-                STATE_DEFAULT: begin
-                    if (iData == 2'b01) begin
-                        //Function execution & Output update
-                        oResult = 1;
-                        //State transition
-                        rNextState = STATE_S1;
-                    end
-                    else begin
-                        //Function execution & Output update
-                        oResult = 0;
-                        //State transition
-                        rNextState = STATE_DEFAULT;
-                    end
-                end
-                STATE_S1: begin
-                    //Function execution & Output update
-                    oResult = 2;
-                    //State transition
-                    rNextState = STATE_S2;
-                end
-                STATE_S2: begin
-                    //Function execution & Output update
-                    oResult = 3;
-                    //State transition
-                    rCurrentState = STATE_S3;
-                end
-                STATE_S3: begin
-                    //Function execution & Output update
-                    oResult = 0;
-                    //State transition
-                    rNextState = STATE_DEFAULT;
-                end
-                default: begin
-                    //Function execution & Output update
-                    oResult = 0;
-                    //State transition
-                    rNextState = STATE_DEFAULT;
-                end
-            endcase 
-        end
-    end
-    
+    input iClock,
+    input iReset,
+    input [7:0] iData,
+    output reg [3:0] oResult
+    );
+    
+    //State definitions
+    localparam STATE_DEFAULT = 4'b0000,
+               STATE_S1      = 4'b0001,
+               STATE_S2      = 4'b0010,
+               STATE_S3      = 4'b0011;
+    
+    //State register
+    reg [3:0] rCurrentState, rNextState;
+    
+    //Timing logic: State Machine state update
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rCurrentState <= STATE_DEFAULT;
+        end
+        else begin
+            rCurrentState <= rNextState;
+        end
+    end
+    
+    //Combo logic: State Machine judegement, output and state transition
+    always @ (*) begin
+        if (iReset) begin
+            oResult = 0;
+            rNextState = STATE_DEFAULT;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //Function execution & Output update
+                        oResult = 1;
+                        //State transition
+                        rNextState = STATE_S1;
+                    end
+                    else begin
+                        //Function execution & Output update
+                        oResult = 0;
+                        //State transition
+                        rNextState = STATE_DEFAULT;
+                    end
+                end
+                STATE_S1: begin
+                    //Function execution & Output update
+                    oResult = 2;
+                    //State transition
+                    rNextState = STATE_S2;
+                end
+                STATE_S2: begin
+                    //Function execution & Output update
+                    oResult = 3;
+                    //State transition
+                    rCurrentState = STATE_S3;
+                end
+                STATE_S3: begin
+                    //Function execution & Output update
+                    oResult = 0;
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+                default: begin
+                    //Function execution & Output update
+                    oResult = 0;
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+            endcase 
+        end
+    end
+    
 endmodule
 [[/code]]
 
@@ -255,9 +255,9 @@ endmodule
 // Target Devices: 
 // Tool Versions: 
 // Description: A demo state machine with 3 parts.
-//              Part 1: A timing logic part, updates current state register.
-//              Part 2: A combo logic part, defines a state transition table.
-//              Part 3: A timing logic part, judges current staste and executes corresponding function.
+//              Part 1: A timing logic part, updates current state register.
+//              Part 2: A combo logic part, defines a state transition table.
+//              Part 3: A timing logic part, judges current staste and executes corresponding function.
 // 
 // Dependencies: 
 // 
@@ -269,105 +269,105 @@ endmodule
 
 
 module StateMachineDemo3Parts(
-    input iClock,
-    input iReset,
-    input [7:0] iData,
-    output reg [3:0] oResult
-    );
-    
-    //State definitions
-    localparam STATE_DEFAULT = 4'b0000,
-               STATE_S1      = 4'b0001,
-               STATE_S2      = 4'b0010,
-               STATE_S3      = 4'b0011;
-    
-    //State register
-    reg [3:0] rCurrentState, rNextState;
-    
-    //Timing logic: State Machine state update
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            rCurrentState <= STATE_DEFAULT;
-        end
-        else begin
-            rCurrentState <= rNextState;
-        end
-    end
-    
-    //Combo logic: State Machine state transition
-    always @ (*) begin
-        if (iReset) begin
-            rNextState = STATE_DEFAULT;
-        end
-        else begin
-            case (rCurrentState)
-                STATE_DEFAULT: begin
-                    if (iData == 2'b01) begin
-                        //State transition
-                        rNextState = STATE_S1;
-                    end
-                    else begin
-                        //State transition
-                        rNextState = STATE_DEFAULT;
-                    end
-                end
-                STATE_S1: begin
-                    //State transition
-                    rNextState = STATE_S2;
-                end
-                STATE_S2: begin
-                    //State transition
-                    rCurrentState = STATE_S3;
-                end
-                STATE_S3: begin
-                    //State transition
-                    rNextState = STATE_DEFAULT;
-                end
-                default: begin
-                    //State transition
-                    rNextState = STATE_DEFAULT;
-                end
-            endcase 
-        end
-    end
-    
-    //Timing logic: State Machine judegement and output
-    always @ (posedge iClock) begin
-        if (iReset) begin
-            oResult <= 0;
-        end
-        else begin
-            case (rCurrentState)
-                STATE_DEFAULT: begin
-                    if (iData == 2'b01) begin
-                        //Function execution & Output update
-                        oResult <= 1;
-                    end
-                    else begin
-                        //Function execution & Output update
-                        oResult <= 0;
-                    end
-                end
-                STATE_S1: begin
-                    //Function execution & Output update
-                    oResult <= 2;
-                end
-                STATE_S2: begin
-                    //Function execution & Output update
-                    oResult <= 3;
-                end
-                STATE_S3: begin
-                    //Function execution & Output update
-                    oResult <= 0;
-                end
-                default: begin
-                    //Function execution & Output update
-                    oResult <= 0;
-                end
-            endcase 
-        end
-    end
-    
+    input iClock,
+    input iReset,
+    input [7:0] iData,
+    output reg [3:0] oResult
+    );
+    
+    //State definitions
+    localparam STATE_DEFAULT = 4'b0000,
+               STATE_S1      = 4'b0001,
+               STATE_S2      = 4'b0010,
+               STATE_S3      = 4'b0011;
+    
+    //State register
+    reg [3:0] rCurrentState, rNextState;
+    
+    //Timing logic: State Machine state update
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            rCurrentState <= STATE_DEFAULT;
+        end
+        else begin
+            rCurrentState <= rNextState;
+        end
+    end
+    
+    //Combo logic: State Machine state transition
+    always @ (*) begin
+        if (iReset) begin
+            rNextState = STATE_DEFAULT;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //State transition
+                        rNextState = STATE_S1;
+                    end
+                    else begin
+                        //State transition
+                        rNextState = STATE_DEFAULT;
+                    end
+                end
+                STATE_S1: begin
+                    //State transition
+                    rNextState = STATE_S2;
+                end
+                STATE_S2: begin
+                    //State transition
+                    rCurrentState = STATE_S3;
+                end
+                STATE_S3: begin
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+                default: begin
+                    //State transition
+                    rNextState = STATE_DEFAULT;
+                end
+            endcase 
+        end
+    end
+    
+    //Timing logic: State Machine judegement and output
+    always @ (posedge iClock) begin
+        if (iReset) begin
+            oResult <= 0;
+        end
+        else begin
+            case (rCurrentState)
+                STATE_DEFAULT: begin
+                    if (iData == 2'b01) begin
+                        //Function execution & Output update
+                        oResult <= 1;
+                    end
+                    else begin
+                        //Function execution & Output update
+                        oResult <= 0;
+                    end
+                end
+                STATE_S1: begin
+                    //Function execution & Output update
+                    oResult <= 2;
+                end
+                STATE_S2: begin
+                    //Function execution & Output update
+                    oResult <= 3;
+                end
+                STATE_S3: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                end
+                default: begin
+                    //Function execution & Output update
+                    oResult <= 0;
+                end
+            endcase 
+        end
+    end
+    
 endmodule
 [[/code]]
 

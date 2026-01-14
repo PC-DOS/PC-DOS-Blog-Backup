@@ -3,14 +3,14 @@
 [[code type="Cpp"]]
 //Worker是继承自QObject的工作者对象，使用QObject::moveToThread()移动到子线程上
 void Worker::InfinityJob() {
-    while (bIsRunning) {
-        //执行耗时操作和sleep()延时
-        //usleep(50);
+    while (bIsRunning) {
+        //执行耗时操作和sleep()延时
+        //usleep(50);
 
-        //允许子线程事件循环处理事件队列，并更新IsRunning变量
-        QApplication::processEvents();
-    }
-    return;
+        //允许子线程事件循环处理事件队列，并更新IsRunning变量
+        QApplication::processEvents();
+    }
+    return;
 }
 [[/code]]
 
@@ -25,22 +25,22 @@ void Worker::InfinityJob() {
 #include <QObject>
 
 class Worker : public QObject {
-    Q_OBJECT
-    
+    Q_OBJECT
+    
 public:
-    Worker();
-    ~Worker();
-    
+    Worker();
+    ~Worker();
+    
 public slots:
-    /* 这里放置各类槽函数的实现 */
-    void ExecuteWorkRequestedEventHandler();
-    void StopWorkRequestedEventHandler();
-    
-    /* 具体的工作 */
-    void InfinityJob();
-    
+    /* 这里放置各类槽函数的实现 */
+    void ExecuteWorkRequestedEventHandler();
+    void StopWorkRequestedEventHandler();
+    
+    /* 具体的工作 */
+    void InfinityJob();
+    
 private:
-    bool bIsRunning; //指示是否需要继续工作循环
+    bool bIsRunning; //指示是否需要继续工作循环
 };
 
 #endif // WORKER_H
@@ -52,34 +52,34 @@ private:
 #include "Worker.h"
 
 Worker::Worker() {
-    bIsRunning = false;
+    bIsRunning = false;
 }
 
 Worker::~Worker() {
-    bIsRunning = false;
+    bIsRunning = false;
 }
 
 void Worker::ExecuteWorkRequestedEventHandler() {
-    bIsRunning = true;
-    //开始执行InfinityJob()
-    QTimer::singleShot(0, this, SLOT(InfinityJob()));
-    return;
+    bIsRunning = true;
+    //开始执行InfinityJob()
+    QTimer::singleShot(0, this, SLOT(InfinityJob()));
+    return;
 }
 
 void Worker::StopWorkRequestedEventHandler() {
-    bIsRunning = false;
-    return;
+    bIsRunning = false;
+    return;
 }
 
 void Worker::InfinityJob() {
-    //执行耗时操作
+    //执行耗时操作
 
-    //检查是否需要继续执行，并调用QTimer::singleShot()执行自身
-    if (bIsRunning) {
-        QTimer::singleShot(0, this, SLOT(InfinityJob()));
-    }
+    //检查是否需要继续执行，并调用QTimer::singleShot()执行自身
+    if (bIsRunning) {
+        QTimer::singleShot(0, this, SLOT(InfinityJob()));
+    }
 
-    return;
+    return;
 }
 [[/code]]
 

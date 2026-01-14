@@ -7,9 +7,9 @@
 [[code]]
 %SYSTEMROOT%\System32\net session >nul 2>&1
 if NOT %errorLevel% == 0 (
-  echo ERROR: Administrative permissions are not available. Please restart the command line shell as Administrator.
-  set EXITCODE=1
-  goto :end
+  echo ERROR: Administrative permissions are not available. Please restart the command line shell as Administrator.
+  set EXITCODE=1
+  goto :end
 )
 [[/code]]
 
