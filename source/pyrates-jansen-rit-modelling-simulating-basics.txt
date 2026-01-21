@@ -212,11 +212,11 @@ dSimulationDurationReal = dSimulationPaddingAtStart + dSimulationDuration + dSam
 # Note that scipy.signal.square() generates a square wave with a period of 2*pi and a range of [-1, 1]
 # See https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.square.html#scipy.signal.square
 # In this demo, we generated a signal with 130 Hz frequency and 10% cycle duty, in the range of [0, 5]
-dInputSignalAmplitude=2.5
-dInputSignalFreq=130
-dInputSignalPhase=0.0
-dInputSignalDuty=0.1
-dInputSignalOffset=2.5
+dInputSignalAmplitude = 2.5
+dInputSignalFreq = 130
+dInputSignalPhase = 0.0
+dInputSignalDuty = 0.1
+dInputSignalOffset = 2.5
 nInputSignalPointCount = round(dSimulationDurationReal/dSimulationStep)
 arrInputSignalX = np.linspace(0, dSimulationDurationReal, nInputSignalPointCount, endpoint=False)
 arrInputSignalY = scipy.signal.square((2 * np.pi * dInputSignalFreq * arrInputSignalX + dInputSignalPhase - dSimulationPaddingAtStart), duty=dInputSignalDuty)
