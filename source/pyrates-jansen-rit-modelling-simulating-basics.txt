@@ -363,3 +363,7 @@ shutil.rmtree(sCurrentSimulatorCacheDir, ignore_errors=True)
 *https://pyrates.readthedocs.io/en/latest/auto_implementations/python_definitions.html
 
 *https://pyrates.readthedocs.io/en/latest/auto_introductions/jansenrit.html
+
+*https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0225900
+
+*https://link.springer.com/article/10.1007/BF00199471
