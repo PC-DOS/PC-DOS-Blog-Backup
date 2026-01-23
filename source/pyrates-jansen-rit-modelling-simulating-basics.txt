@@ -236,7 +236,7 @@ dctSimResults = jrcDemoJRC.run(
         # Stimulating PC of JRC2, input to operator PRO, variable V
         "JRC2/PC/PRO/V" : arrInputSignalY,
         # Spontaneous electrical activities (spontaneous firing rate) are inputted to m_in port of PC's RPO_e operator
-        # In Jansen-Rit's original work (doi:10.1007/BF00199471) and PyRate's article (doi:10.1371/journal.pone.0225900), this can be an uniform distribution between [120,320]
+        # In Jansen-Rit's original work (doi:10.1007/BF00199471) and PyRate's article (doi:10.1371/journal.pone.0225900), this can be a uniform distribution between [120,320]
         # In PyRate's default model templates, this is set to a constant value of 220
         "JRC1/PC/RPO_e/m_in" : np.random.uniform(low=220, high=220, size=nInputSignalPointCount),
         "JRC2/PC/RPO_e/m_in" : np.random.uniform(low=220, high=220, size=nInputSignalPointCount),
