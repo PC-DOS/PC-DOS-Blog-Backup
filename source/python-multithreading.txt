@@ -357,10 +357,18 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
     else :
         # Avoid ValueError caused by concurrent.futures.ProcessPoolExecutor on Windows
         if IsRunningOnWindows() :
-            if nWorkers is None :
-                nWorkers = PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS
-            elif nWorkers > PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS :
-                nWorkers = PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS
+            if iPoolBackend == 0 :
+                if nWorkers is None :
+                    nWorkers = PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS
+                elif nWorkers > PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS :
+                    nWorkers = PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS
+                #End If
+            elif iPoolBackend == 1 :
+                if nWorkers is None :
+                    nWorkers = MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS
+                elif nWorkers > MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS :
+                    nWorkers = MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS
+                #End If
             #End If
         #End If
     #End If
