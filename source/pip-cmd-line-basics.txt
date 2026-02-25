@@ -2,6 +2,8 @@
 
 *https://www.runoob.com/w3cnote/python-pip-install-usage.html
 
+*https://www.cnblogs.com/yueyuecoding/p/12831799.html
+
 [[toc]]
 
 + 基本管理
@@ -54,6 +56,18 @@ pip uninstall package-name
 
 [[code]]
 pip install --upgrade package-name
+[[/code]]
+
+++ 导出已安装的包列表
+
+[[code]]
+pip freeze > requirements.txt
+[[/code]]
+
+++ 基于包列表进行安装
+
+[[code]]
+pip install -r piplist.txt
 [[/code]]
 
 + 其它
