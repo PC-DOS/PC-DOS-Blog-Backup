@@ -77,6 +77,8 @@ conda env remove -n EnvironmentName
 conda create -n ClonedBaseName --clone BaseName
 [[/code]]
 
+克隆环境后，建议从被克隆的环境的目录中拷贝{{conda-meta}}目录到新环境的目录中，以便后续的环境更新等工作（参考 *https://blog.csdn.net/weixin_46084533/article/details/137995215 和 *https://blog.csdn.net/weixin_47533871/article/details/144583209 ）
+
 + 包管理
 
 ++ 列出已安装的包
