@@ -222,9 +222,17 @@ if __name__ == "__main__" :
 [[code type="python"]]
 import concurrent.futures
 import multiprocessing
+import sys
 
 # Constants
 PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS = 61
+
+# Python 3.14 has fixed windows process pool limit
+# See https://github.com/python/cpython/pull/107873
+# See also https://github.com/python/cpython/issues/89240 and https://docs.python.org/3/whatsnew/changelog.html#id247
+if sys.version_info >= (3,14) :
+    PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS = 3969
+#End If
 
 # Checks if current platform is Windows
 def IsRunningOnWindows() -> bool :
