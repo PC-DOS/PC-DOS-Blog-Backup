@@ -225,18 +225,67 @@ import multiprocessing
 import sys
 
 # Constants
+MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS = 61
 PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS = 61
 
-# Python 3.14 has fixed windows process pool limit
+# Python 3.14 has fixed windows process pool limit for multiprocessing.Pool
+# But the limitation still applies to concurrent.futures.ProcessPoolExecutor
 # See https://github.com/python/cpython/pull/107873
 # See also https://github.com/python/cpython/issues/89240 and https://docs.python.org/3/whatsnew/changelog.html#id247
 if sys.version_info >= (3,14) :
-    PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS = 3969
+    MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS = 3969
 #End If
 
 # Checks if current platform is Windows
 def IsRunningOnWindows() -> bool :
     return sys.platform.lower().startswith("win")
+#End Function
+
+# Check if Python version greater than version specified by tuple (Major, Minor) or (Major, Minor, Micro)
+def IsPythonVersionGreaterThan(tplVersion : tuple, IsEqualAllowed : bool = True) :
+    if IsEqualAllowed :
+        return sys.version_info >= tplVersion
+    else :
+        return sys.version_info > tplVersion
+    #End If
+#End Function
+
+# Calculate CPU core count for parallel computing
+def GetCPUCoreCountForParallelComputing(dCPUCoreDividingDenominator : float = 2, nMaxCoreCountToUse : int = -1, 
+                                        IsPlatformCheckingsSkipped : bool = False, IsStrictPlatformCheckingsEnabled : bool = False) -> int :
+    # Check arguments
+    if dCPUCoreDividingDenominator < 1 :
+        raise ValueError("dCPUCoreDividingDenominator must be equal to or greater than 1")
+    #End If
+    
+    # Platform checking
+    if not IsPlatformCheckingsSkipped :
+        # On Windows, some multithreading libraries (e.g. concurrent.futures.ProcessPoolExecutor) cannont use too many CPUs
+        # Python 3.14 has fixed windows process pool limit for multiprocessing.Pool
+        # But the limitation still applies to concurrent.futures.ProcessPoolExecutor
+        if IsRunningOnWindows() :
+            if IsStrictPlatformCheckingsEnabled or (not IsPythonVersionGreaterThan((3,14))) :
+                if nMaxCoreCountToUse <= 0 or nMaxCoreCountToUse > PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS :
+                    nMaxCoreCountToUse = PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS
+                #End If
+            else :
+                if nMaxCoreCountToUse <= 0 or nMaxCoreCountToUse > MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS :
+                    nMaxCoreCountToUse = MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS
+                #End If
+            #End If
+        #End If
+    #End If
+
+    # Calculate CPU count
+    nCPUCount = multiprocessing.cpu_count()
+    nCPUCountToUse = math.ceil(nCPUCount / dCPUCoreDividingDenominator)
+    if nMaxCoreCountToUse > 0 :
+        nCPUCountToUse = min(nMaxCoreCountToUse, nCPUCountToUse)
+    #End If
+
+    LogInfo(f"ParallelComputing: {nCPUCount} logical processor(s) found on your system, recalibrating parallel job count to {nCPUCountToUse}...")
+
+    return nCPUCountToUse
 #End Function
 
 # Run jobs in parallel with process pool
@@ -253,7 +302,7 @@ def IsRunningOnWindows() -> bool :
 #         Otherwise, use concurrent.futures.ProcessPoolExecutor
 # Returns list of results
 def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs : list = None,
-    nWorkers : int = None, iPoolBackend : int = 0, IsBackendAutoSelectingEnabled : bool = False) -> list :
+    nWorkers : int = None, iPoolBackend : int = 0, IsBackendAutoSelectingEnabled : bool = True) -> list :
 
     # Handling null-references
     if arrArgs is None :
@@ -293,6 +342,12 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
             # Select backend
             if IsProcessorCoreCountLarge :
                 iPoolBackend = 1
+                # Avoid too many workers
+                if nWorkers is None :
+                    nWorkers = MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS
+                elif nWorkers > MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS :
+                    nWorkers = MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS
+                #End If
             else :
                 iPoolBackend = 0
             #End If
@@ -414,7 +469,7 @@ if __name__ == "__main__" :
     arrWorkerFuncs.append(DoWork)
     arrWorkerArgs.append((3,8,1))
     # Run jobs
-    nParallelCPUJobCount = int(multiprocessing.cpu_count() / 2)
+    nParallelCPUJobCount = GetCPUCoreCountForParallelComputing()
     arrWorkerResults = RunJobsWithProcessPool(arrWorkerFuncs, arrWorkerArgs,
         nWorkers=nParallelCPUJobCount)
     # Collect worker results
