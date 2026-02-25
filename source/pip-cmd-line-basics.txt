@@ -58,6 +58,8 @@ pip uninstall package-name
 pip install --upgrade package-name
 [[/code]]
 
+另请参考：*https://zhuanlan.zhihu.com/p/20756361903
+
 ++ 导出已安装的包列表
 
 [[code]]
