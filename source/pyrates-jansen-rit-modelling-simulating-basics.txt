@@ -138,10 +138,14 @@ pmcDemoJRC = NodeTemplate(name="PC", path=None, operators=[rpeDemoJRC, rpiDemoJR
 
 PyRates将环路节点描述为{{pyrates.frontend.CircuitTemplate}}对象的实例，该对象使用{{nodes}}属性定义节点中的子节点，使用{{circuits}}属性定义子环路，并使用{{edges}}属性定义环路中各边的起止点和权重等参数。
 
-其中，{{nodes}}和{{circuits}}属性使用键值对的形式，定义子节点名称和对象实例之间的对应关系。{{edges}}属性使用{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性，确定该边从何输出变量获取数据，并传送到何输入变量，使用“环路/节点/算子/变量”格式定义。{{edges}}属性的最后一个字段描述了该边的性质，包括{{weight}}（权重）、{{delay}}（时延）、{{spread}}（扩散）等。
+其中，{{nodes}}和{{circuits}}属性使用键值对的形式，定义子节点名称和对象实例之间的对应关系。{{edges}}属性使用{{pyrates.frontend.CircuitTemplate}}对象中子节点及算子的{{name}}和{{variables}}属性，确定该边从何输出变量获取数据，并传送到何输入变量，使用“环路/节点/算子/变量”格式定义。{{edges}}属性的最后一个字段描述了该边的性质，包括{{weight}}（权重）、{{delay}}（时延）、{{spread}}（边时延分布的标准差，此时边时延分布的均值由{{delay}}确定）等。
 
 [[code type="python"]]
 # Sub node interconnections in Jansen-Rit Model
+# Common edge parameter keys (see pyrates/ir/circuit.py -> NetworkGraph._add_edge_buffer()):
+#     weight: Edge weight
+#     delay: Edge delay
+#     spread: Standard deviations of delay distributions around means given by delay
 dInnerJRCWeightBaseValue = 135
 jrcDemoJRCNode1 = CircuitTemplate(name="JRC_DemoJRCNode", path=None,
     nodes={
