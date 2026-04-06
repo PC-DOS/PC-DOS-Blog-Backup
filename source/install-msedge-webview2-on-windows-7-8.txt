@@ -1,0 +1,29 @@
+Windows 7/8最高支持到WebView2的109版本，可以从Microsoft Update Catalog下载：
+
+*https://www.catalog.update.microsoft.com/Search.aspx?q=109.0.1518.140
+
+109版本的完整版本列表参见：*https://www.catalog.update.microsoft.com/Search.aspx?q=edge-109
+
+x86版本：*https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/updt/2023/09/microsoftedgestandaloneinstallerx86_179f59bc54d73843d9288a9fd5609de0e507b911.exe
+
+x64版本：https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/updt/2023/09/microsoftedgestandaloneinstallerx64_1c890b4b8dd6b7c93da98ebdc08ecdc5e30e50cb.exe
+
+ARM64版本：*https://catalog.s.download.windowsupdate.com/c/msdownload/update/software/updt/2023/09/microsoftedgestandaloneinstallerarm64_e56fc438c0d28cab886126d2e62052d9506380d4.exe
+
+下载完成后，请勿直接双击EXE文件安装。请使用解压缩工具解压缩下载得到的EXE文件到任意空文件夹（例如：{{C:\WebView2Inst\}}）。随后，进入该文件夹，找到文件名类似“{{@@MicrosoftEdge_X64_109.0.1518.140.exe.{0D50BFEC-CD6A-4F9A-964C-C7416E3ACB10}@@}}”的文件，删除其“{{@@.{0D50BFEC-CD6A-4F9A-964C-C7416E3ACB10}@@}}”扩展名部分，使文件名变更为：{{MicrosoftEdge_X64_109.0.1518.140.exe}}。
+
+打开命令提示符，定位到该文件夹，执行：
+
+[[code]]
+MicrosoftEdge_X64_109.0.1518.140.exe --msedgewebview --user-level
+[[/code]]
+
+或：
+
+[[code]]
+MicrosoftEdge_X64_109.0.1518.140.exe --msedgewebview --system-level
+[[/code]]
+
+即可。
+
+参考资料：*https://github.com/MicrosoftEdge/WebView2Feedback/issues/3464#issuecomment-1537964955
