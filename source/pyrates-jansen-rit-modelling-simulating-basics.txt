@@ -264,7 +264,6 @@ pyrates.utility.clear_frontend_caches()
 
 [[code type="python"]]
 # Remove simulation padding segment
-iSimulationValidDataStartIndex = dSimulationPaddingAtStart / dSamplingStep
 iSimulationValidDataStartIndex = round(dSimulationPaddingAtStart / dSamplingStep)
 arrSimulationDataIndexesToDrop = list(range(0, iSimulationValidDataStartIndex))
 arrSimulationDataTimePointsToDrop = [i*dSamplingStep for i in arrSimulationDataIndexesToDrop]
