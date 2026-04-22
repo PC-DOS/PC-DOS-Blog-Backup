@@ -1,0 +1,39 @@
+**故障描述：**一台运行Ubuntu 24.04 LTS的服务器，使用XRDP远程桌面登录时，输入用户名和密码后自动退出。检查发现该故障只影响特定用户（假设该用户名为{{problematic_user}}，Home目录位于{{/home/problematic_user/}}），检查该用户Home目录下的{{.xorgxrdp.XX.log}}文件并与可以正常登录的用户交叉比对，除XRDP自动退出外，未见明显异常。
+
+**故障处理：**通过SSH登录该用户的文字控制台，模拟执行XRDP初始化脚本{{/etc/xrdp/startwm.sh}}：
+
+[[code]]
+DISPLAY= sh -x /etc/xrdp/startwm.sh
+[[/code]]
+
+发现该初始化脚本在执行到以下序列时提前退出：
+
+[[code]]
++ test -r /home/problematic_user/.profile
++ . /home/problematic_user/.profile
++ [ -n  ]
++ [ -d /home/problematic_user/bin ]
++ [ -d /home/problematic_user/.local/bin ]
++ FSLDIR=/home/problematic_user/fsl
++ PATH=/home/problematic_user/fsl/share/fsl/bin:/home/problematic_user/fsl/share/fsl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/problematic_user/SimNIBS-3.2/bin
++ export FSLDIR PATH
++ . /home/problematic_user/fsl/etc/fslconf/fsl.sh
+/etc/xrdp/startwm.sh: 33: .: cannot open /home/problematic_user/fsl/etc/fslconf/fsl.sh: No such file
+[[/code]]
+
+根据调用序列，检查{{/home/problematic_user/.profile}}文件，发现该文件中调用了已被删除的脚本文件{{/home/problematic_user/fsl/etc/fslconf/fsl.sh}}，可能是某些工具未删除干净所致。屏蔽相关调用行，重新检查{{/etc/xrdp/startwm.sh}}的执行，{{xorg}}被正确启动：
+
+[[code]]
++ test -r /home/problematic_user/.profile
++ . /home/problematic_user/.profile
++ [ -n  ]
++ [ -d /home/problematic_user/bin ]
++ [ -d /home/problematic_user/.local/bin ]
++ test -x /etc/X11/Xsession
++ exec /etc/X11/Xsession
+已终止
+[[/code]]
+
+测试XRDP远程连接，此时远程桌面已正常可用。
+
+**参考资料：** *https://github.com/neutrinolabs/xrdp/issues/3372
