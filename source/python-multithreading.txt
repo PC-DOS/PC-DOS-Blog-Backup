@@ -217,12 +217,13 @@ if __name__ == "__main__" :
 
 {{concurrent.futures.ProcessPoolExecutor}}即使在{{max_workers}}为{{@@1@@}}时也会创建子进程，{{multiprocessing.Pool}}亦同，这可能造成严重的性能下降，或在嵌套调用可以创建子进程的函数时产生问题。
 
-因此，可以考虑建立一个包装函数，在指定子进程个数为{{@@1@@}}时，不创建子进程，该函数还可以进行多线程后端选择等工作：
+因此，可以考虑建立一个包装函数，在指定子进程个数为{{@@1@@}}时，不创建子进程，该函数还可以进行多线程后端选择、按照提交顺序排序结果等工作：
 
 [[code type="python"]]
 import concurrent.futures
 import multiprocessing
 import sys
+import math
 
 # Constants
 MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS = 61
@@ -283,9 +284,20 @@ def GetCPUCoreCountForParallelComputing(dCPUCoreDividingDenominator : float = 2,
         nCPUCountToUse = min(nMaxCoreCountToUse, nCPUCountToUse)
     #End If
 
-    LogInfo(f"ParallelComputing: {nCPUCount} logical processor(s) found on your system, recalibrating parallel job count to {nCPUCountToUse}...")
+    print(f"ParallelComputing: {nCPUCount} logical processor(s) found on your system, recalibrating parallel job count to {nCPUCountToUse}...")
 
     return nCPUCountToUse
+#End Function
+
+# Tagged function wrapper for process pool
+# Returns a dict dctResult, dctResult["Tag"] is a copy of objTag, dctResult["Result"] is the result of fncFunction()
+def TaggedFunction(fncFunction : object, tplArgs : tuple = None, dctKwArgs : dict = None,
+    objTag : object = None) -> dict :
+
+    objResult = fncFunction(*tplArgs, **dctKwArgs)
+
+    dctResult = dict(Tag=objTag, Result=objResult)
+    return dctResult
 #End Function
 
 # Run jobs in parallel with process pool
@@ -301,8 +313,10 @@ def GetCPUCoreCountForParallelComputing(dCPUCoreDividingDenominator : float = 2,
 #         When running on Windows, nWorkers is None or nWorkers > PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS, arrKwArgs is None: use multiprocessing.Pool
 #         Otherwise, use concurrent.futures.ProcessPoolExecutor
 # Returns list of results
+# If IsResultSequenceEnsured is True, function callings will be wrapped by TaggedFunction, the sequence of results is ensured to be the same as function calling sequence in arrFunctions
 def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs : list = None,
-    nWorkers : int = None, iPoolBackend : int = 0, IsBackendAutoSelectingEnabled : bool = True) -> list :
+    nWorkers : int = None, iPoolBackend : int = 0, IsBackendAutoSelectingEnabled : bool = True,
+    IsResultSequenceEnsured : bool = False) -> list :
 
     # Handling null-references
     if arrArgs is None :
@@ -315,6 +329,32 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
         iPoolBackend = 0
     elif iPoolBackend > 1 :
         iPoolBackend = 1
+    #End If
+    
+    # Organize functions and arguments to submit
+    arrFunctionsToSubmit = []
+    arrArgsToSubmit = []
+    arrKwArgsToSubmit = []
+    for i in range(0, len(arrFunctions)) :
+        # Get function object and arguments
+        fncFunctionOrig = arrFunctions[i]
+        tplArgsOrig = arrArgs[i] if (i < len(arrArgs)) else tuple()
+        dctKwArgsOrig = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
+        
+        # Check if we need to wrap function callings
+        if IsResultSequenceEnsured :
+            fncFunction = TaggedFunction
+            tplArgs = (fncFunctionOrig, tplArgsOrig, dctKwArgsOrig, i)
+            dctKwArgs = dict()
+        else :
+            fncFunction = fncFunctionOrig
+            tplArgs = tplArgsOrig
+            dctKwArgs = dctKwArgsOrig
+        #End If
+        
+        arrFunctionsToSubmit.append(fncFunction)
+        arrArgsToSubmit.append(tplArgs)
+        arrKwArgsToSubmit.append(dctKwArgs)
     #End If
 
     # Initialize result buffer
@@ -356,7 +396,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
         #End If
     else :
         # Avoid ValueError caused by concurrent.futures.ProcessPoolExecutor on Windows
-        if IsRunningOnWindows() :
+        if IsRunningOnWindows():
             if iPoolBackend == 0 :
                 if nWorkers is None :
                     nWorkers = PROCESS_POOL_EXECUTOR_MAX_WORKERS_LIMIT_WINDOWS
@@ -384,11 +424,11 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
             # Create thread pool object
             with concurrent.futures.ProcessPoolExecutor(max_workers=nWorkers) as polWorkers :
                 # Create and submit job package
-                for i in range(0, len(arrFunctions)) :
+                for i in range(0, len(arrFunctionsToSubmit)) :
                     # Get function object and arguments
-                    fncFunction = arrFunctions[i]
-                    tplArgs = arrArgs[i] if (i < len(arrArgs)) else tuple()
-                    dctKwArgs = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
+                    fncFunction = arrFunctionsToSubmit[i]
+                    tplArgs = arrArgsToSubmit[i]
+                    dctKwArgs = arrKwArgsToSubmit[i]
 
                     # Submit a job
                     ftrCurrentWorker = polWorkers.submit(fncFunction, *tplArgs, **dctKwArgs)
@@ -413,10 +453,10 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
             # Create thread pool object
             with multiprocessing.Pool(processes=nWorkers) as polWorkers :
                 # Create and submit job package
-                for i in range(0, len(arrFunctions)) :
+                for i in range(0, len(arrFunctionsToSubmit)) :
                     # Get function object and arguments
-                    fncFunction = arrFunctions[i]
-                    tplArgs = arrArgs[i] if (i < len(arrArgs)) else tuple()
+                    fncFunction = arrFunctionsToSubmit[i]
+                    tplArgs = arrArgsToSubmit[i]
 
                     # Submit a job
                     resCurrentWorker = polWorkers.starmap_async(fncFunction, [tplArgs])
@@ -433,17 +473,25 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
         #End If
     else :
         # Run jobs in current process directly
-        for i in range(0, len(arrFunctions)) :
+        for i in range(0, len(arrFunctionsToSubmit)) :
             # Get function object and arguments
-            fncFunction = arrFunctions[i]
-            tplArgs = arrArgs[i] if (i < len(arrArgs)) else ()
-            dctKwArgs = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
+            fncFunction = arrFunctionsToSubmit[i]
+            tplArgs = arrArgsToSubmit[i]
+            dctKwArgs = arrKwArgsToSubmit[i]
 
             # Run job
             resCurrentWorker = fncFunction(*tplArgs, **dctKwArgs)
 
             # Collect results
             arrResults.append(resCurrentWorker)
+        #Next
+    #End If
+    
+    # Check if we need to unwrap results
+    if IsResultSequenceEnsured :
+        arrResults.sort(key=lambda x : x["Tag"])
+        for i in range(0, len(arrResults)) :
+            arrResults[i] = arrResults[i]["Result"]
         #Next
     #End If
 
@@ -479,7 +527,7 @@ if __name__ == "__main__" :
     # Run jobs
     nParallelCPUJobCount = GetCPUCoreCountForParallelComputing()
     arrWorkerResults = RunJobsWithProcessPool(arrWorkerFuncs, arrWorkerArgs,
-        nWorkers=nParallelCPUJobCount)
+        nWorkers=nParallelCPUJobCount, IsResultSequenceEnsured=True)
     # Collect worker results
     for CurrentResult in arrWorkerResults :
         # Do post processting
