@@ -1,5 +1,11 @@
-编辑{{/etc/xrdp/sesman.ini}}文件，将{{KillDisconnected}}的值改为{{true}}，随后重新启动系统：
+编辑{{/etc/xrdp/sesman.ini}}文件，将{{KillDisconnected}}的值改为{{true}}：
 
 [[code]]
 KillDisconnected=true
+[[/code]]
+
+随后重新启动系统或{{xrdp}}服务：
+
+[[code]]
+sudo systemctl restart xrdp
 [[/code]]
