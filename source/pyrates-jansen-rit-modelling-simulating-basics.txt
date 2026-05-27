@@ -70,7 +70,7 @@ sJRCDescTemplate = "Jansen-Rit circuit model"
 rpeTemplate = OperatorTemplate(name="RPO_e", path=None,
     equations=[
         "d/dt * V = I_c",
-        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)"
+        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)",
         ],
     variables={
         "V" : "output",
@@ -83,7 +83,7 @@ rpeTemplate = OperatorTemplate(name="RPO_e", path=None,
 rpiTemplate = OperatorTemplate(name="RPO_i", path=None,
     equations=[
         "d/dt * V = I_c",
-        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)"
+        "d/dt * I_c = H/tau * m_in - 2 * I_c/tau - V/(tau^2)",
         ],
     variables={
         "V" : "output",
@@ -100,7 +100,7 @@ proTemplate = OperatorTemplate(name="PRO", path=None,
         "V" : "input",
         "V_thr" : 6e-3,
         "m_max" : 2.5,
-        "r" : 560.0
+        "r" : 560.0,
     },
     description=f"{sPRODescTemplate} template")
 [[/code]]
@@ -151,7 +151,7 @@ jrcDemoJRCNode1 = CircuitTemplate(name="JRC_DemoJRCNode", path=None,
     nodes={
         "EIN" : einDemoJRC,
         "IIN" : iinDemoJRC,
-        "PC" : pmcDemoJRC
+        "PC" : pmcDemoJRC,
     },
     edges=[
         # EIN -> PC
@@ -170,7 +170,7 @@ jrcDemoJRCNode2 = copy.deepcopy(jrcDemoJRCNode1)
 jrcDemoJRC = CircuitTemplate(name="JRC_DemoJRC", path=None,
     circuits={
         "JRC1" : jrcDemoJRCNode1,
-        "JRC2" : jrcDemoJRCNode2
+        "JRC2" : jrcDemoJRCNode2,
     },
     edges=[
         # Signals from other brain regions are inputted to PC
@@ -226,6 +226,13 @@ arrInputSignalX = np.linspace(0, dSimulationDurationReal, nInputSignalPointCount
 arrInputSignalY = scipy.signal.square((2 * np.pi * dInputSignalFreq * arrInputSignalX + dInputSignalPhase - dSimulationPaddingAtStart), duty=dInputSignalDuty)
 arrInputSignalY = dInputSignalAmplitude * arrInputSignalY + dInputSignalOffset
 
+# Spontaneous electrical activities
+# In Jansen-Rit's original work (doi:10.1007/BF00199471) and PyRate's article (doi:10.1371/journal.pone.0225900), this can be a uniform distribution between [120,320]
+# In PyRate's default model templates, this is set to a constant value of 220
+rndRandomGen = np.random.default_rng(seed=245)
+arrSpontaneousElectricalActivitiesJRC1 = rndRandomGen.uniform(low=220, high=220, size=nInputSignalPointCount)
+arrSpontaneousElectricalActivitiesJRC2 = rndRandomGen.uniform(low=220, high=220, size=nInputSignalPointCount)
+
 # Run simulation
 # Results is an instance of pandas.DataFrame, whose columns are output channels, indexes are time points
 # Use the "inputs" parameter to specify input signal
@@ -240,17 +247,14 @@ dctSimResults = jrcDemoJRC.run(
         # Stimulating PC of JRC2, input to operator PRO, variable V
         "JRC2/PC/PRO/V" : arrInputSignalY,
         # Spontaneous electrical activities (spontaneous firing rate) are inputted to m_in port of PC's RPO_e operator
-        # In Jansen-Rit's original work (doi:10.1007/BF00199471) and PyRate's article (doi:10.1371/journal.pone.0225900), this can be a uniform distribution between [120,320]
-        # In PyRate's default model templates, this is set to a constant value of 220
-        rndRandomGen = np.random.default_rng(seed=245)
-        "JRC1/PC/RPO_e/m_in" : rndRandomGen.uniform(low=220, high=220, size=nInputSignalPointCount),
-        "JRC2/PC/RPO_e/m_in" : rndRandomGen.uniform(low=220, high=220, size=nInputSignalPointCount),
+        "JRC1/PC/RPO_e/m_in" : arrSpontaneousElectricalActivitiesJRC1,
+        "JRC2/PC/RPO_e/m_in" : arrSpontaneousElectricalActivitiesJRC2,
     },
     outputs={
         # Record from subnode PC, operator RPO_e (EIN output), variable V
         "JRC1_PC_e" : "JRC1/PC/RPO_e/V",
         # Record from subnode PC, operator RPO_i (IIN output), variable V
-        "JRC1_PC_i" : "JRC1/PC/RPO_i/V"
+        "JRC1_PC_i" : "JRC1/PC/RPO_i/V",
     },
     clear=True
 )
