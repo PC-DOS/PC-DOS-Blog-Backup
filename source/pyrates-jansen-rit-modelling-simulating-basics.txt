@@ -272,7 +272,7 @@ pyrates.utility.clear_frontend_caches()
 # Remove simulation padding segment
 iSimulationValidDataStartIndex = round(dSimulationPaddingAtStart / dSamplingStep)
 arrSimulationDataIndexesToDrop = list(range(0, iSimulationValidDataStartIndex))
-arrSimulationDataTimePointsToDrop = [i*dSamplingStep for i in arrSimulationDataIndexesToDrop]
+arrSimulationDataTimePointsToDrop = [dctSimResults.index[i] for i in arrSimulationDataIndexesToDrop]
 dctSimResults = dctSimResults.drop(labels=arrSimulationDataTimePointsToDrop, axis=0)
 dctSimResults = dctSimResults.reset_index(drop=True)
 arrSimualtionDataNewIndex = [i*dSamplingStep for i in dctSimResults.index]
