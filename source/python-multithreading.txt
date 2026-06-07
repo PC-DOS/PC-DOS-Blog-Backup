@@ -217,13 +217,14 @@ if __name__ == "__main__" :
 
 {{concurrent.futures.ProcessPoolExecutor}}即使在{{max_workers}}为{{@@1@@}}时也会创建子进程，{{multiprocessing.Pool}}亦同，这可能造成严重的性能下降，或在嵌套调用可以创建子进程的函数时产生问题。
 
-因此，可以考虑建立一个包装函数，在指定子进程个数为{{@@1@@}}时，不创建子进程，该函数还可以进行多线程后端选择、按照提交顺序排序结果等工作：
+因此，可以考虑建立一个包装函数，在指定子进程个数为{{@@1@@}}时，不创建子进程，该函数还可以进行多线程后端选择、按照提交顺序排序结果等工作，并支持使用{{[tqdm](https://tqdm.github.io/docs/tqdm)}}显示进度条：
 
 [[code type="python"]]
 import concurrent.futures
 import multiprocessing
 import sys
 import math
+import time
 
 # Constants
 MULTIPROCESSING_POOL_MAX_WORKERS_LIMIT_WINDOWS = 61
@@ -316,7 +317,8 @@ def TaggedFunction(fncFunction : object, tplArgs : tuple = None, dctKwArgs : dic
 # If IsResultSequenceEnsured is True, function callings will be wrapped by TaggedFunction, the sequence of results is ensured to be the same as function calling sequence in arrFunctions
 def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs : list = None,
     nWorkers : int = None, iPoolBackend : int = 0, IsBackendAutoSelectingEnabled : bool = True,
-    IsResultSequenceEnsured : bool = False) -> list :
+    IsResultSequenceEnsured : bool = False,
+    IsProgressBarVisible : bool = False, sProgressBarText : str = "", nProgressBarCols : int = 75) -> list :
 
     # Handling null-references
     if arrArgs is None :
@@ -412,6 +414,10 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
             #End If
         #End If
     #End If
+    
+    # Use tqdm to draw progress bar
+    # See https://tqdm.github.io/docs/tqdm
+    from tqdm import tqdm
 
     # Run jobs
     if IsChildWorkersNeeded :
@@ -440,10 +446,13 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
                 # Register completion list
                 arrCompletedTasks = concurrent.futures.as_completed(arrWorkers)
 
-                # Collect results
-                for WorkerResult in arrCompletedTasks :
-                    arrResults.append(WorkerResult.result())
-                #Next
+                # Collect results & update progress bar
+                with tqdm(total=len(arrFunctionsToSubmit), ncols=nProgressBarCols, disable=(not IsProgressBarVisible)) as prgProgress :
+                    for WorkerResult in arrCompletedTasks :
+                        arrResults.append(WorkerResult.result())
+                        prgProgress.update(1)
+                    #Next
+                #End With
             #End With
         elif iPoolBackend == 1 :
             # Using multiprocessing.Pool
@@ -465,26 +474,32 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
                     arrWorkers.append(resCurrentWorker)
                 #Next
 
-                # Collect results
-                for WorkerResult in arrWorkers :
-                    arrResults.append(WorkerResult.get()[0])
-                #Next
+                # Collect results & update progress bar
+                with tqdm(total=len(arrFunctionsToSubmit), ncols=nProgressBarCols, disable=(not IsProgressBarVisible)) as prgProgress :
+                    for WorkerResult in arrWorkers :
+                        arrResults.append(WorkerResult.get()[0])
+                        prgProgress.update(1)
+                    #Next
+                #End With
             #End With
         #End If
     else :
         # Run jobs in current process directly
-        for i in range(0, len(arrFunctionsToSubmit)) :
-            # Get function object and arguments
-            fncFunction = arrFunctionsToSubmit[i]
-            tplArgs = arrArgsToSubmit[i]
-            dctKwArgs = arrKwArgsToSubmit[i]
+        with tqdm(total=len(arrFunctionsToSubmit), ncols=nProgressBarCols, disable=(not IsProgressBarVisible)) as prgProgress :
+            for i in range(0, len(arrFunctionsToSubmit)) :
+                # Get function object and arguments
+                fncFunction = arrFunctionsToSubmit[i]
+                tplArgs = arrArgsToSubmit[i]
+                dctKwArgs = arrKwArgsToSubmit[i]
 
-            # Run job
-            resCurrentWorker = fncFunction(*tplArgs, **dctKwArgs)
+                # Run job
+                resCurrentWorker = fncFunction(*tplArgs, **dctKwArgs)
 
-            # Collect results
-            arrResults.append(resCurrentWorker)
-        #Next
+                # Collect results & update progress bar
+                arrResults.append(resCurrentWorker)
+                prgProgress.update(1)
+            #Next
+        #End With
     #End If
     
     # Check if we need to unwrap results
@@ -502,6 +517,9 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
 def DoWork(Param1, Param2, Param3) :
     # Do some work
     WorkResult = f"Pokemon#{Param1}{Param2}{Param3}"
+    
+    # Wait for some time
+    time.sleep((Param1 + Param2) / (Param3 if (Param3 != 0) else 1))
     
     return WorkResult
 #End Function
@@ -527,7 +545,9 @@ if __name__ == "__main__" :
     # Run jobs
     nParallelCPUJobCount = GetCPUCoreCountForParallelComputing()
     arrWorkerResults = RunJobsWithProcessPool(arrWorkerFuncs, arrWorkerArgs,
-        nWorkers=nParallelCPUJobCount, IsResultSequenceEnsured=True)
+        nWorkers=nParallelCPUJobCount, 
+        IsResultSequenceEnsured=True,
+        IsProgressBarVisible=True)
     # Collect worker results
     for CurrentResult in arrWorkerResults :
         # Do post processting
