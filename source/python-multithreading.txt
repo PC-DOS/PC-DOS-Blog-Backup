@@ -315,10 +315,14 @@ def TaggedFunction(fncFunction : object, tplArgs : tuple = None, dctKwArgs : dic
 #         Otherwise, use concurrent.futures.ProcessPoolExecutor
 # Returns list of results
 # If IsResultSequenceEnsured is True, function callings will be wrapped by TaggedFunction, the sequence of results is ensured to be the same as function calling sequence in arrFunctions
+# sProgressBarMode controls the mode of progress bar:
+#     "batch": Show progress bar of current batch
+#     "total": Show progress bar of total procedure
 def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs : list = None,
-    nWorkers : int = None, iPoolBackend : int = 0, IsBackendAutoSelectingEnabled : bool = True,
+    nWorkers : int = None, nBatchSize : int = None,
     IsResultSequenceEnsured : bool = False,
-    IsProgressBarVisible : bool = False, sProgressBarText : str = "", nProgressBarCols : int = 75) -> list :
+    iPoolBackend : int = 0, IsBackendAutoSelectingEnabled : bool = True,
+    IsProgressBarVisible : bool = False, sProgressBarMode : bool = "batch", sProgressBarText : str = "", nProgressBarCols : int = 75) -> list :
 
     # Handling null-references
     if arrArgs is None :
@@ -332,32 +336,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
     elif iPoolBackend > 1 :
         iPoolBackend = 1
     #End If
-    
-    # Organize functions and arguments to submit
-    arrFunctionsToSubmit = []
-    arrArgsToSubmit = []
-    arrKwArgsToSubmit = []
-    for i in range(0, len(arrFunctions)) :
-        # Get function object and arguments
-        fncFunctionOrig = arrFunctions[i]
-        tplArgsOrig = arrArgs[i] if (i < len(arrArgs)) else tuple()
-        dctKwArgsOrig = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
-        
-        # Check if we need to wrap function callings
-        if IsResultSequenceEnsured :
-            fncFunction = TaggedFunction
-            tplArgs = (fncFunctionOrig, tplArgsOrig, dctKwArgsOrig, i)
-            dctKwArgs = dict()
-        else :
-            fncFunction = fncFunctionOrig
-            tplArgs = tplArgsOrig
-            dctKwArgs = dctKwArgsOrig
-        #End If
-        
-        arrFunctionsToSubmit.append(fncFunction)
-        arrArgsToSubmit.append(tplArgs)
-        arrKwArgsToSubmit.append(dctKwArgs)
-    #End If
+    sProgressBarMode = sProgressBarMode.lower()
 
     # Initialize result buffer
     arrResults = []
@@ -414,78 +393,134 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
             #End If
         #End If
     #End If
+
+    # Handling batch info
+    nTotalJobCount = len(arrFunctions)
+    if nBatchSize is None :
+        nBatchSize = nTotalJobCount
+    #End If
+    nBatchCount = int(nTotalJobCount / nBatchSize)
+    if nBatchCount * nBatchSize < nTotalJobCount :
+        nBatchCount = nBatchCount + 1
+    #End If
     
     # Use tqdm to draw progress bar
     # See https://tqdm.github.io/docs/tqdm
     from tqdm import tqdm
 
-    # Run jobs
-    if IsChildWorkersNeeded :
-        # Use backend selected by iPoolBackend to run works
-        if iPoolBackend == 0 :
-            # Using concurrent.futures.ProcessPoolExecutor
-            # Multithread workers
-            arrWorkers = []
+    # Progress bar of total progress
+    if sProgressBarMode == "total" :
+        prgProgress = tqdm(total=nTotalJobCount, desc=sProgressBarText, ncols=nProgressBarCols, disable=(not IsProgressBarVisible))
+    #End If
+    
+    # Run jobs in batches
+    for BatchID in range(0, nBatchCount) :
+        # Calculate current batch info
+        iBatchStart = BatchID * nBatchSize
+        iBatchEnd = min(iBatchStart + nBatchSize, nTotalJobCount)
+        nBatchSizeReal = iBatchEnd - iBatchStart
+
+        # Progress bar of current batch
+        if sProgressBarMode == "batch" :
+            sProgressBarTextCurrentBatch = sProgressBarText
+            if nBatchCount > 1 :
+                if len(sProgressBarText) > 0 :
+                    sProgressBarTextCurrentBatch = f"{sProgressBarText}, batch {BatchID+1} / {nBatchCount}"
+                else :
+                    sProgressBarTextCurrentBatch = f"Batch {BatchID+1} / {nBatchCount}"
+                #End If
+            #End If
+            prgProgress = tqdm(total=nBatchSizeReal, desc=sProgressBarTextCurrentBatch, ncols=nProgressBarCols, disable=(not IsProgressBarVisible))
+        #End If
+
+        # Organize functions and arguments to submit
+        arrFunctionsToSubmit = []
+        arrArgsToSubmit = []
+        arrKwArgsToSubmit = []
+        for i in range(iBatchStart, iBatchEnd) :
+            # Get function object and arguments
+            fncFunctionOrig = arrFunctions[i]
+            tplArgsOrig = arrArgs[i] if (i < len(arrArgs)) else tuple()
+            dctKwArgsOrig = arrKwArgs[i] if (i < len(arrKwArgs)) else dict()
             
-            # Create thread pool object
-            with concurrent.futures.ProcessPoolExecutor(max_workers=nWorkers) as polWorkers :
-                # Create and submit job package
-                for i in range(0, len(arrFunctionsToSubmit)) :
-                    # Get function object and arguments
-                    fncFunction = arrFunctionsToSubmit[i]
-                    tplArgs = arrArgsToSubmit[i]
-                    dctKwArgs = arrKwArgsToSubmit[i]
+            # Check if we need to wrap function callings
+            if IsResultSequenceEnsured :
+                fncFunction = TaggedFunction
+                tplArgs = (fncFunctionOrig, tplArgsOrig, dctKwArgsOrig, i)
+                dctKwArgs = dict()
+            else :
+                fncFunction = fncFunctionOrig
+                tplArgs = tplArgsOrig
+                dctKwArgs = dctKwArgsOrig
+            #End If
+            
+            arrFunctionsToSubmit.append(fncFunction)
+            arrArgsToSubmit.append(tplArgs)
+            arrKwArgsToSubmit.append(dctKwArgs)
+        #End If
 
-                    # Submit a job
-                    ftrCurrentWorker = polWorkers.submit(fncFunction, *tplArgs, **dctKwArgs)
+        # Run jobs
+        if IsChildWorkersNeeded :
+            # Use backend selected by iPoolBackend to run works
+            if iPoolBackend == 0 :
+                # Using concurrent.futures.ProcessPoolExecutor
+                # Multithread workers
+                arrWorkers = []
+                
+                # Create thread pool object
+                with concurrent.futures.ProcessPoolExecutor(max_workers=nWorkers) as polWorkers :
+                    # Create and submit job package
+                    for i in range(0, len(arrFunctionsToSubmit)) :
+                        # Get function object and arguments
+                        fncFunction = arrFunctionsToSubmit[i]
+                        tplArgs = arrArgsToSubmit[i]
+                        dctKwArgs = arrKwArgsToSubmit[i]
 
-                    # Cache current worker
-                    arrWorkers.append(ftrCurrentWorker)
-                #Next
+                        # Submit a job
+                        ftrCurrentWorker = polWorkers.submit(fncFunction, *tplArgs, **dctKwArgs)
 
-                # Register completion list
-                arrCompletedTasks = concurrent.futures.as_completed(arrWorkers)
+                        # Cache current worker
+                        arrWorkers.append(ftrCurrentWorker)
+                    #Next
 
-                # Collect results & update progress bar
-                with tqdm(total=len(arrFunctionsToSubmit), ncols=nProgressBarCols, disable=(not IsProgressBarVisible)) as prgProgress :
+                    # Register completion list
+                    arrCompletedTasks = concurrent.futures.as_completed(arrWorkers)
+
+                    # Collect results & update progress bar
                     for WorkerResult in arrCompletedTasks :
                         arrResults.append(WorkerResult.result())
                         prgProgress.update(1)
                     #Next
                 #End With
-            #End With
-        elif iPoolBackend == 1 :
-            # Using multiprocessing.Pool
-            # Multithread workers
-            arrWorkers = []
-            
-            # Create thread pool object
-            with multiprocessing.Pool(processes=nWorkers) as polWorkers :
-                # Create and submit job package
-                for i in range(0, len(arrFunctionsToSubmit)) :
-                    # Get function object and arguments
-                    fncFunction = arrFunctionsToSubmit[i]
-                    tplArgs = arrArgsToSubmit[i]
+            elif iPoolBackend == 1 :
+                # Using multiprocessing.Pool
+                # Multithread workers
+                arrWorkers = []
+                
+                # Create thread pool object
+                with multiprocessing.Pool(processes=nWorkers) as polWorkers :
+                    # Create and submit job package
+                    for i in range(0, len(arrFunctionsToSubmit)) :
+                        # Get function object and arguments
+                        fncFunction = arrFunctionsToSubmit[i]
+                        tplArgs = arrArgsToSubmit[i]
 
-                    # Submit a job
-                    resCurrentWorker = polWorkers.starmap_async(fncFunction, [tplArgs])
+                        # Submit a job
+                        resCurrentWorker = polWorkers.starmap_async(fncFunction, [tplArgs])
 
-                    # Cache async results current worker
-                    arrWorkers.append(resCurrentWorker)
-                #Next
+                        # Cache async results current worker
+                        arrWorkers.append(resCurrentWorker)
+                    #Next
 
-                # Collect results & update progress bar
-                with tqdm(total=len(arrFunctionsToSubmit), ncols=nProgressBarCols, disable=(not IsProgressBarVisible)) as prgProgress :
+                    # Collect results & update progress bar
                     for WorkerResult in arrWorkers :
                         arrResults.append(WorkerResult.get()[0])
                         prgProgress.update(1)
                     #Next
                 #End With
-            #End With
-        #End If
-    else :
-        # Run jobs in current process directly
-        with tqdm(total=len(arrFunctionsToSubmit), ncols=nProgressBarCols, disable=(not IsProgressBarVisible)) as prgProgress :
+            #End If
+        else :
+            # Run jobs in current process directly
             for i in range(0, len(arrFunctionsToSubmit)) :
                 # Get function object and arguments
                 fncFunction = arrFunctionsToSubmit[i]
@@ -499,7 +534,17 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
                 arrResults.append(resCurrentWorker)
                 prgProgress.update(1)
             #Next
-        #End With
+        #End If
+
+        # Cleanup progress bar of current batch
+        if sProgressBarMode == "batch" :
+            prgProgress.close()
+        #End If
+    #Next
+
+    # Cleanup progress bar of total progress
+    if sProgressBarMode == "total" :
+        prgProgress.close()
     #End If
     
     # Check if we need to unwrap results
@@ -547,7 +592,7 @@ if __name__ == "__main__" :
     arrWorkerResults = RunJobsWithProcessPool(arrWorkerFuncs, arrWorkerArgs,
         nWorkers=nParallelCPUJobCount, 
         IsResultSequenceEnsured=True,
-        IsProgressBarVisible=True)
+        IsProgressBarVisible=True, sProgressBarMode="batch")
     # Collect worker results
     for CurrentResult in arrWorkerResults :
         # Do post processting
