@@ -1,0 +1,41 @@
+嵌入式显示器包含一系列显示参数，参数不正确时，可能产生缺行、缺列或行列重复等问题。
+
+输入时钟：
+* 像素时钟周期：绘制一个像素所需的时钟周期数。
+* 行时钟周期：绘制一行所需的时钟周期数。
+
+行内显示时序：
+* 产生水平同步（HSync）脉冲 → 绘制水平脉冲后沿（Horizontal Back Porch）填料像素 → 绘制有效显示像素 → 绘制水平脉冲前沿（Horizontal Front Porch）填料像素
+
+总体显示时序：
+* 产生垂直同步（VSync）脉冲 → 绘制垂直脉冲后沿（Vertical Back Porch）填料行 → 绘制有效显示行 → 绘制垂直脉冲前沿（Vertical Front Porch）填料行
+
+主要参数：
+* 行内绘制（水平绘制）时：
+ * 水平同步脉冲宽度（{{HSyncPulseWidth}}）：从水平同步脉冲有效信号开始，到水平同步脉冲有效信号结束的宽度，单位为像素时钟周期。
+ * 水平脉冲后沿填料像素个数（{{HSyncBackPorch}}）：从水平同步脉冲有效信号结束，到开始绘制有效显示像素前，需要绘制的无效像素个数。又名有效显示区域的左边距（Left Margin）。
+ * 水平有效显示像素数（{{HResolution}}）：显示器的水平分辨率。
+ * 水平脉冲前沿填料像素个数（{{HSyncFrontPorch}}）：从全部有效显示像素绘制结束，到下一个水平同步脉冲有效信号开始前，需要绘制的无效像素个数。又名有效显示区域的右边距（Left Margin）。
+ * 水平逻辑像素数（{{HLogicalPixels}}）：水平同步脉冲宽度、水平脉冲后沿填料像素个数、水平有效显示像素数、水平脉冲前沿填料像素个数之和。又名水平总周期数（{{HCycle}}）。
+* 逐行绘制（垂直绘制）时：
+ * 垂直同步脉冲宽度（{{VSyncPulseWidth}}）：从垂直同步脉冲有效信号开始，到垂直同步脉冲有效信号结束的宽度，单位为行时钟周期。
+ * 垂直脉冲后沿填料行数（{{VSyncBackPorch}}）：从垂直同步脉冲有效信号结束，到开始绘制有效显示行前，需要绘制的无效行数。又名有效显示区域的上边距（Upper Margin）。
+ * 垂直有效显示行数（{{VResolution}}）：显示器的垂直分辨率。
+ * 垂直脉冲前沿填料行数（{{VSyncFrontPorch}}）：从全部有效显示行绘制结束，到下一个垂直同步脉冲有效信号开始前，需要绘制的无效行数。又名有效显示区域的下边距（Lower Margin）。
+ * 垂直逻辑像素数（{{VLogicalPixels}}）：垂直同步脉冲宽度、垂直脉冲后沿填行数、垂直有效显示行数、垂直脉冲前沿填料行数之和。又名垂直总周期数（{{HCycle}}）。
+
+部分显示器会从固定的行数或列数开始绘制有效显示内容。此时需要配置相关脉冲宽度和填料参数。
+
+例如，京瓷TCG057VGLCS-H50显示器（有效分辨率{{640x480}}）固定从第34行开始绘制有效显示行（从低电平有效的垂直同步线{{VSYNC}}被拉低时开始计数）。在{{ENAB}}使能信号固定为低电平时，固定从第104列绘制有效显示像素（从低电平有效的水平同步线{{HSYNC}}被拉高时开始计数）。推荐水平逻辑像素数为{{800}}（下界{{770}}，上界{{850}}）、垂直逻辑像素数为{{525}}（下界{{515}}，上界{{560}}）。此时，需要做如下配置：
+* 水平：
+ * {{2 <= HSyncPulseWidth <= 200}}
+ * {{HSyncBackPorch = 104}}
+ * {{HResolution = 640}}
+ * {{HLogicalPixels = HSyncPulseWidth + HSyncBackPorch + HResolution + HSyncFrontPorch = 800}}
+* 垂直：
+ * {{2 <= VSyncPulseWidth <= 34}}
+ * {{VSyncPulseWidth + VSyncBackPorch = 34}}
+ * {{VResolution = 480}}
+ * {{VLogicalPixels = VSyncPulseWidth + VSyncBackPorch + VResolution + VSyncFrontPorch = 525}}
+
+参考资料：*https://www.cnblogs.com/linhaostudy/p/10413089.html
