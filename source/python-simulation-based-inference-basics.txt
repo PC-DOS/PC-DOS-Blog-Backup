@@ -150,7 +150,7 @@ SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/late
 
 [[code type="python"]]
     # Training
-    trnEstimatorTrainer = sbi.inference.NPE(prior=dstSBIDistributionPrior)
+    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
@@ -186,11 +186,31 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
 
 [[code type="python"]]
     # Generate observed features
-    arrObservedFeatures = torch.as_tensor([25, 4])
+    arrInputParamsReal = [2, 24]
+    arrObservedFeatures = torch.as_tensor(SBIParamToFeatures(arrInputParamsReal, True))
+    print(f"Observed features: {arrInputParamsReal} -> {arrObservedFeatures}")
+
+    # Estimating
     arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).numpy()
     arrOptimizationParameters = arrOptimizationParameters[0]
     print(f"Estimated parameter distribution: {arrOptimizationParameters}")
-    #print(f"Observation with estimated parameter distribution: {SBIParamToFeatures(arrOptimizationParameters, True)}")
+    print(f"Observation with estimated parameter distribution: {SBIParamToFeatures(arrOptimizationParameters, True)}")
+[[/code]]
+
+使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.analysis.pairplot.html sbi.analysis.pairplot()]}}可视化推理结果：
+
+[[code type="python"]]
+    # Inspecting
+    import sbi.analysis 
+    import matplotlib.pyplot as plt
+    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).numpy()
+    sbi.analysis.pairplot(samples=arrOptimizationParameters,
+        limits=[[1,10],[25,45]],
+        ticks=[[1,10],[25,45]],
+        figsize=(5, 5),
+        points=[arrInputParamsReal],
+        labels=["P0", "P1"])
+    plt.show()
 #End If
 [[/code]]
 
