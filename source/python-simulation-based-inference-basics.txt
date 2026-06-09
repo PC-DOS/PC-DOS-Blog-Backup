@@ -1,0 +1,199 @@
+[*https://sbi.readthedocs.io/en/latest/index.html SBI]是一个用于进行基于仿真的推理（Simulation-Based Inference，SBI）的Python库。该库基于对给定模型在不同参数组下的多次仿真，推理输入参数分布与输出之间的概率关系，通过预训练神经网络模型，在新的输入抵达时快速给出参数估计结果。
+
++ SBI的安装
+
+SBI可以使用`pip`命令进行安装：
+
+[[code]]
+pip install sbi
+[[/code]]
+
+SBI依赖[*https://pytorch.org/ PyTorch]，使用`pip`命令安装SBI时默认会安装CPU版本的PyTorch，等价于在安装SBI前执行：
+
+[[code]]
+pip install torch torchvision
+[[/code]]
+
+针对适用于不同操作系统平台，以及CUDA等并行计算框架的PyTorch，请在安装SBI前安装，请参考：*https://pytorch.org/get-started/locally/
+
+例如，若需要PyTorch可在Windows环境上调用CUDA 12.6，需在安装SBI前执行：
+
+[[code]]
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+[[/code]]
+
++ 定义仿真器
+
+仿真器（Simulator），即模型，是对真实过程的虚拟表达。其接收一个一维参数数组{{arrParams}}以及潜在的扩展参数，并传回包含了仿真结果或其特征（低维表达）的数组{{arrFeatures}}。
+
+例如用下面的仿真器{{SBIParamToFeatures()}}表示一个过程，第一个参数{{arrParams}}接受一个包含两个元素的一维数组，第二个参数{{IsResultUseNumPy}}控制返回类型为{{[*https://numpy.org/doc/stable/reference/generated/numpy.array.html numpy.array]}}还是{{[*https://docs.pytorch.org/docs/main/tensors.html torch.Tensor]}}。其返回值为一个包含两个元素的一维数组，系对两个参数的简单修改，模拟一种数据特征：
+
+[[code type="python"]]
+# NumPy
+import numpy as np
+
+# PyTorch
+import torch
+
+# Simulation-Based Inference (SBI)
+import sbi
+import sbi.utils
+import sbi.inference
+
+# Object process simulator
+# This function simulates a real-world process, or a wrapper of another simulator
+# This function accepts a parameter array arrParams with 2 elements [dParam1, dParam2]
+# And returns a low-level representation (features) of [dFeature1, dFeature2], where:
+#     dFeature1 = dParam2 + 1
+#     dFeature2 = dParam1 + 2
+# Parameter IsResultUseNumPy selects the return value type of this function (tensor or numpy array)
+def SBIParamToFeatures(arrParams : list, IsResultUseNumPy : bool) -> list :
+    arrFeatures = np.array([arrParams[1] + 1, arrParams[0] + 2])
+    if IsResultUseNumPy :
+        return arrFeatures
+    else :
+        return torch.as_tensor(arrFeatures)
+    #End If
+#End Function
+[[/code]]
+
++ 定义边界
+
+SBI使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html sbi.utils.BoxUniform]}}对象定义参数的边界。使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.process_prior.html sbi.utils.process_prior()]}}函数确保边界数据格式满足要求：
+
+[[code type="python"]]
+# Main entry point
+if __name__ == "__main__" :
+    # Ref. https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
+    
+    # Defining parameter bounds
+    #     dParam1 in [1,10]
+    #     dParam2 in [25,45]
+    arrOptimizationBounds = [
+        (1,10),
+        (25,45)
+    ]
+    arrSBILowerBounds = torch.as_tensor([Bound[0] for Bound in arrOptimizationBounds])
+    arrSBIUpperBounds = torch.as_tensor([Bound[1] for Bound in arrOptimizationBounds])
+    bndSBIUniformedBounds = sbi.utils.BoxUniform(low=arrSBILowerBounds, high=arrSBIUpperBounds)
+    dstSBIDistributionPrior, nSBIParam, IsSBIPriorNumPy = sbi.utils.process_prior(bndSBIUniformedBounds)
+[[/code]]
+
++ 预处理仿真器函数
+
+当前定义的仿真器函数{{SBIParamToFeatures()}}一次只能输入一组参数，并且包含一个扩展参数{{IsResultUseNumPy}}，而SBI对仿真器有如下要求：
+1. 函数只接受一个参数，即函数签名形如{{def SBIParamToFeatures(arrParams)}}
+2. 支持批量参数输入与仿真。即仿真器参数{{arrParams}}的结构为{{(nSimCount, nParamCount)}}，其中{{nSimCount}}为本次调用需进行的仿真次数，{{nParamCount}}为单次仿真所需的参数量。
+3. 支持批量返回仿真结果。即仿真器返回值{{arrFeatures}}的结构为{{(nSimCount, nFeatureCount)}}，其中{{nSimCount}}为本次调用需进行的仿真次数，{{nFeatureCount}}为单次仿真返回的结果向量长度（单次仿真特征数）。
+
+针对第一个要求，可以利用{{[*https://docs.python.org/3/library/functools.html#partial-objects functools.partial]}}对象建立偏函数，将{{SBIParamToFeatures()}}除第一个参数外的参数固定：
+
+[[code type="python"]]
+    # Preprocessing simulator
+    # Create partial version of SBIParamToFeatures()
+    # Since the batched simulation wrapper of SBI (sbi.inference.simulate_for_sbi) only allows a simulator with 1 argument
+    # Or you can write your own batched simulation wrapper, which accepts a parameter group arrParams returns a tuple (arrParams, arrFeatures)
+    import functools
+    fncSBIParamToFeaturesPartial = functools.partial(SBIParamToFeatures,
+        IsResultUseNumPy=False)
+[[/code]]
+
+针对第二和第三个要求，SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.process_simulator.html sbi.utils.process_simulator()]}}函数，建立支持批量仿真的仿真器包裹函数（Wrapper）。该函数会自动检测给定的仿真函数是否已支持批量处理：
+
+[[code type="python"]]
+    # Convert to SBI function
+    fncSBIParamToFeaturesWrapped = sbi.utils.process_simulator(fncSBIParamToFeaturesPartial, dstSBIDistributionPrior, IsSBIPriorNumPy)
+[[/code]]
+
++ 运行仿真器
+
+SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.simulate_for_sbi.html sbi.inference.simulate_for_sbi()]}}函数以运行仿真器。该函数支持并行化、数据分批和进度显示等功能：
+
+[[code type="python"]]
+    # Sampling
+    # Run simulator
+    nSBISamples = 500
+    print(f"Sampling {nSBISamples} samples, this may take a long time...")
+    arrParams, arrFeatures = sbi.inference.simulate_for_sbi(simulator=fncSBIParamToFeaturesWrapped, proposal=dstSBIDistributionPrior, 
+        num_simulations=nSBISamples, num_workers=1, 
+        simulation_batch_size=1, seed=245, show_progress_bar=True)
+[[/code]]
+
++ 扩展：自定义批量仿真
+
+用户也可以自行为仿真器编写包裹函数，实现批量仿真和并行化等功能，以及更自由的参数定义。只要函数可以返回相应的参数序列{{arrParams}}（结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）和结果序列{{arrFeatures}}（结构为{{(nSimCount, nFeatureCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）即可。
+
+{{BoxUniform}}提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample_n sample_n()]}}函数，用于产生参数序列{{arrParams}}。对于调用{{BoxUniform.sample_n(nSimCount)}}，返回值的结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}。
+
+例如，若定义{{SBIParamToFeaturesBatch()}}函数进行批量仿真（该函数返回两个{{numpy.array}}，即{{arrParams}}和{{arrFeatures}}），则可以使用类似下面的代码：
+
+[[code type="python"]]
+    # Sampling
+    # Run simulator
+    nSBISamples = 500
+    arrSBISimParams = dstSBIDistributionPrior.sample_n(nSBISamples)
+    print(f"Sampling {nSBISamples} samples, this may take a long time...")
+    arrParams, arrFeatures = SBIParamToFeaturesBatch(arrSBISimParams, 
+        #Extended calling parameters here
+        )
+    arrParams = torch.as_tensor(arrParams)
+    arrFeatures = torch.as_tensor(arrFeatures)
+[[/code]]
+
+自定义批量仿真函数在一些情况下可能是有益的，例如具有很多处理器核心的Windows平台（SBI的CPU并行计算后端可能存在并行数限制）。
+
++ 训练推理网络模型
+
+SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html
+
+这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html NRE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练模型，最后使用{{build_posterior()}}函数建立后向推理器：
+
+[[code type="python"]]
+    # Training
+    trnEstimatorTrainer = sbi.inference.NPE(prior=dstSBIDistributionPrior)
+    trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
+    estEstimator = trnEstimatorTrainer.train()
+    pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
+[[/code]]
+
+SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要，可通过切换工作目录的方式，将该目录置入给定的临时目录中：
+
+[[code type="python"]]
+    # Change working directory to avoid sbi-log spamming
+    import os
+    import shutil
+    import uuid
+    sSBICacheDir = "temp/sbi/"
+    sPreviousWorkDir = os.getcwd()
+    sCurrentSBICacheDir = sSBICacheDir + str(uuid.uuid4()) + "/"
+    os.makedirs(sCurrentSBICacheDir, exist_ok=True)
+    os.chdir(sCurrentSBICacheDir)
+    
+    # Training
+    trnEstimatorTrainer = sbi.inference.NPE(prior=dstSBIDistributionPrior)
+    trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
+    estEstimator = trnEstimatorTrainer.train()
+    pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
+
+    # Revert working directory
+    os.chdir(sPreviousWorkDir)
+    shutil.rmtree(sCurrentSBICacheDir, ignore_errors=True)
+[[/code]]
+
++ 根据观测值估计参数分布
+
+[*https://sbi.readthedocs.io/en/latest/api_reference/posteriors.html 后向推理器]提供{{sample(sample_shape, x)}}函数，用于根据观测值`x`抽取具有给定个数的参数估计：
+
+[[code type="python"]]
+    # Generate observed features
+    arrObservedFeatures = torch.as_tensor([25, 4])
+    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).numpy()
+    arrOptimizationParameters = arrOptimizationParameters[0]
+    print(f"Estimated parameter distribution: {arrOptimizationParameters}")
+    #print(f"Observation with estimated parameter distribution: {SBIParamToFeatures(arrOptimizationParameters, True)}")
+#End If
+[[/code]]
+
++ 参考资料
+
+*https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
