@@ -186,7 +186,7 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
 
 [[code type="python"]]
     # Generate observed features
-    arrInputParamsReal = [2, 24]
+    arrInputParamsReal = [4.5, 40]
     arrObservedFeatures = torch.as_tensor(SBIParamToFeatures(arrInputParamsReal, True))
     print(f"Observed features: {arrInputParamsReal} -> {arrObservedFeatures}")
 
@@ -203,7 +203,7 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
     # Inspecting
     import sbi.analysis 
     import matplotlib.pyplot as plt
-    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).numpy()
+    arrOptimizationParameters = pstPosterior.sample((1000,), x=arrObservedFeatures).numpy()
     sbi.analysis.pairplot(samples=arrOptimizationParameters,
         limits=[[1,10],[25,45]],
         ticks=[[1,10],[25,45]],
