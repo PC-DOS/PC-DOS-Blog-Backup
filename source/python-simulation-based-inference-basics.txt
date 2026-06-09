@@ -2,13 +2,13 @@
 
 + SBI的安装
 
-SBI可以使用`pip`命令进行安装：
+SBI可以使用{{pip}}命令进行安装：
 
 [[code]]
 pip install sbi
 [[/code]]
 
-SBI依赖[*https://pytorch.org/ PyTorch]，使用`pip`命令安装SBI时默认会安装CPU版本的PyTorch，等价于在安装SBI前执行：
+SBI依赖[*https://pytorch.org/ PyTorch]，使用{{pip}}命令安装SBI时默认会安装CPU版本的PyTorch，等价于在安装SBI前执行：
 
 [[code]]
 pip install torch torchvision
@@ -182,7 +182,7 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
 
 + 根据观测值估计参数分布
 
-[*https://sbi.readthedocs.io/en/latest/api_reference/posteriors.html 后向推理器]提供{{sample(sample_shape, x)}}函数，用于根据观测值`x`抽取具有给定个数的后验分布估计（Inferred Posterior Distribution）：
+[*https://sbi.readthedocs.io/en/latest/api_reference/posteriors.html 后向推理器]提供{{sample(sample_shape, x)}}函数，用于根据观测值{{x}}抽取具有给定个数的后验分布估计（Inferred Posterior Distribution）：
 
 [[code type="python"]]
     # Generate observed features
