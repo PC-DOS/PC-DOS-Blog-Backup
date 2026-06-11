@@ -48,7 +48,7 @@ import sbi.inference
 #     dFeature2 = dParam1 + 2
 # Parameter IsResultUseNumPy selects the return value type of this function (tensor or numpy array)
 def SBIParamToFeatures(arrParams : list, IsResultUseNumPy : bool) -> list :
-    arrFeatures = np.array([arrParams[1] + 1, arrParams[0] + 2])
+    arrFeatures = np.asarray([arrParams[1] + 1, arrParams[0] + 2])
     if IsResultUseNumPy :
         return arrFeatures
     else :
