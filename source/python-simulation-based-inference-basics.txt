@@ -123,7 +123,7 @@ SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/
 
 用户也可以自行为仿真器编写包裹函数，实现批量仿真和并行化等功能，以及更自由的参数定义。只要函数可以返回相应的参数序列{{arrParams}}（结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）和结果序列{{arrFeatures}}（结构为{{(nSimCount, nFeatureCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）即可。
 
-{{BoxUniform}}提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample_n sample_n()]}}函数，用于产生参数序列{{arrParams}}。对于调用{{BoxUniform.sample_n(nSimCount)}}，返回值的结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}。
+{{BoxUniform}}提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample_n sample_n()]}}或{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample sample()]}}函数，用于产生参数序列{{arrParams}}。对于调用{{BoxUniform.sample_n(nSimCount)}}，返回值的结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}。
 
 例如，若定义{{SBIParamToFeaturesBatch()}}函数进行批量仿真（该函数返回两个{{numpy.array}}，即{{arrParams}}和{{arrFeatures}}），则可以使用类似下面的代码：
 
@@ -131,7 +131,10 @@ SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/
     # Sampling
     # Run simulator
     nSBISamples = 500
+    # sample_n is deprecated
     arrSBISimParams = dstSBIDistributionPrior.sample_n(nSBISamples)
+    # You can use this
+    arrSBISimParams = dstSBIDistributionPrior.sample((nSBISamples,))
     print(f"Sampling {nSBISamples} samples, this may take a long time...")
     arrParams, arrFeatures = SBIParamToFeaturesBatch(arrSBISimParams, 
         #Extended calling parameters here
