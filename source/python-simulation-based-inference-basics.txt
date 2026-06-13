@@ -256,9 +256,12 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
         #End If
     #End If
     SharedUtil.LogInfo(f"SBI estimator will be trained on device {sTrainingDevice}")
+
+    # Move distribution to the target device in-place
+    dstSBIDistributionPrior.to(sTrainingDevice)
     
     # Training
-    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior.to(sTrainingDevice), device=sTrainingDevice)
+    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior, device=sTrainingDevice)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
