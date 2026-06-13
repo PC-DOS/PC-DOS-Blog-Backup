@@ -121,7 +121,7 @@ SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/
 
 + 扩展：自定义批量仿真
 
-用户也可以自行为仿真器编写包裹函数，实现批量仿真和并行化等功能，以及更自由的参数定义。只要函数可以返回相应的参数序列{{arrParams}}（结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）和结果序列{{arrFeatures}}（结构为{{(nSimCount, nFeatureCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）即可。需要注意返回的{{Tensor}}的数据类型必须为{{[*https://docs.pytorch.org/docs/main/tensor_attributes.html float32]}}：
+用户也可以自行为仿真器编写包裹函数，实现批量仿真和并行化等功能，以及更自由的参数定义。只要函数可以返回相应的参数序列{{arrParams}}（结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）和结果序列{{arrFeatures}}（结构为{{(nSimCount, nFeatureCount)}}，数据类型为{{Tensor}}或可转换为{{Tensor}}）即可。需要注意返回的{{Tensor}}的数据类型必须为{{[*https://docs.pytorch.org/docs/main/tensor_attributes.html#torch.dtype float32]}}：
 
 [[code type="python"]]
 arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
@@ -145,13 +145,13 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
         )
     arrParams = torch.as_tensor(arrParams)
     arrFeatures = torch.as_tensor(arrFeatures)
-    # Ensure type of arrParams and arrFeatures are torch.float32
-    if arrParams.type() != torch.float32 :
-        SharedUtil.LogInfo(f"Type of parameter array is {arrParams.type()}, torch.float32 required")
+    # Ensure type of arrParams and arrFeatures are torch.float32 (torch.FloatTensor)
+    if arrParams.type() != "torch.FloatTensor" :
+        SharedUtil.LogInfo(f"Type of parameter array is {arrParams.type()}, torch.float32 (torch.FloatTensor) required")
         arrParams = arrParams.type(torch.float32)
     #End If
-    if arrFeatures.type() != torch.float32 :
-        SharedUtil.LogInfo(f"Type of simulated data array is {arrFeatures.type()}, torch.float32 required")
+    if arrFeatures.type() != "torch.FloatTensor" :
+        SharedUtil.LogInfo(f"Type of simulated data array is {arrFeatures.type()}, torch.float32 (torch.FloatTensor) required")
         arrFeatures = arrFeatures.type(torch.float32)
     #End If
 [[/code]]
