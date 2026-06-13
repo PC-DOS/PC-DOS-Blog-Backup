@@ -241,10 +241,19 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     # To use SBI with GPU, see https://sbi.readthedocs.io/en/latest/how_to_guide/07_gpu_training.html
     IsCUDAAvailable = torch.cuda.is_available()
     nGPUDevices = torch.cuda.device_count()
+    iTensorSize = arrParams.element_size() * arrParams.numel()
+    iTensorSize += arrFeatures.element_size() * arrFeatures.numel()
     sTrainingDevice = "cpu"
     if IsCUDAAvailable and (nGPUDevices > 0) :
-        SharedUtil.LogInfo(f"CUDA is availabe on your system, and {nGPUDevices} GPU device(s) found")
-        sTrainingDevice = "cuda:0"
+        # Check GPU memory
+        prpGPUproperties = torch.cuda.get_device_properties("cuda:0")
+        iGPUMemory = prpGPUproperties.total_memory
+        if iTensorSize < iGPUMemory * 1.5 :
+            SharedUtil.LogInfo(f"CUDA is availabe on your system, and {nGPUDevices} GPU device(s) found")
+            iGPUMemoryGB = round(iGPUMemory / 1024**3, 1)
+            SharedUtil.LogInfo(f"Taining using CUDA device 0: {prpGPUproperties.name}, {iGPUMemoryGB} GB of memory")
+            sTrainingDevice = "cuda:0"
+        #End If
     #End If
     SharedUtil.LogInfo(f"SBI estimator will be trained on device {sTrainingDevice}")
     
