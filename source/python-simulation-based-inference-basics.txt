@@ -140,7 +140,7 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
     # You can use this
     arrSBISimParams = dstSBIDistributionPrior.sample((nSBISamples,))
     print(f"Sampling {nSBISamples} samples, this may take a long time...")
-    arrParams, arrFeatures = SBIParamToFeaturesBatch(arrSBISimParams, 
+    arrParams, arrFeatures = SBIParamToFeaturesBatch(arrSBISimParams.numpy(), 
         #Extended calling parameters here
         )
     arrParams = torch.as_tensor(arrParams)
