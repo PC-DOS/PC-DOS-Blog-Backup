@@ -145,6 +145,15 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
         )
     arrParams = torch.as_tensor(arrParams)
     arrFeatures = torch.as_tensor(arrFeatures)
+    # Ensure type of arrParams and arrFeatures are torch.float32
+    if arrParams.type() != torch.float32 :
+        SharedUtil.LogInfo(f"Type of parameter array is {arrParams.type()}, torch.float32 required")
+        arrParams = arrParams.type(torch.float32)
+    #End If
+    if arrFeatures.type() != torch.float32 :
+        SharedUtil.LogInfo(f"Type of simulated data array is {arrFeatures.type()}, torch.float32 required")
+        arrFeatures = arrFeatures.type(torch.float32)
+    #End If
 [[/code]]
 
 自定义批量仿真函数在一些情况下可能是有益的，例如具有很多处理器核心的Windows平台（SBI的CPU并行计算后端可能存在并行数限制）。
