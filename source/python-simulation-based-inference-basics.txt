@@ -230,6 +230,33 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
 #End If
 [[/code]]
 
++ 杂项
+
+++ 使用GPU
+
+PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参数设为“{{cuda}}”或包含设备号的“{{cuda:0}}”等形式即可。同时需要通过{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.to sbi.utils.BoxUniform.to()]}}方法将先验边界移动到目标设备上：
+
+[[code type="python"]]
+    # Detect availability of CUDA and GPU devices
+    # To use SBI with GPU, see https://sbi.readthedocs.io/en/latest/how_to_guide/07_gpu_training.html
+    IsCUDAAvailable = torch.cuda.is_available()
+    nGPUDevices = torch.cuda.device_count()
+    sTrainingDevice = "cpu"
+    if IsCUDAAvailable and (nGPUDevices > 0) :
+        SharedUtil.LogInfo(f"CUDA is availabe on your system, and {nGPUDevices} GPU device(s) found")
+        sTrainingDevice = "cuda:0"
+    #End If
+    SharedUtil.LogInfo(f"SBI estimator will be trained on device {sTrainingDevice}")
+    
+    # Training
+    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior.to(sTrainingDevice), device=sTrainingDevice)
+    trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
+    estEstimator = trnEstimatorTrainer.train()
+    pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
+[[/code]]
+
 + 参考资料
 
 *https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
+
+*https://sbi.readthedocs.io/en/latest/how_to_guide/07_gpu_training.html
