@@ -228,6 +228,8 @@ SBI训练网络以及从后验分布采样时，会在当前工作目录建立{{
  * 若参数量小于3：使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.RejectionPosterior.html RejectionPosterior]}}或{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.MCMCPosterior.html MCMCPosterior]}}
  * 若参数量在3~10之间：使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.MCMCPosterior.html MCMCPosterior]}}
  * 若参数量大于10：使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.VIPosterior.html VIPosterior]}}
+  * {{VIPosterior}}需要根据模型参数和仿真数据进行二次训练：
+   * {{pstPosterior.train_amortized(arrParams, arrFeatures)}}
   * 可以进一步使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.ImportanceSamplingPosterior.html ImportanceSamplingPosterior]}}优化采样准确率：
    * {{pstPosterior = sbi.inference.ImportanceSamplingPosterior(pstPosterior.potential_fn, dstSBIPriorDistribution, oversampling_factor=32)}}
 
