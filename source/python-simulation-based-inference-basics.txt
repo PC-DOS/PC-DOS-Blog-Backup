@@ -221,6 +221,16 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
     shutil.rmtree(sCurrentSBICacheDir, ignore_errors=True)
 [[/code]]
 
+调用{{build_posterior()}}时可以传入{{sample_with}}参数，决定使用何种算法进行采样。根据[*https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html SBI的推荐]：
+* 使用NPE模型时：
+ * 使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.DirectPosterior.html DirectPosterior]}}
+* 使用NLE或NRE模型时：
+ * 若参数量小于3：使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.RejectionPosterior.html RejectionPosterior]}}或{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.MCMCPosterior.html MCMCPosterior]}}
+ * 若参数量在3~10之间：使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.MCMCPosterior.html MCMCPosterior]}}
+ * 若参数量大于10：使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.VIPosterior.html VIPosterior]}}
+  * 可以进一步使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.ImportanceSamplingPosterior.html ImportanceSamplingPosterior]}}优化采样准确率：
+   * {{pstPosterior = sbi.inference.ImportanceSamplingPosterior(pstPosterior.potential_fn, dstSBIPriorDistribution, oversampling_factor=32)}}
+
 + 根据观测值估计参数分布
 
 [*https://sbi.readthedocs.io/en/latest/api_reference/posteriors.html 后向推理器]提供{{sample(sample_shape, x)}}函数，用于根据观测值{{x}}抽取具有给定个数的后验分布估计（Inferred Posterior Distribution）：
