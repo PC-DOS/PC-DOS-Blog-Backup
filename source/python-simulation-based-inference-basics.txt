@@ -22,6 +22,10 @@ pip install torch torchvision
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
 [[/code]]
 
++ 基本流程
+
+确定先验分布 → 采样仿真数据 → 训练用于估计概率密度的神经网络 → 建立后验分布
+
 + 定义仿真器
 
 仿真器（Simulator），即模型，是对真实过程的虚拟表达。其接收一个一维参数数组{{arrParams}}以及潜在的扩展参数，并传回包含了仿真结果或其特征（低维表达）的数组{{arrFeatures}}。
@@ -57,7 +61,7 @@ def SBIParamToFeatures(arrParams : list, IsResultUseNumPy : bool) -> list :
 #End Function
 [[/code]]
 
-+ 定义边界
++ 定义边界（建立先验）
 
 SBI使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html sbi.utils.BoxUniform]}}对象定义参数的边界。使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.process_prior.html sbi.utils.process_prior()]}}函数确保边界数据格式满足要求：
 
@@ -66,7 +70,7 @@ SBI使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi
 if __name__ == "__main__" :
     # Ref. https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
     
-    # Defining parameter bounds
+    # Defining parameter bounds (build prior distribution)
     #     dParam1 in [1,10]
     #     dParam2 in [25,45]
     arrOptimizationBounds = [
@@ -76,7 +80,7 @@ if __name__ == "__main__" :
     arrSBILowerBounds = torch.as_tensor([Bound[0] for Bound in arrOptimizationBounds])
     arrSBIUpperBounds = torch.as_tensor([Bound[1] for Bound in arrOptimizationBounds])
     bndSBIUniformedBounds = sbi.utils.BoxUniform(low=arrSBILowerBounds, high=arrSBIUpperBounds)
-    dstSBIDistributionPrior, nSBIParam, IsSBIPriorNumPy = sbi.utils.process_prior(bndSBIUniformedBounds)
+    dstSBIPriorDistribution, nSBIParam, IsSBIPriorNumPy = sbi.utils.process_prior(bndSBIUniformedBounds)
 [[/code]]
 
 + 预处理仿真器函数
@@ -102,7 +106,7 @@ if __name__ == "__main__" :
 
 [[code type="python"]]
     # Convert to SBI function
-    fncSBIParamToFeaturesWrapped = sbi.utils.process_simulator(fncSBIParamToFeaturesPartial, dstSBIDistributionPrior, IsSBIPriorNumPy)
+    fncSBIParamToFeaturesWrapped = sbi.utils.process_simulator(fncSBIParamToFeaturesPartial, dstSBIPriorDistribution, IsSBIPriorNumPy)
 [[/code]]
 
 + 运行仿真器
@@ -114,7 +118,7 @@ SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/
     # Run simulator
     nSBISamples = 500
     print(f"Sampling {nSBISamples} samples, this may take a long time...")
-    arrParams, arrFeatures = sbi.inference.simulate_for_sbi(simulator=fncSBIParamToFeaturesWrapped, proposal=dstSBIDistributionPrior, 
+    arrParams, arrFeatures = sbi.inference.simulate_for_sbi(simulator=fncSBIParamToFeaturesWrapped, proposal=dstSBIPriorDistribution, 
         num_simulations=nSBISamples, num_workers=1, 
         simulation_batch_size=1, seed=245, show_progress_bar=True)
 [[/code]]
@@ -136,9 +140,9 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
     # Run simulator
     nSBISamples = 500
     # sample_n is deprecated
-    arrSBISimParams = dstSBIDistributionPrior.sample_n(nSBISamples)
+    arrSBISimParams = dstSBIPriorDistribution.sample_n(nSBISamples)
     # You can use this
-    arrSBISimParams = dstSBIDistributionPrior.sample((nSBISamples,))
+    arrSBISimParams = dstSBIPriorDistribution.sample((nSBISamples,))
     print(f"Sampling {nSBISamples} samples, this may take a long time...")
     arrParams, arrFeatures = SBIParamToFeaturesBatch(arrSBISimParams.numpy(), 
         #Extended calling parameters here
@@ -162,11 +166,11 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
 
 SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html
 
-这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html NRE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练用于近似似然比的神经网络（神经密度估计器），最后使用{{build_posterior()}}函数从神经密度估计器建立后验：
+这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html NRE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练用于近似似然比的神经网络（神经密度估计器），最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
 
 [[code type="python"]]
     # Train a neural network to approximate likelihood ratios (neural density estimator)
-    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior)
+    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
@@ -189,7 +193,7 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
     os.chdir(sCurrentSBICacheDir)
     
     # Train a neural network to approximate likelihood ratios (neural density estimator)
-    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior)
+    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
@@ -264,10 +268,10 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     SharedUtil.LogInfo(f"SBI estimator will be trained on device {sTrainingDevice}")
 
     # Move distribution to the target device in-place
-    dstSBIDistributionPrior.to(sTrainingDevice)
+    dstSBIPriorDistribution.to(sTrainingDevice)
     
     # Train a neural network to approximate likelihood ratios (neural density estimator)
-    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior, device=sTrainingDevice)
+    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution, device=sTrainingDevice)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
