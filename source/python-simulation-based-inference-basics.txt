@@ -194,10 +194,10 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
 
-SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要，可通过切换工作目录的方式，将该目录置入给定的临时目录中：
+SBI训练网络时会在当前工作目录建立{{sbi-logs}}目录，若有需要，可通过切换工作目录的方式，将该目录置入给定的临时目录中：
 
 [[code type="python"]]
-    # Change working directory to avoid sbi-log spamming
+    # Change working directory to avoid sbi-logs spamming
     import os
     import shutil
     import uuid
