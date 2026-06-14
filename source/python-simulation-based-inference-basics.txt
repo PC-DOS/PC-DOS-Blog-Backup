@@ -188,10 +188,13 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
     os.makedirs(sCurrentSBICacheDir, exist_ok=True)
     os.chdir(sCurrentSBICacheDir)
     
-    # Training
-    trnEstimatorTrainer = sbi.inference.NPE(prior=dstSBIDistributionPrior)
+    # Train a neural network to approximate likelihood ratios (neural density estimator)
+    trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
+    
+    # Build posterior from the neural density estimator
+    # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 
     # Revert working directory
@@ -263,10 +266,13 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     # Move distribution to the target device in-place
     dstSBIDistributionPrior.to(sTrainingDevice)
     
-    # Training
+    # Train a neural network to approximate likelihood ratios (neural density estimator)
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior, device=sTrainingDevice)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
+    
+    # Build posterior from the neural density estimator
+    # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
 
