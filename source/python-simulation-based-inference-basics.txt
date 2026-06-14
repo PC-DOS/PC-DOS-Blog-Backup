@@ -189,7 +189,7 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior P(Observed | Param) from the neural density estimator
+    # Build posterior P(Param | Observed) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
@@ -212,7 +212,7 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior P(Observed | Param) from the neural density estimator
+    # Build posterior P(Param | Observed) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 
@@ -290,7 +290,7 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior P(Observed | Param) from the neural density estimator
+    # Build posterior P(Param | Observed) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
