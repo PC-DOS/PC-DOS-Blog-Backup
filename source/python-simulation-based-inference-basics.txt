@@ -328,6 +328,18 @@ AssertionError: Original and re-transformed parameters must be close to each oth
         return (y - self.loc) * inv_scale
 [[/code]]
 
+同时编辑{{torch/distributions/uniform.py}}文件中{{Uniform}}类的{{log_prob()}}函数，实现一个简单的安全除法：
+
+[[code type="python"]]
+    def log_prob(self, value):
+        if self._validate_args:
+            self._validate_sample(value)
+        lb = self.low.le(value).type_as(self.low)
+        ub = self.high.gt(value).type_as(self.low)
+        result = torch.log(lb.mul(ub)) - torch.log(self.high - self.low)
+        return torch.nan_to_num(result, nan=0, posinf=0, neginf=0)
+[[/code]]
+
 + 参考资料
 
 *https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
