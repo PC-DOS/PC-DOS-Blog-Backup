@@ -181,10 +181,10 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
 
 为了建立由观测数据推断参数的后验分布{{P(Param | Observed)}}，需要先估计从参数到观测数据的正向分布{{P(Observed | Param)}}。SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html
 
-这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html NRE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练用于近似似然比的神经网络（神经密度估计器），最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
+这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html NRE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练用于正向分布的神经网络（神经密度估计器），最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
 
 [[code type="python"]]
-    # Train a neural network to approximate likelihood ratios P(Observed | Param) (neural density estimator)
+    # Train a neural network to approximate P(Observed | Param) (neural density estimator)
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
@@ -207,7 +207,7 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
     os.makedirs(sCurrentSBICacheDir, exist_ok=True)
     os.chdir(sCurrentSBICacheDir)
     
-    # Train a neural network to approximate likelihood ratios P(Observed | Param) (neural density estimator)
+    # Train a neural network to approximate P(Observed | Param) (neural density estimator)
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
@@ -285,7 +285,7 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     # Move prior distribution to the target device in-place
     dstSBIPriorDistribution.to(sTrainingDevice)
     
-    # Train a neural network to approximate likelihood ratios P(Observed | Param) (neural density estimator)
+    # Train a neural network to approximate P(Observed | Param) (neural density estimator)
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution, device=sTrainingDevice)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
