@@ -169,6 +169,9 @@ SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/late
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIDistributionPrior)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
+    
+    # Build posterior from the neural density estimator
+    # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
 
