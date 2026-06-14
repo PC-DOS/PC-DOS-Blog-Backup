@@ -24,7 +24,18 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
 
 + 基本流程
 
-确定先验分布 → 采样仿真数据 → 训练用于估计概率密度的神经网络 → 建立后验分布
+根据贝叶斯公式：
+
+[[code type="python"]]
+# Bayes' Theorem
+#     Param - Model parameters
+#     Observed - Observed data
+P(Param | Observed) = P(Observed | Param) * P(Param) / P(Observed)
+[[/code]]
+
+故SBI的流程为：
+
+确定先验分布（确定{{P(Param)}}） → 采样仿真数据 → 训练用于估计概率密度的神经网络（确定{{P(Observed | Param)}}） → 建立后验分布{{P(Param | Observed)}}
 
 + 定义仿真器
 
@@ -61,16 +72,20 @@ def SBIParamToFeatures(arrParams : list, IsResultUseNumPy : bool) -> list :
 #End Function
 [[/code]]
 
-+ 定义边界（建立先验）
++ 定义参数分布与边界的先验
 
-SBI使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html sbi.utils.BoxUniform]}}对象定义参数的边界。使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.process_prior.html sbi.utils.process_prior()]}}函数确保边界数据格式满足要求：
+首先需要定义模型参数的先验分布{{P(Param)}}。可以使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html sbi.utils.BoxUniform]}}对象定义参数的边界，该类将参数预设为均匀分布（Uniform Distribution）。使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.process_prior.html sbi.utils.process_prior()]}}函数确保先验数据格式满足要求：
 
 [[code type="python"]]
 # Main entry point
 if __name__ == "__main__" :
     # Ref. https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
+    # Bayes' Theorem
+    #     P(Param | Observed) = P(Observed | Param) * P(Param) / P(Observed)
+    #         Param - Model parameters
+    #         Observed - Observed data
     
-    # Defining parameter bounds (build prior distribution)
+    # Defining priori parameter bounds and distribution (build prior distribution P(Param))
     #     dParam1 in [1,10]
     #     dParam2 in [25,45]
     arrOptimizationBounds = [
@@ -162,19 +177,19 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
 
 自定义批量仿真函数在一些情况下可能是有益的，例如具有很多处理器核心的Windows平台（SBI的CPU并行计算后端可能存在并行数限制）。
 
-+ 训练推理网络模型
++ 训练用于估计正向分布的神经网络模型并建立后验分布
 
-SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html
+为了建立由观测数据推断参数的后验分布{{P(Param | Observed)}}，需要先估计从参数到观测数据的正向分布{{P(Observed | Param)}}。SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html
 
 这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html NRE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练用于近似似然比的神经网络（神经密度估计器），最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
 
 [[code type="python"]]
-    # Train a neural network to approximate likelihood ratios (neural density estimator)
+    # Train a neural network to approximate likelihood ratios P(Observed | Param) (neural density estimator)
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior from the neural density estimator
+    # Build posterior P(Observed | Param) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
@@ -192,12 +207,12 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
     os.makedirs(sCurrentSBICacheDir, exist_ok=True)
     os.chdir(sCurrentSBICacheDir)
     
-    # Train a neural network to approximate likelihood ratios (neural density estimator)
+    # Train a neural network to approximate likelihood ratios P(Observed | Param) (neural density estimator)
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior from the neural density estimator
+    # Build posterior P(Observed | Param) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 
@@ -267,15 +282,15 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     #End If
     SharedUtil.LogInfo(f"SBI estimator will be trained on device {sTrainingDevice}")
 
-    # Move distribution to the target device in-place
+    # Move prior distribution to the target device in-place
     dstSBIPriorDistribution.to(sTrainingDevice)
     
-    # Train a neural network to approximate likelihood ratios (neural density estimator)
+    # Train a neural network to approximate likelihood ratios P(Observed | Param) (neural density estimator)
     trnEstimatorTrainer = sbi.inference.NRE_C(prior=dstSBIPriorDistribution, device=sTrainingDevice)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior from the neural density estimator
+    # Build posterior P(Observed | Param) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
