@@ -67,7 +67,7 @@ def SBIParamToFeatures(arrParams : list, IsResultUseNumPy : bool) -> list :
     if IsResultUseNumPy :
         return arrFeatures
     else :
-        return torch.as_tensor(arrFeatures, dtype=torch.float32)
+        return torch.as_tensor(arrFeatures)
     #End If
 #End Function
 [[/code]]
@@ -92,8 +92,8 @@ if __name__ == "__main__" :
         (1,10),
         (25,45)
     ]
-    arrSBILowerBounds = torch.as_tensor([Bound[0] for Bound in arrOptimizationBounds], dtype=torch.float32)
-    arrSBIUpperBounds = torch.as_tensor([Bound[1] for Bound in arrOptimizationBounds], dtype=torch.float32)
+    arrSBILowerBounds = torch.as_tensor([Bound[0] for Bound in arrOptimizationBounds])
+    arrSBIUpperBounds = torch.as_tensor([Bound[1] for Bound in arrOptimizationBounds])
     bndSBIUniformedBounds = sbi.utils.BoxUniform(low=arrSBILowerBounds, high=arrSBIUpperBounds)
     dstSBIPriorDistribution, nSBIParam, IsSBIPriorNumPy = sbi.utils.process_prior(bndSBIUniformedBounds)
 [[/code]]
@@ -238,7 +238,7 @@ SBI训练网络时会在当前工作目录建立{{sbi-log}}目录，若有需要
 [[code type="python"]]
     # Generate observed features
     arrInputParamsReal = [4.5, 40]
-    arrObservedFeatures = torch.as_tensor(SBIParamToFeatures(arrInputParamsReal, True), dtype=torch.float32)
+    arrObservedFeatures = torch.as_tensor(SBIParamToFeatures(arrInputParamsReal, True))
     print(f"Observed features: {arrInputParamsReal} -> {arrObservedFeatures}")
 
     # Estimating
@@ -303,27 +303,6 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     # Build posterior P(Param | Observed) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
-[[/code]]
-
-++ 常数问题
-
-如果模型存在上界与下界相同的参数（常数参数），SBI可能在执行{{build_posterior()}}等函数时失败，并产生错误：
-
-[[code]]
-AssertionError: Original and re-transformed parameters must be close to each other.
-[[/code]]
-
-这是因为SBI的变换函数涉及Z-Score的变换与反变换。对于常数（Z-Score为0）的情况，反变换时出现“{{@@0/0@@}}”型错误，返回了“{{nan}}”。
-
-可以编辑{{torch/distributions/transforms.py}}文件中{{AffineTransform}}类的{{_inverse()}}函数，实现一个简单的安全除法（将{{nan}}和{{inf}}置为0）：
-
-[[code type="python"]]
-    def _inverse(self, y):
-        # Use safe div
-        # See https://duoke360.com/post/35074
-        inv_scale = 1. / self.scale
-        inv_scale = torch.nan_to_num(inv_scale, nan=0, posinf=0, neginf=0)
-        return (y - self.loc) * inv_scale
 [[/code]]
 
 + 参考资料
