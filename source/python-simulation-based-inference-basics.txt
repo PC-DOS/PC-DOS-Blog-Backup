@@ -305,6 +305,27 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
 
+++ 常数问题
+
+如果模型存在上界与下界相同的参数（常数参数），SBI可能在执行{{build_posterior()}}等函数时失败，并产生错误：
+
+[[code]]
+AssertionError: Original and re-transformed parameters must be close to each other.
+[[/code]]
+
+这是因为SBI的变换函数涉及Z-Score的变换与反变换。对于常数（Z-Score为0）的情况，反变换时出现“{{@@0/0@@}}”型错误，返回了“{{nan}}”。
+
+可以编辑{{torch/distributions/transforms.py}}文件中{{AffineTransform}}类的{{_inverse()}}函数，实现一个简单的安全除法（将{{nan}}和{{inf}}置为0）：
+
+[[code type="python"]]
+    def _inverse(self, y):
+        # Use safe div
+        # See https://duoke360.com/post/35074
+        inv_scale = 1. / self.scale
+        inv_scale = torch.nan_to_num(inv_scale, nan=0, posinf=0, neginf=0)
+        return (y - self.loc) * inv_scale
+[[/code]]
+
 + 参考资料
 
 *https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
