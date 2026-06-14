@@ -281,3 +281,5 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
 *https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
 
 *https://sbi.readthedocs.io/en/latest/how_to_guide/07_gpu_training.html
+
+*https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
