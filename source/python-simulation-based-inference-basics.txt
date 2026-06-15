@@ -317,7 +317,9 @@ AssertionError: Original and re-transformed parameters must be close to each oth
 
 这是因为SBI的变换函数涉及Z-Score的变换与反变换。对于常数（Z-Score为0）的情况，反变换时出现“{{@@0/0@@}}”型错误，返回了“{{nan}}”。
 
-可以编辑{{torch/distributions/transforms.py}}文件中{{AffineTransform}}类的{{_inverse()}}函数，实现一个简单的安全除法（将{{nan}}和{{inf}}置为0）：
+建议在进入SBI流程前，将参数数组分割为可变部分与常数部分，在SBI推理结束后再合并。
+
+临时处理（可能导致结果异常）时，可以编辑{{torch/distributions/transforms.py}}文件中{{AffineTransform}}类的{{_inverse()}}函数，实现一个简单的安全除法（将{{nan}}和{{inf}}置为0）：
 
 [[code type="python"]]
     def _inverse(self, y):
