@@ -305,6 +305,14 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     # Build posterior P(Param | Observed) from the neural density estimator
     # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
+    
+    # Generate observed features
+    arrInputParamsReal = [4.5, 40]
+    arrObservedFeatures = torch.as_tensor(SBIParamToFeatures(arrInputParamsReal, True)).to(torch.device(sTrainingDevice))
+    print(f"Observed features: {arrInputParamsReal} -> {arrObservedFeatures}")
+
+    # Estimating
+    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).cpu().numpy()
 [[/code]]
 
 ++ 常数问题
