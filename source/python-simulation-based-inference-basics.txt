@@ -36,7 +36,7 @@ p(Param | Observed) = p(Observed | Param) * p(Param) / p(Observed)
 故SBI的流程为：
 # 确定先验分布（确定{{p(Param)}}）
 # 采样多个仿真数据，进行多轮仿真，得到多个{{(Param, Observed)}}的输入-输出对
-# 训练用于拟合后验概率{{p(Param | Observed)}}或其变体的神经网络（神经密度估计器或神经分类器），常用算法包括：
+# 训练用于拟合后验概率{{p(Param | Observed)}}、似然{{p(Observed | Param)}}或其它变体的神经网络（神经密度估计器或神经分类器），常用算法包括：
  * NPE（Neural Posterior Estimation）：训练一个深度神经密度估计器来直接近似后验分布{{p(Param | Observed)}}
  * NLE（Neural Likelihood Estimation）：训练一个神经网络，使用条件密度估计器（归一化流）来近似似然{{p(Observed | Param)}}
  * NRE（Neural Ratio Estimation）：训练一个神经分类器，通过区分来自联合分布{{p(Param, Observed)}}的样本和来自边缘分布{{p(Param)p(Observed)}}的样本，来估计似然与证据的比率{{r(Observed | Param) = p(Observed | Param) / p(Observed)}}。
@@ -223,7 +223,7 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
 这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NPE_C.html NPE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练神经网络，最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
 
 [[code type="python"]]
-    # Train a neural network to approximate p(Param | Observed), its likelihood, or its variants (neural density estimator, or neural classifier)
+    # Train a neural network (neural density estimator, or neural classifier) to approximate p(Param | Observed), likelihood p(Observed | Param), or other variants
     # For estimating methods, see: https://sbi.readthedocs.io/en/latest/how_to_guide/06_choosing_inference_method.html and https://sbi.readthedocs.io/en/latest/api_reference/training.html
     #     NPE (Neural Posterior Estimation): Trains a deep neural density estimator to directly approximate the posterior p(Param | Observed).
     #         NPE is the only method which estimates the posterior directly. This means that it will not require further sampling steps (such as MCMC) after training. This makes NPE the fastest to sample from the posterior estimate after training. In addition, it can use an embedding network to learn summary statistics (just like NRE, but unlike NLE).
@@ -347,7 +347,7 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     # Move prior distribution to the target device in-place
     dstSBIPriorDistribution.to(sTrainingDevice)
     
-    # Train a neural network to approximate p(Param | Observed), its likelihood, or its variants (neural density estimator, or neural classifier)
+    # Train a neural network (neural density estimator, or neural classifier) to approximate p(Param | Observed), likelihood p(Observed | Param), or other variants
     # For estimating methods, see: https://sbi.readthedocs.io/en/latest/how_to_guide/06_choosing_inference_method.html and https://sbi.readthedocs.io/en/latest/api_reference/training.html
     #     NPE (Neural Posterior Estimation): Trains a deep neural density estimator to directly approximate the posterior p(Param | Observed).
     #         NPE is the only method which estimates the posterior directly. This means that it will not require further sampling steps (such as MCMC) after training. This makes NPE the fastest to sample from the posterior estimate after training. In addition, it can use an embedding network to learn summary statistics (just like NRE, but unlike NLE).
