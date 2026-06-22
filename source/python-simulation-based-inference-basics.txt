@@ -19,7 +19,7 @@ pip install torch torchvision
 例如，若需要PyTorch可在Windows环境上调用CUDA 12.6，需在安装SBI前执行：
 
 [[code]]
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
+pip install torch torchvision --index-url *https://download.pytorch.org/whl/cu126
 [[/code]]
 
 + 基本流程
@@ -30,12 +30,17 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu126
 # Bayes' Theorem
 #     Param - Model parameters
 #     Observed - Observed data
-P(Param | Observed) = P(Observed | Param) * P(Param) / P(Observed)
+p(Param | Observed) = p(Observed | Param) * p(Param) / p(Observed)
 [[/code]]
 
 故SBI的流程为：
-
-确定先验分布（确定{{P(Param)}}） → 采样仿真数据 → 训练用于估计概率密度的神经网络（确定{{P(Observed | Param)}}） → 建立后验分布{{P(Param | Observed)}}
+# 确定先验分布（确定{{p(Param)}}）
+# 采样多个仿真数据，进行多轮仿真，得到多个{{(Param, Observed)}}的输入-输出对
+# 训练用于拟合后验概率{{p(Param | Observed)}}或其变体的神经网络（神经密度估计器或神经分类器），常用算法包括：
+ * NPE（Neural Posterior Estimation）：训练一个深度神经密度估计器来直接近似后验分布{{p(Param | Observed)}}
+ * NLE（Neural Likelihood Estimation）：训练一个神经网络，使用条件密度估计器（归一化流）来近似似然{{p(Observed | Param)}}
+ * NRE（Neural Ratio Estimation）：训练一个神经分类器，通过区分来自联合分布{{p(Param, Observed)}}的样本和来自边缘分布{{p(Param)p(Observed)}}的样本，来估计似然与证据的比率{{r(Observed | Param) = p(Observed | Param) / p(Observed)}}。
+# 从训练完毕的神经网络建立后验概率{{p(Param | Observed)}}采样器
 
 + 定义仿真器
 
@@ -74,18 +79,18 @@ def SBIParamToFeatures(arrParams : list, IsResultUseNumPy : bool) -> list :
 
 + 定义参数分布与边界的先验
 
-首先需要定义模型参数的先验分布{{P(Param)}}。可以使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html sbi.utils.BoxUniform]}}对象定义参数的边界，该类将参数预设为均匀分布（Uniform Distribution）。使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.process_prior.html sbi.utils.process_prior()]}}函数确保先验数据格式满足要求：
+首先需要定义模型参数的先验分布{{p(Param)}}。可以使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html sbi.utils.BoxUniform]}}对象定义参数的边界，该类将参数预设为均匀分布（Uniform Distribution）。使用{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.process_prior.html sbi.utils.process_prior()]}}函数确保先验数据格式满足要求：
 
 [[code type="python"]]
 # Main entry point
 if __name__ == "__main__" :
-    # Ref. https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
+    # Ref. *https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
     # Bayes' Theorem
-    #     P(Param | Observed) = P(Observed | Param) * P(Param) / P(Observed)
+    #     p(Param | Observed) = p(Observed | Param) * p(Param) / p(Observed)
     #         Param - Model parameters
     #         Observed - Observed data
     
-    # Defining priori parameter bounds and distribution (build prior distribution P(Param))
+    # Defining priori parameter bounds and distribution (build prior distribution p(Param))
     #     dParam1 in [1,10]
     #     dParam2 in [25,45]
     arrOptimizationBounds = [
@@ -179,18 +184,69 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
 
 + 训练用于估计正向分布的神经网络模型并建立后验分布
 
-为了建立由观测数据推断参数的后验分布{{P(Param | Observed)}}，需要先估计从参数到观测数据的正向分布{{P(Observed | Param)}}。SBI支持多种估计器模型，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html
+为了建立由观测数据推断参数的后验分布{{p(Param | Observed)}}，需要训练一个神经网络进行拟合。SBI支持多种拟合算法，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html ：
+* SNPE：Sequential Neural Posterior Estimation
+ * NPE 是唯一直接估计后验的方法。这意味着它在训练后不需要进一步的采样步骤（如 MCMC）。这使得 NPE 在训练后从后验估计中进行采样的速度最快。此外，它可以使用嵌入网络来学习汇总统计量（与 NRE 一样，但与 NLE 不同）。
+ * NPE_A: Fast epsilon-free Inference of Simulation Models with Bayesian Conditional Density Estimation, Papamakarios et al., NeurIPS 2016. *https://arxiv.org/abs/1605.06376
+  * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NPE_A.html
+  * 与所有 NPE 方法一样，该方法训练一个深度神经密度估计器来直接近似后验分布。同样，与所有其他 NPE 方法一样，在第一轮中，该密度估计器使用最大似然损失进行训练。
+  * 该类实现了 NPE-A。NPE-A 使用最大似然损失进行多轮训练。这会导致训练收敛于提议后验而非真实后验。为了纠正这一点，SNPE-A 在训练后应用了事后校正。该校正是以解析方式进行的，并且需要使用高斯混合密度估计器。
+  * 在多轮 SNPE-A 中，MoG 成分的数量随每一轮呈乘法增长：如果提议分布有 L 个成分且密度估计器有 K 个成分，那么修正后的后验分布将有 L×K 个成分。对于需要进行多轮训练的情况，建议改用 SNPE-C (APT)，它能更高效地处理多轮推理。
+ * NPE_B: Flexible statistical inference for mechanistic models of neural dynamics, Lueckmann, Gonçalves et al., NeurIPS 2017. *https://arxiv.org/abs/1711.01861
+  * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NPE_B.html
+  * NPE-B（也称为 SNPE-B）使用重要性加权损失训练神经网络，以直接近似后验分布{{p(Param | Observed)}}。与 NPE-A 不同，这种重要性加权确保了在多轮推理中能够收敛到真实的后验分布，并且不局限于高斯提议分布。NPE-B 可以使用诸如归一化流等灵活的密度估计器。
+  * 对于单轮推理，NPE-A、NPE-B 和 NPE-C 是等价的，并且均使用普通的 NLL（负对数似然）损失。
+ * NPE_C: Automatic Posterior Transformation for Likelihood-free Inference, Greenberg et al., ICML 2019, *https://arxiv.org/abs/1905.07488.
+  * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NPE_C.html
+  * NPE-C（也称为自动后验变换（Automatic Posterior Transformation，APT），又名 SNPE-C）通过多轮训练神经网络，以直接近似特定观测值 x_o 的后验分布。在第一轮中，NPE-C 与其他 NPE 方法等价，并且是完全摊销的（可对任何新观测值进行直接推理）。在第一轮之后，NPE-C 会根据所选的密度估计器在两种损失变体之间自动进行选择：一种是稳定且能避免泄漏的非原子损失（适用于高斯混合分布），另一种是更灵活但可能存在泄漏问题的原子损失（适用于流模型）。
+ * 对于单轮推理，NPE-A、NPE-B 和 NPE-C 是等价的，并且均使用普通的 NLL（负对数似然）损失。
+* SNLE：Sequential Neural Likelihood Estimation
+ * NLE 学习似然。这使得 NLE 在训练后能够模拟仿真器。为了从后验中进行采样，NLE 需要与 MCMC 或变分推断结合使用，这使得其从后验采样较慢。NLE 的一个优点是，如果有多个独立同分布（Independent Identically Distributed，IID）的观测值，那么它的仿真效率可能比 NPE 高得多。
+ * NLE_A: Sequential Neural Likelihood: Fast Likelihood-free Inference with Autoregressive Flows, Papamakarios et al., AISTATS 2019, *https://arxiv.org/abs/1805.07226
+  * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NLE_A.html
+  * NLE 训练一个神经网络，使用条件密度估计器（归一化流）来近似似然{{p(Observed | Param)}}。与直接估计后验分布的 NPE 方法不同，NLE 估计的是似然。
+  * NLE 可以进行多轮运行而无需校正，但在每一轮中都需要进行可能计算代价高昂的后验采样。
+* SNRE：Sequential Neural Ratio Estimation
+ * NRE 学习似然与证据的比率。它仅训练一个分类器（不同于训练生成模型的 NPE 和 NLE），这使得它的训练速度最快。与 NLE 一样，NRE 必须与 MCMC 或变分推断结合才能进行采样。与 NPE 一样，NRE 可以使用嵌入网络来学习汇总统计量。
+ * NRE_A: Likelihood-free MCMC with Amortized Approximate Likelihood Ratios, Hermans et al., ICML 2020, *https://arxiv.org/abs/1903.04057
+  * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_A.html
+  * NRE-A 训练一个神经分类器，通过区分来自联合分布{{p(Param, Observed)}}的样本和来自边缘分布{{p(Param)p(Observed)}}的样本，来估计似然与证据的比率{{r(Observed | Param) = p(Observed | Param) / p(Observed)}}。随后，利用估计出的比率，通过 MCMC、拒绝采样或变分推断来进行后验采样。
+  * NRE 可以进行多轮运行而无需校正，但在每一轮中都需要进行可能计算代价高昂的后验采样。
+ * NRE_B: On Contrastive Learning for Likelihood-free Inference, Durkan et al., ICML 2020, *https://arxiv.org/pdf/2002.03712
+  * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_B.html
+  * NRE-B 是 NRE-A 的扩展，它使用对比（1-out-of-K）损失训练神经分类器，以估计似然与证据的比率。它不采用二分类，而是将来自联合分布{{p(Param, Observed)}}的一个样本与来自边缘分布{{p(Param)p(Observed)}}的{{K-1}}个样本进行对比。与 NRE-A 相比，这种多类别的构建方式提高了训练的稳定性。
+  * NRE 可以进行多轮运行而无需校正，但在每一轮中都需要进行可能计算代价高昂的后验采样。
+ * NRC_C: Contrastive Neural Ratio Estimation, Benjamin Kurt Miller, et al. NeurIPS 2022, *https://arxiv.org/abs/2210.06170
+  * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html
+  * NRE-C 使用一种“多类 Sigmoid”损失对 NRE-A 和 NRE-B 进行了推广，该损失确保在第一轮达到最优时，所估计的比率{{p(Param, Observed)/(p(Param)p(Observed))}}是精确的。这解决了 NRE-B 的比率仅定义到一个关于{{Observed}}的任意函数程度的问题。NRE-C 提供了更准确的比率估计，同时保持了对比学习的优势。
 
-这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NPE_C.html NPE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练用于正向分布的神经网络（神经密度估计器），最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
+这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NPE_C.html NPE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练神经网络，最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
 
 [[code type="python"]]
-    # Train a neural network to approximate P(Observed | Param) (neural density estimator)
+    # Train a neural network to approximate p(Param | Observed), its likelihood, or its variants (neural density estimator, or neural classifier)
+    # For estimating methods, see: https://sbi.readthedocs.io/en/latest/how_to_guide/06_choosing_inference_method.html and https://sbi.readthedocs.io/en/latest/api_reference/training.html
+    #     NPE (Neural Posterior Estimation): Trains a deep neural density estimator to directly approximate the posterior p(Param | Observed).
+    #         NPE is the only method which estimates the posterior directly. This means that it will not require further sampling steps (such as MCMC) after training. This makes NPE the fastest to sample from the posterior estimate after training. In addition, it can use an embedding network to learn summary statistics (just like NRE, but unlike NLE).
+    #     NLE (Neural Likelihood Estimation): Trains a neural network to approximate the likelihood p(Observed | Param) using a conditional density estimator (normalizing flow).
+    #         NLE learns the likelihood. This allows NLE to emulate the simulator after training. To sample from the posterior, NLE is combined with MCMC or variational inference, which makes it slower to sample. An advantage of NLE is that, if you have multiple iid observations, then it can be much more simulation efficient than NPE
+    #     NRE (Neural Ratio Estimation): Trains a neural classifier to estimate the likelihood-to-evidence ratio r(Param, Observed) = p(Observed | Param) / p(Observed) by distinguishing between samples from the joint distribution p(Param, Observed) and samples from the marginals p(Param)p(Observed). Posterior sampling is then performed via MCMC, rejection sampling, or variational inference using the estimated ratio.
+    #         NRE learns the likelihood-to-evidence ratio. It trains only a classifier (unlike NPE and NLE, which train a generative model), which makes it fastest to train. Like NLE, NRE has to be combined MCMC or variational inference to sample. Like NPE, NRE can use an embedding network to learn summary statistics.
     trnEstimatorTrainer = sbi.inference.NPE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior P(Param | Observed) from the neural density estimator
-    # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
+    # Build posterior p(Param | Observed) sampler from the trained neural network
+    # For sampler selection, see: *https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
+    #     MCMCPosterior: very accurate, but can be slow if you have many parameters.
+    #     VIPosterior: can be much faster if you have many parameter. May be inaccurate. You may need to train VIPosterior before sampling.
+    #     RejectionPosterior: accurate and fast, but only for very few parameters (typically less than 3).
+    #     ImportanceSamplingPosterior: typically inaccurate, but can be very useful to improve the accuracy of a VIPosterior (see above).
+    #     For NPE:
+    #         use the DirectPosterior. If you have a likelihood available, you can refine the posterior with importance sampling
+    #     For NLE or NRE:
+    #         If you have very few parameters (<3), use RejectionPosterior or MCMCPosterior
+    #         If you have a medium number of parameters (3-10), use MCMCPosterior
+    #         If you have many parameters (>10) and the MCMCPosterior is too slow, use the VIPosterior. Optionally combine the VIPosterior with an ImportanceSamplingPosterior to improve its accuracy.
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
 [[/code]]
 
@@ -207,14 +263,8 @@ SBI训练网络以及从后验分布采样时，会在当前工作目录建立{{
     os.makedirs(sCurrentSBICacheDir, exist_ok=True)
     os.chdir(sCurrentSBICacheDir)
     
-    # Train a neural network to approximate P(Observed | Param) (neural density estimator)
-    trnEstimatorTrainer = sbi.inference.NPE_C(prior=dstSBIPriorDistribution)
-    trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
-    estEstimator = trnEstimatorTrainer.train()
-    
-    # Build posterior P(Param | Observed) from the neural density estimator
-    # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
-    pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
+    # Training, Posterior Building, and Sampling
+    # ...
 
     # Revert working directory
     os.chdir(sPreviousWorkDir)
@@ -275,7 +325,7 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
 
 [[code type="python"]]
     # Detect availability of CUDA and GPU devices
-    # To use SBI with GPU, see https://sbi.readthedocs.io/en/latest/how_to_guide/07_gpu_training.html
+    # To use SBI with GPU, see *https://sbi.readthedocs.io/en/latest/how_to_guide/07_gpu_training.html
     IsCUDAAvailable = torch.cuda.is_available()
     nGPUDevices = torch.cuda.device_count()
     iTensorSize = arrParams.element_size() * arrParams.numel()
@@ -297,13 +347,30 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     # Move prior distribution to the target device in-place
     dstSBIPriorDistribution.to(sTrainingDevice)
     
-    # Train a neural network to approximate P(Observed | Param) (neural density estimator)
+    # Train a neural network to approximate p(Param | Observed), its likelihood, or its variants (neural density estimator, or neural classifier)
+    # For estimating methods, see: https://sbi.readthedocs.io/en/latest/how_to_guide/06_choosing_inference_method.html and https://sbi.readthedocs.io/en/latest/api_reference/training.html
+    #     NPE (Neural Posterior Estimation): Trains a deep neural density estimator to directly approximate the posterior p(Param | Observed).
+    #         NPE is the only method which estimates the posterior directly. This means that it will not require further sampling steps (such as MCMC) after training. This makes NPE the fastest to sample from the posterior estimate after training. In addition, it can use an embedding network to learn summary statistics (just like NRE, but unlike NLE).
+    #     NLE (Neural Likelihood Estimation): Trains a neural network to approximate the likelihood p(Observed | Param) using a conditional density estimator (normalizing flow).
+    #         NLE learns the likelihood. This allows NLE to emulate the simulator after training. To sample from the posterior, NLE is combined with MCMC or variational inference, which makes it slower to sample. An advantage of NLE is that, if you have multiple iid observations, then it can be much more simulation efficient than NPE
+    #     NRE (Neural Ratio Estimation): Trains a neural classifier to estimate the likelihood-to-evidence ratio r(Param, Observed) = p(Observed | Param) / p(Observed) by distinguishing between samples from the joint distribution p(Param, Observed) and samples from the marginals p(Param)p(Observed). Posterior sampling is then performed via MCMC, rejection sampling, or variational inference using the estimated ratio.
+    #         NRE learns the likelihood-to-evidence ratio. It trains only a classifier (unlike NPE and NLE, which train a generative model), which makes it fastest to train. Like NLE, NRE has to be combined MCMC or variational inference to sample. Like NPE, NRE can use an embedding network to learn summary statistics.
     trnEstimatorTrainer = sbi.inference.NPE_C(prior=dstSBIPriorDistribution, device=sTrainingDevice)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
     
-    # Build posterior P(Param | Observed) from the neural density estimator
-    # For sampler selection, see: https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
+    # Build posterior p(Param | Observed) sampler from the trained neural network
+    # For sampler selection, see: *https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
+    #     MCMCPosterior: very accurate, but can be slow if you have many parameters.
+    #     VIPosterior: can be much faster if you have many parameter. May be inaccurate. You may need to train VIPosterior before sampling.
+    #     RejectionPosterior: accurate and fast, but only for very few parameters (typically less than 3).
+    #     ImportanceSamplingPosterior: typically inaccurate, but can be very useful to improve the accuracy of a VIPosterior (see above).
+    #     For NPE:
+    #         use the DirectPosterior. If you have a likelihood available, you can refine the posterior with importance sampling
+    #     For NLE or NRE:
+    #         If you have very few parameters (<3), use RejectionPosterior or MCMCPosterior
+    #         If you have a medium number of parameters (3-10), use MCMCPosterior
+    #         If you have many parameters (>10) and the MCMCPosterior is too slow, use the VIPosterior. Optionally combine the VIPosterior with an ImportanceSamplingPosterior to improve its accuracy.
     pstPosterior = trnEstimatorTrainer.build_posterior(estEstimator)
     
     # Generate observed features
@@ -332,7 +399,7 @@ AssertionError: Original and re-transformed parameters must be close to each oth
 [[code type="python"]]
     def _inverse(self, y):
         # Use safe div
-        # See https://duoke360.com/post/35074
+        # See *https://duoke360.com/post/35074
         inv_scale = 1. / self.scale
         inv_scale = torch.nan_to_num(inv_scale, nan=0, posinf=245.0, neginf=-245.0)
         return (y - self.loc) * inv_scale
@@ -354,6 +421,14 @@ AssertionError: Original and re-transformed parameters must be close to each oth
 
 *https://sbi.readthedocs.io/en/latest/tutorials/Example_00_HodgkinHuxleyModel.html
 
+*https://sbi.readthedocs.io/en/latest/how_to_guide/06_choosing_inference_method.html
+
 *https://sbi.readthedocs.io/en/latest/how_to_guide/07_gpu_training.html
 
 *https://sbi.readthedocs.io/en/latest/how_to_guide/09_sampler_interface.html
+
+bolfazl Ziaeemehr, Marmaduke Woodman, Lia Domide, Spase Petkoski, Viktor Jirsa, Meysam Hashemi (2025) Virtual Brain Inference (VBI), a flexible and integrative toolkit for efficient probabilistic inference on whole-brain models eLife 14:RP106194 *https://doi.org/10.7554/eLife.106194.4
+
+Meysam Hashemi et al 2024 Mach. Learn.: Sci. Technol. 5 035019. *https://doi.org/10.1088/2632-2153/ad6230
+
+Meysam Hashemi, Anirudh N. Vattikonda, Jayant Jha, Viktor Sip, Marmaduke M. Woodman, Fabrice Bartolomei, Viktor K. Jirsa. Amortized Bayesian inference on generative dynamical network models of epilepsy using deep neural density estimators. Neural Networks, Volume 163, 2023, *https://doi.org/10.1016/j.neunet.2023.03.040
