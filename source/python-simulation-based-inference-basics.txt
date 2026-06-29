@@ -184,7 +184,7 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
 
 + 训练用于估计正向分布的神经网络模型并建立后验分布
 
-为了建立由观测数据推断参数的后验分布{{p(Param | Observed)}}，需要训练一个神经网络进行拟合。SBI支持多种拟合算法，请参考：*https://sbi.readthedocs.io/en/latest/api_reference/training.html ：
+为了建立由观测数据推断参数的后验分布{{p(Param | Observed)}}，需要训练一个神经网络进行拟合。SBI支持多种拟合算法，请参考：*https://sbi.readthedocs.io/en/latest/how_to_guide/06_choosing_inference_method.html 和 *https://sbi.readthedocs.io/en/latest/api_reference/training.html ：
 * SNPE：Sequential Neural Posterior Estimation
  * NPE 是唯一直接估计后验的方法。这意味着它在训练后不需要进一步的采样步骤（如 MCMC）。这使得 NPE 在训练后从后验估计中进行采样的速度最快。此外，它可以使用嵌入网络来学习汇总统计量（与 NRE 一样，但与 NLE 不同）。
  * NPE_A: Fast epsilon-free Inference of Simulation Models with Bayesian Conditional Density Estimation, Papamakarios et al., NeurIPS 2016. *https://arxiv.org/abs/1605.06376
@@ -219,6 +219,13 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
  * NRC_C: Contrastive Neural Ratio Estimation, Benjamin Kurt Miller, et al. NeurIPS 2022, *https://arxiv.org/abs/2210.06170
   * *https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NRE_C.html
   * NRE-C 使用一种“多类 Sigmoid”损失对 NRE-A 和 NRE-B 进行了推广，该损失确保在第一轮达到最优时，所估计的比率{{p(Param, Observed)/(p(Param)p(Observed))}}是精确的。这解决了 NRE-B 的比率仅定义到一个关于{{Observed}}的任意函数程度的问题。NRE-C 提供了更准确的比率估计，同时保持了对比学习的优势。
+* SBI的总体建议：
+ * 如果模拟输出是高维数据（图像、时间序列等），请使用 NPE 或 NRE。
+ * 如果需要快速采样，请使用 NPE。
+ * 如果多个试验中存在独立同分布（IID）的观测值（且模拟成本相对较高），请使用 NRE 或 NLE。
+ * 如果需要对大量观测值进行推断，请使用摊销法（这是 sbi 包的默认设置）。
+ * 若需对少量观测值（<10）进行推断，请先使用摊销方法，仅当模拟成本过高时才切换至序贯方法。
+ * 除非您是专家用户且清楚自己在做什么，否则请勿使用 SNPE_A 或 SNPE_B。
 
 这里以{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.NPE_C.html NPE_C]}}模型为例。训练时，使用{{append_simulations()}}函数输入训练所需的仿真参数-模型输出对，再调用{{train()}}函数训练神经网络，最后使用{{build_posterior()}}函数从神经密度估计器建立后验分布：
 
@@ -231,6 +238,13 @@ arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
     #         NLE learns the likelihood. This allows NLE to emulate the simulator after training. To sample from the posterior, NLE is combined with MCMC or variational inference, which makes it slower to sample. An advantage of NLE is that, if you have multiple independent identically distributed (IID) observations, then it can be much more simulation efficient than NPE
     #     NRE (Neural Ratio Estimation): Trains a neural classifier to estimate the likelihood-to-evidence ratio r(Param, Observed) = p(Observed | Param) / p(Observed) by distinguishing between samples from the joint distribution p(Param, Observed) and samples from the marginals p(Param)p(Observed). Posterior sampling is then performed via MCMC, rejection sampling, or variational inference using the estimated ratio.
     #         NRE learns the likelihood-to-evidence ratio. It trains only a classifier (unlike NPE and NLE, which train a generative model), which makes it fastest to train. Like NLE, NRE has to be combined MCMC or variational inference to sample. Like NPE, NRE can use an embedding network to learn summary statistics.
+    # SBI explicit recommendations:
+    #     If have high-dimensional simulation-outputs (images, time-series,…), use NPE or NRE.
+    #     If you want fast sampling, use NPE.
+    #     If you have IID observations across many trials (and simulations are relatively expensive), use NRE or NLE.
+    #     If you want to perform inference for many observations, use amortized methods (which is the default of the sbi package).
+    #     If you want to perform inference for few observations (<10), then start with amortized methods and switch to sequential methods only if the simulation cost is too high.
+    #     Do not use SNPE_A or SNPE_B unless you are an expert user and know what you are doing.
     trnEstimatorTrainer = sbi.inference.NPE_C(prior=dstSBIPriorDistribution)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
@@ -355,6 +369,13 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     #         NLE learns the likelihood. This allows NLE to emulate the simulator after training. To sample from the posterior, NLE is combined with MCMC or variational inference, which makes it slower to sample. An advantage of NLE is that, if you have multiple independent identically distributed (IID) observations, then it can be much more simulation efficient than NPE
     #     NRE (Neural Ratio Estimation): Trains a neural classifier to estimate the likelihood-to-evidence ratio r(Param, Observed) = p(Observed | Param) / p(Observed) by distinguishing between samples from the joint distribution p(Param, Observed) and samples from the marginals p(Param)p(Observed). Posterior sampling is then performed via MCMC, rejection sampling, or variational inference using the estimated ratio.
     #         NRE learns the likelihood-to-evidence ratio. It trains only a classifier (unlike NPE and NLE, which train a generative model), which makes it fastest to train. Like NLE, NRE has to be combined MCMC or variational inference to sample. Like NPE, NRE can use an embedding network to learn summary statistics.
+    # SBI explicit recommendations:
+    #     If have high-dimensional simulation-outputs (images, time-series,…), use NPE or NRE.
+    #     If you want fast sampling, use NPE.
+    #     If you have IID observations across many trials (and simulations are relatively expensive), use NRE or NLE.
+    #     If you want to perform inference for many observations, use amortized methods (which is the default of the sbi package).
+    #     If you want to perform inference for few observations (<10), then start with amortized methods and switch to sequential methods only if the simulation cost is too high.
+    #     Do not use SNPE_A or SNPE_B unless you are an expert user and know what you are doing.
     trnEstimatorTrainer = sbi.inference.NPE_C(prior=dstSBIPriorDistribution, device=sTrainingDevice)
     trnEstimatorTrainer = trnEstimatorTrainer.append_simulations(arrParams, arrFeatures)
     estEstimator = trnEstimatorTrainer.train()
