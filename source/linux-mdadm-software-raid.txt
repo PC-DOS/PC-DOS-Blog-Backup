@@ -1,0 +1,52 @@
+{{mdadm}}工具用于在Linux上建立和管理软件控制的RAID磁盘阵列，适用于没有硬件阵列卡或硬件阵列卡性能较差的情况。
+
+从{{/dev/sdc}}和{{/dev/sdd}}建立RAID1：
+
+[[code]]
+sudo mdadm -C /dev/md/vraid0 -a yes -l 0 -n 2 /dev/sd{c,d}
+[[/code]]
+
+从{{/dev/sdc}}到{{/dev/sdg}}建立RAID5：
+
+[[code]]
+sudo mdadm --create --verbose /dev/md/sas_raid5_0 --level=5 --raid-devices=5 /dev/sd[c-g]
+[[/code]]
+
+从{{/dev/sdc}}到{{/dev/sdg}}建立RAID0：
+
+[[code]]
+sudo mdadm --create --verbose /dev/md/sas_raid0_0 --level=0 --raid-devices=5 /dev/sd[c-g]
+[[/code]]
+
+查看软RAID状态：
+
+[[code]]
+cat /proc/mdstat
+[[/code]]
+
+查看虚拟磁盘{{/dev/md126}}的状态：
+
+[[code]]
+sudo mdadm -D /dev/md126
+[[/code]]
+
+停用虚拟磁盘{{/dev/md126}}：
+
+[[code]]
+sudo mdadm -S /dev/md126
+[[/code]]
+
+将5盘RAID0软阵列{{/dev/md127}升级为RAID5：
+
+[[code]]
+sudo mdadm --grow /dev/md127 --level=5 -n5 --backup=/tmp/mdadmback
+
+# This command will be displayed by mdadm
+sudo mdadm --grow /dev/md127 --array-size 3906521088
+[[/code]]
+
+参考资料：
+
+*https://www.cnblogs.com/37yan/p/7489597.html
+
+*https://docs.redhat.com/zh-cn/documentation/red_hat_enterprise_linux/10/html/managing_storage_devices/supported-raid-conversions
