@@ -1,0 +1,41 @@
+**型号：**联想（Lenovo） ThinkServer RD450 2U机架式服务器
+
+**电源：**450W x2
+
+**BIOS版本：**VB3TS505（v5.05.0）
+
+**TSM版本：**4.92.403
+
++ CPU
+
+++ E5-2609 v4
+
+8C8T
+
+##green|支持##
+
+++ E5-2630 v4
+
+10C20T
+
+##green|支持##
+
+++ E5-2650 v4
+
+12C24T
+
+##green|支持##
+
+++ E5-2673 v4
+
+20C40T
+
+定制处理器，Intel Ark未收录
+
+##red|不支持##（无法点亮，TSM记录CPU FAULT: IERR）
+
+++ E5-2683 v4
+
+16C32T
+
+##orange|待测试##
