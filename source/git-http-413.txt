@@ -4,6 +4,12 @@
 
 在不同的网络环境中复现错误后，首先使用Web确定GitLab可以正常访问，同时使用管理员登录，检查GitLab Web管理面板中对项目及文件大小的限制参数，均远大于用户试图提交的仓库的尺寸。
 
+首先增大客户端的HTTP Post Buffer为2 GB（2147483647字节）：
+
+[[code]]
+git config --global http.postBuffer 2147483647
+[[/code]]
+
 使用SSH登录远程服务器，检查容器状态：
 
 [[code]]
@@ -70,3 +76,5 @@ nginx -s reload
 *https://www.cnblogs.com/Fooo/p/17515709.html
 
 *https://blog.csdn.net/fendoudebb/article/details/107705474
+
+*https://www.cnblogs.com/YueQAQ/p/20215663
