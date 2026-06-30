@@ -36,6 +36,12 @@ sudo mdadm -D /dev/md126
 sudo mdadm -S /dev/md126
 [[/code]]
 
+清空{{/dev/sdc}}到{{/dev/sdg}}上的超块信息：
+
+[[code]]
+sudo mdadm --zero-superblock /dev/sd[c-g]
+[[/code]]
+
 将5盘RAID0软阵列{{/dev/md127}}升级为RAID5：
 
 [[code]]
