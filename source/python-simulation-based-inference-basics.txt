@@ -308,7 +308,7 @@ SBI训练网络以及从后验分布采样时，会在当前工作目录建立{{
     print(f"Observed features: {arrInputParamsReal} -> {arrObservedFeatures}")
 
     # Estimating
-    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).cpu().numpy()
+    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).cpu().detach().numpy()
     arrOptimizationParameters = arrOptimizationParameters[0]
     print(f"Estimated parameter distribution: {arrOptimizationParameters}")
     print(f"Observation with estimated parameter distribution: {SBIParamToFeatures(arrOptimizationParameters, True)}")
@@ -320,7 +320,7 @@ SBI训练网络以及从后验分布采样时，会在当前工作目录建立{{
     # Inspecting
     import sbi.analysis 
     import matplotlib.pyplot as plt
-    arrOptimizationParameters = pstPosterior.sample((1000,), x=arrObservedFeatures).cpu().numpy()
+    arrOptimizationParameters = pstPosterior.sample((1000,), x=arrObservedFeatures).cpu().detach().numpy()
     sbi.analysis.pairplot(samples=arrOptimizationParameters,
         limits=[[1,10],[25,45]],
         ticks=[[1,10],[25,45]],
@@ -400,7 +400,7 @@ PyTorch支持使用GPU进行训练。只要在构建训练器时将{{device}}参
     print(f"Observed features: {arrInputParamsReal} -> {arrObservedFeatures}")
 
     # Estimating
-    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).cpu().numpy()
+    arrOptimizationParameters = pstPosterior.sample((100,), x=arrObservedFeatures).cpu().detach().numpy()
 [[/code]]
 
 ++ 常数问题
