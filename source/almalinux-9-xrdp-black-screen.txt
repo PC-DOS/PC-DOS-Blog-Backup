@@ -6,7 +6,7 @@ KillDisconnected=true
 
 随后重新启动系统。
 
-您也可以使用{{htop}}等工具杀掉所有{{/usr/libexec/gnome-session-binary}}进程，并重启{{xrdp}}服务：
+您也可以使用{{htop}}等工具杀掉所有{{/usr/libexec/gnome-session-binary}}或{{xorg}}进程，并重启{{xrdp}}服务：
 
 [[code]]
 sudo systemctl restart xrdp
