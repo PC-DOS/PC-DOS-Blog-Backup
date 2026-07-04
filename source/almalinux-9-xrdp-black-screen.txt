@@ -1,3 +1,5 @@
+使用XRDP时，可能出现登录后黑屏的情况，使用文字控制台杀死{{/usr/libexec/gnome-session-binary}}或{{xorg}}进程等进程可能可以缓解该问题，此时可以配置XRDP自动杀死已断开的连接的功能。
+
 编辑{{/etc/xrdp/sesman.ini}}文件，将{{KillDisconnected}}的值改为{{true}}：
 
 [[code]]
@@ -17,3 +19,5 @@ DisconnectedTimeLimit=86400
 [[code]]
 sudo systemctl restart xrdp
 [[/code]]
+
+推荐在使用XRDP进行远程控制时，在完成工作后注销当前的用户。
