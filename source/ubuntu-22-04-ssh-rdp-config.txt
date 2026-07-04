@@ -11,6 +11,8 @@ sudo systemctl status ssh
 sudo ufw allow ssh
 [[/code]]
 
+{{openssh-server}}有时可以直接被替换为{{ssh}}。
+
 SSH服务默认使用22端口。
 
 + 远程桌面（RDP）配置
@@ -29,6 +31,8 @@ sudo systemctl start xrdp
 sudo systemctl status xrdp
 sudo ufw allow 3389
 [[/code]]
+
+RDP服务默认使用3389端口。
 
 + 参考资料
 
