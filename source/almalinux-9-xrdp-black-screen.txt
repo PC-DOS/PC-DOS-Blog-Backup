@@ -4,6 +4,12 @@
 KillDisconnected=true
 [[/code]]
 
+如果不需要在断开连接后立即杀死已断开的连接，可以同时修改{{DisconnectedTimeLimit}}为非0值，表示杀死连接前的宽限时长，单位为秒。
+
+[[code]]
+DisconnectedTimeLimit=86400
+[[/code]]
+
 随后重新启动系统。
 
 您也可以使用{{htop}}等工具杀掉所有{{/usr/libexec/gnome-session-binary}}或{{xorg}}进程，并重启{{xrdp}}服务：
