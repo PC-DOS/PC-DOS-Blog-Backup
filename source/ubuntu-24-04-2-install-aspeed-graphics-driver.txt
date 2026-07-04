@@ -1,0 +1,50 @@
+一台运行Ubuntu 24.04.2 LTS的联想ThinkServer RD450服务器，需要为ASPEED管理卡安装图形驱动程序。
+
+首先在终端确定内核版本：
+
+[[code]]
+uname -r
+[[/code]]
+
+确定内核版本为6.11，从[*https://www.aspeedtech.com/support_driver/ ASPEED官网]下载[*https://www.aspeedtech.com/file/support/Linux_DRM_1.15.3_7.tar.gz?1783154960599 包含适用于6.11内核的驱动程序的程序包]（版本为1.15.3），并解压缩：
+
+[[code]]
+tar -vxf Linux_DRM_1.15.3_7.tar.gz
+cd Linux_DRM_1.15.3_7/DKMS/
+[[/code]]
+
+第一次尝试执行安装：
+
+[[code]]
+sudo dpkg -i ast-drm-linux6.11.deb
+[[/code]]
+
+提示缺失{{dkms}}，首先尝试自动修复并安装{{dkms}}：
+
+[[code]]
+sudo apt-get -f install
+sudo apt install dkms
+[[/code]]
+
+提示无法安装{{bzip2}}，尝试手动安装时发现需要先解决{{libbz2-1.0}}的版本冲突：
+
+[[code]]
+sudo apt install libbz2-1.0=1.0.8-5.1
+[[/code]]
+
+安装{{dkms}}：
+
+[[code]]
+sudo apt install dkms
+[[/code]]
+
+重新执行安装：
+
+[[code]]
+sudo dpkg -i ast-drm-linux6.11.deb
+[[/code]]
+
+重新启动系统。
+
+此时登录画面可能显示异常，按{{Ctrl+Alt+F3}}切换到文字控制台，登录后编辑{{/etc/gdm3/custom.conf}}，将{{#WaylandEnable = false}}替换为{{WaylandEnable = false}}，保存后重新启动系统。
+
