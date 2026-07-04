@@ -1,4 +1,4 @@
-使用XRDP时，可能出现登录后黑屏的情况，使用文字控制台杀死{{/usr/libexec/gnome-session-binary}}或{{xorg}}进程等进程可能可以缓解该问题，此时可以配置XRDP自动杀死已断开的连接的功能。
+使用XRDP时，可能出现登录后黑屏的情况，使用文字控制台杀死{{/usr/libexec/gnome-session-binary}}或{{xorg}}等进程可能可以缓解该问题，此时可以配置XRDP自动杀死已断开的连接的功能。
 
 编辑{{/etc/xrdp/sesman.ini}}文件，将{{KillDisconnected}}的值改为{{true}}：
 
