@@ -5,6 +5,8 @@
 [[code]]
 sudo apt update
 sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
 sudo systemctl status ssh
 sudo ufw allow ssh
 [[/code]]
@@ -17,8 +19,21 @@ Ubuntu 22.04 LTS的Gnome桌面自带了远程桌面和VNC选项。从 [设置] >
 
 请注意：使用RDP时推荐将Ubuntu自动关闭显示器的时间设为“从不”，您可以在 [设置] > [电源] 中找到该选项。同时Ubuntu的RDP无法像Windows那样自动适应您的客户机的分辨率，因此您可能会希望购买一个“显卡欺骗器”来制作一个假的、具有较高的可调整分辨率范围的“显示器”。
 
+您也可以不使用Ubuntu自带的远程桌面，而使用XRDP：
+
+[[code]]
+sudo apt update
+sudo apt install xrdp
+sudo systemctl enable xrdp
+sudo systemctl start xrdp
+sudo systemctl status xrdp
+sudo ufw allow 3389
+[[/code]]
+
 + 参考资料
 
 *https://zhuanlan.zhihu.com/p/145763789
 
 *https://www.cnblogs.com/pipci/p/16377032.html
+
+*https://zhuanlan.zhihu.com/p/1959662835933115646
