@@ -18,4 +18,6 @@ asset /s 9QYZF42
 
 提示：若您需要使用虚拟控制台，建议安装[*https://repo.huaweicloud.com/java/jdk/6u45-b06/ Java 6 Update 45]，请参考[[[dell-idrac7-java-virtual-console-connection-failed|]]]。或您需要在Internet Explorer中启用未签名的ActiveX控件，并将iDRAC Web界面的地址加入兼容模式列表。
 
+同样地，您可以导出已安装的许可证，并将一台服务器的Service Tag迁移给另一台，并在目标服务器上导入许可证。
+
 参考资料：*https://www.cnaaa.net/archives/10992
