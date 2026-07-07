@@ -1,0 +1,21 @@
+开始前，请下载本文附件中的{{iDRAC7EnterpriseLicensing.zip}}文件并解压：*http://pc-dos.scp-eq.org/local--files/dell-idrac7-enterprise-license/iDRAC7EnterpriseLicensing.zip
+
+同时，请准备一个容量小于等于2 GB（支持FAT16文件系统）的USB磁盘并插入电脑。您还需要确保您的服务器已开启Legacy（BIOS）模式引导。
+
+执行解压得到的文件中的{{EW5099A0.EXE}}，会在{{C:\dell\drivers\R169189}}目录中释放一些文件。进入该目录，执行{{DDDP.EXE}}，选择“Install to a USB Flash Drive”，将诊断工具安装到U盘。
+
+{{EW5099A0.EXE}}所在的目录中还有一个名为{{Tools.zip}}的压缩文件，将该文件解压，并将{{Tools}}目录中的文件复制到U盘根目录。**请不要覆盖U盘中已存在的文件**。
+
+将U盘插入目标服务器，重新启动目标服务器，按{{F11}}进入引导菜单，从BIOS Boot Menu中选择U盘，随后按{{4}}键退出默认菜单，执行：
+
+[[code]]
+asset /s 9QYZF42
+[[/code]]
+
+提示是否覆盖Service Tag时，请按{{Y}}键。
+
+拔掉U盘，按{{Ctrl+Alt+Del}}重启系统，进入iDRAC Web界面，导航到 [概述] > [服务器] > [许可证]，在右侧窗格的“许可选项”中选择“导入”，导入{{DE00000009660549.xml}}文件并点击“应用”即可。
+
+提示：若您需要使用虚拟控制台，建议安装[*https://repo.huaweicloud.com/java/jdk/6u45-b06/ Java 6 Update 45]，请参考[[[dell-idrac7-java-virtual-console-connection-failed|]]]。或您需要在Internet Explorer中启用未签名的ActiveX控件，并将iDRAC Web界面的地址加入兼容模式列表。
+
+参考资料：*https://www.cnaaa.net/archives/10992
