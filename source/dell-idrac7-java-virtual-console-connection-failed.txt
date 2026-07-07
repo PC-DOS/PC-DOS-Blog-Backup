@@ -1,0 +1,7 @@
+**故障描述：**一台戴尔PowerEdge R720，iDRAC 7已启用企业版许可证，使用Firefox从iDRAC Web界面下载{{viewer.jnlp}}文件后，尝试启动虚拟控制台时提示连接失败。
+
+**故障处理：**检查发现管理工作站上安装的Java Runtime（JRE）版本为[*https://repo.huaweicloud.com/java/jdk/7u80-b15/ JRE 7 Update 80]，卸载后重新安装[*https://repo.huaweicloud.com/java/jdk/6u45-b06/ JRE 6 Update 45]，故障解决。
+
+iDRAC帮助文件提示：
+
+> 要通过 IPv6 网络启动 iDRAC 虚拟控制台需要安装有 Java 6 或更高版本。管理工作站上必须安装 Java 6。有关更多信息，请参阅 iDRAC7 User's Guide（iDRAC7 用户指南）。 
