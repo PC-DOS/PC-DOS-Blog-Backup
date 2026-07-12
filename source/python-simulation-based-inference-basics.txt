@@ -134,10 +134,11 @@ if __name__ == "__main__" :
 SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.inference.simulate_for_sbi.html sbi.inference.simulate_for_sbi()]}}函数以运行仿真器。该函数支持并行化、数据分批和进度显示等功能：
 
 [[code type="python"]]
-    # Sampling
-    # Run simulator
+    # Defining sample data information & create sample input if necessary
     nSBISamples = 500
     print(f"Sampling {nSBISamples} samples, this may take a long time...")
+    
+    # Run simulator
     arrParams, arrFeatures = sbi.inference.simulate_for_sbi(simulator=fncSBIParamToFeaturesWrapped, proposal=dstSBIPriorDistribution, 
         num_simulations=nSBISamples, num_workers=1, 
         simulation_batch_size=1, seed=245, show_progress_bar=True)
@@ -151,19 +152,27 @@ SBI提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/
 arrResult = torch.as_array(arrRawResult, dtype=torch.float32)
 [[/code]]
 
-{{BoxUniform}}提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample_n sample_n()]}}或{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample sample()]}}函数，用于产生参数序列{{arrParams}}。对于调用{{BoxUniform.sample_n(nSimCount)}}，返回值的结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}。
+{{BoxUniform}}提供了{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample_n sample_n()]}}或{{[*https://sbi.readthedocs.io/en/latest/api_reference/_autosummary/sbi.utils.BoxUniform.html#sbi.utils.BoxUniform.sample sample()]}}函数，用于产生参数序列{{arrParams}}。对于调用{{BoxUniform.sample_n(nSimCount)}}，返回值的结构为{{(nSimCount, nParamCount)}}，数据类型为{{Tensor}}。您也可以使用[*https://docs.scipy.org/doc/scipy/reference/stats.qmc.html 其它准蒙特卡罗（Quasi-Monte Carlo，QMC）采样器]进行采样，例如[*https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.qmc.LatinHypercube.html 拉丁超立方采样（Latin Hypercube Sampling，LHS）]，但需要注意将采样结果的数据结构转换。
 
 例如，若定义{{SBIParamToFeaturesBatch()}}函数进行批量仿真（该函数返回两个{{numpy.array}}，即{{arrParams}}和{{arrFeatures}}），则可以使用类似下面的代码：
 
 [[code type="python"]]
-    # Sampling
-    # Run simulator
+    # Defining sample data information & create sample input if necessary
+    print(f"Sampling {nSBISamples} samples, this may take a long time...")
     nSBISamples = 500
     # sample_n is deprecated
-    arrSBISimParams = dstSBIPriorDistribution.sample_n(nSBISamples)
+    #arrSBISimParams = dstSBIPriorDistribution.sample_n(nSBISamples)
     # You can use this
     arrSBISimParams = dstSBIPriorDistribution.sample((nSBISamples,))
-    print(f"Sampling {nSBISamples} samples, this may take a long time...")
+    # Or you can use methods like Latin Hypercube Sampling (LHS) for better parameter space coverage
+    # See: https://docs.scipy.org/doc/scipy/reference/stats.qmc.html and https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.qmc.LatinHypercube.html
+    from scipy.stats import qmc
+    smpParamSpaceSampler = qmc.LatinHypercube(d=nOptimizationParametersVar)
+    arrParamSpaceSamplingResult = smpParamSpaceSampler.random(n=nSBISamples)
+    arrSBISimParams = qmc.scale(arrParamSpaceSamplingResult, arrSBILowerBounds, arrSBIUpperBounds)
+    arrSBISimParams = torch.as_tensor(np.array(arrSBISimParams), dtype=torch.float32)
+    
+    # Run simulator
     arrParams, arrFeatures = SBIParamToFeaturesBatch(arrSBISimParams.numpy(), 
         #Extended calling parameters here
         )
