@@ -23,6 +23,12 @@ sudo usermod -aG users newuser
 sudo chmod o+x /mnt/hdd2
 [[/code]]
 
+将{{newuser}}账户的home目录移动到{{/mnt/hdd2/newuser}}：
+
+[[code]]
+usermod -d /mnt/hdd2/newuser -m newuser
+[[/code]]
+
 + {{sudo}}授权与解除授权（用户组管理）
 
 Ubuntu通过{{sudo}}用户组控制用户调用{{sudo}}的权限。
@@ -63,6 +69,40 @@ sudo userdel -r newuser
 sudo userdel -r -f newuser
 [[/code]]
 
++ 用户组管理
+
+++ 创建组
+
+以下示例创建一个名为{{newgroup}}的组：
+
+[[code]]
+sudo addgroup newgroup
+[[/code]]
+
+++ 将用户加入组
+
+以下示例将名为{{newuser}}的账户加入名为{{newgroup}}的组：
+
+[[code]]
+sudo usermod -aG newgroup newuser
+[[/code]]
+
+++ 将用户从组中移除
+
+以下示例将名为{{newuser}}的账户从名为{{newgroup}}的组中移除：
+
+[[code]]
+sudo usermod -rG newgroup newuser
+[[/code]]
+
+++ 删除组
+
+以下示例删除一个名为{{newgroup}}的组：
+
+[[code]]
+sudo groupdel newgroup
+[[/code]]
+
 + 相关文件
 
 用户信息：
@@ -87,3 +127,7 @@ sudo userdel -r -f newuser
 *https://blog.csdn.net/qfyh_djh/article/details/143633620
 
 *https://zhuanlan.zhihu.com/p/635391817
+
+*https://www.cnblogs.com/exmyth/p/17221203.html
+
+*https://blog.csdn.net/allway2/article/details/122111636
