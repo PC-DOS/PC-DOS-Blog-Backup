@@ -4,7 +4,7 @@
 
 + 启用对HID I2C触摸屏的支持
 
-文件下载：
+文件下载：*http://pc-dos.scp-eq.org/local--files/windows-server-2019-2022-hid-i2c-touchscreen-bluetooth/WinServer_HID_I2C.zip
 
 安装流程：
 # 以“禁用驱动程序签名强制”模式启动系统。您可以通过 [设置] > [更新和安全] > [恢复] > [高级启动] > [立即重新启动] 重启系统，并点击 [高级选项] > [启动设置] > [重启] 来进入高级启动选项。
@@ -20,7 +20,7 @@
 
 + 启用对蓝牙外设的支持
 
-文件下载：
+文件下载：*http://pc-dos.scp-eq.org/local--files/windows-server-2019-2022-hid-i2c-touchscreen-bluetooth/WinServer_Bluetooth_HID.zip
 
 安装流程：
 # 以“禁用驱动程序签名强制”模式启动系统。您可以通过 [设置] > [更新和安全] > [恢复] > [高级启动] > [立即重新启动] 重启系统，并点击 [高级选项] > [启动设置] > [重启] 来进入高级启动选项。
@@ -38,7 +38,7 @@
 
 + 启用对蓝牙音频外设的支持
 
-文件下载：
+文件下载：*http://pc-dos.scp-eq.org/local--files/windows-server-2019-2022-hid-i2c-touchscreen-bluetooth/Bluetooth_WS2022_v3.zip
 
 未测试，请参考：*https://bbs.pcbeta.com/viewthread-1930349-1-1.html
 
