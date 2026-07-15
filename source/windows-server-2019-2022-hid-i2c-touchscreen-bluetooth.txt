@@ -1,0 +1,52 @@
+由于SKU定位限制，Windows Server 2022及以前的Windows Server版本可能难以支持包括基于HID-I2C的触摸屏和蓝牙外设在内的硬件。此时，需要手动处理驱动程序。
+
+开始前，建议您先完成其它设备驱动程序的安装。同时，您可能需要准备一个Windows PE引导盘。
+
++ 启用对HID I2C触摸屏的支持
+
+文件下载：
+
+安装流程：
+# 以“禁用驱动程序签名强制”模式启动系统。您可以通过 [设置] > [更新和安全] > [恢复] > [高级启动] > [立即重新启动] 重启系统，并点击 [高级选项] > [启动设置] > [重启] 来进入高级启动选项。
+# 进入桌面后，解压缩下载得到的文件，执行{{DPInst.exe}}。
+# 对于Windows Server 2022：
+ # 您可以直接正常重新启动系统，基于HIC-I2C的触摸屏等设备应该已经可以使用。
+# 对于Windows Server 2019：
+ # 您应该能观察到设备管理器中的设备从“未知设备”变成带感叹号的图标。这是因为驱动程序签名和系统版本不一致。此时，您需要使用来自Windows 10版本17763（如Windows 10 Enterprise LTSC 2019）的文件替换相应文件。
+ # 请关机并从Windows PE引导盘引导系统。
+ # 进入Windows PE后，请进入解压缩得到的文件夹中，并从{{Replace_Server2019}}目录的各个子目录中，将扩展名为{{sys}}的文件复制到Windows Server 2019安装盘的{{Windows\System32\Drivers}}文件夹中，并替换同名文件。具体需要进行的替换包括：
+  * {{Replace_Server2019\hidi2c.inf_amd64_891a4188cb4bf01b\hidi2c.sys -> Windows\System32\Drivers\hidi2c.sys}}
+ # 请重新启动到Windows Server 2019，基于HIC-I2C的触摸屏等设备应该已经可以使用。
+
++ 启用对蓝牙外设的支持
+
+文件下载：
+
+安装流程：
+# 以“禁用驱动程序签名强制”模式启动系统。您可以通过 [设置] > [更新和安全] > [恢复] > [高级启动] > [立即重新启动] 重启系统，并点击 [高级选项] > [启动设置] > [重启] 来进入高级启动选项。
+# 进入桌面后，解压缩下载得到的文件，右键单击每一个扩展名为{{inf}}的文件，并选择 [安装]。Windows可能提示无法验证发行者，此时请点击 [一律安装] 选项以继续安装。
+# 对于Windows Server 2022：
+ # 您可以直接正常重新启动系统，基于HIC-I2C的触摸屏等设备应该已经可以使用。
+# 对于Windows Server 2019：
+ # 您应该能观察到设备管理器中的设备从“未知设备”变成带感叹号的图标。这是因为驱动程序签名和系统版本不一致。此时，您需要使用来自Windows 10版本17763（如Windows 10 Enterprise LTSC 2019）的文件替换相应文件。
+ # 请关机并从Windows PE引导盘引导系统。
+ # 进入Windows PE后，请进入解压缩得到的文件夹中，并从{{Replace_Server2019}}目录的各个子目录中，将扩展名为{{sys}}的文件复制到Windows Server 2019安装盘的{{Windows\System32\Drivers}}文件夹中，并替换同名文件。具体需要进行的替换包括：
+  * {{Replace_Server2019\bthpan.inf_amd64_df4d6a507db770e7\bthpan.sys -> Windows\System32\Drivers\bthpan.sys}}
+  * {{Replace_Server2019\hidbth.inf_amd64_ed97096c5a1dbeb1\hidbth.sys -> Windows\System32\Drivers\hidbth.sys}}
+  * {{Replace_Server2019\mdmbtmdm.inf_amd64_1dcd454692675bec\bthmodem.sys -> Windows\System32\Drivers\bthmodem.sys}}
+ # 请重新启动到Windows Server 2019，基于HIC-I2C的触摸屏等设备应该已经可以使用。
+
++ 启用对蓝牙音频外设的支持
+
+文件下载：
+
+未测试，请参考：*https://bbs.pcbeta.com/viewthread-1930349-1-1.html
+
++ 参考资料
+
+*https://bbs.pcbeta.com/viewthread-1945233-1-1.html
+
+*https://bbs.pcbeta.com/viewthread-1942811-1-1.html
+
+*https://bbs.pcbeta.com/viewthread-1892533-1-1.html
+
