@@ -1,0 +1,65 @@
+定位到{{/etc/udev/rules.d}}，建立{{00-usb-automount.rules}}文件，输入以下内容：
+
+[[code]]
+# USB
+KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh usb %k"
+KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh usb %k", OPTIONS="last_rule"
+
+# CF Card
+KERNEL=="hd[a-z]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh cf %k"
+KERNEL=="hd[a-z]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh cf %k", OPTIONS="last_rule"
+
+# SD Card
+KERNEL=="mmcblk[0-9]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh sd %k" 
+KERNEL=="mmcblk[0-9]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh sd %k", OPTIONS="last_rule"
+[[/code]]
+
+在同一目录建立{{usb-mount.sh}}文件，其内容为：
+
+[[code]]
+#! /bin/sh
+
+# Ref. https://zhuanlan.zhihu.com/p/357314668
+
+# Check parameter count
+if [ $# -ne 2 ] ; then
+    exit 1
+fi
+
+# Root directory for mounting
+MNT_PATH=/mnt/
+
+# Device node in /dev/
+DEV_NAME=$2
+
+if [ $ACTION == "add" ] ; then
+    wr /bin/mkdir -p $MNT_PATH$DEV_NAME
+    /bin/mount /dev/$DEV_NAME $MNT_PATH$DEV_NAME >& /dev/null
+    
+    if [[ $? -ne 0 ]] ; then
+        # Remove mount point when mounting failed
+        wr /bin/rmdir $MNT_PATH$DEV_NAME    
+    fi
+elif [ $ACTION == "remove" ] ; then 
+    if [[ -e  $MNT_PATH$DEV_NAME ]] ; then 
+        /bin/umount -l  $MNT_PATH$DEV_NAME >& /dev/null
+        wr /bin/rmdir  $MNT_PATH$DEV_NAME
+    fi
+fi
+
+exit 0
+[[/code]]
+
+配置权限并更新{{udev}}：
+
+[[code]]
+sudo chmod 755 ./usb-mount.sh
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+[[/code]]
+
+参考资料：
+
+*https://zhuanlan.zhihu.com/p/357314668
+
+*https://blog.csdn.net/u011436603/article/details/140851305
