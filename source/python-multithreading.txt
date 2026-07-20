@@ -458,6 +458,9 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
             arrArgsToSubmit.append(tplArgs)
             arrKwArgsToSubmit.append(dctKwArgs)
         #End If
+        
+        # Determine if current value of nWorkers is too high, avoid creating useless child processes
+        nWrokersNeeded = min(nWorkers, nBatchSizeReal)
 
         # Run jobs
         if IsChildWorkersNeeded :
@@ -468,7 +471,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
                 arrWorkers = []
                 
                 # Create thread pool object
-                with concurrent.futures.ProcessPoolExecutor(max_workers=nWorkers) as polWorkers :
+                with concurrent.futures.ProcessPoolExecutor(max_workers=nWrokersNeeded) as polWorkers :
                     # Create and submit job package
                     for i in range(0, len(arrFunctionsToSubmit)) :
                         # Get function object and arguments
@@ -498,7 +501,7 @@ def RunJobsWithProcessPool(arrFunctions : list, arrArgs : list = None, arrKwArgs
                 arrWorkers = []
                 
                 # Create thread pool object
-                with multiprocessing.Pool(processes=nWorkers) as polWorkers :
+                with multiprocessing.Pool(processes=nWrokersNeeded) as polWorkers :
                     # Create and submit job package
                     for i in range(0, len(arrFunctionsToSubmit)) :
                         # Get function object and arguments
