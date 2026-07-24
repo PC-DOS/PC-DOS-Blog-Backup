@@ -33,17 +33,17 @@ MNT_PATH=/mnt/
 DEV_NAME=$2
 
 if [ $ACTION = "add" ] ; then
-    wr /bin/mkdir -p $MNT_PATH$DEV_NAME
+    /bin/mkdir -p $MNT_PATH$DEV_NAME
     /bin/mount /dev/$DEV_NAME $MNT_PATH$DEV_NAME
     
     if [ $? -ne 0 ] ; then
         # Remove mount point when mounting failed
-        wr /bin/rmdir $MNT_PATH$DEV_NAME    
+        /bin/rmdir $MNT_PATH$DEV_NAME    
     fi
 elif [ $ACTION = "remove" ] ; then 
     if [ -e  $MNT_PATH$DEV_NAME ] ; then 
         /bin/umount -l  $MNT_PATH$DEV_NAME
-        wr /bin/rmdir  $MNT_PATH$DEV_NAME
+        /bin/rmdir  $MNT_PATH$DEV_NAME
     fi
 fi
 
