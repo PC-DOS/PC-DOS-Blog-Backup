@@ -1,17 +1,17 @@
 定位到{{/etc/udev/rules.d}}，建立{{00-usb-automount.rules}}文件，输入以下内容：
 
 [[code]]
-# USB
-KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh usb %k"
-KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh usb %k", OPTIONS="last_rule"
+# USB Disk
+KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh add %k"
+KERNEL=="sd[a-z]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh remove %k", OPTIONS="last_rule"
 
 # CF Card
-KERNEL=="hd[a-z]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh cf %k"
-KERNEL=="hd[a-z]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh cf %k", OPTIONS="last_rule"
+KERNEL=="hd[a-z]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh add %k"
+KERNEL=="hd[a-z]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh remove %k", OPTIONS="last_rule"
 
 # SD Card
-KERNEL=="mmcblk[0-9]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh sd %k" 
-KERNEL=="mmcblk[0-9]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh sd %k", OPTIONS="last_rule"
+KERNEL=="mmcblk[0-9]*", SUBSYSTEM=="block", ACTION=="add", RUN+="/etc/udev/rules.d/usb-mount.sh add %k" 
+KERNEL=="mmcblk[0-9]*", SUBSYSTEM=="block", ACTION=="remove", RUN+="/etc/udev/rules.d/usb-mount.sh remove %k", OPTIONS="last_rule"
 [[/code]]
 
 在同一目录建立{{usb-mount.sh}}文件，其内容为：
@@ -26,24 +26,27 @@ if [ $# -ne 2 ] ; then
     exit 1
 fi
 
+# Operation type
+DEV_ACTION=$1
+
 # Root directory for mounting
 MNT_PATH=/mnt/
 
 # Device node in /dev/
 DEV_NAME=$2
 
-if [ $ACTION = "add" ] ; then
+if [ $DEV_ACTION = "add" ] ; then
     /bin/mkdir -p $MNT_PATH$DEV_NAME
     /bin/mount /dev/$DEV_NAME $MNT_PATH$DEV_NAME
     
     if [ $? -ne 0 ] ; then
         # Remove mount point when mounting failed
-        /bin/rmdir $MNT_PATH$DEV_NAME    
+        /bin/rmdir $MNT_PATH$DEV_NAME
     fi
-elif [ $ACTION = "remove" ] ; then 
+elif [ $DEV_ACTION = "remove" ] ; then 
     if [ -e  $MNT_PATH$DEV_NAME ] ; then 
-        /bin/umount -l  $MNT_PATH$DEV_NAME
-        /bin/rmdir  $MNT_PATH$DEV_NAME
+        /bin/umount -l $MNT_PATH$DEV_NAME
+        /bin/rmdir $MNT_PATH$DEV_NAME
     fi
 fi
 
