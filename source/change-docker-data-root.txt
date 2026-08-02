@@ -1,0 +1,15 @@
+因业务需要，需要将一台Docker服务器的Docker数据和容器从挂载于{{/data}}的磁盘，迁移到挂载于{{/media/srv0}}的磁盘。其中，Docker数据位于挂载点下的{{docker}}目录中。
+
+使用{{rsync}}同步数据：
+
+[[code]]
+sudo rsync -avHAX /data/ /media/srv0/
+[[/code]]
+
+编辑{{/etc/docker/daemon.json}}，将{{data-root}}属性的值改为{{@@"/media/srv0/docker"@@}}并保存。
+
+重启Docker：
+
+[[code]]
+sudo systemctl restart docker
+[[/code]]
