@@ -29,6 +29,12 @@ sudo chmod o+x /mnt/hdd2
 usermod -d /mnt/hdd2/newuser -m newuser
 [[/code]]
 
+杀死{{newuser}}账户名下的全部进程：
+
+[[code]]
+killall -u newuser
+[[/code]]
+
 + {{sudo}}授权与解除授权（用户组管理）
 
 Ubuntu通过{{sudo}}用户组控制用户调用{{sudo}}的权限。
