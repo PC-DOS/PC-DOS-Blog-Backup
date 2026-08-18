@@ -1,0 +1,5 @@
+**故障描述：**一台运行Windows 11的笔记本电脑，将页面文件修改到非系统分区时不生效，系统显示的提交限制为物理内存容量加1 GB
+
+**故障处理：**打开注册表编辑器，定位到{{HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Session Manager\Memory Management}}，将{{PagefileOnOsVolume}}的值改为{{@@0@@}}，并根据页面文件配置修改{{ExistingPageFiles}}项和{{PagingFiles}}的值。
+
+**参考资料：** *https://zhuanlan.zhihu.com/p/22898394725
