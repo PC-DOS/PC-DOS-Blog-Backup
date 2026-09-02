@@ -4,7 +4,7 @@
 
 执行{{lspci | grep Ethernet}}后，获知设备地址为{{05:00.0}}和{{05:00.1}}。尝试通过向{{/sys/bus/pci/devices/0000:00:05.0}}和{{/sys/bus/pci/devices/0000:00:05.1}}中的{{rescan}}文件写入{{@@1@@}}触发重新扫描无效。
 
-使用{{lsmod}}和{{modinfo}}确认驱动程序版本，确定{{i40e}}驱动程序正常加载。从 *https://www.intel.cn/content/www/cn/zh/download/18026/intel-network-adapter-driver-for-pcie-40-gigabit-ethernet-network-connections-under-linux.html 下载并编译安装最新版本下{{i40e}}驱动程序，发现无变化。
+使用{{lsmod}}和{{modinfo}}确认驱动程序版本，确定{{i40e}}驱动程序正常加载。从 *https://www.intel.cn/content/www/cn/zh/download/18026/intel-network-adapter-driver-for-pcie-40-gigabit-ethernet-network-connections-under-linux.html 下载并编译安装最新版本下{{i40e}}驱动程序，使用{{modprobe i40e}}命令加载驱动程序，并使用{{sudo update-initramfs -u}}更新内核映像，发现无变化。
 
 使用{{ethtool -i ens5f1np1}}检查端口信息，显示驱动程序为{{i40e}}，固件版本为{{8.15 0x8000a3e0 1.2829.0}}。尝试从 *https://www.intel.cn/content/www/cn/zh/download/18190/nvm-update-utility-for-intel-ethernet-network-adapter-700-series.html?product=82947 下载并更新网卡固件，提示更新不可用。
 
